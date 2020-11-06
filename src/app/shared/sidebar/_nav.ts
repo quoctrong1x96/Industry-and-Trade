@@ -1,0 +1,396 @@
+import { INavItem } from '../../_models/_nav.model';
+// Tìm icon tại: https://material.io/resources/icons/
+export const navItemsPublic: INavItem[] = [
+  {
+    name: 'Bảng điều hành',
+    url: '/public/dashboard',
+    icon: 'border_all',
+  },
+  {
+    title: true,
+    name: 'THÔNG TIN THỊ TRƯỜNG'
+  },
+  {
+    name: 'Thị trường trong nước',
+    icon: 'border_all',
+    children: [
+      {
+        name: 'Giá nông sản',
+        url: '/public/market/domestic/price',
+        icon: 'monetization_on',
+        id: 'GCNSTN'
+      },
+      {
+        name: 'Thông tin xuất khẩu',
+        url: '/public/market/domestic/export',
+        icon: 'hourglass_top',
+        id: 'TTXKTN'
+      },
+      {
+        name: 'Thông tin nhập khẩu',
+        url: '/public/market/domestic/import',
+        icon: 'hourglass_bottom',
+        id: 'TTNKTN'
+      },
+      {
+        name: 'Thông tin sản xuất',
+        url: '/public/market/domestic/product',
+        icon: 'filter_9_plus',
+        id: 'TTSXTN'
+      },
+    ]
+  },
+  {
+    name: 'Thị trường thế giới',
+    icon: 'language',
+    children: [
+      {
+        name: 'Giá cả nông sản',
+        url: '/public/market/foreign',
+        icon: 'timeline',
+        id: 'GCNSTG'
+      }
+    ]
+  },
+  {
+    title: true,
+    name: 'TÌM KIẾM ĐỐI TÁC KINH DOANH'
+  },
+  {
+    name: 'Tìm kiếm đối tác',
+    url: '/public/partner/search',
+    icon: 'search',
+    id: 'TKDT'
+  },
+];
+export const navItemsManager: INavItem[] = [
+  {
+    title: true,
+    name: 'Quản lý',
+    manager:true,
+    isSCT: true,
+    id: 'QLSCT'
+  },
+  {
+    name: 'Thị trường trong nước',
+    icon: 'border_all',
+    manager:true,
+    isSCT: true,
+    id: 'QLSCT',
+    children: [
+      {
+        name: 'Giá cả trong nước',
+        url: '/sct/manager/market/domestic/price',
+        icon: 'monetization_on',
+        id: 'GCTN'
+      },
+      {
+        name: 'Tình hình xuất khẩu',
+        url: '/sct/manager/market/domestic/export',
+        icon: 'hourglass_top',
+        id: 'THXK'
+      },
+      {
+        name: 'Tình hình nhập khẩu',
+        url: '/sct/manager/market/domestic/import',
+        icon: 'hourglass_bottom',
+        id: 'THNK'
+      },
+      {
+        name: 'Sản xuất nông sản',
+        url: '/sct/manager/market/domestic/production',
+        icon: 'filter_9_plus',
+        id: 'SXNS'
+      },
+
+    ]
+  },
+  {
+    name: 'Thị trường thế giới',
+    icon: 'language',
+    manager:true,
+    isSCT: true,
+    id: 'QLSCT',
+    children: [
+      {
+        name: 'Giá cả nông sản',
+        url: '/sct/manager/market/foreign/price',
+        icon: 'timeline',
+        id: 'GCNSTTTG'
+      },
+    ]
+  },
+  {
+    name: 'Doanh nghiệp',
+    icon: 'business',
+    manager:true,
+    isSCT: true,
+    id: 'QLSCT',
+    children: [
+      {
+        name: 'Điều chỉnh doanh nghiệp',
+        url: '/sct/manager/business/search',
+        icon: 'create',
+        id: 'DCDN'
+      },
+      {
+        name: 'Xuất Nhập khẩu',
+        url: '/sct/manager/business/top-export',
+        icon: 'swap_vert',
+        id: 'TEXIM'
+      },
+    ]
+  },
+
+  
+  //muc nay danh cho user la doanh nghiep 
+  {
+    title: true,
+    name: 'Doanh nghiệp',
+    manager:true,
+    isSCT: false,
+    id: 'QLDN'
+  },
+  {
+    name: 'Chi tiết doanh nghiệp',
+    url: '/sct/manager/business/detail-business',
+    icon: 'business',
+    id: 'QLDN',
+    manager:true,
+    isSCT: false
+  },
+  {
+    name: 'Đăng xuất',
+    url: '/logout',
+    manager:true,
+    isSCT: true,
+    icon: 'login',
+    badge: {
+      variant: 'primary',
+      text: 'Sắp ra mắt'
+    },
+    attributes: { disabled: true },
+  },
+  
+];
+export const navItemsSpecialized: INavItem[] = [
+  // dữ liệu ngàng công thương
+  {
+    title: true,
+    name: 'Dữ liệu ngành',
+    manager:true,
+    isSCT: true,
+  },
+  {
+    name: 'A. Quản lý Thương mại',
+    manager:true,
+    isSCT: true,
+    icon: 'integration_instructions',
+    expand: false,
+    children: [
+      {
+        name: 'I. Thương mại nội địa',
+        icon: 'monetization_on',
+        id: 'TMND',
+        manager:true,
+        expand: false,
+        children:[
+          {
+            name: '1. Hạ tầng thương mại',
+            url: '/specialized/commecial-management/domestic',
+            icon: 'monetization_on',
+            id: 'HTTM',
+          },
+          {
+            name: '2. Kinh doanh có điều kiện, hạn chế kinh doanh',
+            url: '/specialized/commecial-management/domestic/cbl',
+            icon: 'monetization_on',
+            id: 'KDCDK',
+          },
+          {
+            name: '3. Tổng mức bán lẻ hàng hóa và dịch vụ',
+            url: '/specialized/commecial-management/domestic',
+            icon: 'monetization_on',
+            id: 'HHDV',
+          },
+        ]
+      },
+      {
+        name: 'II. Xuất nhập khẩu',
+        url: '/specialized/commecial-management/ecommerce',
+        icon: 'hourglass_bottom',
+        id: 'XNK',
+        manager:true,
+        expand: false,
+        children:[
+          {
+            name: '1. Xuất khẩu',
+            url: '/specialized/commecial-management/domestic',
+            icon: 'monetization_on',
+            id: 'HTTM',
+          },
+          {
+            name: '2. Nhập khẩu',
+            url: '/specialized/commecial-management/domestic',
+            icon: 'monetization_on',
+            id: 'KDCDK',
+          },
+        ]
+      },
+      {
+        name: 'III. Thương mại biên giới',
+        url: '/specialized/commecial-management/promotion',
+        icon: 'filter_9_plus',
+        id: 'TMBG',
+        manager: false,
+        expand: false,
+        children:[
+
+        ]
+      },
+      {
+        name: 'IV. Thương mại điện tử',
+        url: '/specialized/commecial-management/multi-level',
+        icon: 'hourglass_bottom',
+        id: 'TMDT',
+        manager:true,
+        expand: false,
+        children:[
+          {
+            name: '1. Quản lý thông báo website bán hàng',
+            url: '/specialized/commecial-management/e-commerce/imformed-website',
+            icon: 'monetization_on',
+            id: 'QLTB',
+          },
+          {
+            name: '2. Quản lý đăng kí website cung cấp dịch vụ TMĐT',
+            url: '/specialized/commecial-management/e-commerce/registration-services',
+            icon: 'monetization_on',
+            id: 'QLDK',
+          },
+        ]
+      },
+      {
+        name: 'V. Xúc tiến thương mại',
+        url: '/specialized/commecial-management/multi-level',
+        icon: 'hourglass_bottom',
+        id: 'XTTM',
+        manager:true,
+        expand: false,
+        children:[
+          {
+            name: '1. Hội chợ, triển lãm',
+            url: '/specialized/commecial-management/domestic',
+            icon: 'monetization_on',
+            id: 'HTTM',
+          },
+          {
+            name: '2. Khuyến mại',
+            url: '/specialized/commecial-management/domestic',
+            icon: 'monetization_on',
+            id: 'KDCDK',
+          },
+        ]
+      },
+      {
+        name: 'VI. Hoạt động bán hàng đa cấp',
+        url: '/specialized/commecial-management/multi-level',
+        icon: 'hourglass_bottom',
+        id: 'XTTM',
+        manager:false,
+        expand: false,
+        children:[
+
+        ]
+      },
+    ]
+  },
+  {
+    name: 'B. Quản lý Năng lượng',
+    manager:true,
+    isSCT: true,
+    icon: 'electrical_services',
+    expand: false,
+    children: [
+      {
+        name: 'Tổng quan ngành năng lượng',
+        url: '/specialized/enery-management/common',
+        icon: 'monetization_on',
+      },
+      {
+        name: 'Năng lượng - Thủy điện',
+        url: '/specialized/enery-management/hydroelectric',
+        icon: 'monetization_on',
+      },
+      {
+        name: 'Điện nông thôn',
+        url: '/specialized/enery-management/countryside_electric',
+        icon: 'hourglass_top',
+      },
+      {
+        name: 'Cơ sở sử dụng năng lượng trọng điểm',
+        url: '/specialized/enery-management/focused_energy',
+        icon: 'hourglass_bottom',
+      },
+    ]
+  },
+  {
+    name: 'C. Quản lý Công nghiệp',
+    url: '/specialized/industrial-management/',
+    manager:true,
+    isSCT: true,
+    icon: 'business',
+    expand: false,
+    children: [
+      {
+        name: 'Hóa chất',
+        url: '/specialized/industry-management/chemical',
+        icon: 'monetization_on',
+      },
+      {
+        name: 'Chiết nạp khí hóa lỏng',
+        url: '/specialized/industry-management/lpg',
+        icon: 'hourglass_top',
+      },
+      {
+        name: 'Công nghiệp thực phẩm',
+        url: '/specialized/industry-management/food',
+        icon: 'hourglass_bottom',
+      },
+      {
+        name: 'Chỉ số SX công nghiệp và một số sản phẩm công nghiệp chủ yếu',
+        url: '/specialized/industry-management/focus',
+        icon: 'filter_9_plus',
+      },
+      {
+        name: 'Cụm Công nghiệp',
+        url: '/specialized/industry-management/cluster',
+        icon: 'hourglass_bottom',
+      },
+      {
+        name: 'Công bố hợp quy',
+        url: '/specialized/industry-management/other',
+        icon: 'hourglass_bottom',
+        attributes :{disabled: true},
+      },
+      {
+        name: 'Vật liệu nổ CN',
+        url: '/specialized/industry-management/explosives',
+        icon: 'hourglass_bottom',
+      },
+    ]
+  },
+  {
+    name: 'Đăng xuất',
+    url: '/logout',
+    manager:true,
+    isSCT: true,
+    icon: 'login',
+    badge: {
+      variant: 'primary',
+      text: 'Sắp ra mắt'
+    },
+    attributes: { disabled: true },
+  },
+];
+

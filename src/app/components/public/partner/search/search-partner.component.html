@@ -1,0 +1,164 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title><h3>Danh sách doanh nghiệp</h3></mat-card-title>
+        <mat-card-subtitle>
+        </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <div class="row">
+            <!-- <div class="col-lg-2">
+                <div class="form-group">
+                    <label for="type_select">Kiểu hiển thị</label>
+                    <select class="form-control" name="" id="type_select" (change)="changeType()" [(ngModel)]="selectedType">
+                        <option *ngFor="let type of types" [ngValue]="type">{{type}}</option>
+                    </select>
+                </div>
+            </div> -->
+            <div class="col-lg-3">
+                <div class="form-group">
+                    <label for="name_select">Tên công ty</label>
+                    <input id="name_select" class="form-control" [(ngModel)]="tempFilter.ten_doanh_nghiep" type="text" placeholder="Tên Doanh nghiệp" aria-label="Doanh nghiệp">
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="form-group">
+                    <label for="selectedAddress">Địa chỉ</label>
+                    <select class="form-control" name="" id="selectedAddress" [(ngModel)]="tempFilter.ten_quan_huyen">
+                        <option *ngFor="let address of addresses" [ngValue]="address">{{address}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <!-- <div class="form-group">
+                    <label for="category_select">Ngành nghề</label>
+                    <select class="form-control" name="" id="category_select" (change)="change()" [(ngModel)]="tempFilter.ten_nganh_nghe">
+                        <option *ngFor="let category of categorys" [ngValue]="category">{{category}}</option>
+                    </select>
+                </div> -->
+                <!-- <label for="category_select">Ngành nghề</label>
+                <input id="category_select" class="form-control" id="category_select" type="text" placeholder="Ngành nghề" aria-label="Ngành nghề" [formControl]="control" [matAutocomplete]="auto">
+                <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let category of filteredCareerList | async" [value]="category.ten_kem_ma">
+                        {{category.ten_kem_ma}}
+                    </mat-option>
+                </mat-autocomplete> -->
+                <div class="form-group">
+                    <label for="selected_Career">Ngành nghề/Chi tiết ngành nghề</label>
+                    <input id="selected_Career" class="form-control" [(ngModel)]="tempFilter.ten_nganh_nghe" type="text" placeholder="" aria-label="Doanh nghiệp">
+                </div>
+            </div>
+            <!-- <div class="col-lg-2">
+                <label for="category_select_detail">Chi tiết ngành nghề</label>
+                <input id="category_select_detail" class="form-control" [(ngModel)]="tempFilter.nganh_nghe_kd" type="text" placeholder="Chi tiết ngành nghề" aria-label="Chi tiết ngành nghề" [formControl]="control">
+            </div> -->
+            <div class="col-lg-1" style="display: flex;justify-content: center;">
+                <button mat-raised-button class="form-button" [ngStyle]="{'background-color': 'blue', 'color': 'white'}" (click)="filter()">Tìm kiếm</button>
+            </div>
+            <div class="col-lg-1" style="display: flex;justify-content: center;">
+                <button mat-raised-button class="form-button" [ngStyle]="{'background-color': 'red', 'color': 'white'}" (click)="cancel()">Hủy</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+
+            </div>
+            <div class="col-lg-6" style="text-align: right;">
+                <button mat-raised-button [ngStyle]="{'background-color': 'green', 'color': 'white'}"
+                (click)="exportTOExcel('DanhSachDoanhNghiep','danh sach')">Xuất Excel</button>
+            </div>
+           
+        </div>
+        <hr>
+        <!-- <div *ngIf="typeShow==0;else ShowList" class="container">
+            <div class="row" *ngIf="!loading">
+                <div class="col-sm-4 mb-2 border-line" *ngFor="let company of pagedItems |filterByName: selectedName | filterByCategory: selectedAddress |filterByAddress: selectedAddress ">
+                    <mat-card style="height: 100%;" class="example-card" [routerLink]="['/partner/search', company.mst]">
+                        <mat-card-header>
+                            <mat-card-title>{{ company.ten_doanh_nghiep}}</mat-card-title>
+                            <mat-card-subtitle>Điện thoại: {{ company.dien_thoai }}</mat-card-subtitle>
+                        </mat-card-header>
+                        <img mat-card-image [src]="DEFAULT_IMAGE" class="img-fluid mx-auto d-block" alt="company.mst" width="360px" height="640px">
+                        <mat-card-content>
+                            <p>Ngành nghề kinh doanh: {{ company.ten_nhom_san_pham_kinh_doanh}}</p>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <ul *ngIf="pager.pages && pager.pages.length" class="pagination justify-content-end">
+                    <li (click)="setPage(1)" [ngClass]="{disabled:pager.currentPage === 1}" class="page-link">
+                        <mat-icon>skip_previous</mat-icon>
+                    </li>
+                    <li (click)="setPage(pager.currentPage - 1)" [ngClass]="{disabled:pager.currentPage === 1}" class="page-link">
+                        <mat-icon>keyboard_arrow_left</mat-icon>
+                    </li>
+                    <li (click)="setPage(page)" *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}" class="page-link">
+                        <div> {{page}} </div>
+                    </li>
+                    <li (click)="setPage(pager.currentPage + 1)" class="page-link" [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                        <mat-icon>keyboard_arrow_right</mat-icon>
+                    </li>
+                    <li (click)="setPage(pager.totalPages)" class="page-link" [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                        <mat-icon>skip_next</mat-icon>
+                    </li>
+                </ul>
+            </div>
+        </div> -->
+        <!-- <ng-template #ShowList> -->
+        <div class="mat-elevation-z8" #TABLE>
+            <!-- <mat-form-field>
+            <mat-label>Lọc dữ liệu</mat-label>
+            <input id="inputt" matInput (keyup)="applyFilter($event)" placeholder="" #input>
+        </mat-form-field> -->
+
+            <table mat-table matTableFilter [exampleEntity]="filterEntity" [filterType]="filterType" [dataSource]="dataSource">
+
+                <ng-container matColumnDef="index" sticky>
+                    <th mat-header-cell *matHeaderCellDef class="stt"> STT
+                        
+                    </th>
+                    <td mat-cell *matCellDef="let element; let i = index;"> {{i+1}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="ten_doanh_nghiep" sticky>
+                    <th mat-header-cell *matHeaderCellDef> Tên doanh nghiệp </th>
+                    <td mat-cell *matCellDef="let element"> {{element.ten_doanh_nghiep}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="mst">
+                    <th mat-header-cell *matHeaderCellDef class="mst"> Mã số thuế </th>
+                    <td mat-cell *matCellDef="let element"> {{element.mst}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="dia_chi">
+                    <th mat-header-cell *matHeaderCellDef> Địa chỉ </th>
+                    <td mat-cell *matCellDef="let element"> {{element.dia_chi_day_du}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="dien_thoai">
+                    <th mat-header-cell *matHeaderCellDef class="sdt"> Điện thoại </th>
+                    <td mat-cell *matCellDef="let element"> {{element.dien_thoai}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="ten_nganh_nghe">
+                    <th mat-header-cell *matHeaderCellDef class="NGKD"> Tên ngành nghề - ngành nghề kinh doanh</th>
+                    <td mat-cell *matCellDef="let element"> {{element.ten_nganh_nghe}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="chi_tiet_doanh_nghiep">
+                    <th mat-header-cell *matHeaderCellDef class="ct"> Chi tiết </th>
+                    <td mat-cell *matCellDef="let element">
+                        <mat-icon (click)="openDetailCompany(element.mst)">search</mat-icon>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+
+            <mat-paginator #scheduledOrdersPaginator [pageSizeOptions]="[20, 40, 100]" showFirstLastButtons></mat-paginator>
+        </div>
+        <!-- </ng-template> -->
+    </mat-card-content>
+</mat-card>

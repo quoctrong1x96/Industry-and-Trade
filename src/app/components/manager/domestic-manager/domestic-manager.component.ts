@@ -1,0 +1,319 @@
+//Import library
+import { Component, OnInit, ViewChild, ElementRef, ChangeDetectorRef, QueryList, ViewChildren } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { DateAdapter, MAT_DATE_LOCALE, MAT_DATE_FORMATS } from '@angular/material';
+import { FormControl } from '@angular/forms';
+import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
+import { formatDate } from '@angular/common';
+
+//Import component
+import { ManagerDirective } from './../../../shared/manager.directive';
+
+//Import Service
+import { ManagerService } from '../../../_services/APIService/manager.service';
+import { LoginService } from 'src/app/_services/APIService/login.service';
+import { KeyboardService } from './../../../shared/services/keyboard.service';
+import { MarketService } from 'src/app/_services/APIService/market.service';
+import { InformationService } from 'src/app/shared/information/information.service';
+
+//Import Model
+import { ProductManagerModelList, DomesticManagerModel, MODE } from '../../../_models/APIModel/manager.model';
+
+//Moment
+import { defaultFormat as _rollupMoment, Moment } from 'moment';
+import * as _moment from 'moment';
+const moment = _rollupMoment || _moment;
+export const DDMMYY_FORMAT = {
+  parse: {
+    dateInput: 'LL',
+  },
+  display: {
+    dateInput: 'DD-MM-YYYY',
+    monthYearLabel: 'YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'YYYY',
+  },
+};
+
+@Component({
+  selector: 'app-domestic-manager',
+  templateUrl: 'domestic-manager.component.html',
+  styleUrls: ['domestic-manager.component.scss'],
+  providers: [
+    {
+      provide: DateAdapter,
+      useClass: MomentDateAdapter,
+      deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS]
+    },
+
+    { provide: MAT_DATE_FORMATS, useValue: DDMMYY_FORMAT },
+    { provide: MAT_DATE_LOCALE, useValue: 'vi-VN' },
+  ],
+})
+
+export class DomesticManagerComponent implements OnInit {
+
+  //Constant
+  public readonly FORMAT = 'dd/MM/yyyy';
+  public readonly LOCALE = 'en-GB';
+
+  //Declare variable for only TS  
+  private _rows: number = 0;
+  private _currentRow: number = 0;
+  private _mode: MODE = MODE.UPDATE;
+
+
+  //Declare varialbe for TS & HTML
+  private timeDomesticManager: string;
+  private columns: number = 1;
+  private displayedColumns: string[] = ['index', 'ten_san_pham', 'gia', 'nguon_so_lieu', 'ngay_cap_nhat'];
+  private products: Array<ProductManagerModelList> = new Array<ProductManagerModelList>();
+  private dataSource: MatTableDataSource<DomesticManagerModel> = new MatTableDataSource<DomesticManagerModel>();
+  //ViewChild
+  @ViewChildren(ManagerDirective) inputs: QueryList<ManagerDirective>
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+
+  date = new FormControl(moment);
+  pickedDate = {
+    date: new Date()
+  }
+
+  public readonly format = 'dd/MM/yyyy';
+  public readonly locale = 'en-US';
+
+  /**
+   * Create service
+   * @param managerService Service call API get/post/put data
+   * @param keyboardservice Service support key arrown over report's fields
+   * @param marketService Service call API get data
+   * @param loginService Service check login of user
+   */
+  public constructor(private _managerService: ManagerService,
+    private _keyboardservice: KeyboardService,
+    private _infor: InformationService,
+    private _loginService: LoginService) {
+    console.log("* DomesticManagerComponent constructed!")
+  }
+
+  /**
+   * 1. Create current time on selector timer
+   * 2. Get all products to ListProduct
+   * 3. Get Domestic price on time of selector
+   * 4. Regist key arrown
+   */
+  public ngOnInit() {
+    // this.timeDomesticManager = _moment(this.pickedDate.date).format('DD/MM/YYYY');
+    // this.timeDomesticManager = this.getCurrentDate();
+    this.getListProduct();
+    this.getPreviousDomesticManager(this.pickedDate.date);
+    this._keyboardservice.keyBoard.subscribe(res => {
+      this.move(res)
+    })
+  }
+  // FUNCION USE FOR PROCESS-FLOW -----------------------------------------------------------------------------------------------------
+
+  private getListProduct(): void {
+    console.log("+ Function: GetListProduct()");
+    this._managerService.GetListProduct().subscribe(
+      allrecords => {
+        this.products = allrecords.data as ProductManagerModelList[];
+      },
+      //error => this.errorMessage = <any>error
+    );
+  }
+
+  private getPriceChange(param: any) {
+    this.getPreviousDomesticManager(param._d);
+  }
+
+  //Get domestic market price
+  private getPreviousDomesticManager(time: Date): void {
+    let formattedDate = formatDate(time, this.format, this.locale);
+    this._managerService.GetDomesticMarketByTime(formattedDate).subscribe(
+      allrecords => {
+        console.log(allrecords)
+        allrecords.data.forEach(row => {
+          row.ngay_cap_nhat = formatDate(row.ngay_cap_nhat, this.FORMAT, this.LOCALE).toString();
+        });
+        this.dataSource = new MatTableDataSource<DomesticManagerModel>(allrecords.data);
+        this._rows = this.dataSource.filteredData.length;
+        if (this.dataSource.data.length == 0) {
+          this._mode = MODE.INSERT;
+          this.createDefault();
+        }
+        else {
+          this._mode = MODE.UPDATE;
+        }
+        this.dataSource.paginator = this.paginator;
+        this.paginator._intl.itemsPerPageLabel = 'Số hàng';
+        this.paginator._intl.firstPageLabel = "Trang Đầu";
+        this.paginator._intl.lastPageLabel = "Trang Cuối";
+        this.paginator._intl.previousPageLabel = "Trang Trước";
+        this.paginator._intl.nextPageLabel = "Trang Tiếp";
+      });
+    //error => this.errorMessage = <any>error
+  }
+
+  //FUNCTION USE FOR HTML/EVENT-----------------------------------------------------------------------------------------------------------------
+  private save() {
+    this._loginService.userValue.user_id;
+    this.dataSource.data.forEach(element => {
+      if (element.gia) {
+        let x: number = + element.gia.toString().replace(',', '').replace(',', '').replace(',', '');
+        element.gia = x;
+      }
+      // if(element.ngay_cap_nhat){
+      //   let x = new Date(element.ngay_cap_nhat.split("/").reverse().map(Number).toString()).toUTCString();
+      //   element.ngay_cap_nhat = x;
+      //   console.log(x);
+      // }
+    });
+    // // if(this._mode == MODE.INSERT)
+    // // {
+    console.log(this.dataSource);
+    this._managerService.PostDomesticManager(this.dataSource.data).subscribe(
+      next => {
+        if (next.id == -1) {
+          this._infor.msgError("Lưu lỗi! Lý do: " + next.message);
+        }
+        else {
+          this._infor.msgSuccess("Dữ liệu được lưu thành công!");
+          this._mode = MODE.UPDATE;
+        }
+      },
+      error => {
+        this._infor.msgError("Không thể thực thi! Lý do: " + error.message);
+      }
+    );
+    // }
+    // else{
+    //Thực hiện update
+    // }
+
+  }
+
+  //Event button "Lọc dữ liệu"
+  private applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  //Envet Key Arrown move
+  private move(object) {
+    const inputToArray = this.inputs.toArray()
+    let index = inputToArray.findIndex(x => x.element == object.element);
+    switch (object.action) {
+      case "UP":
+        index -= this.columns;
+        break;
+      case "DOWN":
+        index += this.columns;
+        break;
+      case "LEFT":
+        index -= this._rows;
+        break;
+      case "RIGHT":
+        index += this._rows;
+        break;
+    }
+    if (index >= 0 && index < this.inputs.length) {
+      inputToArray[index].element.nativeElement.focus();
+      // inputToArray[index].element.nativeElement.style.backgroundColor = '#5789D8';
+    }
+  }
+
+  //Event select combobox "Tên sản phẩm"
+  private changeProduct(element: any) {
+    element.ten_san_pham = this.products.filter(x => x.ma_san_pham == element.id_san_pham)[0].ten_san_pham;
+  }
+
+  //Event Add row "Thêm dòng"
+  private addRow(): void {
+    let newRow: DomesticManagerModel = new DomesticManagerModel();
+    newRow.gia;
+    newRow.ngay_cap_nhat = this.getCurrentDate();
+    newRow.nguon_so_lieu = "";
+    newRow.ma_nguoi_cap_nhat = this._loginService.userValue.user_id;
+    this.dataSource.data.push(newRow);
+    this._rows = this.dataSource.filteredData.length;
+    this.dataSource = new MatTableDataSource(this.dataSource.data);
+    this.dataSource.paginator = this.paginator;
+    this.paginator._intl.itemsPerPageLabel = 'Số hàng';
+    this.paginator._intl.firstPageLabel = "Trang Đầu";
+    this.paginator._intl.lastPageLabel = "Trang Cuối";
+    this.paginator._intl.previousPageLabel = "Trang Trước";
+    this.paginator._intl.nextPageLabel = "Trang Tiếp";
+  }
+
+  //Evnet "Xóa dòng"
+  private deleteRow(): void {
+    this.dataSource.data.splice(this._currentRow, 1);
+    this.dataSource = new MatTableDataSource(this.dataSource.data);
+    this._rows = this.dataSource.filteredData.length;
+  }
+
+  //Evnet "Chèn dòng"
+  private insertRow(): void {
+    let data = this.dataSource.data.slice(this._currentRow);
+    this.dataSource.data.splice(this._currentRow, this.dataSource.data.length - this._currentRow + 1);
+    let newRow: DomesticManagerModel = new DomesticManagerModel();
+    newRow.gia;
+    newRow.ngay_cap_nhat = this.getCurrentDate();
+    newRow.nguon_so_lieu = "";
+    newRow.ma_nguoi_cap_nhat = this._loginService.userValue.user_id;
+    this.dataSource.data.push(newRow);
+    data.forEach(element => {
+      this.dataSource.data.push(element);
+    });
+    this.dataSource = new MatTableDataSource(this.dataSource.data);
+    this._rows = this.dataSource.filteredData.length;
+  }
+
+  //Event Change row
+  private changeRow(index: number) {
+    this._currentRow = index;
+  }
+
+  //FUNCTION EXTENTIONS-----------------------------------------------------------------------------------------------------------------
+  //Create default table values
+  private createDefault() {
+    const HAT_DIEU: number = 2;
+    const HAT_TIEU: number = 10;
+    const CAO_SU: number = 4;
+    const CA_PHE: number = 5;
+    // if (this.dataSource.data.length > 0)
+    //   if (!confirm("Nếu bạn tạo mặc định sẽ xóa dữ liệu hiện tại! Bạn tiếp tục không?"))
+    //     return;
+    this.dataSource = new MatTableDataSource<DomesticManagerModel>();
+    this.addRow();
+    this.addRow();
+    this.addRow();
+    this.addRow();
+    this.dataSource.data[0].ten_san_pham = this.products.filter(x => x.ma_san_pham == HAT_DIEU)[0].ten_san_pham;
+    this.dataSource.data[1].ten_san_pham = this.products.filter(x => x.ma_san_pham == HAT_TIEU)[0].ten_san_pham;
+    this.dataSource.data[2].ten_san_pham = this.products.filter(x => x.ma_san_pham == CAO_SU)[0].ten_san_pham;
+    this.dataSource.data[3].ten_san_pham = this.products.filter(x => x.ma_san_pham == CA_PHE)[0].ten_san_pham;
+    this.dataSource.data[0].id_san_pham = this.products.filter(x => x.ma_san_pham == HAT_DIEU)[0].ma_san_pham;
+    this.dataSource.data[1].id_san_pham = this.products.filter(x => x.ma_san_pham == HAT_TIEU)[0].ma_san_pham;
+    this.dataSource.data[2].id_san_pham = this.products.filter(x => x.ma_san_pham == CAO_SU)[0].ma_san_pham;
+    this.dataSource.data[3].id_san_pham = this.products.filter(x => x.ma_san_pham == CA_PHE)[0].ma_san_pham;
+    console.log(this.dataSource.data);
+    this._rows = this.dataSource.filteredData.length;
+  }
+
+  //Get current time
+  private getMonthAndYear(time: string): string {
+    let year = time.substr(0, 4);
+    let month = time.substr(4, 2);
+    let day = time.substr(6, 2);
+    let result = day + "/" + month + "/" + year;
+    console.log(result);
+    return result as string;
+  }
+
+  private getCurrentDate(): string {
+    let date = new Date();
+    return date.toLocaleDateString(this.LOCALE);
+  }
+}

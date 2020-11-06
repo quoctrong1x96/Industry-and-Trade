@@ -1,0 +1,83 @@
+th,
+td {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+
+.mat-header-cell {
+  background-color: deepskyblue;
+  border: 1px solid black;
+  font-weight: bold;
+  font-size: 15px;
+  text-align: center;
+  padding: 5px 5px 5px 5px;
+}
+
+.not-input {
+  background-color: grey;
+}
+
+.mat-cell {
+  border: 1px solid black;
+  font-size: 15px;
+  text-align: center;
+  padding: 5px 5px 5px 5px;
+  height: 100px;
+}
+
+.mat-table {
+  width: 100%;
+  border: 1px solid black;
+  table-layout: initial;
+}
+
+.cbconfig {
+  width: 50px;
+}
+
+.cbconfig1 {
+  width: 50px;
+}
+
+input {
+  border: none;
+  font-size: 15px;
+  width: 100%;
+  height: 100%;
+  padding: 3px;
+}
+
+input:hover,
+input:focus {
+  background-color: #11f8e6;
+}
+
+.mat-form-field {
+  font-size: 15px;
+  width: 100%;
+}
+
+#inputt {
+  text-align: left !important;
+  background-color: #f0f0f0;
+}
+
+.stt {
+  width: 50px;
+}
+
+.NGKD {
+  width: 350px;
+}
+
+.mst {
+  width: 100px;
+}
+
+.sdt {
+  width: 100px;
+}
+
+.mat-icon {
+  cursor: pointer;
+}

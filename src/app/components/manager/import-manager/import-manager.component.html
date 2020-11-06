@@ -1,0 +1,120 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title><strong>Cập nhật tình hình nhập khẩu</strong></mat-card-title>
+        <mat-card-subtitle><strong>Tháng cập nhật: </strong>{{timeImportManager}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <div class="row">
+            <div class="col-lg-2">
+                <mat-form-field>
+                    <mat-label>Thời gian</mat-label>
+                    <input matInput [matDatepicker]="dp" [formControl]="date" (dateChange)="addEvent('change', $event)">
+                    <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+                    <mat-datepicker #dp startView="multi-year" (yearSelected)="chosenYearHandler($event)"
+                        (monthSelected)="chosenMonthHandler($event, dp)" panelClass="example-month-picker">
+                    </mat-datepicker>
+                </mat-form-field>
+            </div>
+            <div class="col-lg-4">
+            </div>
+            <div class="col-lg-6" style="text-align: right;">
+                <!-- <button mat-raised-button [ngStyle]="{'background-color': 'red', 'color': 'white'}"
+                    (click)="CreateDefault()">Mặc định</button> -->
+                &nbsp;
+                <button mat-raised-button [ngStyle]="{'background-color': 'blue', 'color': 'white'}"
+                    (click)="save()">Lưu</button>
+            </div>
+        </div>
+        <hr>
+        <div class="mat-elevation-z8">
+            <mat-form-field>
+                <mat-label>Lọc dữ liệu</mat-label>
+                <input id="inputt" matInput (keyup)="applyFilter($event)" placeholder="" #input>
+            </mat-form-field>
+
+            <table mat-table [dataSource]="dataSource">
+                <ng-container matColumnDef="index">
+                    <th mat-header-cell *matHeaderCellDef> STT </th>`
+                    <td mat-cell *matCellDef="let element; let i = index;" class='stt'>{{i+1}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="ten_san_pham">
+                    <th mat-header-cell *matHeaderCellDef> Tên sản phẩm </th>
+                    <td mat-cell *matCellDef="let element">
+                        <select [disabled]="modeQuery==2" class="form-control" id="period_select"
+                            (change)="changeProduct(element)" [(ngModel)]="element.id_san_pham"
+                            [ngClass]="(modeQuery==2)?'stt':''">
+                            <option *ngFor="let product of products" [ngValue]="product.ma_san_pham">
+                                {{product.ten_san_pham}} </option>
+                        </select>
+                    </td>
+                </ng-container>
+
+                <!-- <ng-container matColumnDef="don_vi_tinh">
+                    <th mat-header-cell *matHeaderCellDef> Đơn vị tính </th>
+                    <td mat-cell *matCellDef="let element">
+                        <input appReport class="text-center" [(ngModel)]="element.don_vi_tinh">
+                    </td>
+                </ng-container> -->
+
+                <ng-container matColumnDef="san_luong">
+                    <th mat-header-cell *matHeaderCellDef> Sản lượng <br> (nghìn tấn) </th>
+                    <td mat-cell *matCellDef="let element">
+                        <input appReport currencyMask class="text-right" [(ngModel)]="element.san_luong" type="text">
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="tri_gia">
+                    <th mat-header-cell *matHeaderCellDef> Trị giá <br> (nghìn USD) </th>
+                    <td mat-cell *matCellDef="let element">
+                        <input appReport currencyMask class="text-right" [(ngModel)]="element.tri_gia" type="text">
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="san_luong_ct">
+                    <th mat-header-cell *matHeaderCellDef> Sản lượng <br> (nghìn tấn) </th>
+                    <td mat-cell *matCellDef="let element">
+                        <input appReport currencyMask class="text-right" [(ngModel)]="element.san_luong_ct" type="text">
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="tri_gia_ct">
+                    <th mat-header-cell *matHeaderCellDef> Trị giá <br> (nghìn USD) </th>
+                    <td mat-cell *matCellDef="let element">
+                        <input appReport currencyMask class="text-right" [(ngModel)]="element.tri_gia_ct" type="text">
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="top_xuat_khau">
+                    <th mat-header-cell *matHeaderCellDef> TOP DN<br>Nhập khẩu </th>
+                    <td mat-cell *matCellDef="let element">
+                        <mat-icon *ngIf="element.id != 0" (click)="openDialogSelectCompany(element)" type="text">
+                            emoji_events</mat-icon>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="ten_sp">
+                    <th mat-header-cell *matHeaderCellDef [attr.colspan]="2"></th>
+                </ng-container>
+                <ng-container matColumnDef="so_lieu_tam_thoi">
+                    <th mat-header-cell *matHeaderCellDef [attr.colspan]="2">
+                        Số liệu tạm thời <br> (Nguồn số liệu từ Cục hải quan Bình Phước)</th>
+                </ng-container>
+                <ng-container matColumnDef="so_lieu_chinh_thuc">
+                    <th mat-header-cell *matHeaderCellDef [attr.colspan]="2">
+                        Số liệu chính thức<br> (Nguồn số liệu từ Tổng cục Hải quan)</th>
+                </ng-container>
+                <ng-container matColumnDef="top_xuat_khau_header">
+                    <th mat-header-cell *matHeaderCellDef [attr.colspan]="1"></th>
+                </ng-container>
+                <tr mat-header-row
+                    *matHeaderRowDef="['ten_sp','so_lieu_tam_thoi', 'so_lieu_chinh_thuc','top_xuat_khau_header']">
+                </tr>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky: true"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;let i = index; " (click)="changeRow(i)">
+            </table>
+
+            <mat-paginator [pageSizeOptions]="[20, 50, 100]" showFirstLastButtons></mat-paginator>
+        </div>
+    </mat-card-content>
+</mat-card>

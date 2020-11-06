@@ -1,0 +1,114 @@
+.mat-form-field {
+  width: 100%;
+}
+
+.mat-form-field label{
+  color: black;
+}
+
+input {
+  text-align: left !important;
+}
+
+.TTCT{
+  margin: 0 0 0 -3em;
+  display: flex;
+  justify-content: space-between;
+}
+
+table{
+  width: 100%;
+}
+
+.messError{
+  font-size: 20px;
+  color: red;
+  text-align: center;
+  padding: 1em;
+}
+
+input {
+  border: none;
+  // width: 550px;
+  background: transparent;
+}
+
+.mat-select {
+  border: none;
+  // width: 600px;
+  background: transparent;
+}
+
+// #slcstt {
+//   width: 30px;
+// }
+
+table{
+  width: 100%;
+}
+
+.messError{
+  font-size: 20px;
+  color: red;
+  text-align: center;
+  padding: 1em;
+}
+
+.select-TSP{
+  width: 200px;
+}
+
+.text-right {
+  text-align: left !important;
+}
+
+tr.mat-header-row{
+  background-color: deepskyblue;
+}
+
+th.mat-header-cell{
+  font-size: 15px;
+  font-weight: 500;
+  color: black;
+}
+
+mat-icon .icon-color{
+  color: red;
+}
+
+
+td.mat-cell, td.mat-footer-cell, th.mat-header-cell {
+  padding: 10px;
+  border: 1px solid;
+}
+
+.btn-action{
+  max-width: fit-content;
+}
+
+.expand-more{
+  display: flex;
+  padding: 10px 0;
+  span{
+    margin-right: 0.5em;
+    font-weight: bold;
+  }
+  .mat-icon{
+    cursor: pointer;
+    // border: 1px solid #c8c8c8;
+    border-radius: 50%;
+    background-color: #eae8e8;
+    color: #7b7676;
+  }
+}
+
+.CSTT{
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0 20px;
+  mat-label{
+    margin-right: 1em;
+    padding: 10px 0;
+    font-weight: bolder;
+  }
+}

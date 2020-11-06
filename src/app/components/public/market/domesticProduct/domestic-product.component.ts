@@ -1,0 +1,408 @@
+//import library
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import * as XLSX from 'xlsx';
+import { MatDialog } from '@angular/material';
+import { promise } from 'protractor';
+import { Router } from '@angular/router';
+import { FormControl } from '@angular/forms';
+import { MatDatepicker, MatDatepickerInputEvent } from '@angular/material/datepicker';
+//Import Model
+import { DomesticPriceModel, ProductValueModel } from '../../../../_models/APIModel/domestic-market.model';
+import { SAVE } from 'src/app/_enums/save.enum';
+//Import Service
+import { MarketService } from '../../../../_services/APIService/market.service';
+//Import Component
+import { CompanyTopPopup } from '../company-top-popup/company-top-popup.component';
+
+//Moment
+import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import * as _moment from 'moment';
+import { defaultFormat as _rollupMoment, Moment } from 'moment';
+const moment = _rollupMoment || _moment;
+export const MY_FORMATS = {
+  parse: {
+    dateInput: 'MM/YYYY',
+  },
+  display: {
+    dateInput: 'MM/YYYY',
+    monthYearLabel: 'MMM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM YYYY',
+  },
+};
+
+@Component({
+  selector: 'app-domestic-product',
+  templateUrl: 'domestic-product.component.html',
+  styleUrls: ['domestic-product.component.scss'],
+  providers: [
+    {
+      provide: DateAdapter,
+      useClass: MomentDateAdapter,
+      deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS]
+    },
+
+    { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
+    { provide: MAT_DATE_LOCALE, useValue: 'vi' },
+  ],
+})
+
+export class DomesticProductComponent implements OnInit {
+
+  //Declare variable for HTML&TS
+  private timeDomesticPrice: string;
+  private displayedColumns: string[] = ['index', 'ten_san_pham', 'san_luong', 'tri_gia', 'top_san_xuat'];
+  private dataSource: MatTableDataSource<ProductValueModel>;
+  private dataGet: Array<any>;
+  private chartYearModelSelected: number;
+  private chartyears: Array<number> = [];
+  private date = new FormControl(_moment());
+  //Derclare variable for TS  
+  private mainChartLegend: boolean;
+  private mainChartType: string = 'line';
+  private mainChartColours: Array<any> = new Array<any>();
+  private mainChartOptions: any;
+  private mainChartLabels: Array<any> = new Array<any>();
+  private mainChartData: Array<any> = new Array<any>();
+  private maxSizeChart: number;
+  private theYear: number = 0;
+  private theMonth: number = 0;
+  private mainChartElements = 10;
+  private chartYearModel: number;
+
+  //ViewChild
+  @ViewChild('TABLE', { static: false }) table: ElementRef;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+
+  constructor(private marketService: MarketService, private router: Router, private dialog: MatDialog) {
+
+    //this.initialData();
+  }
+
+  ngOnInit() {
+    this.chartYearModelSelected = this.getCurrentYear();
+    this.theYear = this.getCurrentYear();
+    this.theMonth = this.getCurrentMonth();
+    this.chartyears = this.initialYears();
+    this.timeDomesticPrice = this.theMonth + "/" + this.theYear;
+    this.getDomesticMarketProduct(this.theMonth, this.theYear);
+    //this.GetDataForChart();
+  }
+
+  //Function for PROCESS-FLOW----------------------------------------------------------------------------------
+  //Get domestic market price
+  private getDomesticMarketProduct(month: number, year: number) {
+    this.marketService.GetProductValue(month, year).subscribe(
+      allrecords => {
+        console.log(allrecords)
+        this.dataSource = new MatTableDataSource<ProductValueModel>(allrecords.data);
+        this.dataSource.paginator = this.paginator;
+        this.paginator._intl.itemsPerPageLabel = 'Số hàng';
+        this.paginator._intl.firstPageLabel = "Trang Đầu";
+        this.paginator._intl.lastPageLabel = "Trang Cuối";
+        this.paginator._intl.previousPageLabel = "Trang Trước";
+        this.paginator._intl.nextPageLabel = "Trang Tiếp";
+      },
+      //error => this.errorMessage = <any>error
+    );
+  }
+
+  sumSL() {
+    let sumSL: number = 0;
+    if (this.dataSource)
+      for (let row of this.dataSource.data) {
+        if (row.id != 0) sumSL += row.san_luong;
+      }
+    return sumSL;
+  }
+
+  sumTG() {
+    let sumTG: number = 0;
+    if (this.dataSource)
+      for (let row of this.dataSource.data) {
+        if (row.id != 0) sumTG += row.tri_gia;
+      }
+    return sumTG;
+  }
+  //Function for HTML-EVENT----------------------------------------------------------------------------------
+  //Event "Lọc dữ liệu"
+  private applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+  //Event "Mở top doanh nghiệp"
+  private openCompanyTopPopup(data: any) {
+    const dialogRef = this.dialog.open(CompanyTopPopup, {
+      data: {
+        message: 'Dữ liệu top doanh nghiệp sản xuất.',
+        buttonText: {
+          ok: 'Lưu',
+          cancel: 'Hủy bỏ'
+        },
+        toptop: data,
+        typeOfSave: SAVE.PRODUCT,
+      }
+    });
+    dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+      if (confirmed) {
+      }
+    });
+  }
+  //Event "Change year"
+  private changeYear() {
+    console.log("changeYear");
+  }
+  //Event "Chọn năm"
+  private chosenYearHandler(normalizedYear: Moment) {
+    const ctrlValue = this.date.value;
+    ctrlValue.year(normalizedYear.year());
+    this.date.setValue(ctrlValue);
+    this.theYear = normalizedYear.year();
+    return this.theYear as number
+  }
+  //Event "Chọn tháng"
+  private chosenMonthHandler(normalizedMonth: Moment, datepicker: MatDatepicker<Moment>) {
+    const ctrlValue = this.date.value;
+    ctrlValue.month(normalizedMonth.month());
+    this.date.setValue(ctrlValue);
+    this.theMonth = normalizedMonth.month() + 1;
+    datepicker.close();
+    this.getDomesticMarketProduct(this.theMonth, this.theYear);
+    return this.theMonth as number
+  }
+  //Add event
+  private addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
+    let time = event.value;
+    let year = time.getFullYear();
+    let month = time.getMonth();
+    this.marketService.GetExportedValue(month, year);
+  }
+  //Event "Xuất excel"
+  private exportTOExcel(filename: string, sheetname: string) {
+    sheetname = sheetname.replace('/', '_');
+    let excelFileName: string = filename + '.xlsx';
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, sheetname);
+    /* save to file */
+    XLSX.writeFile(wb, excelFileName);
+  }
+  //Event "Top doanh nghiệp"
+  private openTopProduct(productId: string) {
+    console.log("Top :" + productId);
+    let url: string = "/market/company?action=&product=" + productId + '&month=' + this.theMonth + '&year=' + this.theYear;
+    this.router.navigate(['/market/company'], {
+      queryParams: {
+        action: 'product', product: productId, month: this.theMonth,
+        year: this.theYear
+      }
+    });
+  }
+  //Function for EXTENTION----------------------------------------------------------------------------------
+  private getCurrentMonth(): number {
+    var currentDate = new Date();
+    return currentDate.getMonth() + 1;
+  }
+  private initialYears() {
+    let returnYear: Array<any> = [];
+    let currentDate = new Date();
+    let nextYear = currentDate.getFullYear() + 1;
+    for (let index = 0; index < 11; index++) {
+      returnYear.push(nextYear - index);
+    }
+    return returnYear;
+  }
+  private getCurrentYear() {
+    var currentDate = new Date();
+    return currentDate.getFullYear();
+  }
+  private getMonthAndYear(time: string) {
+    //"20200515150503"
+    let year = time.substr(0, 4);
+    let month = time.substr(4, 2);
+    let day = time.substr(6, 2);
+    let result = day + "/" + month + "/" + year;
+    return result as string;
+  }
+  //Function for HTML CHART ------------------------------------------------------------------------------
+  private initialData() {
+    this.initialChartColor();
+    this.inititalChartOther();
+  }
+
+  //Initalize Color for chart line
+  private initialChartColor() {
+    this.mainChartColours = [
+      { // brandInfo
+        // backgroundColor: hexToRgba(getStyle('--success'), 10),
+        // borderColor: getStyle('--success'),
+        pointHoverBackgroundColor: '#fff'
+      },
+      { // brandSuccess
+        backgroundColor: 'transparent',
+        // borderColor: getStyle('--warning'),
+        pointHoverBackgroundColor: '#fff'
+      },
+      { // brandDanger
+        backgroundColor: 'transparent',
+        // borderColor: getStyle('--primary'),
+        pointHoverBackgroundColor: '#fff'
+      },
+      { // brandDanger
+        backgroundColor: 'transparent',
+        // borderColor: getStyle('--danger'),
+        pointHoverBackgroundColor: '#fff',
+      }
+    ];
+  }
+  //Initialize Option for chart line
+  private initialChartOption() {
+    this.mainChartOptions = {
+      tooltips: {
+        scaleShowValues: true,
+        enabled: false,
+        // custom: CustomTooltips,
+        intersect: true,
+        mode: 'index',
+        position: 'nearest',
+        callbacks: {
+          labelColor: function (tooltipItem, chart) {
+            return { backgroundColor: chart.data.datasets[tooltipItem.datasetIndex].borderColor };
+          }
+        }
+      },
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        xAxes: [{
+          gridLines: {
+            drawOnChartArea: false,
+          },
+          ticks: {
+            callback: function (value: any) {
+              return value
+            }
+          }
+        }],
+        yAxes: [{
+          ticks: {
+            beginAtZero: true,
+            maxTicksLimit: 5,
+            stepSize: Math.ceil(this.maxSizeChart / 5),
+            max: this.maxSizeChart
+          }
+        }]
+      },
+      elements: {
+        line: {
+          borderWidth: 2
+        },
+        point: {
+          radius: 2,
+          borderWidth: 2,
+          hitRadius: 5,
+          hoverRadius: 4,
+          hoverBorderWidth: 6,
+        }
+      },
+      legend: {
+        display: false
+      }
+    };
+  }
+  //Initialize Other
+  private inititalChartOther() {
+    this.mainChartType = 'line';
+    this.mainChartLegend = false;
+  }
+  private getDataForChart() {
+    console.log("+ Function: GetDataForChart()");
+    let chartData1: Array<number> = new Array<number>();
+    let chartName1: string;
+    let productId: number;
+    let periodTime: number;
+    let chartData2: Array<number> = new Array<number>();
+    let chartName2: string;
+    let chartData3: Array<number> = new Array<number>();
+    let chartName3: string;
+    let chartData4: Array<number> = new Array<number>();
+    let chartName4: string;
+    productId = 2;
+    periodTime = 10;
+    this.marketService.GetPriceByProductId(productId, periodTime).subscribe(
+      allrecords => {
+        allrecords.data.forEach(row => {
+          if (chartName1 != '') chartName1 = row.ten_san_pham;
+          this.mainChartLabels.unshift(this.getMonthAndYear(row.ngay_cap_nhat));
+          chartData1.unshift(row.gia);
+          if (row.gia > this.maxSizeChart) this.maxSizeChart = row.gia;
+        });
+        console.log("chartData1: ", chartData1);
+        productId = 3;
+        periodTime = 10;
+        this.marketService.GetPriceByProductId(productId, periodTime).subscribe(
+          allrecords => {
+            allrecords.data.forEach(row => {
+              if (chartName2 != '') chartName2 = row.ten_san_pham;
+              chartData2.unshift(row.gia);
+              if (row.gia > this.maxSizeChart) this.maxSizeChart = row.gia;
+            });
+            console.log("chartData2: ", chartData2);
+            productId = 4;
+            periodTime = 10;
+            this.marketService.GetPriceByProductId(productId, periodTime).subscribe(
+              allrecords => {
+                allrecords.data.forEach(row => {
+                  if (chartName3 != '') chartName3 = row.ten_san_pham;
+                  chartData3.unshift(row.gia);
+                  if (row.gia > this.maxSizeChart) this.maxSizeChart = row.gia;
+                });
+                console.log("chartData3: ", chartData3);
+                productId = 5;
+                periodTime = 10;
+                this.marketService.GetPriceByProductId(productId, periodTime).subscribe(
+                  allrecords => {
+                    allrecords.data.forEach(row => {
+                      if (chartName4 != '') chartName4 = row.ten_san_pham;
+                      chartData4.unshift(row.gia);
+                      if (row.gia > this.maxSizeChart) this.maxSizeChart = row.gia;
+                    });
+                    console.log("chartData4: ", chartData4);
+                    this.mainChartData = [
+                      {
+                        data: chartData1,
+                        label: chartName1
+                      },
+                      {
+
+                        data: chartData2,
+                        label: chartName2
+                      },
+                      {
+                        data: chartData3,
+                        label: chartName3
+                      },
+                      {
+                        data: chartData4,
+                        label: chartName4
+                      }
+                    ];
+                    console.log("mainChartData: ", this.mainChartData);
+                    this.initialChartOption();
+                  },
+                  //error => this.errorMessage = <any>error
+                );
+              },
+              //error => this.errorMessage = <any>error
+            );
+          },
+          //error => this.errorMessage = <any>error
+        );
+      },
+      //error => this.errorMessage = <any>error
+    );
+  };
+}

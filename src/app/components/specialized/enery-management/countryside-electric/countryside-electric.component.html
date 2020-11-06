@@ -1,0 +1,80 @@
+<h3>Quản lý điện nông thôn</h3>
+<div class="example-action-buttons" style="padding: 1em;">
+    <button mat-flat-button color="primary" (click)="accordion.openAll()" style="margin-right: 1em;">Xem tất cả</button>
+    <button mat-flat-button color="warn" (click)="accordion.closeAll()">Đóng lại</button>
+</div>
+
+  <mat-accordion class="example-headers-align" multi>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+            1. Tỷ lệ hộ sử dụng điện 
+        </mat-panel-title>
+        <mat-panel-description>
+            ...
+          <mat-icon>electrical_services</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+  
+      <div style="display: grid;">
+        <mat-form-field>
+            <mat-label>Trường thông tin 1</mat-label>
+            <input matInput>
+          </mat-form-field>
+          
+          <mat-form-field>
+            <mat-label>Trường thông tin 2</mat-label>
+            <input matInput>
+          </mat-form-field>
+      </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+            2. Tiêu chí điện nông thôn
+        </mat-panel-title>
+        <mat-panel-description>
+          ...
+          <mat-icon>trending_flat</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+  
+      <div style="display: grid;">
+        <mat-form-field>
+            <mat-label>Trường thông tin 1</mat-label>
+            <input matInput>
+          </mat-form-field>
+          
+          <mat-form-field>
+            <mat-label>Trường thông tin 2</mat-label>
+            <input matInput>
+          </mat-form-field>
+      </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            3. Hạ tầng điện nông thôn
+          </mat-panel-title>
+          <mat-panel-description>
+            ...
+            <mat-icon>trending_flat</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+    
+        <div style="display: grid;">
+          <mat-form-field>
+              <mat-label>Trường thông tin 1</mat-label>
+              <input matInput>
+            </mat-form-field>
+            
+            <mat-form-field>
+              <mat-label>Trường thông tin 2</mat-label>
+              <input matInput>
+            </mat-form-field>
+        </div>
+      </mat-expansion-panel>
+  </mat-accordion>

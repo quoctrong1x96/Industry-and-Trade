@@ -1,0 +1,70 @@
+h1{
+    margin: 10px;
+}
+th,
+td {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+.mat-header-cell {
+    background-color: deepskyblue;
+    border: 1px solid black;
+    font-weight: bold;
+    font-size: 15px;
+    text-align: center;
+    padding: 5px 5px 5px 5px;
+}
+
+.mat-cell {
+    border: 1px solid black;
+    font-size: 15px;
+    text-align: center;
+    padding: 5px 5px 5px 5px;
+}
+
+.mat-table {
+    width: 100%;
+    border: 1px solid black;
+    table-layout: initial;
+}
+
+.mat-form-field {
+    font-size: 15px;
+    width: 100%;
+}
+
+#inputt {
+    text-align: left !important;
+    background-color: #f0f0f0;
+}
+
+.NGKD {
+    width: 350px;
+}
+
+.stt {
+    width: 50px;
+}
+
+.mst {
+    width: 100px;
+}
+
+.sdt {
+    width: 100px;
+}
+
+.mat-icon {
+    cursor: pointer;
+}
+
+.ct{
+    width: 50px;
+}
+
+.form-button {
+    top: 33%;
+    position: absolute;
+    // width: 75%;
+}

@@ -1,0 +1,104 @@
+.example-icon {
+  padding: 0 14px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+.header {
+  padding: 10px 20px;
+  padding-left: 7px;
+  background: rgb(212, 42, 93);
+  color: #fff;
+}
+.logo{
+  height: 45px;
+  width: 45px;
+  margin: 0 10px;
+}
+.verticle-line1 {
+  width: 1px;
+  min-height: 20px;
+  background: grey;
+  opacity: 20%;
+}
+
+.verticle-line2 {
+  width: 1px;
+  min-height: 30px;
+  background: grey;
+  opacity: 20%;
+  margin: auto 20px;
+}
+
+.mat-flat-button{
+  margin: 5px 5px;
+}
+.mat-icon-button ::ng-deep .mat-button-focus-overlay {
+  display: none;
+}
+.mat-icon-button .mat-icon-button-focus-overlay {
+  background-color: transparent;
+}
+.normal:hover{
+  box-shadow: 5px 10px #888888;
+  background: rgb(212, 42, 93);
+}
+.mat-elevation-z5 {
+  position: relative;
+  z-index: 3;
+}
+.avatar {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+
+.accountInfor{
+  position: relative;
+}
+.dropdown-content {
+  display: none;
+    position: absolute;
+    background-color: #ecd358;
+    min-width: 215px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    top: 65px;
+    right: 0px;
+    width: auto;
+}
+
+.accountInfor:hover .dropdown-content {display: block;}
+
+.dropdown-content div {
+  color: black;
+  padding: 10px 5px 10px 25px;
+  text-decoration: none;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+}
+.dropdown-content span{margin-left: 13px;}
+.dropdown-content div:hover {background-color: #ddd;}
+
+@media only screen and (max-width: 1400px) {
+  .noidung {
+    background-color: #ecd358;
+  }
+  #userName{
+    font-size: 15px;
+  }
+}
+
+@media only screen and (max-width: 1960px) {
+  .noidung {
+    background-color: #ecd358;
+  }
+  #userName{
+    font-size: 18px;
+  }
+}
