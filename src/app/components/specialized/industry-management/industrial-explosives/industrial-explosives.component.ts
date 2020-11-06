@@ -108,46 +108,16 @@ export class IndustrialExplosivesComponent implements OnInit {
         return Array(5).fill(1).map((element, index) => new Date().getFullYear() - index);
     }
 
-    // applyDistrictFilter(event) {
-    //     let filteredData = [];
-
-    //     event.value.forEach(element => {
-    //         this.dataSource.data.filter(x => x.id_quan_huyen == element).forEach(x => filteredData.push(x));
-    //     });
-
-    //     if (!filteredData.length) {
-    //         if (event.value.length)
-    //             this.filteredDataSource.data = [];
-    //         else
-    //             this.filteredDataSource.data = this.dataSource.data;
-    //     }
-    //     else {
-    //         this.filteredDataSource.data = filteredData;
-    //     }
-    //     this.tongSoLaoDong = this.filteredDataSource.data.length ? this.filteredDataSource.data.map(x => x.so_lao_dong).reduce((a, b) => a + b) : 0;
-    //     this.tongCongSuatThietKe = this.filteredDataSource.data.length ? this.filteredDataSource.data.map(x => x.cong_suat_thiet_ke).reduce((a, b) => a + b) : 0;
-    //     this.tongMucSanLuong = this.filteredDataSource.data.length ? this.filteredDataSource.data.map(x => x.san_luong).reduce((a, b) => a + b) : 0;
-    // }
-
-    // isHidden(row : any){
-    //     return (this.isChecked)? (row.is_het_han) : false;
-    // }
-
-    // applyExpireCheck(event) {
-    //     console.log(event);
-    //     this.filteredDataSource.filter = (event.checked) ? "true" : "";
-    // }
-
     filterArray(array, filters) {
         const filterKeys = Object.keys(filters);
         let temp = [...array];
         filterKeys.forEach(key => {
             let temp2 = [];
-            // if (key == 'is_het_han') {
-            //     temp2 = (filters[key]) ? temp2.concat(temp.filter(x => x[key] == true)) : temp2;
-            //     temp = [...temp2];
-            // }
-            // else
+            if (key == 'is_het_han') {
+                temp2 = (filters[key]) ? temp2.concat(temp.filter(x => x[key] == true)) : temp;
+                temp = [...temp2];
+            }
+            else
                 if (filters[key].length) {
                     filters[key].forEach(criteria => {
                         temp2 = temp2.concat(temp.filter(x => x[key] == criteria));
