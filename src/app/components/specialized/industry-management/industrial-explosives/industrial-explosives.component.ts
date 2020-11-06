@@ -64,10 +64,11 @@ export class IndustrialExplosivesComponent implements OnInit {
     }
 
     applySelectFilter() {
-        console.log(this.filterModel)
+        // console.log(this.filterModel)
         let filteredData = this.filterArray(this.dataSource.data, this.filterModel);
+        // console.log(filteredData)
         if (!filteredData.length) {
-            if (this.filterModel)
+            if (this.filterModel.id_quan_huyen.length || this.filterModel.id_tinh_trang_hoat_dong.length || this.filterModel.is_het_han)
                 this.filteredDataSource.data = [];
             else
                 this.filteredDataSource.data = this.dataSource.data;
@@ -142,12 +143,11 @@ export class IndustrialExplosivesComponent implements OnInit {
         let temp = [...array];
         filterKeys.forEach(key => {
             let temp2 = [];
-            if (key == 'is_het_han') {
-                console.log(filters[key]);
-                temp2 = (filters[key]) ? temp2.concat(temp.filter(x => x[key] == true)) : temp2;
-                console.log(temp);
-            }
-            else
+            // if (key == 'is_het_han') {
+            //     temp2 = (filters[key]) ? temp2.concat(temp.filter(x => x[key] == true)) : temp2;
+            //     temp = [...temp2];
+            // }
+            // else
                 if (filters[key].length) {
                     filters[key].forEach(criteria => {
                         temp2 = temp2.concat(temp.filter(x => x[key] == criteria));
