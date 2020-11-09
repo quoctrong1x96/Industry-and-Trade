@@ -225,13 +225,13 @@ export const navItemsSpecialized: INavItem[] = [
         children:[
           {
             name: '1. Xuất khẩu',
-            url: '/specialized/commecial-management/domestic',
+            url: '/specialized/commecial-management/export_import/exported_products',
             icon: 'monetization_on',
             id: 'HTTM',
           },
           {
             name: '2. Nhập khẩu',
-            url: '/specialized/commecial-management/domestic',
+            url: '/specialized/commecial-management/export_import/imported_products',
             icon: 'monetization_on',
             id: 'KDCDK',
           },
@@ -393,4 +393,3 @@ export const navItemsSpecialized: INavItem[] = [
     attributes: { disabled: true },
   },
 ];
-
