@@ -10,6 +10,7 @@ import { MarketCommecialManagementComponent } from './infrastructure/market/mark
 import { SuperMarketCommecialManagementComponent } from './infrastructure/supermarket/supermarket-commecial.component';
 import { InformedEcommerceWebsiteComponent } from './e-commerce-managemant/informed-ecommerce-website/informed-ecommerce-website.component';
 import { RegistrationEcommerceServicesComponent } from './e-commerce-managemant/registration-ecommerce-services/registration-ecommerce-services.component';
+import { TRSManagementComponent } from './infrastructure/total-retail-sales/total-retail-sales.component';
 
 const routes: Routes = [
   {
@@ -80,6 +81,13 @@ const routes: Routes = [
         component: LPGBusinessComponent,
         data: {
           title: 'Quản lý mua bán LPG',
+        }
+      },
+      {
+        path: 'trs',
+        component: TRSManagementComponent,
+        data: {
+          title: 'Tổng mức bán lẻ HH&DV',
         }
       },
     ]

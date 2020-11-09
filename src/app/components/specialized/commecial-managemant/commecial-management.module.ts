@@ -18,6 +18,7 @@ import { InformedEcommerceWebsiteComponent } from './e-commerce-managemant/infor
 import { RegistrationEcommerceServicesComponent } from './e-commerce-managemant/registration-ecommerce-services/registration-ecommerce-services.component';
 import { PipeModule } from 'src/app/shared/pipe.module';
 import { ShoppingcentreComponent } from './infrastructure/shoppingcentre/shoppingcentre.component';
+import { TRSManagementComponent } from './infrastructure/total-retail-sales/total-retail-sales.component';
 
 @NgModule({
   imports: [
@@ -44,7 +45,8 @@ import { ShoppingcentreComponent } from './infrastructure/shoppingcentre/shoppin
     InformedEcommerceWebsiteComponent,
     RegistrationEcommerceServicesComponent,
     ShoppingcentreComponent,
-    LPGBusinessComponent],
+    LPGBusinessComponent,
+    TRSManagementComponent],
   entryComponents: []
 })
 export class CommecialManagementModule { }
