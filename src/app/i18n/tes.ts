@@ -27,5 +27,14 @@ export const TRANSLATE = {
     so_lao_dong_sct: 'Số lao động Sở công thương',
     cong_suat_thiet_ke_sct: 'Công suất thiết kế Sở công thương',
     san_luong_sct: 'Sản lượng Sở công thương', 
-    chi_tiet_doanh_nghiep: 'Chi tiết doanh nghiệp'
+    chi_tiet_doanh_nghiep: 'Chi tiết doanh nghiệp',
+    ten_hang: 'Tên hàng',
+    thang_bao_cao: 'Thực hiện tháng báo cáo',
+    ly_ke:  'Cộng dồn từ đầu năm đến ngày báo cáo',
+    luong_thang_bao_cao: 'Lượng (Tấn)',
+    tri_gia_thang_bao_cao: 'Trị giá (1,000 USD)',
+    luong_ly_ke: 'Lượng (Tấn)',
+    tri_gia_ly_ke: 'Trị giá (1,000 USD)',
+    blank: '',
+    blank1: ''
 }

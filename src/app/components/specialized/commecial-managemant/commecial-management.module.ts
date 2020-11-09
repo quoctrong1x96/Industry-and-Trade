@@ -18,7 +18,11 @@ import { InformedEcommerceWebsiteComponent } from './e-commerce-managemant/infor
 import { RegistrationEcommerceServicesComponent } from './e-commerce-managemant/registration-ecommerce-services/registration-ecommerce-services.component';
 import { PipeModule } from 'src/app/shared/pipe.module';
 import { ShoppingcentreComponent } from './infrastructure/shoppingcentre/shoppingcentre.component';
-
+import { ImportManagementComponent } from './export-import-management/import-management/import-management.component';
+import { ExportManagementComponent } from './export-import-management/export-management/export-management.component';
+import { TranslatePipe } from '../../../_pipe/translate';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ModalComponent } from './export-import-management/dialog-import-export/modal.component'
 @NgModule({
   imports: [
     CommonModule,
@@ -26,9 +30,12 @@ import { ShoppingcentreComponent } from './infrastructure/shoppingcentre/shoppin
     MaterialModule,
     ReactiveFormsModule,
     CommecialManagementRoutingModule,
-    PipeModule
+    PipeModule,
+    MatDialogModule
   ],
   exports: [
+    // FormatNumberReportPipe,
+    TranslatePipe
   ],
   declarations: [
     MarketCommecialManagementComponent,
@@ -44,7 +51,12 @@ import { ShoppingcentreComponent } from './infrastructure/shoppingcentre/shoppin
     InformedEcommerceWebsiteComponent,
     RegistrationEcommerceServicesComponent,
     ShoppingcentreComponent,
-    LPGBusinessComponent],
-  entryComponents: []
+    LPGBusinessComponent,
+    ImportManagementComponent,
+    ExportManagementComponent,
+    TranslatePipe,
+    ModalComponent
+  ],
+  entryComponents: [ModalComponent]
 })
 export class CommecialManagementModule { }
