@@ -3,8 +3,9 @@ import { Component, OnInit, ViewChild, ElementRef, ChangeDetectorRef, QueryList,
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material';
-import { FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatDatepicker, MatDatepickerInputEvent } from '@angular/material/datepicker';
+import * as XLSX from 'xlsx';
 //Import service
 import { ManagerService } from '../../../_services/APIService/manager.service';
 import { MarketService } from 'src/app/_services/APIService/market.service';
@@ -23,6 +24,9 @@ import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/mat
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import * as _moment from 'moment';
 import { defaultFormat as _rollupMoment, Moment } from 'moment';
+import * as _ from 'lodash';
+import { Subject } from 'rxjs';
+import { info } from 'console';
 const moment = _rollupMoment || _moment;
 export const MY_FORMATS = {
     parse: {
@@ -53,7 +57,11 @@ export const MY_FORMATS = {
 })
 
 export class ExportManagerComponent implements OnInit {
-
+    // Constant
+    private readonly ARRAY_PRODUCT = [4, 1, 6, 8, 7, 21, 27, 13, 28, 19, 51, 20, 31, 55, 38, 26, 23];
+    private readonly MAX_PRODUCT = 17;
+    private readonly ARRAY_HEADER_EXCEL = ["STT","Mã sản phẩm","Tên sản phẩm","Sản lượng (Cục Hải Quan)","Giá trị (Cục Hải Quan)",
+                                            "Giá trị (Tổng cục)","Giá trị (Tổng cục)" ]
     //Declare variable for HTML&TS
     private date = new FormControl(_moment());
     private columns: number = 1;
@@ -72,6 +80,7 @@ export class ExportManagerComponent implements OnInit {
     //ViewChild
     @ViewChildren(ManagerDirective) inputs: QueryList<ManagerDirective>
     @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+    @ViewChild("TABLE", { static: true }) table: ElementRef;
 
     constructor(private _managerService: ManagerService,
         private changeDetectorRefs: ChangeDetectorRef,
@@ -182,31 +191,21 @@ export class ExportManagerComponent implements OnInit {
     }
     //Event "Tạo dữ liệu mặc định"
     private createDefault() {
-        const HAT_DIEU: number = 1;
-        const HAT_TIEU: number = 3;
-        const CAO_SU: number = 4;
-        const CA_PHE: number = 5;
-        const SAN_PHAM_KHAC: number = 23;
-        // if (this.dataSource.data.length > 0)
-        //     if (!confirm("Nếu bạn tạo mặc định sẽ xóa dữ liệu hiện tại! Bạn tiếp tục không?"))
-        //         return;
-        this.dataSource = new MatTableDataSource<ExportManagerModel>();;
-        this.addRow();
-        this.addRow();
-        this.addRow();
-        this.addRow();
-        this.addRow();
-        this.dataSource.data[0].ten_san_pham = this.products.filter(x => x.ma_san_pham == HAT_DIEU)[0].ten_san_pham;
-        this.dataSource.data[1].ten_san_pham = this.products.filter(x => x.ma_san_pham == HAT_TIEU)[0].ten_san_pham;
-        this.dataSource.data[2].ten_san_pham = this.products.filter(x => x.ma_san_pham == CAO_SU)[0].ten_san_pham;
-        this.dataSource.data[3].ten_san_pham = this.products.filter(x => x.ma_san_pham == CA_PHE)[0].ten_san_pham;
-        this.dataSource.data[4].ten_san_pham = this.products.filter(x => x.ma_san_pham == SAN_PHAM_KHAC)[0].ten_san_pham;
-        this.dataSource.data[0].id_san_pham = this.products.filter(x => x.ma_san_pham == HAT_DIEU)[0].ma_san_pham;
-        this.dataSource.data[1].id_san_pham = this.products.filter(x => x.ma_san_pham == HAT_TIEU)[0].ma_san_pham;
-        this.dataSource.data[2].id_san_pham = this.products.filter(x => x.ma_san_pham == CAO_SU)[0].ma_san_pham;
-        this.dataSource.data[3].id_san_pham = this.products.filter(x => x.ma_san_pham == CA_PHE)[0].ma_san_pham;
-        this.dataSource.data[4].id_san_pham = this.products.filter(x => x.ma_san_pham == SAN_PHAM_KHAC)[0].ma_san_pham;
+        if (this.dataSource.data.length > 0)
+            if (!confirm("Nếu bạn tạo mặc định sẽ xóa dữ liệu hiện tại! Bạn tiếp tục không?"))
+                return;
+        this.dataSource = new MatTableDataSource<ExportManagerModel>();
+        let currentProduct;
+        for (let i = 0; i < this.MAX_PRODUCT; i++) {
+            this.addRow();
+            currentProduct = this.products.filter(x => x.ma_san_pham == this.ARRAY_PRODUCT[i])[0];
+            if (currentProduct) {
+                this.dataSource.data[i].ten_san_pham = currentProduct.ten_san_pham;
+                this.dataSource.data[i].id_san_pham = currentProduct.ma_san_pham;
+            }
+        }
         this.rows = this.dataSource.filteredData.length;
+        console.log(this.dataSource.data);
     }
     //Event for "Thêm dòng"
     private addRow() {
@@ -287,7 +286,7 @@ export class ExportManagerComponent implements OnInit {
         let year = this.getCurrentYear();
         // console.log(this.dataSource.data);
         // let data: ExportManagerModel[] = this.dataSource.data.filter(x => x.id == 0);
-        // console.log(data);
+         console.log("dataSource",this.dataSource.data);
         this._managerService.PostExportManager(month, year, this.dataSource.data).subscribe(
             next => {
                 console.log(next);
@@ -304,6 +303,123 @@ export class ExportManagerComponent implements OnInit {
             }
         );
     }
+    //Event for "Tải template"
+    downloadExcelTemplate(filename: string, sheetname: string) {
+        let excelFileName: string;
+        let newArray: any[] = [];
+        //Format name of Excel will be export
+        sheetname = sheetname.replace('/', '_');
+        excelFileName = filename + '.xlsx';
+
+        //Alias column name
+        let data = Object.values(this.dataSource.data);
+
+        Object.keys(data).forEach((key, index) => {
+            newArray.push({
+                'STT': index,
+                'Mã sản phẩm': data[key].id_san_pham,
+                'Tên sản phẩm': data[key].ten_san_pham,
+                'Sản lượng (Cục Hải Quan)': '',
+                'Giá trị (Cục Hải Quan)': '',
+                'Sản lượng (Tổng cục)': '',
+                'Giá trị (Tổng cục)': '',
+            });
+        });
+        const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(newArray);
+        const wb: XLSX.WorkBook = XLSX.utils.book_new();
+        /* save to file */
+        XLSX.utils.book_append_sheet(wb, ws, sheetname);
+        XLSX.writeFile(wb, excelFileName);
+    }
+
+    //Event for "Nhập từ excel"
+    spinnerEnabled = false;
+    keys: string[];
+    dataSheet = new Subject();
+    @ViewChild('inputFile',{static:true}) inputFile: ElementRef;
+    isExcelFile: boolean;
+    uploadExcel(evt: any) {
+        let isExcelFile: boolean;
+        let spinnerEnabled = false;
+        let dataSheet = new Subject();
+        let keys: string[];
+        let data, header;
+        const target: DataTransfer = <DataTransfer>(evt.target);
+        isExcelFile = !!target.files[0].name.match(/(.xls|.xlsx)/);
+        if (isExcelFile) {
+            let data, header;
+            const target: DataTransfer = <DataTransfer>(evt.target);
+            this.isExcelFile = !!target.files[0].name.match(/(.xls|.xlsx)/);
+            if (target.files.length > 1) {
+                this.inputFile.nativeElement.value = '';
+            }
+            if (this.isExcelFile) {
+                this.spinnerEnabled = true;
+                const reader: FileReader = new FileReader();
+                reader.onload = (e: any) => {
+                    /* read workbook */
+                    const bstr: string = e.target.result;
+                    const wb: XLSX.WorkBook = XLSX.read(bstr, { type: 'binary' });
+
+                    /* grab first sheet */
+                    const wsname: string = wb.SheetNames[0];
+                    const ws: XLSX.WorkSheet = wb.Sheets[wsname];
+
+                    /* save data */
+                    data = XLSX.utils.sheet_to_json(ws);
+                    this.dataSource.data = [];
+                    data.forEach(item => {
+                        let datarow: ExportManagerModel = new ExportManagerModel();
+                        datarow.tri_gia = item['Giá trị (Cục Hải Quan)'];
+                        datarow.tri_gia_ct = item['Giá trị (Tổng cục)'];
+                        datarow.san_luong = item['Sản lượng (Cục Hải Quan)'];
+                        datarow.san_luong_ct = item['Sản lượng (Tổng cục)'];
+                        datarow.ten_san_pham = item['Tên sản phẩm'];
+                        datarow.id_san_pham = item['Mã sản phẩm'];
+                        datarow.nam = this.theYear;
+                        datarow.thang = this.theMonth;
+                        this.dataSource.data.push(datarow);
+                    });
+                    this.dataSource = new MatTableDataSource(this.dataSource.data);
+                    this._infor.msgSuccess("Nhập dữ liệu từ excel thành công!");
+                };
+
+                reader.readAsBinaryString(target.files[0]);
+
+                reader.onloadend = (e) => {
+                    this.spinnerEnabled = false;
+                    this.keys = Object.keys(data[0]);
+                    this.dataSheet.next(data)
+                }
+            } else {
+                this.inputFile.nativeElement.value = '';
+            }
+        }
+        // let dataExcel;
+        // let jsonFromExcel;
+        // const target: DataTransfer = (evt.target) as DataTransfer;
+        // const reader: FileReader = new FileReader();
+
+        // reader.onload = (e: any) => {
+        //     let bstr: string = e.target.result;
+
+        //     let wb: XLSX.WorkBook = XLSX.read(bstr, { type: 'binary' });
+
+        //     let wsName: string = wb.SheetNames[0];
+
+        //     let ws: XLSX.WorkSheet = wb.Sheets[wsName];
+
+        //     dataExcel = (XLSX.utils.sheet_to_json(ws, { header: 2 }));
+        //     console.log('Data: ', dataExcel);
+        //     jsonFromExcel = JSON.stringify(dataExcel);
+
+        //     console.log('JsonData: ', jsonFromExcel);
+
+        // };
+
+        // reader.readAsBinaryString(target.files[0]);
+    }
+
     //Function for Extention   --------------------------------------------------------------------------------------
     private getMonthAndYear(time: string) {
         let year = time.substr(0, 4);
