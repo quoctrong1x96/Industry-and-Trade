@@ -87,6 +87,12 @@ export class StoreManagementComponent implements OnInit {
     this.dataSourceHuyenThi.data = this.dataHuyenThi;
     console.log(this.dataSourceHuyenThi.data);
   }
+
+  ngAfterViewInit(): void {
+    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    //Add 'implements AfterViewInit' to the class.
+    this.accordion.openAll();
+}
   dataSourceHuyenThi: MatTableDataSource<StoreCommonModel> = new MatTableDataSource<StoreCommonModel>();
 
   //Xuất excel

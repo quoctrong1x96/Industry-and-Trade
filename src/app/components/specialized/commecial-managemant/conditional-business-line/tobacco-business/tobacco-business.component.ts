@@ -49,6 +49,11 @@ export class TobaccoBusinessComponent implements OnInit {
         //     return String(data.is_het_han).includes(filter);
         // };
     }
+    ngAfterViewInit(): void {
+        //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+        //Add 'implements AfterViewInit' to the class.
+        this.accordion.openAll();
+    }
 
     applyFilter(event: Event) {
         const filterValue = (event.target as HTMLInputElement).value;

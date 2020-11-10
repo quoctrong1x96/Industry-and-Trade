@@ -34,7 +34,7 @@ export class LiquorBusinessComponent implements OnInit {
     isChecked: boolean;
 
     @ViewChild('table', { static: false }) table: MatTable<ConditionalBusinessLineModel>;
-    @ViewChild(MatAccordion, { static: false }) accordion: MatAccordion;
+    @ViewChild(MatAccordion, { static: true }) accordion: MatAccordion;
     @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
     constructor(private sctService: SCTService) {
@@ -47,6 +47,11 @@ export class LiquorBusinessComponent implements OnInit {
         // this.filteredDataSource.filterPredicate = function (data: ConditionalBusinessLineModel, filter): boolean {
         //     return String(data.is_het_han).includes(filter);
         // };
+    }
+    ngAfterViewInit(): void {
+        //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+        //Add 'implements AfterViewInit' to the class.
+        this.accordion.openAll();
     }
 
     getDanhSachBanRuou(time_id: number) {

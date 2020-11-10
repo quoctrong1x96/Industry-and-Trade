@@ -1,94 +1,86 @@
 <mat-card>
-  <mat-card-content>
-    <div class="example-action-buttons">
-      <button mat-raised-button color="primary" (click)="accordion.openAll()">Mở Tất Cả</button>
-      &nbsp;
-      <button mat-raised-button color="warn" (click)="accordion.closeAll()">Đóng tất cả</button>
-    </div>
-    <mat-accordion class="example-headers-align" multi>
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            <mat-icon> show_chart</mat-icon>
-            &nbsp;
-            <strong>DỮ LIỆU TỔNG HỢP</strong>
-          </mat-panel-title>
-          <mat-panel-description>
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-
-        <div class="row">
-          <div class="col-6 col-lg-6">
-            <div class="list-group">
-              <a class="list-group-item list-group-item-action flex-column align-items-start bg-primary">
-                <div class="d-flex w-100 justify-content-between">
-                  <h5 class="mb-1">1 Tổng số siêu thị: <strong>0</strong></h5>
-                </div>
-                <p class="mb-1"></p>
-              </a>
-              <a class="list-group-item list-group-item-action flex-column align-items-start">
-                <div class="d-flex w-100 justify-content-between">
-                  <h5 class="mb-1">2. Phân hạng:</h5>
-                </div>
-                <p class="mb-1 config-p">
-                  2.1 Tổng số siêu thị hạng I: <strong>0</strong>
-                  <br>
-                  2.2 Tổng số siêu thị hạng II: <strong>0</strong>
-                  <br>
-                  2.3 Tổng số siêu thị hạng III: <strong>0</strong>
-                  <br>
-                  2.4 Tổng số siêu thị đang xây dựng: <strong>0</strong>
-                </p>
-              </a>
-            </div>
-          </div>
-
-          <div class="col-6 col-lg-6">
-            <div class="list-group">
-              <a class="list-group-item list-group-item-action flex-column align-items-start">
-                <div class="d-flex w-100 justify-content-between">
-                  <h5 class="mb-1">3. Đặc điểm kinh doanh tại siêu thị:</h5>
-                </div>
-                <p class="mb-1 config-p">
-                  3.1 Tổng số siêu thị tổng hợp: <strong>0</strong>
-                  <br>
-                  3.2 Tổng số siêu thị chuyên doanh: <strong>0</strong>
-                </p>
-              </a>
-              <a class="list-group-item list-group-item-action flex-column align-items-start bg-warning">
-                <div class="d-flex w-100 justify-content-between">
-                  <h5 class="mb-1">4. Thống kê số lượng siêu thị theo năm:</h5>
-                </div>
-                <p class="mb-1 config-p">
-                  4.1 Tổng số siêu thị đầu tư xây dựng trong năm <strong>...</strong> là: <strong>0</strong>
-                  <br>
-                  4.2 Chênh lệch số siêu thị đầu tư xây dựng trong năm <strong>...</strong> so với năm trước là:
-                  <strong>0</strong>
-                  <br>
-                  4.3 Tổng số siêu thị ngừng hoạt động trong năm <strong>...</strong> là: <strong>0</strong>
-                  <br>
-                  4.4 Chênh lệch số siêu thị ngừng hoạt động trong năm <strong>...</strong> so với năm trước là:
-                  <strong>0</strong>
-                </p>
-              </a>
-            </div>
-          </div>
+    <mat-card-content>
+        <div class="example-action-buttons">
+            <button mat-raised-button color="primary" (click)="accordion.openAll()">Mở Tất Cả</button> &nbsp;
+            <button mat-raised-button color="warn" (click)="accordion.closeAll()">Đóng tất cả</button>
         </div>
-      </mat-expansion-panel>
+        <mat-accordion class="example-headers-align" multi>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <mat-icon> show_chart</mat-icon>
+                        &nbsp;
+                        <strong>DỮ LIỆU TỔNG HỢP</strong>
+                    </mat-panel-title>
+                    <mat-panel-description>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
 
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            <mat-icon>folder_open</mat-icon>
-            &nbsp;
-            <strong>DỮ LIỆU CHI TIẾT</strong>
-          </mat-panel-title>
-          <mat-panel-description>
-          </mat-panel-description>
-        </mat-expansion-panel-header>
+                <div class="row">
+                    <div class="col-6 col-lg-6">
+                        <div class="list-group">
+                            <a class="list-group-item list-group-item-action flex-column align-items-start bg-primary">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">1 Tổng số siêu thị: <strong>{{dataSourceHuyenThi.data.length}}</strong></h5>
+                                </div>
+                                <p class="mb-1"></p>
+                            </a>
+                            <a class="list-group-item list-group-item-action flex-column align-items-start">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">2. Phân hạng:</h5>
+                                </div>
+                                <p class="mb-1 config-p">
+                                    2.1 Tổng số siêu thị hạng I: <strong>0</strong>
+                                    <br> 2.2 Tổng số siêu thị hạng II: <strong>0</strong>
+                                    <br> 2.3 Tổng số siêu thị hạng III: <strong>0</strong>
+                                    <br> 2.4 Tổng số siêu thị đang xây dựng: <strong>0</strong>
+                                </p>
+                            </a>
+                        </div>
+                    </div>
 
-        <div class="row">
-          <!-- <div class="col-3 col-lg-3">
+                    <div class="col-6 col-lg-6">
+                        <div class="list-group">
+                            <a class="list-group-item list-group-item-action flex-column align-items-start">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">3. Đặc điểm kinh doanh tại siêu thị:</h5>
+                                </div>
+                                <p class="mb-1 config-p">
+                                    3.1 Tổng số siêu thị tổng hợp: <strong>0</strong>
+                                    <br> 3.2 Tổng số siêu thị chuyên doanh: <strong>0</strong>
+                                </p>
+                            </a>
+                            <a class="list-group-item list-group-item-action flex-column align-items-start bg-warning">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">4. Thống kê số lượng siêu thị theo năm:</h5>
+                                </div>
+                                <p class="mb-1 config-p">
+                                    4.1 Tổng số siêu thị đầu tư xây dựng trong năm <strong>...</strong> là: <strong>0</strong>
+                                    <br> 4.2 Chênh lệch số siêu thị đầu tư xây dựng trong năm <strong>...</strong> so với năm trước là:
+                                    <strong>0</strong>
+                                    <br> 4.3 Tổng số siêu thị ngừng hoạt động trong năm <strong>...</strong> là: <strong>0</strong>
+                                    <br> 4.4 Chênh lệch số siêu thị ngừng hoạt động trong năm <strong>...</strong> so với năm trước là:
+                                    <strong>0</strong>
+                                </p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <mat-icon>folder_open</mat-icon>
+                        &nbsp;
+                        <strong>DỮ LIỆU CHI TIẾT</strong>
+                    </mat-panel-title>
+                    <mat-panel-description>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+
+                <div class="row">
+                    <!-- <div class="col-3 col-lg-3">
                       <mat-form-field appearance="outline">
                           <mat-label>Kỳ dữ liệu</mat-label>
                           <mat-select (selectionChange)="getDanhSachBuonBanLeXangDau($event.value)">
@@ -112,55 +104,75 @@
                       <mat-checkbox (change)="applyExpireCheck($event)" [ngModel]="isChecked">DN hết hạn
                       </mat-checkbox>
                   </div> -->
-        </div>
+                </div>
+                <div class="row">
+                    <div class="col-3 col-lg-3">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Kiểu sắp xếp</mat-label>
+                            <mat-select (selectionChange)="sortHeaderCondition($event.value)" [value]="dientich">
+                                <mat-option *ngFor='let header of headerArray' [value]='header'>{{header}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
 
-        <div class="auto mat-elevation-z8" *ngIf="dataSourceHuyenThi.data.length; else ShowEmpty">
-          <mat-form-field class="filter">
-            <mat-label>Lọc dữ liệu</mat-label>
-            <input matInput (keyup)="applyFilter1($event)" placeholder="" #input>
-          </mat-form-field>
+                    <div class="col-3 col-lg-3">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Địa bàn</mat-label>
+                            <mat-select (selectionChange)="applyDistrictFilter($event)" multiple>
+                                <mat-option *ngFor='let district of districts' [value]='district.id'>
+                                    {{district.ten_quan_huyen}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="auto mat-elevation-z8" *ngIf="dataSourceHuyenThi.data.length; else ShowEmpty">
+                    <mat-form-field class="filter">
+                        <mat-label>Lọc dữ liệu</mat-label>
+                        <input matInput (keyup)="applyFilter1($event)" placeholder="" #input>
+                    </mat-form-field>
 
-          <table mat-table [dataSource]="dataSourceHuyenThi">
-            <ng-container matColumnDef="index">
-              <th mat-header-cell *matHeaderCellDef> STT </th>
-              <td mat-cell *matCellDef="let element; let i = index;">{{i+1}}</td>
-            </ng-container>
-            <ng-container matColumnDef="tenhuyenthi">
-              <th mat-header-cell *matHeaderCellDef> Huyện, thị xã, thành phố </th>
-              <td mat-cell *matCellDef="let element"> {{element.huyen}} </td>
-            </ng-container>
-            <ng-container matColumnDef="ten_tttm">
-              <th mat-header-cell *matHeaderCellDef>Trung tâm thương mại / Siêu thị</th>
-              <td mat-cell *matCellDef="let element"> {{element.ten_tttm}} </td>
-            </ng-container>
-            <ng-container matColumnDef="dientich">
-              <th mat-header-cell *matHeaderCellDef> Diện tích </th>
-              <td mat-cell *matCellDef="let element"> {{element.dientich}} </td>
-            </ng-container>
-            <ng-container matColumnDef="vondautu">
-              <th mat-header-cell *matHeaderCellDef> Vốn đầu tư </th>
-              <td mat-cell *matCellDef="let element"> {{element.vondautu}} </td>
-            </ng-container>
-            <ng-container matColumnDef="namdautuxaydung">
-              <th mat-header-cell *matHeaderCellDef> Thời gian xây dựng </th>
-              <td mat-cell *matCellDef="let element"> {{element.namdautuxaydung}} </td>
-            </ng-container>
-            <ng-container matColumnDef="phanloai">
-              <th mat-header-cell *matHeaderCellDef> Phân hạng </th>
-              <td mat-cell *matCellDef="let element"> {{element.phanloai}} </td>
-            </ng-container>
-            <tr mat-header-row *matHeaderRowDef="headerArray"></tr>
-            <tr mat-row *matRowDef="let row; columns: headerArray;let i = index"></tr>
-          </table>
+                    <table mat-table [dataSource]="dataSourceHuyenThi">
+                        <ng-container matColumnDef="index">
+                            <th mat-header-cell *matHeaderCellDef> STT </th>
+                            <td mat-cell *matCellDef="let element; let i = index;">{{i+1}}</td>
+                        </ng-container>
+                        <ng-container matColumnDef="tenhuyenthi">
+                            <th mat-header-cell *matHeaderCellDef> Huyện, thị xã, thành phố </th>
+                            <td mat-cell *matCellDef="let element"> {{element.huyen}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="ten_tttm">
+                            <th mat-header-cell *matHeaderCellDef>Trung tâm thương mại / Siêu thị</th>
+                            <td mat-cell *matCellDef="let element"> {{element.ten_tttm}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="dientich">
+                            <th mat-header-cell *matHeaderCellDef> Diện tích </th>
+                            <td mat-cell *matCellDef="let element"> {{element.dientich}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="vondautu">
+                            <th mat-header-cell *matHeaderCellDef> Vốn đầu tư </th>
+                            <td mat-cell *matCellDef="let element"> {{element.vondautu}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="namdautuxaydung">
+                            <th mat-header-cell *matHeaderCellDef> Thời gian xây dựng </th>
+                            <td mat-cell *matCellDef="let element"> {{element.namdautuxaydung}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="phanloai">
+                            <th mat-header-cell *matHeaderCellDef> Phân hạng </th>
+                            <td mat-cell *matCellDef="let element"> {{element.phanloai}} </td>
+                        </ng-container>
+                        <tr mat-header-row *matHeaderRowDef="headerArray"></tr>
+                        <tr mat-row *matRowDef="let row; columns: headerArray;let i = index"></tr>
+                    </table>
 
-          <mat-paginator [pageSizeOptions]="[20, 50, 100]" showFirstLastButtons></mat-paginator>
-        </div>
-        <ng-template #ShowEmpty>
-          <h1>Không có dữ liệu</h1>
-        </ng-template>
+                    <mat-paginator [pageSizeOptions]="[20, 50, 100]" showFirstLastButtons></mat-paginator>
+                </div>
+                <ng-template #ShowEmpty>
+                    <h1>Không có dữ liệu</h1>
+                </ng-template>
 
-      </mat-expansion-panel>
-    </mat-accordion>
+            </mat-expansion-panel>
+        </mat-accordion>
 
-  </mat-card-content>
+    </mat-card-content>
 </mat-card>
