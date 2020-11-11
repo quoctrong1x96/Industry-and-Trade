@@ -36,7 +36,7 @@ import { ModalComponent } from './export-import-management/dialog-import-export/
   ],
   exports: [
     // FormatNumberReportPipe,
-    TranslatePipe
+    
   ],
   declarations: [
     MarketCommecialManagementComponent,
@@ -48,17 +48,17 @@ import { ModalComponent } from './export-import-management/dialog-import-export/
     LiquorBusinessComponent,
     StoreManagementComponent,
     FoodManagementComponent,
+    ImportManagementComponent,
     PetrolBusinessComponent,
     InformedEcommerceWebsiteComponent,
     RegistrationEcommerceServicesComponent,
     ShoppingcentreComponent,
     LPGBusinessComponent,
+    ExportManagementComponent,
+    ModalComponent,
     TRSManagementComponent],
   entryComponents: [
-    ImportManagementComponent,
-    ExportManagementComponent,
-    TranslatePipe,
-    ModalComponent
+    
   ],
 })
 export class CommecialManagementModule { }

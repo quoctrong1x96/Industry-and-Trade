@@ -165,8 +165,9 @@
                         <tr mat-row *matRowDef="let row; columns: headerArray;let i = index"></tr>
                     </table>
 
-                    <mat-paginator [pageSizeOptions]="[20, 50, 100]" showFirstLastButtons></mat-paginator>
+
                 </div>
+                <mat-paginator [pageSizeOptions]="[20, 50, 100]" showFirstLastButtons></mat-paginator>
                 <ng-template #ShowEmpty>
                     <h1>Không có dữ liệu</h1>
                 </ng-template>
