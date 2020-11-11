@@ -37,8 +37,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatPaginatorModule
   ],
   exports: [
-    // FormatNumberReportPipe,
-    TranslatePipe, 
+    // FormatNumberReportPipe, 
     MatPaginatorModule
 
   ],
