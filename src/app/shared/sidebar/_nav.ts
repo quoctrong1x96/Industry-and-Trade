@@ -182,41 +182,41 @@ export const navItemsSpecialized: INavItem[] = [
     isSCT: true,
   },
   {
-    name: 'A. Quản lý Thương mại',
+    name: 'QUẢN LÝ THƯƠNG MẠI',
     manager:true,
     isSCT: true,
     icon: 'integration_instructions',
     expand: false,
     children: [
       {
-        name: 'I. Thương mại nội địa',
+        name: 'Thương mại nội địa',
         icon: 'monetization_on',
         id: 'TMND',
         manager:true,
         expand: false,
         children:[
           {
-            name: '1. Hạ tầng thương mại',
+            name: 'Hạ tầng thương mại',
             url: '/specialized/commecial-management/domestic',
             icon: 'monetization_on',
             id: 'HTTM',
           },
           {
-            name: '2. Kinh doanh có điều kiện, hạn chế kinh doanh',
+            name: 'Kinh doanh có điều kiện, hạn chế kinh doanh',
             url: '/specialized/commecial-management/domestic/cbl',
             icon: 'monetization_on',
             id: 'KDCDK',
           },
           {
-            name: '3. Tổng mức bán lẻ hàng hóa và dịch vụ',
-            url: '/specialized/commecial-management/domestic/trs',
+            name: 'Tổng mức bán lẻ hàng hóa và dịch vụ',
+            url: '/specialized/commecial-management/domestic',
             icon: 'monetization_on',
             id: 'HHDV',
           },
         ]
       },
       {
-        name: 'II. Xuất nhập khẩu',
+        name: 'Xuất nhập khẩu',
         url: '/specialized/commecial-management/ecommerce',
         icon: 'hourglass_bottom',
         id: 'XNK',
@@ -224,21 +224,21 @@ export const navItemsSpecialized: INavItem[] = [
         expand: false,
         children:[
           {
-            name: '1. Xuất khẩu',
-            url: '/specialized/commecial-management/export_import/exported_products',
+            name: 'Xuất khẩu',
+            url: '/specialized/commecial-management/domestic',
             icon: 'monetization_on',
             id: 'HTTM',
           },
           {
-            name: '2. Nhập khẩu',
-            url: '/specialized/commecial-management/export_import/imported_products',
+            name: 'Nhập khẩu',
+            url: '/specialized/commecial-management/domestic',
             icon: 'monetization_on',
             id: 'KDCDK',
           },
         ]
       },
       {
-        name: 'III. Thương mại biên giới',
+        name: 'Thương mại biên giới',
         url: '/specialized/commecial-management/promotion',
         icon: 'filter_9_plus',
         id: 'TMBG',
@@ -249,7 +249,7 @@ export const navItemsSpecialized: INavItem[] = [
         ]
       },
       {
-        name: 'IV. Thương mại điện tử',
+        name: 'Thương mại điện tử',
         url: '/specialized/commecial-management/multi-level',
         icon: 'hourglass_bottom',
         id: 'TMDT',
@@ -257,13 +257,13 @@ export const navItemsSpecialized: INavItem[] = [
         expand: false,
         children:[
           {
-            name: '1. Quản lý thông báo website bán hàng',
+            name: 'Quản lý thông báo website bán hàng',
             url: '/specialized/commecial-management/e-commerce/imformed-website',
             icon: 'monetization_on',
             id: 'QLTB',
           },
           {
-            name: '2. Quản lý đăng kí website cung cấp dịch vụ TMĐT',
+            name: 'Quản lý đăng kí website cung cấp dịch vụ TMĐT',
             url: '/specialized/commecial-management/e-commerce/registration-services',
             icon: 'monetization_on',
             id: 'QLDK',
@@ -271,7 +271,7 @@ export const navItemsSpecialized: INavItem[] = [
         ]
       },
       {
-        name: 'V. Xúc tiến thương mại',
+        name: 'Xúc tiến thương mại',
         url: '/specialized/commecial-management/multi-level',
         icon: 'hourglass_bottom',
         id: 'XTTM',
@@ -279,13 +279,13 @@ export const navItemsSpecialized: INavItem[] = [
         expand: false,
         children:[
           {
-            name: '1. Hội chợ, triển lãm',
+            name: 'Hội chợ, triển lãm',
             url: '/specialized/commecial-management/domestic',
             icon: 'monetization_on',
             id: 'HTTM',
           },
           {
-            name: '2. Khuyến mại',
+            name: 'Khuyến mại',
             url: '/specialized/commecial-management/domestic',
             icon: 'monetization_on',
             id: 'KDCDK',
@@ -293,7 +293,7 @@ export const navItemsSpecialized: INavItem[] = [
         ]
       },
       {
-        name: 'VI. Hoạt động bán hàng đa cấp',
+        name: 'Hoạt động bán hàng đa cấp',
         url: '/specialized/commecial-management/multi-level',
         icon: 'hourglass_bottom',
         id: 'XTTM',
@@ -306,7 +306,7 @@ export const navItemsSpecialized: INavItem[] = [
     ]
   },
   {
-    name: 'B. Quản lý Năng lượng',
+    name: 'QUẢN LÝ NĂNG LƯỢNG',
     manager:true,
     isSCT: true,
     icon: 'electrical_services',
@@ -335,7 +335,7 @@ export const navItemsSpecialized: INavItem[] = [
     ]
   },
   {
-    name: 'C. Quản lý Công nghiệp',
+    name: 'QUẢN LÝ CÔNG NGHIỆP',
     url: '/specialized/industrial-management/',
     manager:true,
     isSCT: true,

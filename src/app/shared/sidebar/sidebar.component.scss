@@ -1,117 +1,151 @@
 .example-container {
-  height: 500px;
-  border: 1px solid rgba(0, 0, 0, 0.5);
+    height: 500px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
 }
+
 .example-sidenav-content {
-  display: flex;
-  height: 100%;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
 }
+
 .example-sidenav {
-  user-select: none;
+    user-select: none;
 }
+
 .full-width {
-  width: 100%;
+    width: 100%;
 }
+
 .menu-button {
-  transition: 300ms ease-in-out;
-  transform: rotate(0deg);
+    transition: 300ms ease-in-out;
+    transform: rotate(0deg);
 }
+
 .menu-button.rotated {
-  transform: rotate(180deg);
+    transform: rotate(180deg);
 }
+
 .submenu {
-  // padding-left: 15px;
-  border-left: 1px solid #ddd;
-  background-color: #ffffff87;
+    // padding-left: 15px;
+    border-left: 1px solid #ddd;
+    background-color: #ffffff87;
 }
+
 .submenu.expanded {
-  transform: scaleY(1);
+    transform: scaleY(1);
 }
+
 .sidenav_container {
-  min-width: 60px;
-  height: 100%; //calc(100vh - 100px);
-  border-right: 3px;
-  z-index: -1 !important;
+    min-width: 60px;
+    height: 100%; //calc(100vh - 100px);
+    border-right: 3px;
+    z-index: -1 !important;
 }
 
 .jim {
-  width: 30px;
-  height: 30px;
-  object-fit: cover;
-  border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    border-radius: 50%;
 }
+
 .mat-list-item:hover {
-  // background-color: aquamarine;
-  // font-weight: bold;
-  //color: aquamarine;//white;;
-  // transition: 1s ease all;
-  // -moz-transition: 1s ease all;
-  // -webkit-transition: 1s ease all;
-
-  background-color: #ecd358;
-  color: #020202;
+    // background-color: aquamarine;
+    // font-weight: bold;
+    //color: aquamarine;//white;;
+    // transition: 1s ease all;
+    // -moz-transition: 1s ease all;
+    // -webkit-transition: 1s ease all;
+    background-color: #ecd358;
+    color: #020202;
 }
-.mat-list-item:active {
-  // background-color: aquamarine;
-  font-weight: bold;
-  //color: aquamarine;//white;;
-  transition: 1s ease all;
-  -moz-transition: 1s ease all;
-  -webkit-transition: 1s ease all;
 
-  background-color: #ecd358;
-  color: #000000;
+.mat-list-item:active {
+    // background-color: aquamarine;
+    font-weight: bold;
+    //color: aquamarine;//white;;
+    transition: 1s ease all;
+    -moz-transition: 1s ease all;
+    -webkit-transition: 1s ease all;
+    background-color: #ecd358;
+    color: #000000;
 }
 
 .mat-list-item:focus {
-  background-color: #ecd358;
-  color: #000000;
+    background-color: #ecd358;
+    color: #000000;
 }
 
 .mat-list-item-active {
-  // background-color: #ecd358;
-  color: #fc0808;
+    // background-color: #ecd358;
+    color: #fc0808;
 }
+
 .showTitle {
-  height: 50px !important;
-  font-weight: bold;
-  // text-align: center justify;
-  color: rgb(0, 0, 0);
-  //background-color: grey;//#6f42c1;
-  //margin-left: 10px;
-  padding-left: 20px;
-  // padding-right: 5px;
-  padding-top: 13px;
-  text-transform: uppercase;
-  // background-color: #ecd358;
-  // border-top: 1px solid #ddd;
-  // border-bottom: 1px solid #ddd;
+    height: 50px !important;
+    font-weight: bold;
+    // text-align: center justify;
+    color: rgb(0, 0, 0);
+    //background-color: grey;//#6f42c1;
+    //margin-left: 10px;
+    padding-left: 20px;
+    // padding-right: 5px;
+    padding-top: 13px;
+    text-transform: uppercase;
+    // background-color: #ecd358;
+    // border-top: 1px solid #ddd;
+    // border-bottom: 1px solid #ddd;
 }
+
 // a span{
 //   margin-left: 10px;
 // }
 .active {
-  background-color: aquamarine;
-  font-weight: bold;
-  color: white;
-}
-.mat-elevation-z5 {
-  // position: sticky;
-  z-index: 3;
+    background-color: aquamarine;
+    font-weight: bold;
+    color: white;
 }
 
-#thongtinUser{
-  display: block;
-  opacity: 1;
-  text-overflow: ellipsis;
-  padding: 6px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+.mat-elevation-z5 {
+    // position: sticky;
+    z-index: 3;
+}
+
+#thongtinUser {
+    display: block;
+    opacity: 1;
+    text-overflow: ellipsis;
+    padding: 6px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .white-icon {
-  color: black;
+    color: black;
+}
+
+.parent {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1em;
+    background-color: #78787877;
+}
+
+.child {
+    font-size: 1em;
+    background-color: #cecececc;
+}
+
+.small {
+    font-size: 0.8em;
+    margin-left: 1.2em;
+    font-style: italic;
+    background-color: white;
+}
+
+.mat-list-base {
+    padding-top: 0px !important;
 }

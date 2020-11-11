@@ -24,6 +24,7 @@ import { element } from 'protractor';
 import { MarketCommonModel } from 'src/app/_models/APIModel/commecial-management.model';
 import { MatAccordion } from '@angular/material/expansion';
 import { MatPaginator } from '@angular/material/paginator';
+import { District } from 'src/app/_models/district.model';
 
 interface HashTableNumber<T> {
   [key: string]: T;
@@ -64,6 +65,17 @@ export class MarketCommecialManagementComponent implements OnInit {
     locninh: false, hongquan: false, chonthanh: false
   }
   private formChangesSubscription;
+  districts: District[] = [{ id: 1, ten_quan_huyen: 'Thị xã Phước Long' },
+    { id: 2, ten_quan_huyen: 'Thành phố Đồng Xoài' },
+    { id: 3, ten_quan_huyen: 'Thị xã Bình Long' },
+    { id: 4, ten_quan_huyen: 'Huyện Bù Gia Mập' },
+    { id: 5, ten_quan_huyen: 'Huyện Lộc Ninh' },
+    { id: 6, ten_quan_huyen: 'Huyện Bù Đốp' },
+    { id: 7, ten_quan_huyen: 'Huyện Hớn Quản' },
+    { id: 8, ten_quan_huyen: 'Huyện Đồng Phú' },
+    { id: 9, ten_quan_huyen: 'Huyện Bù Đăng' },
+    { id: 10, ten_quan_huyen: 'Huyện Chơn Thành' },
+    { id: 11, ten_quan_huyen: 'Huyện Phú Riềng' }];
   dataHuyenThi: Array<MarketCommonModel> = [{ huyen: "Đồng Xoài", tongsocho: 10, chohang1: 2, chohang2: 6, chohang3: 2 },
   { huyen: "Phước Long", tongsocho: 10, chohang1: 2, chohang2: 6, chohang3: 2 },
   { huyen: "Chơn Thành", tongsocho: 10, chohang1: 2, chohang2: 6, chohang3: 2 },
@@ -118,7 +130,11 @@ export class MarketCommecialManagementComponent implements OnInit {
     this.dataSourceHuyenThi.data = this.dataHuyenThi;
     console.log(this.dataSourceHuyenThi.data);
   }
-
+  ngAfterViewInit(): void {
+    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    //Add 'implements AfterViewInit' to the class.
+    this.accordion.openAll();
+}
   arrayTextHeader = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q',
     'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'AA', 'AB', 'AC', 'AD', 'AE', 'AF', 'AG',
     'AH', 'AI', 'AJ', 'AK', 'AL', 'AM', 'AN', 'AO', 'AP', 'AQ', 'AR', 'AS', 'AT', 'AU', 'AV',

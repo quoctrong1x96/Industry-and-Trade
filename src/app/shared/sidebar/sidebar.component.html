@@ -13,7 +13,7 @@
         <div>
             <mat-nav-list>
                 <div *ngFor="let navItem of navItems; let i = index">
-                  <div *ngIf="(!navItem.manager)||(navItem.manager && logon)">
+                    <div *ngIf="(!navItem.manager)||(navItem.manager && logon)">
                         <a mat-list-item *ngIf="navItem.children;else normalSideBar" (click)="OpenSubChildren(i, navItem)" class="parent">
                             <span [@animateText]="linkText ? 'show' : 'hide'">{{navItem.name}}</span>
                             <!-- <mat-icon mat-list-icon class="white-icon">{{navItem.icon}}</mat-icon> -->
@@ -21,40 +21,40 @@
                                 expand_more
                             </mat-icon>
                         </a>
-                        <div *ngFor="let child of navItem.children" >
+                        <div *ngFor="let child of navItem.children">
                             <ng-container *ngIf="child.manager; else elseTemplate">
-                              <mat-nav-list #elem [id]="child.id" class="submenu" *ngIf="navItem.expand">
-                                <a mat-list-item id={{child?.icon}} (click)="OpenSubChildren(i, child)">
-                                    <span [@animateText]="linkText ? 'show' : 'hide'">{{child.name}}</span>
-                                    <mat-icon mat-list-icon></mat-icon>
-                                    <mat-icon class="menu-button" [ngClass]="{'rotated' : child.expand}">
-                                      expand_more
-                                  </mat-icon>
-                                </a>
-                                <div *ngFor="let subchild of child.children">
-                                  <a mat-list-item id={{subchild?.icon}} [routerLink]='subchild.url' *ngIf="child.expand">
-                                    <span [@animateText]="linkText ? 'show' : 'hide'">{{subchild.name}}</span>
-                                    <mat-icon mat-list-icon></mat-icon>
-                                </a>
-                                </div>
-                              </mat-nav-list>
+                                <mat-nav-list #elem [id]="child.id" class="submenu" *ngIf="navItem.expand">
+                                    <a mat-list-item id={{child?.icon}} (click)="OpenSubChildren(i, child)" class="child">
+                                        <span [@animateText]="linkText ? 'show' : 'hide'">{{child.name}}</span>
+                                        <mat-icon mat-list-icon></mat-icon>
+                                        <mat-icon class="menu-button" [ngClass]="{'rotated' : child.expand}">
+                                            expand_more
+                                        </mat-icon>
+                                    </a>
+                                    <div *ngFor="let subchild of child.children">
+                                        <a mat-list-item id={{subchild?.icon}} [routerLink]='subchild.url' *ngIf="child.expand" class="small">
+                                            <span [@animateText]="linkText ? 'show' : 'hide'">{{subchild.name}}</span>
+                                            <mat-icon mat-list-icon></mat-icon>
+                                        </a>
+                                    </div>
+                                </mat-nav-list>
                             </ng-container>
                             <ng-template #elseTemplate>
-                              <mat-nav-list #elem [id]="child.id" class="submenu" *ngIf="navItem.expand">
-                                <a mat-list-item id={{child?.icon}} [routerLink]="child.url">
-                                    <span [@animateText]="linkText ? 'show' : 'hide'">{{child.name}}</span>
-                                    <mat-icon mat-list-icon></mat-icon>
-                                    <mat-icon class="menu-button" [ngClass]="{'rotated' : child.expand}">
-                                      
-                                  </mat-icon>
-                                </a>
-                              </mat-nav-list>
+                                <mat-nav-list #elem [id]="child.id" class="submenu" *ngIf="navItem.expand">
+                                    <a mat-list-item id={{child?.icon}} [routerLink]="child.url" class="child">
+                                        <span [@animateText]="linkText ? 'show' : 'hide'">{{child.name}}</span>
+                                        <mat-icon mat-list-icon></mat-icon>
+                                        <mat-icon class="menu-button" [ngClass]="{'rotated' : child.expand}">
+
+                                        </mat-icon>
+                                    </a>
+                                </mat-nav-list>
                             </ng-template>
-                            
+
                         </div>
                         <ng-template #normalSideBar>
                             <mat-divider *ngIf="navItem.title"></mat-divider>
-                            <a mat-list-item id="child.icon" *ngIf="!navItem.title" [routerLink]="[navItem.url]">
+                            <a mat-list-item id="child.icon" *ngIf="!navItem.title" [routerLink]="[navItem.url]" class="child">
                                 <span [@animateText]="linkText ? 'show' : 'hide'">{{navItem.name}}</span>
                                 <mat-icon mat-list-icon>{{navItem.icon}}</mat-icon>
                             </a>
@@ -62,7 +62,7 @@
                                 <span class="showTitle text-left" [@animateText]="linkText ? 'show' : 'hide'">{{navItem.name}}</span>
                             </div>
                         </ng-template>
-                  </div>
+                    </div>
                 </div>
             </mat-nav-list>
         </div>
