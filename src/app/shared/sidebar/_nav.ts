@@ -393,4 +393,3 @@ export const navItemsSpecialized: INavItem[] = [
     attributes: { disabled: true },
   },
 ];
-
