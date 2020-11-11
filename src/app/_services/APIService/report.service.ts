@@ -27,7 +27,8 @@ export class ReportService {
     private urlApprove = "/phe-duyet";
     private urlDecline = "/tu-choi";
     private urlSend = "/gui-lanh-dao";
-    private urlLinhvucBaoCao = "/bao-cao-theo-linh-vuc"
+    private urlLinhvucBaoCao = "/bao-cao-theo-linh-vuc";
+    private urlReport12Months = "/du-lieu-tong-hop-12-thang";
 
     token: any;
     username: any;
@@ -178,6 +179,17 @@ export class ReportService {
         var apiUrl = this.apiReport + this.urlLinhvucBaoCao;
         let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
         let params = new HttpParams().set('id_linh_vuc', id);
+        return this.http.get<any>(apiUrl, { headers: headers, params: params }).pipe(tap(data => data),
+            catchError(this.handleError)
+        );
+    }
+
+    public Get12MonthReports(obj_id : number, year : number, attribute_code : string){
+        var apiUrl = this.apiReport + this.urlReport12Months;
+        let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+        let params = new HttpParams().set('obj_id', obj_id.toString());
+        params = params.append('year', year.toString());
+        params = params.append('attribute_code', attribute_code);
         return this.http.get<any>(apiUrl, { headers: headers, params: params }).pipe(tap(data => data),
             catchError(this.handleError)
         );
