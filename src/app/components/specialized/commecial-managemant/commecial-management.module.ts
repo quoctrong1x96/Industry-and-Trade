@@ -22,7 +22,8 @@ import { ImportManagementComponent } from './export-import-management/import-man
 import { ExportManagementComponent } from './export-import-management/export-management/export-management.component';
 import { TranslatePipe } from '../../../_pipe/translate';
 import { MatDialogModule } from '@angular/material/dialog';
-import { ModalComponent } from './export-import-management/dialog-import-export/modal.component'
+import { ModalComponent } from './export-import-management/dialog-import-export/modal.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
 @NgModule({
   imports: [
     CommonModule,
@@ -31,11 +32,14 @@ import { ModalComponent } from './export-import-management/dialog-import-export/
     ReactiveFormsModule,
     CommecialManagementRoutingModule,
     PipeModule,
-    MatDialogModule
+    MatDialogModule,
+    MatPaginatorModule
   ],
   exports: [
     // FormatNumberReportPipe,
-    TranslatePipe
+    TranslatePipe, 
+    MatPaginatorModule
+
   ],
   declarations: [
     MarketCommecialManagementComponent,

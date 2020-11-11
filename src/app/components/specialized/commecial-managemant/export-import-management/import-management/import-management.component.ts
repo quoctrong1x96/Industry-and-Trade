@@ -1,20 +1,21 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource, MatTable, MatAccordion, MatPaginator } from '@angular/material';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { MatTableDataSource, MatTable, MatAccordion, MatPaginator, MatSort } from '@angular/material';
 import { ex_im_model } from 'src/app/_models/APIModel/export-import.model';
 import { District } from 'src/app/_models/district.model';
 import { SCTService } from 'src/app/_services/APIService/sct.service';
 import { ModalComponent } from '../dialog-import-export/modal.component';
 import {MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-import-management',
   templateUrl: './import-management.component.html',
   styleUrls: ['./import-management.component.scss']
 })
-export class ImportManagementComponent implements OnInit {
+export class ImportManagementComponent implements OnInit, AfterViewInit  {
 
   // displayedSumColumns: any[] = ['tong', 'tong_luong_thang', 'tong_gia_tri_thang', 'tong_luong_cong_don', 'tong_gia_tri_cong_don']
-  displayedColumns: string[] = ['index', 'ten_san_pham', 'luong_thang', 'gia_tri_thang', 'luong_cong_don', 'gia_tri_cong_don'];
+  displayedColumns: string[] = ['index', 'ten_san_pham', 'luong_thang', 'gia_tri_thang', 'luong_cong_don', 'gia_tri_cong_don', 'luong_thang_tc', 'gia_tri_thang_tc'];
     dataSource: MatTableDataSource<ex_im_model> = new MatTableDataSource<ex_im_model>();
     dataDialog: any[] = [];
     filteredDataSource: MatTableDataSource<ex_im_model> = new MatTableDataSource<ex_im_model>();
@@ -39,8 +40,9 @@ export class ImportManagementComponent implements OnInit {
     curentmonth: number = new Date().getMonth();
     @ViewChild('table', { static: false }) table: MatTable<ex_im_model>;
     @ViewChild(MatAccordion, { static: true }) accordion: MatAccordion;
-    @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-
+    @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+    @ViewChild(MatSort, {static: false}) sort: MatSort;
+    
     constructor(
       private sctService: SCTService,
       private matDialog: MatDialog
@@ -54,6 +56,7 @@ export class ImportManagementComponent implements OnInit {
         // this.filteredDataSource.filterPredicate = function (data: ex_im_model, filter): boolean {
         //     return String(data.is_het_han).includes(filter);
         // };
+        
     }
 
     autoOpen(){
@@ -71,30 +74,44 @@ export class ImportManagementComponent implements OnInit {
           this.log(this.dataSource.data)
           this.dataDialog = result.data[0];
           for (let item of this.dataSource.data) {
-            console.log(item)
+            // console.log(item)
             this.TongLuongThangThucHien += item['luong_thang'];
             this.TongGiaTriThangThucHien += item['gia_tri_thang'];
             this.TongLuongCongDon += item['luong_cong_don'];
             this.TongGiaTriCongDon += item['gia_tri_cong_don'];
           }
-          console.log(this.TongGiaTriCongDon, this.TongGiaTriThangThucHien, this.TongLuongCongDon, this.TongLuongThangThucHien)
+          
+          // console.log(this.TongGiaTriCongDon, this.TongGiaTriThangThucHien, this.TongLuongCongDon, this.TongLuongThangThucHien)
           this.filteredDataSource.data = [...this.dataSource.data];
           this.filteredDataSource.paginator = this.paginator;
-          this.paginator._intl.itemsPerPageLabel = 'Số hàng';
-          this.paginator._intl.firstPageLabel = "Trang Đầu";
-          this.paginator._intl.lastPageLabel = "Trang Cuối";
-          this.paginator._intl.previousPageLabel = "Trang Trước";
-          this.paginator._intl.nextPageLabel = "Trang Tiếp";
+          // this.paginator._intl.itemsPerPageLabel = 'Số hàng';
+          // this.paginator._intl.firstPageLabel = "Trang Đầu";
+          // this.paginator._intl.lastPageLabel = "Trang Cuối";
+          // this.paginator._intl.previousPageLabel = "Trang Trước";
+          // this.paginator._intl.nextPageLabel = "Trang Tiếp";
+          this.dataSource.paginator = this.paginator;
       })
     }
+
+    ngAfterViewInit(): void {
+      //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+      //Add 'implements AfterViewInit' to the class.
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    }
+
 
     log(any) {
         console.log(any);
     }
 
     applyFilter(event: Event) {
-        const filterValue = (event.target as HTMLInputElement).value;
-        this.filteredDataSource.filter = filterValue.trim().toLowerCase();
+      const filterValue = (event.target as HTMLInputElement).value;
+      this.dataSource.filter = filterValue.trim().toLowerCase();
+  
+      if (this.dataSource.paginator) {
+        this.dataSource.paginator.firstPage();
+      }
     }
 
     getYears() {
