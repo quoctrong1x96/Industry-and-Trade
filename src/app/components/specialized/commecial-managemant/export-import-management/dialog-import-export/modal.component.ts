@@ -7,7 +7,7 @@ import { District } from 'src/app/_models/district.model';
 @Component({ 
     selector: 'jw-modal', 
     templateUrl: 'modal.component.html', 
-    styleUrls: ['modal.component.sass'],
+    styleUrls: ['modal.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
 export class ModalComponent implements OnInit {
