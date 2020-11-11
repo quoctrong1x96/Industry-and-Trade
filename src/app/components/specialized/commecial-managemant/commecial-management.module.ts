@@ -54,12 +54,11 @@ import { ModalComponent } from './export-import-management/dialog-import-export/
     ShoppingcentreComponent,
     LPGBusinessComponent,
     TRSManagementComponent],
-  entryComponents: []
+  entryComponents: [
     ImportManagementComponent,
     ExportManagementComponent,
     TranslatePipe,
     ModalComponent
   ],
-  entryComponents: [ModalComponent]
 })
 export class CommecialManagementModule { }
