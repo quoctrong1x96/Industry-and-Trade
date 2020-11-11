@@ -68,7 +68,6 @@ export const customCurrencyMaskConfig = {
     DialogBusinessComponent,
     TestDirectives,
     DetailBussinessComponent,
-    TranslatePipe,
     ConfirmDialogComponent,
     BusinessExportImportComponent
   ],

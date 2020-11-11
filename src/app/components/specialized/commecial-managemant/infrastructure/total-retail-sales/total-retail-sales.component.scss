@@ -16,11 +16,8 @@
     margin-left: 8px;
 }
 
-.config-p {
-    line-height: 23px;
-    font-size: 18px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: 525;
+.cards {
+    height: 100px !important;
 }
 
 th,
@@ -52,8 +49,7 @@ td {
 }
 
 .mat-table {
-    width: 150%;
-    max-height: 200px;
+    width: 100%;
     border: 1px solid black;
     table-layout: initial;
 }
@@ -73,5 +69,5 @@ td {
 
 .filter {
     font-size: 14px;
-    width: 150%;
+    width: 100%;
 }

@@ -1,8 +1,7 @@
 <mat-card>
     <mat-card-content>
         <div class="example-action-buttons">
-            <button mat-raised-button color="primary" (click)="accordion.openAll()">Mở Tất Cả</button>
-            &nbsp;
+            <button mat-raised-button color="primary" (click)="accordion.openAll()">Mở Tất Cả</button> &nbsp;
             <button mat-raised-button color="warn" (click)="accordion.closeAll()">Đóng tất cả</button>
         </div>
         <mat-accordion class="example-headers-align" multi>
@@ -22,7 +21,7 @@
                         <div class="list-group">
                             <a class="list-group-item list-group-item-action flex-column align-items-start bg-primary">
                                 <div class="d-flex w-100 justify-content-between">
-                                    <h5 class="mb-1">1 Tổng số TTTM: <strong>0</strong></h5>
+                                    <h5 class="mb-1">1 Tổng số TTTM: <strong>{{dataSourceHuyenThi.data.length}}</strong></h5>
                                 </div>
                                 <p class="mb-1"></p>
                             </a>
@@ -32,12 +31,9 @@
                                 </div>
                                 <p class="mb-1 config-p">
                                     2.1 Tổng số TTTM hạng I: <strong>0</strong>
-                                    <br>
-                                    2.2 Tổng số TTTM hạng II: <strong>0</strong>
-                                    <br>
-                                    2.3 Tổng số TTTM hạng III: <strong>0</strong>
-                                    <br>
-                                    2.4 Tổng số TTTM đang xây dựng: <strong>0</strong>
+                                    <br> 2.2 Tổng số TTTM hạng II: <strong>0</strong>
+                                    <br> 2.3 Tổng số TTTM hạng III: <strong>0</strong>
+                                    <br> 2.4 Tổng số TTTM đang xây dựng: <strong>0</strong>
                                 </p>
                             </a>
                         </div>
@@ -51,8 +47,7 @@
                                 </div>
                                 <p class="mb-1 config-p">
                                     3.1 Tổng số TTTM tổng hợp: <strong>0</strong>
-                                    <br>
-                                    3.2 Tổng số TTTM chuyên doanh: <strong>0</strong>
+                                    <br> 3.2 Tổng số TTTM chuyên doanh: <strong>0</strong>
                                 </p>
                             </a>
                             <a class="list-group-item list-group-item-action flex-column align-items-start bg-warning">
@@ -62,16 +57,11 @@
                                 <p class="mb-1 config-p">
                                     4.1 Tổng số TTTM đầu tư xây dựng trong năm <strong>...</strong> là:
                                     <strong>0</strong>
-                                    <br>
-                                    4.2 Chênh lệch số TTTM đầu tư xây dựng trong năm <strong>...</strong> so với
-                                    năm trước là:
+                                    <br> 4.2 Chênh lệch số TTTM đầu tư xây dựng trong năm <strong>...</strong> so với năm trước là:
                                     <strong>0</strong>
-                                    <br>
-                                    4.3 Tổng số TTTM ngừng hoạt động trong năm <strong>...</strong> là:
+                                    <br> 4.3 Tổng số TTTM ngừng hoạt động trong năm <strong>...</strong> là:
                                     <strong>0</strong>
-                                    <br>
-                                    4.4 Chênh lệch số TTTM ngừng hoạt động trong năm <strong>...</strong> so với
-                                    năm trước là:
+                                    <br> 4.4 Chênh lệch số TTTM ngừng hoạt động trong năm <strong>...</strong> so với năm trước là:
                                     <strong>0</strong>
                                 </p>
                             </a>
@@ -117,10 +107,30 @@
                         </mat-checkbox>
                     </div> -->
                 </div>
+                <div class="row">
+                    <div class="col-3 col-lg-3">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Kiểu sắp xếp</mat-label>
+                            <mat-select (selectionChange)="sortHeaderCondition($event.value)" [value]="dientich">
+                                <mat-option *ngFor='let header of headerArray' [value]='header'>{{header}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
 
+                    <div class="col-3 col-lg-3">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Địa bàn</mat-label>
+                            <mat-select (selectionChange)="applyDistrictFilter($event)" multiple>
+                                <mat-option *ngFor='let district of districts' [value]='district.id'>
+                                    {{district.ten_quan_huyen}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
                 <div class="auto mat-elevation-z8" *ngIf="dataSourceHuyenThi.data.length; else ShowEmpty">
                     <mat-form-field class="filter">
-                        <mat-label>Lọc dữ liệu</mat-label>
+                        <mat-label>Tìm tên trung tâm thương mại</mat-label>
                         <input matInput (keyup)="applyFilter1($event)" placeholder="" #input>
                     </mat-form-field>
 

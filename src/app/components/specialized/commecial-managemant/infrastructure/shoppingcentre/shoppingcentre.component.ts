@@ -24,6 +24,7 @@ import { element } from 'protractor';
 import { MarketCommonModel, SuperMarketCommonModel } from 'src/app/_models/APIModel/commecial-management.model';
 import { MatAccordion } from '@angular/material/expansion';
 import { MatPaginator } from '@angular/material/paginator';
+import { District } from 'src/app/_models/district.model';
 
 interface HashTableNumber<T> {
   [key: string]: T;
@@ -42,28 +43,29 @@ export class ShoppingcentreComponent implements OnInit {
   @ViewChild(MatAccordion, { static: false }) accordion: MatAccordion;
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   //Variable for HTML&TS-------------------------------------------------------------------------
+  districts: District[] = [{ id: 1, ten_quan_huyen: 'Thị xã Phước Long' },
+    { id: 2, ten_quan_huyen: 'Thành phố Đồng Xoài' },
+    { id: 3, ten_quan_huyen: 'Thị xã Bình Long' },
+    { id: 4, ten_quan_huyen: 'Huyện Bù Gia Mập' },
+    { id: 5, ten_quan_huyen: 'Huyện Lộc Ninh' },
+    { id: 6, ten_quan_huyen: 'Huyện Bù Đốp' },
+    { id: 7, ten_quan_huyen: 'Huyện Hớn Quản' },
+    { id: 8, ten_quan_huyen: 'Huyện Đồng Phú' },
+    { id: 9, ten_quan_huyen: 'Huyện Bù Đăng' },
+    { id: 10, ten_quan_huyen: 'Huyện Chơn Thành' },
+    { id: 11, ten_quan_huyen: 'Huyện Phú Riềng' }];
   headerArray = ['index', 'tenhuyenthi', 'ten_tttm', 'dientich', 'vondautu', 'namdautuxaydung', 'phanloai'];
   dataHuyenThi: Array<SuperMarketCommonModel> = [
     { huyen: "Đồng Xoài", ten_tttm: "Trung tâm thương mại ITC Đồng Xoài", dientich: 9000, namdautuxaydung: "", phanloai: "III", vondautu: 150 },
-    { huyen: "Đồng Xoài", ten_tttm: "Siêu thị Co.opMart Đồng Xoài", dientich: 3107, namdautuxaydung: "2009", phanloai: "II", vondautu: 0 },
-    { huyen: "Đồng Xoài", ten_tttm: "Siêu thị điện máy nội thất Chợ Lớn, chi nhánh Bình Phước", dientich: 4000, namdautuxaydung: "2017", phanloai: "III", vondautu: 0 },
-    { huyen: "Đồng Xoài", ten_tttm: "Siêu thị The Gold Mart ", dientich: 4500, namdautuxaydung: "2019", phanloai: "II", vondautu: 0 },
-    { huyen: "Đồng Xoài", ten_tttm: "Siêu thị điện máy Nguyễn Kim", dientich: 400, namdautuxaydung: "2014", phanloai: "III", vondautu: 0 },
     { huyen: "Đồng Xoài", ten_tttm: "Vincom Đồng Xoài", dientich: 33000, namdautuxaydung: "", phanloai: "", vondautu: 240 },
     { huyen: "Bình Long", ten_tttm: "Trung tâm thương mại An Lộc - Bình Long", dientich: 26000, namdautuxaydung: "", phanloai: "III", vondautu: 200 },
-    { huyen: "Đồng Xoài", ten_tttm: "Siêu thị điện máy xanh Bình Phước", dientich: 3400, namdautuxaydung: "2016", phanloai: "III", vondautu: 0 },
-    { huyen: "Bình Long", ten_tttm: "Siêu thị Bé Lan", dientich: 1000, namdautuxaydung: "2017", phanloai: "III", vondautu: 0 },
     { huyen: "Phước Long", ten_tttm: "Trung tâm thương mại Phước Binh", dientich: 10000, namdautuxaydung: "", phanloai: "III", vondautu: 50 },
-    { huyen: "Phước Long", ten_tttm: "Siêu thị Phương Lan", dientich: 800, namdautuxaydung: "2014", phanloai: "III", vondautu: 0 },
-    { huyen: "Phước Long", ten_tttm: "Trung tâm thương mại Sơn Thành - Phước Long", dientich: 12000, namdautuxaydung: "", phanloai: "Đang xây dựng", vondautu: 300 },
+   { huyen: "Phước Long", ten_tttm: "Trung tâm thương mại Sơn Thành - Phước Long", dientich: 12000, namdautuxaydung: "", phanloai: "Đang xây dựng", vondautu: 300 },
     { huyen: "Phước Long", ten_tttm: "Vincom Phước Long", dientich: 15000, namdautuxaydung: "", phanloai: "", vondautu: 190 },
     { huyen: "Bù Đốp", ten_tttm: "Trung tâm thương mại Thanh Bình - Bù Đốp", dientich: 61000, namdautuxaydung: "", phanloai: "III", vondautu: 100 },
-    { huyen: "Đồng Phú", ten_tttm: "Siêu thị Co.opMart Đồng Phú", dientich: 3000, namdautuxaydung: "2019", phanloai: "II", vondautu: 0 },
     { huyen: "Chơn Thành", ten_tttm: "TTTM Đô Thành - Chơn Thành", dientich: 10000, namdautuxaydung: "", phanloai: "Đang xây dựng", vondautu: 300 },
     { huyen: "Chơn Thành", ten_tttm: "Vincom Chơn Thành", dientich: 31000, namdautuxaydung: "", phanloai: "III", vondautu: 220 },
-    { huyen: "Bù Đăng", ten_tttm: "Dự  án Siêu thị Co.opMart Bù Đăng", dientich: 0, namdautuxaydung: "", phanloai: "", vondautu: 0 },
-    { huyen: "Bù Đăng", ten_tttm: "Dự án Siêu Thị Boobo và chợ đêm", dientich: 0, namdautuxaydung: "", phanloai: "", vondautu: 0 },
-  ]
+     ]
   //Variable for only TS-------------------------------------------------------------------------
 
   applyFilter1(event: Event) {
@@ -100,6 +102,12 @@ export class ShoppingcentreComponent implements OnInit {
     this.dataSourceHuyenThi.data = this.dataHuyenThi;
     console.log(this.dataSourceHuyenThi.data);
   }
+
+  ngAfterViewInit(): void {
+    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    //Add 'implements AfterViewInit' to the class.
+    this.accordion.openAll();
+}
   dataSourceHuyenThi: MatTableDataSource<SuperMarketCommonModel> = new MatTableDataSource<SuperMarketCommonModel>();
 
   //Xuất excel
