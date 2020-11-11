@@ -27,7 +27,8 @@ export class SCTService {
     private urlDanhSachQuanLyCongNghiepThucPham = "/danh-sach-quan-ly-cong-nghiep-thuc-pham";
     private urlDanhSachQuanLyVatLieuNoCongNghiep = "/danh-sach-quan-ly-vat-lieu-no-cong-nghiep";
     private urlDanhSachQuanLyCumCongNghiep = "/danh-sach-quan-ly-cum-cong-nghiep";
-
+    private urlDanhSachNhapKhau = "/danh-sach-nhap-khau";
+    private urlDanhSachXuatKhau = "/danh-sach-xuat-khau";
     token: any;
     username: any;
 
@@ -127,6 +128,25 @@ export class SCTService {
         );
     }
 
+    public GetDanhSachNhapKhau(time_id: number) {
+        var apiUrl = this.apiSCT + this.urlDanhSachNhapKhau;
+        let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+        let params = new HttpParams().set('time_id', time_id.toString());
+        console.log(params);
+        return this.http.get<any>(apiUrl, { headers: headers, params: params }).pipe(tap(data => data),
+            catchError(this.handleError)
+        );
+    }
+
+    public GetDanhSachXuatKhau(time_id: number) {
+        var apiUrl = this.apiSCT + this.urlDanhSachXuatKhau;
+        let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+        let params = new HttpParams().set('time_id', time_id.toString());
+        console.log(params);
+        return this.http.get<any>(apiUrl, { headers: headers, params: params }).pipe(tap(data => data),
+            catchError(this.handleError)
+        );
+    }
 
     private handleError(error: HttpErrorResponse) {
         console.log(error);

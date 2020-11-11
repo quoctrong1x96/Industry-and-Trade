@@ -11,6 +11,8 @@ import { SuperMarketCommecialManagementComponent } from './infrastructure/superm
 import { InformedEcommerceWebsiteComponent } from './e-commerce-managemant/informed-ecommerce-website/informed-ecommerce-website.component';
 import { RegistrationEcommerceServicesComponent } from './e-commerce-managemant/registration-ecommerce-services/registration-ecommerce-services.component';
 import { TRSManagementComponent } from './infrastructure/total-retail-sales/total-retail-sales.component';
+import { ImportManagementComponent } from "./export-import-management/import-management/import-management.component";
+import { ExportManagementComponent } from "./export-import-management/export-management/export-management.component";
 
 const routes: Routes = [
   {
@@ -102,6 +104,19 @@ const routes: Routes = [
       {
         path: 'registration-services',
         component: RegistrationEcommerceServicesComponent
+      }
+    ]
+  },
+  {
+    path: 'export_import',
+    children: [
+      {
+        path: 'imported_products',
+        component: ImportManagementComponent
+      }, 
+      {
+        path: 'exported_products',
+        component: ExportManagementComponent
       }
     ]
   }

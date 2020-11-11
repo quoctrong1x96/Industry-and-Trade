@@ -19,7 +19,11 @@ import { RegistrationEcommerceServicesComponent } from './e-commerce-managemant/
 import { PipeModule } from 'src/app/shared/pipe.module';
 import { ShoppingcentreComponent } from './infrastructure/shoppingcentre/shoppingcentre.component';
 import { TRSManagementComponent } from './infrastructure/total-retail-sales/total-retail-sales.component';
-
+import { ImportManagementComponent } from './export-import-management/import-management/import-management.component';
+import { ExportManagementComponent } from './export-import-management/export-management/export-management.component';
+import { TranslatePipe } from '../../../_pipe/translate';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ModalComponent } from './export-import-management/dialog-import-export/modal.component'
 @NgModule({
   imports: [
     CommonModule,
@@ -27,9 +31,12 @@ import { TRSManagementComponent } from './infrastructure/total-retail-sales/tota
     MaterialModule,
     ReactiveFormsModule,
     CommecialManagementRoutingModule,
-    PipeModule
+    PipeModule,
+    MatDialogModule
   ],
   exports: [
+    // FormatNumberReportPipe,
+    TranslatePipe
   ],
   declarations: [
     MarketCommecialManagementComponent,
@@ -48,5 +55,11 @@ import { TRSManagementComponent } from './infrastructure/total-retail-sales/tota
     LPGBusinessComponent,
     TRSManagementComponent],
   entryComponents: []
+    ImportManagementComponent,
+    ExportManagementComponent,
+    TranslatePipe,
+    ModalComponent
+  ],
+  entryComponents: [ModalComponent]
 })
 export class CommecialManagementModule { }
