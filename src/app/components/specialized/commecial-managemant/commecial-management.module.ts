@@ -61,7 +61,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     ModalComponent,
     TRSManagementComponent],
   entryComponents: [
-    
+    ModalComponent
   ],
 })
 export class CommecialManagementModule { }
