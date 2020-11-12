@@ -11,7 +11,6 @@ import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
 import { MatTableFilter } from 'mat-table-filter';
 import {Company_mock} from '../../../../_models/companyDetailModel_mock';
-import { TranslatePipe } from "../../../../_pipe/translate";
 
 @Component({
   selector: 'app-search-business',

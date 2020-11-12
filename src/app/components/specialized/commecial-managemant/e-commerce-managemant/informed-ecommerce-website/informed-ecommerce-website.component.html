@@ -1,4 +1,3 @@
-
 <div class="row">
     <!-- <div class="col-2">
         <h4>Kỳ dữ liệu:</h4>
@@ -13,7 +12,8 @@
     </div>
     <div class="col-2">
         <mat-select placeholder="Chọn địa bàn" (selectionChange)="applyDistrictFilter($event)" multiple>
-            <mat-option *ngFor='let district of districts' [value]='district.id'>{{district.ten_quan_huyen}}</mat-option>
+            <mat-option *ngFor='let district of districts' [value]='district.id'>{{district.ten_quan_huyen}}
+            </mat-option>
         </mat-select>
     </div>
     <!-- <div class="col-2">
@@ -32,8 +32,9 @@
 </div>
 <br>
 <br>
-<div class="row" *ngIf="filteredDataSource?.data.length; else ShowEmpty">
-    <table mat-table [dataSource]="filteredDataSource" #table>
+<!-- <div class="row" *ngIf="filteredDataSource?.data.length; else ShowEmpty"> -->
+<div class="row">
+    <table mat-table [dataSource]="dataSource" #table>
         <ng-container matColumnDef="index">
             <th mat-header-cell *matHeaderCellDef> STT </th>
             <td mat-cell *matCellDef="let element; let i = index;" class='stt'>{{i+1}}</td>
@@ -41,40 +42,41 @@
 
         <ng-container matColumnDef="mst">
             <th mat-header-cell *matHeaderCellDef> Mã số thuế </th>
-            <td mat-cell *matCellDef="let element" class="stt"></td>
+            <td mat-cell *matCellDef="let element" class="stt">{{element.mst}}</td>
         </ng-container>
 
         <ng-container matColumnDef="ten_to_chuc">
             <th mat-header-cell *matHeaderCellDef>Tổ chức/cá nhân </th>
-            <td mat-cell *matCellDef="let element" class="stt"></td>
+            <td mat-cell *matCellDef="let element" class="stt">{{element.ten_to_chuc}}</td>
         </ng-container>
 
         <ng-container matColumnDef="dia_chi">
             <th mat-header-cell *matHeaderCellDef> Địa chỉ </th>
-            <td mat-cell *matCellDef="let element" class="stt"></td>
+            <td mat-cell *matCellDef="let element" class="stt">{{element.dia_chi}}</td>
         </ng-container>
 
         <ng-container matColumnDef="dien_thoai">
             <th mat-header-cell *matHeaderCellDef> Điện thoại </th>
-            <td mat-cell *matCellDef="let element" class="stt"></td>
+            <td mat-cell *matCellDef="let element" class="stt">{{element.dien_thoai}}</td>
         </ng-container>
 
         <ng-container matColumnDef="ten_mien">
             <th mat-header-cell *matHeaderCellDef> Tên miền </th>
-            <td mat-cell *matCellDef="let element" class="stt"></td>
+            <td mat-cell *matCellDef="let element" class="stt">{{element.ten_mien}}</td>
         </ng-container>
 
         <ng-container matColumnDef="nganh_nghe">
             <th mat-header-cell *matHeaderCellDef> Ngành nghề </th>
-            <td mat-cell *matCellDef="let element" class="stt"></td>
+            <td mat-cell *matCellDef="let element" class="stt">{{element.nganh_nghe}}</td>
         </ng-container>
 
         <ng-container matColumnDef="ma_nganh">
             <th mat-header-cell *matHeaderCellDef> Mã ngành nghề </th>
-            <td mat-cell *matCellDef="let element" class="stt"></td>
+            <td mat-cell *matCellDef="let element" class="stt">{{element.ma_nganh}}</td>
         </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="['index', 'mst', 'ten_to_chuc', 'dia_chi', 'dien_thoai', 'ten_mien', 'nganh_nghe', 'ma_nganh']"></tr>
+        <tr mat-header-row *matHeaderRowDef="['index', 'mst', 'ten_to_chuc', 'dia_chi', 'dien_thoai', 'ten_mien', 'nganh_nghe', 'ma_nganh']">
+        </tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;let i = index; ">
     </table>
 </div>

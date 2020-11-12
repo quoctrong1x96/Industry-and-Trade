@@ -209,7 +209,7 @@ export const navItemsSpecialized: INavItem[] = [
           },
           {
             name: 'Tổng mức bán lẻ hàng hóa và dịch vụ',
-            url: '/specialized/commecial-management/domestic',
+            url: '/specialized/commecial-management/domestic/trs',
             icon: 'monetization_on',
             id: 'HHDV',
           },

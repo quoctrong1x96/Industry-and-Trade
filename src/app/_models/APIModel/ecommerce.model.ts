@@ -13,7 +13,7 @@ export class registration_management {
 
 export class notification_management {
     index: number; 
-    mst: number; 
+    mst: string; 
     ten_to_chuc: string; 
     dia_chi: string; 
     dien_thoai: string; 
@@ -21,4 +21,5 @@ export class notification_management {
     nganh_nghe: string; 
     ma_nganh: number;
     id_quan_huyen : number;
+    email:string;
 }
