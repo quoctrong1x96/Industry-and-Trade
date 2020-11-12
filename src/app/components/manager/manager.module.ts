@@ -19,10 +19,10 @@ import { EditBusinessComponent } from './business/edit/edit-business.component';
 import { DialogBusinessComponent } from './business/Dialog/Dialog-business.component';
 import { TestDirectives } from '../../_directive/addHtml.directive';
 import { DetailBussinessComponent } from './business/detail-business/detail-business.component';
-import { TranslatePipe } from 'src/app/_pipe/translate';
 import { ConfirmDialogComponent } from './business/confirm-dialog/confirm-dialog.component';
 import { BusinessExportImportComponent } from './business/business-export-import/business-export-import.component';
 import { PipeModule } from 'src/app/shared/pipe.module';
+import { TranslatePipe } from 'src/app/_pipe/translate';
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export const customCurrencyMaskConfig = {
@@ -48,10 +48,11 @@ export const customCurrencyMaskConfig = {
     MaterialModule,
     ReactiveFormsModule,
     NgxCurrencyModule.forRoot(customCurrencyMaskConfig),
-    PipeModule
+    PipeModule,
   ],
   exports: [
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    
   ],
   declarations: [
     CreateBussinessComponent,
@@ -67,6 +68,7 @@ export const customCurrencyMaskConfig = {
     DialogBusinessComponent,
     TestDirectives,
     DetailBussinessComponent,
+    TranslatePipe,
     ConfirmDialogComponent,
     BusinessExportImportComponent
   ],

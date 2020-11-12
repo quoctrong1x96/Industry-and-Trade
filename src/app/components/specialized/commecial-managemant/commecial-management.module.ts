@@ -21,10 +21,10 @@ import { ShoppingcentreComponent } from './infrastructure/shoppingcentre/shoppin
 import { TRSManagementComponent } from './infrastructure/total-retail-sales/total-retail-sales.component';
 import { ImportManagementComponent } from './export-import-management/import-management/import-management.component';
 import { ExportManagementComponent } from './export-import-management/export-management/export-management.component';
-import { TranslatePipe } from '../../../_pipe/translate';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ModalComponent } from './export-import-management/dialog-import-export/modal.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { TranslatePipe } from 'src/app/_pipe/translate';
 @NgModule({
   imports: [
     CommonModule,
@@ -38,11 +38,13 @@ import {MatPaginatorModule} from '@angular/material/paginator';
   ],
   exports: [
     // FormatNumberReportPipe, 
+    TranslatePipe,
     MatPaginatorModule
 
   ],
   declarations: [
     MarketCommecialManagementComponent,
+    TranslatePipe,
     CommonCommecialComponent,
     TobaccoBusinessComponent,
     ConditionalBusinessLineComponent,
