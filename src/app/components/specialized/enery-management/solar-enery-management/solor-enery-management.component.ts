@@ -1,23 +1,23 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatAccordion, MatPaginator, MatTable, MatTableDataSource } from '@angular/material';
 import { DistrictModel } from 'src/app/_models/APIModel/domestic-market.model';
-import { HydroElectricManagementModel } from 'src/app/_models/APIModel/electric-management.module';
+import { HydroElectricManagementModel, SolarEneryManagementModel } from 'src/app/_models/APIModel/electric-management.module';
 
 @Component({
-  selector: 'app-hydroelectric',
-  templateUrl: './hydroelectric.component.html',
-  styleUrls: ['./hydroelectric.component.scss']
+  selector: 'app-solar-enery-management',
+  templateUrl: './solor-enery-management.component.html',
+  styleUrls: ['./solor-enery-management.component.scss']
 })
-export class HydroelectricComponent implements OnInit {
+export class SolarEneryManagementComponent implements OnInit {
   //ViewChild 
   @ViewChild(MatAccordion, { static: true }) accordion: MatAccordion;
-  @ViewChild('table', { static: false }) table: MatTable<HydroElectricManagementModel>;
+  @ViewChild('table', { static: false }) table: MatTable<SolarEneryManagementModel>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   //Constant variable
-  private readonly displayedColumns: string[] = ['index', 'mst', 'ten_doanh_nghiep', 'ten_phuong_xa', 'ten_huyen_thi', 'cong_xuat_thiet_ke', 'luong_nuoc_xa', 'dung_tich_ho', 'san_luong_6_thang', 'san_luong_nam', 'doanh_thu','trang_thai'];
+  private readonly displayedColumns: string[] = ['index','ten_du_an', 'ten_doanh_nghiep', 'ten_huyen_thi', 'cong_xuat_thiet_ke','san_luong_6_thang', 'san_luong_nam', 'doanh_thu','trang_thai'];
   //TS & HTML Variable
-  private dataSource: MatTableDataSource<HydroElectricManagementModel> = new MatTableDataSource<HydroElectricManagementModel>();
-  private filteredDataSource: MatTableDataSource<HydroElectricManagementModel> = new MatTableDataSource<HydroElectricManagementModel>();
+  private dataSource: MatTableDataSource<SolarEneryManagementModel> = new MatTableDataSource<SolarEneryManagementModel>();
+  private filteredDataSource: MatTableDataSource<SolarEneryManagementModel> = new MatTableDataSource<SolarEneryManagementModel>();
   private districts: DistrictModel[] = [{ id: 1, ten_quan_huyen: 'Thị xã Phước Long' },
   { id: 2, ten_quan_huyen: 'Thành phố Đồng Xoài' },
   { id: 3, ten_quan_huyen: 'Thị xã Bình Long' },
@@ -29,9 +29,12 @@ export class HydroelectricComponent implements OnInit {
   { id: 9, ten_quan_huyen: 'Huyện Bù Đăng' },
   { id: 10, ten_quan_huyen: 'Huyện Chơn Thành' },
   { id: 11, ten_quan_huyen: 'Huyện Phú Riềng' }];
-  private data: Array<HydroElectricManagementModel> = [{trang_thai:"Đang hoạt động", mst: '111', ten_doanh_nghiep: 'Thủy điện Thác Mơ', ten_phuong_xa: 'Phường Thác Mơ', ten_huyen_thi: 'Thị xã Phước Long',ma_huyen_thi:1,cong_xuat_thiet_ke:150,luong_nuoc_xa:65,dung_tich_ho:1360,san_luong_6_thang:313.7,san_luong_nam:627.4,doanh_thu:442.68 },
-  {trang_thai:"Đang hoạt động", mst: '222', ten_doanh_nghiep: 'Thủy điện Thác Mơ', ten_phuong_xa: 'Thị trấn Thanh Bình', ten_huyen_thi: 'Huyện Bù Đốp',ma_huyen_thi:6,cong_xuat_thiet_ke:72,luong_nuoc_xa:60,dung_tich_ho:165.49,san_luong_6_thang:155.094,san_luong_nam:310.189,doanh_thu:348.00 },
-  {trang_thai:"Đang hoạt động", mst: '333', ten_doanh_nghiep: 'Thủy điện Srok Phu Mieng', ten_phuong_xa: 'Xã Long Bình', ten_huyen_thi: 'Huyện Phú riềng',ma_huyen_thi:11,cong_xuat_thiet_ke:51,luong_nuoc_xa:65,dung_tich_ho:99.3,san_luong_6_thang:95,san_luong_nam:199.5,doanh_thu:229.68 },]
+  private data: Array<SolarEneryManagementModel> = [{trang_thai:"Đang hoạt động", mst: '111', ten_doanh_nghiep: 'Công ty Cổ phần thủy điện Thác Mơ', ten_du_an: ' Nhà máy điện mặt trời Thác Mơ', ten_huyen_thi: 'huyện Bù Gia Mập',ma_huyen_thi:4,cong_xuat_thiet_ke:50,san_luong_6_thang:10800  ,san_luong_nam:4665600000000,doanh_thu:9051264000000000},
+  {trang_thai:"Đang hoạt động", mst: '222', ten_doanh_nghiep: 'Nhà máy điện mặt trời Lộc Ninh 1', ten_du_an: 'Nhà máy điện mặt trời Lộc Ninh 1', ten_huyen_thi: 'Xã Lộc Thạnh, huyện Lộc Ninh',ma_huyen_thi:5,cong_xuat_thiet_ke:200,san_luong_6_thang:43200  ,san_luong_nam:18662400000000,doanh_thu:36205056000000000},
+  {trang_thai:"Đang hoạt động", mst: '333', ten_doanh_nghiep: 'Nhà máy điện mặt trời Lộc Ninh 2', ten_du_an: 'Nhà máy điện mặt trời Lộc Ninh 2', ten_huyen_thi: 'Xã Lộc Thạnh, huyện Lộc Ninh',ma_huyen_thi:5,cong_xuat_thiet_ke:200,san_luong_6_thang:43200  ,san_luong_nam:18662400000000,doanh_thu:36205056000000000},
+  {trang_thai:"Đang hoạt động", mst: '444', ten_doanh_nghiep: 'Nhà máy điện mặt trời Lộc Ninh 3', ten_du_an: 'Nhà máy điện mặt trời Lộc Ninh 3', ten_huyen_thi: 'Xã Lộc Thạnh, huyện Lộc Ninh',ma_huyen_thi:5,cong_xuat_thiet_ke:150,san_luong_6_thang:32400  ,san_luong_nam:13996800000000,doanh_thu:27153792000000000},
+  {trang_thai:"Đang hoạt động", mst: '555', ten_doanh_nghiep: 'Nhà máy điện mặt trời Lộc Ninh 4', ten_du_an: 'Nhà máy điện mặt trời Lộc Ninh 4', ten_huyen_thi: 'Xã Lộc Thạnh, huyện Lộc Ninh',ma_huyen_thi:5,cong_xuat_thiet_ke:200,san_luong_6_thang:43200 ,san_luong_nam:18662400000000,doanh_thu:36205056000000000},
+]
   //Only TS Variable
   years: number[] = [];
   doanhThu: number;

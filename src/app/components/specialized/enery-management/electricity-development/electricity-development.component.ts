@@ -5,16 +5,17 @@ import { HydroElectricManagementModel } from 'src/app/_models/APIModel/electric-
 
 @Component({
   selector: 'app-hydroelectric',
-  templateUrl: './hydroelectric.component.html',
+  templateUrl: './',
   styleUrls: ['./hydroelectric.component.scss']
 })
-export class HydroelectricComponent implements OnInit {
+export class ElectricDevelopmentManagementComponent implements OnInit {
   //ViewChild 
   @ViewChild(MatAccordion, { static: true }) accordion: MatAccordion;
   @ViewChild('table', { static: false }) table: MatTable<HydroElectricManagementModel>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   //Constant variable
-  private readonly displayedColumns: string[] = ['index', 'mst', 'ten_doanh_nghiep', 'ten_phuong_xa', 'ten_huyen_thi', 'cong_xuat_thiet_ke', 'luong_nuoc_xa', 'dung_tich_ho', 'san_luong_6_thang', 'san_luong_nam', 'doanh_thu','trang_thai'];
+  private readonly displayedColumns: string[] = ['index', 'dia_ban', 'tong_so_ho', 'ho_co_dien', 'ho_chua_co_dien', 'ty_le', 'tieu_chi_41', 'tieu_chi_42', 'tieu_chi_43'];
+  private readonly dsplayMergeColumns: string[]= ['indexM','dia_banM','so_ho_su_dung_dienM','ty_leM','tieu_chi_so_4M'];
   //TS & HTML Variable
   private dataSource: MatTableDataSource<HydroElectricManagementModel> = new MatTableDataSource<HydroElectricManagementModel>();
   private filteredDataSource: MatTableDataSource<HydroElectricManagementModel> = new MatTableDataSource<HydroElectricManagementModel>();
