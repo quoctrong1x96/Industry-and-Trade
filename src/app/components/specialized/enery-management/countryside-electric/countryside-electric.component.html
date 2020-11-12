@@ -1,80 +1,25 @@
-<h3>Quản lý điện nông thôn</h3>
-<div class="example-action-buttons" style="padding: 1em;">
-    <button mat-flat-button color="primary" (click)="accordion.openAll()" style="margin-right: 1em;">Xem tất cả</button>
-    <button mat-flat-button color="warn" (click)="accordion.closeAll()">Đóng lại</button>
-</div>
+<mat-tab-group>
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <mat-icon>select_all</mat-icon>
+            Điện thương phẩm
+        </ng-template>
+        <app-power-production></app-power-production>
+    </mat-tab>
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <mat-icon> swap_calls</mat-icon>
+            Công tác phát triển điện
+        </ng-template>
+        <app-electricity-development></app-electricity-development>
+    </mat-tab>
 
-  <mat-accordion class="example-headers-align" multi>
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <mat-icon>select_all</mat-icon>
+            Tổng số hộ sử dụng điện + Tiêu chí số 4
+        </ng-template>
+        <rural-electric-management></rural-electric-management>
+    </mat-tab>
 
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-            1. Tỷ lệ hộ sử dụng điện 
-        </mat-panel-title>
-        <mat-panel-description>
-            ...
-          <mat-icon>electrical_services</mat-icon>
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-  
-      <div style="display: grid;">
-        <mat-form-field>
-            <mat-label>Trường thông tin 1</mat-label>
-            <input matInput>
-          </mat-form-field>
-          
-          <mat-form-field>
-            <mat-label>Trường thông tin 2</mat-label>
-            <input matInput>
-          </mat-form-field>
-      </div>
-    </mat-expansion-panel>
-
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-            2. Tiêu chí điện nông thôn
-        </mat-panel-title>
-        <mat-panel-description>
-          ...
-          <mat-icon>trending_flat</mat-icon>
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-  
-      <div style="display: grid;">
-        <mat-form-field>
-            <mat-label>Trường thông tin 1</mat-label>
-            <input matInput>
-          </mat-form-field>
-          
-          <mat-form-field>
-            <mat-label>Trường thông tin 2</mat-label>
-            <input matInput>
-          </mat-form-field>
-      </div>
-    </mat-expansion-panel>
-
-    <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            3. Hạ tầng điện nông thôn
-          </mat-panel-title>
-          <mat-panel-description>
-            ...
-            <mat-icon>trending_flat</mat-icon>
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-    
-        <div style="display: grid;">
-          <mat-form-field>
-              <mat-label>Trường thông tin 1</mat-label>
-              <input matInput>
-            </mat-form-field>
-            
-            <mat-form-field>
-              <mat-label>Trường thông tin 2</mat-label>
-              <input matInput>
-            </mat-form-field>
-        </div>
-      </mat-expansion-panel>
-  </mat-accordion>
+</mat-tab-group>

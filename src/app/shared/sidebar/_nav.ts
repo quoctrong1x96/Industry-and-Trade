@@ -313,11 +313,6 @@ export const navItemsSpecialized: INavItem[] = [
     expand: false,
     children: [
       {
-        name: 'Tổng quan ngành năng lượng',
-        url: '/specialized/enery-management/common',
-        icon: 'monetization_on',
-      },
-      {
         name: 'Năng lượng - Thủy điện',
         url: '/specialized/enery-management/hydroelectric',
         icon: 'monetization_on',

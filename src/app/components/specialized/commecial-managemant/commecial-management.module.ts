@@ -36,7 +36,8 @@ import { RegisteredSaleWebsiteComponent } from './e-commerce-managemant/register
     MatPaginatorModule
   ],
   exports: [
-    // FormatNumberReportPipe, 
+    // FormatNumberReportPipe,
+    TranslatePipe,
     MatPaginatorModule
 
   ],
@@ -44,6 +45,7 @@ import { RegisteredSaleWebsiteComponent } from './e-commerce-managemant/register
     MarketCommecialManagementComponent,
     CommonCommecialComponent,
     TobaccoBusinessComponent,
+    TranslatePipe,
     ConditionalBusinessLineComponent,
     SuperMarketCommecialManagementComponent,
     CommonCommecialComponent,
