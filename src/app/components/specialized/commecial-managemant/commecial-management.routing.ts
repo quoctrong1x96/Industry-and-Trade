@@ -8,11 +8,10 @@ import { TobaccoBusinessComponent } from './conditional-business-line/tobacco-bu
 import { CommonCommecialComponent } from './infrastructure/common/common-commecial.component';
 import { MarketCommecialManagementComponent } from './infrastructure/market/market-commecial.component';
 import { SuperMarketCommecialManagementComponent } from './infrastructure/supermarket/supermarket-commecial.component';
-import { InformedEcommerceWebsiteComponent } from './e-commerce-managemant/informed-ecommerce-website/informed-ecommerce-website.component';
-import { RegistrationEcommerceServicesComponent } from './e-commerce-managemant/registration-ecommerce-services/registration-ecommerce-services.component';
-import { TRSManagementComponent } from './infrastructure/total-retail-sales/total-retail-sales.component';
+import { InformedEcommerceWebsiteComponent } from './e-commerce-managemant/informed-ecommerce-website/informed-ecommerce-website.component';import { TRSManagementComponent } from './infrastructure/total-retail-sales/total-retail-sales.component';
 import { ImportManagementComponent } from "./export-import-management/import-management/import-management.component";
 import { ExportManagementComponent } from "./export-import-management/export-management/export-management.component";
+import { RegisteredSaleWebsiteComponent } from './e-commerce-managemant/registered-sale-website/registered-sale-website.component';
 
 const routes: Routes = [
   {
@@ -98,12 +97,12 @@ const routes: Routes = [
     path: 'e-commerce',
     children: [
       {
-        path: 'imformed-website',
+        path: 'ecommerce-website',
         component: InformedEcommerceWebsiteComponent
       }, 
       {
-        path: 'registration-services',
-        component: RegistrationEcommerceServicesComponent
+        path: 'sale-website',
+        component: RegisteredSaleWebsiteComponent
       }
     ]
   },
