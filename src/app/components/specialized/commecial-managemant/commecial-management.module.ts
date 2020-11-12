@@ -24,6 +24,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ModalComponent } from './export-import-management/dialog-import-export/modal.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { RegisteredSaleWebsiteComponent } from './e-commerce-managemant/registered-sale-website/registered-sale-website.component';
+import { TranslatePipe } from 'src/app/_pipe/translate';
 @NgModule({
   imports: [
     CommonModule,
@@ -37,7 +38,7 @@ import { RegisteredSaleWebsiteComponent } from './e-commerce-managemant/register
   ],
   exports: [
     // FormatNumberReportPipe,
-    TranslatePipe,
+    // TranslatePipe,
     MatPaginatorModule
 
   ],
@@ -45,7 +46,7 @@ import { RegisteredSaleWebsiteComponent } from './e-commerce-managemant/register
     MarketCommecialManagementComponent,
     CommonCommecialComponent,
     TobaccoBusinessComponent,
-    TranslatePipe,
+    // TranslatePipe,
     ConditionalBusinessLineComponent,
     SuperMarketCommecialManagementComponent,
     CommonCommecialComponent,
