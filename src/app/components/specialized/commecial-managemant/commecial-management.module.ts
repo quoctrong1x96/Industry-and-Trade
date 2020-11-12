@@ -24,7 +24,6 @@ import { ExportManagementComponent } from './export-import-management/export-man
 import { MatDialogModule } from '@angular/material/dialog';
 import { ModalComponent } from './export-import-management/dialog-import-export/modal.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
-import { TranslatePipe } from 'src/app/_pipe/translate';
 @NgModule({
   imports: [
     CommonModule,
@@ -38,13 +37,11 @@ import { TranslatePipe } from 'src/app/_pipe/translate';
   ],
   exports: [
     // FormatNumberReportPipe, 
-    TranslatePipe,
     MatPaginatorModule
 
   ],
   declarations: [
     MarketCommecialManagementComponent,
-    TranslatePipe,
     CommonCommecialComponent,
     TobaccoBusinessComponent,
     ConditionalBusinessLineComponent,

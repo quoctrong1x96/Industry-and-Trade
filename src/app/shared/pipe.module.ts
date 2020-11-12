@@ -1,14 +1,17 @@
 import { NgModule } from '@angular/core';
 import { FormatNumberReportPipe } from 'src/app/shared/pipes/formatNumber.pipe';
+import { TranslatePipe } from '../_pipe/translate';
 
 @NgModule({
-   imports :[],
-   exports : [
-    FormatNumberReportPipe
+   imports: [],
+   exports: [
+      FormatNumberReportPipe,
+      TranslatePipe
    ],
    declarations: [
-    FormatNumberReportPipe
+      FormatNumberReportPipe,
+      TranslatePipe
    ]
 })
 
-export class PipeModule{}
+export class PipeModule { }
