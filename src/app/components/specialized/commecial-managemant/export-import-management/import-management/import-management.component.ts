@@ -6,7 +6,7 @@ import { SCTService } from 'src/app/_services/APIService/sct.service';
 import { ModalComponent } from '../dialog-import-export/modal.component';
 import {MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { tap } from 'rxjs/operators';
-
+import {MarketService} from '../../../../../_services/APIService/market.service'
 @Component({
   selector: 'app-import-management',
   templateUrl: './import-management.component.html',
@@ -15,7 +15,7 @@ import { tap } from 'rxjs/operators';
 export class ImportManagementComponent implements OnInit, AfterViewInit  {
 
   // displayedSumColumns: any[] = ['tong', 'tong_luong_thang', 'tong_gia_tri_thang', 'tong_luong_cong_don', 'tong_gia_tri_cong_don']
-  displayedColumns: string[] = ['index', 'ten_san_pham', 'luong_thang', 'gia_tri_thang', 'luong_cong_don', 'gia_tri_cong_don', 'luong_thang_tc', 'gia_tri_thang_tc'];
+  displayedColumns: string[] = ['index', 'ten_san_pham', 'luong_thang', 'gia_tri_thang', 'luong_cong_don', 'gia_tri_cong_don', 'luong_thang_tc', 'gia_tri_thang_tc', 'danh_sach_doanh_nghiep'];
     dataSource: MatTableDataSource<ex_im_model> = new MatTableDataSource<ex_im_model>();
     dataDialog: any[] = [];
     filteredDataSource: MatTableDataSource<ex_im_model> = new MatTableDataSource<ex_im_model>();
@@ -37,15 +37,17 @@ export class ImportManagementComponent implements OnInit, AfterViewInit  {
     TongLuongCongDon: number = 0;
     TongGiaTriCongDon: number = 0;
     isChecked: boolean;
+    pagesize: number = 0;
     curentmonth: number = new Date().getMonth();
     @ViewChild('table', { static: false }) table: MatTable<ex_im_model>;
     @ViewChild(MatAccordion, { static: true }) accordion: MatAccordion;
-    @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+    @ViewChild('paginator', { static: true }) paginator: MatPaginator;
     @ViewChild(MatSort, {static: false}) sort: MatSort;
     
     constructor(
       private sctService: SCTService,
-      private matDialog: MatDialog
+      private matDialog: MatDialog,
+      private marketService: MarketService
       ) {
     }
 
@@ -69,10 +71,14 @@ export class ImportManagementComponent implements OnInit, AfterViewInit  {
 
     getDanhSachNhapKhau(thang){
       let tem = new Date().getFullYear()*100 + thang;
-        this.sctService.GetDanhSachNhapKhau(202008).subscribe(result => {
+      if(thang !== this.curentmonth && thang){
+        this.curentmonth = thang;
+      }
+        this.sctService.GetDanhSachNhapKhau(tem).subscribe(result => {
           this.dataSource = new MatTableDataSource<ex_im_model>(result.data[1]);
-          this.log(this.dataSource.data)
+          this.log(this.dataSource)
           this.dataDialog = result.data[0];
+          this.pagesize = this.dataSource.data.length/25
           for (let item of this.dataSource.data) {
             // console.log(item)
             this.TongLuongThangThucHien += item['luong_thang'];
@@ -90,7 +96,8 @@ export class ImportManagementComponent implements OnInit, AfterViewInit  {
           // this.paginator._intl.previousPageLabel = "Trang Trước";
           // this.paginator._intl.nextPageLabel = "Trang Tiếp";
           this.dataSource.paginator = this.paginator;
-      })
+      });
+      
     }
 
     ngAfterViewInit(): void {
@@ -130,9 +137,32 @@ export class ImportManagementComponent implements OnInit, AfterViewInit  {
         this.filteredDataSource.filter = (event.checked) ? "true" : "";
     }
 
-  openDialog() {
+  openDialog(ten_san_pham) {
     const dialogConfig = new MatDialogConfig();
-    dialogConfig.data = this.dataDialog;
+    dialogConfig.data = {
+      data: this.handelDataDialog(ten_san_pham),
+      id: 1
+    }
+    console.log(this.handelDataDialog(ten_san_pham))
+    // dialogConfig.panelClass = ['overflow-y: scroll;']
     this.matDialog.open(ModalComponent, dialogConfig);
+  }
+
+  handelDataDialog(ten_san_pham){
+    let data = this.dataDialog.filter(item => item.ten_san_pham === ten_san_pham);
+    return data;
+  }
+
+  openDanh_sach_doanh_nghiep(id_mat_hang, ten_san_pham){
+    this.marketService.GetTopImport(this.curentmonth, new Date().getFullYear(), id_mat_hang).subscribe(data => {
+      const dialogConfig = new MatDialogConfig();
+      dialogConfig.data = {
+        data: data['data'],
+        id: 2, 
+        ten_san_pham: ten_san_pham,
+        thang: this.curentmonth
+      }
+      this.matDialog.open(ModalComponent, dialogConfig);
+      })
   }
 }

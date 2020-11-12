@@ -5,5 +5,7 @@ export class ex_im_model{
     luong_cong_don: number;
     gia_tri_cong_don: number;
     ten_san_pham: string;
+    id_quoc_gia?: number;
+    ten_tieng_anh?: string;
 }
 

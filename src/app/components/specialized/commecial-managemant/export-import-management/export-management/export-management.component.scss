@@ -17,7 +17,27 @@
 }
 
 .cards {
-    height: 100px !important;
+    height: max-content;
+    background-color: rgb(38, 168, 71);
+    min-height: 10em;
+}
+
+.mat-card-header .mat-card-title {
+    font-size: 1.2vw;
+    min-height: 4vw;
+}
+
+.mat-expansion-panel-content .mat-expansion-panel-body {
+    padding: 20px 24px 16px;
+    /* background: whitesmoke; */
+}
+.mat-expansion-panel-header {
+    // cursor: pointer;
+    background-color: #e49f1c;
+}
+
+.content{
+    padding: 20px 24px 16px;
 }
 
 th,
@@ -41,14 +61,19 @@ td {
     overflow: auto;
 }
 
-.mat-cell {
+.mat-cell, .mat-footer-cell {
     border: 1px solid black;
     font-size: 15px;
     text-align: center;
     padding: 10px 10px 10px 10px;
 }
 
+.mat-footer-cell{
+    font-weight: bolder;
+}
+
 .mat-table {
+    overflow: auto;
     width: 100%;
     border: 1px solid black;
     table-layout: initial;
@@ -58,9 +83,16 @@ td {
     font-size: 15px;
     width: 100%;
 }
-
-.stt {
+.stt{
     width: 50px;
+}
+.ten-hang {
+    width: 250px;
+    cursor: pointer;
+}
+
+.luong, .gia-tri{
+    width: 200px;
 }
 
 .mat-icon {
@@ -70,4 +102,18 @@ td {
 .filter {
     font-size: 14px;
     width: 150%;
+}
+
+.value{
+    font-size: 1.3vw;
+    color: #ffd740;
+    width: max-content;
+}
+
+.mat-card-header .mat-card-subtitle{
+    margin: 20px 0 10px 0;
+}
+
+.cdk-overlay-container .cdk-global-overlay-wrapper .cdk-overlay-pane {
+    overflow-y: scroll;
 }
