@@ -1,21 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
-import { ECommerceWebsite, ECommerceWebsiteFilterModel } from 'src/app/_models/APIModel/e-commerce.model';
+import { SaleWebsite, SaleWebsiteFilterModel, ECommerceWebsite } from 'src/app/_models/APIModel/e-commerce.model';
 import { District } from 'src/app/_models/district.model';
 import { SCTService } from 'src/app/_services/APIService/sct.service';
-import { notification_management } from '../../../../../_models/APIModel/ecommerce.model'
-
+import { registration_management } from "../../../../../_models/APIModel/ecommerce.model";
 @Component({
-  selector: 'app-informed-ecommerce-website',
-  templateUrl: './informed-ecommerce-website.component.html',
-  styleUrls: ['./informed-ecommerce-website.component.scss']
+  selector: 'registered-sale-website',
+  templateUrl: './registered-sale-website.component.html',
+  styleUrls: ['./registered-sale-website.component.scss']
 })
-export class InformedEcommerceWebsiteComponent implements OnInit {
+export class RegisteredSaleWebsiteComponent implements OnInit {
 
-  displayedColumns : string[] = ['index', 'mst', 'ten_doanh_nghiep', 'dia_chi', 'dien_thoai', 'ten_mien', 'loai_hhdv', 'email', 'so_gian_hang'];
-  dataSource: MatTableDataSource<ECommerceWebsite>;
-  filteredDataSource: MatTableDataSource<ECommerceWebsite> = new MatTableDataSource<ECommerceWebsite>();
-  filterModel : ECommerceWebsiteFilterModel = {id_quan_huyen :[]};
+  displayedColumns : string[] = ['index', 'mst', 'ten_tc_cn', 'dia_chi', 'dien_thoai', 'ten_mien', 'nganh_nghe', 'ma_so_nganh_nghe'];
+  dataSource: MatTableDataSource<SaleWebsite>;
+  filteredDataSource: MatTableDataSource<SaleWebsite> = new MatTableDataSource<SaleWebsite>();
+  filterModel : SaleWebsiteFilterModel = {id_quan_huyen :[]};
   constructor(private sctService : SCTService) { }
 
   ngOnInit() {
@@ -37,8 +36,9 @@ export class InformedEcommerceWebsiteComponent implements OnInit {
   ];
 
   GetDanhSachWebsiteTMDT(){
-    this.sctService.GetDanhSachWebTMDT().subscribe(response => {
-      this.dataSource = new MatTableDataSource<ECommerceWebsite>(response.data);
+    this.sctService.GetDanhSachWebBH().subscribe(response => {
+      console.log(response)
+      this.dataSource = new MatTableDataSource<SaleWebsite>(response.data);
       this.filteredDataSource.data = [...this.dataSource.data];
     })
   }

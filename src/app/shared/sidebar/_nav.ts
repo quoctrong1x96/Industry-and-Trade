@@ -258,13 +258,13 @@ export const navItemsSpecialized: INavItem[] = [
         children:[
           {
             name: 'Quản lý thông báo website bán hàng',
-            url: '/specialized/commecial-management/e-commerce/imformed-website',
+            url: '/specialized/commecial-management/e-commerce/sale-website',
             icon: 'monetization_on',
             id: 'QLTB',
           },
           {
             name: 'Quản lý đăng kí website cung cấp dịch vụ TMĐT',
-            url: '/specialized/commecial-management/e-commerce/registration-services',
+            url: '/specialized/commecial-management/e-commerce/ecommerce-website',
             icon: 'monetization_on',
             id: 'QLDK',
           },
