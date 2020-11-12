@@ -1,5 +1,5 @@
 //Import library
-import { Component, OnInit, ViewChild, QueryList, ViewChildren } from '@angular/core';
+import { Component, OnInit, ViewChild, QueryList, ViewChildren, ElementRef } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material';
@@ -17,6 +17,8 @@ import { ProductValueModel } from 'src/app/_models/APIModel/domestic-market.mode
 //Import Component
 import { ExportTopCompanyManager } from '../export-top-company-manager/export-top-company-manager.component';
 import { ManagerDirective } from './../../../shared/manager.directive';
+import * as XLSX from 'xlsx';
+import { Subject } from 'rxjs';
 
 //Moment
 import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
@@ -141,6 +143,118 @@ export class ProductManagerComponent implements OnInit {
         let month = time.getMonth();
         this.marketService.GetExportedValue(month, year);
     }
+
+    //Event for "Tải template"
+    downloadExcelTemplate(filename: string, sheetname: string) {
+        let excelFileName: string;
+        let newArray: any[] = [];
+        //Format name of Excel will be export
+        sheetname = sheetname.replace('/', '_');
+        excelFileName = filename + '.xlsx';
+
+        //Alias column name
+        let data = Object.values(this.dataSource.data);
+
+        Object.keys(data).forEach((key, index) => {
+            newArray.push({
+                'STT': index,
+                'Mã sản phẩm': data[key].id_san_pham,
+                'Tên sản phẩm': data[key].ten_san_pham,
+                'Sản lượng': '',
+                'Trị giá': '',
+            });
+        });
+        const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(newArray);
+        const wb: XLSX.WorkBook = XLSX.utils.book_new();
+        /* save to file */
+        XLSX.utils.book_append_sheet(wb, ws, sheetname);
+        XLSX.writeFile(wb, excelFileName);
+    }
+
+    //Event for "Nhập từ excel"
+    spinnerEnabled = false;
+    keys: string[];
+    dataSheet = new Subject();
+    @ViewChild('inputFile', { static: true }) inputFile: ElementRef;
+    isExcelFile: boolean;
+    uploadExcel(evt: any) {
+        let isExcelFile: boolean;
+        let spinnerEnabled = false;
+        let dataSheet = new Subject();
+        let keys: string[];
+        let data, header;
+        const target: DataTransfer = <DataTransfer>(evt.target);
+        isExcelFile = !!target.files[0].name.match(/(.xls|.xlsx)/);
+        if (isExcelFile) {
+            let data, header;
+            const target: DataTransfer = <DataTransfer>(evt.target);
+            this.isExcelFile = !!target.files[0].name.match(/(.xls|.xlsx)/);
+            if (target.files.length > 1) {
+                this.inputFile.nativeElement.value = '';
+            }
+            if (this.isExcelFile) {
+                this.spinnerEnabled = true;
+                const reader: FileReader = new FileReader();
+                reader.onload = (e: any) => {
+                    /* read workbook */
+                    const bstr: string = e.target.result;
+                    const wb: XLSX.WorkBook = XLSX.read(bstr, { type: 'binary' });
+
+                    /* grab first sheet */
+                    const wsname: string = wb.SheetNames[0];
+                    const ws: XLSX.WorkSheet = wb.Sheets[wsname];
+
+                    /* save data */
+                    data = XLSX.utils.sheet_to_json(ws);
+                    this.dataSource.data = [];
+                    data.forEach(item => {
+                        let datarow: ProductManagerModel = new ProductManagerModel();
+                        datarow.san_luong = item['Sản lượng'];
+                        datarow.tri_gia = item['Trị giá'];
+                        datarow.ten_san_pham = item['Tên sản phẩm'];
+                        datarow.id_san_pham = item['Mã sản phẩm'];
+                        this.dataSource.data.push(datarow);
+                    });
+                    this.dataSource = new MatTableDataSource(this.dataSource.data);
+                    this._infor.msgSuccess("Nhập dữ liệu từ excel thành công!");
+                };
+
+                reader.readAsBinaryString(target.files[0]);
+
+                reader.onloadend = (e) => {
+                    this.spinnerEnabled = false;
+                    this.keys = Object.keys(data[0]);
+                    this.dataSheet.next(data)
+                }
+            } else {
+                this.inputFile.nativeElement.value = '';
+            }
+        }
+        // let dataExcel;
+        // let jsonFromExcel;
+        // const target: DataTransfer = (evt.target) as DataTransfer;
+        // const reader: FileReader = new FileReader();
+
+        // reader.onload = (e: any) => {
+        //     let bstr: string = e.target.result;
+
+        //     let wb: XLSX.WorkBook = XLSX.read(bstr, { type: 'binary' });
+
+        //     let wsName: string = wb.SheetNames[0];
+
+        //     let ws: XLSX.WorkSheet = wb.Sheets[wsName];
+
+        //     dataExcel = (XLSX.utils.sheet_to_json(ws, { header: 2 }));
+        //     console.log('Data: ', dataExcel);
+        //     jsonFromExcel = JSON.stringify(dataExcel);
+
+        //     console.log('JsonData: ', jsonFromExcel);
+
+        // };
+
+        // reader.readAsBinaryString(target.files[0]);
+    }
+
 
     private getListProduct(): void {
         this.managerService.GetListProduct().subscribe(

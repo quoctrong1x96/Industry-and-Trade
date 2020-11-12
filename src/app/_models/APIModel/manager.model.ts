@@ -61,7 +61,7 @@ export class ForeignManagerModel {
     public ngay_cap_nhat: string = '';
     public gia: number = null;
     public nguon_so_lieu: string = '';
-    public id_quoc_gia: number = null;
+    public thi_truong: string = '';
     public create_user: string = '';
 }
 

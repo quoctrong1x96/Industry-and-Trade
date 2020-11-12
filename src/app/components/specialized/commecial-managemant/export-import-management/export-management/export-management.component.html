@@ -17,18 +17,34 @@
                     </mat-panel-description>
                 </mat-expansion-panel-header>
 
-                <div class="row">
+                <div class="row content">
                     <div class="col-3 col-lg-3">
+                        <mat-card class="cards">
+                            <mat-card-header>
+                                <!-- <div mat-card-avatar>
+                                    <mat-icon> business</mat-icon>
+                                </div> -->
+                                <mat-card-title>Tổng sản lượng thực hiện tháng báo cáo:
+                                    </mat-card-title>
+                                    <br>
+                                <mat-card-subtitle class="value">
+                                    <strong>{{TongLuongThangThucHien | number: '1.1-2' }} (Tấn)</strong>
+                                </mat-card-subtitle>
+                            </mat-card-header>
+                            <mat-card-content>
+                            </mat-card-content>
+                        </mat-card>
                     </div>
                     <div class="col-3 col-lg-3">
                         <mat-card class="cards">
                             <mat-card-header>
-                                <div mat-card-avatar>
-                                    <mat-icon> business</mat-icon>
-                                </div>
-                                <mat-card-title>Số lượng doanh nghiệp trên địa bàn:
-                                    <strong>{{filteredDataSource.data.length | formatNumber}}</strong></mat-card-title>
-                                <mat-card-subtitle>
+                                <!-- <div mat-card-avatar>
+                                    <mat-icon> equalizer</mat-icon>
+                                </div> -->
+                                <mat-card-title>Tổng giá trị thực hiện tháng:
+                                    </mat-card-title>
+                                <mat-card-subtitle class="value">
+                                    <strong>{{TongGiaTriThangThucHien | number: '1.1-2' }} (USD)</strong>
                                 </mat-card-subtitle>
                             </mat-card-header>
                             <mat-card-content>
@@ -39,18 +55,34 @@
                     <div class="col-3 col-lg-3">
                         <mat-card class="cards">
                             <mat-card-header>
-                                <div mat-card-avatar>
-                                    <mat-icon>equalizer</mat-icon>
-                                </div>
-                                <mat-card-title>Sản lượng tiêu thụ: <strong>{{sanLuongBanRa}}</strong>
-                                </mat-card-title>
-                                <mat-card-subtitle></mat-card-subtitle>
+                                <!-- <div mat-card-avatar>
+                                    <mat-icon> business</mat-icon>
+                                </div> -->
+                                <mat-card-title>Tổng sản lượng cộng dồn tới tháng báo cáo:
+                                    </mat-card-title>
+                                <mat-card-subtitle class="value">
+                                    <strong>{{TongLuongCongDon | number: '1.1-2' }} (Tấn)</strong>
+                                </mat-card-subtitle>
                             </mat-card-header>
                             <mat-card-content>
                             </mat-card-content>
                         </mat-card>
                     </div>
                     <div class="col-3 col-lg-3">
+                        <mat-card class="cards">
+                            <mat-card-header>
+                                <!-- <div mat-card-avatar>
+                                    <mat-icon> equalizer</mat-icon>
+                                </div> -->
+                                <mat-card-title>Tổng giá trị cộng dồn tới tháng báo cáo:
+                                    </mat-card-title>
+                                <mat-card-subtitle class="value">
+                                    <strong>{{TongGiaTriCongDon | number: '1.1-2' }} (USD)</strong>
+                                </mat-card-subtitle>
+                            </mat-card-header>
+                            <mat-card-content>
+                            </mat-card-content>
+                        </mat-card>
                     </div>
                 </div>
             </mat-expansion-panel>
@@ -68,9 +100,11 @@
 
                 <div class="row">
                     <div class="col-3 col-lg-3">
+                        <br>
                         <mat-form-field appearance="outline">
+                            <mat-label>Tháng thực hiện</mat-label>
                             <mat-label>Kỳ dữ liệu</mat-label>
-                            <mat-select (selectionChange)="getDanhSachNhapKhau($event.value)">
+                            <mat-select (selectionChange)="getDanhSachXuatKhau($event.value)">
                                 <mat-option *ngFor='let month of months' [value]='month'>{{month}}</mat-option>
                             </mat-select>
                         </mat-form-field>
@@ -93,21 +127,43 @@
                     </div> -->
                 </div>
 
-                <div class="auto mat-elevation-z8" *ngIf="dataSource.data.length; else ShowEmpty">
+                <div class="auto mat-elevation-z1" *ngIf="dataSource.data.length; else ShowEmpty">
                     <mat-form-field class="filter">
                         <mat-label>Lọc dữ liệu</mat-label>
                         <input matInput (keyup)="applyFilter($event)" placeholder="" #input>
                     </mat-form-field>
 
                     <table mat-table [dataSource]="dataSource" #table>
+                        <ng-container matColumnDef="blank">
+                            <th mat-header-cell *matHeaderCellDef [attr.colspan]='2'> </th>
+                        </ng-container>
+
+                        <ng-container matColumnDef="blank1">
+                            <th mat-header-cell *matHeaderCellDef> </th>
+                        </ng-container>
+
+                        <ng-container matColumnDef="blank2">
+                            <th mat-header-cell *matHeaderCellDef> </th>
+                        </ng-container>
+
+                        <ng-container matColumnDef="cuc_hai_quan">
+                            <th mat-header-cell *matHeaderCellDef [attr.colspan]='4'> Cục Hải Quan</th>
+                        </ng-container>
+
+                        <ng-container matColumnDef="tong_cuc_hai_quan">
+                            <th mat-header-cell *matHeaderCellDef [attr.colspan]='2'>Tổng Cục Hải Quan</th>
+                        </ng-container>
+
                         <ng-container matColumnDef="index">
                             <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> STT </th>
                             <td mat-cell *matCellDef="let element; let i = index;" class='stt'>{{i+1}}</td>
+                            <td mat-footer-cell *matFooterCellDef></td>
                         </ng-container>
 
                         <ng-container matColumnDef="ten_san_pham">
                             <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Tên hàng </th>
-                            <td mat-cell *matCellDef="let element" class="stt"> {{element.ten_san_pham}}</td>
+                            <td mat-cell *matCellDef="let element" class="ten-hang" (click)="openDialog(element.ten_san_pham)" style="cursor: pointer;"> {{element.ten_san_pham}}</td>
+                            <td mat-footer-cell *matFooterCellDef> TỔNG </td>
                         </ng-container>
 
 
@@ -119,33 +175,72 @@
                             <th mat-header-cell *matHeaderCellDef [attr.colspan]="2"> Cộng đồn từ đầu năm đến ngày báo cáo </th>
                         </ng-container>
 
+                        <ng-container matColumnDef="thuc_hien_bao_cao_thang1">
+                            <th mat-header-cell *matHeaderCellDef [attr.colspan]="2"> Thực hiện tháng báo cáo </th>
+                        </ng-container>
+
                         <ng-container matColumnDef="luong_thang">
                             <th mat-header-cell *matHeaderCellDef> Lượng (Tấn) </th>
-                            <td mat-cell *matCellDef="let element" class="stt"> {{element.luong_thang}}</td>
+                            <td mat-cell *matCellDef="let element" class="luong"> {{element.luong_thang}}</td>
+                            <td mat-footer-cell *matFooterCellDef> {{TongLuongThangThucHien | number: '1.1-2'}} </td>
                         </ng-container>
 
                         <ng-container matColumnDef="gia_tri_thang">
                             <th mat-header-cell *matHeaderCellDef> Trị giá (USD) </th>
-                            <td mat-cell *matCellDef="let element" class="stt"> {{element.gia_tri_thang}}</td>
+                            <td mat-cell *matCellDef="let element" class="gia-tri"> {{element.gia_tri_thang}}</td>
+                            <td mat-footer-cell *matFooterCellDef> {{TongGiaTriThangThucHien | number: '1.1-2'}} </td>
                         </ng-container>
 
                         <ng-container matColumnDef="luong_cong_don">
                             <th mat-header-cell *matHeaderCellDef> Lượng (Tấn) </th>
-                            <td mat-cell *matCellDef="let element" class="stt"> {{element.luong_cong_don}}</td>
+                            <td mat-cell *matCellDef="let element" class="luong"> {{element.luong_cong_don}}</td>
+                            <td mat-footer-cell *matFooterCellDef> {{TongLuongCongDon | number: '1.1-2'}} </td>
                         </ng-container>
 
                         <ng-container matColumnDef="gia_tri_cong_don">
                             <th mat-header-cell *matHeaderCellDef> Trị giá (USD) </th>
-                            <td mat-cell *matCellDef="let element" class="stt"> {{element.gia_tri_cong_don}}</td>
+                            <td mat-cell *matCellDef="let element" class="gia-tri"> {{element.gia_tri_cong_don}}</td>
+                            <td mat-footer-cell *matFooterCellDef> {{TongGiaTriCongDon | number: '1.1-2'}} </td>
                         </ng-container>
 
-                        <tr mat-header-row *matHeaderRowDef="['index', 'ten_san_pham', 'thuc_hien_bao_cao_thang', 'cong_don_den_ky_bao_cao']">
-                        </tr>
-                        <tr mat-header-row *matHeaderRowDef="['luong_thang', 'gia_tri_thang', 'luong_cong_don', 'gia_tri_cong_don']"></tr>
-                        <tr mat-row *matRowDef="let row; columns: displayedColumns;let i = index; ">
-                    </table>
+                        <ng-container matColumnDef="luong_thang_tc">
+                            <th mat-header-cell *matHeaderCellDef> Lượng (Tấn) </th>
+                            <td mat-cell *matCellDef="let element" class="luong"> {{element.luong_thang_tc}}</td>
+                            <td mat-footer-cell *matFooterCellDef> {{0 | number: '1.1-2'}} </td>
+                        </ng-container>
 
-                    <mat-paginator [pageSizeOptions]="[20, 50, 100]" showFirstLastButtons></mat-paginator>
+                        <ng-container matColumnDef="gia_tri_thang_tc">
+                            <th mat-header-cell *matHeaderCellDef> Trị giá (USD) </th>
+                            <td mat-cell *matCellDef="let element" class="gia-tri"> {{element.gia_tri_thang_tc}}</td>
+                            <td mat-footer-cell *matFooterCellDef> {{1 | number: '1.1-2'}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="danh_sach_doanh_nghiep">
+                            <th mat-header-cell *matHeaderCellDef> Danh sách doanh nghiệp</th>
+                            
+                            <td mat-cell *matCellDef="let element" class="gia-tri">
+                                    <mat-icon (click)="openDanh_sach_doanh_nghiep(element.id_mat_hang, element.ten_san_pham)"> equalizer</mat-icon>
+                                </td>
+                            
+                            <td mat-footer-cell *matFooterCellDef></td>
+                            
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="['blank','cuc_hai_quan','tong_cuc_hai_quan', 'blank1']"></tr>
+                        <tr mat-header-row *matHeaderRowDef="['index', 'ten_san_pham', 'thuc_hien_bao_cao_thang', 'cong_don_den_ky_bao_cao', 'thuc_hien_bao_cao_thang1', 'blank2']">
+                        </tr>
+                        <tr mat-header-row *matHeaderRowDef="['luong_thang', 'gia_tri_thang', 'luong_cong_don', 'gia_tri_cong_don', 'luong_thang_tc', 'gia_tri_thang_tc', 'danh_sach_doanh_nghiep']"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;let i = index; ">
+                        <tr mat-footer-row *matFooterRowDef="displayedColumns">
+                        </tr>
+                    </table>
+                    <mat-paginator
+                        #paginator
+                        
+                        [pageSize]="pageSize"
+                        [pageSizeOptions]="[25]"
+                    ></mat-paginator>
+                    <!-- <mat-paginator #paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 50]"></mat-paginator> -->
                 </div>
                 <ng-template #ShowEmpty>
                     <h1>Không có dữ liệu</h1>

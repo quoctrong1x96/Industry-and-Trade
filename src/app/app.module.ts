@@ -18,6 +18,7 @@ import { ErrorInterceptor } from './_helpers/error.interceptor';
 import { ConfirmationDialogComponent } from './shared/confirmation-dialog/confirmation-dialog.component';
 import { ConfirmationDialogService } from './shared/confirmation-dialog/confirmation-dialog.service';
 // import {ToastrModule} from 'ngx-toastr';
+import {MatPaginatorModule} from '@angular/material/paginator';
 @NgModule({
   imports: [
     BrowserModule,
@@ -27,7 +28,8 @@ import { ConfirmationDialogService } from './shared/confirmation-dialog/confirma
     RoutingModule,
     NgbModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatPaginatorModule
     // ToastrModule.forRoot()
   ],
   declarations:[
