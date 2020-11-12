@@ -22,7 +22,6 @@ import { DetailBussinessComponent } from './business/detail-business/detail-busi
 import { ConfirmDialogComponent } from './business/confirm-dialog/confirm-dialog.component';
 import { BusinessExportImportComponent } from './business/business-export-import/business-export-import.component';
 import { PipeModule } from 'src/app/shared/pipe.module';
-import { TranslatePipe } from 'src/app/_pipe/translate';
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export const customCurrencyMaskConfig = {
@@ -68,7 +67,6 @@ export const customCurrencyMaskConfig = {
     DialogBusinessComponent,
     TestDirectives,
     DetailBussinessComponent,
-    TranslatePipe,
     ConfirmDialogComponent,
     BusinessExportImportComponent
   ],
