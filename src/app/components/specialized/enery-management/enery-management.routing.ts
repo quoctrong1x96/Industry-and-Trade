@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HydroelectricComponent } from './hydroelectric/hydroelectric.component';
 import { CountrysideElectricComponent } from './countryside-electric/countryside-electric.component';
 import { UseFocusedEnergyComponent } from './use-focused-energy/use-focused-energy.component';
 import { CommonEnergyComponent } from './common-energy/common-energy.component';

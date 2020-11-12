@@ -5,7 +5,7 @@
             <button mat-raised-button color="warn" (click)="accordion.closeAll()">Đóng tất cả</button>
         </div>
         <mat-accordion class="example-headers-align" multi>
-            <!-- <mat-expansion-panel>
+            <mat-expansion-panel>
                 <mat-expansion-panel-header>
                     <mat-panel-title>
                         <mat-icon> show_chart</mat-icon>
@@ -23,12 +23,28 @@
                                 <div mat-card-avatar>
                                     <mat-icon>filter</mat-icon>
                                 </div>
-                                <mat-card-title> Số lượng thuỷ điện
+                                <mat-card-title> Số xã
                                 </mat-card-title>
                                 <mat-card-subtitle></mat-card-subtitle>
                             </mat-card-header>
                             <mat-card-content>
-                                <strong>{{soLuongDoanhNghiep| number:'1.0-0'}}</strong>
+                                <strong>{{tongSoXa| number:'1.0-0'}}</strong>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+
+                    <div class="col">
+                        <mat-card class="cards" id="ccards">
+                            <mat-card-header>
+                                <div mat-card-avatar>
+                                    <mat-icon>filter</mat-icon>
+                                </div>
+                                <mat-card-title> Trung áp 3 pha
+                                </mat-card-title>
+                                <mat-card-subtitle></mat-card-subtitle>
+                            </mat-card-header>
+                            <mat-card-content>
+                                <strong>{{trung_ap_3p| number:'1.0-2'}}</strong>
                             </mat-card-content>
                         </mat-card>
                     </div>
@@ -38,12 +54,46 @@
                                 <div mat-card-avatar>
                                     <mat-icon>filter</mat-icon>
                                 </div>
-                                <mat-card-title> Doanh thu hằng năm
+                                <mat-card-title> Trung áp 1 pha
                                 </mat-card-title>
                                 <mat-card-subtitle></mat-card-subtitle>
                             </mat-card-header>
                             <mat-card-content>
-                                <strong>{{doanhThu| number:'1.0-2'}}</strong>
+                                <strong>{{trung_ap_1p| number:'1.0-0'}}</strong>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <mat-card class="cards" id="ccards">
+                            <mat-card-header>
+                                <div mat-card-avatar>
+                                    <mat-icon>filter</mat-icon>
+                                </div>
+                                <mat-card-title> Hạ ap 3 pha
+                                </mat-card-title>
+                                <mat-card-subtitle></mat-card-subtitle>
+                            </mat-card-header>
+                            <mat-card-content>
+                                <strong>{{ha_ap_3p| number:'1.0-2'}}</strong>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+
+                    <div class="col">
+                        <mat-card class="cards" id="ccards">
+                            <mat-card-header>
+                                <div mat-card-avatar>
+                                    <mat-icon>filter</mat-icon>
+                                </div>
+                                <mat-card-title> Hạ áp 1 pha
+                                </mat-card-title>
+                                <mat-card-subtitle></mat-card-subtitle>
+                            </mat-card-header>
+                            <mat-card-content>
+                                <strong>{{ha_ap_1p| number:'1.0-2'}}</strong>
                             </mat-card-content>
                         </mat-card>
                     </div>
@@ -53,12 +103,12 @@
                                 <div mat-card-avatar>
                                     <mat-icon>filter</mat-icon>
                                 </div>
-                                <mat-card-title> Tổng công xuất
+                                <mat-card-title> Số trạm biến áp
                                 </mat-card-title>
                                 <mat-card-subtitle></mat-card-subtitle>
                             </mat-card-header>
                             <mat-card-content>
-                                <strong>{{congXuat| number:'1.0-2'}}</strong>
+                                <strong>{{so_tram_bien_ap| number:'1.0-0'}}</strong>
                             </mat-card-content>
                         </mat-card>
                     </div>
@@ -68,17 +118,17 @@
                                 <div mat-card-avatar>
                                     <mat-icon>filter</mat-icon>
                                 </div>
-                                <mat-card-title> Tổng sản lượng năm
+                                <mat-card-title> Công xuất biến áp
                                 </mat-card-title>
                                 <mat-card-subtitle></mat-card-subtitle>
                             </mat-card-header>
                             <mat-card-content>
-                                <strong>{{sanluongnam| number:'1.0-2'}}</strong>
+                                <strong>{{cong_xuat_bien_ap| number:'1.0-0'}}</strong>
                             </mat-card-content>
                         </mat-card>
                     </div>
                 </div>
-            </mat-expansion-panel> -->
+            </mat-expansion-panel>
 
             <mat-expansion-panel>
                 <mat-expansion-panel-header>
@@ -130,61 +180,56 @@
                             <td mat-cell *matCellDef="let element; let i = index;" class='stt'>{{i+1}}</td>
                         </ng-container>
 
-                        <ng-container matColumnDef="dia_ban">
+                        <ng-container matColumnDef="ten_huyen_thi">
                             <th mat-header-cell *matHeaderCellDef> Địa bàn (xã, phường, thị trấn) </th>
-                            <td mat-cell *matCellDef="let element" class="stt"> {{element.dia_ban}}</td>
+                            <td mat-cell *matCellDef="let element" class="stt"> {{element.ten_huyen_thi}}</td>
                         </ng-container>
-                        <ng-container matColumnDef="tong_so_ho">
-                            <th mat-header-cell *matHeaderCellDef> Tổng </th>
-                            <td mat-cell *matCellDef="let element" class="stt"> {{element.tong_so_ho}}</td>
-                        </ng-container>
-
-                        <ng-container matColumnDef="ho_co_dien">
-                            <th mat-header-cell *matHeaderCellDef> Có điện </th>
-                            <td mat-cell *matCellDef="let element" class="stt"> {{element.ho_co_dien}}</td>
+                        <ng-container matColumnDef="trung_ap_3p">
+                            <th mat-header-cell *matHeaderCellDef> 3 pha <br>(Km) </th>
+                            <td mat-cell *matCellDef="let element" class="stt"> {{element.trung_ap_3p}}</td>
                         </ng-container>
 
-                        <ng-container matColumnDef="ho_chua_co_dien">
-                            <th mat-header-cell *matHeaderCellDef> Chưa có điện </th>
-                            <td mat-cell *matCellDef="let element" class="stt"> {{element.ho_chua_co_dien}}</td>
+                        <ng-container matColumnDef="trung_ap_1p">
+                            <th mat-header-cell *matHeaderCellDef> 1 pha <br>(Km) </th>
+                            <td mat-cell *matCellDef="let element" class="stt"> {{element.trung_ap_1p}}</td>
                         </ng-container>
 
-                        <ng-container matColumnDef="ty_le">
-                            <th mat-header-cell *matHeaderCellDef> Tỷ lệ </th>
-                            <td mat-cell *matCellDef="let element" class="stt"> {{element.ty_le}}</td>
+                        <ng-container matColumnDef="ha_ap_3p">
+                            <th mat-header-cell *matHeaderCellDef> 3 pha <br>(Km) </th>
+                            <td mat-cell *matCellDef="let element" class="stt"> {{element.ha_ap_3p}}</td>
                         </ng-container>
 
-                        <ng-container matColumnDef="tieu_chi_41">
-                            <th mat-header-cell *matHeaderCellDef> Tiêu chí 4.1 </th>
-                            <td mat-cell *matCellDef="let element" class="stt"> {{element.tieu_chi_41}}
+                        <ng-container matColumnDef="ha_ap_1p">
+                            <th mat-header-cell *matHeaderCellDef> 1 pha <br>(Km) </th>
+                            <td mat-cell *matCellDef="let element" class="stt"> {{element.ha_ap_1p}}</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="so_tram_bien_ap">
+                            <th mat-header-cell *matHeaderCellDef> Số trạm </th>
+                            <td mat-cell *matCellDef="let element" class="stt"> {{element.so_tram_bien_ap}}
                             </td>
                         </ng-container>
 
-                        <ng-container matColumnDef="tieu_chi_42">
-                            <th mat-header-cell *matHeaderCellDef> Tiêu chí 4.2 </th>
-                            <td mat-cell *matCellDef="let element" class="tieu_chi_42">
-                                {{element.dung_tich_ho}}</td>
-                        </ng-container>
-
-                        <ng-container matColumnDef="tieu_chi_43">
-                            <th mat-header-cell *matHeaderCellDef>Tiêu chí 4.3 </th>
-                            <td mat-cell *matCellDef="let element" class="stt"> {{element.tieu_chi_43}}</td>
+                        <ng-container matColumnDef="cong_xuat_bien_ap">
+                            <th mat-header-cell *matHeaderCellDef> Công suất <br>(KVA)</th>
+                            <td mat-cell *matCellDef="let element" class="stt">
+                                {{element.cong_xuat_bien_ap}}</td>
                         </ng-container>
 
                         <ng-container matColumnDef="indexM">
                             <th mat-header-cell *matHeaderCellDef [attr.colspan]="1"></th>
                         </ng-container>
-                        <ng-container matColumnDef="dia_banM">
+                        <ng-container matColumnDef="ten_huyen_thiM">
                             <th mat-header-cell *matHeaderCellDef [attr.colspan]="1"></th>
                         </ng-container>
-                        <ng-container matColumnDef="so_ho_su_dung_dienM">
-                            <th mat-header-cell *matHeaderCellDef [attr.colspan]="3">Số hộ sử dụng điện</th>
+                        <ng-container matColumnDef="trung_apM">
+                            <th mat-header-cell *matHeaderCellDef [attr.colspan]="2">Đường dây trung áp</th>
                         </ng-container>
-                        <ng-container matColumnDef="ty_leM">
-                            <th mat-header-cell *matHeaderCellDef [attr.colspan]="1"></th>
+                        <ng-container matColumnDef="ha_apM">
+                            <th mat-header-cell *matHeaderCellDef [attr.colspan]="2">Đường dây hạ áp</th>
                         </ng-container>
-                        <ng-container matColumnDef="tieu_chi_so_4M">
-                            <th mat-header-cell *matHeaderCellDef [attr.colspan]="3"></th>
+                        <ng-container matColumnDef="bien_apM">
+                            <th mat-header-cell *matHeaderCellDef [attr.colspan]="2">Trạm biến áp</th>
                         </ng-container>
                         <tr mat-header-row *matHeaderRowDef="dsplayMergeColumns;">
                         </tr>

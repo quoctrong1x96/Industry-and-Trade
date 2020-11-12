@@ -38,13 +38,11 @@ import { TranslatePipe } from 'src/app/_pipe/translate';
   ],
   exports: [
     // FormatNumberReportPipe, 
-    TranslatePipe,
     MatPaginatorModule
 
   ],
   declarations: [
     MarketCommecialManagementComponent,
-    TranslatePipe,
     CommonCommecialComponent,
     TobaccoBusinessComponent,
     ConditionalBusinessLineComponent,

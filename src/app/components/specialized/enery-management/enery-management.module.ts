@@ -10,6 +10,9 @@ import { UseFocusedEnergyComponent } from './use-focused-energy/use-focused-ener
 import { CommonEnergyComponent } from './common-energy/common-energy.component'
 import { ElectricManagementComponent } from './electric-management/electric-management.component';
 import {SolarEneryManagementComponent} from './solar-enery-management/solor-enery-management.component'
+import { ElectricDevelopmentManagementComponent } from './electricity-development/electricity-development.component';
+import { PowerProductionManagementComponent } from './power-production/power-production.component';
+import { RuralElectricManagementComponent } from './rural-electric/rural-electric-management.component';
 
 
 @NgModule({
@@ -29,6 +32,9 @@ import {SolarEneryManagementComponent} from './solar-enery-management/solor-ener
     SolarEneryManagementComponent,
     UseFocusedEnergyComponent,
     CommonEnergyComponent,
+    ElectricDevelopmentManagementComponent,
+    PowerProductionManagementComponent,
+    RuralElectricManagementComponent,
 ],
   entryComponents: []
 })
