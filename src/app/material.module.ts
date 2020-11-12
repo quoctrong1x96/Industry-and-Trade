@@ -48,7 +48,7 @@ import {MultiSelectModule} from 'primeng/multiselect';
 import { TreeviewModule } from 'ngx-treeview';
 
 @NgModule({
-  imports:[TreeviewModule.forRoot()],
+  imports:[TreeviewModule.forRoot(), ],
   exports: [
     A11yModule,
     // ClipboardModule,

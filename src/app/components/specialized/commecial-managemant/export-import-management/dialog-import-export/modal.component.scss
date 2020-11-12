@@ -1,6 +1,5 @@
 .liquor{
-    width: 150%;
-    height: 100%;
+    width: 100%;
 }
 
 .example-action-buttons {
@@ -24,7 +23,7 @@
 .cards {
     height: max-content;
     background-color: wheat;
-    min-height: 10em;
+    min-height: fit-content;
 }
 
 .mat-expansion-panel-content .mat-expansion-panel-body {
@@ -111,4 +110,21 @@ td {
 
 .mat-card-header .mat-card-subtitle{
     margin: 20px 0 10px 0;
+}
+
+.cdk-overlay-container .cdk-global-overlay-wrapper .cdk-overlay-pane {
+    height: 95%;
+    width: inherit;
+}
+
+th.mat-header-cell {
+    text-align: center;
+}
+
+.content{
+    padding: 20px 24px 16px;
+}
+
+td.mat-cell, td.mat-footer-cell, th.mat-header-cell {
+    border: 1px solid;
 }

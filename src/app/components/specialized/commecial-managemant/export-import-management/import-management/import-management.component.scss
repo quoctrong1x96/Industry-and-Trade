@@ -18,8 +18,13 @@
 
 .cards {
     height: max-content;
-    background-color: wheat;
+    background-color: rgb(38, 168, 71);;
     min-height: 10em;
+}
+
+.mat-card-header .mat-card-title {
+    font-size: 1.2vw;
+    min-height: 4vw;
 }
 
 .mat-expansion-panel-content .mat-expansion-panel-body {
@@ -28,7 +33,7 @@
 }
 .mat-expansion-panel-header {
     // cursor: pointer;
-    background-color: wheat;
+    background-color: #e49f1c;
 }
 
 .content{
@@ -101,10 +106,14 @@ td {
 
 .value{
     font-size: 1.3vw;
-    color: red;
+    color: #ffd740;
     width: max-content;
 }
 
 .mat-card-header .mat-card-subtitle{
     margin: 20px 0 10px 0;
+}
+
+.cdk-overlay-container .cdk-global-overlay-wrapper .cdk-overlay-pane {
+    overflow-y: scroll;
 }
