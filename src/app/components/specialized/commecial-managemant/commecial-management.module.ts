@@ -37,7 +37,8 @@ import { TranslatePipe } from 'src/app/_pipe/translate';
     MatPaginatorModule
   ],
   exports: [
-    // FormatNumberReportPipe, 
+    // FormatNumberReportPipe,
+    TranslatePipe,
     MatPaginatorModule
 
   ],
@@ -45,6 +46,7 @@ import { TranslatePipe } from 'src/app/_pipe/translate';
     MarketCommecialManagementComponent,
     CommonCommecialComponent,
     TobaccoBusinessComponent,
+    TranslatePipe,
     ConditionalBusinessLineComponent,
     SuperMarketCommecialManagementComponent,
     CommonCommecialComponent,
