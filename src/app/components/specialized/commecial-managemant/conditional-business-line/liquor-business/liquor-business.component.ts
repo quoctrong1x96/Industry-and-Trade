@@ -55,7 +55,7 @@ export class LiquorBusinessComponent implements OnInit {
     }
 
     getDanhSachBanRuou(time_id: number) {
-        this.sctService.GetDanhSachBanLeXangDau(time_id).subscribe(result => {
+        this.sctService.GetDanhSachBuonBanRuou(time_id).subscribe(result => {
             this.dataSource = new MatTableDataSource<ConditionalBusinessLineModel>(result.data[0]);
 
             this.dataSource.data.forEach(element => {
