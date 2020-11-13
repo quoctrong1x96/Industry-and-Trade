@@ -15,7 +15,6 @@ import { FoodManagementComponent } from './infrastructure/food/food-commecial.co
 import { PetrolBusinessComponent } from './conditional-business-line/petro-business/petrol-business.component';
 import { LPGBusinessComponent } from './conditional-business-line/lpg-business/lpg-business.component';
 import { InformedEcommerceWebsiteComponent } from './e-commerce-managemant/informed-ecommerce-website/informed-ecommerce-website.component';
-import { RegistrationEcommerceServicesComponent } from './e-commerce-managemant/registration-ecommerce-services/registration-ecommerce-services.component';
 import { PipeModule } from 'src/app/shared/pipe.module';
 import { ShoppingcentreComponent } from './infrastructure/shoppingcentre/shoppingcentre.component';
 import { TRSManagementComponent } from './infrastructure/total-retail-sales/total-retail-sales.component';
@@ -25,6 +24,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ModalComponent } from './export-import-management/dialog-import-export/modal.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { BorderTradeComponent } from './border-trade/border-trade.component';
+import { RegisteredSaleWebsiteComponent } from './e-commerce-managemant/registered-sale-website/registered-sale-website.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -37,7 +37,6 @@ import { BorderTradeComponent } from './border-trade/border-trade.component';
     MatPaginatorModule
   ],
   exports: [
-    // FormatNumberReportPipe, 
     MatPaginatorModule
 
   ],
@@ -54,7 +53,7 @@ import { BorderTradeComponent } from './border-trade/border-trade.component';
     ImportManagementComponent,
     PetrolBusinessComponent,
     InformedEcommerceWebsiteComponent,
-    RegistrationEcommerceServicesComponent,
+    RegisteredSaleWebsiteComponent,
     ShoppingcentreComponent,
     LPGBusinessComponent,
     ExportManagementComponent,
