@@ -5,14 +5,14 @@ import { InformationService } from '../shared/information/information.service';
 
 @Injectable()
 export class BusinessAuthGuardService implements CanActivate {
-    private readonly ROLE_BUSINESS:number = 1;
-    private readonly MESSAGE_REJECT:string = "Người dùng doanh nghiệp không có quyền";
-    private readonly REDIRECT_PAGE:string ="/login";
+    public readonly ROLE_BUSINESS:number = 1;
+    public readonly MESSAGE_REJECT:string = "Người dùng doanh nghiệp không có quyền";
+    public readonly REDIRECT_PAGE:string ="/login";
 
     constructor(
-        private router: Router,
-        private authenticationService: LoginService,
-        private info:InformationService
+        public router: Router,
+        public authenticationService: LoginService,
+        public info:InformationService
     ) { }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {

@@ -16,7 +16,7 @@ export class InformedEcommerceWebsiteComponent implements OnInit {
   dataSource: MatTableDataSource<ECommerceWebsite>;
   filteredDataSource: MatTableDataSource<ECommerceWebsite> = new MatTableDataSource<ECommerceWebsite>();
   filterModel : ECommerceWebsiteFilterModel = {id_quan_huyen :[]};
-  constructor(private sctService : SCTService) { }
+  constructor(public sctService : SCTService) { }
 
   ngOnInit() {
     this.GetDanhSachWebsiteTMDT();

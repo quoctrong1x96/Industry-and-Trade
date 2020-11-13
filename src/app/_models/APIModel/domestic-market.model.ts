@@ -135,6 +135,9 @@ export class CompanyDetailModel {
     public mst: string;
     public so_giay_cndkkd: string;
     public ngay_cap_gcndkkd: Date;
+    public so_gpgcn : string;
+    public ngay_cap : Date;
+    public ngay_het_han : Date;
 
     public id_loai_hinh: number;
     public loai_hinh_doanh_nghiep: string;

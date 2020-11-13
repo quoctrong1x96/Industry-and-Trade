@@ -62,10 +62,10 @@ export class CompanyTopPopup implements OnInit {
     constructor(
         @Inject(MAT_DIALOG_DATA) public data: any,
         public dialogRef: MatDialogRef<CompanyTopPopup>,
-        private marketService: MarketService,
-        private managerService: ManagerService,
-        private router: Router,
-        private info: InformationService,
+        public marketService: MarketService,
+        public managerService: ManagerService,
+        public router: Router,
+        public info: InformationService,
     ) {
     }
 

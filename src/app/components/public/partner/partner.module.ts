@@ -16,7 +16,6 @@ import { FilterByTextPipe } from '../../../shared/pipes/filterByText.pipe';
 import { PagerService } from 'src/app/_services/pagination.service';
 import { CurrencyMaskInputMode, NgxCurrencyModule } from "ngx-currency";
 import { DialogPartnerComponent } from './Dialog/Dialog-partner.component';
-import { TranslatePipe } from 'src/app/_pipe/translate';
 
 export const customCurrencyMaskConfig = {
   align: "left",
@@ -53,11 +52,9 @@ export const customCurrencyMaskConfig = {
     WebsiteFormatPipe,
     CompanyDetailComponent,
     DialogPartnerComponent,
-    TranslatePipe
   ],
   exports: [
     FilterByAddressPipe,
-    TranslatePipe,
     FilterByNamePipe,
     FilterByCategoryPipe,
     WebsiteFormatPipe,

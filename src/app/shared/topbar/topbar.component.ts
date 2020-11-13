@@ -17,16 +17,16 @@ import { NGB_TIMEPICKER_I18N_FACTORY } from '@ng-bootstrap/ng-bootstrap/timepick
 export class TopbarComponent implements OnInit {
 
   //Constant---------------------------------------------------------------------
-  private readonly AVATAR_DEFAULT: string = "../../../assets/img/avatars/1.jpg";
-  private readonly USERNAME_DEFAULT: string = "Tên người dùng";
-  private readonly NOTIFICATION_DEFAULT: number = 0;
-  private readonly COLOR_USER_DEFUALT: string = "#ffc107";
+  public readonly AVATAR_DEFAULT: string = "../../../assets/img/avatars/1.jpg";
+  public readonly USERNAME_DEFAULT: string = "Tên người dùng";
+  public readonly NOTIFICATION_DEFAULT: number = 0;
+  public readonly COLOR_USER_DEFUALT: string = "#ffc107";
   //Variable for HTML & TS---------------------------------------------------------------------
-  private img_avatar: string = this.AVATAR_DEFAULT;
-  private userName: string = this.USERNAME_DEFAULT;
-  private notificatios: number = this.NOTIFICATION_DEFAULT;
-  private expression: boolean = true;
-  private colorOfUser: string = this.COLOR_USER_DEFUALT;
+  public img_avatar: string = this.AVATAR_DEFAULT;
+  public userName: string = this.USERNAME_DEFAULT;
+  public notificatios: number = this.NOTIFICATION_DEFAULT;
+  public expression: boolean = true;
+  public colorOfUser: string = this.COLOR_USER_DEFUALT;
   //Variable for only TS---------------------------------------------------------------------
 
   //Input & Viewchild---------------------------------------------------------------------
@@ -35,10 +35,10 @@ export class TopbarComponent implements OnInit {
   @Input() sidebar: MatSidenav;
   //Contructor & Oninit---------------------------------------------------------------------
   constructor(
-    private _loginAuthService: LoginAuthGuardService,
-    private _loginService: LoginService,
-    private _router: Router,
-    private _eventService: EventService
+    public _loginAuthService: LoginAuthGuardService,
+    public _loginService: LoginService,
+    public _router: Router,
+    public _eventService: EventService
   ) { }
   ngOnInit() {
     this.open = this._eventService.open;
@@ -50,10 +50,10 @@ export class TopbarComponent implements OnInit {
   }
   //Functin for HTML event---------------------------------------------------------------------
   //Login
-  private loginClick() {
+  public loginClick() {
     this._router.navigate(['login'], { queryParams: { returnUrl: this._router.url } });
   }
-  private checkLogin() {
+  public checkLogin() {
     if (localStorage.getItem('currentUser')) {
       let data: any = JSON.parse(localStorage.getItem('currentUser'));
       this.userName = data.full_name;
@@ -62,40 +62,40 @@ export class TopbarComponent implements OnInit {
     else return
     false;
   }
-  private openAccountDropdown() {
+  public openAccountDropdown() {
     this._eventService.setvalue(!this.open);
     this.open = this._eventService.getValue();
   }
-  private openForm() {
+  public openForm() {
     this._router.navigate(['/update_user']);
     this._eventService.setvalue(false);
     this.open = this._eventService.getValue();
   }
-  private openDataSCTModule() {
+  public openDataSCTModule() {
     this._router.navigate(['/sct/report/view-all']);
     this._eventService.setvalue(false);
     this.open = this._eventService.getValue();
   }
 
-  private openHome() {
+  public openHome() {
     this._router.navigate(['/specialized/commecial-management/domestic']);
     this._eventService.setvalue(false);
     this.open = this._eventService.getValue();
   }
 
-  private openDropdown() {
+  public openDropdown() {
     document.getElementById('account-dropdown').setAttribute('style', 'display: block');
   }
 
-  private closeDropdown() {
+  public closeDropdown() {
     document.getElementById('account-dropdown').setAttribute('style', 'display: none');
   }
 
-  private logout(){
+  public logout(){
     this._router.navigate(['/logout']);
   }
   //Function in TS---------------------------------------------------------------------
-  private _getColorOfUser(type: number): string {
+  public _getColorOfUser(type: number): string {
     let resultColor: string = "";
     switch (type) {
       case TYPE_OF_NAV.NONE:

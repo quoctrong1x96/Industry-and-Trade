@@ -4,16 +4,16 @@ import { InformationComponent } from './information.component';
 
 @Injectable()
 export class InformationService {
-  private readonly DURING_SECOND = 2;
-  private readonly PANEL_SUCCESS ="success";
-  private readonly PANEL_WARNING ="warning";
-  private readonly PANEL_ERROR = "error";
+  public readonly DURING_SECOND = 2;
+  public readonly PANEL_SUCCESS ="success";
+  public readonly PANEL_WARNING ="warning";
+  public readonly PANEL_ERROR = "error";
   message: string;
 
-  constructor(private _snackBar: MatSnackBar) {
+  constructor(public _snackBar: MatSnackBar) {
   }
 
-  private openSnackBar(message: string, panelClass: string) {
+  public openSnackBar(message: string, panelClass: string) {
     this.message = message;
     const snackBar = this._snackBar.openFromComponent(InformationComponent, {
       duration: this.DURING_SECOND * 1000,

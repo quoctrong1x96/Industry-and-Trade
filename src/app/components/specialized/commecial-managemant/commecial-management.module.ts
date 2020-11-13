@@ -15,7 +15,6 @@ import { FoodManagementComponent } from './infrastructure/food/food-commecial.co
 import { PetrolBusinessComponent } from './conditional-business-line/petro-business/petrol-business.component';
 import { LPGBusinessComponent } from './conditional-business-line/lpg-business/lpg-business.component';
 import { InformedEcommerceWebsiteComponent } from './e-commerce-managemant/informed-ecommerce-website/informed-ecommerce-website.component';
-import { PipeModule } from 'src/app/shared/pipe.module';
 import { ShoppingcentreComponent } from './infrastructure/shoppingcentre/shoppingcentre.component';
 import { TRSManagementComponent } from './infrastructure/total-retail-sales/total-retail-sales.component';
 import { ImportManagementComponent } from './export-import-management/import-management/import-management.component';
@@ -32,7 +31,6 @@ import { RegisteredSaleWebsiteComponent } from './e-commerce-managemant/register
     MaterialModule,
     ReactiveFormsModule,
     CommecialManagementRoutingModule,
-    PipeModule,
     MatDialogModule,
     MatPaginatorModule
   ],

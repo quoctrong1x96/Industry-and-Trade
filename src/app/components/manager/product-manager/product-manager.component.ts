@@ -61,28 +61,28 @@ export class ProductManagerComponent implements OnInit {
     public readonly LOCALE = 'en-GB';
 
     //Declare variable for HTML&TS
-    private date = new FormControl(_moment());
-    private modeQuery: MODE = MODE.INSERT;
-    private columns: number = 1;
-    private timeProductManager: string;
-    private displayedColumns: string[] = ['index', 'ten_san_pham', 'san_luong', 'tri_gia', 'top_san_xuat'];
-    private products: Array<ProductManagerModelList> = new Array<ProductManagerModelList>();
-    private dataSource: MatTableDataSource<ProductManagerModel> = new MatTableDataSource<ProductManagerModel>();
+    public date = new FormControl(_moment());
+    public modeQuery: MODE = MODE.INSERT;
+    public columns: number = 1;
+    public timeProductManager: string;
+    public displayedColumns: string[] = ['index', 'ten_san_pham', 'san_luong', 'tri_gia', 'top_san_xuat'];
+    public products: Array<ProductManagerModelList> = new Array<ProductManagerModelList>();
+    public dataSource: MatTableDataSource<ProductManagerModel> = new MatTableDataSource<ProductManagerModel>();
     //Declare variable for ONLY TS
     rows: number = 0;
-    private currentRow: number = 0;
-    private theYear: number = 0;
-    private theMonth: number = 0;
+    public currentRow: number = 0;
+    public theYear: number = 0;
+    public theMonth: number = 0;
 
     //Viewchild
     @ViewChildren(ManagerDirective) inputs: QueryList<ManagerDirective>
     @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-    constructor(private managerService: ManagerService,
-        private marketService: MarketService,
-        private _infor: InformationService,
-        private keyboardservice: KeyboardService,
-        private dialog: MatDialog) { }
+    constructor(public managerService: ManagerService,
+        public marketService: MarketService,
+        public _infor: InformationService,
+        public keyboardservice: KeyboardService,
+        public dialog: MatDialog) { }
 
     ngOnInit() {
         this.timeProductManager = this.getCurrentDate();
@@ -95,7 +95,7 @@ export class ProductManagerComponent implements OnInit {
         })
     }
     //Function for PROCESS-FLOW------------------------------------------------------------------------------------------
-    private getDomesticMarketProduct(month: number, year: number) {
+    public getDomesticMarketProduct(month: number, year: number) {
         this.managerService.GetProductManager(month, year).subscribe(
             allrecords => {
                 console.log(allrecords)
@@ -119,7 +119,7 @@ export class ProductManagerComponent implements OnInit {
         );
     }
     //Event "Chọn năm"
-    private chosenYearHandler(normalizedYear: Moment) {
+    public chosenYearHandler(normalizedYear: Moment) {
         const ctrlValue = this.date.value;
         ctrlValue.year(normalizedYear.year());
         this.date.setValue(ctrlValue);
@@ -127,7 +127,7 @@ export class ProductManagerComponent implements OnInit {
         return this.theYear as number
     }
     //Event "Chọn tháng"
-    private chosenMonthHandler(normalizedMonth: Moment, datepicker: MatDatepicker<Moment>) {
+    public chosenMonthHandler(normalizedMonth: Moment, datepicker: MatDatepicker<Moment>) {
         const ctrlValue = this.date.value;
         ctrlValue.month(normalizedMonth.month());
         this.date.setValue(ctrlValue);
@@ -137,7 +137,7 @@ export class ProductManagerComponent implements OnInit {
         return this.theMonth as number
     }
     //Add event
-    private addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
+    public addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
         let time = event.value;
         let year = time.getFullYear();
         let month = time.getMonth();
@@ -256,7 +256,7 @@ export class ProductManagerComponent implements OnInit {
     }
 
 
-    private getListProduct(): void {
+    public getListProduct(): void {
         this.managerService.GetListProduct().subscribe(
             allrecords => {
                 this.products = allrecords.data as ProductManagerModelList[];
@@ -266,12 +266,12 @@ export class ProductManagerComponent implements OnInit {
     }
     //Function for HTML EVENT------------------------------------------------------------------------------------------
     //Event "Lọc dữ liệu"
-    private applyFilter(event: Event) {
+    public applyFilter(event: Event) {
         const filterValue = (event.target as HTMLInputElement).value;
         this.dataSource.filter = filterValue.trim().toLowerCase();
     }
     //Event "Key Arrown"
-    private move(object) {
+    public move(object) {
         const inputToArray = this.inputs.toArray()
         let index = inputToArray.findIndex(x => x.element == object.element);
         switch (object.action) {
@@ -294,7 +294,7 @@ export class ProductManagerComponent implements OnInit {
         }
     }
     //Event "Tạo mặc định"
-    private createDefault() {
+    public createDefault() {
         const HAT_DIEU: number = 2;
         // const HAT_TIEU: number = 3;
         const CAO_SU: number = 4;
@@ -316,7 +316,7 @@ export class ProductManagerComponent implements OnInit {
         this.rows = this.dataSource.filteredData.length;
     }
     //Event "Thêm dòng"
-    private addRow() {
+    public addRow() {
         let newRow: ProductManagerModel = new ProductManagerModel();
         newRow.san_luong;
         newRow.tri_gia;
@@ -334,13 +334,13 @@ export class ProductManagerComponent implements OnInit {
         this.rows = this.dataSource.filteredData.length;
     }
     //Event "Xóa dòng"
-    private deleteRow() {
+    public deleteRow() {
         this.dataSource.data.splice(this.currentRow, 1);
         this.dataSource = new MatTableDataSource(this.dataSource.data);
         this.rows = this.dataSource.filteredData.length;
     }
     //Event "Chèn dòng"
-    private insertRow() {
+    public insertRow() {
         let data = this.dataSource.data.slice(this.currentRow);
         this.dataSource.data.splice(this.currentRow, this.dataSource.data.length - this.currentRow + 1);
         let newRow: ProductManagerModel = new ProductManagerModel();
@@ -358,7 +358,7 @@ export class ProductManagerComponent implements OnInit {
     }
 
     //Event "Top doanh nghiệp"
-    private openDialogSelectCompany(data: any) {
+    public openDialogSelectCompany(data: any) {
         const dialogRef = this.dialog.open(ExportTopCompanyManager, {
             data: {
                 message: 'Nhập dữ liệu top doanh nghiệp nhập khẩu',
@@ -377,17 +377,17 @@ export class ProductManagerComponent implements OnInit {
         });
     }
     //Event "Change row"
-    private changeRow(index: number) {
+    public changeRow(index: number) {
         this.currentRow = index;
     }
     //Event "Select combobox"
-    private changeProduct(element: any) {
+    public changeProduct(element: any) {
         element.ten_san_pham = this.products.filter(x => x.ma_san_pham == element.id_san_pham)[0].ten_san_pham;
         element.thang = this.getCurrentMonth();
         element.nam = this.getCurrentYear();
     }
     //Event "Lưu"
-    private save() {
+    public save() {
         let month = this.getCurrentMonth();
         let year = this.getCurrentYear();
         // let data: ProductManagerModel[] = this.dataSource.data.filter(x => x.id == 0);
@@ -409,30 +409,30 @@ export class ProductManagerComponent implements OnInit {
         );
     }
     //Function EXTENTION-----------------------------------------------------------------------------------------
-    private formatNgayCapNhat(str: string) {
+    public formatNgayCapNhat(str: string) {
         let year: string = str.substr(0, 4);
         let month: string = str.substr(4, 2);
         let day: string = str.substr(6, 2);
         let result: string = day + '/' + month + '/' + year;
         return result;
     }
-    private getMonthAndYear(time: string) {
+    public getMonthAndYear(time: string) {
         let year = time.substr(0, 4);
         let month = time.substr(4, 2);
         let day = time.substr(6, 2);
         let result = day + "/" + month + "/" + year;
         return result as string;
     }
-    private getCurrentDate() {
+    public getCurrentDate() {
         let date = new Date;
         return date.toLocaleDateString(this.LOCALE);
         //return this.GetMonthAndYear(date.toISOString().replace('-', '').replace('-', ''));
     }
-    private getCurrentMonth() {
+    public getCurrentMonth() {
         let date = new Date();
         return date.getMonth() + 1;
     }
-    private getCurrentYear() {
+    public getCurrentYear() {
         let date = new Date();
         return date.getFullYear();
     }

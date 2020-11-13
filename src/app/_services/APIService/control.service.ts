@@ -11,15 +11,15 @@ import { environment } from '../../../environments/environment';
 
 export class ControlService {
 
-    private data: any;
-    private apiControlUrl = environment.apiEndpoint + "api/quan-lu=y";
-    private urlMarketControl = "/cho";
+    public data: any;
+    public apiControlUrl = environment.apiEndpoint + "api/quan-lu=y";
+    public urlMarketControl = "/cho";
 
 
     token: any;
     username: any;
 
-    constructor(private http: HttpClient) {
+    constructor(public http: HttpClient) {
         console.log("MarketService Contraction");
         this.data = JSON.parse(localStorage.getItem('currentUser'));
         if(this.data){
@@ -41,7 +41,7 @@ export class ControlService {
 
     //-------------------------------------------------------------------------------
 
-    private handleError(error: HttpErrorResponse) {
+    public handleError(error: HttpErrorResponse) {
         let errorMessage = '';
         if (error.error instanceof ErrorEvent) {
             // client-side error

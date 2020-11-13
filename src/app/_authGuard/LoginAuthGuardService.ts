@@ -6,9 +6,9 @@ import { InformationService } from '../shared/information/information.service';
 
 @Injectable()
 export class LoginAuthGuardService implements CanActivate {
-    private readonly MESSAGE_REJECT:string = "Người dùng doanh nghiệp không có quyền! Vui lòng đang nhập.";
-    private readonly REDIRECT_PAGE:string ="/login";
-    constructor(private router: Router, public location: Location, private authenticationService: LoginService, private info:InformationService) { }
+    public readonly MESSAGE_REJECT:string = "Người dùng doanh nghiệp không có quyền! Vui lòng đang nhập.";
+    public readonly REDIRECT_PAGE:string ="/login";
+    constructor(public router: Router, public location: Location, public authenticationService: LoginService, public info:InformationService) { }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         const user = this.authenticationService.userValue;

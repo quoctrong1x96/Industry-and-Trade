@@ -23,7 +23,7 @@ export class FillSelectReportComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-  private readonly DEFAULT_PERIOD = "Tháng";
+  public readonly DEFAULT_PERIOD = "Tháng";
   public readonly format = 'dd/MM/yyyy';
   public readonly locale = 'en-US';
   selectedPeriod: string = "Tháng";
@@ -42,8 +42,8 @@ export class FillSelectReportComponent implements OnInit {
   orgarnizations : string[] = ['Sở Công thương']
 
   constructor(
-    private reportSevice: ReportService,
-    private router: Router,
+    public reportSevice: ReportService,
+    public router: Router,
   ) { }
 
   ngOnInit() {

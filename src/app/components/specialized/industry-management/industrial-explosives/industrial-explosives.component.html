@@ -26,7 +26,7 @@
                                     <mat-icon> business</mat-icon>
                                 </div>
                                 <mat-card-title>Số lượng doanh nghiệp trên địa bàn:
-                                    <strong>{{dataSource.data.length | formatNumber}}</strong></mat-card-title>
+                                    <strong>{{dataSource.data.length}}</strong></mat-card-title>
                                 <mat-card-subtitle>
                                 </mat-card-subtitle>
                             </mat-card-header>
@@ -42,7 +42,7 @@
                                     <mat-icon>equalizer</mat-icon>
                                 </div>
                                 <mat-card-title>Tổng số lao động:
-                                    <strong>{{tongSoLaoDong | formatNumber}}</strong>
+                                    <strong>{{tongSoLaoDong}}</strong>
                                 </mat-card-title>
                                 <mat-card-subtitle></mat-card-subtitle>
                             </mat-card-header>
@@ -57,7 +57,7 @@
                                     <mat-icon>equalizer</mat-icon>
                                 </div>
                                 <mat-card-title>Tổng công suất thiết kế:
-                                    <strong>{{tongCongSuatThietKe | formatNumber}}</strong>
+                                    <strong>{{tongCongSuatThietKe}}</strong>
                                 </mat-card-title>
                                 <mat-card-subtitle></mat-card-subtitle>
                             </mat-card-header>
@@ -72,7 +72,7 @@
                                     <mat-icon>equalizer</mat-icon>
                                 </div>
                                 <mat-card-title>Tổng lượng sản lượng đá khai thác:
-                                    <strong>{{tongMucSanLuong | formatNumber}}</strong>
+                                    <strong>{{tongMucSanLuong}}</strong>
                                 </mat-card-title>
                                 <mat-card-subtitle></mat-card-subtitle>
                             </mat-card-header>
@@ -181,7 +181,7 @@
 
                         <ng-container matColumnDef="san_luong">
                             <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Sản lượng/năm </th>
-                            <td mat-cell *matCellDef="let element"> {{element.san_luong | formatNumber}}</td>
+                            <td mat-cell *matCellDef="let element"> {{element.san_luong}}</td>
                         </ng-container>
 
                         <ng-container matColumnDef="so_gp_gcn">

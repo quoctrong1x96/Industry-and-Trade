@@ -10,7 +10,7 @@ import { MessageService } from 'primeng/api';
 export class HomeComponent implements OnInit {
   title = 'base';
 
-  constructor(private httpClient: HttpClient, private messageService: MessageService) { }
+  constructor(public httpClient: HttpClient, public messageService: MessageService) { }
 
   ngOnInit() {
   }

@@ -26,6 +26,7 @@ import { Data } from 'src/app/components/data-sct/data-sct-type';
 import { Time } from 'highcharts';
 import { MatAccordion } from '@angular/material/expansion';
 import { MatPaginator } from '@angular/material/paginator';
+import { District } from 'src/app/_models/district.model';
 
 interface HashTableNumber<T> {
   [key: string]: T;
@@ -99,13 +100,26 @@ export class FoodManagementComponent implements OnInit {
   public indexOftableMergeHader: number = 0;
 
   columns: number = 1;
+  districts: District[] = [{ id: 1, ten_quan_huyen: 'Thị xã Phước Long' },
+  { id: 2, ten_quan_huyen: 'Thành phố Đồng Xoài' },
+  { id: 3, ten_quan_huyen: 'Thị xã Bình Long' },
+  { id: 4, ten_quan_huyen: 'Huyện Bù Gia Mập' },
+  { id: 5, ten_quan_huyen: 'Huyện Lộc Ninh' },
+  { id: 6, ten_quan_huyen: 'Huyện Bù Đốp' },
+  { id: 7, ten_quan_huyen: 'Huyện Hớn Quản' },
+  { id: 8, ten_quan_huyen: 'Huyện Đồng Phú' },
+  { id: 9, ten_quan_huyen: 'Huyện Bù Đăng' },
+  { id: 10, ten_quan_huyen: 'Huyện Chơn Thành' },
+  { id: 11, ten_quan_huyen: 'Huyện Phú Riềng' }];
+  headerArray : string[] = ['index', 'tenhuyenthi', 'ten_tttm', 'dientich', 'vondautu', 'namdautuxaydung', 'phanloai'];
+  isChecked : boolean;
 
   //Angular FUnction --------------------------------------------------------------------
   constructor(
-    private reportSevice: ReportService,
-    private route: ActivatedRoute,
-    private keyboardservice: KeyboardService,
-    private info: InformationService
+    public reportSevice: ReportService,
+    public route: ActivatedRoute,
+    public keyboardservice: KeyboardService,
+    public info: InformationService
   ) { }
 
   ngOnInit(): void {
@@ -135,5 +149,17 @@ export class FoodManagementComponent implements OnInit {
     // XLSX.utils.book_append_sheet(wb, ws, sheetname);
     // /* save to file */
     // XLSX.writeFile(wb, excelFileName);
+  }
+  
+  sortHeaderCondition(event) {
+
+  }
+  
+ applyDistrictFilter(event) {
+   
+  }
+  
+  applyExpireCheck(event){
+
   }
 }

@@ -26,7 +26,7 @@
                                     <mat-icon> business</mat-icon>
                                 </div>
                                 <mat-card-title>Số lượng doanh nghiệp trên địa bàn:
-                                    <strong>{{dataSource.data.length | formatNumber}}</strong></mat-card-title>
+                                    <strong>{{dataSource.data.length}}</strong></mat-card-title>
                                 <mat-card-subtitle>
                                 </mat-card-subtitle>
                             </mat-card-header>
@@ -42,7 +42,7 @@
                                     <mat-icon>equalizer</mat-icon>
                                 </div>
                                 <mat-card-title>Sản lượng sản xuất hàng năm:
-                                    <strong>{{sanLuongSanXuat | formatNumber}}</strong>
+                                    <strong>{{sanLuongSanXuat}}</strong>
                                 </mat-card-title>
                                 <mat-card-subtitle></mat-card-subtitle>
                             </mat-card-header>
@@ -57,7 +57,7 @@
                                     <mat-icon>equalizer</mat-icon>
                                 </div>
                                 <mat-card-title>Sản lượng KD hàng năm:
-                                    <strong>{{sanLuongKinhDoanh | formatNumber}}</strong>
+                                    <strong>{{sanLuongKinhDoanh}}</strong>
                                 </mat-card-title>
                                 <mat-card-subtitle></mat-card-subtitle>
                             </mat-card-header>
@@ -160,7 +160,7 @@
 
                         <ng-container matColumnDef="san_luong">
                             <th mat-header-cell *matHeaderCellDef> Sản lượng<br>Tấn/năm </th>
-                            <td mat-cell *matCellDef="let element"> {{element.san_luong | formatNumber}}</td>
+                            <td mat-cell *matCellDef="let element"> {{element.san_luong}}</td>
                         </ng-container>
 
                         <ng-container matColumnDef="so_gp_gcn">

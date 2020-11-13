@@ -92,8 +92,8 @@ export class SearchBusinessComponent implements OnInit {
   @ViewChild('TABLE', { static: false }) table: ElementRef;
 
   constructor(
-    private _marketService: MarketService,
-    private router: Router,
+    public _marketService: MarketService,
+    public router: Router,
   ) {
   }
 
@@ -159,12 +159,12 @@ export class SearchBusinessComponent implements OnInit {
     );
   }
 
-  private _filter(value: string): CareerModel[] {
+  public _filter(value: string): CareerModel[] {
     const filterValue = this._normalizeValue(value);
     return this.careerList.filter(career => this._normalizeValue(career.ten_kem_ma).includes(filterValue));
   }
 
-  private _normalizeValue(value: string): string {
+  public _normalizeValue(value: string): string {
     return value.toLowerCase().replace(/\s/g, '');
   }
 

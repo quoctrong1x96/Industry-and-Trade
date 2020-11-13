@@ -10,15 +10,15 @@ import { environment } from '../../../environments/environment';
 })
 
 export class PartnerService {
-    private data: any;
-    private apiPartner = environment.apiEndpoint + "api/doanh-nghiep";
-    private urlListPartner = "/danh-sach-doanh-nghiep";
+    public data: any;
+    public apiPartner = environment.apiEndpoint + "api/doanh-nghiep";
+    public urlListPartner = "/danh-sach-doanh-nghiep";
 
     token: any;
     username: any;
 
 
-    constructor(private http: HttpClient) {
+    constructor(public http: HttpClient) {
         console.log("PartnerService");
         // this.data = JSON.parse(localStorage.getItem('NormalUser'));
         // this.token = this.data.token;
@@ -32,7 +32,7 @@ export class PartnerService {
             catchError(this.handleError)
         );
     }
-    private handleError(error: HttpErrorResponse) {
+    public handleError(error: HttpErrorResponse) {
         let errorMessage = '';
         if (error.error instanceof ErrorEvent) {
             // client-side error

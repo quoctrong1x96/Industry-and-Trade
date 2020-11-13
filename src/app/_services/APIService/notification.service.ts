@@ -15,14 +15,14 @@ import { environment } from '../../../environments/environment';
 
 export class NotificationService {
     // declare variable
-    private data: any;
-    private apiNotification = environment.apiEndpoint + "api/thong-bao";
+    public data: any;
+    public apiNotification = environment.apiEndpoint + "api/thong-bao";
 
     token: any;
     username: any;
 
 
-    constructor(private http: HttpClient) {
+    constructor(public http: HttpClient) {
         console.log("NotificationService Contraction");
         this.data = JSON.parse(localStorage.getItem('currentUser'));
         //this.token = this.data.Token;
@@ -37,7 +37,7 @@ export class NotificationService {
             catchError(this.handleError)
         );
     }
-    private handleError(error: HttpErrorResponse)
+    public handleError(error: HttpErrorResponse)
     {
         let errorMessage = '';
         if (error.error instanceof ErrorEvent) {

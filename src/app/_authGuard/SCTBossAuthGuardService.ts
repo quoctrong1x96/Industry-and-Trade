@@ -5,13 +5,13 @@ import { InformationService } from '../shared/information/information.service';
 
 @Injectable()
 export class SCTBossAuthGuardService implements CanActivate {
-    private readonly ROLE_ADMIN: number = 1;
-    private readonly ROLE_DEPARTMENT: number = 2;
-    private readonly MESSAGE_REJECT: string = "Chỉ Sở công thương mới có quyền! Vui lòng đăng nhập tài khoản của sở";
-    private readonly REDIRECT_PAGE: string = "/public/dashboard";
-    constructor(private router: Router,
-        private authenticationService: LoginService,
-        private info: InformationService) { }
+    public readonly ROLE_ADMIN: number = 1;
+    public readonly ROLE_DEPARTMENT: number = 2;
+    public readonly MESSAGE_REJECT: string = "Chỉ Sở công thương mới có quyền! Vui lòng đăng nhập tài khoản của sở";
+    public readonly REDIRECT_PAGE: string = "/public/dashboard";
+    constructor(public router: Router,
+        public authenticationService: LoginService,
+        public info: InformationService) { }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         const user = this.authenticationService.userValue;

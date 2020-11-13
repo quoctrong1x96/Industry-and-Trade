@@ -39,7 +39,7 @@ export class TobaccoBusinessComponent implements OnInit {
     @ViewChild('table', { static: false }) table: MatTable<ConditionalBusinessLineModel>;
     @ViewChild(MatAccordion, { static: false }) accordion: MatAccordion;
     @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-    constructor(private sctService: SCTService) {
+    constructor(public sctService: SCTService) {
     }
 
     ngOnInit() {

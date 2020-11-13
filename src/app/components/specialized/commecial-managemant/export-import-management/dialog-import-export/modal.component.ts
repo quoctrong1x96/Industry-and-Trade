@@ -5,6 +5,8 @@ import { ex_im_model } from 'src/app/_models/APIModel/export-import.model';
 import { District } from 'src/app/_models/district.model';
 import { CompanyDetailModel } from 'src/app/_models/APIModel/domestic-market.model';
 import { log } from 'util';
+import { Route } from '@angular/compiler/src/core';
+import { Router } from '@angular/router';
 
 @Component({ 
     selector: 'jw-modal', 
@@ -47,6 +49,7 @@ export class ModalComponent implements OnInit {
     id: number = 1;
     constructor(
         @Inject(MAT_DIALOG_DATA) public data: any,
+        public router : Router
         ) {
     }
 
@@ -85,5 +88,10 @@ export class ModalComponent implements OnInit {
         if (this.dataSource.paginator) {
           this.dataSource.paginator.firstPage();
         }
+      }
+      public OpenDetailCompany(mst: string) {
+        let url = this.router.serializeUrl(
+          this.router.createUrlTree([encodeURI('#') + '/partner/search/' + mst]));
+        window.open(url.replace('%23', '#'), "_blank");
       }
 }

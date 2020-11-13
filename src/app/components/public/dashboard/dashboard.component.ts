@@ -28,14 +28,14 @@ export class DashboardComponent implements OnInit {
   public barChartOptions: ChartOptions = {
     responsive: true,
   };
-  private readonly RECORD_NUMBER : number = 10;
+  public readonly RECORD_NUMBER : number = 10;
   public data: any;
   public showChart: boolean = false;
   public barChartData: Array<ChartDataSets> = new Array<ChartDataSets>();
   public barChartDataHash: HashTableNumber<ChartDataSets> = {};
-  private barChartDataMemberHash: HashTableNumber<number[]> = {};
-  private xLabelOfChart: string[][] = [];
-  private xLabelOfChartHash: HashTableString<string[]> = {};
+  public barChartDataMemberHash: HashTableNumber<number[]> = {};
+  public xLabelOfChart: string[][] = [];
+  public xLabelOfChartHash: HashTableString<string[]> = {};
   public chartType: ChartType = CHART_TYPE.LINE;
   public chartLegend = true;
   public chartPlugins = [];
@@ -45,7 +45,7 @@ export class DashboardComponent implements OnInit {
 
   public defaultProducts: Object[] = [{ma_san_pham: 2}, {ma_san_pham: 10}, {ma_san_pham: 4}, {ma_san_pham: 5}];
   
-  @ViewChild('CHART', { static: true }) private Chart: BaseChartDirective;
+  @ViewChild('CHART', { static: true }) public Chart: BaseChartDirective;
   public CreateListChartType() {
     for (let type in CHART_TYPE) {
       this.listChartType.push(type.toString());
@@ -114,7 +114,7 @@ export class DashboardComponent implements OnInit {
       this.showChart = true;
     }
   }
-  constructor(private themeService: ThemeService, public dashboardService: DashboardService) { }
+  constructor(public themeService: ThemeService, public dashboardService: DashboardService) { }
 
   setCurrentTheme(theme: CHART_THEME) {
     this._selectedTheme = theme;

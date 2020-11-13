@@ -56,9 +56,9 @@ export class DataSCTComponent implements OnInit {
   selectedPeriod: any;
 
   constructor(
-    private router: Router,
-    private activeRoute: ActivatedRoute,
-    private reportSevice: ReportService
+    public router: Router,
+    public activeRoute: ActivatedRoute,
+    public reportSevice: ReportService
   ) { 
     
   }
@@ -266,12 +266,12 @@ export class DataSCTComponent implements OnInit {
   //       this.table.filter(this.filteredOptions, field, 'in');
   // }
 
-  // private _filter(value: string): string[] {
+  // public _filter(value: string): string[] {
   //   const filterValue = this._normalizeValue(value);
   //   return this.options.filter(opt => this._normalizeValue(opt).includes(filterValue));
   // }
 
-  // private _normalizeValue(value: string): string {
+  // public _normalizeValue(value: string): string {
   //   return value.toLowerCase().replace(/\s/g, '');
   // }
 

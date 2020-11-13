@@ -14,11 +14,11 @@ export class SolarEneryManagementComponent implements OnInit {
   @ViewChild('table', { static: false }) table: MatTable<SolarEneryManagementModel>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   //Constant variable
-  private readonly displayedColumns: string[] = ['index','ten_du_an', 'ten_doanh_nghiep', 'ten_huyen_thi', 'cong_xuat_thiet_ke','san_luong_6_thang', 'san_luong_nam', 'doanh_thu','trang_thai'];
+  public readonly displayedColumns: string[] = ['index','ten_du_an', 'ten_doanh_nghiep', 'ten_huyen_thi', 'cong_xuat_thiet_ke','san_luong_6_thang', 'san_luong_nam', 'doanh_thu','trang_thai'];
   //TS & HTML Variable
-  private dataSource: MatTableDataSource<SolarEneryManagementModel> = new MatTableDataSource<SolarEneryManagementModel>();
-  private filteredDataSource: MatTableDataSource<SolarEneryManagementModel> = new MatTableDataSource<SolarEneryManagementModel>();
-  private districts: DistrictModel[] = [{ id: 1, ten_quan_huyen: 'Thị xã Phước Long' },
+  public dataSource: MatTableDataSource<SolarEneryManagementModel> = new MatTableDataSource<SolarEneryManagementModel>();
+  public filteredDataSource: MatTableDataSource<SolarEneryManagementModel> = new MatTableDataSource<SolarEneryManagementModel>();
+  public districts: DistrictModel[] = [{ id: 1, ten_quan_huyen: 'Thị xã Phước Long' },
   { id: 2, ten_quan_huyen: 'Thành phố Đồng Xoài' },
   { id: 3, ten_quan_huyen: 'Thị xã Bình Long' },
   { id: 4, ten_quan_huyen: 'Huyện Bù Gia Mập' },
@@ -29,7 +29,7 @@ export class SolarEneryManagementComponent implements OnInit {
   { id: 9, ten_quan_huyen: 'Huyện Bù Đăng' },
   { id: 10, ten_quan_huyen: 'Huyện Chơn Thành' },
   { id: 11, ten_quan_huyen: 'Huyện Phú Riềng' }];
-  private data: Array<SolarEneryManagementModel> = [{trang_thai:"Đang hoạt động", mst: '111', ten_doanh_nghiep: 'Công ty Cổ phần thủy điện Thác Mơ', ten_du_an: ' Nhà máy điện mặt trời Thác Mơ', ten_huyen_thi: 'huyện Bù Gia Mập',ma_huyen_thi:4,cong_xuat_thiet_ke:50,san_luong_6_thang:10800  ,san_luong_nam:4665600000000,doanh_thu:9051264000000000},
+  public data: Array<SolarEneryManagementModel> = [{trang_thai:"Đang hoạt động", mst: '111', ten_doanh_nghiep: 'Công ty Cổ phần thủy điện Thác Mơ', ten_du_an: ' Nhà máy điện mặt trời Thác Mơ', ten_huyen_thi: 'huyện Bù Gia Mập',ma_huyen_thi:4,cong_xuat_thiet_ke:50,san_luong_6_thang:10800  ,san_luong_nam:4665600000000,doanh_thu:9051264000000000},
   {trang_thai:"Đang hoạt động", mst: '222', ten_doanh_nghiep: 'Nhà máy điện mặt trời Lộc Ninh 1', ten_du_an: 'Nhà máy điện mặt trời Lộc Ninh 1', ten_huyen_thi: 'Xã Lộc Thạnh, huyện Lộc Ninh',ma_huyen_thi:5,cong_xuat_thiet_ke:200,san_luong_6_thang:43200  ,san_luong_nam:18662400000000,doanh_thu:36205056000000000},
   {trang_thai:"Đang hoạt động", mst: '333', ten_doanh_nghiep: 'Nhà máy điện mặt trời Lộc Ninh 2', ten_du_an: 'Nhà máy điện mặt trời Lộc Ninh 2', ten_huyen_thi: 'Xã Lộc Thạnh, huyện Lộc Ninh',ma_huyen_thi:5,cong_xuat_thiet_ke:200,san_luong_6_thang:43200  ,san_luong_nam:18662400000000,doanh_thu:36205056000000000},
   {trang_thai:"Đang hoạt động", mst: '444', ten_doanh_nghiep: 'Nhà máy điện mặt trời Lộc Ninh 3', ten_du_an: 'Nhà máy điện mặt trời Lộc Ninh 3', ten_huyen_thi: 'Xã Lộc Thạnh, huyện Lộc Ninh',ma_huyen_thi:5,cong_xuat_thiet_ke:150,san_luong_6_thang:32400  ,san_luong_nam:13996800000000,doanh_thu:27153792000000000},

@@ -15,29 +15,29 @@ import { error } from 'protractor';
 
 export class LoginService {
 
-    private readonly LOCALSTORAGE_USER: string = "currentUser";
-    private readonly HOME_PAGE: string = "/dashboard";
-    private loggedUser: string;
+    public readonly LOCALSTORAGE_USER: string = "currentUser";
+    public readonly HOME_PAGE: string = "/dashboard";
+    public loggedUser: string;
 
     public token: string;
-    private userSubject: BehaviorSubject<UserModel>;
+    public userSubject: BehaviorSubject<UserModel>;
     public user: Observable<UserModel>;
-    private refreshTokenTimeout;
+    public refreshTokenTimeout;
 
 
-    private apiUrl = environment.apiEndpoint + "api/dang-nhap/";
-    private apiRegister = environment.apiEndpoint + "api/dang-ky";
-    private apiGetUserInfor = environment.apiEndpoint + "api/tai-khoan";
-    private apiUpdateUser = environment.apiEndpoint + "api/tai-khoan";
-    private apiLogout = environment.apiEndpoint + "api/dang-xuat";
-    private apiRefreshToken = environment.apiEndpoint + "api/cap-lai-token";// "api/cap-lai-token";
+    public apiUrl = environment.apiEndpoint + "api/dang-nhap/";
+    public apiRegister = environment.apiEndpoint + "api/dang-ky";
+    public apiGetUserInfor = environment.apiEndpoint + "api/tai-khoan";
+    public apiUpdateUser = environment.apiEndpoint + "api/tai-khoan";
+    public apiLogout = environment.apiEndpoint + "api/dang-xuat";
+    public apiRefreshToken = environment.apiEndpoint + "api/cap-lai-token";// "api/cap-lai-token";
 
     /**
      * 
      * @param _http 
      * @param router 
      */
-    constructor(private _http: HttpClient, private router: Router,) {
+    constructor(public _http: HttpClient, public router: Router,) {
         this.userSubject = new BehaviorSubject<UserModel>(null);
         this.user = this.userSubject.asObservable();
     }
@@ -52,7 +52,7 @@ export class LoginService {
         return this.userSubject.value;
     }
 
-    private getUserFromStorage(): UserModel {
+    public getUserFromStorage(): UserModel {
         let user: UserModel = new UserModel();
         if (localStorage.getItem(this.LOCALSTORAGE_USER)) {
             let data = JSON.parse(localStorage.getItem(this.LOCALSTORAGE_USER));
@@ -114,11 +114,11 @@ export class LoginService {
     }
 
     /**
-     * Private
+     * public
      * Map UserModel from response
      * @param response response from API Login server
      */
-    private createUserFromRes(data: any): UserModel {
+    public createUserFromRes(data: any): UserModel {
         let user: UserModel = new UserModel();
         user.user_id = data.user_id;
         user.user_role = data.user_role;
@@ -136,10 +136,10 @@ export class LoginService {
     }
 
     /**
-     * Private
+     * public
      * Write user infomation to localstored with title LOCALSTORAGE_USER
      */
-    private updateUserToLocalstorage(user: UserModel): void {
+    public updateUserToLocalstorage(user: UserModel): void {
         localStorage.setItem(this.LOCALSTORAGE_USER,
             JSON.stringify({
                 token: user.token,
@@ -234,7 +234,7 @@ export class LoginService {
     /**
      * 
      */
-    // private startRefreshTokenTimer() {
+    // public startRefreshTokenTimer() {
     //     // parse json object from base64 encoded jwt token
     //     const jwtToken = JSON.parse(atob(this.userValue.token.split('.')[1]));
 
@@ -247,7 +247,7 @@ export class LoginService {
     /**
      * 
      */
-    private stopRefreshTokenTimer(): void {
+    public stopRefreshTokenTimer(): void {
         clearTimeout(this.refreshTokenTimeout);
     }
 
@@ -255,7 +255,7 @@ export class LoginService {
      * 
      * @param error 
      */
-    private handleError(error: HttpErrorResponse) {
+    public handleError(error: HttpErrorResponse) {
         let errorMessage = '';
         if (error.error instanceof ErrorEvent) {
             // client-side error

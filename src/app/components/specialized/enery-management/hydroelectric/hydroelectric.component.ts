@@ -14,11 +14,11 @@ export class HydroelectricComponent implements OnInit {
   @ViewChild('table', { static: false }) table: MatTable<HydroElectricManagementModel>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   //Constant variable
-  private readonly displayedColumns: string[] = ['index', 'mst', 'ten_doanh_nghiep', 'ten_phuong_xa', 'ten_huyen_thi', 'cong_xuat_thiet_ke', 'luong_nuoc_xa', 'dung_tich_ho', 'san_luong_6_thang', 'san_luong_nam', 'doanh_thu','trang_thai'];
+  public readonly displayedColumns: string[] = ['index', 'mst', 'ten_doanh_nghiep', 'ten_phuong_xa', 'ten_huyen_thi', 'cong_xuat_thiet_ke', 'luong_nuoc_xa', 'dung_tich_ho', 'san_luong_6_thang', 'san_luong_nam', 'doanh_thu','trang_thai'];
   //TS & HTML Variable
-  private dataSource: MatTableDataSource<HydroElectricManagementModel> = new MatTableDataSource<HydroElectricManagementModel>();
-  private filteredDataSource: MatTableDataSource<HydroElectricManagementModel> = new MatTableDataSource<HydroElectricManagementModel>();
-  private districts: DistrictModel[] = [{ id: 1, ten_quan_huyen: 'Thị xã Phước Long' },
+  public dataSource: MatTableDataSource<HydroElectricManagementModel> = new MatTableDataSource<HydroElectricManagementModel>();
+  public filteredDataSource: MatTableDataSource<HydroElectricManagementModel> = new MatTableDataSource<HydroElectricManagementModel>();
+  public districts: DistrictModel[] = [{ id: 1, ten_quan_huyen: 'Thị xã Phước Long' },
   { id: 2, ten_quan_huyen: 'Thành phố Đồng Xoài' },
   { id: 3, ten_quan_huyen: 'Thị xã Bình Long' },
   { id: 4, ten_quan_huyen: 'Huyện Bù Gia Mập' },
@@ -29,7 +29,7 @@ export class HydroelectricComponent implements OnInit {
   { id: 9, ten_quan_huyen: 'Huyện Bù Đăng' },
   { id: 10, ten_quan_huyen: 'Huyện Chơn Thành' },
   { id: 11, ten_quan_huyen: 'Huyện Phú Riềng' }];
-  private data: Array<HydroElectricManagementModel> = [{trang_thai:"Đang hoạt động", mst: '111', ten_doanh_nghiep: 'Thủy điện Thác Mơ', ten_phuong_xa: 'Phường Thác Mơ', ten_huyen_thi: 'Thị xã Phước Long',ma_huyen_thi:1,cong_xuat_thiet_ke:150,luong_nuoc_xa:65,dung_tich_ho:1360,san_luong_6_thang:313.7,san_luong_nam:627.4,doanh_thu:442.68 },
+  public data: Array<HydroElectricManagementModel> = [{trang_thai:"Đang hoạt động", mst: '111', ten_doanh_nghiep: 'Thủy điện Thác Mơ', ten_phuong_xa: 'Phường Thác Mơ', ten_huyen_thi: 'Thị xã Phước Long',ma_huyen_thi:1,cong_xuat_thiet_ke:150,luong_nuoc_xa:65,dung_tich_ho:1360,san_luong_6_thang:313.7,san_luong_nam:627.4,doanh_thu:442.68 },
   {trang_thai:"Đang hoạt động", mst: '222', ten_doanh_nghiep: 'Thủy điện Thác Mơ', ten_phuong_xa: 'Thị trấn Thanh Bình', ten_huyen_thi: 'Huyện Bù Đốp',ma_huyen_thi:6,cong_xuat_thiet_ke:72,luong_nuoc_xa:60,dung_tich_ho:165.49,san_luong_6_thang:155.094,san_luong_nam:310.189,doanh_thu:348.00 },
   {trang_thai:"Đang hoạt động", mst: '333', ten_doanh_nghiep: 'Thủy điện Srok Phu Mieng', ten_phuong_xa: 'Xã Long Bình', ten_huyen_thi: 'Huyện Phú riềng',ma_huyen_thi:11,cong_xuat_thiet_ke:51,luong_nuoc_xa:65,dung_tich_ho:99.3,san_luong_6_thang:95,san_luong_nam:199.5,doanh_thu:229.68 },]
   //Only TS Variable

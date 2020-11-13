@@ -58,36 +58,36 @@ export const MY_FORMATS = {
 
 export class ExportManagerComponent implements OnInit {
     // Constant
-    private readonly ARRAY_PRODUCT = [4, 1, 6, 8, 7, 21, 27, 13, 28, 19, 51, 20, 31, 55, 38, 26, 23];
-    private readonly MAX_PRODUCT = 17;
-    private readonly ARRAY_HEADER_EXCEL = ["STT","Mã sản phẩm","Tên sản phẩm","Sản lượng (Cục Hải Quan)","Giá trị (Cục Hải Quan)",
+    public readonly ARRAY_PRODUCT = [4, 1, 6, 8, 7, 21, 27, 13, 28, 19, 51, 20, 31, 55, 38, 26, 23];
+    public readonly MAX_PRODUCT = 17;
+    public readonly ARRAY_HEADER_EXCEL = ["STT","Mã sản phẩm","Tên sản phẩm","Sản lượng (Cục Hải Quan)","Giá trị (Cục Hải Quan)",
                                             "Giá trị (Tổng cục)","Giá trị (Tổng cục)" ]
     //Declare variable for HTML&TS
-    private date = new FormControl(_moment());
-    private columns: number = 1;
-    private timeExportManager: string;
-    private displayedColumns: string[] = ['index', 'ten_san_pham', 'san_luong', 'tri_gia', 'san_luong_ct', 'tri_gia_ct', 'top_xuat_khau'];
-    private products: Array<ProductManagerModelList> = new Array<ProductManagerModelList>();
-    private currentRow: number = 0;
-    private dataSource: MatTableDataSource<ExportManagerModel> = new MatTableDataSource<ExportManagerModel>();
-    private noData: boolean = true;
-    private modeQuery: MODE = MODE.INSERT;
+    public date = new FormControl(_moment());
+    public columns: number = 1;
+    public timeExportManager: string;
+    public displayedColumns: string[] = ['index', 'ten_san_pham', 'san_luong', 'tri_gia', 'san_luong_ct', 'tri_gia_ct', 'top_xuat_khau'];
+    public products: Array<ProductManagerModelList> = new Array<ProductManagerModelList>();
+    public currentRow: number = 0;
+    public dataSource: MatTableDataSource<ExportManagerModel> = new MatTableDataSource<ExportManagerModel>();
+    public noData: boolean = true;
+    public modeQuery: MODE = MODE.INSERT;
     //Declare variable for ONLY TS    
-    private rows: number = 0;
-    private theYear: number = 0;
-    private theMonth: number = 0;
+    public rows: number = 0;
+    public theYear: number = 0;
+    public theMonth: number = 0;
 
     //ViewChild
     @ViewChildren(ManagerDirective) inputs: QueryList<ManagerDirective>
     @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
     @ViewChild("TABLE", { static: true }) table: ElementRef;
 
-    constructor(private _managerService: ManagerService,
-        private changeDetectorRefs: ChangeDetectorRef,
-        private _dialog: MatDialog,
-        private keyboardservice: KeyboardService,
-        private _infor: InformationService,
-        private _marketService: MarketService) {
+    constructor(public _managerService: ManagerService,
+        public changeDetectorRefs: ChangeDetectorRef,
+        public _dialog: MatDialog,
+        public keyboardservice: KeyboardService,
+        public _infor: InformationService,
+        public _marketService: MarketService) {
     }
 
     ngOnInit() {
@@ -104,7 +104,7 @@ export class ExportManagerComponent implements OnInit {
 
     //Function for Process-Flow--------------------------------------------------------------------------------------
     //Get all Data
-    private getDomesticMarketExport(month: number, year: number) {
+    public getDomesticMarketExport(month: number, year: number) {
         this._marketService.GetExportedValue(month, year).subscribe(
             allrecords => {
                 this.dataSource = new MatTableDataSource<ExportMarketModel>(allrecords.data);
@@ -134,7 +134,7 @@ export class ExportManagerComponent implements OnInit {
         );
     }
     //Get Product lit
-    private getListProduct(): void {
+    public getListProduct(): void {
         this._managerService.GetListProduct().subscribe(
             allrecords => {
                 this.products = allrecords.data as ProductManagerModelList[];
@@ -142,7 +142,7 @@ export class ExportManagerComponent implements OnInit {
         );
     }
     //EVENT "Chọn năm"
-    private chosenYearHandler(normalizedYear: Moment) {
+    public chosenYearHandler(normalizedYear: Moment) {
         const ctrlValue = this.date.value;
         ctrlValue.year(normalizedYear.year());
         this.date.setValue(ctrlValue);
@@ -150,7 +150,7 @@ export class ExportManagerComponent implements OnInit {
         return this.theYear as number
     }
     //Event "Chọn tháng"
-    private chosenMonthHandler(normalizedMonth: Moment, datepicker: MatDatepicker<Moment>) {
+    public chosenMonthHandler(normalizedMonth: Moment, datepicker: MatDatepicker<Moment>) {
         const ctrlValue = this.date.value;
         ctrlValue.month(normalizedMonth.month());
         this.date.setValue(ctrlValue);
@@ -162,12 +162,12 @@ export class ExportManagerComponent implements OnInit {
     }
     //Function for HTML Event  --------------------------------------------------------------------------------------
     //Event "Lọc dữ liệu"
-    private applyFilter(event: Event) {
+    public applyFilter(event: Event) {
         const filterValue = (event.target as HTMLInputElement).value;
         this.dataSource.filter = filterValue.trim().toLowerCase();
     }
     //Event "Key arrown"
-    private move(object) {
+    public move(object) {
         const inputToArray = this.inputs.toArray()
         let index = inputToArray.findIndex(x => x.element == object.element);
         switch (object.action) {
@@ -190,7 +190,7 @@ export class ExportManagerComponent implements OnInit {
         }
     }
     //Event "Tạo dữ liệu mặc định"
-    private createDefault() {
+    public createDefault() {
         if (this.dataSource.data.length > 0)
             if (!confirm("Nếu bạn tạo mặc định sẽ xóa dữ liệu hiện tại! Bạn tiếp tục không?"))
                 return;
@@ -208,7 +208,7 @@ export class ExportManagerComponent implements OnInit {
         console.log(this.dataSource.data);
     }
     //Event for "Thêm dòng"
-    private addRow() {
+    public addRow() {
         let newRow: ExportManagerModel = new ExportManagerModel();
         newRow.san_luong;
         newRow.tri_gia;
@@ -253,16 +253,16 @@ export class ExportManagerComponent implements OnInit {
         this.rows = this.dataSource.filteredData.length;
     }
     //Event for "Change row"
-    private changeRow(index: number) {
+    public changeRow(index: number) {
         this.currentRow = index;
     }
-    private changeProduct(element: any) {
+    public changeProduct(element: any) {
         element.ten_san_pham = this.products.filter(x => x.ma_san_pham == element.id_san_pham)[0].ten_san_pham;
         element.thang = this.getCurrentMonth();
         element.nam = this.getCurrentYear();
     }
     //Event for "Top doanh nghiệp xuất khẩu"
-    private openDialogSelectCompany(data: any) {
+    public openDialogSelectCompany(data: any) {
         const dialogRef = this._dialog.open(ExportTopCompanyManager, {
             data: {
                 message: 'Nhập dữ liệu top doanh nghiệp xuất khẩu',
@@ -281,7 +281,7 @@ export class ExportManagerComponent implements OnInit {
         });
     }
     //Event for "Lưu"
-    private save() {
+    public save() {
         let month = this.getCurrentMonth();
         let year = this.getCurrentYear();
         // console.log(this.dataSource.data);
@@ -421,7 +421,7 @@ export class ExportManagerComponent implements OnInit {
     }
 
     //Function for Extention   --------------------------------------------------------------------------------------
-    private getMonthAndYear(time: string) {
+    public getMonthAndYear(time: string) {
         let year = time.substr(0, 4);
         let month = time.substr(4, 2);
         let day = time.substr(6, 2);
@@ -429,17 +429,17 @@ export class ExportManagerComponent implements OnInit {
         return result as string;
     }
 
-    private getCurrentDate() {
+    public getCurrentDate() {
         let date = new Date;
         return this.getMonthAndYear(date.toISOString().replace('-', '').replace('-', ''));
     }
 
-    private getCurrentMonth() {
+    public getCurrentMonth() {
         let date = new Date();
         return date.getMonth() + 1;
     }
 
-    private getCurrentYear() {
+    public getCurrentYear() {
         let date = new Date();
         return date.getFullYear();
     }

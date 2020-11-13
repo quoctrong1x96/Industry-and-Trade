@@ -12,9 +12,9 @@ import { user_model } from "../../_models/user.model";
 })
 export class UpdateuserComponent implements OnInit {
   constructor(
-    private router: Router,
+    public router: Router,
     public loginService: LoginService,
-    private fb: FormBuilder,
+    public fb: FormBuilder,
     public eventService: EventService,
   ) {}
   profileForm: FormGroup;

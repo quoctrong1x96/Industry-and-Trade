@@ -91,10 +91,10 @@ export class ShoppingcentreComponent implements OnInit {
 
   //Angular FUnction --------------------------------------------------------------------
   constructor(
-    private reportSevice: ReportService,
-    private route: ActivatedRoute,
-    private keyboardservice: KeyboardService,
-    private info: InformationService
+    public reportSevice: ReportService,
+    public route: ActivatedRoute,
+    public keyboardservice: KeyboardService,
+    public info: InformationService
   ) { }
 
   ngOnInit(): void {
@@ -120,5 +120,16 @@ export class ShoppingcentreComponent implements OnInit {
     // /* save to file */
     // XLSX.writeFile(wb, excelFileName);
   }
+  
+  sortHeaderCondition(event) {
 
+  }
+  
+ applyDistrictFilter(event) {
+   
+  }
+  
+  applyExpireCheck(event){
+
+  }
 }

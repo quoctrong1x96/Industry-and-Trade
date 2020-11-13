@@ -46,7 +46,7 @@ export class IndustrialExplosivesComponent implements OnInit {
     @ViewChild(MatAccordion, { static: false }) accordion: MatAccordion;
     @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-    constructor(private sctService: SCTService) {
+    constructor(public sctService: SCTService) {
     }
 
     ngOnInit() {

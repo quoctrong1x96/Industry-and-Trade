@@ -14,11 +14,11 @@ export class PowerProductionManagementComponent implements OnInit {
   @ViewChild('table', { static: false }) table: MatTable<PowerProductionModel>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   //Constant variable
-  private readonly displayedColumns: string[] = ['index', 'chi_tieu', 'san_luong_nam_truoc', 'san_luong_nam_thuc_hien', 'so_sanh_cung_ky'];
+  public readonly displayedColumns: string[] = ['index', 'chi_tieu', 'san_luong_nam_truoc', 'san_luong_nam_thuc_hien', 'so_sanh_cung_ky'];
   //TS & HTML Variable
-  private dataSource: MatTableDataSource<PowerProductionModel> = new MatTableDataSource<PowerProductionModel>();
-  private filteredDataSource: MatTableDataSource<PowerProductionModel> = new MatTableDataSource<PowerProductionModel>();
-  private data: Array<PowerProductionModel> = [{ chi_tieu: "Điện phục vụ sản xuất",san_luong_nam_truoc: 1235, san_luong_nam_thuc_hien: 1398 , so_sanh_cung_ky: 113.20},
+  public dataSource: MatTableDataSource<PowerProductionModel> = new MatTableDataSource<PowerProductionModel>();
+  public filteredDataSource: MatTableDataSource<PowerProductionModel> = new MatTableDataSource<PowerProductionModel>();
+  public data: Array<PowerProductionModel> = [{ chi_tieu: "Điện phục vụ sản xuất",san_luong_nam_truoc: 1235, san_luong_nam_thuc_hien: 1398 , so_sanh_cung_ky: 113.20},
   { chi_tieu: "Điện sinh hoạt + Kinh doanh dịch vụ",san_luong_nam_truoc: 736, san_luong_nam_thuc_hien: 817 , so_sanh_cung_ky: 110.96},
   { chi_tieu: "Nhu cầu khác (chiếu sáng công cộng)",san_luong_nam_truoc: 249, san_luong_nam_thuc_hien: 256 , so_sanh_cung_ky: 102.92},  ]
   //Only TS Variable

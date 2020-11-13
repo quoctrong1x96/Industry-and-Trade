@@ -5,7 +5,7 @@ import { KeyboardService } from './services/keyboard.service';
   selector: '[appReport]'
 })
 export class ReportDirective {
-  constructor(private keyboardService: KeyboardService, public element: ElementRef, private render: Renderer2) {
+  constructor(public keyboardService: KeyboardService, public element: ElementRef, public render: Renderer2) {
     this.render.setAttribute(this.element.nativeElement, "tabindex", "0")
   }
 

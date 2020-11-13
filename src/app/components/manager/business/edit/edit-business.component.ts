@@ -141,7 +141,7 @@ export class EditBusinessComponent implements OnInit {
   // NK
   periodsNK = ["Tháng", "Quý", "6 Tháng", "Năm"];
   monthsNK: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-  quartersNK: Object[] = [
+  quartersNK: any[] = [
     { ma_so: 1, ma_chu: "I" },
     { ma_so: 2, ma_chu: "II" },
     { ma_so: 3, ma_chu: "III" },
@@ -158,7 +158,7 @@ export class EditBusinessComponent implements OnInit {
   // XK
   periodsXK = ["Tháng", "Quý", "6 Tháng", "Năm"];
   monthsXK: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-  quartersXK: Object[] = [
+  quartersXK: any[] = [
     { ma_so: 1, ma_chu: "I" },
     { ma_so: 2, ma_chu: "II" },
     { ma_so: 3, ma_chu: "III" },
@@ -177,10 +177,10 @@ export class EditBusinessComponent implements OnInit {
   messageXK: string = "";
 
   constructor(
-    private route: ActivatedRoute,
+    public route: ActivatedRoute,
     public dialog: MatDialog,
-    private marketService: MarketService,
-    private infor: InformationService
+    public marketService: MarketService,
+    public infor: InformationService
   ) {
     this.route.params.subscribe((params) => {
       this.mst = params["mst"];
@@ -359,7 +359,7 @@ export class EditBusinessComponent implements OnInit {
       this.isCompany = true;
     }
   }
-  private readonly DEFAULT_PERIOD = "Tháng";
+  public readonly DEFAULT_PERIOD = "Tháng";
 
   ngOnInit() {
     

@@ -38,9 +38,9 @@ interface HashTableNumber<T> {
 
 export class MarketCommecialManagementComponent implements OnInit {
   //Constant-------------------------------------------------------------------------
-  private readonly OBJ_ID: number = 10592419;
-  private readonly TIME_ID: number = 2020;
-  private readonly ORG_ID: number = 1;
+  public readonly OBJ_ID: number = 10592419;
+  public readonly TIME_ID: number = 2020;
+  public readonly ORG_ID: number = 1;
   public readonly TYPE_INDICATOR_INPUT: number = 1;
   public readonly ATTRIBUTE_CODE: string = 'IND_NAME';
   public readonly UNIT_CODE: string = 'IND_UNIT';
@@ -57,25 +57,25 @@ export class MarketCommecialManagementComponent implements OnInit {
     this.dataSourceHuyenThi.filter = filterValue.trim().toLowerCase();
   }
   //Variable for HTML&TS-------------------------------------------------------------------------
-  private options: any = []
-  private model = {
+  public options: any = []
+  public model = {
     tatca: true, dongxoai: false, phuoclong: false,
     binhlong: false, budang: false, budop: false,
     phurieng: false, dongphu: false, bugiamap: false,
     locninh: false, hongquan: false, chonthanh: false
   }
-  private formChangesSubscription;
+  public formChangesSubscription;
   districts: District[] = [{ id: 1, ten_quan_huyen: 'Thị xã Phước Long' },
-    { id: 2, ten_quan_huyen: 'Thành phố Đồng Xoài' },
-    { id: 3, ten_quan_huyen: 'Thị xã Bình Long' },
-    { id: 4, ten_quan_huyen: 'Huyện Bù Gia Mập' },
-    { id: 5, ten_quan_huyen: 'Huyện Lộc Ninh' },
-    { id: 6, ten_quan_huyen: 'Huyện Bù Đốp' },
-    { id: 7, ten_quan_huyen: 'Huyện Hớn Quản' },
-    { id: 8, ten_quan_huyen: 'Huyện Đồng Phú' },
-    { id: 9, ten_quan_huyen: 'Huyện Bù Đăng' },
-    { id: 10, ten_quan_huyen: 'Huyện Chơn Thành' },
-    { id: 11, ten_quan_huyen: 'Huyện Phú Riềng' }];
+  { id: 2, ten_quan_huyen: 'Thành phố Đồng Xoài' },
+  { id: 3, ten_quan_huyen: 'Thị xã Bình Long' },
+  { id: 4, ten_quan_huyen: 'Huyện Bù Gia Mập' },
+  { id: 5, ten_quan_huyen: 'Huyện Lộc Ninh' },
+  { id: 6, ten_quan_huyen: 'Huyện Bù Đốp' },
+  { id: 7, ten_quan_huyen: 'Huyện Hớn Quản' },
+  { id: 8, ten_quan_huyen: 'Huyện Đồng Phú' },
+  { id: 9, ten_quan_huyen: 'Huyện Bù Đăng' },
+  { id: 10, ten_quan_huyen: 'Huyện Chơn Thành' },
+  { id: 11, ten_quan_huyen: 'Huyện Phú Riềng' }];
   dataHuyenThi: Array<MarketCommonModel> = [{ huyen: "Đồng Xoài", tongsocho: 10, chohang1: 2, chohang2: 6, chohang3: 2 },
   { huyen: "Phước Long", tongsocho: 10, chohang1: 2, chohang2: 6, chohang3: 2 },
   { huyen: "Chơn Thành", tongsocho: 10, chohang1: 2, chohang2: 6, chohang3: 2 },
@@ -108,10 +108,10 @@ export class MarketCommecialManagementComponent implements OnInit {
 
   //Angular FUnction --------------------------------------------------------------------
   constructor(
-    private reportSevice: ReportService,
-    private route: ActivatedRoute,
-    private keyboardservice: KeyboardService,
-    private info: InformationService
+    public reportSevice: ReportService,
+    public route: ActivatedRoute,
+    public keyboardservice: KeyboardService,
+    public info: InformationService
   ) { }
 
   ngOnInit(): void {
@@ -140,7 +140,7 @@ export class MarketCommecialManagementComponent implements OnInit {
     this.paginator._intl.lastPageLabel = "Trang Cuối";
     this.paginator._intl.previousPageLabel = "Trang Trước";
     this.paginator._intl.nextPageLabel = "Trang Tiếp";
-}
+  }
   arrayTextHeader = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q',
     'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'AA', 'AB', 'AC', 'AD', 'AE', 'AF', 'AG',
     'AH', 'AI', 'AJ', 'AK', 'AL', 'AM', 'AN', 'AO', 'AP', 'AQ', 'AR', 'AS', 'AT', 'AU', 'AV',
@@ -170,15 +170,15 @@ export class MarketCommecialManagementComponent implements OnInit {
   object: ReportOject[] = [];
   dataSource: MatTableDataSource<ReportTable> = new MatTableDataSource<ReportTable>();
   tableData: MatTableDataSource<ReportTable> = new MatTableDataSource<ReportTable>();
-  private filterEntity;
-  private tempFilter;
-  private filterType: MatTableFilter;
+  public filterEntity;
+  public tempFilter;
+  public filterType: MatTableFilter;
   dataSourceHuyenThi: MatTableDataSource<MarketCommonModel> = new MatTableDataSource<MarketCommonModel>();
   ///
   isSearch_Advanced: boolean = true;
   countNumberCondition: any[] = [{ id: 1, filed_name: 'ten_doanh_nghiep', filed_value: '' }];
   count: number = 1;
-  private displayedFields1: string[];
+  public displayedFields1: string[];
   ///
   soChoHang1: number = 0;
   soChoHang2: number = 0;
@@ -293,7 +293,7 @@ export class MarketCommecialManagementComponent implements OnInit {
   getListString(list: any[]) {
     return list.map(x => x.name);
   }
-  private filter() {
+  public filter() {
     this.filterEntity = { ...this.tempFilter }
   }
   Xoa_dong() {
@@ -635,4 +635,11 @@ export class MarketCommecialManagementComponent implements OnInit {
   isSticky(column): boolean {
     return column.attr_code.toLowerCase() === 'ind_unit' ? true : false;
   }
+  sortHeaderCondition(event) {
+
+   }
+   
+  applyDistrictFilter(event) {
+    
+   }
 }

@@ -56,31 +56,31 @@ export class DomesticExportComponent implements OnInit {
   //Declare Consant
 
   //Declare variable for HTML&TS
-  private timeDomesticPrice: string;
-  private displayedColumns: string[] = ['index', 'ten_san_pham', 'san_luong', 'tri_gia', 'san_luong_ct', 'tri_gia_ct', 'top_xuat_khau'];
-  private dataSource: MatTableDataSource<ExportMarketModel>;
-  private total: ExportMarketModel
-  private chartYearModelSelected: number;
-  private chartyears: Array<number> = [];
-  private date = new FormControl(_moment());
+  public timeDomesticPrice: string;
+  public displayedColumns: string[] = ['index', 'ten_san_pham', 'san_luong', 'tri_gia', 'san_luong_ct', 'tri_gia_ct', 'top_xuat_khau'];
+  public dataSource: MatTableDataSource<ExportMarketModel>;
+  public total: ExportMarketModel
+  public chartYearModelSelected: number;
+  public chartyears: Array<number> = [];
+  public date = new FormControl(_moment());
   //Declare variable for ONLY TS
-  private theYear: number = 0;
-  private theMonth: number = 0;
-  private mainChartLegend: boolean;
-  private mainChartType: string = 'line';
-  private mainChartColours: Array<any> = new Array<any>();
-  private mainChartOptions: any;
-  private mainChartLabels: Array<any> = new Array<any>();
-  private mainChartData: Array<any> = new Array<any>();
-  private maxSizeChart: number;
-  private dataGet: Array<any>;
-  private mainChartElements = 10;
-  private chartYearModel: number;
+  public theYear: number = 0;
+  public theMonth: number = 0;
+  public mainChartLegend: boolean;
+  public mainChartType: string = 'line';
+  public mainChartColours: Array<any> = new Array<any>();
+  public mainChartOptions: any;
+  public mainChartLabels: Array<any> = new Array<any>();
+  public mainChartData: Array<any> = new Array<any>();
+  public maxSizeChart: number;
+  public dataGet: Array<any>;
+  public mainChartElements = 10;
+  public chartYearModel: number;
   //Viewchild
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild('TABLE', { static: false }) table: ElementRef;
 
-  constructor(private marketService: MarketService, private router: Router, private dialog: MatDialog) {
+  constructor(public marketService: MarketService, public router: Router, public dialog: MatDialog) {
     //this.initialData();
   }
   ngOnInit() {
@@ -93,7 +93,7 @@ export class DomesticExportComponent implements OnInit {
   }
 
   //Function for PROCESS-FLOW-----------------------------------------------------------------------------------------------------------------
-  private getDomesticMarketExport(month: number, year: number) {
+  public getDomesticMarketExport(month: number, year: number) {
     this.marketService.GetExportedValue(month, year).subscribe(
       allrecords => {
         allrecords.data.forEach(element => {
@@ -152,15 +152,15 @@ export class DomesticExportComponent implements OnInit {
 
   //Function for HTML EVENT-----------------------------------------------------------------------------------------------------------------
   //Event "Lọc dữ liệu"
-  private applyFilter(event: Event) {
+  public applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
   //Event "Xem giá cả"
-  private changeYear() {
+  public changeYear() {
   }
   //EVENT "Chọn năm"
-  private chosenYearHandler(normalizedYear: Moment) {
+  public chosenYearHandler(normalizedYear: Moment) {
     const ctrlValue = this.date.value;
     ctrlValue.year(normalizedYear.year());
     this.date.setValue(ctrlValue);
@@ -168,7 +168,7 @@ export class DomesticExportComponent implements OnInit {
     return this.theYear as number
   }
   //Event "Chọn tháng"
-  private chosenMonthHandler(normalizedMonth: Moment, datepicker: MatDatepicker<Moment>) {
+  public chosenMonthHandler(normalizedMonth: Moment, datepicker: MatDatepicker<Moment>) {
     const ctrlValue = this.date.value;
     ctrlValue.month(normalizedMonth.month());
     this.date.setValue(ctrlValue);
@@ -179,14 +179,14 @@ export class DomesticExportComponent implements OnInit {
     return this.theMonth as number
   }
   //Event auto thêm event
-  private addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
+  public addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
     let time = event.value;
     let year = time.getFullYear();
     let month = time.getMonth();
     this.marketService.GetExportedValue(month, year);
   }
   //Event "Top doanh nghiệp"
-  private openCompanyTopPopup(data: any) {
+  public openCompanyTopPopup(data: any) {
     const dialogRef = this.dialog.open(CompanyTopPopup, {
       data: {
         message: 'Dữ liệu top doanh nghiệp xuất khẩu.',
@@ -204,7 +204,7 @@ export class DomesticExportComponent implements OnInit {
     });
   }
   //Event "Xuất excel"
-  private exportTOExcel(filename: string, sheetname: string) {
+  public exportTOExcel(filename: string, sheetname: string) {
     sheetname = sheetname.replace('/', '_');
     let excelFileName: string = filename + '.xlsx';
     const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);
@@ -214,18 +214,18 @@ export class DomesticExportComponent implements OnInit {
     XLSX.writeFile(wb, excelFileName);
   }
   //Function EXTENTION -----------------------------------------------------------------------------------------------------------------
-  private getMonthAndYear(time: string) {
+  public getMonthAndYear(time: string) {
     let year = time.substr(0, 4);
     let month = time.substr(4, 2);
     let day = time.substr(6, 2);
     let result = day + "/" + month + "/" + year;
     return result as string;
   }
-  private getCurrentMonth(): number {
+  public getCurrentMonth(): number {
     var currentDate = new Date();
     return currentDate.getMonth() + 1;
   }
-  private initialYears() {
+  public initialYears() {
     let returnYear: Array<any> = [];
     let currentDate = new Date();
     let nextYear = currentDate.getFullYear() + 1;
@@ -234,16 +234,16 @@ export class DomesticExportComponent implements OnInit {
     }
     return returnYear;
   }
-  private getCurrentYear() {
+  public getCurrentYear() {
     var currentDate = new Date();
     return currentDate.getFullYear();
   }
   //Function for CHART HTML
-  private initialData() {
+  public initialData() {
     this.initialChartColor();
     this.inititalChartOther();
   }
-  private initialChartColor() {
+  public initialChartColor() {
     this.mainChartColours = [
       {
         pointHoverBackgroundColor: '#fff'
@@ -263,7 +263,7 @@ export class DomesticExportComponent implements OnInit {
     ];
   }
   //Initialize Option for chart line
-  private initialChartOption() {
+  public initialChartOption() {
     this.mainChartOptions = {
       tooltips: {
         scaleShowValues: true,
@@ -317,11 +317,11 @@ export class DomesticExportComponent implements OnInit {
       }
     };
   }
-  private inititalChartOther() {
+  public inititalChartOther() {
     this.mainChartType = 'line';
     this.mainChartLegend = false;
   }
-  private getDataForChart() {
+  public getDataForChart() {
     console.log("+ Function: GetDataForChart()");
     let chartData1: Array<number> = new Array<number>();
     let chartName1: string;

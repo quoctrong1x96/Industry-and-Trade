@@ -12,7 +12,7 @@ export class ConfirmationDialogComponent implements OnInit {
   @Input() btnOkText: string;
   @Input() btnCancelText: string;
 
-  constructor(private activeModal: NgbActiveModal) { }
+  constructor(public activeModal: NgbActiveModal) { }
 
   ngOnInit() {
   }

@@ -92,9 +92,9 @@ export class DetailBussinessComponent implements OnInit {
     SLCSTT: any;
 
     constructor(
-        private route: ActivatedRoute,
+        public route: ActivatedRoute,
         public dialog: MatDialog,
-        private marketService: MarketService) {
+        public marketService: MarketService) {
         // this.route.params.subscribe(params => {
         //     this.mst = params['mst'];
         // });

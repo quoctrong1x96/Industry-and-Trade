@@ -353,7 +353,7 @@
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;let i = index; "></tr>
             </table>
             <mat-paginator #ExportPaginators [hidden]="dataSourceKNXK.data.length === 0" [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons></mat-paginator>
-            <div *ngIf="dataSourceKNXK.length !== 0" class="messError">{{messageXK}}</div>
+            <div *ngIf="dataSourceKNXK.data.length !== 0" class="messError">{{messageXK}}</div>
         </div>
     </div>
 </ng-container>
@@ -464,7 +464,7 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumns;let i = index; "></tr>
         </table>
         <mat-paginator #ImportPaginators [hidden]="dataSourceKNNK.data.length === 0" [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons></mat-paginator>
-        <div *ngIf="dataSourceKNNK.length !== 0" class="messError">{{messageNK}}</div>
+        <div *ngIf="dataSourceKNNK.data.length !== 0" class="messError">{{messageNK}}</div>
     </div>
 
 </ng-container>

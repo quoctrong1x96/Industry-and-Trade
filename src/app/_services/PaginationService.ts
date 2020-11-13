@@ -7,7 +7,7 @@ import { Injectable } from "@angular/core";
 })
 export class PaginationService 
 {
-    private paginationModel: PaginationModel;
+    public paginationModel: PaginationModel;
     get page(): number {
         return this.paginationModel.pageIndex;
     }
