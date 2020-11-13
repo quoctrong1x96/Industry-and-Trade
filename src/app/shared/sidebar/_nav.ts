@@ -239,7 +239,7 @@ export const navItemsSpecialized: INavItem[] = [
       },
       {
         name: 'Thương mại biên giới',
-        url: '/specialized/commecial-management/promotion',
+        url: '/specialized/commecial-management/border_trade',
         icon: 'filter_9_plus',
         id: 'TMBG',
         manager: false,

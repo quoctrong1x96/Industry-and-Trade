@@ -23,8 +23,8 @@ import { ExportManagementComponent } from './export-import-management/export-man
 import { MatDialogModule } from '@angular/material/dialog';
 import { ModalComponent } from './export-import-management/dialog-import-export/modal.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { BorderTradeComponent } from './border-trade/border-trade.component';
 import { RegisteredSaleWebsiteComponent } from './e-commerce-managemant/registered-sale-website/registered-sale-website.component';
-import { TranslatePipe } from 'src/app/_pipe/translate';
 @NgModule({
   imports: [
     CommonModule,
@@ -37,8 +37,6 @@ import { TranslatePipe } from 'src/app/_pipe/translate';
     MatPaginatorModule
   ],
   exports: [
-    // FormatNumberReportPipe,
-    // TranslatePipe,
     MatPaginatorModule
 
   ],
@@ -46,7 +44,6 @@ import { TranslatePipe } from 'src/app/_pipe/translate';
     MarketCommecialManagementComponent,
     CommonCommecialComponent,
     TobaccoBusinessComponent,
-    // TranslatePipe,
     ConditionalBusinessLineComponent,
     SuperMarketCommecialManagementComponent,
     CommonCommecialComponent,
@@ -61,7 +58,8 @@ import { TranslatePipe } from 'src/app/_pipe/translate';
     LPGBusinessComponent,
     ExportManagementComponent,
     ModalComponent,
-    TRSManagementComponent],
+    TRSManagementComponent,
+    BorderTradeComponent],
   entryComponents: [
     ModalComponent
   ],
