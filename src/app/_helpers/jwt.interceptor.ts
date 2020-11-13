@@ -9,10 +9,10 @@ import { UserModel } from '../_models/APIModel/user.model';
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
-    private isRefreshing = false;
-    private refreshTokenSubject: BehaviorSubject<UserModel> = new BehaviorSubject<UserModel>(null);
+    public isRefreshing = false;
+    public refreshTokenSubject: BehaviorSubject<UserModel> = new BehaviorSubject<UserModel>(null);
 
-    constructor(private authenticationService: LoginService) { }
+    constructor(public authenticationService: LoginService) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         // add auth header with jwt if user is logged in and request is to the api url
@@ -32,7 +32,7 @@ export class JwtInterceptor implements HttpInterceptor {
         }));
     }
 
-    private addToken(request: HttpRequest<any>, token: string) {
+    public addToken(request: HttpRequest<any>, token: string) {
         return request.clone({
             setHeaders: {
                 'Authorization': `Bearer ${token}`
@@ -40,11 +40,11 @@ export class JwtInterceptor implements HttpInterceptor {
         });
     }
  /**
-     * Private
+     * public
      * Map UserModel from response
      * @param response response from API Login server
      */
-    private createUserFromRes(data: any): UserModel {
+    public createUserFromRes(data: any): UserModel {
         let user: UserModel = new UserModel();
         user.user_id = data.user_id;
         user.user_role = data.user_role;
@@ -60,7 +60,7 @@ export class JwtInterceptor implements HttpInterceptor {
         }
         return user;
     }
-    private handle401Error(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    public handle401Error(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         if (!this.isRefreshing) {
             this.isRefreshing = true;
             this.refreshTokenSubject.next(null);

@@ -13,7 +13,7 @@ export class SpecializedLayoutComponent {
   name = 'Angular';
   public onSideNavChange: boolean;
 
-  constructor(private _sidenavService: SidebarService) {
+  constructor(public _sidenavService: SidebarService) {
     this._sidenavService.sideBarState$.subscribe( res => {
       //console.log(res)
       this.onSideNavChange = res;

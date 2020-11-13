@@ -31,7 +31,7 @@ export class ViewSelectReportComponent implements OnInit {
   }
 
   @ViewChild('reportPaginators', { static: true }) paginator: MatPaginator;
-  private readonly DEFAULT_PERIOD = "Tháng";
+  public readonly DEFAULT_PERIOD = "Tháng";
   public readonly format = 'dd/MM/yyyy';
   public readonly locale = 'en-US';
   reportTypes = [{ ma_so: null, noi_dung: '' }, { ma_so: 1, noi_dung: 'Tháng' }, { ma_so: 2, noi_dung: 'Quý' }, { ma_so: 3, noi_dung: '6 Tháng' }, { ma_so: 4, noi_dung: 'Năm' }];
@@ -46,9 +46,9 @@ export class ViewSelectReportComponent implements OnInit {
   selectedPeriod: number = 0;
 
   constructor(
-    private reportSevice: ReportService,
-    private router: Router,
-    private confirmationDialogService: ConfirmationDialogService
+    public reportSevice: ReportService,
+    public router: Router,
+    public confirmationDialogService: ConfirmationDialogService
   ) { }
 
   ngOnInit() {

@@ -9,7 +9,7 @@ import { InformationService } from '../information/information.service';
 })
 export class PageNotFoundComponent implements OnInit {
 
-  constructor(private _location: Location, public info:InformationService,) 
+  constructor(public _location: Location, public info:InformationService,) 
   {}
 
   ngOnInit() {

@@ -14,26 +14,26 @@ import { CompanyDetailModel, TopBusinessModel } from '../../_models/APIModel/dom
 
 export class ManagerService {
 
-    private data: any;
-    private apiManagerUrl = environment.apiEndpoint + "api/thi-truong";
-    private apiProductUrl = environment.apiEndpoint + "api/san-pham";
-    private urlDomesticManager = "/gia-ca";
-    private urlDomesticManagerPrice = "/gia-ca-theo-ngay";
-    private urlForeignManagerPrice = "/gia-ca-quoc-te-theo-ngay";
-    private urlForeignManager = "/gia-ca-quoc-te";
-    private urlExportManager = "/xuat-khau";
-    private urlImportManager = "/nhap-khau";
-    private urlProductManager = "/san-xuat";
-    private urlTopExportManager = "/xuat-khau/top";
-    private urlTopImportManager = "/nhap-khau/top";
-    private urlTopProdcutManager = "/san-xuat/top";
-    private urlListProduct = "/danh-sach-san-pham";
-    private urlListNation = "/danh-sach-quoc-gia";
+    public data: any;
+    public apiManagerUrl = environment.apiEndpoint + "api/thi-truong";
+    public apiProductUrl = environment.apiEndpoint + "api/san-pham";
+    public urlDomesticManager = "/gia-ca";
+    public urlDomesticManagerPrice = "/gia-ca-theo-ngay";
+    public urlForeignManagerPrice = "/gia-ca-quoc-te-theo-ngay";
+    public urlForeignManager = "/gia-ca-quoc-te";
+    public urlExportManager = "/xuat-khau";
+    public urlImportManager = "/nhap-khau";
+    public urlProductManager = "/san-xuat";
+    public urlTopExportManager = "/xuat-khau/top";
+    public urlTopImportManager = "/nhap-khau/top";
+    public urlTopProdcutManager = "/san-xuat/top";
+    public urlListProduct = "/danh-sach-san-pham";
+    public urlListNation = "/danh-sach-quoc-gia";
 
     token: any;
     username: any;
 
-    constructor(private http: HttpClient) {
+    constructor(public http: HttpClient) {
         console.log("MarketService Contraction");
         this.data = JSON.parse(localStorage.getItem('currentUser'));
         this.token = this.data.token;
@@ -284,7 +284,7 @@ export class ManagerService {
 
     //-------------------------------------------------------------------------------
 
-    private handleError(error: HttpErrorResponse) {
+    public handleError(error: HttpErrorResponse) {
         let errorMessage = '';
         if (error.error instanceof ErrorEvent) {
             // client-side error

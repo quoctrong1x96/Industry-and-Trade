@@ -12,31 +12,31 @@ import { environment } from '../../../environments/environment';
 
 export class DashboardService {
     // declare variable
-    private data: any;
-    private apiMarketUrl = environment.apiEndpoint + "api/thi-truong";
-    private urlChartDomesticPrice = "/gia-ca";
-    private urlForeignMarket = "/gia-ca-the-gioi";
-    private urlExport = "/xuat-khau";
-    private urlImport = "/nhap-khau";
-    private urlProdcut = "/san-xuat";
-    private urlProductById = "/gia-ca-trong-nuoc-theo-san-pham";
-    private urlProductAll = "/gia-ca-tong-hop";
+    public data: any;
+    public apiMarketUrl = environment.apiEndpoint + "api/thi-truong";
+    public urlChartDomesticPrice = "/gia-ca";
+    public urlForeignMarket = "/gia-ca-the-gioi";
+    public urlExport = "/xuat-khau";
+    public urlImport = "/nhap-khau";
+    public urlProdcut = "/san-xuat";
+    public urlProductById = "/gia-ca-trong-nuoc-theo-san-pham";
+    public urlProductAll = "/gia-ca-tong-hop";
 
-    private apiTopUrl = environment.apiEndpoint + "api/doanh-nghiep";
-    private urlTopExport = "/top-xuat-khau";
-    private urlTopImport = "/top-nhap-khau";
-    private urlTopProduct = "/top-san-xuat";
-    private urlCompanyInfo = "/thong-tin-doanh-nghiep"
-    private urlAllCompany = "/danh-sach-doanh-nghiep";
+    public apiTopUrl = environment.apiEndpoint + "api/doanh-nghiep";
+    public urlTopExport = "/top-xuat-khau";
+    public urlTopImport = "/top-nhap-khau";
+    public urlTopProduct = "/top-san-xuat";
+    public urlCompanyInfo = "/thong-tin-doanh-nghiep"
+    public urlAllCompany = "/danh-sach-doanh-nghiep";
 
-    private apiProduct = environment.apiEndpoint + "api/san-pham";
-    private urlProductNameById = "/ma-san-pham/";
-    private urlAllProduct = "/danh-sach-san-pham";
+    public apiProduct = environment.apiEndpoint + "api/san-pham";
+    public urlProductNameById = "/ma-san-pham/";
+    public urlAllProduct = "/danh-sach-san-pham";
 
     token: any;
     username: any;
 
-    constructor(private http: HttpClient) {
+    constructor(public http: HttpClient) {
         console.log("MarketService Contraction");
         // this.data = JSON.parse(localStorage.getItem('NormalUser'));
         // this.token = this.data.token;
@@ -198,7 +198,7 @@ export class DashboardService {
         );
     }
 
-    private handleError(error: HttpErrorResponse) {
+    public handleError(error: HttpErrorResponse) {
         let errorMessage = '';
         if (error.error instanceof ErrorEvent) {
             // client-side error

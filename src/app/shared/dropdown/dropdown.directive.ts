@@ -10,12 +10,12 @@ import { Subject, Observable } from 'rxjs';
 })
 export class DropdownDirective {
 
-  private status: TOGGLE_STATUS = TOGGLE_STATUS.CLOSE;
-  private status$: Subject<TOGGLE_STATUS> = new Subject<TOGGLE_STATUS>();
+  public status: TOGGLE_STATUS = TOGGLE_STATUS.CLOSE;
+  public status$: Subject<TOGGLE_STATUS> = new Subject<TOGGLE_STATUS>();
 
   constructor(
-    private elementRef: ElementRef,
-    private renderer: Renderer2,
+    public elementRef: ElementRef,
+    public renderer: Renderer2,
   ) { }
 
   setActive(active = true) {

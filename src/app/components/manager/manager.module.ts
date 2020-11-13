@@ -21,7 +21,6 @@ import { TestDirectives } from '../../_directive/addHtml.directive';
 import { DetailBussinessComponent } from './business/detail-business/detail-business.component';
 import { ConfirmDialogComponent } from './business/confirm-dialog/confirm-dialog.component';
 import { BusinessExportImportComponent } from './business/business-export-import/business-export-import.component';
-import { PipeModule } from 'src/app/shared/pipe.module';
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export const customCurrencyMaskConfig = {
@@ -47,7 +46,6 @@ export const customCurrencyMaskConfig = {
     MaterialModule,
     ReactiveFormsModule,
     NgxCurrencyModule.forRoot(customCurrencyMaskConfig),
-    PipeModule,
   ],
   exports: [
     ConfirmDialogComponent,

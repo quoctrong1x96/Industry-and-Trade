@@ -25,14 +25,14 @@ import { SAVE } from 'src/app/_enums/save.enum';
 export class ExportTopCompanyManager implements OnInit {
 
     //Declare variable for HTML & TS
-    private dataSource: MatTableDataSource<CompanyDetailModel> = new MatTableDataSource();
-    private selection = new SelectionModel<CompanyDetailModel>(true, []);
-    private field: string = "";
-    private product: ExportManagerModel;
-    private textSaveButton: string = "Lưu";
-    private textCancelButton: string = "Hủy bỏ";
-    private typeOfSave: SAVE = SAVE.NONE;
-    private displayedColumns: string[] = ['select', 'index', 'ten_doanh_nghiep', 'cong_suat', 'mst', 'dia_chi', 'dien_thoai', 'nganh_nghe_kd'];
+    public dataSource: MatTableDataSource<CompanyDetailModel> = new MatTableDataSource();
+    public selection = new SelectionModel<CompanyDetailModel>(true, []);
+    public field: string = "";
+    public product: ExportManagerModel;
+    public textSaveButton: string = "Lưu";
+    public textCancelButton: string = "Hủy bỏ";
+    public typeOfSave: SAVE = SAVE.NONE;
+    public displayedColumns: string[] = ['select', 'index', 'ten_doanh_nghiep', 'cong_suat', 'mst', 'dia_chi', 'dien_thoai', 'nganh_nghe_kd'];
     //Declare variable for ONLY TS
 
 
@@ -43,10 +43,10 @@ export class ExportTopCompanyManager implements OnInit {
     constructor(
         @Inject(MAT_DIALOG_DATA) public data: any,
         public dialogRef: MatDialogRef<ExportTopCompanyManager>,
-        private marketService: MarketService,
-        private managerService: ManagerService,
-        private router: Router,
-        private _infor: InformationService
+        public marketService: MarketService,
+        public managerService: ManagerService,
+        public router: Router,
+        public _infor: InformationService
     ) { }
 
     async ngOnInit(): Promise<void> {
@@ -70,7 +70,7 @@ export class ExportTopCompanyManager implements OnInit {
 
     //Function for PROCESS-FLOW----------------------------------------------------------------------------------
     //Get all Company
-    private async getAllCompany() {
+    public async getAllCompany() {
         let allCompany = await this.marketService.GetAllCompany().toPromise();
         let checkedCompay = await this.getAllCheckedCompany();
         if (allCompany) {
@@ -91,7 +91,7 @@ export class ExportTopCompanyManager implements OnInit {
             }
         }
     }
-    private async getAllCheckedCompany(): Promise<any> {
+    public async getAllCheckedCompany(): Promise<any> {
         switch (this.typeOfSave) {
             case SAVE.NONE:
                 return null;
@@ -107,31 +107,31 @@ export class ExportTopCompanyManager implements OnInit {
     }
     //Function for EVENT HTML----------------------------------------------------------------------------------
     //Event for "Lọc dữ liệu"
-    private applyFilter(event: Event) {
+    public applyFilter(event: Event) {
         const filterValue = (event.target as HTMLInputElement).value;
         this.dataSource.filter = filterValue.trim().toLowerCase();
     }
     //Event selected all
-    private isAllSelected() {
+    public isAllSelected() {
         const numSelected = this.selection.selected.length;
         const numRows = this.dataSource.data.length;
         return numSelected === numRows;
     }
     //Event check
-    private masterToggle() {
+    public masterToggle() {
         this.isAllSelected() ?
             this.selection.clear() :
             this.dataSource.data.forEach(row => this.selection.select(row));
     }
     //Event check item
-    private checkboxLabel(row?: CompanyDetailModel): string {
+    public checkboxLabel(row?: CompanyDetailModel): string {
         if (!row) {
             return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
         }
         return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
     }
     //Event "Xuất Excel"
-    private exportTOExcel(filename: string, sheetname: string) {
+    public exportTOExcel(filename: string, sheetname: string) {
         sheetname = sheetname.replace('/', '_');
         let excelFileName: string = filename + '.xlsx';
         const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);
@@ -140,7 +140,7 @@ export class ExportTopCompanyManager implements OnInit {
         XLSX.writeFile(wb, excelFileName);
     }
     //Event "Lưu"
-    private save() {
+    public save() {
         switch (this.typeOfSave) {
             case SAVE.NONE:
                 break;

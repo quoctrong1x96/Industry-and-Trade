@@ -6,7 +6,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 
 export class TestDirectives{
-    constructor(el:ElementRef,private sanitizer:DomSanitizer,private elementRef:ElementRef){
+    constructor(el:ElementRef,public sanitizer:DomSanitizer,public elementRef:ElementRef){
             this.elementRef.nativeElement.innerHTML ='<h1>Hello World</h1>';
     }
 }

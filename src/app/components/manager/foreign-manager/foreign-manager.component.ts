@@ -55,28 +55,28 @@ export class ForeignManagerComponent implements OnInit {
   //Constant
   public readonly FORMAT = 'dd/MM/yyyy';
   public readonly LOCALE = 'en-US';
-  private pickedDate = {
+  public pickedDate = {
     date: new Date()
   }
   //Declare varialbe for ONLY TS
-  private rows: number = 0;
+  public rows: number = 0;
   public _mode: MODE = MODE.INSERT;
 
   //Declare variable for HTML
-  private columns: number = 1;
-  private timeForeignManager: string;
-  private displayedColumns: string[] = ['index', 'ten_san_pham', 'thi_truong', 'gia', 'nguon_so_lieu', 'thoi_gian_cap_nhat'];
-  private products: Array<ProductManagerModelList> = new Array<ProductManagerModelList>();
-  private nations: Array<NationModel> = new Array<NationModel>();
-  private currentRow: number = 0;
-  private dataSource: MatTableDataSource<ForeignManagerModel> = new MatTableDataSource<ForeignManagerModel>();
+  public columns: number = 1;
+  public timeForeignManager: string;
+  public displayedColumns: string[] = ['index', 'ten_san_pham', 'thi_truong', 'gia', 'nguon_so_lieu', 'thoi_gian_cap_nhat'];
+  public products: Array<ProductManagerModelList> = new Array<ProductManagerModelList>();
+  public nations: Array<NationModel> = new Array<NationModel>();
+  public currentRow: number = 0;
+  public dataSource: MatTableDataSource<ForeignManagerModel> = new MatTableDataSource<ForeignManagerModel>();
 
   //ViewChildren
   @ViewChildren(ManagerDirective) inputs: QueryList<ManagerDirective>
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild("TABLE", { static: true }) table: ElementRef;
 
-  public constructor(private _managerService: ManagerService, private _infor: InformationService, private _keyboardservice: KeyboardService) {
+  public constructor(public _managerService: ManagerService, public _infor: InformationService, public _keyboardservice: KeyboardService) {
   }
 
   public ngOnInit() {
@@ -90,7 +90,7 @@ export class ForeignManagerComponent implements OnInit {
   }
   //FUNCTION FOR PROCESS FLOW ------------------------------------------------------------------------------------------------------------
   //Get products
-  private getListProduct(): void {
+  public getListProduct(): void {
     console.log("+ Function: GetListProduct()");
     this._managerService.GetListProduct().subscribe(
       allrecords => {
@@ -100,7 +100,7 @@ export class ForeignManagerComponent implements OnInit {
     );
   }
   //get Nations
-  private getListNation(): void {
+  public getListNation(): void {
     console.log("+ Function: GetListNation()");
     this._managerService.GetListNation().subscribe(
       allrecords => {
@@ -109,7 +109,7 @@ export class ForeignManagerComponent implements OnInit {
     );
   }
   //Get Foreign market price
-  private getAllForegionManagerPrevious(time: Date) {
+  public getAllForegionManagerPrevious(time: Date) {
     this._managerService.GetForeignMarket(_moment(time).format('DD/MM/YYYY')).subscribe(
       allrecords => {
         console.log(allrecords);
@@ -250,18 +250,18 @@ export class ForeignManagerComponent implements OnInit {
   }
 
   // Evnet for "Ngày cập nhật giá"
-  private getPriceChange(param: any) {
+  public getPriceChange(param: any) {
     this.getAllForegionManagerPrevious(param._d);
   }
 
   // EVENT HTML --------------------------------------------------------------------------------
   //Event for "Lọc dữ liệu"
-  private applyFilter(event: Event) {
+  public applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
   //Event for "Lưu"
-  private save() {
+  public save() {
     this.dataSource.data.forEach(element => {
       let x: number = + element.gia.toString().replace(',', '').replace(',', '').replace(',', '');
       element.gia = x;
@@ -282,11 +282,11 @@ export class ForeignManagerComponent implements OnInit {
     );
   }
   //Event for change " Tên sản phẩm"
-  private changeProduct(element: any) {
+  public changeProduct(element: any) {
     element.ten_san_pham = this.products.filter(x => x.ma_san_pham == element.id_san_pham)[0].ten_san_pham;
   }
   //Event addrow for "Thêm dòng"
-  private addRow() {
+  public addRow() {
     let newRow: ForeignManagerModel = new ForeignManagerModel();
     newRow.gia;
     newRow.ngay_cap_nhat = this.getCurrentDate();
@@ -302,13 +302,13 @@ export class ForeignManagerComponent implements OnInit {
     this.rows = this.dataSource.filteredData.length;
   }
   //Event addrow for "Xóa dòng"
-  private deleteRow() {
+  public deleteRow() {
     this.dataSource.data.splice(this.currentRow, 1);
     this.dataSource = new MatTableDataSource(this.dataSource.data);
     this.rows = this.dataSource.filteredData.length;
   }
   //Event addrow for "Chèn dòng"
-  private insertRow() {
+  public insertRow() {
     let data = this.dataSource.data.slice(this.currentRow);
     this.dataSource.data.splice(this.currentRow, this.dataSource.data.length - this.currentRow + 1);
     let newRow: ForeignManagerModel = new ForeignManagerModel();
@@ -323,11 +323,11 @@ export class ForeignManagerComponent implements OnInit {
     this.rows = this.dataSource.filteredData.length;
   }
   //Event for changeRow Mattable
-  private changeRow(index: number) {
+  public changeRow(index: number) {
     this.currentRow = index;
   }
   //Event for "Tạo mặc định"
-  private createDefault() {
+  public createDefault() {
     const HAT_DIEU: number = 2;
     const HAT_TIEU: number = 10;
     const CAO_SU: number = 4;
@@ -352,7 +352,7 @@ export class ForeignManagerComponent implements OnInit {
   }
 
   //Evnent for "Key Arrown"
-  private move(object) {
+  public move(object) {
     const inputToArray = this.inputs.toArray()
     let index = inputToArray.findIndex(x => x.element == object.element);
     switch (object.action) {
@@ -376,7 +376,7 @@ export class ForeignManagerComponent implements OnInit {
   }
   // FUNTION EXTENTION ----------------------------------------------------------------------------------------------------
   //Get month
-  private getMonthAndYear(time: string) {
+  public getMonthAndYear(time: string) {
     let year = time.substr(0, 4);
     let month = time.substr(4, 2);
     let day = time.substr(6, 2);
@@ -384,16 +384,16 @@ export class ForeignManagerComponent implements OnInit {
     return result as string;
   }
   //Get current month
-  private getCurrentMonth() {
+  public getCurrentMonth() {
     let date = new Date;
     return date.getMonth();
   }
   //Get current Year
-  private getCurrentYear() {
+  public getCurrentYear() {
     let date = new Date;
     return date.getFullYear();
   }
-  private getCurrentDate() {
+  public getCurrentDate() {
     let date = new Date;
     return formatDate(date, this.FORMAT, this.LOCALE);
   }

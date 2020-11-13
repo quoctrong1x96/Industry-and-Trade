@@ -19,6 +19,7 @@ import { ConfirmationDialogComponent } from './shared/confirmation-dialog/confir
 import { ConfirmationDialogService } from './shared/confirmation-dialog/confirmation-dialog.service';
 // import {ToastrModule} from 'ngx-toastr';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { FormatNumberReportPipe } from './shared/pipes/formatNumber.pipe';
 @NgModule({
   imports: [
     BrowserModule,
@@ -34,8 +35,10 @@ import {MatPaginatorModule} from '@angular/material/paginator';
   ],
   declarations:[
     InformationComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    FormatNumberReportPipe
   ],
+  exports : [FormatNumberReportPipe],
   providers: [
    // { provide: APP_INITIALIZER, useFactory: appInitializer, multi: true, deps: [LoginService] },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

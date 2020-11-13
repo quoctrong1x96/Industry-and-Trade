@@ -10,9 +10,9 @@ import { InformationService } from '../shared/information/information.service';
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
     constructor(
-        private authenticationService: LoginService, 
-        private info: InformationService,
-        private router: Router) { }
+        public authenticationService: LoginService, 
+        public info: InformationService,
+        public router: Router) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<any> {
         return next.handle(request).pipe(catchError(err => {

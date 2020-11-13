@@ -35,46 +35,46 @@ export class filterModel{
 
 export class SearchPartnerComponent implements AfterViewInit, OnInit {
   //Declare variable for CONSTANT
-  private readonly SEPERATE_FILTER = ";";
-  private readonly DEFAULT_IMAGE: string = '../../../../assets/img/brandlogo/company_ph01.jpg';
+  public readonly SEPERATE_FILTER = ";";
+  public readonly DEFAULT_IMAGE: string = '../../../../assets/img/brandlogo/company_ph01.jpg';
   //Declare variable for TS & HTML
-  private filterEntity;
-  private tempFilter;
-  private filterType: MatTableFilter;
-  private dataSource = new MatTableDataSource<any>();
-  private selectedCategory: string = "Tất cả";
-  private selectedAddress: string = "Tất cả";
-  private selectedName: string;
-  private selected_Career: string = "";
-  private selectedType: string = "Dạng bảng";
+  public filterEntity;
+  public tempFilter;
+  public filterType: MatTableFilter;
+  public dataSource = new MatTableDataSource<any>();
+  public selectedCategory: string = "Tất cả";
+  public selectedAddress: string = "Tất cả";
+  public selectedName: string;
+  public selected_Career: string = "";
+  public selectedType: string = "Dạng bảng";
   public typeShow: number = 1;
   public displayedColumns: string[] = ['index', 'ten_doanh_nghiep', 'mst', 'dia_chi', 'dien_thoai', 'ten_nganh_nghe', 'chi_tiet_doanh_nghiep'];
-  private filteredCareerList: Observable<CareerModel[]>;
-  private addresses: Array<any> = [null];
-  private loading:boolean = false;
-  private types = ['Dạng thẻ', 'Dạng bảng'];
-  private page:number = 1;
-  private pager: any = {};
+  public filteredCareerList: Observable<CareerModel[]>;
+  public addresses: Array<any> = [null];
+  public loading:boolean = false;
+  public types = ['Dạng thẻ', 'Dạng bảng'];
+  public page:number = 1;
+  public pager: any = {};
   //Declare variable for ONLU TS
-  private control = new FormControl();
-  private _marketService: MarketService;
-  private errorMessage: any; 
-  private careerList: Array<CareerModel> = new Array<CareerModel>();
-  private districtList: Array<DistrictModel> = new Array<DistrictModel>();
-  private categories = [null];//['Tất cả', 'Hạt điều', 'Hạt tiêu', 'Hạt cà phê', 'Cao su'];
-  private pagedItems: any[];
-  private pagerService: PagerService;
-  private productList:any;
+  public control = new FormControl();
+  public _marketService: MarketService;
+  public errorMessage: any; 
+  public careerList: Array<CareerModel> = new Array<CareerModel>();
+  public districtList: Array<DistrictModel> = new Array<DistrictModel>();
+  public categories = [null];//['Tất cả', 'Hạt điều', 'Hạt tiêu', 'Hạt cà phê', 'Cao su'];
+  public pagedItems: any[];
+  public pagerService: PagerService;
+  public productList:any;
   //Viewchild
   @ViewChild('TABLE', { static: false }) table: ElementRef;
   @ViewChild('scheduledOrdersPaginator', {static: true}) paginator: MatPaginator;
   @ViewChild('selected_Career', {static: false}) careerEle : ElementRef;
 
   constructor(
-    private marketService: MarketService,
-    private paginationService: PaginationService,
-    private router: Router,
-    private _pagerService: PagerService
+    public marketService: MarketService,
+    public paginationService: PaginationService,
+    public router: Router,
+    public _pagerService: PagerService
   ) {
     this._marketService = marketService;
     this.pagerService = _pagerService;
@@ -95,7 +95,7 @@ export class SearchPartnerComponent implements AfterViewInit, OnInit {
         .subscribe();
   }
   //Function for PROCESS-FLOW   -------------------------------------------------------------------------------
-  private getAllDistrict() {
+  public getAllDistrict() {
     console.log("+ Function: GetAllDistrict()");
     this._marketService.GetAllDistrict().subscribe(
       allrecords => {
@@ -103,7 +103,7 @@ export class SearchPartnerComponent implements AfterViewInit, OnInit {
         this.districtList.forEach(element => this.addresses.push(element.ten_quan_huyen));
       });
   }
-  private getAllNganhNghe() {
+  public getAllNganhNghe() {
     console.log("+ Function: GetAllNganhNghe()");
     this._marketService.GetAllCareer().subscribe(
       allrecords => {
@@ -116,7 +116,7 @@ export class SearchPartnerComponent implements AfterViewInit, OnInit {
       map(value => this._filter(value))
     );
   }
-  private getAllCompany() {
+  public getAllCompany() {
     console.log("+ Function: GetAllCompany()");
     this._marketService.GetAllCompany().subscribe(
       allrecords => {
@@ -132,7 +132,7 @@ export class SearchPartnerComponent implements AfterViewInit, OnInit {
       error => this.errorMessage = <any>error
     );
   }
-  private getAllProduct(allrecords) {
+  public getAllProduct(allrecords) {
     console.log("+ Function: GetAllProduct");
         this.productList = allrecords.data as Array<ProductModel>;
         if (this.typeShow == 1) {
@@ -145,7 +145,7 @@ export class SearchPartnerComponent implements AfterViewInit, OnInit {
   }
   //Function for EVENT HTML     -------------------------------------------------------------------------------
   //Xuất excel
-  private exportTOExcel(filename: string, sheetname: string) {
+  public exportTOExcel(filename: string, sheetname: string) {
     
     let excelFileName: string;
     let hashKeyDataSource: HashTableNumber<number> = {};
@@ -197,22 +197,22 @@ export class SearchPartnerComponent implements AfterViewInit, OnInit {
     XLSX.utils.book_append_sheet(wb, ws, sheetname);
     XLSX.writeFile(wb, excelFileName);    
   }
-  private _filter(value: string): CareerModel[] {
+  public _filter(value: string): CareerModel[] {
     const filterValue = this._normalizeValue(value);
     return this.careerList.filter(career => this._normalizeValue(career.ten_kem_ma).includes(filterValue));
   }
-  private openDetailCompany(mst: string) {
+  public openDetailCompany(mst: string) {
     let url = this.router.serializeUrl(
       this.router.createUrlTree([encodeURI('#') + '/public/partner/search/' + mst]));    
     window.open(url.replace('%23','#'), "_blank");
   }
-  private setPage(page: number) {
+  public setPage(page: number) {
     // get pager object from service
     this.pager = this.pagerService.getPager(this.dataSource.data.length, page);
     // get current page of items
     this.pagedItems = this.dataSource.data.slice(this.pager.startIndex, this.pager.endIndex + 1);
   }
-  private changeType() {
+  public changeType() {
     if (this.selectedType == this.types[0]) {
       this.typeShow = 0;
       this.setPage(1);
@@ -227,7 +227,7 @@ export class SearchPartnerComponent implements AfterViewInit, OnInit {
       this.paginator._intl.previousPageLabel = "Trang trước";
     }
   }
-  private filter() {
+  public filter() {
     // this.filterEntity.ten_doanh_nghiep = this.selectedName? this.selectedName : null;
     // this.filterEntity.dia_chi_day_du = this.selectedAddress == 'Tất cả'? null : this.selectedAddress;
     // this.filterEntity.nganh_nghe_kd = this.selectedCategory == 'Tất cả'? null : this.selectedCategory;
@@ -235,19 +235,19 @@ export class SearchPartnerComponent implements AfterViewInit, OnInit {
     // this.tempFilter.ten_nganh_nghe = document.getElementById('selected_Career')
     this.filterEntity = {...this.tempFilter}
   }
-  private change() {
+  public change() {
 
   }
-  private cancel() {
+  public cancel() {
     this.tempFilter = new filterModel();
     this.filterEntity = {...filterModel};
   }
   //Function for EXTENTION      -------------------------------------------------------------------------------
-  private loadLessonsPage() {
+  public loadLessonsPage() {
     // this.dataSource;
     // this.setPage(1);
   }
-  private unicodeToAZ(str: string) {
+  public unicodeToAZ(str: string) {
     str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a");
     str = str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, "e");
     str = str.replace(/ì|í|ị|ỉ|ĩ/g, "i");
@@ -257,7 +257,7 @@ export class SearchPartnerComponent implements AfterViewInit, OnInit {
     str = str.replace(/đ/g, "d");
     return str;
   }
-  private _normalizeValue(value: string): string {
+  public _normalizeValue(value: string): string {
     return value.toLowerCase().replace(/\s/g, '');
   }
   // applyFilter(type: string, filterValue: string) {

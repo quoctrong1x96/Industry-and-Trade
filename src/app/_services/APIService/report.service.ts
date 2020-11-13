@@ -16,24 +16,24 @@ import { LoginService } from './login.service';
 
 export class ReportService {
     // declare variable
-    private data: any;
-    private apiReport = environment.apiEndpoint + "api/bao-cao";
-    private apiOrganization = environment.apiEndpoint + "api/don-vi";
-    private urlReportMonth = "/thang";
-    private urlReportYear = "/nam";
-    private urlReportQuarter = "/quy";
-    private urlReportHalf = "/6thang";
-    private urlViewAll = "/tat-ca-da-nhap";
-    private urlApprove = "/phe-duyet";
-    private urlDecline = "/tu-choi";
-    private urlSend = "/gui-lanh-dao";
-    private urlLinhvucBaoCao = "/bao-cao-theo-linh-vuc";
-    private urlReport12Months = "/du-lieu-tong-hop-12-thang";
+    public data: any;
+    public apiReport = environment.apiEndpoint + "api/bao-cao";
+    public apiOrganization = environment.apiEndpoint + "api/don-vi";
+    public urlReportMonth = "/thang";
+    public urlReportYear = "/nam";
+    public urlReportQuarter = "/quy";
+    public urlReportHalf = "/6thang";
+    public urlViewAll = "/tat-ca-da-nhap";
+    public urlApprove = "/phe-duyet";
+    public urlDecline = "/tu-choi";
+    public urlSend = "/gui-lanh-dao";
+    public urlLinhvucBaoCao = "/bao-cao-theo-linh-vuc";
+    public urlReport12Months = "/du-lieu-tong-hop-12-thang";
 
     token: any;
     username: any;
 
-    constructor(private http: HttpClient, private logOutService: LoginService) {
+    constructor(public http: HttpClient, public logOutService: LoginService) {
         // console.log("ReportService Contraction");
         this.data = JSON.parse(localStorage.getItem('currentUser'));
         this.token = this.data.token;
@@ -195,7 +195,7 @@ export class ReportService {
         );
     }
 
-    private handleError(error: HttpErrorResponse) {
+    public handleError(error: HttpErrorResponse) {
         console.log(error);
         let errorMessage = '';
         if (error.error instanceof ErrorEvent) {

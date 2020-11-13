@@ -38,7 +38,7 @@
 // @Injectable()
 // export class DialogService {
   
-//   constructor(private modalService: NgbModal) {}
+//   constructor(public modalService: NgbModal) {}
   
 //   public confirm(title:string, message:string) {
 //     const modalRef = this.modalService.open(DialogComponent);

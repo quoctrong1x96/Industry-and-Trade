@@ -61,17 +61,17 @@ export class DomesticManagerComponent implements OnInit {
   public readonly LOCALE = 'en-GB';
 
   //Declare variable for only TS  
-  private _rows: number = 0;
-  private _currentRow: number = 0;
-  private _mode: MODE = MODE.UPDATE;
+  public _rows: number = 0;
+  public _currentRow: number = 0;
+  public _mode: MODE = MODE.UPDATE;
 
 
   //Declare varialbe for TS & HTML
-  private timeDomesticManager: string;
-  private columns: number = 1;
-  private displayedColumns: string[] = ['index', 'ten_san_pham', 'gia', 'nguon_so_lieu', 'ngay_cap_nhat'];
-  private products: Array<ProductManagerModelList> = new Array<ProductManagerModelList>();
-  private dataSource: MatTableDataSource<DomesticManagerModel> = new MatTableDataSource<DomesticManagerModel>();
+  public timeDomesticManager: string;
+  public columns: number = 1;
+  public displayedColumns: string[] = ['index', 'ten_san_pham', 'gia', 'nguon_so_lieu', 'ngay_cap_nhat'];
+  public products: Array<ProductManagerModelList> = new Array<ProductManagerModelList>();
+  public dataSource: MatTableDataSource<DomesticManagerModel> = new MatTableDataSource<DomesticManagerModel>();
   //ViewChild
   @ViewChildren(ManagerDirective) inputs: QueryList<ManagerDirective>
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -92,10 +92,10 @@ export class DomesticManagerComponent implements OnInit {
    * @param marketService Service call API get data
    * @param loginService Service check login of user
    */
-  public constructor(private _managerService: ManagerService,
-    private _keyboardservice: KeyboardService,
-    private _infor: InformationService,
-    private _loginService: LoginService) {
+  public constructor(public _managerService: ManagerService,
+    public _keyboardservice: KeyboardService,
+    public _infor: InformationService,
+    public _loginService: LoginService) {
     console.log("* DomesticManagerComponent constructed!")
   }
 
@@ -116,7 +116,7 @@ export class DomesticManagerComponent implements OnInit {
   }
   // FUNCION USE FOR PROCESS-FLOW -----------------------------------------------------------------------------------------------------
 
-  private getListProduct(): void {
+  public getListProduct(): void {
     console.log("+ Function: GetListProduct()");
     this._managerService.GetListProduct().subscribe(
       allrecords => {
@@ -126,12 +126,12 @@ export class DomesticManagerComponent implements OnInit {
     );
   }
 
-  private getPriceChange(param: any) {
+  public getPriceChange(param: any) {
     this.getPreviousDomesticManager(param._d);
   }
 
   //Get domestic market price
-  private getPreviousDomesticManager(time: Date): void {
+  public getPreviousDomesticManager(time: Date): void {
     let formattedDate = formatDate(time, this.format, this.locale);
     this._managerService.GetDomesticMarketByTime(formattedDate).subscribe(
       allrecords => {
@@ -159,7 +159,7 @@ export class DomesticManagerComponent implements OnInit {
   }
 
   //FUNCTION USE FOR HTML/EVENT-----------------------------------------------------------------------------------------------------------------
-  private save() {
+  public save() {
     this._loginService.userValue.user_id;
     this.dataSource.data.forEach(element => {
       if (element.gia) {
@@ -309,13 +309,13 @@ export class DomesticManagerComponent implements OnInit {
   }
 
   //Event button "Lọc dữ liệu"
-  private applyFilter(event: Event) {
+  public applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   //Envet Key Arrown move
-  private move(object) {
+  public move(object) {
     const inputToArray = this.inputs.toArray()
     let index = inputToArray.findIndex(x => x.element == object.element);
     switch (object.action) {
@@ -339,12 +339,12 @@ export class DomesticManagerComponent implements OnInit {
   }
 
   //Event select combobox "Tên sản phẩm"
-  private changeProduct(element: any) {
+  public changeProduct(element: any) {
     element.ten_san_pham = this.products.filter(x => x.ma_san_pham == element.id_san_pham)[0].ten_san_pham;
   }
 
   //Event Add row "Thêm dòng"
-  private addRow(): void {
+  public addRow(): void {
     let newRow: DomesticManagerModel = new DomesticManagerModel();
     newRow.gia;
     newRow.ngay_cap_nhat = this.getCurrentDate();
@@ -362,14 +362,14 @@ export class DomesticManagerComponent implements OnInit {
   }
 
   //Evnet "Xóa dòng"
-  private deleteRow(): void {
+  public deleteRow(): void {
     this.dataSource.data.splice(this._currentRow, 1);
     this.dataSource = new MatTableDataSource(this.dataSource.data);
     this._rows = this.dataSource.filteredData.length;
   }
 
   //Evnet "Chèn dòng"
-  private insertRow(): void {
+  public insertRow(): void {
     let data = this.dataSource.data.slice(this._currentRow);
     this.dataSource.data.splice(this._currentRow, this.dataSource.data.length - this._currentRow + 1);
     let newRow: DomesticManagerModel = new DomesticManagerModel();
@@ -386,13 +386,13 @@ export class DomesticManagerComponent implements OnInit {
   }
 
   //Event Change row
-  private changeRow(index: number) {
+  public changeRow(index: number) {
     this._currentRow = index;
   }
 
   //FUNCTION EXTENTIONS-----------------------------------------------------------------------------------------------------------------
   //Create default table values
-  private createDefault() {
+  public createDefault() {
     const HAT_DIEU: number = 2;
     const HAT_TIEU: number = 10;
     const CAO_SU: number = 4;
@@ -418,7 +418,7 @@ export class DomesticManagerComponent implements OnInit {
   }
 
   //Get current time
-  private getMonthAndYear(time: string): string {
+  public getMonthAndYear(time: string): string {
     let year = time.substr(0, 4);
     let month = time.substr(4, 2);
     let day = time.substr(6, 2);
@@ -427,7 +427,7 @@ export class DomesticManagerComponent implements OnInit {
     return result as string;
   }
 
-  private getCurrentDate(): string {
+  public getCurrentDate(): string {
     let date = new Date();
     return date.toLocaleDateString(this.LOCALE);
   }

@@ -14,12 +14,12 @@ export class UseFocusedEnergyComponent implements OnInit {
   @ViewChild('table', { static: false }) table: MatTable<UserForcusEnergy>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   //Constant variable
-  private readonly displayedColumns: string[] = ['index', 'ten_doanh_nghiep','dia_chi', 'nganh_nghe', 'nang_luong_tieu_thu', 'nang_luong_quy_doi', 'suat_tieu_hao'];
-  private readonly displayMergeColumns: string[] = ['indexM', 'ten_doanh_nghiepM','nganh_ngheM', 'nang_luong_trong_diemM'];
+  public readonly displayedColumns: string[] = ['index', 'ten_doanh_nghiep','dia_chi', 'nganh_nghe', 'nang_luong_tieu_thu', 'nang_luong_quy_doi', 'suat_tieu_hao'];
+  public readonly displayMergeColumns: string[] = ['indexM', 'ten_doanh_nghiepM','nganh_ngheM', 'nang_luong_trong_diemM'];
   //TS & HTML Variable
-  private dataSource: MatTableDataSource<UserForcusEnergy> = new MatTableDataSource<UserForcusEnergy>();
-  private filteredDataSource: MatTableDataSource<UserForcusEnergy> = new MatTableDataSource<UserForcusEnergy>();
-  private districts: DistrictModel[] = [{ id: 1, ten_quan_huyen: 'Thị xã Phước Long' },
+  public dataSource: MatTableDataSource<UserForcusEnergy> = new MatTableDataSource<UserForcusEnergy>();
+  public filteredDataSource: MatTableDataSource<UserForcusEnergy> = new MatTableDataSource<UserForcusEnergy>();
+  public districts: DistrictModel[] = [{ id: 1, ten_quan_huyen: 'Thị xã Phước Long' },
   { id: 2, ten_quan_huyen: 'Thành phố Đồng Xoài' },
   { id: 3, ten_quan_huyen: 'Thị xã Bình Long' },
   { id: 4, ten_quan_huyen: 'Huyện Bù Gia Mập' },
@@ -30,7 +30,7 @@ export class UseFocusedEnergyComponent implements OnInit {
   { id: 9, ten_quan_huyen: 'Huyện Bù Đăng' },
   { id: 10, ten_quan_huyen: 'Huyện Chơn Thành' },
   { id: 11, ten_quan_huyen: 'Huyện Phú Riềng' }];
-  private data: Array<UserForcusEnergy> = [{mst: '111', ten_doanh_nghiep: 'CÔNG TY TNHH SHYANG TA',  dia_chi: 'Xã Thành Tâm, H. Chơn Thành, T. Bình Phước',ma_huyen_thi:10,nganh_nghe:'Thuộc da, sơ chế da, giày dép',nang_luong_tieu_thu: null, nang_luong_quy_doi:153215,suat_tieu_hao:20463000},
+  public data: Array<UserForcusEnergy> = [{mst: '111', ten_doanh_nghiep: 'CÔNG TY TNHH SHYANG TA',  dia_chi: 'Xã Thành Tâm, H. Chơn Thành, T. Bình Phước',ma_huyen_thi:10,nganh_nghe:'Thuộc da, sơ chế da, giày dép',nang_luong_tieu_thu: null, nang_luong_quy_doi:153215,suat_tieu_hao:20463000},
   {mst: '122211', ten_doanh_nghiep: 'CÔNG TY CỔ PHẦN GỖ MDF VRG DONGWHA',  dia_chi: 'KCN Minh Hưng III, Xã. Minh Hưng, H. Chơn Thành, T. Bình Phước',ma_huyen_thi:10,nganh_nghe:'Chế biến gỗ và các sản phẩm từ gỗ, tre',nang_luong_tieu_thu: null, nang_luong_quy_doi:324617,suat_tieu_hao:36765700},
   {mst: '3333', ten_doanh_nghiep: 'CÔNG TY TNHH SẢN XUẤT GIÀY DÉP GRAND GIAN',  dia_chi: 'KCN Đồng Xoài II, P. Tiến Thành, Tp. Đồng Xoài, T. Bình Phước',ma_huyen_thi:2,nganh_nghe:'Thuộc da, sơ chế da, giày dép',nang_luong_tieu_thu: null, nang_luong_quy_doi:342367,suat_tieu_hao:5535400},
   {mst: '144411', ten_doanh_nghiep: 'CÔNG TY TNHH MỘT THÀNH VIÊN C&T VINA ',  dia_chi: 'KCN Minh Hưng - Hàn Quốc, Xã Minh Hưng, H.Chơn Thành, T.Bình Phước',ma_huyen_thi:10,nganh_nghe:'Sản xuất trang phục, nhuộm',nang_luong_tieu_thu: null, nang_luong_quy_doi:256856,suat_tieu_hao:23653000},

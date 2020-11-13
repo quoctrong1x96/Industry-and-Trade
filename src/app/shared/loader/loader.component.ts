@@ -9,7 +9,7 @@ import { Subject } from 'rxjs';
 })
 export class LoaderComponent implements OnInit {
 
-  constructor(private loaderService: LoaderService) { }
+  constructor(public loaderService: LoaderService) { }
 
   ngOnInit() {
   }

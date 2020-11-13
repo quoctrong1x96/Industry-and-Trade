@@ -16,12 +16,12 @@ export class RuralElectricManagementComponent implements OnInit {
   @ViewChild('table', { static: false }) table: MatTable<RuralElectricModel>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   //Constant variable
-  private readonly displayedColumns: string[] = ['index', 'dia_ban', 'tong_so_ho', 'ho_co_dien', 'ho_chua_co_dien', 'ty_le', 'tieu_chi_41', 'tieu_chi_42', 'tieu_chi_43'];
-  private readonly dsplayMergeColumns: string[]= ['indexM','dia_banM','so_ho_su_dung_dienM','ty_leM','tieu_chi_so_4M'];
+  public readonly displayedColumns: string[] = ['index', 'dia_ban', 'tong_so_ho', 'ho_co_dien', 'ho_chua_co_dien', 'ty_le', 'tieu_chi_41', 'tieu_chi_42', 'tieu_chi_43'];
+  public readonly dsplayMergeColumns: string[]= ['indexM','dia_banM','so_ho_su_dung_dienM','ty_leM','tieu_chi_so_4M'];
   //TS & HTML Variable
-  private dataSource: MatTableDataSource<RuralElectricModel> = new MatTableDataSource<RuralElectricModel>();
-  private filteredDataSource: MatTableDataSource<RuralElectricModel> = new MatTableDataSource<RuralElectricModel>();
-  private districts: DistrictModel[] = [{ id: 1, ten_quan_huyen: 'Thị xã Phước Long' },
+  public dataSource: MatTableDataSource<RuralElectricModel> = new MatTableDataSource<RuralElectricModel>();
+  public filteredDataSource: MatTableDataSource<RuralElectricModel> = new MatTableDataSource<RuralElectricModel>();
+  public districts: DistrictModel[] = [{ id: 1, ten_quan_huyen: 'Thị xã Phước Long' },
   { id: 2, ten_quan_huyen: 'Thành phố Đồng Xoài' },
   { id: 3, ten_quan_huyen: 'Thị xã Bình Long' },
   { id: 4, ten_quan_huyen: 'Huyện Bù Gia Mập' },
@@ -32,7 +32,7 @@ export class RuralElectricManagementComponent implements OnInit {
   { id: 9, ten_quan_huyen: 'Huyện Bù Đăng' },
   { id: 10, ten_quan_huyen: 'Huyện Chơn Thành' },
   { id: 11, ten_quan_huyen: 'Huyện Phú Riềng' }];
-  private data: Array<RuralElectricModel> = [{thu_tu: "I", ten_huyen_thi: 'Huyện Đồng Phú',ma_huyen_thi:8,tong_ho_su_dung_dien: null,tong_ho_co_dien: null, tong_ho_khong_co_dien: null, ty_le: null, tieu_chi_1: null, tieu_chi_2: null, tieu_chi_3: null},
+  public data: Array<RuralElectricModel> = [{thu_tu: "I", ten_huyen_thi: 'Huyện Đồng Phú',ma_huyen_thi:8,tong_ho_su_dung_dien: null,tong_ho_co_dien: null, tong_ho_khong_co_dien: null, ty_le: null, tieu_chi_1: null, tieu_chi_2: null, tieu_chi_3: null},
   {thu_tu:"1", ten_huyen_thi: 'Xã Thuận Lợi',ma_huyen_thi:8,tong_ho_su_dung_dien: 2434  ,tong_ho_co_dien: 2430, tong_ho_khong_co_dien: 4, ty_le: 99.8, tieu_chi_1: "Đạt", tieu_chi_2: "Đạt", tieu_chi_3: "Đạt"},
   {thu_tu:"2", ten_huyen_thi: 'Xã Đồng Tâm',ma_huyen_thi:8,tong_ho_su_dung_dien: 2108  ,tong_ho_co_dien: 2085, tong_ho_khong_co_dien: 423, ty_le: 98.9, tieu_chi_1: "Đạt", tieu_chi_2: "Đạt", tieu_chi_3: "Đạt"},
   {thu_tu:"II", ten_huyen_thi: 'Huyện Chơn Thành',ma_huyen_thi:10,tong_ho_su_dung_dien: null  ,tong_ho_co_dien: null, tong_ho_khong_co_dien: null, ty_le: null, tieu_chi_1: null, tieu_chi_2: null, tieu_chi_3: null},

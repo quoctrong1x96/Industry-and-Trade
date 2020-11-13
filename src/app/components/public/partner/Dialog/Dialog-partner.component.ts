@@ -52,8 +52,8 @@ export class DialogPartnerComponent implements OnInit {
 
     constructor(
         @Inject(MAT_DIALOG_DATA) public data: any,
-        private marketService: MarketService,
-        private route: ActivatedRoute
+        public marketService: MarketService,
+        public route: ActivatedRoute
     ) {
     }
 

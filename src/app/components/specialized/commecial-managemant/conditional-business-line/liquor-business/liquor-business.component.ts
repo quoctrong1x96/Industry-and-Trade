@@ -37,7 +37,7 @@ export class LiquorBusinessComponent implements OnInit {
     @ViewChild(MatAccordion, { static: true }) accordion: MatAccordion;
     @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-    constructor(private sctService: SCTService) {
+    constructor(public sctService: SCTService) {
     }
 
     ngOnInit() {

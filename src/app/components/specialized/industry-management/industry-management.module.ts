@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from 'src/app/material.module';
-import { PipeModule } from 'src/app/shared/pipe.module';
 import { ChemicalManagementComponent } from './chemical-management/chemical-management.component';
 import { ClusterManagementComponent } from './cluster-management/cluster-management.component';
 import { FoodIndustryManagementComponent } from './food-industry/food-industry-management.component';
@@ -17,7 +16,6 @@ import { LPGManagementComponent } from './lpg-management/lpg-management.componen
         MaterialModule,
         ReactiveFormsModule,
         IndustryManagementRoutingModule,
-        PipeModule
       ],
       exports: [
       ],

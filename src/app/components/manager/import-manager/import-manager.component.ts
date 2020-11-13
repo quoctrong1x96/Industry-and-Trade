@@ -56,30 +56,30 @@ export const MY_FORMATS = {
 
 export class ImportManagerComponent implements OnInit {
     //Declare constance
-    private readonly ARRAY_PRODUCT = [1,27,13,34,25,33,22,4,31,28,18,38,19,30,7,17,37,32,21,24,23];
-    private readonly MAX_PRODUCT = 21;
+    public readonly ARRAY_PRODUCT = [1,27,13,34,25,33,22,4,31,28,18,38,19,30,7,17,37,32,21,24,23];
+    public readonly MAX_PRODUCT = 21;
     //Declare variable for HTML&TS
-    private date = new FormControl(_moment());
-    private columns: number = 1;
-    private timeImportManager: string;
-    private displayedColumns: string[] = ['index', 'ten_san_pham', 'san_luong', 'tri_gia', 'san_luong_ct', 'tri_gia_ct', 'top_xuat_khau'];
-    private products: Array<ProductManagerModelList> = new Array<ProductManagerModelList>();
-    private currentRow: number = 0;
-    private dataSource: MatTableDataSource<ImportManagerModel> = new MatTableDataSource<ImportManagerModel>();
-    private modeQuery: MODE = MODE.INSERT;
+    public date = new FormControl(_moment());
+    public columns: number = 1;
+    public timeImportManager: string;
+    public displayedColumns: string[] = ['index', 'ten_san_pham', 'san_luong', 'tri_gia', 'san_luong_ct', 'tri_gia_ct', 'top_xuat_khau'];
+    public products: Array<ProductManagerModelList> = new Array<ProductManagerModelList>();
+    public currentRow: number = 0;
+    public dataSource: MatTableDataSource<ImportManagerModel> = new MatTableDataSource<ImportManagerModel>();
+    public modeQuery: MODE = MODE.INSERT;
     //Declare variable for ONLY TS   
     rows: number = 0;
-    private theYear: number = 0;
-    private theMonth: number = 0;
+    public theYear: number = 0;
+    public theMonth: number = 0;
 
     //ViewChild
     @ViewChildren(ManagerDirective) inputs: QueryList<ManagerDirective>
     @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-    constructor(private managerService: ManagerService,
-        private marketService: MarketService,
-        private keyboardservice: KeyboardService, private dialog: MatDialog,
-        private _infor: InformationService) {
+    constructor(public managerService: ManagerService,
+        public marketService: MarketService,
+        public keyboardservice: KeyboardService, public dialog: MatDialog,
+        public _infor: InformationService) {
     }
 
     public async ngOnInit(): Promise<void> {
@@ -94,7 +94,7 @@ export class ImportManagerComponent implements OnInit {
     }
 
     //Function for PROCESS-FLOW ----------------------------------------------------------------------------------------------
-    private getListProduct(): void {
+    public getListProduct(): void {
         this.managerService.GetListProduct().subscribe(
             allrecords => {
                 this.products = allrecords.data as ProductManagerModelList[];
@@ -102,7 +102,7 @@ export class ImportManagerComponent implements OnInit {
             },
         );
     }
-    private getDomesticMarketImport(month: number, year: number) {
+    public getDomesticMarketImport(month: number, year: number) {
         this.marketService.GetImportedValue(month, year).subscribe(
             allrecords => {
                 this.dataSource = new MatTableDataSource<ImportMarketModel>(allrecords.data);
@@ -131,12 +131,12 @@ export class ImportManagerComponent implements OnInit {
     }
     //Function for Event HTML ----------------------------------------------------------------------------------------------
     //Evemt "Lọc dữ liệu"
-    private applyFilter(event: Event) {
+    public applyFilter(event: Event) {
         const filterValue = (event.target as HTMLInputElement).value;
         this.dataSource.filter = filterValue.trim().toLowerCase();
     }
     //Event "Arrown key"
-    private move(object) {
+    public move(object) {
         const inputToArray = this.inputs.toArray()
         let index = inputToArray.findIndex(x => x.element == object.element);
         switch (object.action) {
@@ -159,7 +159,7 @@ export class ImportManagerComponent implements OnInit {
         }
     }
     //EVENT "Chọn năm"
-    private chosenYearHandler(normalizedYear: Moment) {
+    public chosenYearHandler(normalizedYear: Moment) {
         const ctrlValue = this.date.value;
         ctrlValue.year(normalizedYear.year());
         this.date.setValue(ctrlValue);
@@ -167,7 +167,7 @@ export class ImportManagerComponent implements OnInit {
         return this.theYear as number
     }
     //Event "Chọn tháng"
-    private chosenMonthHandler(normalizedMonth: Moment, datepicker: MatDatepicker<Moment>) {
+    public chosenMonthHandler(normalizedMonth: Moment, datepicker: MatDatepicker<Moment>) {
         const ctrlValue = this.date.value;
         ctrlValue.month(normalizedMonth.month());
         this.date.setValue(ctrlValue);
@@ -178,7 +178,7 @@ export class ImportManagerComponent implements OnInit {
         return this.theMonth as number
     }
     //Event "Top Doanh Nghiệp"
-    private openDialogSelectCompany(data: any) {
+    public openDialogSelectCompany(data: any) {
         const dialogRef = this.dialog.open(ExportTopCompanyManager, {
             data: {
                 message: 'Nhập dữ liệu top doanh nghiệp nhập khẩu.',
@@ -197,7 +197,7 @@ export class ImportManagerComponent implements OnInit {
         });
     }
     //Event "Thêm dòng"
-    private addRow() {
+    public addRow() {
         let newRow: ImportManagerModel = new ImportManagerModel();
         newRow.san_luong;
         newRow.tri_gia;
@@ -217,13 +217,13 @@ export class ImportManagerComponent implements OnInit {
         this.rows = this.dataSource.filteredData.length;
     }
     //Event "Xóa dòng"
-    private deleteRow() {
+    public deleteRow() {
         this.dataSource.data.splice(this.currentRow, 1);
         this.dataSource = new MatTableDataSource(this.dataSource.data);
         this.rows = this.dataSource.filteredData.length;
     }
     //Event "Chèn dòng"
-    private insertRow() {
+    public insertRow() {
         let data = this.dataSource.data.slice(this.currentRow);
         this.dataSource.data.splice(this.currentRow, this.dataSource.data.length - this.currentRow + 1);
         let newRow: ImportManagerModel = new ImportManagerModel();
@@ -242,7 +242,7 @@ export class ImportManagerComponent implements OnInit {
         this.rows = this.dataSource.filteredData.length;
     }
     //Event "Tạo Mặc định"
-    private createDefault() {
+    public createDefault() {
         if (this.dataSource.data.length > 0)
             if (!confirm("Nếu bạn tạo mặc định sẽ xóa dữ liệu hiện tại! Bạn tiếp tục không?"))
                 return;
@@ -260,17 +260,17 @@ export class ImportManagerComponent implements OnInit {
         console.log(this.dataSource.data);
     }
     //Event "Change row"
-    private changeRow(index: number) {
+    public changeRow(index: number) {
         this.currentRow = index;
     }
     //Event "Thay đổi sản phẩm"
-    private changeProduct(element: any) {
+    public changeProduct(element: any) {
         element.ten_san_pham = this.products.filter(x => x.ma_san_pham == element.id_san_pham)[0].ten_san_pham;
         element.thang = this.getCurrentMonth();
         element.nam = this.getCurrentYear();
     }
     //Event "Lưu"
-    private save() {
+    public save() {
         let month = this.getCurrentMonth();
         let year = this.getCurrentYear();
         // let data: ImportManagerModel[] = this.dataSource.data.filter(x => x.id == 0);
@@ -291,7 +291,7 @@ export class ImportManagerComponent implements OnInit {
         );
     }
 
-    private changePeriod() {
+    public changePeriod() {
 
     }
     //Event for "Tải template"
@@ -388,30 +388,32 @@ export class ImportManagerComponent implements OnInit {
         }
     }
     //Function for EXTENTION ----------------------------------------------------------------------------------------------
-    private formatNgayCapNhat(str: string) {
+    public formatNgayCapNhat(str: string) {
         let year: string = str.substr(0, 4);
         let month: string = str.substr(4, 2);
         let day: string = str.substr(6, 2);
         let result: string = day + '/' + month + '/' + year;
         return result;
     }
-    private getMonthAndYear(time: string) {
+    public getMonthAndYear(time: string) {
         let year = time.substr(0, 4);
         let month = time.substr(4, 2);
         let result = month + "/" + year;
         return result as string;
     }
-    private getCurrentDate() {
+    public getCurrentDate() {
         let date = new Date;
         return this.getMonthAndYear(date.toISOString().replace('-', '').replace('-', ''));
     }
-    private getCurrentMonth() {
+    public getCurrentMonth() {
         let date = new Date();
         return date.getMonth() + 1;
     }
-    private getCurrentYear() {
+    public getCurrentYear() {
         let date = new Date();
         return date.getFullYear();
     }
-
+    addEvent(action : string, event){
+        
+    }
 }

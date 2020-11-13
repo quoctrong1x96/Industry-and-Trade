@@ -20,12 +20,12 @@ export class LoginComponent implements OnInit {
   error = '';
   loading = false;
   isBusiness: boolean = false;
-  private returnUrl: string = "";
+  public returnUrl: string = "";
 
   constructor(public info: InformationService,
     public loginService: LoginService,
     public router: Router,
-    private route: ActivatedRoute,
+    public route: ActivatedRoute,
     public location: Location) {
   }
   ngOnInit() {

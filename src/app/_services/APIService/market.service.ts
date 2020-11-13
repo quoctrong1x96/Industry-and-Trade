@@ -12,50 +12,50 @@ import { environment } from '../../../environments/environment';
 })
 
 export class MarketService {
-    private data: any;
-    private apiMarketUrl = environment.apiEndpoint + "api/thi-truong";
-    private urlDomesticMarket = "/gia-ca";
-    private urlForeignMarket = "/gia-ca-quoc-te";
-    private urlExport = "/xuat-khau";
-    private urlImport = "/nhap-khau";
-    private urlProdcut = "/san-xuat";
-    private urlProductById = "/gia-ca-trong-nuoc-theo-san-pham";
-    private urlProductTimePeriod = "/gia-ca-trong-khoang-thoi-gian";
+    public data: any;
+    public apiMarketUrl = environment.apiEndpoint + "api/thi-truong";
+    public urlDomesticMarket = "/gia-ca";
+    public urlForeignMarket = "/gia-ca-quoc-te";
+    public urlExport = "/xuat-khau";
+    public urlImport = "/nhap-khau";
+    public urlProdcut = "/san-xuat";
+    public urlProductById = "/gia-ca-trong-nuoc-theo-san-pham";
+    public urlProductTimePeriod = "/gia-ca-trong-khoang-thoi-gian";
 
-    private apiTopUrl = environment.apiEndpoint + "api/doanh-nghiep";
-    private urlTopExport = "/top-xuat-khau";
-    private urlTopImport = "/top-nhap-khau";
-    private urlTopProduct = "/top-san-xuat";
-    private urlAllCompany = "/danh-sach-doanh-nghiep";
-    private urlAllCompanyImport = "/danh-sach-doanh-nghiep";
-    private urlAllCompanyExport = "/danh-sach-doanh-nghiep";
-    private urlCompanyInfo = "/thong-tin-doanh-nghiep";
+    public apiTopUrl = environment.apiEndpoint + "api/doanh-nghiep";
+    public urlTopExport = "/top-xuat-khau";
+    public urlTopImport = "/top-nhap-khau";
+    public urlTopProduct = "/top-san-xuat";
+    public urlAllCompany = "/danh-sach-doanh-nghiep";
+    public urlAllCompanyImport = "/danh-sach-doanh-nghiep";
+    public urlAllCompanyExport = "/danh-sach-doanh-nghiep";
+    public urlCompanyInfo = "/thong-tin-doanh-nghiep";
 
-    private apiProduct = environment.apiEndpoint + "api/san-pham";
-    private urlAllProduct = "/danh-sach-san-pham";
-    private urlProductNameById = "/ma-san-pham/";
+    public apiProduct = environment.apiEndpoint + "api/san-pham";
+    public urlAllProduct = "/danh-sach-san-pham";
+    public urlProductNameById = "/ma-san-pham/";
 
-    private apiHome = environment.apiEndpoint + "api";
-    private urlAllCareer = "/nganh-nghe";
-    private urlDistrict = "/quan-huyen";
-    private urlSubDistrict = "/phuong-xa";
-    private urlBT = "/loai-hinh";
-    private urlCSTT = "/doanh-nghiep/co-so-truc-thuoc";
+    public apiHome = environment.apiEndpoint + "api";
+    public urlAllCareer = "/nganh-nghe";
+    public urlDistrict = "/quan-huyen";
+    public urlSubDistrict = "/phuong-xa";
+    public urlBT = "/loai-hinh";
+    public urlCSTT = "/doanh-nghiep/co-so-truc-thuoc";
 
-    private urlKNXK = '/doanh-nghiep/kim-ngach-xuat-khau';
-    private urlKNNK = '/doanh-nghiep/kim-ngach-nhap-khau';
-    private urlDSQG = '/thi-truong/danh-sach-quoc-gia';
-    private urlUpdateKNNK = '/doanh-nghiep/kim-ngach-nhap-khau';
-    private urlUpdateKNXK = '/doanh-nghiep/kim-ngach-xuat-khau';
+    public urlKNXK = '/doanh-nghiep/kim-ngach-xuat-khau';
+    public urlKNNK = '/doanh-nghiep/kim-ngach-nhap-khau';
+    public urlDSQG = '/thi-truong/danh-sach-quoc-gia';
+    public urlUpdateKNNK = '/doanh-nghiep/kim-ngach-nhap-khau';
+    public urlUpdateKNXK = '/doanh-nghiep/kim-ngach-xuat-khau';
 
-    private apiImportExport = environment.apiEndpoint + "api/bao-cao";
-    private urlListExportedCompany = "/kim-ngach-xuat-khau";
-    private urlListImportedCompany = "/kim-ngach-nhap-khau";
+    public apiImportExport = environment.apiEndpoint + "api/bao-cao";
+    public urlListExportedCompany = "/kim-ngach-xuat-khau";
+    public urlListImportedCompany = "/kim-ngach-nhap-khau";
 
     token: any;
     username: any;
     
-    constructor(private http: HttpClient) {
+    constructor(public http: HttpClient) {
         console.log("MarketService Contraction");
         // this.data = JSON.parse(localStorage.getItem('NormalUser'));
         // this.token = this.data.token;
@@ -304,7 +304,7 @@ export class MarketService {
         );
     }
 
-    private handleError(error: HttpErrorResponse) {
+    public handleError(error: HttpErrorResponse) {
         let errorMessage = '';
         if (error.error instanceof ErrorEvent) {
             // client-side error

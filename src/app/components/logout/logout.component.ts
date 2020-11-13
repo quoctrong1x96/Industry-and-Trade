@@ -9,7 +9,7 @@ import { InformationService } from 'src/app/shared/information/information.servi
 })
 export class LogoutComponent implements OnInit{
 
-  constructor(public loginService: LoginService, public info:InformationService, private router:Router ) {
+  constructor(public loginService: LoginService, public info:InformationService, public router:Router ) {
   }
   ngOnInit(){
       this.LogOut();

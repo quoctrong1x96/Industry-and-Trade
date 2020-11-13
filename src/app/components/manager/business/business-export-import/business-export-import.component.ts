@@ -37,56 +37,56 @@ export class filterModel {
 
 export class BusinessExportImportComponent implements OnInit {
   //Declare variable for CONSTANT
-  private readonly SEPERATE_FILTER = ";";
+  public readonly SEPERATE_FILTER = ";";
   public readonly FORMAT = 'dd/MM/yyyy';
   public readonly LOCALE = 'en-GB';
-  private readonly DEFAULT_IMAGE: string = '../../../../assets/img/brandlogo/company_ph01.jpg';
-  private readonly DEFAULT_PERIOD = "6 Tháng";
+  public readonly DEFAULT_IMAGE: string = '../../../../assets/img/brandlogo/company_ph01.jpg';
+  public readonly DEFAULT_PERIOD = "6 Tháng";
   //Declare variable for TS & HTML
-  private filterEntity;
-  private tempFilter;
-  private filterType: MatTableFilter;
-  private dataSource: MatTableDataSource<CompanyDetailModel> = new MatTableDataSource();
-  private dataSourceImport: MatTableDataSource<CompanyDetailModel> = new MatTableDataSource();
-  private selectedCategory: string = "Tất cả";
-  private selectedAddress: string = "Tất cả";
-  private selectedName: string;
-  private selected_Career: string = "";
-  private selectedType: string = "Dạng bảng";
+  public filterEntity;
+  public tempFilter;
+  public filterType: MatTableFilter;
+  public dataSource: MatTableDataSource<CompanyDetailModel> = new MatTableDataSource();
+  public dataSourceImport: MatTableDataSource<CompanyDetailModel> = new MatTableDataSource();
+  public selectedCategory: string = "Tất cả";
+  public selectedAddress: string = "Tất cả";
+  public selectedName: string;
+  public selected_Career: string = "";
+  public selectedType: string = "Dạng bảng";
   public typeShow: number = 1;
   public displayedColumns: string[] = ['index', 'ten_doanh_nghiep', 'mst', 'san_luong', 'gia_tri', 'chi_tiet_doanh_nghiep'];
-  private filteredCareerList: Observable<CareerModel[]>;
-  private addresses: Array<any> = [null];
-  private loading: boolean = false;
-  private types = ['Dạng thẻ', 'Dạng bảng'];
-  private page: number = 1;
-  private pager: any = {};
-  private selectedPeriod: string = "";
-  private periods = ["Tháng", "Quý", "6 Tháng", "Năm"];
-  private months: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-  private quarters: Object[] = [
+  public filteredCareerList: Observable<CareerModel[]>;
+  public addresses: Array<any> = [null];
+  public loading: boolean = false;
+  public types = ['Dạng thẻ', 'Dạng bảng'];
+  public page: number = 1;
+  public pager: any = {};
+  public selectedPeriod: string = "";
+  public periods = ["Tháng", "Quý", "6 Tháng", "Năm"];
+  public months: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+  public quarters: any[] = [
     { ma_so: 1, ma_chu: "I" },
     { ma_so: 2, ma_chu: "II" },
     { ma_so: 3, ma_chu: "III" },
     { ma_so: 4, ma_chu: "IV" },
   ];
-  private selectedHalf: number = 1;
-  private selectedMonth: number = 1;
-  private selectedQuarter: number = 0;
-  private selectedYear: number = 2020;
-  private years: Array<number> = [];
-  private halfs: number[] = [1];
+  public selectedHalf: number = 1;
+  public selectedMonth: number = 1;
+  public selectedQuarter: number = 0;
+  public selectedYear: number = 2020;
+  public years: Array<number> = [];
+  public halfs: number[] = [1];
 
   //Declare variable for ONLU TS
-  private control = new FormControl();
-  private _marketService: MarketService;
-  private errorMessage: any;
-  private careerList: Array<CareerModel> = new Array<CareerModel>();
-  private districtList: Array<DistrictModel> = new Array<DistrictModel>();
-  private categories = [null];//['Tất cả', 'Hạt điều', 'Hạt tiêu', 'Hạt cà phê', 'Cao su'];
-  private pagedItems: any[];
-  private productList: any;
-  private isSCT: boolean = false;
+  public control = new FormControl();
+  public _marketService: MarketService;
+  public errorMessage: any;
+  public careerList: Array<CareerModel> = new Array<CareerModel>();
+  public districtList: Array<DistrictModel> = new Array<DistrictModel>();
+  public categories = [null];//['Tất cả', 'Hạt điều', 'Hạt tiêu', 'Hạt cà phê', 'Cao su'];
+  public pagedItems: any[];
+  public productList: any;
+  public isSCT: boolean = false;
   //Viewchild
   @ViewChild('TABLE1', { static: false }) table: ElementRef;
   @ViewChild('scheduledOrdersPaginator', { static: true }) paginator: MatPaginator;
@@ -94,10 +94,10 @@ export class BusinessExportImportComponent implements OnInit {
   @ViewChild('selected_Career', { static: false }) careerEle: ElementRef;
 
   constructor(
-    private marketService: MarketService,
-    private paginationService: PaginationService,
-    private _loginService: LoginService,
-    private router: Router,
+    public marketService: MarketService,
+    public paginationService: PaginationService,
+    public _loginService: LoginService,
+    public router: Router,
   ) {
     this._marketService = marketService;
   }
@@ -124,7 +124,7 @@ export class BusinessExportImportComponent implements OnInit {
   //       .subscribe();
   // }
   //Function for PROCESS-FLOW   -------------------------------------------------------------------------------
-  private getAllDistrict() {
+  public getAllDistrict() {
     console.log("+ Function: GetAllDistrict()");
     this._marketService.GetAllDistrict().subscribe(
       allrecords => {
@@ -132,7 +132,7 @@ export class BusinessExportImportComponent implements OnInit {
         this.districtList.forEach(element => this.addresses.push(element.ten_quan_huyen));
       });
   }
-  private getAllNganhNghe() {
+  public getAllNganhNghe() {
     console.log("+ Function: GetAllNganhNghe()");
     this._marketService.GetAllCareer().subscribe(
       allrecords => {
@@ -146,7 +146,7 @@ export class BusinessExportImportComponent implements OnInit {
     );
   }
 
-  private getAllCompanyImport() {
+  public getAllCompanyImport() {
     console.log("+ Function: getAllCompanyImport()");
     let valueOfPeriod: number = 0;
     let valueOfYear: number = 0;
@@ -183,7 +183,7 @@ export class BusinessExportImportComponent implements OnInit {
       error => this.errorMessage = <any>error
     );
   }
-  private getAllCompanyExport() {
+  public getAllCompanyExport() {
     console.log("+ Function: getAllCompanyExport()");
     let valueOfPeriod: number = 0;
     let valueOfYear: number = 0;
@@ -220,7 +220,7 @@ export class BusinessExportImportComponent implements OnInit {
       error => this.errorMessage = <any>error
     );
   }
-  private getAllProduct(allrecords) {
+  public getAllProduct(allrecords) {
     console.log("+ Function: GetAllProduct");
     this.productList = allrecords.data as Array<ProductModel>;
     if (this.typeShow == 1) {
@@ -232,12 +232,12 @@ export class BusinessExportImportComponent implements OnInit {
     }
   }
   //Function for EVENT HTML     -------------------------------------------------------------------------------
-  private timKiem() {
+  public timKiem() {
     this.getAllCompanyExport();
     this.getAllCompanyImport();
   }
   //Xuất excel
-  private exportToExcel(filename: string, sheetname: string, is_export: boolean) {
+  public exportToExcel(filename: string, sheetname: string, is_export: boolean) {
 
     let excelFileName: string;
     let newArray: any[] = [];
@@ -268,16 +268,16 @@ export class BusinessExportImportComponent implements OnInit {
     XLSX.utils.book_append_sheet(wb, ws, sheetname);
     XLSX.writeFile(wb, excelFileName);
   }
-  private _filter(value: string): CareerModel[] {
+  public _filter(value: string): CareerModel[] {
     const filterValue = this._normalizeValue(value);
     return this.careerList.filter(career => this._normalizeValue(career.ten_kem_ma).includes(filterValue));
   }
-  private openDetailCompany(mst: string) {
+  public openDetailCompany(mst: string) {
     let url = this.router.serializeUrl(
       this.router.createUrlTree([encodeURI('#') + '/partner/search/' + mst]));
     window.open(url.replace('%23', '#'), "_blank");
   }
-  private changeType() {
+  public changeType() {
     if (this.selectedType == this.types[0]) {
       this.typeShow = 0;
     }
@@ -291,10 +291,10 @@ export class BusinessExportImportComponent implements OnInit {
       this.paginator._intl.previousPageLabel = "Trang trước";
     }
   }
-  private filter() {
+  public filter() {
     this.filterEntity = { ...this.tempFilter }
   }
-  private cancel() {
+  public cancel() {
     this.tempFilter = new filterModel();
     this.filterEntity = { ...filterModel };
   }
@@ -320,11 +320,11 @@ export class BusinessExportImportComponent implements OnInit {
     }
   }
   //Function for EXTENTION      -------------------------------------------------------------------------------
-  private loadLessonsPage() {
+  public loadLessonsPage() {
     // this.dataSource;
     // this.setPage(1);
   }
-  private unicodeToAZ(str: string) {
+  public unicodeToAZ(str: string) {
     str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a");
     str = str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, "e");
     str = str.replace(/ì|í|ị|ỉ|ĩ/g, "i");
@@ -334,16 +334,16 @@ export class BusinessExportImportComponent implements OnInit {
     str = str.replace(/đ/g, "d");
     return str;
   }
-  private _normalizeValue(value: string): string {
+  public _normalizeValue(value: string): string {
     return value.toLowerCase().replace(/\s/g, '');
   }
-  private formatDateFromString(date: string) {
+  public formatDateFromString(date: string) {
     if (!date) {
       return '';
     }
     return formatDate(date, this.FORMAT, this.LOCALE);
   }
-  private formatString(value: string) {
+  public formatString(value: string) {
 
     if (!value) {
       return '';
@@ -356,20 +356,20 @@ export class BusinessExportImportComponent implements OnInit {
     }
   }
 
-  private getCurrentMonth() {
+  public getCurrentMonth() {
     var currentDate = new Date();
     return currentDate.getMonth() + 1;
   }
-  private getCurrentYear() {
+  public getCurrentYear() {
     var currentDate = new Date();
     return currentDate.getFullYear();
   }
-  private getCurrentQuarter() {
+  public getCurrentQuarter() {
     let currentDate = new Date();
     let month = currentDate.getMonth() + 1;
     return month <= 3 ? 1 : month <= 6 ? 2 : month <= 9 ? 3 : 4;
   }
-  private initialYears() {
+  public initialYears() {
     let returnYear: Array<any> = [];
     let currentDate = new Date();
     let nextYear = currentDate.getFullYear() + 1;

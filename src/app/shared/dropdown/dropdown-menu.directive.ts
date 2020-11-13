@@ -15,7 +15,7 @@ export class DropdownMenuDirective implements OnInit, OnDestroy {
 
   constructor(
     @Host() public dropdown: DropdownDirective,
-    private elementRef: ElementRef,
+    public elementRef: ElementRef,
   ) { }
 
   ngOnInit() {

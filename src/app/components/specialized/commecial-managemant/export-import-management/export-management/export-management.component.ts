@@ -52,9 +52,9 @@ export class ExportManagementComponent implements OnInit {
     @ViewChild(MatSort, { static: false }) sort: MatSort;
 
     constructor(
-        private sctService: SCTService,
-        private matDialog: MatDialog,
-        private marketService: MarketService
+        public sctService: SCTService,
+        public matDialog: MatDialog,
+        public marketService: MarketService
     ) { }
 
     ngOnInit() {

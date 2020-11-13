@@ -14,12 +14,12 @@ export class ElectricDevelopmentManagementComponent implements OnInit {
     @ViewChild('table', { static: false }) table: MatTable<ElectricityDevelopmentModel>;
     @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
     //Constant variable
-    private readonly displayedColumns: string[] = ['index', 'ten_huyen_thi', 'trung_ap_3p', 'trung_ap_1p', 'ha_ap_3p', 'ha_ap_1p', 'so_tram_bien_ap', 'cong_xuat_bien_ap'];
-    private readonly dsplayMergeColumns: string[] = ['indexM', 'ten_huyen_thiM', 'trung_apM', 'ha_apM', 'bien_apM'];
+    public readonly displayedColumns: string[] = ['index', 'ten_huyen_thi', 'trung_ap_3p', 'trung_ap_1p', 'ha_ap_3p', 'ha_ap_1p', 'so_tram_bien_ap', 'cong_xuat_bien_ap'];
+    public readonly dsplayMergeColumns: string[] = ['indexM', 'ten_huyen_thiM', 'trung_apM', 'ha_apM', 'bien_apM'];
     //TS & HTML Variable
-    private dataSource: MatTableDataSource<ElectricityDevelopmentModel> = new MatTableDataSource<ElectricityDevelopmentModel>();
-    private filteredDataSource: MatTableDataSource<ElectricityDevelopmentModel> = new MatTableDataSource<ElectricityDevelopmentModel>();
-    private districts: DistrictModel[] = [{ id: 1, ten_quan_huyen: 'Thị xã Phước Long' },
+    public dataSource: MatTableDataSource<ElectricityDevelopmentModel> = new MatTableDataSource<ElectricityDevelopmentModel>();
+    public filteredDataSource: MatTableDataSource<ElectricityDevelopmentModel> = new MatTableDataSource<ElectricityDevelopmentModel>();
+    public districts: DistrictModel[] = [{ id: 1, ten_quan_huyen: 'Thị xã Phước Long' },
     { id: 2, ten_quan_huyen: 'Thành phố Đồng Xoài' },
     { id: 3, ten_quan_huyen: 'Thị xã Bình Long' },
     { id: 4, ten_quan_huyen: 'Huyện Bù Gia Mập' },
@@ -30,7 +30,7 @@ export class ElectricDevelopmentManagementComponent implements OnInit {
     { id: 9, ten_quan_huyen: 'Huyện Bù Đăng' },
     { id: 10, ten_quan_huyen: 'Huyện Chơn Thành' },
     { id: 11, ten_quan_huyen: 'Huyện Phú Riềng' }];
-    private data: Array<ElectricityDevelopmentModel> = [{ chi_tieu: "Công tác phát triển điện", ten_huyen_thi: "Thành phố đồng xoài", ma_huyen_thi: 2, trung_ap_3p: 61.91, trung_ap_1p: 31.72, ha_ap_3p: 58.6, ha_ap_1p: 225.53, so_tram_bien_ap: 472, cong_xuat_bien_ap: 114257 },
+    public data: Array<ElectricityDevelopmentModel> = [{ chi_tieu: "Công tác phát triển điện", ten_huyen_thi: "Thành phố đồng xoài", ma_huyen_thi: 2, trung_ap_3p: 61.91, trung_ap_1p: 31.72, ha_ap_3p: 58.6, ha_ap_1p: 225.53, so_tram_bien_ap: 472, cong_xuat_bien_ap: 114257 },
     { chi_tieu: "Công tác phát triển điện", ten_huyen_thi: "Huyện Đồng Phú", ma_huyen_thi: 8, trung_ap_3p: 42.57, trung_ap_1p: 22.51, ha_ap_3p: 1.42, ha_ap_1p: 25.26, so_tram_bien_ap: 254, cong_xuat_bien_ap: 129763 },
     { chi_tieu: "Công tác phát triển điện", ten_huyen_thi: "Huyện Chơn Thành", ma_huyen_thi: 10, trung_ap_3p: 62.72, trung_ap_1p: 41.17, ha_ap_3p: 1.6, ha_ap_1p: 58.01, so_tram_bien_ap: 549, cong_xuat_bien_ap: 356536 },
     ]

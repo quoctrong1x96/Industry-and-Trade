@@ -28,28 +28,28 @@ export class SidebarComponent implements OnInit {
   @ViewChild('sidebar', { static: false }) sidenav: MatSidenav;
 
   //Constatnt-----------------------------------------------------------
-  private readonly SIDEBAR_STATE_DEFAULT: boolean = false;
-  private readonly SHOW_SUB_MENU_DEFAULT: boolean = false;
-  private readonly LOGON_STATE_DEFAULT: boolean = false;
-  private readonly LINK_TEXT_DEFAULT: boolean = false;
-  private readonly PANEL_OPEN_STATE_DEFAULT: boolean = false;
-  private readonly USER_NAME_DEFUALT: string = "Tên tài khoản";
-  private readonly AVATAR_DEFAULT: string = "../../../assets/img/avatars/1.jpg";
+  public readonly SIDEBAR_STATE_DEFAULT: boolean = false;
+  public readonly SHOW_SUB_MENU_DEFAULT: boolean = false;
+  public readonly LOGON_STATE_DEFAULT: boolean = false;
+  public readonly LINK_TEXT_DEFAULT: boolean = false;
+  public readonly PANEL_OPEN_STATE_DEFAULT: boolean = false;
+  public readonly USER_NAME_DEFUALT: string = "Tên tài khoản";
+  public readonly AVATAR_DEFAULT: string = "../../../assets/img/avatars/1.jpg";
 
   //Variable for only TS-----------------------------------------------------------
 
 
   //Variable for TS & HTML-----------------------------------------------------------
-  private navItems: INavItem[] = [];
-  private showSubMenus: Array<boolean> = new Array<boolean>();
-  private showSubmenu: boolean = this.SHOW_SUB_MENU_DEFAULT;
-  private sideNavState: boolean = this.SIDEBAR_STATE_DEFAULT;
-  private linkText: boolean = this.LINK_TEXT_DEFAULT;
-  private img_avatar: string = this.AVATAR_DEFAULT;
-  private userName: string = this.USER_NAME_DEFUALT;
-  private logon: boolean = this.LOGON_STATE_DEFAULT;
-  private panelOpenState: boolean = this.PANEL_OPEN_STATE_DEFAULT;
-  private options = {
+  public navItems: INavItem[] = [];
+  public showSubMenus: Array<boolean> = new Array<boolean>();
+  public showSubmenu: boolean = this.SHOW_SUB_MENU_DEFAULT;
+  public sideNavState: boolean = this.SIDEBAR_STATE_DEFAULT;
+  public linkText: boolean = this.LINK_TEXT_DEFAULT;
+  public img_avatar: string = this.AVATAR_DEFAULT;
+  public userName: string = this.USER_NAME_DEFUALT;
+  public logon: boolean = this.LOGON_STATE_DEFAULT;
+  public panelOpenState: boolean = this.PANEL_OPEN_STATE_DEFAULT;
+  public options = {
     autoHide: true, scrollbarMinSize: 100, forceVisible: true, classNames: {
       // defaults
       content: 'simplebar-content',
@@ -61,9 +61,9 @@ export class SidebarComponent implements OnInit {
 
   //Contruction and Oninit-----------------------------------------------------------
   constructor(
-    private _sidebarService: SidebarService,
-    private _loginService: LoginService,
-    private _router: Router,
+    public _sidebarService: SidebarService,
+    public _loginService: LoginService,
+    public _router: Router,
   ) { }
 
   ngOnInit() {
@@ -81,7 +81,7 @@ export class SidebarComponent implements OnInit {
 
   //Function for event HTML-----------------------------------------------------------
   //When toggle menu click
-  private onSinenavToggle() {
+  public onSinenavToggle() {
     this.sideNavState = !this.sideNavState
 
     setTimeout(() => {
@@ -98,7 +98,7 @@ export class SidebarComponent implements OnInit {
     // }
   }
   //Open child menu
-  private OpenChildren(index: number, navItem_child) {
+  public OpenChildren(index: number, navItem_child) {
     for (let i = 0; i < this.showSubMenus.length; i++) {
       if (i != index)
         this.showSubMenus[i] = false;
@@ -111,14 +111,14 @@ export class SidebarComponent implements OnInit {
   }
 
   // Open subchildren
-  private OpenSubChildren(index: number, navItem_child) {
+  public OpenSubChildren(index: number, navItem_child) {
     // console.log('xxx ', index, navItem_child)
     navItem_child['expand'] = !navItem_child['expand'];
   }
 
   //Function for only TS-----------------------------------------------------------
   //Check localstorage for get Login information
-  private _checkLocalStorage(): boolean {
+  public _checkLocalStorage(): boolean {
     if (localStorage.getItem('currentUser')) {
       let user = JSON.parse(localStorage.getItem('currentUser'));
       if (user) {
@@ -133,18 +133,18 @@ export class SidebarComponent implements OnInit {
     }
   }
   // //Check link is SCT
-  // private _checkurlSCTData(): void {
+  // public _checkurlSCTData(): void {
   //   if (this._router.url.includes('sct')) this.navItems = navItemsReports;
   // }
   //Check user is Bussiness
-  private _checkUserIsBusiness(): void {
+  public _checkUserIsBusiness(): void {
     if (this.logon) {
       let currentUser = JSON.parse(localStorage.getItem('currentUser'));
       let isBusiness = currentUser.role === "3" ? true : false;
     }
   }
   //Check input and show menu
-  private _showNavigationMenu(typeNav: number): INavItem[] {
+  public _showNavigationMenu(typeNav: number): INavItem[] {
     let navItems: INavItem[] = [];
     switch (typeNav) {
       case TYPE_OF_NAV.NONE:

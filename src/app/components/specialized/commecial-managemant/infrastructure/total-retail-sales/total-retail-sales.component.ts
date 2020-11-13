@@ -63,7 +63,7 @@ export class TRSManagementComponent implements OnInit {
 
   //Angular FUnction --------------------------------------------------------------------
   constructor(
-    private reportSevice: ReportService
+    public reportSevice: ReportService
   ) { }
 
   ngOnInit(): void {

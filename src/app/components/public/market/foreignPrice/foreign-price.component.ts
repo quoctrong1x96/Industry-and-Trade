@@ -53,35 +53,35 @@ export const DDMMYY_FORMAT = {
 export class ForeignMarketPriceComponent implements OnInit {
 
   //declare variable for HTML----------------------------------------
-  private _noData: boolean = true;
-  private displayedColumns: string[] = ['index', 'ten_san_pham', 'thi_truong', 'gia', 'nguon_so_lieu', 'ngay_cap_nhat'];
-  private pickedDate = {
+  public _noData: boolean = true;
+  public displayedColumns: string[] = ['index', 'ten_san_pham', 'thi_truong', 'gia', 'nguon_so_lieu', 'ngay_cap_nhat'];
+  public pickedDate = {
     date: new Date()
   }
-  private dataSource: MatTableDataSource<ForeignMarketModel>;
-  private timeDomesticPrice: string;
-  private chartYearModelSelected: number;
-  private chartyears: Array<number> = [];
+  public dataSource: MatTableDataSource<ForeignMarketModel>;
+  public timeDomesticPrice: string;
+  public chartYearModelSelected: number;
+  public chartyears: Array<number> = [];
   //declare variable for ONLY TS----------------------------------------
-  private _theYear: number;
-  private _theMonth: number = 4;
-  private _dataGet: Array<any>;
-  private _mainChartElements: number = 10;
-  private _mainChartLabels: Array<any> = new Array<any>();
-  private _mainChartData: Array<any> = new Array<any>();
-  private _maxSizeChart: number;
-  private _mainChartLegend: boolean;
-  private _mainChartType: string = 'line';
-  private _mainChartColours: Array<any> = new Array<any>();
-  private _mainChartOptions: any;
-  private _date = new FormControl(moment);
-  private _chartYearModel: number;
+  public _theYear: number;
+  public _theMonth: number = 4;
+  public _dataGet: Array<any>;
+  public _mainChartElements: number = 10;
+  public _mainChartLabels: Array<any> = new Array<any>();
+  public _mainChartData: Array<any> = new Array<any>();
+  public _maxSizeChart: number;
+  public _mainChartLegend: boolean;
+  public _mainChartType: string = 'line';
+  public _mainChartColours: Array<any> = new Array<any>();
+  public _mainChartOptions: any;
+  public _date = new FormControl(moment);
+  public _chartYearModel: number;
 
   //ViewChild----------------------------------------
   @ViewChild('TABLE', { static: false }) table: ElementRef;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-  constructor(private marketService: MarketService, private router: Router) {
+  constructor(public marketService: MarketService, public router: Router) {
     this.InitialData();
   }
 
@@ -96,7 +96,7 @@ export class ForeignMarketPriceComponent implements OnInit {
     this.initialChartColor();
     this.inititalChartOther();
   }
-  private getForeignMarketPriceByTime(time: Date) {
+  public getForeignMarketPriceByTime(time: Date) {
     this.marketService.GetForeignMarket(_moment(time).format('DD/MM/YYYY')).subscribe(
       allrecords => {
         console.log(allrecords)
@@ -121,11 +121,11 @@ export class ForeignMarketPriceComponent implements OnInit {
   }
   //Event for HTML -------------------------------------------------------------------------------------------------------------
   //Event for "Năm xem giá cả"
-  private changeYear() {
+  public changeYear() {
     console.log("changeYear");
   }
   // Evnet for "Ngày cập nhật giá"
-  private getPriceChange(param: any) {
+  public getPriceChange(param: any) {
     this.getForeignMarketPriceByTime(param._d);
   }
 
@@ -135,7 +135,7 @@ export class ForeignMarketPriceComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
   //Event for  "Xuất excel"
-  private exportTOExcel(filename: string, sheetname: string) {
+  public exportTOExcel(filename: string, sheetname: string) {
     sheetname = sheetname.replace('/', '_').replace('/', '_');
     let excelFileName: string = filename + '.xlsx';
     const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);
@@ -145,7 +145,7 @@ export class ForeignMarketPriceComponent implements OnInit {
     XLSX.writeFile(wb, excelFileName);
   }
   //Function EXTENTION-------------------------------------------------------------------------------------------------------------
-  private initialYears() {
+  public initialYears() {
     let returnYear: Array<any> = [];
     let currentDate = new Date();
     let nextYear = currentDate.getFullYear() + 1;
@@ -154,11 +154,11 @@ export class ForeignMarketPriceComponent implements OnInit {
     }
     return returnYear;
   }
-  private getCurrentYear() {
+  public getCurrentYear() {
     var currentDate = new Date();
     return currentDate.getFullYear();
   }
-  private getMonthAndYear(time: string) {
+  public getMonthAndYear(time: string) {
     //"20200515150503"
     let year = time.substr(0, 4);
     let month = time.substr(5, 2);
@@ -168,7 +168,7 @@ export class ForeignMarketPriceComponent implements OnInit {
   }
   //FUNCTION FOR CHART -----------------------------------------------------------------------------------------------------
   //Initalize Color for chart line
-  private initialChartColor() {
+  public initialChartColor() {
     this._mainChartColours = [
       { // brandInfo
         // backgroundColor: hexToRgba(getStyle('--success'), 10),
@@ -193,7 +193,7 @@ export class ForeignMarketPriceComponent implements OnInit {
     ];
   }
   //Initialize Option for chart line
-  private initialChartOption() {
+  public initialChartOption() {
     this._mainChartOptions = {
       tooltips: {
         scaleShowValues: true,
@@ -248,13 +248,13 @@ export class ForeignMarketPriceComponent implements OnInit {
     };
   }
   //Initialize Other
-  private inititalChartOther() {
+  public inititalChartOther() {
     this._mainChartType = 'line';
     this.timeDomesticPrice = _moment(this.pickedDate.date).format('DD/MM/YYYY');
     this._theYear = 2020;
     this._mainChartLegend = false;
   }
-  private getDataForChart() {
+  public getDataForChart() {
     console.log("+ Function: GetDataForChart()");
     let chartData1: Array<number> = new Array<number>();
     let chartName1: string;

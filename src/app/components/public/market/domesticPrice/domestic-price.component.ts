@@ -50,7 +50,7 @@ export class DomesticPriceComponent implements OnInit {
 
   //Declare constant
   //Declare variable for TS & HTML
-  private noData: boolean = true;
+  public noData: boolean = true;
   //Declare variable for ONLY TS
 
   //ViewChild
@@ -86,7 +86,7 @@ export class DomesticPriceComponent implements OnInit {
 
 
 
-  constructor(private marketService: MarketService) {
+  constructor(public marketService: MarketService) {
     this.initialData();
   }
 
@@ -101,7 +101,7 @@ export class DomesticPriceComponent implements OnInit {
   }
 
   //Function for Process-Flow -------------------------------------------------------------------------------------------
-  private getDomesticMarketPriceByTime(time: Date) {
+  public getDomesticMarketPriceByTime(time: Date) {
     let formattedDate = formatDate(time, this.format, this.locale);
     this.marketService.GetDomesticMarketByTime(formattedDate).subscribe(
       allrecords => {
@@ -129,17 +129,17 @@ export class DomesticPriceComponent implements OnInit {
 
   //Function for HTML Event -------------------------------------------------------------------------------------------
   //Event for "Lọc dữ liệu"
-  private applyFilter(event: Event) {
+  public applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
   //Event for "Thay đổi năm"
-  private changeYear() {
+  public changeYear() {
     console.log("Change Year Func.");
     //this.GetDataForChart(this.chartYearModelSelected);
   }
   //Event for "Xuất Excel"
-  private exportTOExcel(filename: string, sheetname: string) {
+  public exportTOExcel(filename: string, sheetname: string) {
     sheetname = sheetname.replace('/', '_').replace('/', '_');
     let excelFileName: string = filename + '.xlsx';
     const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);
@@ -149,11 +149,11 @@ export class DomesticPriceComponent implements OnInit {
     XLSX.writeFile(wb, excelFileName);
   }
   //Function for Extention-------------------------------------------------------------------------------------------
-  private getMonthAndYear(time: string) {
+  public getMonthAndYear(time: string) {
     let formattedDate = formatDate(time, this.format, this.locale);
     return formattedDate as string;
   }
-  private initialYears() {
+  public initialYears() {
     let returnYear: Array<any> = [];
     let currentDate = new Date();
     let nextYear = currentDate.getFullYear() + 1;
@@ -163,28 +163,28 @@ export class DomesticPriceComponent implements OnInit {
     return returnYear;
   }
 
-  private getCurrentYear() {
+  public getCurrentYear() {
     var currentDate = new Date();
     return currentDate.getFullYear();
   }
-  private formatNgayCapNhat(str: string) {
+  public formatNgayCapNhat(str: string) {
     let year: string = str.substr(0, 4);
     let month: string = str.substr(4, 2);
     let day: string = str.substr(6, 2);
     let result: string = day + '/' + month + '/' + year;
     return result;
   }
-  private getPriceChange(param: any) {
+  public getPriceChange(param: any) {
     this.getDomesticMarketPriceByTime(param._d);
   }
 
   //Function for Chart HTML-------------------------------------------------------------------------------------------
-  private initialData() {
+  public initialData() {
     this.initialChartColor();
     this.inititalChartOther();
   }
   //Initalize Color for chart line
-  private initialChartColor() {
+  public initialChartColor() {
     this.mainChartColours = [
       { // brandInfo
         // backgroundColor: hexToRgba(getStyle('--success'), 10),
@@ -210,7 +210,7 @@ export class DomesticPriceComponent implements OnInit {
   }
 
   //Initialize Option for chart line
-  private initialChartOption() {
+  public initialChartOption() {
     // this.mainChartOptions = {
     //   tooltips: {
     //     scaleShowValues: true,
@@ -270,7 +270,7 @@ export class DomesticPriceComponent implements OnInit {
     this.theYear = "2020";
     this.mainChartLegend = false;
   }
-  private getChartDataByTimePeriod(listProduct: any[], from_date: Date, to_date: Date) {
+  public getChartDataByTimePeriod(listProduct: any[], from_date: Date, to_date: Date) {
     // this.marketService.GetPriceByTimePeriod(listProduct,_moment(from_date).format('DD/MM/YYYY').toString(), _moment(to_date).format('DD/MM/YYYY').toString()).subscribe(
     //   result =>{
     //     console.log(result);
@@ -278,7 +278,7 @@ export class DomesticPriceComponent implements OnInit {
     // );
   }
 
-  private getDataForChart(yaer: number) {
+  public getDataForChart(yaer: number) {
     //   let chartData1: Array<number> = new Array<number>();
     //   let chartName1: string;
     //   let productId: number;

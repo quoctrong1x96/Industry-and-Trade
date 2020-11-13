@@ -1,5 +1,6 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { onMainContentChange } from 'src/app/_animations/animation-sidebar';
+import { SidebarService } from 'src/app/_services/sidebar.service';
 
 @Component({
   selector: 'app-public-layout',
@@ -8,7 +9,14 @@ import { onMainContentChange } from 'src/app/_animations/animation-sidebar';
   animations:[onMainContentChange]
 })
 export class PublicLayoutComponent  implements OnInit {
-  constructor() { }
+
+  public onSideNavChange: boolean;
+   constructor(public _sidenavService: SidebarService) {
+    this._sidenavService.sideBarState$.subscribe( res => {
+      //console.log(res)
+      this.onSideNavChange = res;
+    })
+  }
 
   ngOnInit() {
   }

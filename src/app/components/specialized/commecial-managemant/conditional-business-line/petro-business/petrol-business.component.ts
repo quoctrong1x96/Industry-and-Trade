@@ -38,7 +38,7 @@ export class PetrolBusinessComponent implements OnInit {
     @ViewChild(MatAccordion, { static: false }) accordion: MatAccordion;
     @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
 
-    constructor(private sctService: SCTService) {
+    constructor(public sctService: SCTService) {
     }
 
     ngOnInit() {

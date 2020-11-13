@@ -80,10 +80,10 @@ export class ViewReportComponent implements OnInit {
   dataSource: MatTableDataSource<ReportTable> = new MatTableDataSource<ReportTable>();
 
   constructor(
-    private reportSevice: ReportService,
-    private route: ActivatedRoute,
-    private keyboardservice: KeyboardService,
-    private info: InformationService,
+    public reportSevice: ReportService,
+    public route: ActivatedRoute,
+    public keyboardservice: KeyboardService,
+    public info: InformationService,
     public location: Location
   ) {
     this.route.queryParams.subscribe(params => {
