@@ -29,6 +29,7 @@ export class SCTService {
     private urlDanhSachQuanLyCumCongNghiep = "/danh-sach-quan-ly-cum-cong-nghiep";
     private urlDanhSachNhapKhau = "/danh-sach-nhap-khau";
     private urlDanhSachXuatKhau = "/danh-sach-xuat-khau";
+    private urlThuongMaiBienGioi = "/danh-sach-xuat-nhap-khau-bien-gioi";
     token: any;
     username: any;
 
@@ -142,6 +143,16 @@ export class SCTService {
         var apiUrl = this.apiSCT + this.urlDanhSachXuatKhau;
         let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
         let params = new HttpParams().set('time_id', time_id.toString());
+        console.log(params);
+        return this.http.get<any>(apiUrl, { headers: headers, params: params }).pipe(tap(data => data),
+            catchError(this.handleError)
+        );
+    }
+
+    public GetDanhSachXuatNhapKhauBG(time_id: number, id_cua_khau: number) {
+        var apiUrl = this.apiSCT + this.urlThuongMaiBienGioi;
+        let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+        let params = new HttpParams().set('time_id', time_id.toString()).set('id_cua_khau', id_cua_khau.toString());
         console.log(params);
         return this.http.get<any>(apiUrl, { headers: headers, params: params }).pipe(tap(data => data),
             catchError(this.handleError)

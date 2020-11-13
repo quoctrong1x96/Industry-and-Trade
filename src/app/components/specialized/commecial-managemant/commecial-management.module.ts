@@ -24,6 +24,7 @@ import { ExportManagementComponent } from './export-import-management/export-man
 import { MatDialogModule } from '@angular/material/dialog';
 import { ModalComponent } from './export-import-management/dialog-import-export/modal.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { BorderTradeComponent } from './border-trade/border-trade.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -58,7 +59,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     LPGBusinessComponent,
     ExportManagementComponent,
     ModalComponent,
-    TRSManagementComponent],
+    TRSManagementComponent,
+    BorderTradeComponent],
   entryComponents: [
     ModalComponent
   ],
