@@ -63,6 +63,10 @@ export class IndustrialExplosivesComponent implements OnInit {
         this.filteredDataSource.filter = filterValue.trim().toLowerCase();
     }
 
+    ngAfterViewInit(): void {
+        this.accordion.openAll();
+    }
+
     applySelectFilter() {
         // console.log(this.filterModel)
         let filteredData = this.filterArray(this.dataSource.data, this.filterModel);

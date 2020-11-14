@@ -44,28 +44,28 @@ export class ShoppingcentreComponent implements OnInit {
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   //Variable for HTML&TS-------------------------------------------------------------------------
   districts: District[] = [{ id: 1, ten_quan_huyen: 'Thị xã Phước Long' },
-    { id: 2, ten_quan_huyen: 'Thành phố Đồng Xoài' },
-    { id: 3, ten_quan_huyen: 'Thị xã Bình Long' },
-    { id: 4, ten_quan_huyen: 'Huyện Bù Gia Mập' },
-    { id: 5, ten_quan_huyen: 'Huyện Lộc Ninh' },
-    { id: 6, ten_quan_huyen: 'Huyện Bù Đốp' },
-    { id: 7, ten_quan_huyen: 'Huyện Hớn Quản' },
-    { id: 8, ten_quan_huyen: 'Huyện Đồng Phú' },
-    { id: 9, ten_quan_huyen: 'Huyện Bù Đăng' },
-    { id: 10, ten_quan_huyen: 'Huyện Chơn Thành' },
-    { id: 11, ten_quan_huyen: 'Huyện Phú Riềng' }];
+  { id: 2, ten_quan_huyen: 'Thành phố Đồng Xoài' },
+  { id: 3, ten_quan_huyen: 'Thị xã Bình Long' },
+  { id: 4, ten_quan_huyen: 'Huyện Bù Gia Mập' },
+  { id: 5, ten_quan_huyen: 'Huyện Lộc Ninh' },
+  { id: 6, ten_quan_huyen: 'Huyện Bù Đốp' },
+  { id: 7, ten_quan_huyen: 'Huyện Hớn Quản' },
+  { id: 8, ten_quan_huyen: 'Huyện Đồng Phú' },
+  { id: 9, ten_quan_huyen: 'Huyện Bù Đăng' },
+  { id: 10, ten_quan_huyen: 'Huyện Chơn Thành' },
+  { id: 11, ten_quan_huyen: 'Huyện Phú Riềng' }];
   headerArray = ['index', 'tenhuyenthi', 'ten_tttm', 'dientich', 'vondautu', 'namdautuxaydung', 'phanloai'];
   dataHuyenThi: Array<SuperMarketCommonModel> = [
     { huyen: "Đồng Xoài", ten_tttm: "Trung tâm thương mại ITC Đồng Xoài", dientich: 9000, namdautuxaydung: "", phanloai: "III", vondautu: 150 },
     { huyen: "Đồng Xoài", ten_tttm: "Vincom Đồng Xoài", dientich: 33000, namdautuxaydung: "", phanloai: "", vondautu: 240 },
     { huyen: "Bình Long", ten_tttm: "Trung tâm thương mại An Lộc - Bình Long", dientich: 26000, namdautuxaydung: "", phanloai: "III", vondautu: 200 },
     { huyen: "Phước Long", ten_tttm: "Trung tâm thương mại Phước Binh", dientich: 10000, namdautuxaydung: "", phanloai: "III", vondautu: 50 },
-   { huyen: "Phước Long", ten_tttm: "Trung tâm thương mại Sơn Thành - Phước Long", dientich: 12000, namdautuxaydung: "", phanloai: "Đang xây dựng", vondautu: 300 },
+    { huyen: "Phước Long", ten_tttm: "Trung tâm thương mại Sơn Thành - Phước Long", dientich: 12000, namdautuxaydung: "", phanloai: "Đang xây dựng", vondautu: 300 },
     { huyen: "Phước Long", ten_tttm: "Vincom Phước Long", dientich: 15000, namdautuxaydung: "", phanloai: "", vondautu: 190 },
     { huyen: "Bù Đốp", ten_tttm: "Trung tâm thương mại Thanh Bình - Bù Đốp", dientich: 61000, namdautuxaydung: "", phanloai: "III", vondautu: 100 },
     { huyen: "Chơn Thành", ten_tttm: "TTTM Đô Thành - Chơn Thành", dientich: 10000, namdautuxaydung: "", phanloai: "Đang xây dựng", vondautu: 300 },
     { huyen: "Chơn Thành", ten_tttm: "Vincom Chơn Thành", dientich: 31000, namdautuxaydung: "", phanloai: "III", vondautu: 220 },
-     ]
+  ]
   //Variable for only TS-------------------------------------------------------------------------
 
   applyFilter1(event: Event) {
@@ -104,10 +104,16 @@ export class ShoppingcentreComponent implements OnInit {
   }
 
   ngAfterViewInit(): void {
+    this.dataSourceHuyenThi.paginator = this.paginator;
+    this.paginator._intl.itemsPerPageLabel = 'Số hàng';
+    this.paginator._intl.firstPageLabel = "Trang Đầu";
+    this.paginator._intl.lastPageLabel = "Trang Cuối";
+    this.paginator._intl.previousPageLabel = "Trang Trước";
+    this.paginator._intl.nextPageLabel = "Trang Tiếp";
     //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
     //Add 'implements AfterViewInit' to the class.
     this.accordion.openAll();
-}
+  }
   dataSourceHuyenThi: MatTableDataSource<SuperMarketCommonModel> = new MatTableDataSource<SuperMarketCommonModel>();
 
   //Xuất excel
@@ -120,16 +126,16 @@ export class ShoppingcentreComponent implements OnInit {
     // /* save to file */
     // XLSX.writeFile(wb, excelFileName);
   }
-  
+
   sortHeaderCondition(event) {
 
   }
-  
- applyDistrictFilter(event) {
-   
+
+  applyDistrictFilter(event) {
+
   }
-  
-  applyExpireCheck(event){
+
+  applyExpireCheck(event) {
 
   }
 }

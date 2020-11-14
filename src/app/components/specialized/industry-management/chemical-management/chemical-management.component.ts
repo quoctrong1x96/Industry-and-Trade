@@ -43,6 +43,11 @@ export class ChemicalManagementComponent implements OnInit {
     constructor(public sctService: SCTService) {
     }
 
+    ngAfterViewInit(): void {
+        this.accordion.openAll();
+    }
+
+
     ngOnInit() {
         this.years = this.getYears();
         this.getDanhSachQuanLyHoaChat(2020);

@@ -5,9 +5,9 @@ import { ElectricityDevelopmentModel, HydroElectricManagementModel, RuralElectri
 
 
 @Component({
-    selector: 'rural-electric-management',
-    templateUrl: './rural-electric-management.component.html',
-    styleUrls: ['./rural-electric-management.component.scss'],
+  selector: 'rural-electric-management',
+  templateUrl: './rural-electric-management.component.html',
+  styleUrls: ['./rural-electric-management.component.scss'],
 })
 
 export class RuralElectricManagementComponent implements OnInit {
@@ -17,7 +17,7 @@ export class RuralElectricManagementComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   //Constant variable
   public readonly displayedColumns: string[] = ['index', 'dia_ban', 'tong_so_ho', 'ho_co_dien', 'ho_chua_co_dien', 'ty_le', 'tieu_chi_41', 'tieu_chi_42', 'tieu_chi_43'];
-  public readonly dsplayMergeColumns: string[]= ['indexM','dia_banM','so_ho_su_dung_dienM','ty_leM','tieu_chi_so_4M'];
+  public readonly dsplayMergeColumns: string[] = ['indexM', 'dia_banM', 'so_ho_su_dung_dienM', 'ty_leM', 'tieu_chi_so_4M'];
   //TS & HTML Variable
   public dataSource: MatTableDataSource<RuralElectricModel> = new MatTableDataSource<RuralElectricModel>();
   public filteredDataSource: MatTableDataSource<RuralElectricModel> = new MatTableDataSource<RuralElectricModel>();
@@ -32,22 +32,22 @@ export class RuralElectricManagementComponent implements OnInit {
   { id: 9, ten_quan_huyen: 'Huyện Bù Đăng' },
   { id: 10, ten_quan_huyen: 'Huyện Chơn Thành' },
   { id: 11, ten_quan_huyen: 'Huyện Phú Riềng' }];
-  public data: Array<RuralElectricModel> = [{thu_tu: "I", ten_huyen_thi: 'Huyện Đồng Phú',ma_huyen_thi:8,tong_ho_su_dung_dien: null,tong_ho_co_dien: null, tong_ho_khong_co_dien: null, ty_le: null, tieu_chi_1: null, tieu_chi_2: null, tieu_chi_3: null},
-  {thu_tu:"1", ten_huyen_thi: 'Xã Thuận Lợi',ma_huyen_thi:8,tong_ho_su_dung_dien: 2434  ,tong_ho_co_dien: 2430, tong_ho_khong_co_dien: 4, ty_le: 99.8, tieu_chi_1: "Đạt", tieu_chi_2: "Đạt", tieu_chi_3: "Đạt"},
-  {thu_tu:"2", ten_huyen_thi: 'Xã Đồng Tâm',ma_huyen_thi:8,tong_ho_su_dung_dien: 2108  ,tong_ho_co_dien: 2085, tong_ho_khong_co_dien: 423, ty_le: 98.9, tieu_chi_1: "Đạt", tieu_chi_2: "Đạt", tieu_chi_3: "Đạt"},
-  {thu_tu:"II", ten_huyen_thi: 'Huyện Chơn Thành',ma_huyen_thi:10,tong_ho_su_dung_dien: null  ,tong_ho_co_dien: null, tong_ho_khong_co_dien: null, ty_le: null, tieu_chi_1: null, tieu_chi_2: null, tieu_chi_3: null},
-  {thu_tu:"1", ten_huyen_thi: 'Xã Nha Bích',ma_huyen_thi:10,tong_ho_su_dung_dien: 1674  ,tong_ho_co_dien: 1670, tong_ho_khong_co_dien: 4, ty_le: 99.8, tieu_chi_1: "Đạt", tieu_chi_2: "Đạt", tieu_chi_3: "Đạt"},
-  {thu_tu:"2", ten_huyen_thi: 'Xã Quang Minh',ma_huyen_thi:10,tong_ho_su_dung_dien: 1249  ,tong_ho_co_dien: 1214, tong_ho_khong_co_dien:  35, ty_le: 97.2, tieu_chi_1: "Đạt", tieu_chi_2: "Chưa đạt", tieu_chi_3: "Chưa đạt"},
-  {thu_tu:"III", ten_huyen_thi: 'Huyện Hớn Quản',ma_huyen_thi:7,tong_ho_su_dung_dien: null  ,tong_ho_co_dien: null, tong_ho_khong_co_dien: null, ty_le: null, tieu_chi_1: null, tieu_chi_2: null, tieu_chi_3: null},
-  {thu_tu:"1", ten_huyen_thi: 'Xã Tân Lợi',ma_huyen_thi:7,tong_ho_su_dung_dien: 2579  ,tong_ho_co_dien: 2558, tong_ho_khong_co_dien: 21, ty_le: 99.2, tieu_chi_1: "Đạt", tieu_chi_2: "Đạt", tieu_chi_3: "Đạt"},
-  {thu_tu:"2", ten_huyen_thi: 'Xã Tân Hưng',ma_huyen_thi:7,tong_ho_su_dung_dien: 3318  ,tong_ho_co_dien: 3205, tong_ho_khong_co_dien: 113, ty_le: 96.6, tieu_chi_1: "Đạt", tieu_chi_2: "Chưa đạt", tieu_chi_3: "Chưa đạt"},
+  public data: Array<RuralElectricModel> = [{ thu_tu: "I", ten_huyen_thi: 'Huyện Đồng Phú', ma_huyen_thi: 8, tong_ho_su_dung_dien: null, tong_ho_co_dien: null, tong_ho_khong_co_dien: null, ty_le: null, tieu_chi_1: null, tieu_chi_2: null, tieu_chi_3: null },
+  { thu_tu: "1", ten_huyen_thi: 'Xã Thuận Lợi', ma_huyen_thi: 8, tong_ho_su_dung_dien: 2434, tong_ho_co_dien: 2430, tong_ho_khong_co_dien: 4, ty_le: 99.8, tieu_chi_1: "Đạt", tieu_chi_2: "Đạt", tieu_chi_3: "Đạt" },
+  { thu_tu: "2", ten_huyen_thi: 'Xã Đồng Tâm', ma_huyen_thi: 8, tong_ho_su_dung_dien: 2108, tong_ho_co_dien: 2085, tong_ho_khong_co_dien: 423, ty_le: 98.9, tieu_chi_1: "Đạt", tieu_chi_2: "Đạt", tieu_chi_3: "Đạt" },
+  { thu_tu: "II", ten_huyen_thi: 'Huyện Chơn Thành', ma_huyen_thi: 10, tong_ho_su_dung_dien: null, tong_ho_co_dien: null, tong_ho_khong_co_dien: null, ty_le: null, tieu_chi_1: null, tieu_chi_2: null, tieu_chi_3: null },
+  { thu_tu: "1", ten_huyen_thi: 'Xã Nha Bích', ma_huyen_thi: 10, tong_ho_su_dung_dien: 1674, tong_ho_co_dien: 1670, tong_ho_khong_co_dien: 4, ty_le: 99.8, tieu_chi_1: "Đạt", tieu_chi_2: "Đạt", tieu_chi_3: "Đạt" },
+  { thu_tu: "2", ten_huyen_thi: 'Xã Quang Minh', ma_huyen_thi: 10, tong_ho_su_dung_dien: 1249, tong_ho_co_dien: 1214, tong_ho_khong_co_dien: 35, ty_le: 97.2, tieu_chi_1: "Đạt", tieu_chi_2: "Chưa đạt", tieu_chi_3: "Chưa đạt" },
+  { thu_tu: "III", ten_huyen_thi: 'Huyện Hớn Quản', ma_huyen_thi: 7, tong_ho_su_dung_dien: null, tong_ho_co_dien: null, tong_ho_khong_co_dien: null, ty_le: null, tieu_chi_1: null, tieu_chi_2: null, tieu_chi_3: null },
+  { thu_tu: "1", ten_huyen_thi: 'Xã Tân Lợi', ma_huyen_thi: 7, tong_ho_su_dung_dien: 2579, tong_ho_co_dien: 2558, tong_ho_khong_co_dien: 21, ty_le: 99.2, tieu_chi_1: "Đạt", tieu_chi_2: "Đạt", tieu_chi_3: "Đạt" },
+  { thu_tu: "2", ten_huyen_thi: 'Xã Tân Hưng', ma_huyen_thi: 7, tong_ho_su_dung_dien: 3318, tong_ho_co_dien: 3205, tong_ho_khong_co_dien: 113, ty_le: 96.6, tieu_chi_1: "Đạt", tieu_chi_2: "Chưa đạt", tieu_chi_3: "Chưa đạt" },
 
-]
+  ]
   //Only TS Variable
   years: number[] = [];
   tongSoHo: number;
   tongSoXa: number;
-  tongHoKhongCoDien:number;
+  tongHoKhongCoDien: number;
   tongHoCoDien: number;
   isChecked: boolean;
 
@@ -59,7 +59,7 @@ export class RuralElectricManagementComponent implements OnInit {
   }
   ngAfterViewInit(): void {
     this.accordion.openAll();
-    
+
     this.dataSource.data = this.data;
     console.log(this.dataSource);
     this.filteredDataSource.data = [...this.dataSource.data];
@@ -83,7 +83,7 @@ export class RuralElectricManagementComponent implements OnInit {
   getYears() {
     return Array(5).fill(1).map((element, index) => new Date().getFullYear() - index);
   }
-  getValueOfHydroElectric(value:any){
+  getValueOfHydroElectric(value: any) {
 
   }
   applyDistrictFilter(event) {
@@ -105,18 +105,19 @@ export class RuralElectricManagementComponent implements OnInit {
     this.caculatorValue();
     this.paginatorAgain();
   }
-  paginatorAgain(){
+  paginatorAgain() {
     if (this.filteredDataSource.data.length) {
       this.filteredDataSource.paginator = this.paginator;
-      this.paginator._intl.itemsPerPageLabel = 'Số công ty mỗi trang';
-      this.paginator._intl.lastPageLabel = "Đến cuối";
-      this.paginator._intl.nextPageLabel = "Trang tiếp";
-      this.paginator._intl.previousPageLabel = "Trang trước";
+      this.paginator._intl.itemsPerPageLabel = 'Số hàng';
+      this.paginator._intl.firstPageLabel = "Trang Đầu";
+      this.paginator._intl.lastPageLabel = "Trang Cuối";
+      this.paginator._intl.previousPageLabel = "Trang Trước";
+      this.paginator._intl.nextPageLabel = "Trang Tiếp";
     }
   }
-  caculatorValue(){
+  caculatorValue() {
     this.tongSoHo = this.filteredDataSource.data.length ? this.filteredDataSource.data.map(x => x.tong_ho_su_dung_dien).reduce((a, b) => a + b) : 0;
-    this.tongSoXa =this.filteredDataSource.data.filter(x => x.tong_ho_su_dung_dien != null).length;
+    this.tongSoXa = this.filteredDataSource.data.filter(x => x.tong_ho_su_dung_dien != null).length;
     this.tongHoKhongCoDien = this.filteredDataSource.data.length ? this.filteredDataSource.data.map(x => x.tong_ho_khong_co_dien).reduce((a, b) => a + b) : 0;
     this.tongHoCoDien = this.filteredDataSource.data.length ? this.filteredDataSource.data.map(x => x.tong_ho_co_dien).reduce((a, b) => a + b) : 0;
   }

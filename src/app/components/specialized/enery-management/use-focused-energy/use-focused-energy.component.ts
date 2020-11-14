@@ -14,8 +14,8 @@ export class UseFocusedEnergyComponent implements OnInit {
   @ViewChild('table', { static: false }) table: MatTable<UserForcusEnergy>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   //Constant variable
-  public readonly displayedColumns: string[] = ['index', 'ten_doanh_nghiep','dia_chi', 'nganh_nghe', 'nang_luong_tieu_thu', 'nang_luong_quy_doi', 'suat_tieu_hao'];
-  public readonly displayMergeColumns: string[] = ['indexM', 'ten_doanh_nghiepM','nganh_ngheM', 'nang_luong_trong_diemM'];
+  public readonly displayedColumns: string[] = ['index', 'ten_doanh_nghiep', 'dia_chi', 'nganh_nghe', 'nang_luong_tieu_thu', 'nang_luong_quy_doi', 'suat_tieu_hao'];
+  public readonly displayMergeColumns: string[] = ['indexM', 'ten_doanh_nghiepM', 'nganh_ngheM', 'nang_luong_trong_diemM'];
   //TS & HTML Variable
   public dataSource: MatTableDataSource<UserForcusEnergy> = new MatTableDataSource<UserForcusEnergy>();
   public filteredDataSource: MatTableDataSource<UserForcusEnergy> = new MatTableDataSource<UserForcusEnergy>();
@@ -30,17 +30,17 @@ export class UseFocusedEnergyComponent implements OnInit {
   { id: 9, ten_quan_huyen: 'Huyện Bù Đăng' },
   { id: 10, ten_quan_huyen: 'Huyện Chơn Thành' },
   { id: 11, ten_quan_huyen: 'Huyện Phú Riềng' }];
-  public data: Array<UserForcusEnergy> = [{mst: '111', ten_doanh_nghiep: 'CÔNG TY TNHH SHYANG TA',  dia_chi: 'Xã Thành Tâm, H. Chơn Thành, T. Bình Phước',ma_huyen_thi:10,nganh_nghe:'Thuộc da, sơ chế da, giày dép',nang_luong_tieu_thu: null, nang_luong_quy_doi:153215,suat_tieu_hao:20463000},
-  {mst: '122211', ten_doanh_nghiep: 'CÔNG TY CỔ PHẦN GỖ MDF VRG DONGWHA',  dia_chi: 'KCN Minh Hưng III, Xã. Minh Hưng, H. Chơn Thành, T. Bình Phước',ma_huyen_thi:10,nganh_nghe:'Chế biến gỗ và các sản phẩm từ gỗ, tre',nang_luong_tieu_thu: null, nang_luong_quy_doi:324617,suat_tieu_hao:36765700},
-  {mst: '3333', ten_doanh_nghiep: 'CÔNG TY TNHH SẢN XUẤT GIÀY DÉP GRAND GIAN',  dia_chi: 'KCN Đồng Xoài II, P. Tiến Thành, Tp. Đồng Xoài, T. Bình Phước',ma_huyen_thi:2,nganh_nghe:'Thuộc da, sơ chế da, giày dép',nang_luong_tieu_thu: null, nang_luong_quy_doi:342367,suat_tieu_hao:5535400},
-  {mst: '144411', ten_doanh_nghiep: 'CÔNG TY TNHH MỘT THÀNH VIÊN C&T VINA ',  dia_chi: 'KCN Minh Hưng - Hàn Quốc, Xã Minh Hưng, H.Chơn Thành, T.Bình Phước',ma_huyen_thi:10,nganh_nghe:'Sản xuất trang phục, nhuộm',nang_luong_tieu_thu: null, nang_luong_quy_doi:256856,suat_tieu_hao:23653000},
-  {mst: '5555', ten_doanh_nghiep: 'CÔNG TY TNHH BEESCO VINA ',  dia_chi: 'KCN Chơn Thành II , Xã Thành Tâm, H. Chơn Thành, T. Bình Phước',ma_huyen_thi:10,nganh_nghe:'Thuộc da, sơ chế da, giày dép',nang_luong_tieu_thu: null, nang_luong_quy_doi:798675,suat_tieu_hao:16312000}]
+  public data: Array<UserForcusEnergy> = [{ mst: '111', ten_doanh_nghiep: 'CÔNG TY TNHH SHYANG TA', dia_chi: 'Xã Thành Tâm, H. Chơn Thành, T. Bình Phước', ma_huyen_thi: 10, nganh_nghe: 'Thuộc da, sơ chế da, giày dép', nang_luong_tieu_thu: null, nang_luong_quy_doi: 153215, suat_tieu_hao: 20463000 },
+  { mst: '122211', ten_doanh_nghiep: 'CÔNG TY CỔ PHẦN GỖ MDF VRG DONGWHA', dia_chi: 'KCN Minh Hưng III, Xã. Minh Hưng, H. Chơn Thành, T. Bình Phước', ma_huyen_thi: 10, nganh_nghe: 'Chế biến gỗ và các sản phẩm từ gỗ, tre', nang_luong_tieu_thu: null, nang_luong_quy_doi: 324617, suat_tieu_hao: 36765700 },
+  { mst: '3333', ten_doanh_nghiep: 'CÔNG TY TNHH SẢN XUẤT GIÀY DÉP GRAND GIAN', dia_chi: 'KCN Đồng Xoài II, P. Tiến Thành, Tp. Đồng Xoài, T. Bình Phước', ma_huyen_thi: 2, nganh_nghe: 'Thuộc da, sơ chế da, giày dép', nang_luong_tieu_thu: null, nang_luong_quy_doi: 342367, suat_tieu_hao: 5535400 },
+  { mst: '144411', ten_doanh_nghiep: 'CÔNG TY TNHH MỘT THÀNH VIÊN C&T VINA ', dia_chi: 'KCN Minh Hưng - Hàn Quốc, Xã Minh Hưng, H.Chơn Thành, T.Bình Phước', ma_huyen_thi: 10, nganh_nghe: 'Sản xuất trang phục, nhuộm', nang_luong_tieu_thu: null, nang_luong_quy_doi: 256856, suat_tieu_hao: 23653000 },
+  { mst: '5555', ten_doanh_nghiep: 'CÔNG TY TNHH BEESCO VINA ', dia_chi: 'KCN Chơn Thành II , Xã Thành Tâm, H. Chơn Thành, T. Bình Phước', ma_huyen_thi: 10, nganh_nghe: 'Thuộc da, sơ chế da, giày dép', nang_luong_tieu_thu: null, nang_luong_quy_doi: 798675, suat_tieu_hao: 16312000 }]
   //Only TS Variable
   years: number[] = [];
   nangLuongTieuThu: number;
   nangLuongQuyDoi: number;
-  congXuat:number;
-  doanhNghiep:number;
+  congXuat: number;
+  doanhNghiep: number;
   isChecked: boolean;
 
   constructor() {
@@ -51,7 +51,7 @@ export class UseFocusedEnergyComponent implements OnInit {
   }
   ngAfterViewInit(): void {
     this.accordion.openAll();
-    
+
     this.dataSource.data = this.data;
     console.log(this.dataSource);
     this.filteredDataSource.data = [...this.dataSource.data];
@@ -75,7 +75,7 @@ export class UseFocusedEnergyComponent implements OnInit {
   getYears() {
     return Array(5).fill(1).map((element, index) => new Date().getFullYear() - index);
   }
-  getValueOfHydroElectric(value:any){
+  getValueOfHydroElectric(value: any) {
 
   }
   applyDistrictFilter(event) {
@@ -97,19 +97,20 @@ export class UseFocusedEnergyComponent implements OnInit {
     this.caculatorValue();
     this.paginatorAgain();
   }
-  paginatorAgain(){
+  paginatorAgain() {
     if (this.filteredDataSource.data.length) {
       this.filteredDataSource.paginator = this.paginator;
-      this.paginator._intl.itemsPerPageLabel = 'Số công ty mỗi trang';
-      this.paginator._intl.lastPageLabel = "Đến cuối";
-      this.paginator._intl.nextPageLabel = "Trang tiếp";
-      this.paginator._intl.previousPageLabel = "Trang trước";
+      this.paginator._intl.itemsPerPageLabel = 'Số hàng';
+      this.paginator._intl.firstPageLabel = "Trang Đầu";
+      this.paginator._intl.lastPageLabel = "Trang Cuối";
+      this.paginator._intl.previousPageLabel = "Trang Trước";
+      this.paginator._intl.nextPageLabel = "Trang Tiếp";
     }
   }
-  caculatorValue(){
+  caculatorValue() {
     this.nangLuongQuyDoi = this.filteredDataSource.data.length ? this.filteredDataSource.data.map(x => x.nang_luong_quy_doi).reduce((a, b) => a + b) : 0;
     this.nangLuongTieuThu = this.filteredDataSource.data.length ? this.filteredDataSource.data.map(x => x.nang_luong_tieu_thu).reduce((a, b) => a + b) : 0;
-    this.doanhNghiep =this.filteredDataSource.data.length;
+    this.doanhNghiep = this.filteredDataSource.data.length;
     this.congXuat = this.filteredDataSource.data.length ? this.filteredDataSource.data.map(x => x.suat_tieu_hao).reduce((a, b) => a + b) : 0;
   }
   // isHidden(row : any){

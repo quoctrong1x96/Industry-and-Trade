@@ -1,8 +1,12 @@
 <mat-card>
     <mat-card-content>
         <div class="example-action-buttons">
-            <button mat-raised-button color="primary" (click)="accordion.openAll()">Mở Tất Cả</button> &nbsp;
-            <button mat-raised-button color="warn" (click)="accordion.closeAll()">Đóng tất cả</button>
+            <button mat-raised-button style="color: orangered;" (click)="accordion.openAll()">
+                <mat-icon>flip_to_front</mat-icon> Mở Tất Cả
+            </button> &nbsp;
+            <button mat-raised-button style="color: orangered;" (click)="accordion.closeAll()">
+                <mat-icon>flip_to_back</mat-icon> Đóng tất cả
+            </button>
         </div>
         <mat-accordion class="example-headers-align" multi>
             <mat-expansion-panel>
@@ -21,7 +25,8 @@
                         <div class="list-group">
                             <a class="list-group-item list-group-item-action flex-column align-items-start bg-primary">
                                 <div class="d-flex w-100 justify-content-between">
-                                    <h5 class="mb-1">1 Tổng số siêu thị: <strong>{{dataSourceHuyenThi.data.length}}</strong></h5>
+                                    <h5 class="mb-1">1 Tổng số siêu thị:
+                                        <strong>{{dataSourceHuyenThi.data.length}}</strong></h5>
                                 </div>
                                 <p class="mb-1"></p>
                             </a>
@@ -55,11 +60,15 @@
                                     <h5 class="mb-1">4. Thống kê số lượng siêu thị theo năm:</h5>
                                 </div>
                                 <p class="mb-1 config-p">
-                                    4.1 Tổng số siêu thị đầu tư xây dựng trong năm <strong>...</strong> là: <strong>0</strong>
-                                    <br> 4.2 Chênh lệch số siêu thị đầu tư xây dựng trong năm <strong>...</strong> so với năm trước là:
+                                    4.1 Tổng số siêu thị đầu tư xây dựng trong năm <strong>...</strong> là:
                                     <strong>0</strong>
-                                    <br> 4.3 Tổng số siêu thị ngừng hoạt động trong năm <strong>...</strong> là: <strong>0</strong>
-                                    <br> 4.4 Chênh lệch số siêu thị ngừng hoạt động trong năm <strong>...</strong> so với năm trước là:
+                                    <br> 4.2 Chênh lệch số siêu thị đầu tư xây dựng trong năm <strong>...</strong> so
+                                    với năm trước là:
+                                    <strong>0</strong>
+                                    <br> 4.3 Tổng số siêu thị ngừng hoạt động trong năm <strong>...</strong> là:
+                                    <strong>0</strong>
+                                    <br> 4.4 Chênh lệch số siêu thị ngừng hoạt động trong năm <strong>...</strong> so
+                                    với năm trước là:
                                     <strong>0</strong>
                                 </p>
                             </a>
@@ -164,10 +173,8 @@
                         <tr mat-header-row *matHeaderRowDef="headerArray"></tr>
                         <tr mat-row *matRowDef="let row; columns: headerArray;let i = index"></tr>
                     </table>
-
-
                 </div>
-                <mat-paginator [pageSizeOptions]="[20, 50, 100]" showFirstLastButtons></mat-paginator>
+                <mat-paginator [pageSizeOptions]="[10, 20, 50, 100]" showFirstLastButtons></mat-paginator>
                 <ng-template #ShowEmpty>
                     <h1>Không có dữ liệu</h1>
                 </ng-template>
