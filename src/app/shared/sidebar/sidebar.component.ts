@@ -14,6 +14,7 @@ import { onSideNavChange, animateText } from '../../_animations/animation-sideba
 import { navItemsPublic, navItemsManager, navItemsSpecialized } from './_nav';
 import { INavItem } from '../../_models/_nav.model';
 import {TYPE_OF_NAV} from '../../_enums/typeOfUser.enum';
+import { STYLESCSS_TYPE } from 'src/app/_enums/styleChoose.enum';
 
 
 @Component({
@@ -35,10 +36,11 @@ export class SidebarComponent implements OnInit {
   public readonly PANEL_OPEN_STATE_DEFAULT: boolean = false;
   public readonly USER_NAME_DEFUALT: string = "Tên tài khoản";
   public readonly AVATAR_DEFAULT: string = "../../../assets/img/avatars/1.jpg";
+  public readonly STYLE_SCSS_DEFAULTL: STYLESCSS_TYPE = STYLESCSS_TYPE.MATERIAL;
 
   //Variable for only TS-----------------------------------------------------------
 
-
+  public styleOfScss: STYLESCSS_TYPE;
   //Variable for TS & HTML-----------------------------------------------------------
   public navItems: INavItem[] = [];
   public showSubMenus: Array<boolean> = new Array<boolean>();
@@ -67,6 +69,8 @@ export class SidebarComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    
+    this.styleOfScss = this.STYLE_SCSS_DEFAULTL;
     this._loginService.refreshToken();
     this.onSinenavToggle();
     if (this.navItems) {
