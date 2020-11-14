@@ -14,7 +14,7 @@ export class SolarEneryManagementComponent implements OnInit {
   @ViewChild('table', { static: false }) table: MatTable<SolarEneryManagementModel>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   //Constant variable
-  public readonly displayedColumns: string[] = ['index','ten_du_an', 'ten_doanh_nghiep', 'ten_huyen_thi', 'cong_xuat_thiet_ke','san_luong_6_thang', 'san_luong_nam', 'doanh_thu','trang_thai'];
+  public readonly displayedColumns: string[] = ['index', 'ten_du_an', 'ten_doanh_nghiep', 'ten_huyen_thi', 'cong_xuat_thiet_ke', 'san_luong_6_thang', 'san_luong_nam', 'doanh_thu', 'trang_thai'];
   //TS & HTML Variable
   public dataSource: MatTableDataSource<SolarEneryManagementModel> = new MatTableDataSource<SolarEneryManagementModel>();
   public filteredDataSource: MatTableDataSource<SolarEneryManagementModel> = new MatTableDataSource<SolarEneryManagementModel>();
@@ -29,17 +29,17 @@ export class SolarEneryManagementComponent implements OnInit {
   { id: 9, ten_quan_huyen: 'Huyện Bù Đăng' },
   { id: 10, ten_quan_huyen: 'Huyện Chơn Thành' },
   { id: 11, ten_quan_huyen: 'Huyện Phú Riềng' }];
-  public data: Array<SolarEneryManagementModel> = [{trang_thai:"Đang hoạt động", mst: '111', ten_doanh_nghiep: 'Công ty Cổ phần thủy điện Thác Mơ', ten_du_an: ' Nhà máy điện mặt trời Thác Mơ', ten_huyen_thi: 'huyện Bù Gia Mập',ma_huyen_thi:4,cong_xuat_thiet_ke:50,san_luong_6_thang:10800  ,san_luong_nam:4665600000000,doanh_thu:9051264000000000},
-  {trang_thai:"Đang hoạt động", mst: '222', ten_doanh_nghiep: 'Nhà máy điện mặt trời Lộc Ninh 1', ten_du_an: 'Nhà máy điện mặt trời Lộc Ninh 1', ten_huyen_thi: 'Xã Lộc Thạnh, huyện Lộc Ninh',ma_huyen_thi:5,cong_xuat_thiet_ke:200,san_luong_6_thang:43200  ,san_luong_nam:18662400000000,doanh_thu:36205056000000000},
-  {trang_thai:"Đang hoạt động", mst: '333', ten_doanh_nghiep: 'Nhà máy điện mặt trời Lộc Ninh 2', ten_du_an: 'Nhà máy điện mặt trời Lộc Ninh 2', ten_huyen_thi: 'Xã Lộc Thạnh, huyện Lộc Ninh',ma_huyen_thi:5,cong_xuat_thiet_ke:200,san_luong_6_thang:43200  ,san_luong_nam:18662400000000,doanh_thu:36205056000000000},
-  {trang_thai:"Đang hoạt động", mst: '444', ten_doanh_nghiep: 'Nhà máy điện mặt trời Lộc Ninh 3', ten_du_an: 'Nhà máy điện mặt trời Lộc Ninh 3', ten_huyen_thi: 'Xã Lộc Thạnh, huyện Lộc Ninh',ma_huyen_thi:5,cong_xuat_thiet_ke:150,san_luong_6_thang:32400  ,san_luong_nam:13996800000000,doanh_thu:27153792000000000},
-  {trang_thai:"Đang hoạt động", mst: '555', ten_doanh_nghiep: 'Nhà máy điện mặt trời Lộc Ninh 4', ten_du_an: 'Nhà máy điện mặt trời Lộc Ninh 4', ten_huyen_thi: 'Xã Lộc Thạnh, huyện Lộc Ninh',ma_huyen_thi:5,cong_xuat_thiet_ke:200,san_luong_6_thang:43200 ,san_luong_nam:18662400000000,doanh_thu:36205056000000000},
-]
+  public data: Array<SolarEneryManagementModel> = [{ trang_thai: "Đang hoạt động", mst: '111', ten_doanh_nghiep: 'Công ty Cổ phần thủy điện Thác Mơ', ten_du_an: ' Nhà máy điện mặt trời Thác Mơ', ten_huyen_thi: 'huyện Bù Gia Mập', ma_huyen_thi: 4, cong_xuat_thiet_ke: 50, san_luong_6_thang: 10800, san_luong_nam: 4665600000000, doanh_thu: 9051264000000000 },
+  { trang_thai: "Đang hoạt động", mst: '222', ten_doanh_nghiep: 'Nhà máy điện mặt trời Lộc Ninh 1', ten_du_an: 'Nhà máy điện mặt trời Lộc Ninh 1', ten_huyen_thi: 'Xã Lộc Thạnh, huyện Lộc Ninh', ma_huyen_thi: 5, cong_xuat_thiet_ke: 200, san_luong_6_thang: 43200, san_luong_nam: 18662400000000, doanh_thu: 36205056000000000 },
+  { trang_thai: "Đang hoạt động", mst: '333', ten_doanh_nghiep: 'Nhà máy điện mặt trời Lộc Ninh 2', ten_du_an: 'Nhà máy điện mặt trời Lộc Ninh 2', ten_huyen_thi: 'Xã Lộc Thạnh, huyện Lộc Ninh', ma_huyen_thi: 5, cong_xuat_thiet_ke: 200, san_luong_6_thang: 43200, san_luong_nam: 18662400000000, doanh_thu: 36205056000000000 },
+  { trang_thai: "Đang hoạt động", mst: '444', ten_doanh_nghiep: 'Nhà máy điện mặt trời Lộc Ninh 3', ten_du_an: 'Nhà máy điện mặt trời Lộc Ninh 3', ten_huyen_thi: 'Xã Lộc Thạnh, huyện Lộc Ninh', ma_huyen_thi: 5, cong_xuat_thiet_ke: 150, san_luong_6_thang: 32400, san_luong_nam: 13996800000000, doanh_thu: 27153792000000000 },
+  { trang_thai: "Đang hoạt động", mst: '555', ten_doanh_nghiep: 'Nhà máy điện mặt trời Lộc Ninh 4', ten_du_an: 'Nhà máy điện mặt trời Lộc Ninh 4', ten_huyen_thi: 'Xã Lộc Thạnh, huyện Lộc Ninh', ma_huyen_thi: 5, cong_xuat_thiet_ke: 200, san_luong_6_thang: 43200, san_luong_nam: 18662400000000, doanh_thu: 36205056000000000 },
+  ]
   //Only TS Variable
   years: number[] = [];
   doanhThu: number;
   congXuat: number;
-  sanluongnam:number;
+  sanluongnam: number;
   soLuongDoanhNghiep: number;
   isChecked: boolean;
 
@@ -51,7 +51,7 @@ export class SolarEneryManagementComponent implements OnInit {
   }
   ngAfterViewInit(): void {
     this.accordion.openAll();
-    
+
     this.dataSource.data = this.data;
     console.log(this.dataSource);
     this.filteredDataSource.data = [...this.dataSource.data];
@@ -75,7 +75,7 @@ export class SolarEneryManagementComponent implements OnInit {
   getYears() {
     return Array(5).fill(1).map((element, index) => new Date().getFullYear() - index);
   }
-  getValueOfHydroElectric(value:any){
+  getValueOfHydroElectric(value: any) {
 
   }
   applyDistrictFilter(event) {
@@ -97,18 +97,19 @@ export class SolarEneryManagementComponent implements OnInit {
     this.caculatorValue();
     this.paginatorAgain();
   }
-  paginatorAgain(){
+  paginatorAgain() {
     if (this.filteredDataSource.data.length) {
       this.filteredDataSource.paginator = this.paginator;
-      this.paginator._intl.itemsPerPageLabel = 'Số công ty mỗi trang';
-      this.paginator._intl.lastPageLabel = "Đến cuối";
-      this.paginator._intl.nextPageLabel = "Trang tiếp";
-      this.paginator._intl.previousPageLabel = "Trang trước";
+      this.paginator._intl.itemsPerPageLabel = 'Số hàng';
+      this.paginator._intl.firstPageLabel = "Trang Đầu";
+      this.paginator._intl.lastPageLabel = "Trang Cuối";
+      this.paginator._intl.previousPageLabel = "Trang Trước";
+      this.paginator._intl.nextPageLabel = "Trang Tiếp";
     }
   }
-  caculatorValue(){
+  caculatorValue() {
     this.doanhThu = this.filteredDataSource.data.length ? this.filteredDataSource.data.map(x => x.doanh_thu).reduce((a, b) => a + b) : 0;
-    this.soLuongDoanhNghiep =this.filteredDataSource.data.length;
+    this.soLuongDoanhNghiep = this.filteredDataSource.data.length;
     this.congXuat = this.filteredDataSource.data.length ? this.filteredDataSource.data.map(x => x.cong_xuat_thiet_ke).reduce((a, b) => a + b) : 0;
     this.sanluongnam = this.filteredDataSource.data.length ? this.filteredDataSource.data.map(x => x.san_luong_nam).reduce((a, b) => a + b) : 0;
   }

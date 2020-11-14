@@ -43,6 +43,11 @@ export class LPGManagementComponent implements OnInit {
     constructor(public sctService: SCTService) {
     }
 
+
+    ngAfterViewInit(): void {
+        this.accordion.openAll();
+    }
+
     ngOnInit() {
         this.years = this.getYears();
         this.getDanhSachQuanLyChietNapLPG(2020);
@@ -67,8 +72,8 @@ export class LPGManagementComponent implements OnInit {
             });
 
             this.filteredDataSource.data = [...this.dataSource.data];
-            this.sanLuongKinhDoanh = this.filteredDataSource.data.length ? this.filteredDataSource.data.map(x => parseInt(x.san_luong)||0).reduce((a, b) => a + b) : 0;
-            this.sanLuongSanXuat = this.filteredDataSource.data.length ? this.filteredDataSource.data.map(x => parseInt(x.cong_suat)||0).reduce((a, b) => a + b) : 0;
+            this.sanLuongKinhDoanh = this.filteredDataSource.data.length ? this.filteredDataSource.data.map(x => parseInt(x.san_luong) || 0).reduce((a, b) => a + b) : 0;
+            this.sanLuongSanXuat = this.filteredDataSource.data.length ? this.filteredDataSource.data.map(x => parseInt(x.cong_suat) || 0).reduce((a, b) => a + b) : 0;
             this.filteredDataSource.paginator = this.paginator;
             this.paginator._intl.itemsPerPageLabel = 'Số hàng';
             this.paginator._intl.firstPageLabel = "Trang Đầu";
@@ -103,7 +108,7 @@ export class LPGManagementComponent implements OnInit {
             this.filteredDataSource.data = filteredData;
         }
         this.sanLuongKinhDoanh = this.filteredDataSource.data.length ? this.filteredDataSource.data.map(x => parseInt(x.san_luong) || 0).reduce((a, b) => a + b) : 0;
-        this.sanLuongSanXuat = this.filteredDataSource.data.length ? this.filteredDataSource.data.map(x => parseInt(x.cong_suat)||0).reduce((a, b) => a + b) : 0;
+        this.sanLuongSanXuat = this.filteredDataSource.data.length ? this.filteredDataSource.data.map(x => parseInt(x.cong_suat) || 0).reduce((a, b) => a + b) : 0;
     }
 
     // isHidden(row : any){

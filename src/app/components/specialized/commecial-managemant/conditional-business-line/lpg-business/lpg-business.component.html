@@ -1,8 +1,12 @@
 <mat-card>
     <mat-card-content>
         <div class="example-action-buttons">
-            <button mat-raised-button color="primary" (click)="accordion.openAll()">Mở Tất Cả</button> &nbsp;
-            <button mat-raised-button color="warn" (click)="accordion.closeAll()">Đóng tất cả</button>
+            <button mat-raised-button style="color: orangered;" (click)="accordion.openAll()">
+                <mat-icon>flip_to_front</mat-icon> Mở Tất Cả
+            </button> &nbsp;
+            <button mat-raised-button style="color: orangered;" (click)="accordion.closeAll()">
+                <mat-icon>flip_to_back</mat-icon> Đóng tất cả
+            </button>
         </div>
         <mat-accordion class="example-headers-align" multi>
             <mat-expansion-panel>
@@ -30,7 +34,7 @@
                                 <mat-card-subtitle></mat-card-subtitle>
                             </mat-card-header>
                             <mat-card-content>
-                                <strong>{{sanLuongBanRa}}</strong>
+                                <strong>{{sanLuongBanRa | number: '1.0-0'}}</strong>
                             </mat-card-content>
                         </mat-card>
                     </div>
@@ -132,17 +136,18 @@
 
                         <ng-container matColumnDef="so_luong_co_so">
                             <th mat-header-cell *matHeaderCellDef> Số lượng cơ sở phân phối LPG </th>
-                            <td mat-cell *matCellDef="let element" class="stt"> {{element.san_luong}}
+                            <td mat-cell *matCellDef="let element" class="stt"> {{element.san_luong | number: '1.0-0'}}
                             </td>
                         </ng-container>
 
 
-                        <tr mat-header-row *matHeaderRowDef="['index', 'mst', 'ten_doanh_nghiep', 'dia_chi', 'dien_thoai', 'so_giay_phep', 'ngay_cap','ngay_het_han', 'danh_sach_thuong_nhan', 'so_luong_co_so']">
+                        <tr mat-header-row
+                            *matHeaderRowDef="['index', 'mst', 'ten_doanh_nghiep', 'dia_chi', 'dien_thoai', 'so_giay_phep', 'ngay_cap','ngay_het_han', 'danh_sach_thuong_nhan', 'so_luong_co_so']">
                         </tr>
                         <tr mat-row *matRowDef="let row; columns: displayedColumns;let i = index; ">
                     </table>
-                    <mat-paginator [pageSizeOptions]="[20, 50, 100]" showFirstLastButtons></mat-paginator>
                 </div>
+                <mat-paginator [pageSizeOptions]="[10, 20, 50, 100]" showFirstLastButtons></mat-paginator>
                 <ng-template #ShowEmpty>
                     <h1>Không có dữ liệu</h1>
                 </ng-template>

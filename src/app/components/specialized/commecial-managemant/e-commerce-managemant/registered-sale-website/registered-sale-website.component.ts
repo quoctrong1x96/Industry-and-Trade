@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
 import { SaleWebsite, SaleWebsiteFilterModel, ECommerceWebsite } from 'src/app/_models/APIModel/e-commerce.model';
 import { District } from 'src/app/_models/district.model';
 import { SCTService } from 'src/app/_services/APIService/sct.service';
 import { registration_management } from "../../../../../_models/APIModel/ecommerce.model";
+import { MatAccordion } from '@angular/material/expansion';
+import { MatPaginator } from '@angular/material/paginator';
+
 @Component({
   selector: 'registered-sale-website',
   templateUrl: './registered-sale-website.component.html',
@@ -11,11 +14,11 @@ import { registration_management } from "../../../../../_models/APIModel/ecommer
 })
 export class RegisteredSaleWebsiteComponent implements OnInit {
 
-  displayedColumns : string[] = ['index', 'mst', 'ten_tc_cn', 'dia_chi', 'dien_thoai', 'ten_mien', 'nganh_nghe', 'ma_so_nganh_nghe'];
+  displayedColumns: string[] = ['index', 'mst', 'ten_tc_cn', 'dia_chi', 'dien_thoai', 'ten_mien', 'nganh_nghe', 'ma_so_nganh_nghe'];
   dataSource: MatTableDataSource<SaleWebsite>;
   filteredDataSource: MatTableDataSource<SaleWebsite> = new MatTableDataSource<SaleWebsite>();
-  filterModel : SaleWebsiteFilterModel = {id_quan_huyen :[]};
-  constructor(public sctService : SCTService) { }
+  filterModel: SaleWebsiteFilterModel = { id_quan_huyen: [] };
+  constructor(public sctService: SCTService) { }
 
   ngOnInit() {
     this.GetDanhSachWebsiteTMDT();
@@ -35,40 +38,60 @@ export class RegisteredSaleWebsiteComponent implements OnInit {
     { id: 11, ten_quan_huyen: 'Huyện Phú Riềng' }
   ];
 
-  GetDanhSachWebsiteTMDT(){
+  ngAfterViewInit(): void {
+    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    //Add 'implements AfterViewInit' to the class.
+    this.accordion.openAll();
+  }
+
+  @ViewChild(MatAccordion, { static: true }) accordion: MatAccordion;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+
+  GetDanhSachWebsiteTMDT() {
     this.sctService.GetDanhSachWebBH().subscribe(response => {
       console.log(response)
       this.dataSource = new MatTableDataSource<SaleWebsite>(response.data);
       this.filteredDataSource.data = [...this.dataSource.data];
+      this.filteredDataSource.paginator = this.paginator;
+      this.paginator._intl.itemsPerPageLabel = 'Số hàng';
+      this.paginator._intl.firstPageLabel = "Trang Đầu";
+      this.paginator._intl.lastPageLabel = "Trang Cuối";
+      this.paginator._intl.previousPageLabel = "Trang Trước";
+      this.paginator._intl.nextPageLabel = "Trang Tiếp";
     })
   }
 
   applyFilter() {
     console.log(this.filterModel)
     let filteredData = this.filterArray(this.dataSource.data, this.filterModel);
-        if (!filteredData.length) {
-            if (this.filterModel)
-                this.filteredDataSource.data = [];
-            else
-                this.filteredDataSource.data = this.dataSource.data;
-        }
-        else {
-            this.filteredDataSource.data = filteredData;
-        }
+    if (!filteredData.length) {
+      if (this.filterModel)
+        this.filteredDataSource.data = [];
+      else
+        this.filteredDataSource.data = this.dataSource.data;
+    }
+    else {
+      this.filteredDataSource.data = filteredData;
+    }
+  }
+
+  applyFilter1(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.filteredDataSource.filter = filterValue.trim().toLowerCase();
   }
 
   filterArray(array, filters) {
     const filterKeys = Object.keys(filters);
     let temp = [...array];
     filterKeys.forEach(key => {
-        let temp2 = [];
-        if (filters[key].length) {
-            filters[key].forEach(criteria => {
-                temp2 = temp2.concat(temp.filter(x => x[key] == criteria));
-            });
-            temp = [...temp2];
-        }
+      let temp2 = [];
+      if (filters[key].length) {
+        filters[key].forEach(criteria => {
+          temp2 = temp2.concat(temp.filter(x => x[key] == criteria));
+        });
+        temp = [...temp2];
+      }
     })
     return temp;
-}
+  }
 }

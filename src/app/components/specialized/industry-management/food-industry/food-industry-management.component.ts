@@ -16,7 +16,7 @@ import { ChemicalLPGFoodManagementModel } from 'src/app/_models/APIModel/industr
 
 export class FoodIndustryManagementComponent implements OnInit {
     displayedColumns: string[] = [];
-    displayedColumns1: string[] = ['index', 'mst', 'ten_doanh_nghiep', 'nganh_nghe_kd','dia_chi', 'so_lao_dong', 'cong_suat', 'san_luong','von_dau_tu', 'so_gp_gcn', 'ngay_cap', 'ngay_het_han'];
+    displayedColumns1: string[] = ['index', 'mst', 'ten_doanh_nghiep', 'nganh_nghe_kd', 'dia_chi', 'so_lao_dong', 'cong_suat', 'san_luong', 'von_dau_tu', 'so_gp_gcn', 'ngay_cap', 'ngay_het_han'];
     displayedColumns2: string[] = ['index', 'ten_doanh_nghiep', 'nganh_nghe_kd', 'dia_chi', 'cong_suat', 'san_luong'];
     dataSource: MatTableDataSource<ChemicalLPGFoodManagementModel> = new MatTableDataSource<ChemicalLPGFoodManagementModel>();
     filteredDataSource: MatTableDataSource<ChemicalLPGFoodManagementModel> = new MatTableDataSource<ChemicalLPGFoodManagementModel>();
@@ -41,6 +41,11 @@ export class FoodIndustryManagementComponent implements OnInit {
     @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
     constructor(public sctService: SCTService) {
+    }
+
+
+    ngAfterViewInit(): void {
+        this.accordion.openAll();
     }
 
     ngOnInit() {

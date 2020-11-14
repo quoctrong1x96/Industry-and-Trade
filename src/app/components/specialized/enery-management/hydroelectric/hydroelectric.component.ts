@@ -14,7 +14,7 @@ export class HydroelectricComponent implements OnInit {
   @ViewChild('table', { static: false }) table: MatTable<HydroElectricManagementModel>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   //Constant variable
-  public readonly displayedColumns: string[] = ['index', 'mst', 'ten_doanh_nghiep', 'ten_phuong_xa', 'ten_huyen_thi', 'cong_xuat_thiet_ke', 'luong_nuoc_xa', 'dung_tich_ho', 'san_luong_6_thang', 'san_luong_nam', 'doanh_thu','trang_thai'];
+  public readonly displayedColumns: string[] = ['index', 'mst', 'ten_doanh_nghiep', 'ten_phuong_xa', 'ten_huyen_thi', 'cong_xuat_thiet_ke', 'luong_nuoc_xa', 'dung_tich_ho', 'san_luong_6_thang', 'san_luong_nam', 'doanh_thu', 'trang_thai'];
   //TS & HTML Variable
   public dataSource: MatTableDataSource<HydroElectricManagementModel> = new MatTableDataSource<HydroElectricManagementModel>();
   public filteredDataSource: MatTableDataSource<HydroElectricManagementModel> = new MatTableDataSource<HydroElectricManagementModel>();
@@ -29,14 +29,14 @@ export class HydroelectricComponent implements OnInit {
   { id: 9, ten_quan_huyen: 'Huyện Bù Đăng' },
   { id: 10, ten_quan_huyen: 'Huyện Chơn Thành' },
   { id: 11, ten_quan_huyen: 'Huyện Phú Riềng' }];
-  public data: Array<HydroElectricManagementModel> = [{trang_thai:"Đang hoạt động", mst: '111', ten_doanh_nghiep: 'Thủy điện Thác Mơ', ten_phuong_xa: 'Phường Thác Mơ', ten_huyen_thi: 'Thị xã Phước Long',ma_huyen_thi:1,cong_xuat_thiet_ke:150,luong_nuoc_xa:65,dung_tich_ho:1360,san_luong_6_thang:313.7,san_luong_nam:627.4,doanh_thu:442.68 },
-  {trang_thai:"Đang hoạt động", mst: '222', ten_doanh_nghiep: 'Thủy điện Thác Mơ', ten_phuong_xa: 'Thị trấn Thanh Bình', ten_huyen_thi: 'Huyện Bù Đốp',ma_huyen_thi:6,cong_xuat_thiet_ke:72,luong_nuoc_xa:60,dung_tich_ho:165.49,san_luong_6_thang:155.094,san_luong_nam:310.189,doanh_thu:348.00 },
-  {trang_thai:"Đang hoạt động", mst: '333', ten_doanh_nghiep: 'Thủy điện Srok Phu Mieng', ten_phuong_xa: 'Xã Long Bình', ten_huyen_thi: 'Huyện Phú riềng',ma_huyen_thi:11,cong_xuat_thiet_ke:51,luong_nuoc_xa:65,dung_tich_ho:99.3,san_luong_6_thang:95,san_luong_nam:199.5,doanh_thu:229.68 },]
+  public data: Array<HydroElectricManagementModel> = [{ trang_thai: "Đang hoạt động", mst: '111', ten_doanh_nghiep: 'Thủy điện Thác Mơ', ten_phuong_xa: 'Phường Thác Mơ', ten_huyen_thi: 'Thị xã Phước Long', ma_huyen_thi: 1, cong_xuat_thiet_ke: 150, luong_nuoc_xa: 65, dung_tich_ho: 1360, san_luong_6_thang: 313.7, san_luong_nam: 627.4, doanh_thu: 442.68 },
+  { trang_thai: "Đang hoạt động", mst: '222', ten_doanh_nghiep: 'Thủy điện Thác Mơ', ten_phuong_xa: 'Thị trấn Thanh Bình', ten_huyen_thi: 'Huyện Bù Đốp', ma_huyen_thi: 6, cong_xuat_thiet_ke: 72, luong_nuoc_xa: 60, dung_tich_ho: 165.49, san_luong_6_thang: 155.094, san_luong_nam: 310.189, doanh_thu: 348.00 },
+  { trang_thai: "Đang hoạt động", mst: '333', ten_doanh_nghiep: 'Thủy điện Srok Phu Mieng', ten_phuong_xa: 'Xã Long Bình', ten_huyen_thi: 'Huyện Phú riềng', ma_huyen_thi: 11, cong_xuat_thiet_ke: 51, luong_nuoc_xa: 65, dung_tich_ho: 99.3, san_luong_6_thang: 95, san_luong_nam: 199.5, doanh_thu: 229.68 },]
   //Only TS Variable
   years: number[] = [];
   doanhThu: number;
   congXuat: number;
-  sanluongnam:number;
+  sanluongnam: number;
   soLuongDoanhNghiep: number;
   isChecked: boolean;
 
@@ -48,7 +48,7 @@ export class HydroelectricComponent implements OnInit {
   }
   ngAfterViewInit(): void {
     this.accordion.openAll();
-    
+
     this.dataSource.data = this.data;
     console.log(this.dataSource);
     this.filteredDataSource.data = [...this.dataSource.data];
@@ -72,7 +72,7 @@ export class HydroelectricComponent implements OnInit {
   getYears() {
     return Array(5).fill(1).map((element, index) => new Date().getFullYear() - index);
   }
-  getValueOfHydroElectric(value:any){
+  getValueOfHydroElectric(value: any) {
 
   }
   applyDistrictFilter(event) {
@@ -94,18 +94,19 @@ export class HydroelectricComponent implements OnInit {
     this.caculatorValue();
     this.paginatorAgain();
   }
-  paginatorAgain(){
+  paginatorAgain() {
     if (this.filteredDataSource.data.length) {
       this.filteredDataSource.paginator = this.paginator;
-      this.paginator._intl.itemsPerPageLabel = 'Số công ty mỗi trang';
-      this.paginator._intl.lastPageLabel = "Đến cuối";
-      this.paginator._intl.nextPageLabel = "Trang tiếp";
-      this.paginator._intl.previousPageLabel = "Trang trước";
+      this.paginator._intl.itemsPerPageLabel = 'Số hàng';
+      this.paginator._intl.firstPageLabel = "Trang Đầu";
+      this.paginator._intl.lastPageLabel = "Trang Cuối";
+      this.paginator._intl.previousPageLabel = "Trang Trước";
+      this.paginator._intl.nextPageLabel = "Trang Tiếp";
     }
   }
-  caculatorValue(){
+  caculatorValue() {
     this.doanhThu = this.filteredDataSource.data.length ? this.filteredDataSource.data.map(x => x.doanh_thu).reduce((a, b) => a + b) : 0;
-    this.soLuongDoanhNghiep =this.filteredDataSource.data.length;
+    this.soLuongDoanhNghiep = this.filteredDataSource.data.length;
     this.congXuat = this.filteredDataSource.data.length ? this.filteredDataSource.data.map(x => x.cong_xuat_thiet_ke).reduce((a, b) => a + b) : 0;
     this.sanluongnam = this.filteredDataSource.data.length ? this.filteredDataSource.data.map(x => x.san_luong_nam).reduce((a, b) => a + b) : 0;
   }

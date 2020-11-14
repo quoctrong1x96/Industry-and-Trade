@@ -18,12 +18,12 @@ export class PowerProductionManagementComponent implements OnInit {
   //TS & HTML Variable
   public dataSource: MatTableDataSource<PowerProductionModel> = new MatTableDataSource<PowerProductionModel>();
   public filteredDataSource: MatTableDataSource<PowerProductionModel> = new MatTableDataSource<PowerProductionModel>();
-  public data: Array<PowerProductionModel> = [{ chi_tieu: "Điện phục vụ sản xuất",san_luong_nam_truoc: 1235, san_luong_nam_thuc_hien: 1398 , so_sanh_cung_ky: 113.20},
-  { chi_tieu: "Điện sinh hoạt + Kinh doanh dịch vụ",san_luong_nam_truoc: 736, san_luong_nam_thuc_hien: 817 , so_sanh_cung_ky: 110.96},
-  { chi_tieu: "Nhu cầu khác (chiếu sáng công cộng)",san_luong_nam_truoc: 249, san_luong_nam_thuc_hien: 256 , so_sanh_cung_ky: 102.92},  ]
+  public data: Array<PowerProductionModel> = [{ chi_tieu: "Điện phục vụ sản xuất", san_luong_nam_truoc: 1235, san_luong_nam_thuc_hien: 1398, so_sanh_cung_ky: 113.20 },
+  { chi_tieu: "Điện sinh hoạt + Kinh doanh dịch vụ", san_luong_nam_truoc: 736, san_luong_nam_thuc_hien: 817, so_sanh_cung_ky: 110.96 },
+  { chi_tieu: "Nhu cầu khác (chiếu sáng công cộng)", san_luong_nam_truoc: 249, san_luong_nam_thuc_hien: 256, so_sanh_cung_ky: 102.92 },]
   //Only TS Variable
   years: number[] = [];
-  year:number =0;
+  year: number = 0;
   trung_ap_3p: number;
   tongSoXa: number;
   trung_ap_1p: number;
@@ -53,7 +53,7 @@ export class PowerProductionManagementComponent implements OnInit {
     const filterValue = (event.target as HTMLInputElement).value;
     this.filteredDataSource.filter = filterValue.trim().toLowerCase();
   }
-  getCurrentSelectedYear(){
+  getCurrentSelectedYear() {
     return 2020;
   }
 
@@ -73,19 +73,20 @@ export class PowerProductionManagementComponent implements OnInit {
 
   }
   applyDistrictFilter(event) {
-   
+
   }
   paginatorAgain() {
     if (this.filteredDataSource.data.length) {
       this.filteredDataSource.paginator = this.paginator;
-      this.paginator._intl.itemsPerPageLabel = 'Số công ty mỗi trang';
-      this.paginator._intl.lastPageLabel = "Đến cuối";
-      this.paginator._intl.nextPageLabel = "Trang tiếp";
-      this.paginator._intl.previousPageLabel = "Trang trước";
+      this.paginator._intl.itemsPerPageLabel = 'Số hàng';
+      this.paginator._intl.firstPageLabel = "Trang Đầu";
+      this.paginator._intl.lastPageLabel = "Trang Cuối";
+      this.paginator._intl.previousPageLabel = "Trang Trước";
+      this.paginator._intl.nextPageLabel = "Trang Tiếp";
     }
   }
   caculatorValue() {
-    
+
   }
   // isHidden(row : any){
   //     return (this.isChecked)? (row.is_het_han) : false;

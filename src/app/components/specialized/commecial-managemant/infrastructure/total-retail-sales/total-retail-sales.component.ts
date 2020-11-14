@@ -7,6 +7,8 @@ import { FormControl, NgForm } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { startWith, map, isEmpty } from 'rxjs/operators';
 import { MatTableFilter } from 'mat-table-filter';
+import { MatAccordion } from '@angular/material/expansion';
+import { MatPaginator } from '@angular/material/paginator';
 //Import Component
 
 //Import Model
@@ -26,8 +28,6 @@ interface HashTableNumber<T> {
   [key: string]: T;
 }
 
-
-
 @Component({
   selector: 'total-retail-sales-commecial',
   templateUrl: './total-retail-sales.component.html',
@@ -39,6 +39,8 @@ export class TRSManagementComponent implements OnInit {
 
   //Viewchild & Input-----------------------------------------------------------------------
   @ViewChildren(ReportDirective) inputs: QueryList<ReportDirective>
+  @ViewChild(MatAccordion, { static: false }) accordion: MatAccordion;
+  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   //Variable for HTML&TS-------------------------------------------------------------------------
   //Variable for only TS-------------------------------------------------------------------------
 
@@ -66,6 +68,11 @@ export class TRSManagementComponent implements OnInit {
     public reportSevice: ReportService
   ) { }
 
+  applyFilter1(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
   ngOnInit(): void {
     let data: any = JSON.parse(localStorage.getItem('currentUser'));
     this.get12MonthData();
@@ -85,8 +92,20 @@ export class TRSManagementComponent implements OnInit {
           tempData.push(tempRow);
         }
         this.dataSource = new MatTableDataSource<AnnualReportRow>(tempData);
+        this.dataSource.paginator = this.paginator;
+        this.paginator._intl.itemsPerPageLabel = 'Số hàng';
+        this.paginator._intl.firstPageLabel = "Trang Đầu";
+        this.paginator._intl.lastPageLabel = "Trang Cuối";
+        this.paginator._intl.previousPageLabel = "Trang Trước";
+        this.paginator._intl.nextPageLabel = "Trang Tiếp";
       }
     )
+  }
+
+  ngAfterViewInit(): void {
+    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    //Add 'implements AfterViewInit' to the class.
+    this.accordion.openAll();
   }
 
   //Xuất excel

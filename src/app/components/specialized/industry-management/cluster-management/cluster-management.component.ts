@@ -73,6 +73,10 @@ export class ClusterManagementComponent implements OnInit {
         }
     }
 
+    ngAfterViewInit(): void {
+        this.accordion.openAll();
+    }
+
     getDanhSachQuanLyCumCongNghiep(time_id: number) {
         this.sctService.GetDanhSachQuanLyCumCongNghiep(time_id).subscribe(result => {
             this.dataSource = new MatTableDataSource<ClusterModel>(result.data);

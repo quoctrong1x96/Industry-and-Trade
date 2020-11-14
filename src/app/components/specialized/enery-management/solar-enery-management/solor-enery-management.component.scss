@@ -21,16 +21,15 @@
 }
 
 .mat-card-header .mat-card-title {
-    font-size: 25px;
+    font-size: 15px;
     text-align: center;
-    line-height: 25px;
 }
 
 .mat-card-content> :last-child:not(.mat-card-footer),
 .mat-card> :last-child:not(.mat-card-footer) #ccards {
     margin-bottom: 0;
     text-align: center;
-    font-size: 30px;
+    font-size: 15px;
 }
 
 th,

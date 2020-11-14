@@ -1,33 +1,30 @@
-<mat-toolbar class="mat-elevation-z5 noidung" [ngStyle]="{'background-color': colorOfUser}">
+<mat-toolbar class="mat-elevation-z5 noidung">
     <mat-toolbar-row>
         <div class="navbar-brand">
             <a class="navbar-item" (click)="openHome()" [routerLink]="['/']" routerLinkActive="router-link-active">
                 <img class="logo" src="assets/img/brand/logo.svg">
             </a>
         </div>
-        <hr class="verticle-line1">
-        <!-- <button *ngIf="sidebar" mat-icon-button onclick="this.blur()">
-      <mat-icon (click)="sidebar.toggle()">menu</mat-icon>
-    </button> -->
-        <hr class="verticle-line1">
-        <h1 style="padding-left: 10px;">SỞ CÔNG THƯƠNG</h1>
+        <h1><strong>SỞ CÔNG THƯƠNG</strong></h1>
         <div class="spacer"></div>
-        <div *ngIf="!checkLogin() else divUser">
-            <a mat-flat-button color="warning" href="http://socongthuongbp.gov.vn/">
-                <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
-                Trang chủ SCT
-            </a>
-            <a mat-flat-button color="warning" [routerLink]="['/register']">Doanh nghiệp đăng ký</a>
-            <a mat-flat-button color="primary" (click)="loginClick()">Đăng nhập</a>
+        <div *ngIf="!checkLogin() else divUser" class="btn-color">
+            <a mat-raised-button href="http://socongthuongbp.gov.vn/">
+                <mat-icon>domain</mat-icon> Trang chủ SCT
+            </a> &nbsp;
+            <a mat-raised-button style="color: white; background-color: orange;" [routerLink]="['/register']">Doanh
+                nghiệp đăng ký</a> &nbsp;
+
+            <a mat-raised-button style="color: white; background-color: orange;" (click)="loginClick()">Đăng
+                nhập</a>
         </div>
         <ng-template #divUser>
             <!-- <button mat-icon-button>
           <mat-icon class="cursor: crosshair;" matBadge="{{notificatios}}" [matBadgeHidden]="notificatios>0?false:true"
             matBadgeColor="warn">notifications_none</mat-icon>
         </button> -->
-            <a mat-flat-button color="warning" href="http://socongthuongbp.gov.vn/" target="blank">
-                <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
-                Trang chủ SCT
+            <a mat-raised-button style="color: white; background-color: orange;" href="http://socongthuongbp.gov.vn/"
+                target="blank">
+                <mat-icon>domain</mat-icon> Trang chủ SCT
             </a>
             <hr class="verticle-line2">
             <a (click)="openAccountDropdown()" style="cursor: pointer;">
@@ -35,44 +32,29 @@
                 <span id='userName'>{{ userName }} </span>
             </a>
 
-
-            <div id="account-dropdown" class="dropdown-content" [style.display]="this.open ? 'block' : 'none' ">
-                <div>
-                    <mat-icon color="primary">account_box</mat-icon>
+            <div class="dropdown-content" [style.display]="this.open ? 'block' : 'none' ">
+                <div id="text-btn">
+                    <mat-icon>account_box</mat-icon>
                     <span (click)="openForm()">Thông tin tài khoản</span>
                 </div>
                 <ng-container *ngIf="expression; else elseTemplate">
-                    <div>
-                        <mat-icon color="primary">wysiwyg</mat-icon>
+                    <div id="text-btn">
+                        <mat-icon>wysiwyg</mat-icon>
                         <span (click)="openDataSCTModule()">Quản lý thị trường</span>
                     </div>
                 </ng-container>
                 <ng-template #elseTemplate>
-                    <div>
-                        <mat-icon color="primary">wysiwyg</mat-icon>
+                    <div id="text-btn">
+                        <mat-icon>wysiwyg</mat-icon>
                         <span (click)="openHome()">Dữ liệu ngành</span>
                     </div>
                 </ng-template>
-                <div>
-                    <mat-icon color="primary">login</mat-icon>
+                <div id="text-btn">
+                    <mat-icon>login</mat-icon>
                     <span (click)="logout()">Đăng xuất</span>
                 </div>
-                
-                <!-- <div>
-                    <mat-icon color="primary">launch</mat-icon>
-                    <span (click)="logout()">Đăng xuất</span>
-                </div> -->
             </div>
 
         </ng-template>
     </mat-toolbar-row>
 </mat-toolbar>
-<!-- <div fxFlex="row" fxLayoutAlign="center center" fxLayoutGap="10px" class="header">
-  <button mat-icon-button (click)="sidebar.toggle();">
-    <mat-icon>menu</mat-icon>
-  </button>
-
-  <span>Inbox</span>
-  <span class="spacer"></span>
-
-</div> -->

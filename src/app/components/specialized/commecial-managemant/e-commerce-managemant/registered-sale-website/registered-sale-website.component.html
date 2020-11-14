@@ -1,90 +1,134 @@
-<div class="row">
-    <h1>Quản lý Thông báo Website Bán hàng</h1>
-</div>
+<mat-card>
+    <mat-card-content>
+        <div class="example-action-buttons">
+            <button mat-raised-button style="color: orangered;" (click)="accordion.openAll()">
+                <mat-icon>flip_to_front</mat-icon> Mở Tất Cả
+            </button> &nbsp;
+            <button mat-raised-button style="color: orangered;" (click)="accordion.closeAll()">
+                <mat-icon>flip_to_back</mat-icon> Đóng tất cả
+            </button>
+        </div>
+        <mat-accordion class="example-headers-align" multi>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <mat-icon> show_chart</mat-icon>
+                        &nbsp;
+                        <strong>DỮ LIỆU TỔNG HỢP</strong>
+                    </mat-panel-title>
+                    <mat-panel-description>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
 
+                <div class="row">
+                    <div class="col-4 col-lg-4">
+                    </div>
+                    <div class="col-4 col-lg-4">
+                        <mat-card class="cards" id="ccards">
+                            <mat-card-header>
+                                <div mat-card-avatar>
+                                    <mat-icon>filter</mat-icon>
+                                </div>
+                                <mat-card-title>Tổng số lượng website đã đăng ký:
+                                </mat-card-title>
+                            </mat-card-header>
+                            <mat-card-content>
+                                <strong>{{filteredDataSource.data.length}}</strong>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                    <div class="col-4 col-lg-4">
+                    </div>
+                </div>
+            </mat-expansion-panel>
 
-<div class="row">
-    <!-- <div class="col-2">
-        <h4>Kỳ dữ liệu:</h4>
-    </div>
-    <div class="col-2">
-        <mat-select placeholder="Chọn năm lọc dữ liệu" (selectionChange)="getDanhSachBuonBanLeXangDau($event.value)">
-            <mat-option *ngFor='let year of years' [value]='year'>{{year}}</mat-option>
-        </mat-select>
-    </div> -->
-    <div class="col-2">
-        <h4>Địa bàn:</h4>
-    </div>
-    <div class="col-2">
-        <mat-select placeholder="Chọn địa bàn" (selectionChange)="applyFilter()" [(ngModel)]="filterModel.id_quan_huyen" multiple>
-            <mat-option *ngFor='let district of districts' [value]='district.id'>{{district.ten_quan_huyen}}
-            </mat-option>
-        </mat-select>
-    </div>
-    <!-- <div class="col-2">
-        <mat-checkbox (change)="applyExpireCheck($event)" [(ngModel)]="isChecked">DN hết hạn</mat-checkbox>
-    </div> -->
-</div>
-<br>
-<br>
-<div class="row">
-    <div class="col-2">
-        <p>Số lượng website đã đăng ký: {{filteredDataSource.data.length}}</p>
-    </div>
-    <!-- <div class="col-2">
-        <p>Sản lượng tiêu thụ: {{sanLuongBanRa}}</p>
-    </div> -->
-</div>
-<br>
-<br>
-<!-- <div class="row" *ngIf="filteredDataSource?.data.length; else ShowEmpty"> -->
-<div class="row">
-    <table mat-table [dataSource]="filteredDataSource" #table>
-        <ng-container matColumnDef="index">
-            <th mat-header-cell *matHeaderCellDef> STT </th>
-            <td mat-cell *matCellDef="let element; let i = index;" class='stt'>{{i+1}}</td>
-        </ng-container>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <mat-icon>folder_open</mat-icon>
+                        &nbsp;
+                        <strong>DỮ LIỆU CHI TIẾT</strong>
+                    </mat-panel-title>
+                    <mat-panel-description>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
 
-        <ng-container matColumnDef="mst">
-            <th mat-header-cell *matHeaderCellDef> Mã số thuế </th>
-            <td mat-cell *matCellDef="let element" class="stt">{{element.mst}}</td>
-        </ng-container>
+                <div class="row">
+                    <div class="col-3 col-lg-3">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Địa bàn</mat-label>
+                            <mat-select placeholder="Chọn địa bàn" (selectionChange)="applyFilter()"
+                                [(ngModel)]="filterModel.id_quan_huyen" multiple>
+                                <mat-option *ngFor='let district of districts' [value]='district.id'>
+                                    {{district.ten_quan_huyen}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
 
-        <ng-container matColumnDef="ten_tc_cn">
-            <th mat-header-cell *matHeaderCellDef>Tên tổ chức/cá nhân </th>
-            <td mat-cell *matCellDef="let element" class="stt">{{element.ten_tc_cn}}</td>
-        </ng-container>
+                <div class="auto mat-elevation-z8" *ngIf="filteredDataSource.data.length; else ShowEmpty">
+                    <mat-form-field class="filter">
+                        <mat-label>Lọc dữ liệu</mat-label>
+                        <input matInput (keyup)="applyFilter1($event)" placeholder="" #input>
+                    </mat-form-field>
 
-        <ng-container matColumnDef="dia_chi">
-            <th mat-header-cell *matHeaderCellDef> Địa chỉ </th>
-            <td mat-cell *matCellDef="let element" class="stt">{{element.dia_chi}}</td>
-        </ng-container>
+                    <table mat-table [dataSource]="filteredDataSource" #table>
+                        <ng-container matColumnDef="index">
+                            <th mat-header-cell *matHeaderCellDef> STT </th>
+                            <td mat-cell *matCellDef="let element; let i = index;" class='stt'>{{i+1}}</td>
+                        </ng-container>
 
-        <ng-container matColumnDef="dien_thoai">
-            <th mat-header-cell *matHeaderCellDef> Điện thoại </th>
-            <td mat-cell *matCellDef="let element" class="stt">{{element.dien_thoai}}</td>
-        </ng-container>
+                        <ng-container matColumnDef="mst">
+                            <th mat-header-cell *matHeaderCellDef> Mã số thuế </th>
+                            <td mat-cell *matCellDef="let element" class="stt">{{element.mst}}</td>
+                        </ng-container>
 
-        <ng-container matColumnDef="ten_mien">
-            <th mat-header-cell *matHeaderCellDef> Tên miền </th>
-            <td mat-cell *matCellDef="let element" class="stt"><a href="{{element.ten_mien.includes('http')? element.ten_mien : 'http://' + element.ten_mien}}" target="_blank">{{element.ten_mien}}</a></td>
-        </ng-container>
+                        <ng-container matColumnDef="ten_tc_cn">
+                            <th mat-header-cell *matHeaderCellDef>Tên tổ chức/cá nhân </th>
+                            <td mat-cell *matCellDef="let element" class="stt">{{element.ten_tc_cn}}</td>
+                        </ng-container>
 
-        <ng-container matColumnDef="nganh_nghe">
-            <th mat-header-cell *matHeaderCellDef> Ngành nghề </th>
-            <td mat-cell *matCellDef="let element" class="stt">{{element.nganh_nghe}}</td>
-        </ng-container>
+                        <ng-container matColumnDef="dia_chi">
+                            <th mat-header-cell *matHeaderCellDef> Địa chỉ </th>
+                            <td mat-cell *matCellDef="let element" class="stt">{{element.dia_chi}}</td>
+                        </ng-container>
 
-        <ng-container matColumnDef="ma_so_nganh_nghe">
-            <th mat-header-cell *matHeaderCellDef> Mã số ngành nghề </th>
-            <td mat-cell *matCellDef="let element" class="stt">{{element.ma_so_nganh_nghe}}</td>
-        </ng-container>
+                        <ng-container matColumnDef="dien_thoai">
+                            <th mat-header-cell *matHeaderCellDef> Điện thoại </th>
+                            <td mat-cell *matCellDef="let element" class="stt">{{element.dien_thoai}}</td>
+                        </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns">
-        </tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;let i = index; ">
-    </table>
-</div>
-<ng-template #ShowEmpty>
-    <h1>Không có dữ liệu</h1>
-</ng-template>
+                        <ng-container matColumnDef="ten_mien">
+                            <th mat-header-cell *matHeaderCellDef> Tên miền </th>
+                            <td mat-cell *matCellDef="let element" class="stt"><a
+                                    href="{{element.ten_mien.includes('http')? element.ten_mien : 'http://' + element.ten_mien}}"
+                                    target="_blank">{{element.ten_mien}}</a></td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="nganh_nghe">
+                            <th mat-header-cell *matHeaderCellDef> Ngành nghề </th>
+                            <td mat-cell *matCellDef="let element" class="stt">{{element.nganh_nghe}}</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="ma_so_nganh_nghe">
+                            <th mat-header-cell *matHeaderCellDef> Mã số ngành nghề </th>
+                            <td mat-cell *matCellDef="let element" class="stt">{{element.ma_so_nganh_nghe}}</td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns">
+                        </tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;let i = index; ">
+                    </table>
+                </div>
+                <mat-paginator [pageSizeOptions]="[10, 20, 50, 100]" showFirstLastButtons></mat-paginator>
+
+                <ng-template #ShowEmpty>
+                    <h1>Không có dữ liệu</h1>
+                </ng-template>
+
+            </mat-expansion-panel>
+        </mat-accordion>
+
+    </mat-card-content>
+</mat-card>
