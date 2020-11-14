@@ -190,7 +190,7 @@ export const navItemsSpecialized: INavItem[] = [
     children: [
       {
         name: 'Thương mại nội địa',
-        icon: 'monetization_on',
+        icon: 'roofing',
         id: 'TMND',
         manager:true,
         expand: false,
@@ -198,19 +198,19 @@ export const navItemsSpecialized: INavItem[] = [
           {
             name: 'Hạ tầng thương mại',
             url: '/specialized/commecial-management/domestic',
-            icon: 'monetization_on',
+            icon: 'room_preferences',
             id: 'HTTM',
           },
           {
             name: 'Kinh doanh có điều kiện, hạn chế kinh doanh',
             url: '/specialized/commecial-management/domestic/cbl',
-            icon: 'monetization_on',
+            icon: 'smoking_rooms',
             id: 'KDCDK',
           },
           {
             name: 'Tổng mức bán lẻ hàng hóa và dịch vụ',
             url: '/specialized/commecial-management/domestic/trs',
-            icon: 'monetization_on',
+            icon: 'tty',
             id: 'HHDV',
           },
         ]
@@ -218,7 +218,7 @@ export const navItemsSpecialized: INavItem[] = [
       {
         name: 'Xuất nhập khẩu',
         url: '/specialized/commecial-management/ecommerce',
-        icon: 'hourglass_bottom',
+        icon: 'share',
         id: 'XNK',
         manager:true,
         expand: false,
@@ -226,13 +226,13 @@ export const navItemsSpecialized: INavItem[] = [
           {
             name: 'Xuất khẩu',
             url: '/specialized/commecial-management/export_import/exported_products',
-            icon: 'monetization_on',
+            icon: 'public',
             id: 'HTTM',
           },
           {
             name: 'Nhập khẩu',
             url: '/specialized/commecial-management/export_import/imported_products',
-            icon: 'monetization_on',
+            icon: 'public_off',
             id: 'KDCDK',
           },
         ]
@@ -240,7 +240,7 @@ export const navItemsSpecialized: INavItem[] = [
       {
         name: 'Thương mại biên giới',
         url: '/specialized/commecial-management/border_trade',
-        icon: 'filter_9_plus',
+        icon: 'luggage',
         id: 'TMBG',
         manager: false,
         expand: false,
@@ -251,7 +251,7 @@ export const navItemsSpecialized: INavItem[] = [
       {
         name: 'Thương mại điện tử',
         url: '/specialized/commecial-management/multi-level',
-        icon: 'hourglass_bottom',
+        icon: 'vibration',
         id: 'TMDT',
         manager:true,
         expand: false,
@@ -259,13 +259,13 @@ export const navItemsSpecialized: INavItem[] = [
           {
             name: 'Quản lý thông báo website bán hàng',
             url: '/specialized/commecial-management/e-commerce/sale-website',
-            icon: 'monetization_on',
+            icon: 'ondemand_video',
             id: 'QLTB',
           },
           {
             name: 'Quản lý đăng kí website cung cấp dịch vụ TMĐT',
             url: '/specialized/commecial-management/e-commerce/ecommerce-website',
-            icon: 'monetization_on',
+            icon: 'personal_video',
             id: 'QLDK',
           },
         ]
@@ -273,7 +273,7 @@ export const navItemsSpecialized: INavItem[] = [
       {
         name: 'Xúc tiến thương mại',
         url: '/specialized/commecial-management/multi-level',
-        icon: 'hourglass_bottom',
+        icon: 'support_agent',
         id: 'XTTM',
         manager:true,
         expand: false,
@@ -281,13 +281,13 @@ export const navItemsSpecialized: INavItem[] = [
           {
             name: 'Hội chợ, triển lãm',
             url: '/specialized/commecial-management/domestic',
-            icon: 'monetization_on',
+            icon: 'food_bank',
             id: 'HTTM',
           },
           {
             name: 'Khuyến mại',
             url: '/specialized/commecial-management/domestic',
-            icon: 'monetization_on',
+            icon: 'movie_filter',
             id: 'KDCDK',
           },
         ]
@@ -295,7 +295,7 @@ export const navItemsSpecialized: INavItem[] = [
       {
         name: 'Hoạt động bán hàng đa cấp',
         url: '/specialized/commecial-management/multi-level',
-        icon: 'hourglass_bottom',
+        icon: 'supervisor_account',
         id: 'XTTM',
         manager:false,
         expand: false,
@@ -309,23 +309,23 @@ export const navItemsSpecialized: INavItem[] = [
     name: 'QUẢN LÝ NĂNG LƯỢNG',
     manager:true,
     isSCT: true,
-    icon: 'electrical_services',
+    icon: 'speed',
     expand: false,
     children: [
       {
         name: 'Năng lượng - Thủy điện',
         url: '/specialized/enery-management/hydroelectric',
-        icon: 'monetization_on',
+        icon: 'call_split',
       },
       {
         name: 'Điện nông thôn',
         url: '/specialized/enery-management/countryside_electric',
-        icon: 'hourglass_top',
+        icon: 'home',
       },
       {
         name: 'Cơ sở sử dụng năng lượng trọng điểm',
         url: '/specialized/enery-management/focused_energy',
-        icon: 'hourglass_bottom',
+        icon: 'group_work',
       },
     ]
   },
@@ -353,7 +353,7 @@ export const navItemsSpecialized: INavItem[] = [
         icon: 'hourglass_bottom',
       },
       {
-        name: 'Chỉ số SX công nghiệp và một số sản phẩm công nghiệp chủ yếu',
+        name: 'Chỉ số SX công nghiệp',
         url: '/specialized/industry-management/focus',
         icon: 'filter_9_plus',
       },

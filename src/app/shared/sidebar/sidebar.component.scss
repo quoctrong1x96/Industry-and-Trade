@@ -1,119 +1,78 @@
-.example-container {
-    height: 500px;
-    border: 1px solid rgba(0, 0, 0, 0.5);
-}
-
-.example-sidenav-content {
-    display: flex;
-    height: 100%;
-    align-items: center;
-    justify-content: center;
-}
-
-.example-sidenav {
-    user-select: none;
-}
-
-.full-width {
-    width: 100%;
-}
-
-.menu-button {
-    transition: 300ms ease-in-out;
-    transform: rotate(0deg);
-}
-
-.menu-button.rotated {
-    transform: rotate(180deg);
-}
-
-.submenu {
-    // padding-left: 15px;
-    border-left: 1px solid #ddd;
-    background-color: #ffffff87;
-}
-
-.submenu.expanded {
-    transform: scaleY(1);
-}
-
-.sidenav_container {
+.material {
+  $backcolor_defaut: #1f7ed0;
+  $color_default: white;
+  $backcolor_menu_default: white;
+  $color_menu_defaut: #000000;
+  .sidenav_container .mat-elevation-z5 {
     min-width: 60px;
-    height: 100%; //calc(100vh - 100px);
+    height: 100%;
     border-right: 3px;
     z-index: -1 !important;
-}
+    .sct-sidebar {
+      height: 100%;
+      background-color: $color_default;
+    }
+  }
 
-.jim {
+  .mat-list-item {
+    font-size: 1em;
+    background-color: $backcolor_menu_default;
+    color: $color_menu_defaut;
+    .submenu {
+      color: $color_menu_defaut;
+      background-color: $backcolor_menu_default;
+    }
+
+    
+  }
+  .mat-list-base {
+    padding-top: 0px !important;
+  }
+  .mat-list-item.parent {
+    text-transform: uppercase;
+    color: $color_default;
+    background-color: $backcolor_defaut;
+  }
+
+  .mat-list-item.child {
+    font-size: 1em;
+  }
+
+  .mat-list-item.small {
+    font-size: 1em;
+  }
+  .mat-icon{
+      margin-right: 5px;
+  }
+  .mat-list-item:hover {
+    background-color: $backcolor_defaut;
+    color: $color_default;
+  }
+
+  .mat-list-item:active {
+    font-weight: bold;
+    transition: 1s ease all;
+    -moz-transition: 1s ease all;
+    -webkit-transition: 1s ease all;
+    background-color: $backcolor_defaut;
+    color: #000000;
+  }
+
+  .mat-list-item:focus {
+    background-color: $backcolor_defaut;
+    color: #000000;
+  }
+
+  .mat-list-item-active {
+    color: #fc0808;
+  }
+  img.jim {
     width: 30px;
     height: 30px;
     object-fit: cover;
     border-radius: 50%;
-}
-
-.mat-list-item:hover {
-    // background-color: aquamarine;
-    // font-weight: bold;
-    //color: aquamarine;//white;;
-    // transition: 1s ease all;
-    // -moz-transition: 1s ease all;
-    // -webkit-transition: 1s ease all;
-    background-color: #ecd358;
-    color: #020202;
-}
-
-.mat-list-item:active {
-    // background-color: aquamarine;
-    font-weight: bold;
-    //color: aquamarine;//white;;
-    transition: 1s ease all;
-    -moz-transition: 1s ease all;
-    -webkit-transition: 1s ease all;
-    background-color: #ecd358;
-    color: #000000;
-}
-
-.mat-list-item:focus {
-    background-color: #ecd358;
-    color: #000000;
-}
-
-.mat-list-item-active {
-    // background-color: #ecd358;
-    color: #fc0808;
-}
-
-.showTitle {
-    height: 50px !important;
-    font-weight: bold;
-    // text-align: center justify;
-    color: rgb(0, 0, 0);
-    //background-color: grey;//#6f42c1;
-    //margin-left: 10px;
-    padding-left: 20px;
-    // padding-right: 5px;
-    padding-top: 13px;
-    text-transform: uppercase;
-    // background-color: #ecd358;
-    // border-top: 1px solid #ddd;
-    // border-bottom: 1px solid #ddd;
-}
-
-// a span{
-//   margin-left: 10px;
-// }
-.active {
-    background-color: aquamarine;
-    font-weight: bold;
-    color: white;
-}
-
-.mat-elevation-z5 {
-    // position: sticky;
-    z-index: 3;
-}
-
-#thongtinUser {
+  }
+  #thongtinUser {
     display: block;
     opacity: 1;
     text-overflow: ellipsis;
@@ -121,31 +80,25 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-}
+  }
 
-.white-icon {
-    color: black;
-}
+  .menu-button {
+    transition: 300ms ease-in-out;
+    transform: rotate(0deg);
+  }
 
-.parent {
-    text-transform: uppercase;
+  .menu-button.rotated {
+    transform: rotate(180deg);
+  }
+  .showTitle {
+    height: 50px !important;
     font-weight: bold;
-    font-size: 1em;
-    background-color: #78787877;
-}
-
-.child {
-    font-size: 1em;
-    background-color: #cecececc;
-}
-
-.small {
-    font-size: 0.8em;
-    margin-left: 1.2em;
-    font-style: italic;
-    background-color: white;
-}
-
-.mat-list-base {
-    padding-top: 0px !important;
+    color: rgb(0, 0, 0);
+    padding-left: 20px;
+    padding-top: 13px;
+    text-transform: uppercase;
+  }
+  .submenu.expanded {
+    transform: scaleY(1);
+  }
 }

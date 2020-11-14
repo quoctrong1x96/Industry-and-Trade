@@ -9,6 +9,7 @@ import { EventService } from '../services/evenet.service';
 //Import Model---------------------------------------------------------------------
 import { TYPE_OF_NAV } from '../../_enums/typeOfUser.enum';
 import { NGB_TIMEPICKER_I18N_FACTORY } from '@ng-bootstrap/ng-bootstrap/timepicker/timepicker-i18n';
+import { STYLESCSS_TYPE } from 'src/app/_enums/styleChoose.enum';
 @Component({
   selector: 'app-topbar',
   templateUrl: './topbar.component.html',
@@ -21,18 +22,21 @@ export class TopbarComponent implements OnInit {
   public readonly USERNAME_DEFAULT: string = "Tên người dùng";
   public readonly NOTIFICATION_DEFAULT: number = 0;
   public readonly COLOR_USER_DEFUALT: string = "#ffc107";
+  public readonly STYLE_SCSS_DEFAULTL: STYLESCSS_TYPE = STYLESCSS_TYPE.MATERIAL;
   //Variable for HTML & TS---------------------------------------------------------------------
   public img_avatar: string = this.AVATAR_DEFAULT;
   public userName: string = this.USERNAME_DEFAULT;
   public notificatios: number = this.NOTIFICATION_DEFAULT;
   public expression: boolean = true;
   public colorOfUser: string = this.COLOR_USER_DEFUALT;
+  public styleOfScss: STYLESCSS_TYPE;
   //Variable for only TS---------------------------------------------------------------------
 
   //Input & Viewchild---------------------------------------------------------------------
   @Input() open: boolean = this._eventService.open;
   @Input('typeOfUser') typeOfUser: TYPE_OF_NAV;
   @Input() sidebar: MatSidenav;
+  @Input('module') module_control: string; 
   //Contructor & Oninit---------------------------------------------------------------------
   constructor(
     public _loginAuthService: LoginAuthGuardService,
@@ -41,6 +45,7 @@ export class TopbarComponent implements OnInit {
     public _eventService: EventService
   ) { }
   ngOnInit() {
+    this.styleOfScss = this.STYLE_SCSS_DEFAULTL;
     this.open = this._eventService.open;
     this.expression = this.typeOfUser == TYPE_OF_NAV.SPECICALIZED ? true : false;
     this.colorOfUser = this._getColorOfUser(this.typeOfUser);
