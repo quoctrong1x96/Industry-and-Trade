@@ -16,13 +16,13 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-6 button-control -align-right">
+            <div class="col-lg-7 button-control -align-right">
                 <button mat-raised-button class="reverse" (click)="addRow()">  <mat-icon>add_circle_outline</mat-icon>Thêm dòng</button>
                 <button mat-raised-button class="reverse" (click)="insertRow()"><mat-icon>add_circle</mat-icon>Chèn dòng</button>
                 <button mat-raised-button class="reverse" (click)="deleteRow()"><mat-icon>block</mat-icon>Xóa dòng</button>
-                <button mat-raised-button (click)="createDefault()"><mat-icon>ballot</mat-icon>Mặc định</button>
+                <button mat-raised-button class="reverse" (click)="createDefault()"><mat-icon>ballot</mat-icon>Khởi tạo mặc định</button>
             </div>
-            <div class="col-lg-6 button-control">
+            <div class="col-lg-5 button-control">
                 
                 <button mat-raised-button
                     (click)="downloadExcelTemplate('Mẫu giá cả trong nước','Tình hình xuất khẩu')">
@@ -32,7 +32,7 @@
                     <mat-icon>cloud_upload</mat-icon> Nhập bằng Excel <input type="file" id="customFile"
                         (change)="uploadExcel($event)" hidden #inputFile>
                 </label>
-                <button mat-raised-button (click)="save()" class="special">
+                <button mat-raised-button (click)="save()">
                     <mat-icon>save</mat-icon>Lưu
                 </button>
                 <!-- <div class="custom-file">
