@@ -38,17 +38,30 @@ export class ImportManagementComponent implements OnInit, AfterViewInit  {
     TongGiaTriCongDon: number = 0;
     isChecked: boolean;
     pagesize: number = 0;
-    curentmonth: number = new Date().getMonth();
+    curentmonth: number = new Date().getMonth() + 1;
     @ViewChild('table', { static: false }) table: MatTable<ex_im_model>;
     @ViewChild(MatAccordion, { static: true }) accordion: MatAccordion;
     @ViewChild('paginator', { static: true }) paginator: MatPaginator;
     @ViewChild(MatSort, {static: false}) sort: MatSort;
-    
+    nhap_khau_chu_yeu = [1, 61, 98, 28, 4, 20, 33, 34, 31, 51]
     constructor(
       public sctService: SCTService,
       public matDialog: MatDialog,
       public marketService: MarketService
       ) {
+    }
+
+    initVariable(){
+      this.TongLuongThangThucHien = 0;
+      this.TongGiaTriThangThucHien = 0;
+      this.TongLuongCongDon = 0;
+      this.TongGiaTriCongDon = 0;
+    }
+
+    kiem_tra(id_mat_hang){
+      if(this.nhap_khau_chu_yeu.includes(id_mat_hang))
+        return true
+      return false;
     }
 
     ngOnInit() {
@@ -70,6 +83,7 @@ export class ImportManagementComponent implements OnInit, AfterViewInit  {
     // }
 
     getDanhSachNhapKhau(thang){
+      this.isChecked = false;
       let tem = new Date().getFullYear()*100 + thang;
       if(thang !== this.curentmonth && thang){
         this.curentmonth = thang;
@@ -79,15 +93,7 @@ export class ImportManagementComponent implements OnInit, AfterViewInit  {
           this.log(this.dataSource)
           this.dataDialog = result.data[0];
           this.pagesize = this.dataSource.data.length/25
-          for (let item of this.dataSource.data) {
-            // console.log(item)
-            this.TongLuongThangThucHien += item['luong_thang'];
-            this.TongGiaTriThangThucHien += item['gia_tri_thang'];
-            this.TongLuongCongDon += item['luong_cong_don'];
-            this.TongGiaTriCongDon += item['gia_tri_cong_don'];
-          }
-          
-          // console.log(this.TongGiaTriCongDon, this.TongGiaTriThangThucHien, this.TongLuongCongDon, this.TongLuongThangThucHien)
+          this.tinh_tong(this.dataSource.data);
           this.filteredDataSource.data = [...this.dataSource.data];
           this.filteredDataSource.paginator = this.paginator;
           // this.paginator._intl.itemsPerPageLabel = 'Số hàng';
@@ -97,7 +103,17 @@ export class ImportManagementComponent implements OnInit, AfterViewInit  {
           // this.paginator._intl.nextPageLabel = "Trang Tiếp";
           this.dataSource.paginator = this.paginator;
       });
-      
+    }
+
+    tinh_tong(data){
+      this.initVariable();
+      for (let item of data) {
+        // console.log(item)
+        this.TongLuongThangThucHien += item['luong_thang'];
+        this.TongGiaTriThangThucHien += item['gia_tri_thang'];
+        this.TongLuongCongDon += item['luong_cong_don'];
+        this.TongGiaTriCongDon += item['gia_tri_cong_don'];
+      }
     }
 
     ngAfterViewInit(): void {
@@ -134,22 +150,26 @@ export class ImportManagementComponent implements OnInit, AfterViewInit  {
 
     applyExpireCheck(event) {
         console.log(event);
-        this.filteredDataSource.filter = (event.checked) ? "true" : "";
+        let tem_data = [...this.dataSource.data]
+        event.checked ? this.dataSource.data = tem_data.filter(item => this.nhap_khau_chu_yeu.includes(item.id_mat_hang)) : this.dataSource.data = this.filteredDataSource.data;
+        this.tinh_tong(this.dataSource.data)
     }
 
-  openDialog(ten_san_pham) {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.data = {
-      data: this.handelDataDialog(ten_san_pham),
-      id: 1
+  openDialog(id_mat_hang) {
+    if(this.kiem_tra(id_mat_hang)){
+      const dialogConfig = new MatDialogConfig();
+      dialogConfig.data = {
+        data: this.handelDataDialog(id_mat_hang),
+        id: 1
+      }
+      console.log(this.handelDataDialog(id_mat_hang))
+      // dialogConfig.panelClass = ['overflow-y: scroll;']
+      this.matDialog.open(ModalComponent, dialogConfig);
     }
-    console.log(this.handelDataDialog(ten_san_pham))
-    // dialogConfig.panelClass = ['overflow-y: scroll;']
-    this.matDialog.open(ModalComponent, dialogConfig);
   }
 
-  handelDataDialog(ten_san_pham){
-    let data = this.dataDialog.filter(item => item.ten_san_pham === ten_san_pham);
+  handelDataDialog(id_mat_hang){
+    let data = this.dataDialog.filter(item => item.id_mat_hang === id_mat_hang);
     return data;
   }
 

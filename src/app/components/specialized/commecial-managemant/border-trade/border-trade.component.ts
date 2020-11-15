@@ -25,12 +25,12 @@ export class BorderTradeComponent implements OnInit {
     "kim_ngach",
     "ten_doanh_nghiep"
   ];
-  danh_sach: string[] = [
-    'I. Hàng hóa xuất khẩu, nhập khẩu thương mại',
-    'II. Hàng hóa mua bán, trao đổi của cư dân biên giới',
-    'III. Hàng kinh doanh miễn thuế',
-    'IV. Hàng hóa kinh doanh tậm nhập, tái xuất: ',
-    'V. Khác',
+  danh_sach: any[] = [
+    { id: 1, value: 'I. Hàng hóa xuất khẩu, nhập khẩu thương mại' },
+    { id: 2, value: 'II. Hàng hóa mua bán, trao đổi của cư dân biên giới' },
+    { id: 3, value: 'III. Hàng kinh doanh miễn thuế' },
+    { id: 4, value: 'IV. Hàng hóa kinh doanh tậm nhập, tái xuất: ' },
+    { id: 5, value: 'V. Khác' },
   ];
 
   danh_sach_con: string[] = [
@@ -41,27 +41,27 @@ export class BorderTradeComponent implements OnInit {
   ];
 
   gr1: GroupProduct[] = [
-    { group_code: 1, group_name: this.danh_sach[0], isGroup: true },
+    { group_code: 1, group_name: this.danh_sach[0].value, isGroup: true },
     { group_code: 1, group_name: this.danh_sach_con[0], isGroup: true },
     { group_code: 1, group_name: this.danh_sach_con[1], isGroup: true },
   ];
   gr2: GroupProduct[] = [
-    { group_code: 2, group_name: this.danh_sach[1], isGroup: true },
+    { group_code: 2, group_name: this.danh_sach[1].value, isGroup: true },
     { group_code: 2, group_name: this.danh_sach_con[0], isGroup: true },
     { group_code: 2, group_name: this.danh_sach_con[1], isGroup: true }
   ]
   gr3: GroupProduct[] = [
-    { group_code: 3, group_name: this.danh_sach[0], isGroup: true },
+    { group_code: 3, group_name: this.danh_sach[2].value, isGroup: true },
     { group_code: 3, group_name: this.danh_sach_con[2], isGroup: true },
     { group_code: 3, group_name: this.danh_sach_con[3], isGroup: true },
   ]
   gr4: GroupProduct[] = [
-    { group_code: 4, group_name: this.danh_sach[3], isGroup: true },
+    { group_code: 4, group_name: this.danh_sach[3].value, isGroup: true },
     { group_code: 4, group_name: this.danh_sach_con[0], isGroup: true },
     { group_code: 4, group_name: this.danh_sach_con[1], isGroup: true },
   ]
   gr5: GroupProduct[] = [
-    { group_code: 5, group_name: this.danh_sach[4], isGroup: true },
+    { group_code: 5, group_name: this.danh_sach[4].value, isGroup: true },
     { group_code: 5, group_name: this.danh_sach_con[0], isGroup: true },
     { group_code: 5, group_name: this.danh_sach_con[1], isGroup: true },
   ]
@@ -73,9 +73,14 @@ export class BorderTradeComponent implements OnInit {
   id_cua_khau: number = 1;
   cua_khau: string = this.danh_sach_cua_khau[2].ten_cua_khau;
   dataSourceI: (BorderTrade | GroupProduct)[] = [];
-  filteredDataSource: MatTableDataSource<BorderTrade> = new MatTableDataSource<BorderTrade>();
+  dulieuI: (BorderTrade | GroupProduct)[] = [];
+  dulieuII: (BorderTrade | GroupProduct)[] = [];
+  dulieuIII: (BorderTrade | GroupProduct)[] = [];
+  dulieuIV: (BorderTrade | GroupProduct)[] = [];
+  dulieuV: (BorderTrade | GroupProduct)[] = [];
+  filteredDataSource: (BorderTrade | GroupProduct)[] = [];
   months: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
- 
+
   isChecked: boolean;
   pagesize: number = 0;
   curentmonth: number = new Date().getMonth() + 1;
@@ -88,7 +93,10 @@ export class BorderTradeComponent implements OnInit {
   groupIII: GroupProduct;
   groupIV: GroupProduct;
   groupV: GroupProduct;
-
+  Id_Array:number[] =[];
+  ds_san_pham_chu_luc: any[] = [
+    {id: 1, ten_sp: 'Hạt điều'}
+  ]
   TongKimNgachThangNhomIxk: number = 0;
   TongLuongThangNhomIxk: number = 0;
   TongKimNgachThangNhomInk: number = 0;
@@ -123,7 +131,7 @@ export class BorderTradeComponent implements OnInit {
   ngOnInit() {
     // this.autoOpen();
     this.createGroup();
-    console.log(this.groupI)  
+    console.log(this.groupI)
     this.getThuongMaiBG(this.curentmonth);
     this.autoOpen();
   }
@@ -138,7 +146,7 @@ export class BorderTradeComponent implements OnInit {
 
   initGroup(gr: GroupProduct, code: number) {
     gr.group_code = code;
-    gr.group_name = this.danh_sach[code - 1];
+    gr.group_name = this.danh_sach[code - 1].value;
     gr.isGroup = true;
   }
 
@@ -150,52 +158,75 @@ export class BorderTradeComponent implements OnInit {
   //   return this.dataSource.data.map(t => t.cost).reduce((acc, value) => acc + value, 0);
   // }
 
-  selectGate(id_gate){
-    this.id_cua_khau = id_gate;
-    this.getThuongMaiBG(this.curentmonth)
+  selectGate(id_gate) {
+      this.id_cua_khau = id_gate;
+      this.getThuongMaiBG(this.curentmonth)
+      let tem_cua_khau = this.danh_sach_cua_khau.find(item => item.id_cua_khau === id_gate);
+      this.cua_khau = tem_cua_khau.ten_cua_khau;
+      this.Id_Array = [];
   }
 
-  selectMonth(month){
-    this.curentmonth = month;
-    this.getThuongMaiBG(this.curentmonth)
+
+  selectMonth(month) {
+      this.curentmonth = month;
+      this.getThuongMaiBG(this.curentmonth);
+      this.Id_Array = [];
+    
   }
 
   getThuongMaiBG(thang) {
     let tem = new Date().getFullYear() * 100 + thang;
     this.sctService.GetDanhSachXuatNhapKhauBG(tem, this.id_cua_khau).subscribe((result) => {
-     
-      this.sapxepXK(result.data[0], this.gr1);
-      this.sapxepNK(result.data[1], this.gr1);
-
-      this.sapxepXK(result.data[2], this.gr2);
-      this.sapxepNK(result.data[3], this.gr2);
-
-      this.sapxepXK(result.data[4], this.gr3);
-      this.sapxepNK(result.data[5], this.gr3);
-
-      this.sapxepXK(result.data[6], this.gr4);
-      this.sapxepNK(result.data[7], this.gr4);
-
-      this.sapxepXK(result.data[8], this.gr5);
-      this.sapxepNK(result.data[9], this.gr5);
-
-      this.dataSourceI = [...result.data[0],...result.data[1],...result.data[2],...result.data[3],...result.data[4],...result.data[5],...result.data[6],...result.data[7],...result.data[8],...result.data[9]]
+      this.getNhomI(result);
+      this.getNhomII(result);
+      this.getNhomIII(result);
+      this.getNhomIV(result);
+      this.getNhomV(result);
+      this.dataSourceI = [...result.data[0], ...result.data[1], ...result.data[2], ...result.data[3], ...result.data[4], ...result.data[5], ...result.data[6], ...result.data[7], ...result.data[8], ...result.data[9]]
       console.log(this.dataSourceI)
     });
   }
 
+  getNhomI(result) {
+    this.sapxepXK(result.data[0], this.gr1);
+    this.sapxepNK(result.data[1], this.gr1);
+    this.dulieuI = [...result.data[0], ...result.data[1]]
+  }
+  getNhomII(result) {
+    this.sapxepXK(result.data[2], this.gr2);
+    this.sapxepNK(result.data[3], this.gr2);
+    this.dulieuII = [...result.data[2], ...result.data[3]]
+  }
+  getNhomIII(result) {
+    this.sapxepXK(result.data[4], this.gr3);
+    this.sapxepNK(result.data[5], this.gr3);
+    this.dulieuIII = [...result.data[4], ...result.data[5]]
+  }
+  getNhomIV(result) {
+    this.sapxepXK(result.data[6], this.gr4);
+    this.sapxepNK(result.data[7], this.gr4);
+    this.dulieuIV = [...result.data[6], ...result.data[7]]
+  }
+  getNhomV(result) {
+    this.sapxepXK(result.data[8], this.gr5);
+    this.sapxepNK(result.data[9], this.gr5);
+    this.dulieuV = [...result.data[8], ...result.data[9]]
+  }
+
   sapxepXK(resultDataXK, gr) {
     let dataGroupIxk = this.xulysolieu(resultDataXK);
-    resultDataXK.push(dataGroupIxk);
     resultDataXK.splice(0, 0, gr[0]);
     resultDataXK.splice(1, 0, gr[1]);
-    
+    // console.log(resultDataXK)
+    resultDataXK.push(dataGroupIxk);
+    // console.log(resultDataXK)
+
   }
-  sapxepNK(resulDatatNK, gr){
+  sapxepNK(resulDatatNK, gr) {
     let dataGroupIxk = this.xulysolieu(resulDatatNK);
     resulDatatNK.push(dataGroupIxk);
-    resulDatatNK.splice(1, 0, gr[2]);
-    
+    resulDatatNK.splice(0, 0, gr[2]);
+
   }
 
   xulysolieu(data) {
@@ -225,23 +256,35 @@ export class BorderTradeComponent implements OnInit {
     console.log(any);
   }
 
-  applyFilter(event: Event) {
-    // const filterValue = (event.target as HTMLInputElement).value;
-    // this.dataSource.filter = filterValue.trim().toLowerCase();
-
-    // if (this.dataSource.paginator) {
-    //   this.dataSource.paginator.firstPage();
-    // }
-  }
-
   getYears() {
     return Array(5)
       .fill(1)
       .map((element, index) => new Date().getFullYear() - index);
   }
 
-  applyExpireCheck(event) {
-    console.log(event);
-    this.filteredDataSource.filter = event.checked ? "true" : "";
+  applyGroupFilter(id_array) {
+    console.log(id_array, this.Id_Array)
+    this.dataSourceI = [];
+    for (const iterator of id_array) {
+      switch (iterator) {
+        case 1:
+          this.dataSourceI = this.dataSourceI.concat(this.dulieuI);
+          break;
+        case 2:
+          this.dataSourceI = this.dataSourceI.concat(this.dulieuII);
+          break;
+        case 3:
+          this.dataSourceI = this.dataSourceI.concat(this.dulieuIII);
+          break;
+        case 4:
+          this.dataSourceI = this.dataSourceI.concat(this.dulieuIV);
+          break;
+        case 5:
+          this.dataSourceI = this.dataSourceI.concat(this.dulieuV);
+          break;
+        default:
+          break;
+      }
+    }
   }
 }
