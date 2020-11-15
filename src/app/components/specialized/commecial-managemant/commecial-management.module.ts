@@ -24,6 +24,7 @@ import { ModalComponent } from './export-import-management/dialog-import-export/
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { BorderTradeComponent } from './border-trade/border-trade.component';
 import { RegisteredSaleWebsiteComponent } from './e-commerce-managemant/registered-sale-website/registered-sale-website.component';
+import {dich} from '../commecial-managemant/border-trade/dich.pipe';
 @NgModule({
   imports: [
     CommonModule,
@@ -32,11 +33,10 @@ import { RegisteredSaleWebsiteComponent } from './e-commerce-managemant/register
     ReactiveFormsModule,
     CommecialManagementRoutingModule,
     MatDialogModule,
-    MatPaginatorModule
+    MatPaginatorModule,
   ],
   exports: [
     MatPaginatorModule
-
   ],
   declarations: [
     MarketCommecialManagementComponent,
@@ -57,7 +57,8 @@ import { RegisteredSaleWebsiteComponent } from './e-commerce-managemant/register
     ExportManagementComponent,
     ModalComponent,
     TRSManagementComponent,
-    BorderTradeComponent],
+    BorderTradeComponent,
+    dich],
   entryComponents: [
     ModalComponent
   ],

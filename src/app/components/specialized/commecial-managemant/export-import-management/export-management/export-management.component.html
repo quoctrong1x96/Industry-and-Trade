@@ -106,7 +106,7 @@
                         <br>
                         <mat-form-field appearance="outline">
                             <mat-label>Tháng thực hiện</mat-label>
-                            <mat-select (selectionChange)="getDanhSachXuatKhau($event.value)">
+                            <mat-select (selectionChange)="getDanhSachXuatKhau($event.value)" [(ngModel)]="curentmonth">
                                 <mat-option *ngFor='let month of months' [value]='month'>{{month}}</mat-option>
                             </mat-select>
                         </mat-form-field>
@@ -121,12 +121,11 @@
                                 </mat-option>
                             </mat-select>
                         </mat-form-field>
-                    </div>
+                    </div> -->
 
                     <div class="col-3 col-lg-3 my-auto">
-                        <mat-checkbox (change)="applyExpireCheck($event)" [ngModel]="isChecked">DN hết hạn
-                        </mat-checkbox>
-                    </div> -->
+                        <mat-checkbox (change)="applyExpireCheck($event)" [(ngModel)]="isChecked">Nhập khẩu chủ yếu</mat-checkbox>
+                    </div> 
                 </div>
 
                 <div class="auto mat-elevation-z1" *ngIf="dataSource.data.length; else ShowEmpty">
@@ -134,7 +133,7 @@
                         <mat-label>Lọc dữ liệu</mat-label>
                         <input matInput (keyup)="applyFilter($event)" placeholder="" #input>
                     </mat-form-field>
-
+                    <span style="color: brown;">Lưu ý: Các sản phẩm màu đỏ là các sản phẩm nhập khẩu chủ lực có thể xem thông tin nhập khẩu chi tiết đến các quốc gia</span>
                     <table mat-table [dataSource]="dataSource" #table>
                         <ng-container matColumnDef="blank">
                             <th mat-header-cell *matHeaderCellDef [attr.colspan]='2'> </th>
@@ -164,8 +163,8 @@
 
                         <ng-container matColumnDef="ten_san_pham">
                             <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Tên hàng </th>
-                            <td mat-cell *matCellDef="let element" class="ten-hang"
-                                (click)="openDialog(element.ten_san_pham)" style="cursor: pointer;">
+                            <td mat-cell *matCellDef="let element" class="ten-hang"  [ngClass]="{'kiem_tra': kiem_tra(element.id_mat_hang)}"
+                                (click)="openDialog(element.id_mat_hang)">
                                 {{element.ten_san_pham}}</td>
                             <td mat-footer-cell *matFooterCellDef> TỔNG </td>
                         </ng-container>
@@ -245,9 +244,10 @@
                         <tr mat-footer-row *matFooterRowDef="displayedColumns">
                         </tr>
                     </table>
-                    <mat-paginator #paginator [pageSize]="pageSize" [pageSizeOptions]="[25]"></mat-paginator>
+                    
                     <!-- <mat-paginator #paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 50]"></mat-paginator> -->
                 </div>
+                <mat-paginator #paginator [pageSize]="pageSize" [pageSizeOptions]="[25]"></mat-paginator>
                 <ng-template #ShowEmpty>
                     <h1>Không có dữ liệu</h1>
                 </ng-template>

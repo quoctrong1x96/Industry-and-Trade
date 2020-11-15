@@ -58,6 +58,12 @@ export class ModalComponent implements OnInit {
         this.handleData();
     }
 
+    ngAfterViewInit(): void {
+        //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+        //Add 'implements AfterViewInit' to the class.
+        setTimeout(() => this.accordion.openAll(), 500)
+    }
+
     handleData(){
         this.id = this.data['id'];
         if(this.id === 1){
