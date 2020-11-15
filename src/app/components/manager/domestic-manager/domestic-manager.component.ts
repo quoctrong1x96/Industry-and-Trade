@@ -59,6 +59,20 @@ export class DomesticManagerComponent implements OnInit {
   //Constant
   public readonly FORMAT = 'dd/MM/yyyy';
   public readonly LOCALE = 'en-GB';
+  public readonly RANK_LABLE = (page: number, pageSize: number, length: number) => {
+    if (length == 0 || pageSize == 0) { return `0 của ${length}`; }
+    
+    length = Math.max(length, 0);
+  
+    const startIndex = page * pageSize;
+  
+    // If the start index exceeds the list length, do not try and fix the end index to the end.
+    const endIndex = startIndex < length ?
+        Math.min(startIndex + pageSize, length) :
+        startIndex + pageSize;
+  
+    return `${startIndex + 1} - ${endIndex} của ${length}`;
+  }
 
   //Declare variable for only TS  
   public _rows: number = 0;
@@ -148,12 +162,7 @@ export class DomesticManagerComponent implements OnInit {
         else {
           this._mode = MODE.UPDATE;
         }
-        this.dataSource.paginator = this.paginator;
-        this.paginator._intl.itemsPerPageLabel = 'Số hàng';
-        this.paginator._intl.firstPageLabel = "Trang Đầu";
-        this.paginator._intl.lastPageLabel = "Trang Cuối";
-        this.paginator._intl.previousPageLabel = "Trang Trước";
-        this.paginator._intl.nextPageLabel = "Trang Tiếp";
+        this._paginatorAgain();
       });
     //error => this.errorMessage = <any>error
   }
@@ -353,12 +362,7 @@ export class DomesticManagerComponent implements OnInit {
     this.dataSource.data.push(newRow);
     this._rows = this.dataSource.filteredData.length;
     this.dataSource = new MatTableDataSource(this.dataSource.data);
-    this.dataSource.paginator = this.paginator;
-    this.paginator._intl.itemsPerPageLabel = 'Số hàng';
-    this.paginator._intl.firstPageLabel = "Trang Đầu";
-    this.paginator._intl.lastPageLabel = "Trang Cuối";
-    this.paginator._intl.previousPageLabel = "Trang Trước";
-    this.paginator._intl.nextPageLabel = "Trang Tiếp";
+    this._paginatorAgain();
   }
 
   //Evnet "Xóa dòng"
@@ -430,5 +434,16 @@ export class DomesticManagerComponent implements OnInit {
   public getCurrentDate(): string {
     let date = new Date();
     return date.toLocaleDateString(this.LOCALE);
+  }
+  //FUNCTION FOR ONLY TS
+  private _paginatorAgain(){
+    this.dataSource.paginator = this.paginator;
+    console.log("paginator",this.paginator);
+    this.paginator._intl.itemsPerPageLabel = 'Số hàng';
+    this.paginator._intl.firstPageLabel = "Trang Đầu";
+    this.paginator._intl.lastPageLabel = "Trang Cuối";
+    this.paginator._intl.previousPageLabel = "Trang Trước";
+    this.paginator._intl.nextPageLabel = "Trang Tiếp";
+    this.paginator._intl.getRangeLabel = this.RANK_LABLE;
   }
 }
