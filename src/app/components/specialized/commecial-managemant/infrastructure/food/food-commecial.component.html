@@ -1,12 +1,14 @@
-<mat-card>
+<mat-card class="material">
     <mat-card-content>
-        <div class="example-action-buttons">
-            <button mat-raised-button style="color: orangered;" (click)="accordion.openAll()">
-                <mat-icon>flip_to_front</mat-icon> Mở Tất Cả
-            </button> &nbsp;
-            <button mat-raised-button style="color: orangered;" (click)="accordion.closeAll()">
-                <mat-icon>flip_to_back</mat-icon> Đóng tất cả
-            </button>
+        <div class="row">
+            <div class="col button-control">
+                <button mat-raised-button (click)="accordion.openAll()">
+                    <mat-icon>flip_to_front</mat-icon> Mở Tất Cả
+                </button>               
+                <button mat-raised-button (click)="accordion.closeAll()">
+                    <mat-icon>flip_to_back</mat-icon> Đóng tất cả
+                </button>
+            </div>
         </div>
         <mat-accordion class="example-headers-align" multi>
             <mat-expansion-panel>
@@ -26,55 +28,6 @@
                     </div>
                     <p class="mb-1"></p>
                 </a>
-
-                <!-- <div class="row">
-          <div class="col-6 col-lg-6">
-            <div class="list-group">
-              <a class="list-group-item list-group-item-action flex-column align-items-start bg-primary">
-                <div class="d-flex w-100 justify-content-between">
-                  <h5 class="mb-1">1 Tổng số cửa hàng: <strong>0</strong></h5>
-                </div>
-                <p class="mb-1"></p>
-              </a>
-              <a class="list-group-item list-group-item-action flex-column align-items-start">
-                <div class="d-flex w-100 justify-content-between">
-                  <h5 class="mb-1">2. hình thức kinh doanh:</h5>
-                </div>
-                <p class="mb-1 config-p">
-                  2.1 Tổng số cửa hàng tạp hóa thực phẩm truyền thống: <strong>0</strong>
-                  <br>
-                  2.2 Tổng số cửa hàng chuyên doanh: <strong>0</strong>
-                  <br>
-                  2.3 Tổng số cửa hàng tiện lợi: <strong>0</strong>
-                </p>
-              </a>
-            </div>
-          </div>
-
-          <div class="col-6 col-lg-6">
-            <div class="list-group">
-              <a class="list-group-item list-group-item-action flex-column align-items-start bg-warning">
-                <div class="d-flex w-100 justify-content-between">
-                  <h5 class="mb-1">3. Tổng số cửa hàng trong huyện <strong>...</strong> là:</h5>
-                </div>
-                <p class="mb-1 config-p">
-                </p>
-              </a>
-              <a class="list-group-item list-group-item-action flex-column align-items-start bg-warning">
-                <div class="d-flex w-100 justify-content-between">
-                  <h5 class="mb-1">4. Thống kê số lượng siêu thị theo năm:</h5>
-                </div>
-                <p class="mb-1 config-p">
-                  4.1 Tổng số cửa hàng hoạt động trong năm <strong>...</strong> là: <strong>0</strong>
-                  <br>
-                  4.2 Chênh lệch số cửa hàng hoạt động trong năm <strong>...</strong> so với năm trước là:
-                  <strong>0</strong>
-                </p>
-              </a>
-            </div>
-          </div>
-        </div> -->
-
             </mat-expansion-panel>
 
             <mat-expansion-panel>
@@ -114,38 +67,10 @@
                     </div>
                 </div>
                 <div class="row">
-                    <!-- <div class="col-3 col-lg-3">
-                      <mat-form-field appearance="outline">
-                          <mat-label>Kỳ dữ liệu</mat-label>
-                          <mat-select (selectionChange)="getDanhSachBuonBanLeXangDau($event.value)">
-                              <mat-option *ngFor='let year of years' [value]='year'>{{year}}</mat-option>
-                          </mat-select>
-                      </mat-form-field>
-                  </div>
-
-                  <div class="col-3 col-lg-3">
-                      <mat-form-field appearance="outline">
-                          <mat-label>Địa bàn</mat-label>
-                          <mat-select (selectionChange)="applyDistrictFilter($event)" multiple>
-                              <mat-option *ngFor='let district of districts' [value]='district.id'>
-                                  {{district.ten_quan_huyen}}
-                              </mat-option>
-                          </mat-select>
-                      </mat-form-field>
-                  </div>
-
-                  <div class="col-3 col-lg-3 my-auto">
-                      <mat-checkbox (change)="applyExpireCheck($event)" [ngModel]="isChecked">DN hết hạn
-                      </mat-checkbox>
-                  </div> -->
+                   
                 </div>
 
-                <div class="auto mat-elevation-z8" *ngIf="dataSourceHuyenThi.data.length; else ShowEmpty">
-                    <mat-form-field class="filter">
-                        <mat-label>Lọc dữ liệu</mat-label>
-                        <input matInput (keyup)="applyFilter1($event)" placeholder="" #input>
-                    </mat-form-field>
-
+                <div class="auto" *ngIf="dataSourceHuyenThi.data.length; else ShowEmpty">
                     <table mat-table [dataSource]="dataSourceHuyenThi">
 
                         <ng-container matColumnDef="index">
