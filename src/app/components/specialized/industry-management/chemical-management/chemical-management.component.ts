@@ -43,10 +43,13 @@ export class ChemicalManagementComponent implements OnInit {
     constructor(public sctService: SCTService) {
     }
 
-    ngAfterViewInit(): void {
-        this.accordion.openAll();
-    }
+    // ngAfterViewInit(): void {
+    //     this.accordion.openAll();
+    // }
 
+    autoOpen() {
+        setTimeout(() => this.accordion.openAll(), 1000);
+    }
 
     ngOnInit() {
         this.years = this.getYears();
@@ -55,6 +58,7 @@ export class ChemicalManagementComponent implements OnInit {
             return String(data.is_het_han).includes(filter);
         };
         this.displayedColumns = this.displayedColumns2;
+        this.autoOpen();
     }
 
     applyFilter(event: Event) {

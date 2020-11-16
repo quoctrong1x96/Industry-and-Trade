@@ -44,8 +44,12 @@ export class FoodIndustryManagementComponent implements OnInit {
     }
 
 
-    ngAfterViewInit(): void {
-        this.accordion.openAll();
+    // ngAfterViewInit(): void {
+    //     this.accordion.openAll();
+    // }
+
+    autoOpen() {
+        setTimeout(() => this.accordion.openAll(), 1000);
     }
 
     ngOnInit() {
@@ -55,6 +59,7 @@ export class FoodIndustryManagementComponent implements OnInit {
             return String(data.is_het_han).includes(filter);
         };
         this.displayedColumns = this.displayedColumns2;
+        this.autoOpen();
     }
 
     applyFilter(event: Event) {
