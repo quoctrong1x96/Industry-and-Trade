@@ -1,12 +1,14 @@
-<mat-card>
+<mat-card class="material">
     <mat-card-content>
-        <div class="example-action-buttons">
-            <button mat-raised-button style="color: orangered;" (click)="accordion.openAll()">
-                <mat-icon>flip_to_front</mat-icon> Mở Tất Cả
-            </button> &nbsp;
-            <button mat-raised-button style="color: orangered;" (click)="accordion.closeAll()">
-                <mat-icon>flip_to_back</mat-icon> Đóng tất cả
-            </button>
+        <div class="row">
+            <div class="col button-control">
+                <button mat-raised-button (click)="accordion.openAll()">
+                    <mat-icon>flip_to_front</mat-icon> Mở Tất Cả
+                </button>               
+                <button mat-raised-button (click)="accordion.closeAll()">
+                    <mat-icon>flip_to_back</mat-icon> Đóng tất cả
+                </button>
+            </div>
         </div>
         <mat-accordion class="example-headers-align" multi>
             <mat-expansion-panel>
