@@ -43,7 +43,7 @@ export class ImportManagementComponent implements OnInit, AfterViewInit  {
     @ViewChild(MatAccordion, { static: true }) accordion: MatAccordion;
     @ViewChild('paginator', { static: true }) paginator: MatPaginator;
     @ViewChild(MatSort, {static: false}) sort: MatSort;
-    nhap_khau_chu_yeu = [1, 61, 98, 28, 4, 20, 33, 34, 31, 51]
+    nhap_khau_chu_yeu = [1,13,34,33,22,19,31,18,28,4,27,17,30,37,25,7,23]
     constructor(
       public sctService: SCTService,
       public matDialog: MatDialog,
@@ -85,9 +85,6 @@ export class ImportManagementComponent implements OnInit, AfterViewInit  {
     getDanhSachNhapKhau(thang){
       this.isChecked = false;
       let tem = new Date().getFullYear()*100 + thang;
-      if(thang !== this.curentmonth && thang){
-        this.curentmonth = thang;
-      }
         this.sctService.GetDanhSachNhapKhau(tem).subscribe(result => {
           this.dataSource = new MatTableDataSource<ex_im_model>(result.data[1]);
           this.log(this.dataSource)
