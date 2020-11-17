@@ -50,7 +50,7 @@ export class ExportManagementComponent implements OnInit {
     @ViewChild(MatAccordion, { static: true }) accordion: MatAccordion;
     @ViewChild("paginator", { static: true }) paginator: MatPaginator;
     @ViewChild(MatSort, { static: false }) sort: MatSort;
-    nhap_khau_chu_yeu = [1, 61, 98, 28, 4, 20, 33, 34, 31, 51]
+    nhap_khau_chu_yeu = [1,6,8,4,7,21,13,27,82,51,28,20,31,19,23]
 
     constructor(
         public sctService: SCTService,
