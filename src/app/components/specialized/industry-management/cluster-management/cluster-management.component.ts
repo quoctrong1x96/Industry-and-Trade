@@ -58,6 +58,7 @@ export class ClusterManagementComponent implements OnInit {
     ngOnInit() {
         this.years = this.getYears();
         this.getDanhSachQuanLyCumCongNghiep(2020);
+        this.autoOpen();
     }
 
     applyFilter() {
@@ -73,9 +74,13 @@ export class ClusterManagementComponent implements OnInit {
         }
     }
 
-    ngAfterViewInit(): void {
-        this.accordion.openAll();
-    }
+    // ngAfterViewInit(): void {
+    //     this.accordion.openAll();
+    // }
+
+  autoOpen() {
+    setTimeout(() => this.accordion.openAll(), 1000);
+}
 
     getDanhSachQuanLyCumCongNghiep(time_id: number) {
         this.sctService.GetDanhSachQuanLyCumCongNghiep(time_id).subscribe(result => {

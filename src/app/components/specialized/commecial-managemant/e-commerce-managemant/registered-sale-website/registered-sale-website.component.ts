@@ -22,6 +22,7 @@ export class RegisteredSaleWebsiteComponent implements OnInit {
 
   ngOnInit() {
     this.GetDanhSachWebsiteTMDT();
+    this.autoOpen();
   }
 
   districts: District[] = [
@@ -38,11 +39,16 @@ export class RegisteredSaleWebsiteComponent implements OnInit {
     { id: 11, ten_quan_huyen: 'Huyện Phú Riềng' }
   ];
 
-  ngAfterViewInit(): void {
-    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
-    //Add 'implements AfterViewInit' to the class.
-    this.accordion.openAll();
+  autoOpen() {
+    setTimeout(() => this.accordion.openAll(), 1000);
   }
+
+  // ngAfterViewInit(): void {
+  //   //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+  //   //Add 'implements AfterViewInit' to the class.
+  //   this.accordion.openAll();
+  // }
+
 
   @ViewChild(MatAccordion, { static: true }) accordion: MatAccordion;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;

@@ -55,7 +55,7 @@ export class IndustrialExplosivesComponent implements OnInit {
         this.filteredDataSource.filterPredicate = function (data: IndustrialExplosivesModel, filter): boolean {
             return String(data.is_het_han).includes(filter);
         };
-        console.log(this.dataSource);
+        this.autoOpen();
     }
 
     applyFilter(event: Event) {
@@ -63,9 +63,13 @@ export class IndustrialExplosivesComponent implements OnInit {
         this.filteredDataSource.filter = filterValue.trim().toLowerCase();
     }
 
-    ngAfterViewInit(): void {
-        this.accordion.openAll();
-    }
+    // ngAfterViewInit(): void {
+    //     this.accordion.openAll();
+    // }
+    
+  autoOpen() {
+    setTimeout(() => this.accordion.openAll(), 1000);
+}
 
     applySelectFilter() {
         // console.log(this.filterModel)
