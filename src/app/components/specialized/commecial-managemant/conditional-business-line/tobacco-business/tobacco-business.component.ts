@@ -48,12 +48,18 @@ export class TobaccoBusinessComponent implements OnInit {
         // this.filteredDataSource.filterPredicate = function (data: ConditionalBusinessLineModel, filter): boolean {
         //     return String(data.is_het_han).includes(filter);
         // };
+        this.autoOpen()
     }
-    ngAfterViewInit(): void {
-        //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
-        //Add 'implements AfterViewInit' to the class.
-        this.accordion.openAll();
+    
+    autoOpen() {
+        setTimeout(() => this.accordion.openAll(), 1000);
     }
+
+    // ngAfterViewInit(): void {
+    //     //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    //     //Add 'implements AfterViewInit' to the class.
+    //     this.accordion.openAll();
+    // }
 
     applyFilter(event: Event) {
         const filterValue = (event.target as HTMLInputElement).value;
