@@ -32,6 +32,7 @@ export class SCTService {
     private urlThuongMaiBienGioi = "/danh-sach-xuat-nhap-khau-bien-gioi";
     private urlDanhSachWebTMDT = "/danh-sach-web-tmdt";
     private urlDanhSachWebBH = "/danh-sach-web-ban-hang";
+    private urlDanhSachDaCap = "/danh-sach-ban-hang-da-cap";
     token: any;
     username: any;
 
@@ -171,6 +172,14 @@ export class SCTService {
 
     public GetDanhSachWebBH() {
         var apiUrl = this.apiSCT + this.urlDanhSachWebBH;
+        let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+        return this.http.get<any>(apiUrl, { headers: headers }).pipe(tap(data => data),
+            catchError(this.handleError)
+        );
+    }
+
+    public GetDanhSachBHDaCap() {
+        var apiUrl = this.apiSCT + this.urlDanhSachDaCap;
         let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
         return this.http.get<any>(apiUrl, { headers: headers }).pipe(tap(data => data),
             catchError(this.handleError)
