@@ -19,7 +19,7 @@ import { SAVE } from 'src/app/_enums/save.enum';
 @Component({
     selector: 'export-top-company-manager',
     templateUrl: './export-top-company-manager.component.html',
-    styleUrls: ['./export-top-company-manager.component.scss']
+    styleUrls: ['../manager_layout.scss'],
 })
 
 export class ExportTopCompanyManager implements OnInit {
@@ -50,7 +50,7 @@ export class ExportTopCompanyManager implements OnInit {
     ) { }
 
     async ngOnInit(): Promise<void> {
-        this.field = this.data.message + " cho sản phẩm: "+ this.data.product.ten_san_pham;
+        this.field = this.data.message + " cho sản phẩm: " + this.data.product.ten_san_pham;
         this.product = this.data.product;
         this.typeOfSave = this.data.typeOfSave;
         if (this.data.buttonText) {

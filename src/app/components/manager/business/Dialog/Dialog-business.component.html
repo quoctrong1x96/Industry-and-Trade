@@ -1,25 +1,18 @@
-<mat-dialog-content class="mat-typography">
-    <mat-card>
+<mat-dialog-content>
+    <mat-card class="material">
         <mat-card-header>
             <mat-card-title><strong>Danh sách cơ sở trực thuộc</strong></mat-card-title>
             <mat-card-subtitle>
             </mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
-            <div class="row">
-                <div class="col-lg-6">
-                </div>
-                <div class="col-lg-6">
-                </div>
-            </div>
-            <hr>
-            <div class="mat-elevation-z8">
-                <mat-form-field>
+            <div class="layout mat-elevation-z8">
+                <mat-form-field id="filter">
                     <mat-label>Lọc dữ liệu</mat-label>
-                    <input id="inputt" matInput (keyup)="applyFilter($event)" placeholder="" #input>
+                    <input matInput (keyup)="applyFilter($event)" placeholder="" #input>
                 </mat-form-field>
 
-                <table mat-table [dataSource]="dataSource">
+                <table mat-table [dataSource]="dataSource" class="table-layout" id="small-table1">
 
                     <ng-container matColumnDef="select">
                         <th mat-header-cell *matHeaderCellDef class="cbconfig">
@@ -61,12 +54,11 @@
                         <th mat-header-cell *matHeaderCellDef class="ten_co_so"> Ngày hết hạn </th>
                         <td mat-cell *matCellDef="let element"> {{element.ngay_het_han}} </td>
                     </ng-container>
-                    
+
                     <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
                     <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)"></tr>
                 </table>
-                <div *ngIf="dataSource.data.length === 0" 
-                style="font-size: 20px;
+                <div *ngIf="dataSource.data.length === 0" style="font-size: 20px;
                 color: red;
                 text-align: center;
                 padding: 10px;">Không có dữ liệu</div>

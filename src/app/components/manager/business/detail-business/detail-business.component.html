@@ -1,12 +1,15 @@
-<mat-card>
+<mat-card class="material">
     <mat-card-header>
         <div class="row col-lg-12" style="left: -35px;">
-            <mat-card-title class="col-lg-5"><h3>Thông tin doanh nghiệp </h3></mat-card-title>
+            <mat-card-title class="col-lg-5">
+                <h3>Thông tin doanh nghiệp </h3>
+            </mat-card-title>
             <div class="col-lg-7" style="text-align:right;">
-                
+
                 <button mat-raised-button color="primary" (click)="onSubmit()">Cập nhật thông tin</button>
-                <button mat-raised-button [ngStyle]="{'background-color': 'green', 'color': 'white', 'margin-left': '5px'}" title=""
-                        (click)="openDialog(company.mst)">Danh sách cơ sở trực thuộc</button>
+                <button mat-raised-button
+                    [ngStyle]="{'background-color': 'green', 'color': 'white', 'margin-left': '5px'}" title=""
+                    (click)="openDialog(company.mst)">Danh sách cơ sở trực thuộc</button>
             </div>
         </div>
     </mat-card-header>

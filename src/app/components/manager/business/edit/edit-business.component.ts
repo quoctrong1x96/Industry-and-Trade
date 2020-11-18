@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, Input, ViewChild } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { FormControl, Validators } from "@angular/forms";
-import {InformationService} from '../../../../shared/information/information.service';
+import { InformationService } from '../../../../shared/information/information.service';
 import { MarketService } from "../../../../_services/APIService/market.service";
 import {
   CompanyDetailModel,
@@ -49,7 +49,7 @@ export const MY_FORMATS = {
 @Component({
   selector: "app-edit-business",
   templateUrl: "./edit-business.component.html",
-  styleUrls: ["./edit-business.component.scss"],
+  styleUrls: ['../../manager_layout.scss'],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: "vi-VI" },
 
@@ -136,7 +136,7 @@ export class EditBusinessComponent implements OnInit {
   dataSource: MatTableDataSource<any>;
   paginator: any;
   @ViewChild('ImportPaginators', { static: true }) Importpaginator: MatPaginator;
-	@ViewChild('ExportPaginators', { static: true }) Exportpaginator: MatPaginator;
+  @ViewChild('ExportPaginators', { static: true }) Exportpaginator: MatPaginator;
 
   // NK
   periodsNK = ["Tháng", "Quý", "6 Tháng", "Năm"];
@@ -189,10 +189,10 @@ export class EditBusinessComponent implements OnInit {
   }
 
   isOpen: boolean = false;
-	toggle() {
-		this.isOpen = !this.isOpen;
-		console.log(this.isOpen)
-	}
+  toggle() {
+    this.isOpen = !this.isOpen;
+    console.log(this.isOpen)
+  }
 
   changePeriod(isNK) {
     if (isNK) {
@@ -217,13 +217,13 @@ export class EditBusinessComponent implements OnInit {
       }
       console.log(
         "Chu kì báo cáo: " +
-          this.selectedPeriodNK +
-          " - Năm: " +
-          this.selectedYearNK +
-          " - Tháng: " +
-          this.selectedMonthNK +
-          " - Quý: " +
-          this.selectedQuarterNK
+        this.selectedPeriodNK +
+        " - Năm: " +
+        this.selectedYearNK +
+        " - Tháng: " +
+        this.selectedMonthNK +
+        " - Quý: " +
+        this.selectedQuarterNK
       );
     } else {
       switch (this.selectedPeriodXK) {
@@ -247,13 +247,13 @@ export class EditBusinessComponent implements OnInit {
       }
       console.log(
         "Chu kì báo cáo: " +
-          this.selectedPeriodXK +
-          " - Năm: " +
-          this.selectedYearXK +
-          " - Tháng: " +
-          this.selectedMonthXK +
-          " - Quý: " +
-          this.selectedQuarterXK
+        this.selectedPeriodXK +
+        " - Năm: " +
+        this.selectedYearXK +
+        " - Tháng: " +
+        this.selectedMonthXK +
+        " - Quý: " +
+        this.selectedQuarterXK
       );
     }
   }
@@ -327,7 +327,7 @@ export class EditBusinessComponent implements OnInit {
     });
   }
 
-  open_confirmDialog(element, dataSource){
+  open_confirmDialog(element, dataSource) {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       height: '150px',
       width: '250px',
@@ -335,17 +335,17 @@ export class EditBusinessComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`, typeof result);
-      if(result === 'Yes'){
-        if(dataSource === 'NK'){
+      if (result === 'Yes') {
+        if (dataSource === 'NK') {
           this.dataSourceKNNK.data = this.dataSourceKNNK.data.filter(item => item.id !== element.id);
           this.dataSourceKNNK.paginator = this.Importpaginator;
-          if(this.dataSourceKNNK.data.length === 0){
+          if (this.dataSourceKNNK.data.length === 0) {
             this.messageNK = 'Không tìm thấy dữ liệu !!'
           }
-        }else{
+        } else {
           this.dataSourceKNXK.data = this.dataSourceKNXK.data.filter(item => item.id !== element.id);
           this.dataSourceKNXK.paginator = this.Exportpaginator;
-          if(this.dataSourceKNXK.data.length === 0){
+          if (this.dataSourceKNXK.data.length === 0) {
             this.messageXK = 'Không tìm thấy dữ liệu !!'
           }
         }
@@ -362,7 +362,7 @@ export class EditBusinessComponent implements OnInit {
   public readonly DEFAULT_PERIOD = "Tháng";
 
   ngOnInit() {
-    
+
     this.kiemtraUser();
     this.GetCompanyInfoById();
     this.GetAllNganhNghe();
@@ -371,7 +371,7 @@ export class EditBusinessComponent implements OnInit {
     this.GetAllLoaiHinh();
     this.GetAllCSTT();
 
-    
+
 
     ///
     this.selectedPeriodNK = this.DEFAULT_PERIOD;
@@ -388,19 +388,19 @@ export class EditBusinessComponent implements OnInit {
     this.getKNXK();
 
     // get list product and nationals
-		this.getAllProducts();
-		this.getAllNational();
-}
+    this.getAllProducts();
+    this.getAllNational();
+  }
 
-findKNNK(){
-	this.getKNNK()
-}
+  findKNNK() {
+    this.getKNNK()
+  }
 
-findKNXK(){
-	this.getKNXK();
-}
+  findKNXK() {
+    this.getKNXK();
+  }
 
-handleReportMode(selectedPeriod) {
+  handleReportMode(selectedPeriod) {
     switch (selectedPeriod) {
       case "Tháng":
         return 1;
@@ -411,54 +411,54 @@ handleReportMode(selectedPeriod) {
       default:
         break;
     }
-}
+  }
 
-  handlePeriod(selectedPeriod, type){
-	
-	if(selectedPeriod === 'Tháng' && type === 'NK'){
-		return this.selectedMonthNK;
-	}
-	if(selectedPeriod === 'Tháng' && type === 'XK'){
-		return this.selectedMonthXK;
-	}
+  handlePeriod(selectedPeriod, type) {
 
-	if(selectedPeriod === 'Quý' && type === 'NK'){
-		return this.selectedQuarterNK;
-	} 
-	if(selectedPeriod === 'Quý' && type === 'XK'){
-		return this.selectedQuarterXK;
-	} 
+    if (selectedPeriod === 'Tháng' && type === 'NK') {
+      return this.selectedMonthNK;
+    }
+    if (selectedPeriod === 'Tháng' && type === 'XK') {
+      return this.selectedMonthXK;
+    }
 
-	if(selectedPeriod === '6 Tháng' && type === 'NK'){
-		return this.selectedHalfNK;
-	}
-	if(selectedPeriod === '6 Tháng' && type === 'XK'){
-		return this.selectedHalfXK;
-	}
+    if (selectedPeriod === 'Quý' && type === 'NK') {
+      return this.selectedQuarterNK;
+    }
+    if (selectedPeriod === 'Quý' && type === 'XK') {
+      return this.selectedQuarterXK;
+    }
+
+    if (selectedPeriod === '6 Tháng' && type === 'NK') {
+      return this.selectedHalfNK;
+    }
+    if (selectedPeriod === '6 Tháng' && type === 'XK') {
+      return this.selectedHalfXK;
+    }
 
   }
 
   getKNNK() {
-	let report_mode = this.handleReportMode(this.selectedPeriodNK);
-	let year = this.selectedYearNK;
-	let period = this.handlePeriod(this.selectedPeriodNK, 'NK')
-	console.log('xxxx', report_mode, year, period)
+    let report_mode = this.handleReportMode(this.selectedPeriodNK);
+    let year = this.selectedYearNK;
+    let period = this.handlePeriod(this.selectedPeriodNK, 'NK')
+    console.log('xxxx', report_mode, year, period)
     this.marketService.GetKNNK(this.mst, report_mode, year, period)
       .subscribe((data) => {
         if (data["data"]) {
           let dataTable = data["data"]
           this.dataSourceKNNK = new MatTableDataSource<any>(dataTable)
           this.dataSourceKNNK.paginator = this.Importpaginator;
-        if (this.Importpaginator) {
-          this.Importpaginator._intl.itemsPerPageLabel = 'Số hàng';
-          this.Importpaginator._intl.firstPageLabel = "Trang Đầu";
-          this.Importpaginator._intl.lastPageLabel = "Trang Cuối";
-          this.Importpaginator._intl.previousPageLabel = "Trang Trước";
-          this.Importpaginator._intl.nextPageLabel = "Trang Tiếp";
-        }
+          if (this.Importpaginator) {
+            this.Importpaginator._intl.itemsPerPageLabel = 'Số hàng';
+            this.Importpaginator._intl.firstPageLabel = "Trang Đầu";
+            this.Importpaginator._intl.lastPageLabel = "Trang Cuối";
+            this.Importpaginator._intl.previousPageLabel = "Trang Trước";
+            this.Importpaginator._intl.nextPageLabel = "Trang Tiếp";
+          }
           this.messageNK = "";
-        } 
-        if(data['data'].length === 0) {
+        }
+        if (data['data'].length === 0) {
           this.messageNK = "Không tìm thấy dữ liệu !!";
         }
       });
@@ -466,9 +466,9 @@ handleReportMode(selectedPeriod) {
 
   getKNXK() {
     let report_mode = this.handleReportMode(this.selectedPeriodXK);
-	let year = this.selectedYearXK;
-	let period = this.handlePeriod(this.selectedPeriodXK, 'XK');
-	console.log('xxxx', report_mode, year, period)
+    let year = this.selectedYearXK;
+    let period = this.handlePeriod(this.selectedPeriodXK, 'XK');
+    console.log('xxxx', report_mode, year, period)
     this.marketService.GetKNXK(this.mst, report_mode, year, period)
       .subscribe((data) => {
         if (data["data"]) {
@@ -484,148 +484,148 @@ handleReportMode(selectedPeriod) {
           }
           this.messageXK = "";
         }
-        if(data['data'].length === 0) {
+        if (data['data'].length === 0) {
           this.messageXK = "Không tìm thấy dữ liệu !!";
         }
       });
   }
 
-  
-	getAllProducts(){
-		this.marketService.GetAllProduct().subscribe(data => {
-			if(data['data'].length !== 0){
-				this.products = data['data'];
-				// console.log('products ', this.products)
-			}
-		})
-	}
 
-	getAllNational(){
-		this.marketService.GetAllNational().subscribe(data => {
-			this.nationals = data['data'];
-			// console.log('nationals ', this.nationals)
-		})
-	}
+  getAllProducts() {
+    this.marketService.GetAllProduct().subscribe(data => {
+      if (data['data'].length !== 0) {
+        this.products = data['data'];
+        // console.log('products ', this.products)
+      }
+    })
+  }
 
-	Them_dong_NK(){
+  getAllNational() {
+    this.marketService.GetAllNational().subscribe(data => {
+      this.nationals = data['data'];
+      // console.log('nationals ', this.nationals)
+    })
+  }
+
+  Them_dong_NK() {
     this.messageNK = "";
-		let dataSource = [...this.dataSourceKNNK.data];
-		let new_ob = {
-            id: Math.floor(Math.random() *100000) + 1,
-            id_san_pham: 0,
-            san_luong: 0,
-            tri_gia: 0,
-            id_quoc_gia: "",
-            id_kn_nhap_khau: 2
-		};
-		dataSource.push(new_ob);
+    let dataSource = [...this.dataSourceKNNK.data];
+    let new_ob = {
+      id: Math.floor(Math.random() * 100000) + 1,
+      id_san_pham: 0,
+      san_luong: 0,
+      tri_gia: 0,
+      id_quoc_gia: "",
+      id_kn_nhap_khau: 2
+    };
+    dataSource.push(new_ob);
     this.dataSourceKNNK = new MatTableDataSource([...dataSource]);
     this.dataSourceKNNK.paginator = this.Importpaginator;
-		// console.log('zzz', this.dataSourceKNNK)
-	}
+    // console.log('zzz', this.dataSourceKNNK)
+  }
 
-	Save_NK(){
-		let ob_update = [...this.dataSourceKNNK.data];
-		let data = ob_update.map(item => {
-			let new_ob = {
-				id_san_pham : item.id_san_pham,
-				san_luong: item.san_luong,
-				tri_gia: item.tri_gia,
-				thi_truong: item.thi_truong,
-				id_kn_xuat_nhap_khau: item.id_kn_xuat_nhap_khau
-			};
-			return new_ob
-		});
-		let report_mode, period;
-		switch (this.selectedPeriodNK) {
-			case 'Tháng':
-				report_mode = 1;
-				period = this.selectedMonthNK;
-				break;
-			case 'Quý':
-				report_mode = 2;
-				period = this.selectedQuarterNK;
-				break;
-				case '6 Tháng':
-					report_mode = 3;
-					period = this.selectedHalfNK;
-					break;
-			default:
-				break;
-		}
-		console.log(report_mode, period);
-		this.marketService.UpdateKNNK(data, report_mode, this.mst, this.selectedYearNK, period).subscribe(data => {
-			if(data['message']){
+  Save_NK() {
+    let ob_update = [...this.dataSourceKNNK.data];
+    let data = ob_update.map(item => {
+      let new_ob = {
+        id_san_pham: item.id_san_pham,
+        san_luong: item.san_luong,
+        tri_gia: item.tri_gia,
+        thi_truong: item.thi_truong,
+        id_kn_xuat_nhap_khau: item.id_kn_xuat_nhap_khau
+      };
+      return new_ob
+    });
+    let report_mode, period;
+    switch (this.selectedPeriodNK) {
+      case 'Tháng':
+        report_mode = 1;
+        period = this.selectedMonthNK;
+        break;
+      case 'Quý':
+        report_mode = 2;
+        period = this.selectedQuarterNK;
+        break;
+      case '6 Tháng':
+        report_mode = 3;
+        period = this.selectedHalfNK;
+        break;
+      default:
+        break;
+    }
+    console.log(report_mode, period);
+    this.marketService.UpdateKNNK(data, report_mode, this.mst, this.selectedYearNK, period).subscribe(data => {
+      if (data['message']) {
         this.infor.msgSuccess(data['message'])
-      }else{
-        this.infor.msgError('Lưu thông tin chưa thông công !!')
-      }
-		})
-	}
-
-	Them_dong_XK(){
-    this.messageXK = "";
-		let dataSource = [...this.dataSourceKNXK.data];
-		let new_ob = {
-            id: Math.floor(Math.random() *100000) + 1,
-            id_san_pham: 0,
-            san_luong: 0,
-            tri_gia: 0,
-            thi_truong: "",
-            id_kn_nhap_khau: 2
-		};
-		dataSource.push(new_ob);
-    this.dataSourceKNXK.data = new MatTableDataSource([...dataSource]);
-    this.dataSourceKNXK.paginator = this.Exportpaginator;
-	}
-
-	Save_XK(){
-		let ob_update = [...this.dataSourceKNXK.data];
-		let data = ob_update.map(item => {
-			let new_ob = {
-				id_san_pham : item.id_san_pham,
-				san_luong: item.san_luong,
-				tri_gia: item.tri_gia,
-				thi_truong: item.thi_truong,
-				id_kn_xuat_nhap_khau: item.id_kn_xuat_nhap_khau
-			};
-			return new_ob
-		});
-		let report_mode, period;
-		switch (this.selectedPeriodXK) {
-			case 'Tháng':
-				report_mode = 1;
-				period = this.selectedMonthXK;
-				break;
-			case 'Quý':
-				report_mode = 2;
-				period = this.selectedQuarterXK;
-				break;
-				case '6 Tháng':
-					report_mode = 3;
-					period = this.selectedHalfXK;
-					break;
-			default:
-				break;
-		}
-		this.marketService.UpdateKNXK(data, report_mode, this.mst, this.selectedYearNK, period).subscribe(data => {
-      if(data['message']){
-        this.infor.msgSuccess(data['message'])
-      }else{
+      } else {
         this.infor.msgError('Lưu thông tin chưa thông công !!')
       }
     })
   }
 
-	DeleteNK(element){
+  Them_dong_XK() {
+    this.messageXK = "";
+    let dataSource = [...this.dataSourceKNXK.data];
+    let new_ob = {
+      id: Math.floor(Math.random() * 100000) + 1,
+      id_san_pham: 0,
+      san_luong: 0,
+      tri_gia: 0,
+      thi_truong: "",
+      id_kn_nhap_khau: 2
+    };
+    dataSource.push(new_ob);
+    this.dataSourceKNXK.data = new MatTableDataSource([...dataSource]);
+    this.dataSourceKNXK.paginator = this.Exportpaginator;
+  }
+
+  Save_XK() {
+    let ob_update = [...this.dataSourceKNXK.data];
+    let data = ob_update.map(item => {
+      let new_ob = {
+        id_san_pham: item.id_san_pham,
+        san_luong: item.san_luong,
+        tri_gia: item.tri_gia,
+        thi_truong: item.thi_truong,
+        id_kn_xuat_nhap_khau: item.id_kn_xuat_nhap_khau
+      };
+      return new_ob
+    });
+    let report_mode, period;
+    switch (this.selectedPeriodXK) {
+      case 'Tháng':
+        report_mode = 1;
+        period = this.selectedMonthXK;
+        break;
+      case 'Quý':
+        report_mode = 2;
+        period = this.selectedQuarterXK;
+        break;
+      case '6 Tháng':
+        report_mode = 3;
+        period = this.selectedHalfXK;
+        break;
+      default:
+        break;
+    }
+    this.marketService.UpdateKNXK(data, report_mode, this.mst, this.selectedYearNK, period).subscribe(data => {
+      if (data['message']) {
+        this.infor.msgSuccess(data['message'])
+      } else {
+        this.infor.msgError('Lưu thông tin chưa thông công !!')
+      }
+    })
+  }
+
+  DeleteNK(element) {
     this.open_confirmDialog(element, 'NK');
     // this.dataSourceKNNK = this.dataSourceKNNK.filter(item => item.id !== element.id);
-	}
+  }
 
-	DeleteXK(element){
+  DeleteXK(element) {
     this.open_confirmDialog(element, 'XK');
     // this.dataSourceKNXK = this.dataSourceKNXK.filter(item => item.id !== element.id);
-	}
+  }
 
 
   GetAllNganhNghe() {
@@ -643,7 +643,7 @@ handleReportMode(selectedPeriod) {
   getQuan_Huyen() {
     this.marketService.GetAllDistrict().subscribe((allDistrict) => {
       this.district = allDistrict["data"] as DistrictModel[];
-    
+
     });
   }
 

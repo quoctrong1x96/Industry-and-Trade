@@ -37,7 +37,7 @@ export const DDMMYY_FORMAT = {
 @Component({
   selector: 'app-foreign-manager',
   templateUrl: 'foreign-manager.component.html',
-  styleUrls: ['foreign-manager.component.scss'],
+  styleUrls: ['../manager_layout.scss'],
   providers: [
     {
       provide: DateAdapter,
