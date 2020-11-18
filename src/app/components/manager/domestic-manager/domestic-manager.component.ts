@@ -1,5 +1,5 @@
 //Import library
-import { Component, OnInit, ViewChild, ElementRef, ChangeDetectorRef, QueryList, ViewChildren } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, ChangeDetectorRef, QueryList, ViewChildren, ViewEncapsulation } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { DateAdapter, MAT_DATE_LOCALE, MAT_DATE_FORMATS } from '@angular/material';
@@ -25,6 +25,7 @@ import { ProductManagerModelList, DomesticManagerModel, MODE } from '../../../_m
 //Moment
 import { defaultFormat as _rollupMoment, Moment } from 'moment';
 import * as _moment from 'moment';
+import { NONE_TYPE } from '@angular/compiler/src/output/output_ast';
 const moment = _rollupMoment || _moment;
 export const DDMMYY_FORMAT = {
   parse: {
@@ -41,7 +42,7 @@ export const DDMMYY_FORMAT = {
 @Component({
   selector: 'app-domestic-manager',
   templateUrl: 'domestic-manager.component.html',
-  styleUrls: ['domestic-manager.component.scss'],
+  styleUrls: ['../manager_layout.scss'],
   providers: [
     {
       provide: DateAdapter,
@@ -61,16 +62,16 @@ export class DomesticManagerComponent implements OnInit {
   public readonly LOCALE = 'en-GB';
   public readonly RANK_LABLE = (page: number, pageSize: number, length: number) => {
     if (length == 0 || pageSize == 0) { return `0 của ${length}`; }
-    
+
     length = Math.max(length, 0);
-  
+
     const startIndex = page * pageSize;
-  
+
     // If the start index exceeds the list length, do not try and fix the end index to the end.
     const endIndex = startIndex < length ?
-        Math.min(startIndex + pageSize, length) :
-        startIndex + pageSize;
-  
+      Math.min(startIndex + pageSize, length) :
+      startIndex + pageSize;
+
     return `${startIndex + 1} - ${endIndex} của ${length}`;
   }
 
@@ -436,9 +437,9 @@ export class DomesticManagerComponent implements OnInit {
     return date.toLocaleDateString(this.LOCALE);
   }
   //FUNCTION FOR ONLY TS
-  private _paginatorAgain(){
+  private _paginatorAgain() {
     this.dataSource.paginator = this.paginator;
-    console.log("paginator",this.paginator);
+    console.log("paginator", this.paginator);
     this.paginator._intl.itemsPerPageLabel = 'Số hàng';
     this.paginator._intl.firstPageLabel = "Trang Đầu";
     this.paginator._intl.lastPageLabel = "Trang Cuối";

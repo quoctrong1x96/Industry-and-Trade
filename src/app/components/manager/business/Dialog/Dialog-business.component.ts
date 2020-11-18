@@ -13,7 +13,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 @Component({
     selector: 'dialog-business-component',
     templateUrl: './dialog-business.component.html',
-    styleUrls: ['./dialog-business.component.scss']
+    styleUrls: ['../../manager_layout.scss'],
 })
 
 export class DialogBusinessComponent implements OnInit {

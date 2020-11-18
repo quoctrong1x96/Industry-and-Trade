@@ -41,7 +41,7 @@ export const MY_FORMATS = {
 @Component({
     selector: 'app-import-manager',
     templateUrl: 'import-manager.component.html',
-    styleUrls: ['import-manager.component.scss'],
+    styleUrls: ['../manager_layout.scss'],
     providers: [
         {
             provide: DateAdapter,
@@ -56,7 +56,7 @@ export const MY_FORMATS = {
 
 export class ImportManagerComponent implements OnInit {
     //Declare constance
-    public readonly ARRAY_PRODUCT = [1,27,13,34,25,33,22,4,31,28,18,38,19,30,7,17,37,32,21,24,23];
+    public readonly ARRAY_PRODUCT = [1, 27, 13, 34, 25, 33, 22, 4, 31, 28, 18, 38, 19, 30, 7, 17, 37, 32, 21, 24, 23];
     public readonly MAX_PRODUCT = 21;
     //Declare variable for HTML&TS
     public date = new FormControl(_moment());
@@ -327,7 +327,7 @@ export class ImportManagerComponent implements OnInit {
     spinnerEnabled = false;
     keys: string[];
     dataSheet = new Subject();
-    @ViewChild('inputFile',{static:true}) inputFile: ElementRef;
+    @ViewChild('inputFile', { static: true }) inputFile: ElementRef;
     isExcelFile: boolean;
     uploadExcel(evt: any) {
         let isExcelFile: boolean;
@@ -413,7 +413,7 @@ export class ImportManagerComponent implements OnInit {
         let date = new Date();
         return date.getFullYear();
     }
-    addEvent(action : string, event){
-        
+    addEvent(action: string, event) {
+
     }
 }

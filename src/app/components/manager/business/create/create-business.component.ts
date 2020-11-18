@@ -18,7 +18,7 @@ import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/materia
 @Component({
     selector: 'create-business',
     templateUrl: 'create-business.component.html',
-    styleUrls: ['create-business.component.scss'],
+    styleUrls: ['../../manager_layout.scss'],
     providers: [
         { provide: MAT_DATE_LOCALE, useValue: 'vi-VI' },
 
@@ -34,51 +34,51 @@ import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/materia
 export class CreateBussinessComponent implements OnInit {
     vall = new FormControl('', [
         Validators.required,
-        
+
     ]);
     vall1 = new FormControl('', [
         Validators.required,
-        
+
     ]);
     vall2 = new FormControl('', [
         Validators.required,
-        
+
     ]);
     vall3 = new FormControl('', [
         Validators.required,
-        
+
     ]);
     vall4 = new FormControl('', [
         Validators.required,
-        
+
     ]);
     vall5 = new FormControl('', [
         Validators.required,
-        
+
     ]);
     vall6 = new FormControl('', [
         Validators.required,
-        
+
     ]);
     vall7 = new FormControl('', [
         Validators.required,
-        
+
     ]);
     vall8 = new FormControl('', [
         Validators.required,
-        
+
     ]);
     vall9 = new FormControl('', [
         Validators.required,
-        
+
     ]);
     vall10 = new FormControl('', [
         Validators.required,
-        
+
     ]);
     vall11 = new FormControl('', [
         Validators.required,
-        
+
     ]);
 
     @Input() company: CompanyDetailModel;

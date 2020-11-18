@@ -1,5 +1,5 @@
 //Import library
-import { Component, OnInit, ViewChild, ElementRef, ChangeDetectorRef, QueryList, ViewChildren } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, ChangeDetectorRef, QueryList, ViewChildren, ViewEncapsulation } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material';
@@ -43,7 +43,7 @@ export const MY_FORMATS = {
 @Component({
     selector: 'app-export-manager',
     templateUrl: 'export-manager.component.html',
-    styleUrls: ['export-manager.component.scss'],
+    styleUrls: ['../manager_layout.scss'],
     providers: [
         {
             provide: DateAdapter,
@@ -60,8 +60,8 @@ export class ExportManagerComponent implements OnInit {
     // Constant
     public readonly ARRAY_PRODUCT = [4, 1, 6, 8, 7, 21, 27, 13, 28, 19, 51, 20, 31, 55, 38, 26, 23];
     public readonly MAX_PRODUCT = 17;
-    public readonly ARRAY_HEADER_EXCEL = ["STT","Mã sản phẩm","Tên sản phẩm","Sản lượng (Cục Hải Quan)","Giá trị (Cục Hải Quan)",
-                                            "Giá trị (Tổng cục)","Giá trị (Tổng cục)" ]
+    public readonly ARRAY_HEADER_EXCEL = ["STT", "Mã sản phẩm", "Tên sản phẩm", "Sản lượng (Cục Hải Quan)", "Giá trị (Cục Hải Quan)",
+        "Giá trị (Tổng cục)", "Giá trị (Tổng cục)"]
     //Declare variable for HTML&TS
     public date = new FormControl(_moment());
     public columns: number = 1;
@@ -286,7 +286,7 @@ export class ExportManagerComponent implements OnInit {
         let year = this.getCurrentYear();
         // console.log(this.dataSource.data);
         // let data: ExportManagerModel[] = this.dataSource.data.filter(x => x.id == 0);
-         console.log("dataSource",this.dataSource.data);
+        console.log("dataSource", this.dataSource.data);
         this._managerService.PostExportManager(month, year, this.dataSource.data).subscribe(
             next => {
                 console.log(next);
@@ -336,7 +336,7 @@ export class ExportManagerComponent implements OnInit {
     spinnerEnabled = false;
     keys: string[];
     dataSheet = new Subject();
-    @ViewChild('inputFile',{static:true}) inputFile: ElementRef;
+    @ViewChild('inputFile', { static: true }) inputFile: ElementRef;
     isExcelFile: boolean;
     uploadExcel(evt: any) {
         let isExcelFile: boolean;
