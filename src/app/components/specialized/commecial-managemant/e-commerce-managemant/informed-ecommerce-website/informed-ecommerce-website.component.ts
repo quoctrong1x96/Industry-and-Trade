@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
 import { ECommerceWebsite, ECommerceWebsiteFilterModel } from 'src/app/_models/APIModel/e-commerce.model';
 import { District } from 'src/app/_models/district.model';
@@ -25,6 +25,7 @@ export class InformedEcommerceWebsiteComponent implements OnInit {
 
   ngOnInit() {
     this.GetDanhSachWebsiteTMDT();
+    this.autoOpen();
   }
 
   applyFilter1(event: Event) {
@@ -73,11 +74,15 @@ export class InformedEcommerceWebsiteComponent implements OnInit {
     }
   }
 
-  ngAfterViewInit(): void {
-    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
-    //Add 'implements AfterViewInit' to the class.
-    this.accordion.openAll();
-  }
+  // ngAfterViewInit(): void {
+  //   //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+  //   //Add 'implements AfterViewInit' to the class.
+  //   this.accordion.openAll();
+  // }
+  
+  autoOpen() {
+    setTimeout(() => this.accordion.openAll(), 1000);
+}
 
   filterArray(array, filters) {
     const filterKeys = Object.keys(filters);

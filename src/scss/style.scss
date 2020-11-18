@@ -1,20 +1,17 @@
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
-// * * * * * * * * * * * The content below * * * * * * * * * * * 
-// * * * * * * * * * * is only a placeholder * * * * * * * * * * 
-// * * * * * * * * * * and can be replaced. * * * * * * * * * * * 
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
-// * * * * * * * * * Delete the template below * * * * * * * * * * 
-// * * * * * * * to get started with your project! * * * * * * * * 
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+// * * * * * * * * * * * The content below * * * * * * * * * * *
+// * * * * * * * * * * is only a placeholder * * * * * * * * * *
+// * * * * * * * * * * and can be replaced. * * * * * * * * * * *
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+// * * * * * * * * * Delete the template below * * * * * * * * * *
+// * * * * * * * to get started with your project! * * * * * * * *
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 // @import '~simplebar/dist/simplebar.css';
-@import './custom';
-
-
+@import "./custom";
 
 /* Responsive Styles */
 @media screen and (max-width: 767px) {
-
-  .card-container > *:not(.circle-link) ,
+  .card-container > *:not(.circle-link),
   .terminal {
     width: 100%;
   }

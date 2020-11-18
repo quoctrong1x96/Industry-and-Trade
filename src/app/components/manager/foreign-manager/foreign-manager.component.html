@@ -5,7 +5,7 @@
     </mat-card-header>
     <mat-card-content>
         <div class="row">
-            <div class="col-lg-2">
+            <div class="col">
                 <mat-form-field>
                     <mat-label>Ngày cập nhật giá</mat-label>
                     <input matInput readonly [matDatepicker]="datePicker" [(ngModel)]="pickedDate.date"
@@ -82,12 +82,6 @@
 
                 <ng-container matColumnDef="thi_truong">
                     <th mat-header-cell *matHeaderCellDef> Thị trường </th>
-                    <!-- <td mat-cell *matCellDef="let element"><select select [disabled]="_mode==2" class="form-control"
-                            name="" id="quocgia_select" [(ngModel)]="element.id_quoc_gia"
-                            [ngClass]="(_mode==2)?'stt':''">
-                            <option *ngFor="let nation of nations" [ngValue]="nation.id">
-                                {{nation.ten_tieng_viet}}</option>
-                        </select></td> -->
                     <td mat-cell *matCellDef="let element"><input appReport type="text"
                             [(ngModel)]="element.thi_truong">
                     </td>

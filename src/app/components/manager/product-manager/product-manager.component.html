@@ -5,9 +5,9 @@
     </mat-card-header>
     <mat-card-content>
         <div class="row">
-            <div class="col-lg-2">
+            <div class="col">
                 <mat-form-field>
-                    <mat-label>Thời gian</mat-label>
+                    <mat-label>Thời gian sản xuất</mat-label>
                     <input matInput [matDatepicker]="dp" [formControl]="date" (dateChange)="addEvent('change', $event)"
                         readonly>
                     <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
