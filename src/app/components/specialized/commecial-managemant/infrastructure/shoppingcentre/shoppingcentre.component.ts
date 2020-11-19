@@ -100,7 +100,11 @@ export class ShoppingcentreComponent implements OnInit {
   ngOnInit(): void {
     let data: any = JSON.parse(localStorage.getItem('currentUser'));
     this.dataSourceHuyenThi.data = this.dataHuyenThi;
-    console.log(this.dataSourceHuyenThi.data);
+    this.autoOpen()
+  }
+
+  autoOpen() {
+    setTimeout(() => this.accordion.openAll(), 1000);
   }
 
   ngAfterViewInit(): void {
@@ -112,7 +116,7 @@ export class ShoppingcentreComponent implements OnInit {
     this.paginator._intl.nextPageLabel = "Trang Tiếp";
     //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
     //Add 'implements AfterViewInit' to the class.
-    this.accordion.openAll();
+    // this.accordion.openAll();
   }
   dataSourceHuyenThi: MatTableDataSource<SuperMarketCommonModel> = new MatTableDataSource<SuperMarketCommonModel>();
 

@@ -52,37 +52,37 @@ export class FoodManagementComponent implements OnInit {
   }
   //Variable for HTML&TS-------------------------------------------------------------------------
   displayedColumns = ['index', 'tendoanhnghiep', 'diachi', 'scndkkd', 'ngaycap', 'noicap', 'tennddpl', 'sdtnddpl', 'sanphamkinhdoanh'];
-  dataHuyenThi: Array<FoodCommonModel> = [{tendoanhnghiep:'DNTN Phước Đức',diachi:'Tổ 4, KP. Phước Tân, phường Tân Thiện, TP. Đồng Xoài',scndkkd:'',ngaycap:null,noicap:'',tennddpl:'Phan Văn Bế',sdtnddpl:'0271.3862.101',sanphamkinhdoanh:'Bán buôn thực phẩm'},
-  {tendoanhnghiep:'DNTN TM Phạm Nguyễn',diachi:'Dẫy I, ấp 6, xã Tiến Hưng, TP.Đồng Xoài',scndkkd:'',ngaycap:null,noicap:'',tennddpl:'Nguyễn Thị Minh Huệ',sdtnddpl:'0271.3896.478',sanphamkinhdoanh:'Bán buôn thực phẩm'},
-  {tendoanhnghiep:'DNTN Hữu Bằng',diachi:'Tổ 1, KP Suối Đá, phường Tân Xuân, TP.Đồng Xoài',scndkkd:'',ngaycap:null,noicap:'',tennddpl:'Lê Xuân Bằng',sdtnddpl:'0271.3884.628',sanphamkinhdoanh:'Bán buôn thực phẩm'},
-  {tendoanhnghiep:'Công ty TNHH MTV Sài Gòn - Bình Phước',diachi:'Đường Phú Riềng Đỏ, phường Tân Bình, TP.Đồng Xoài',scndkkd:'',ngaycap:null,noicap:'',tennddpl:'Nguyễn Thị Bạch Vân',sdtnddpl:'0911876989',sanphamkinhdoanh:'Bán buôn bán lẻ thực phẩm'},
-  {tendoanhnghiep:'DNTN Lộc Thọ',diachi:'số 240, đường Lê Quý Đôn, phường Tân Thiện, TP.Đồng Xoài',scndkkd:'',ngaycap:null,noicap:'',tennddpl:'Lê Thị Phượng',sdtnddpl:'0271.3884.105',sanphamkinhdoanh:'Bán buôn thực phẩm'},
-  {tendoanhnghiep:'C.ty TNHH MTV TMDV Thanh Tuyền',diachi:'Số 23 Nguyễn Huệ, KP Bình Thiện, P. Tân Thiện, TP.Đồng Xoài',scndkkd:'',ngaycap:null,noicap:'',tennddpl:'Nguyễn Văn Tuyền',sdtnddpl:'0271.3883.068',sanphamkinhdoanh:'Bán buôn thực phẩm'},
-  {tendoanhnghiep:'C.ty TNHH TMDV Tiến Tài',diachi:'Ấp 1, xã Tiến Hưng, TP.Đồng Xoài',scndkkd:'',ngaycap:null,noicap:'',tennddpl:'Phạm Thu Hà',sdtnddpl:'0271.3896.453',sanphamkinhdoanh:'Bán buôn thực phẩm'},
-  {tendoanhnghiep:'DNTN Quang Vinh Phát',diachi:'Tổ 4, KP. Phú Xuân, TP.Đồng Xoài',scndkkd:'',ngaycap:null,noicap:'',tennddpl:'Bùi Thu Hương',sdtnddpl:'0918.670.575',sanphamkinhdoanh:'Bán buôn thực phẩm'},
-  {tendoanhnghiep:'Công ty TNHH MTV TMDV Đại Đông',diachi:'120 đường Trần Phú, phường Tân Phú, TP.Đồng Xoài',scndkkd:'',ngaycap:null,noicap:'',tennddpl:'Phan Hoài Đông',sdtnddpl:'0918212165',sanphamkinhdoanh:'Bán buôn thực phẩm'},
-  {tendoanhnghiep:'Công ty CP TM DV The Gold Mart',diachi:'Đường Tôn Đức Thắng, Ấp 2, Phường Tiến Thành, TP.Đồng Xoài',scndkkd:'',ngaycap:null,noicap:'',tennddpl:'Nguyễn Thanh Phương',sdtnddpl:'0913.012.679 ',sanphamkinhdoanh:'Bán buôn bán lẻ thực phẩm'},
-  {tendoanhnghiep:'Nhà phân phối cám gạo Hùng Oanh',diachi:'Số 65 Trần Phú, P.Tân Phú, TP.Đồng Xoài',scndkkd:'',ngaycap:null,noicap:'',tennddpl:'Anh Hùng',sdtnddpl:'0907848113',sanphamkinhdoanh:'Phân phối gạo'},
-  {tendoanhnghiep:'DNTN TMDV Quang Minh',diachi:'KP 9, P.Long Phước, Tx.Phước Long',scndkkd:'',ngaycap:null,noicap:'',tennddpl:'Lê Thị Thảo',sdtnddpl:'0271.3775.348',sanphamkinhdoanh:'Bán buôn đồ uống'},
-  {tendoanhnghiep:'DNTN Trọng Ngư',diachi:'Tổ 1, KP.Phước Sơn, P.Phước Bình, Tx Phước Long',scndkkd:'',ngaycap:null,noicap:'',tennddpl:'Nguyễn Trọng Ngư',sdtnddpl:'0908.990.400',sanphamkinhdoanh:'Bán buôn thực phẩm'},
-  {tendoanhnghiep:'DNTN Đại Quan',diachi:'P.Phước Bình, Tx. Phước Long',scndkkd:'',ngaycap:null,noicap:'',tennddpl:'Quách Hớn Tài',sdtnddpl:'0271.3775.825',sanphamkinhdoanh:'Bán buôn thực phẩm'},
-  {tendoanhnghiep:'Công ty TNHH TMDV Phương Loan',diachi:'Tổ 4, KP.7, P.Long Phước, Tx.Phước Long',scndkkd:'',ngaycap:null,noicap:'',tennddpl:'Phạm Văn Duân',sdtnddpl:'',sanphamkinhdoanh:'Bán buôn thực phẩm'},
-  {tendoanhnghiep:'Công ty TNHH Đông Doanh',diachi:'KP.Phước An, P.Phước Bình, Tx.Phước Long',scndkkd:'',ngaycap:null,noicap:'',tennddpl:'Phan Hoài Hạ',sdtnddpl:'02713773459.',sanphamkinhdoanh:'Bán buôn thực phẩm'},
-  {tendoanhnghiep:'DNTN Đức Trí',diachi:'ĐT741, KP5, P.Long Phước, Tx. Phước Long',scndkkd:'',ngaycap:null,noicap:'',tennddpl:'Nguyễn Đức Thuận',sdtnddpl:'0271.3774.423',sanphamkinhdoanh:'Bán buôn thực phẩm'},
-  {tendoanhnghiep:'Công ty TNHH TMDV Tổng hợp Thành Bước',diachi:'68 Đinh Tiên Hoàng, KP.Phú Bình, P.An Lộc, Tx. Bình Long',scndkkd:'',ngaycap:null,noicap:'',tennddpl:'Nguyễn Thành Bước',sdtnddpl:'0271.3680.622',sanphamkinhdoanh:'Bán buôn thực phẩm'},
-  {tendoanhnghiep:'CÔNG TY TNHH MTV SXTM Hương Giang',diachi:'Tổ 7, KP.Hưng Thịnh, P.Hưng Chiến, Tx. Bình Long',scndkkd:'',ngaycap:null,noicap:'',tennddpl:'Hồ Đức Thiện',sdtnddpl:'02713683158',sanphamkinhdoanh:'Bán buôn thực phẩm'},
-  {tendoanhnghiep:'DNTN An Lạc.',diachi:'124 đường Hùng Vương, P.An Lộc, Tx.Bình Long',scndkkd:'',ngaycap:null,noicap:'',tennddpl:'Trần Văn Cường',sdtnddpl:'02713680042',sanphamkinhdoanh:'Bán buôn thực phẩm'},
-  {tendoanhnghiep:'Đại lý gạo Quyết Loan',diachi:'Phường Hưng Chiến, Tx.Bình Long',scndkkd:'',ngaycap:null,noicap:'',tennddpl:'',sdtnddpl:'',sanphamkinhdoanh:'Đại lý gạo'},
-  {tendoanhnghiep:'DNTN Quỳnh Trung',diachi:'đường Nguyễn Huệ, P.An Lộc',scndkkd:'',ngaycap:null,noicap:'',tennddpl:'',sdtnddpl:'',sanphamkinhdoanh:'Đại lý gạo'},
-  {tendoanhnghiep:'Coopmart Đồng Phú',diachi:'ĐT 741, KP.Tân An, TT.Tân Phú, Đồng Phú',scndkkd:'',ngaycap:null,noicap:'',tennddpl:'Chị Khanh',sdtnddpl:'0913942207',sanphamkinhdoanh:'Siêu thị'},
-  {tendoanhnghiep:'CÔNG TY TNHH MTV TMDV Mạnh Toàn',diachi:'Ấp 3 xã Minh Hưng, Chơn Thành, Bình Phước',scndkkd:'',ngaycap:null,noicap:'',tennddpl:'Nguyễn Mạnh Toàn',sdtnddpl:'0978551511',sanphamkinhdoanh:'Bán buôn thực phẩm'},
-  {tendoanhnghiep:'DNTN Lý Quỳnh',diachi:'xã Thanh Bình, huyện Hớn Quản',scndkkd:'',ngaycap:null,noicap:'',tennddpl:'Trần Văn Quỳnh',sdtnddpl:'0271.3680.030',sanphamkinhdoanh:'Bán buôn đồ uống'},
-  {tendoanhnghiep:'C.ty TNHH MTV Hoàng Gia',diachi:'Ấp 3, xã Lộc Thái, huyện Lộc Ninh',scndkkd:'',ngaycap:null,noicap:'',tennddpl:'Trần Thanh Lan',sdtnddpl:'0914.311.321',sanphamkinhdoanh:'Bán buôn thực phẩm'},
-  {tendoanhnghiep:'C.ty TNHH MTV TMDV Hoàng Kim',diachi:'KP.Ninh Phước, TT.Lộc Ninh',scndkkd:'',ngaycap:null,noicap:'',tennddpl:'Nguyễn Thị Cẩm Hiệp',sdtnddpl:'0918.242.816',sanphamkinhdoanh:'Bán buôn thực phẩm'},
-  {tendoanhnghiep:'CÔNG TY TNHH MTV TM XNK - BÌNH MAI',diachi:'Số 27 đường 3/2, KP.Ninh Thịnh, TT.Lộc Ninh, huyện Lộc Ninh',scndkkd:'',ngaycap:null,noicap:'',tennddpl:'Hoàng Ngọc Bình',sdtnddpl:'02713568659',sanphamkinhdoanh:'Bán buôn thực phẩm'},
-  {tendoanhnghiep:'DNTN QUỐC ANH THU',diachi:'KP.Ninh Thịnh, TT.Lộc Ninh, huyện Lộc Ninh',scndkkd:'',ngaycap:null,noicap:'',tennddpl:'Lê Thị Thu',sdtnddpl:'0983379379',sanphamkinhdoanh:'Bán buôn thực phẩm'},
-  {tendoanhnghiep:'C.ty TNHH MTV Tuấn Dương',diachi:'KP. Hòa Đồng, thị trấn Đức phong, huyện Bù Đăng, BP',scndkkd:'',ngaycap:null,noicap:'',tennddpl:'Đặng Văn Tuấn',sdtnddpl:'0376.955.054',sanphamkinhdoanh:'Bán buôn thực phẩm'},
-  {tendoanhnghiep:'CÔNG TY TNHH MTV ĐÔNG HƯNG',diachi:'ấp 2, xã Minh Hưng, huyện Bù Đăng',scndkkd:'',ngaycap:null,noicap:'',tennddpl:'Phan Hoài Hạ',sdtnddpl:'0913720377',sanphamkinhdoanh:'Bán buôn thực phẩm'}]
+  dataHuyenThi: Array<FoodCommonModel> = [{ tendoanhnghiep: 'DNTN Phước Đức', diachi: 'Tổ 4, KP. Phước Tân, phường Tân Thiện, TP. Đồng Xoài', scndkkd: '', ngaycap: null, noicap: '', tennddpl: 'Phan Văn Bế', sdtnddpl: '0271.3862.101', sanphamkinhdoanh: 'Bán buôn thực phẩm' },
+  { tendoanhnghiep: 'DNTN TM Phạm Nguyễn', diachi: 'Dẫy I, ấp 6, xã Tiến Hưng, TP.Đồng Xoài', scndkkd: '', ngaycap: null, noicap: '', tennddpl: 'Nguyễn Thị Minh Huệ', sdtnddpl: '0271.3896.478', sanphamkinhdoanh: 'Bán buôn thực phẩm' },
+  { tendoanhnghiep: 'DNTN Hữu Bằng', diachi: 'Tổ 1, KP Suối Đá, phường Tân Xuân, TP.Đồng Xoài', scndkkd: '', ngaycap: null, noicap: '', tennddpl: 'Lê Xuân Bằng', sdtnddpl: '0271.3884.628', sanphamkinhdoanh: 'Bán buôn thực phẩm' },
+  { tendoanhnghiep: 'Công ty TNHH MTV Sài Gòn - Bình Phước', diachi: 'Đường Phú Riềng Đỏ, phường Tân Bình, TP.Đồng Xoài', scndkkd: '', ngaycap: null, noicap: '', tennddpl: 'Nguyễn Thị Bạch Vân', sdtnddpl: '0911876989', sanphamkinhdoanh: 'Bán buôn bán lẻ thực phẩm' },
+  { tendoanhnghiep: 'DNTN Lộc Thọ', diachi: 'số 240, đường Lê Quý Đôn, phường Tân Thiện, TP.Đồng Xoài', scndkkd: '', ngaycap: null, noicap: '', tennddpl: 'Lê Thị Phượng', sdtnddpl: '0271.3884.105', sanphamkinhdoanh: 'Bán buôn thực phẩm' },
+  { tendoanhnghiep: 'C.ty TNHH MTV TMDV Thanh Tuyền', diachi: 'Số 23 Nguyễn Huệ, KP Bình Thiện, P. Tân Thiện, TP.Đồng Xoài', scndkkd: '', ngaycap: null, noicap: '', tennddpl: 'Nguyễn Văn Tuyền', sdtnddpl: '0271.3883.068', sanphamkinhdoanh: 'Bán buôn thực phẩm' },
+  { tendoanhnghiep: 'C.ty TNHH TMDV Tiến Tài', diachi: 'Ấp 1, xã Tiến Hưng, TP.Đồng Xoài', scndkkd: '', ngaycap: null, noicap: '', tennddpl: 'Phạm Thu Hà', sdtnddpl: '0271.3896.453', sanphamkinhdoanh: 'Bán buôn thực phẩm' },
+  { tendoanhnghiep: 'DNTN Quang Vinh Phát', diachi: 'Tổ 4, KP. Phú Xuân, TP.Đồng Xoài', scndkkd: '', ngaycap: null, noicap: '', tennddpl: 'Bùi Thu Hương', sdtnddpl: '0918.670.575', sanphamkinhdoanh: 'Bán buôn thực phẩm' },
+  { tendoanhnghiep: 'Công ty TNHH MTV TMDV Đại Đông', diachi: '120 đường Trần Phú, phường Tân Phú, TP.Đồng Xoài', scndkkd: '', ngaycap: null, noicap: '', tennddpl: 'Phan Hoài Đông', sdtnddpl: '0918212165', sanphamkinhdoanh: 'Bán buôn thực phẩm' },
+  { tendoanhnghiep: 'Công ty CP TM DV The Gold Mart', diachi: 'Đường Tôn Đức Thắng, Ấp 2, Phường Tiến Thành, TP.Đồng Xoài', scndkkd: '', ngaycap: null, noicap: '', tennddpl: 'Nguyễn Thanh Phương', sdtnddpl: '0913.012.679 ', sanphamkinhdoanh: 'Bán buôn bán lẻ thực phẩm' },
+  { tendoanhnghiep: 'Nhà phân phối cám gạo Hùng Oanh', diachi: 'Số 65 Trần Phú, P.Tân Phú, TP.Đồng Xoài', scndkkd: '', ngaycap: null, noicap: '', tennddpl: 'Anh Hùng', sdtnddpl: '0907848113', sanphamkinhdoanh: 'Phân phối gạo' },
+  { tendoanhnghiep: 'DNTN TMDV Quang Minh', diachi: 'KP 9, P.Long Phước, Tx.Phước Long', scndkkd: '', ngaycap: null, noicap: '', tennddpl: 'Lê Thị Thảo', sdtnddpl: '0271.3775.348', sanphamkinhdoanh: 'Bán buôn đồ uống' },
+  { tendoanhnghiep: 'DNTN Trọng Ngư', diachi: 'Tổ 1, KP.Phước Sơn, P.Phước Bình, Tx Phước Long', scndkkd: '', ngaycap: null, noicap: '', tennddpl: 'Nguyễn Trọng Ngư', sdtnddpl: '0908.990.400', sanphamkinhdoanh: 'Bán buôn thực phẩm' },
+  { tendoanhnghiep: 'DNTN Đại Quan', diachi: 'P.Phước Bình, Tx. Phước Long', scndkkd: '', ngaycap: null, noicap: '', tennddpl: 'Quách Hớn Tài', sdtnddpl: '0271.3775.825', sanphamkinhdoanh: 'Bán buôn thực phẩm' },
+  { tendoanhnghiep: 'Công ty TNHH TMDV Phương Loan', diachi: 'Tổ 4, KP.7, P.Long Phước, Tx.Phước Long', scndkkd: '', ngaycap: null, noicap: '', tennddpl: 'Phạm Văn Duân', sdtnddpl: '', sanphamkinhdoanh: 'Bán buôn thực phẩm' },
+  { tendoanhnghiep: 'Công ty TNHH Đông Doanh', diachi: 'KP.Phước An, P.Phước Bình, Tx.Phước Long', scndkkd: '', ngaycap: null, noicap: '', tennddpl: 'Phan Hoài Hạ', sdtnddpl: '02713773459.', sanphamkinhdoanh: 'Bán buôn thực phẩm' },
+  { tendoanhnghiep: 'DNTN Đức Trí', diachi: 'ĐT741, KP5, P.Long Phước, Tx. Phước Long', scndkkd: '', ngaycap: null, noicap: '', tennddpl: 'Nguyễn Đức Thuận', sdtnddpl: '0271.3774.423', sanphamkinhdoanh: 'Bán buôn thực phẩm' },
+  { tendoanhnghiep: 'Công ty TNHH TMDV Tổng hợp Thành Bước', diachi: '68 Đinh Tiên Hoàng, KP.Phú Bình, P.An Lộc, Tx. Bình Long', scndkkd: '', ngaycap: null, noicap: '', tennddpl: 'Nguyễn Thành Bước', sdtnddpl: '0271.3680.622', sanphamkinhdoanh: 'Bán buôn thực phẩm' },
+  { tendoanhnghiep: 'CÔNG TY TNHH MTV SXTM Hương Giang', diachi: 'Tổ 7, KP.Hưng Thịnh, P.Hưng Chiến, Tx. Bình Long', scndkkd: '', ngaycap: null, noicap: '', tennddpl: 'Hồ Đức Thiện', sdtnddpl: '02713683158', sanphamkinhdoanh: 'Bán buôn thực phẩm' },
+  { tendoanhnghiep: 'DNTN An Lạc.', diachi: '124 đường Hùng Vương, P.An Lộc, Tx.Bình Long', scndkkd: '', ngaycap: null, noicap: '', tennddpl: 'Trần Văn Cường', sdtnddpl: '02713680042', sanphamkinhdoanh: 'Bán buôn thực phẩm' },
+  { tendoanhnghiep: 'Đại lý gạo Quyết Loan', diachi: 'Phường Hưng Chiến, Tx.Bình Long', scndkkd: '', ngaycap: null, noicap: '', tennddpl: '', sdtnddpl: '', sanphamkinhdoanh: 'Đại lý gạo' },
+  { tendoanhnghiep: 'DNTN Quỳnh Trung', diachi: 'đường Nguyễn Huệ, P.An Lộc', scndkkd: '', ngaycap: null, noicap: '', tennddpl: '', sdtnddpl: '', sanphamkinhdoanh: 'Đại lý gạo' },
+  { tendoanhnghiep: 'Coopmart Đồng Phú', diachi: 'ĐT 741, KP.Tân An, TT.Tân Phú, Đồng Phú', scndkkd: '', ngaycap: null, noicap: '', tennddpl: 'Chị Khanh', sdtnddpl: '0913942207', sanphamkinhdoanh: 'Siêu thị' },
+  { tendoanhnghiep: 'CÔNG TY TNHH MTV TMDV Mạnh Toàn', diachi: 'Ấp 3 xã Minh Hưng, Chơn Thành, Bình Phước', scndkkd: '', ngaycap: null, noicap: '', tennddpl: 'Nguyễn Mạnh Toàn', sdtnddpl: '0978551511', sanphamkinhdoanh: 'Bán buôn thực phẩm' },
+  { tendoanhnghiep: 'DNTN Lý Quỳnh', diachi: 'xã Thanh Bình, huyện Hớn Quản', scndkkd: '', ngaycap: null, noicap: '', tennddpl: 'Trần Văn Quỳnh', sdtnddpl: '0271.3680.030', sanphamkinhdoanh: 'Bán buôn đồ uống' },
+  { tendoanhnghiep: 'C.ty TNHH MTV Hoàng Gia', diachi: 'Ấp 3, xã Lộc Thái, huyện Lộc Ninh', scndkkd: '', ngaycap: null, noicap: '', tennddpl: 'Trần Thanh Lan', sdtnddpl: '0914.311.321', sanphamkinhdoanh: 'Bán buôn thực phẩm' },
+  { tendoanhnghiep: 'C.ty TNHH MTV TMDV Hoàng Kim', diachi: 'KP.Ninh Phước, TT.Lộc Ninh', scndkkd: '', ngaycap: null, noicap: '', tennddpl: 'Nguyễn Thị Cẩm Hiệp', sdtnddpl: '0918.242.816', sanphamkinhdoanh: 'Bán buôn thực phẩm' },
+  { tendoanhnghiep: 'CÔNG TY TNHH MTV TM XNK - BÌNH MAI', diachi: 'Số 27 đường 3/2, KP.Ninh Thịnh, TT.Lộc Ninh, huyện Lộc Ninh', scndkkd: '', ngaycap: null, noicap: '', tennddpl: 'Hoàng Ngọc Bình', sdtnddpl: '02713568659', sanphamkinhdoanh: 'Bán buôn thực phẩm' },
+  { tendoanhnghiep: 'DNTN QUỐC ANH THU', diachi: 'KP.Ninh Thịnh, TT.Lộc Ninh, huyện Lộc Ninh', scndkkd: '', ngaycap: null, noicap: '', tennddpl: 'Lê Thị Thu', sdtnddpl: '0983379379', sanphamkinhdoanh: 'Bán buôn thực phẩm' },
+  { tendoanhnghiep: 'C.ty TNHH MTV Tuấn Dương', diachi: 'KP. Hòa Đồng, thị trấn Đức phong, huyện Bù Đăng, BP', scndkkd: '', ngaycap: null, noicap: '', tennddpl: 'Đặng Văn Tuấn', sdtnddpl: '0376.955.054', sanphamkinhdoanh: 'Bán buôn thực phẩm' },
+  { tendoanhnghiep: 'CÔNG TY TNHH MTV ĐÔNG HƯNG', diachi: 'ấp 2, xã Minh Hưng, huyện Bù Đăng', scndkkd: '', ngaycap: null, noicap: '', tennddpl: 'Phan Hoài Hạ', sdtnddpl: '0913720377', sanphamkinhdoanh: 'Bán buôn thực phẩm' }]
   //Variable for only TS-------------------------------------------------------------------------
 
   items: TreeviewItem[] = [];
@@ -111,8 +111,8 @@ export class FoodManagementComponent implements OnInit {
   { id: 9, ten_quan_huyen: 'Huyện Bù Đăng' },
   { id: 10, ten_quan_huyen: 'Huyện Chơn Thành' },
   { id: 11, ten_quan_huyen: 'Huyện Phú Riềng' }];
-  headerArray : string[] = ['index', 'tenhuyenthi', 'ten_tttm', 'dientich', 'vondautu', 'namdautuxaydung', 'phanloai'];
-  isChecked : boolean;
+  headerArray: string[] = ['index', 'tenhuyenthi', 'ten_tttm', 'dientich', 'vondautu', 'namdautuxaydung', 'phanloai'];
+  isChecked: boolean;
 
   //Angular FUnction --------------------------------------------------------------------
   constructor(
@@ -125,19 +125,24 @@ export class FoodManagementComponent implements OnInit {
   ngOnInit(): void {
     let data: any = JSON.parse(localStorage.getItem('currentUser'));
     this.dataSourceHuyenThi.data = this.dataHuyenThi;
-    console.log(this.dataSourceHuyenThi.data);
+    this.autoOpen();
   }
+
+  autoOpen() {
+    setTimeout(() => this.accordion.openAll(), 1000);
+  }
+
   ngAfterViewInit(): void {
     //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
     //Add 'implements AfterViewInit' to the class.
-    this.accordion.openAll();
+    // this.accordion.openAll();
     this.dataSourceHuyenThi.paginator = this.paginator;
     this.paginator._intl.itemsPerPageLabel = 'Số hàng';
     this.paginator._intl.firstPageLabel = "Trang Đầu";
     this.paginator._intl.lastPageLabel = "Trang Cuối";
     this.paginator._intl.previousPageLabel = "Trang Trước";
     this.paginator._intl.nextPageLabel = "Trang Tiếp";
-}
+  }
   dataSourceHuyenThi: MatTableDataSource<FoodCommonModel> = new MatTableDataSource<FoodCommonModel>();
 
   //Xuất excel
@@ -150,16 +155,16 @@ export class FoodManagementComponent implements OnInit {
     // /* save to file */
     // XLSX.writeFile(wb, excelFileName);
   }
-  
+
   sortHeaderCondition(event) {
 
   }
-  
- applyDistrictFilter(event) {
-   
+
+  applyDistrictFilter(event) {
+
   }
-  
-  applyExpireCheck(event){
+
+  applyExpireCheck(event) {
 
   }
 }

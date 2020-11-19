@@ -151,14 +151,14 @@ export const navItemsManager: INavItem[] = [
     isSCT: false,
     id: 'QLDN'
   },
-  {
-    name: 'Chi tiết doanh nghiệp',
-    url: '/manager/business/detail-business',
-    icon: 'business',
-    id: 'QLDN',
-    manager:true,
-    isSCT: false
-  },
+  // {
+  //   name: 'Chi tiết doanh nghiệp',
+  //   url: '/manager/business/detail-business',
+  //   icon: 'business',
+  //   id: 'QLDN',
+  //   manager:true,
+  //   isSCT: false
+  // },
   {
     name: 'Đăng xuất',
     url: '/logout',
@@ -207,12 +207,12 @@ export const navItemsSpecialized: INavItem[] = [
             icon: 'smoking_rooms',
             id: 'KDCDK',
           },
-          {
-            name: 'Tổng mức bán lẻ hàng hóa và dịch vụ',
-            url: '/specialized/commecial-management/domestic/trs',
-            icon: 'tty',
-            id: 'HHDV',
-          },
+          // {
+          //   name: 'Tổng mức bán lẻ hàng hóa và dịch vụ',
+          //   url: '/specialized/commecial-management/domestic/trs',
+          //   icon: 'tty',
+          //   id: 'HHDV',
+          // },
         ]
       },
       {
@@ -363,11 +363,11 @@ export const navItemsSpecialized: INavItem[] = [
         url: '/specialized/industry-management/food',
         icon: 'hourglass_bottom',
       },
-      // {
-      //   name: 'Chỉ số SX công nghiệp',
-      //   url: '/specialized/industry-management/focus',
-      //   icon: 'filter_9_plus',
-      // },
+      {
+        name: 'Chỉ số SX công nghiệp',
+        url: '/specialized/commecial-management/domestic/trs',
+        icon: 'filter_9_plus',
+      },
       {
         name: 'Cụm Công nghiệp',
         url: '/specialized/industry-management/cluster',

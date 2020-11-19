@@ -78,7 +78,7 @@ export class SuperMarketCommecialManagementComponent implements OnInit {
   ngAfterViewInit(): void {
     //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
     //Add 'implements AfterViewInit' to the class.
-    this.accordion.openAll();
+    // this.accordion.openAll();
     this.dataSourceHuyenThi.paginator = this.paginator;
     this.paginator._intl.itemsPerPageLabel = 'Số hàng';
     this.paginator._intl.firstPageLabel = "Trang Đầu";
@@ -86,6 +86,10 @@ export class SuperMarketCommecialManagementComponent implements OnInit {
     this.paginator._intl.previousPageLabel = "Trang Trước";
     this.paginator._intl.nextPageLabel = "Trang Tiếp";
   }
+
+  autoOpen() {
+    setTimeout(() => this.accordion.openAll(), 1000);
+}
 
   items: TreeviewItem[] = [];
   values: number[] = [];
@@ -114,6 +118,7 @@ export class SuperMarketCommecialManagementComponent implements OnInit {
   ngOnInit(): void {
     let data: any = JSON.parse(localStorage.getItem('currentUser'));
     this.dataSourceHuyenThi.data = this.dataHuyenThi;
+    this.autoOpen();
   }
   dataSourceHuyenThi: MatTableDataSource<SuperMarketCommonModel> = new MatTableDataSource<SuperMarketCommonModel>();
 

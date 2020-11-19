@@ -151,12 +151,17 @@ export class StoreManagementComponent implements OnInit {
   ngOnInit(): void {
     let data: any = JSON.parse(localStorage.getItem('currentUser'));
     this.dataSourceHuyenThi.data = this.dataHuyenThi;
+    this.autoOpen();
   }
+
+  autoOpen() {
+    setTimeout(() => this.accordion.openAll(), 1000);
+}
 
   ngAfterViewInit(): void {
     //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
     //Add 'implements AfterViewInit' to the class.
-    this.accordion.openAll();
+    // this.accordion.openAll();
     this.dataSourceHuyenThi.paginator = this.paginator;
     this.paginator._intl.itemsPerPageLabel = 'Số hàng';
     this.paginator._intl.firstPageLabel = "Trang Đầu";

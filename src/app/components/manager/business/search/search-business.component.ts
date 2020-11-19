@@ -116,7 +116,7 @@ export class SearchBusinessComponent implements OnInit {
   }
 
   OpenDetailCompany(mst: string) {
-    this.router.navigate(['sct/manager/business/search/' + mst]);
+    this.router.navigate(['manager/business/search/' + mst]);
   }
 
   GetAllCompany() {
