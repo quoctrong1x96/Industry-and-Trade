@@ -9,26 +9,26 @@ export class ReportOject {
     end_date: string;
     assign_org: number;
     create_date: Date;
-    create_user:string;
-    grant_type:number;
-    id:number;
-    input_fr:Date;
-    input_to:Date;
-    obj_type:number;
-    org_id:number;
-    parent_id:number;
-    period_id:number;
-    state_id:number;
-    status:number;
-    submit_type:number;
-    time_id:string;
-    tpl_path:number;
-    update_date:Date;
-    update_user:string;
-    org_name:string;
-    status_name:string;
+    create_user: string;
+    grant_type: number;
+    id: number;
+    input_fr: Date;
+    input_to: Date;
+    obj_type: number;
+    org_id: number;
+    parent_id: number;
+    period_id: number;
+    state_id: number;
+    status: number;
+    submit_type: number;
+    time_id: string;
+    tpl_path: number;
+    update_date: Date;
+    update_user: string;
+    org_name: string;
+    status_name: string;
     submit_type_name: string;
-    time_id_text:string;
+    time_id_text: string;
 }
 
 export class ReportIndicator {
@@ -63,11 +63,12 @@ export class ReportAttribute {
 
 export class ReportDatarow {
     //To declare
-    data_id: number;
-    org_id: number;
-    time_id: number;
     ind_id: number;
-    obj_id: number;
+    ind_name: string;
+    ind_type: number;
+    ind_unit: string;
+    ind_parent_id: number;
+    ind_formula: string;
     fd01: Date;
     fd02: Date;
     fd03: Date;
@@ -93,6 +94,16 @@ export class ReportDatarow {
     fn18: number;
     fn19: number;
     fn20: number;
+    fn21: number;
+    fn22: number;
+    fn23: number;
+    fn24: number;
+    fn25: number;
+    fn26: number;
+    fn27: number;
+    fn28: number;
+    fn29: number;
+    fn30: number;
     fc01: string;
     fc02: string;
     fc03: string;
@@ -103,6 +114,16 @@ export class ReportDatarow {
     fc08: string;
     fc09: string;
     fc10: string;
+    fc11: string;
+    fc12: string;
+    fc13: string;
+    fc14: string;
+    fc15: string;
+    fc16: string;
+    fc17: string;
+    fc18: string;
+    fc19: string;
+    fc20: string;
 }
 
 export class ReportColumn {
@@ -147,6 +168,16 @@ export class ReportTable {
     fn18: number;
     fn19: number;
     fn20: number;
+    fn21: number;
+    fn22: number;
+    fn23: number;
+    fn24: number;
+    fn25: number;
+    fn26: number;
+    fn27: number;
+    fn28: number;
+    fn29: number;
+    fn30: number;
     fc01: string;
     fc02: string;
     fc03: string;
@@ -157,15 +188,25 @@ export class ReportTable {
     fc08: string;
     fc09: string;
     fc10: string;
+    fc11: string;
+    fc12: string;
+    fc13: string;
+    fc14: string;
+    fc15: string;
+    fc16: string;
+    fc17: string;
+    fc18: string;
+    fc19: string;
+    fc20: string;
 }
 
-export class HeaderMerge{
-    colDefault:number = 0;
-    colName: string ="";
-    colText:string ="";
-    colLenght:number =0;
+export class HeaderMerge {
+    colDefault: number = 0;
+    colName: string = "";
+    colText: string = "";
+    colLenght: number = 0;
 }
-export class ToltalHeaderMerge{
+export class ToltalHeaderMerge {
     headerMerge: HeaderMerge[] = [];
     headerColName: Array<string> = [];
 }

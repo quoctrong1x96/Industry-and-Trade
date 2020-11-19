@@ -30,13 +30,6 @@ const routes: Routes = [
           title: 'Doanh nghiệp'
         },
         children: [
-          // {
-          //   path: 'create',
-          //   component: CreateBussinessComponent,
-          //   data: {
-          //     title: 'Khai báo doanh nghiệp'
-          //   },
-          // },
           {
             path: 'detail-business',
             component: DetailBussinessComponent,

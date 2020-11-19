@@ -31,6 +31,7 @@ import { CommecialManagementModule } from '../components/specialized/commecial-m
 import { CommecialManagementRoutingModule } from '../components/specialized/commecial-managemant/commecial-management.routing';
 import { SpecializedLayoutComponent } from './specialized-layout/specialized-layout.component';
 import { EnergyLayoutComponent } from './energy-layout/energy-layout.component';
+import { ReportLayoutComponent } from './report-layout/report-layout.component';
 
 // import {FlexLayoutModule} from '@angular/flex-layout';
 
@@ -107,10 +108,10 @@ const routes: Routes = [
       }
     ]
   },
-  {
+  {//LayoutPage Specilized
     path: 'specialized',
     canActivate: [SCTBossAuthGuardService],
-    component:SpecializedLayoutComponent,
+    component: SpecializedLayoutComponent,
     children: [
       {
         path: 'commecial-management',
@@ -126,47 +127,49 @@ const routes: Routes = [
       },
     ]
   },
-  {//LayoutPge SCT
-    path: 'sct',
-    component: ManagerLayoutComponent,
-    children: [
-      {//Report
-        path: 'report',
-        canActivate: [SCTBossAuthGuardService],
-        loadChildren: () => import('../components/report/report.module').then(m => m.ReportModule)
-      },
-      {
-        path: 'du_lieu_nganh/:id',
-        canActivate: [SCTBossAuthGuardService],
-        component: DataSCTComponent,
-      },
+  {//LayoutPge Report
+    path: 'report',
+    component: ReportLayoutComponent,
+    canActivate: [SCTBossAuthGuardService],
+    loadChildren: () => import('../components/report/report.module').then(m => m.ReportModule)
+    // children: [
+    //   {//Report
+    //     path: 'report',
 
-      {//Notification
-        path: 'notifications',
-        canActivate: [SCTBossAuthGuardService],
-        loadChildren: () => import('../components/notifications/notifications.module').then(m => m.NotificationsModule)
-      },
-      {//Manager
-        path: 'manager',
-        canActivate: [SCTBossAuthGuardService],
-        loadChildren: () => import('../components/manager/manager.module').then(m => m.ManagerModule)
-      },
-      // {//NotFound
-      //   path: '**',
-      //   component: P404Component
-      // }
-    ],
+    //   },
+    //   {
+    //     path: 'du_lieu_nganh/:id',
+    //     canActivate: [SCTBossAuthGuardService],
+    //     component: DataSCTComponent,
+    //   },
+
+    //   {//Notification
+    //     path: 'notifications',
+    //     canActivate: [SCTBossAuthGuardService],
+    //     loadChildren: () => import('../components/notifications/notifications.module').then(m => m.NotificationsModule)
+    //   },
+    //   {//Manager
+    //     path: 'manager',
+    //     canActivate: [SCTBossAuthGuardService],
+    //     loadChildren: () => import('../components/manager/manager.module').then(m => m.ManagerModule)
+    //   },
+    //   // {//NotFound
+    //   //   path: '**',
+    //   //   component: P404Component
+    //   // }
+    // ],
   },
-  {//Layout Bussiness
-    path: 'business',
+  {//Layout Manager
+    path: 'manager',
     component: ManagerLayoutComponent,
     canActivate: [SCTBossAuthGuardService],
-    children: [
-      {//Fulpath
-        path: '',
-        loadChildren: () => import('../components/home/home.module').then(m => m.HomeModule),
-      }
-    ],
+    loadChildren: () => import('../components/manager/manager.module').then(m => m.ManagerModule),
+    // children: [
+    //   {//Fulpath
+    //     path: '',
+
+    //   }
+    // ],
   },
   {//404
     path: '**',
@@ -180,6 +183,7 @@ const routes: Routes = [
     PublicLayoutComponent,
     ManagerLayoutComponent,
     SpecializedLayoutComponent,
+    ReportLayoutComponent,
     P404Component,
     P500Component,
     LoginComponent,

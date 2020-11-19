@@ -1,111 +1,158 @@
 //Import Library
-import { Component, ViewChild, ElementRef, OnInit, AfterViewInit, ViewChildren, QueryList } from '@angular/core';
-import * as XLSX from 'xlsx';
-import { ActivatedRoute, Router } from '@angular/router';
-import { MatTableDataSource } from '@angular/material/table';
-import { FormControl, NgForm } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { startWith, map, isEmpty } from 'rxjs/operators';
-import { MatTableFilter } from 'mat-table-filter';
+import { Component, ViewChild, ElementRef, OnInit, AfterViewInit, ViewChildren, QueryList, } from "@angular/core";
+import * as XLSX from "xlsx";
+import { ActivatedRoute, Router } from "@angular/router";
+import { MatTableDataSource } from "@angular/material/table";
+import { FormControl, NgForm } from "@angular/forms";
+import { Observable } from "rxjs";
+import { startWith, map, isEmpty } from "rxjs/operators";
+import { MatTableFilter } from "mat-table-filter";
 //Import Component
 
 //Import Model
-import { HeaderMerge, ReportAttribute, ReportDatarow, ReportIndicator, ReportOject, ReportTable, ToltalHeaderMerge } from '../../../../../_models/APIModel/report.model';
+import { HeaderMerge, ReportAttribute, ReportDatarow, ReportIndicator, ReportOject, ReportTable, ToltalHeaderMerge, } from "../../../../../_models/APIModel/report.model";
 //Import Service
-import { ControlService } from '../../../../../_services/APIService/control.service';
-import { ReportDirective } from 'src/app/shared/report.directive';
-import { KeyboardService } from 'src/app/shared/services/keyboard.service';
-import { InformationService } from 'src/app/shared/information/information.service';
-import { ReportService } from 'src/app/_services/APIService/report.service';
-import * as moment from 'moment';
-import { CompanyDetailModel } from 'src/app/_models/APIModel/domestic-market.model';
-import { TreeviewConfig, TreeviewItem, TreeviewModule } from 'ngx-treeview';
-import { element } from 'protractor';
-import { MarketCommonModel } from 'src/app/_models/APIModel/commecial-management.model';
-import { MatAccordion } from '@angular/material/expansion';
-import { MatPaginator } from '@angular/material/paginator';
-import { District } from 'src/app/_models/district.model';
+import { ControlService } from "../../../../../_services/APIService/control.service";
+import { ReportDirective } from "src/app/shared/report.directive";
+import { KeyboardService } from "src/app/shared/services/keyboard.service";
+import { InformationService } from "src/app/shared/information/information.service";
+import { ReportService } from "src/app/_services/APIService/report.service";
+import * as moment from "moment";
+import { CompanyDetailModel } from "src/app/_models/APIModel/domestic-market.model";
+import { TreeviewConfig, TreeviewItem, TreeviewModule } from "ngx-treeview";
+import { element } from "protractor";
+import { MarketCommonModel } from "src/app/_models/APIModel/commecial-management.model";
+import { MatAccordion } from "@angular/material/expansion";
+import { MatPaginator } from "@angular/material/paginator";
+import { District } from "src/app/_models/district.model";
+import { FilterModel } from "src/app/_models/filter.model";
 
 interface HashTableNumber<T> {
-  [key: string]: T;
+  [key: number]: T;
 }
 
 @Component({
-  selector: 'app-market-commecial',
-  templateUrl: './market-commecial.component.html',
-  styleUrls: ['./market-commecial.component.scss']
+  selector: "app-market-commecial",
+  templateUrl: "./market-commecial.component.html",
+  styleUrls: ["./market-commecial.component.scss"],
 })
-
 export class MarketCommecialManagementComponent implements OnInit {
   //Constant-------------------------------------------------------------------------
   public readonly OBJ_ID: number = 10592419;
   public readonly TIME_ID: number = 2020;
   public readonly ORG_ID: number = 1;
   public readonly TYPE_INDICATOR_INPUT: number = 1;
-  public readonly ATTRIBUTE_CODE: string = 'IND_NAME';
-  public readonly UNIT_CODE: string = 'IND_UNIT';
+  public readonly ATTRIBUTE_CODE: string = "IND_NAME";
+  public readonly UNIT_CODE: string = "IND_UNIT";
   public readonly ATTRIBUTE_DEFAULT: number = 1;
+  public readonly RANK_LABLE = (page: number, pageSize: number, length: number) => {
+    if (length == 0 || pageSize == 0) { return `0 của ${length}`; }
+
+    length = Math.max(length, 0);
+
+    const startIndex = page * pageSize;
+
+    // If the start index exceeds the list length, do not try and fix the end index to the end.
+    const endIndex = startIndex < length ?
+      Math.min(startIndex + pageSize, length) :
+      startIndex + pageSize;
+
+    return `${startIndex + 1} - ${endIndex} của ${length}`;
+  }
+  public readonly districts: FilterModel[] = [
+    { key: 1, code: "PLG", name: "Phước Long" },
+    { key: 2, code: "DXI", name: "Đồng Xoài" },
+    { key: 3, code: "BLG", name: "Bình Long" },
+    { key: 4, code: "BGM", name: "Bù Gia Mập" },
+    { key: 5, code: "LNH", name: "Lộc Ninh" },
+    { key: 6, code: "BDP", name: "Bù Đốp" },
+    { key: 7, code: "HQN", name: "Hớn Quản" },
+    { key: 8, code: "DPU", name: "Đồng Phú" },
+    { key: 9, code: "BDG", name: "Bù Đăng" },
+    { key: 10, code: "CTH", name: "Chơn Thành" },
+    { key: 11, code: "PRG", name: "Phú Riềng" },
+  ];
+  public readonly businesses: FilterModel[] = [
+    { key: 1, code: "KIENCO", name: "Kiên cố" },
+    { key: 2, code: "BANKIENCO", name: "Bán kiên cố" },
+    { key: 3, code: "CHUACONHUCAU", name: "Chưa có nhu cầu xây dựng" },
+    { key: 4, code: "DEXUAT", name: "Đề xuất xây dựng" },
+    { key: 5, code: "KEHOACH", name: "Đã có kế hoạch xây dựng" },
+    { key: 1, code: "KHAC", name: "Khác" },
+  ];
+
+  public readonly marketRanks: FilterModel[] = [
+    { key: 1, code: "HANGI", name: "Chợ hạng I" },
+    { key: 2, code: "HANGII", name: "Chợ hạng II" },
+    { key: 3, code: "HANGIII", name: "Chợ hạng III" },
+    { key: 4, code: "HANGIV", name: "Chợ hạng IV" },
+    { key: 5, code: "HANGV", name: "Chợ hạng V" },
+  ];
+  public readonly managerTypes: FilterModel[] = [
+    { key: 1, code: "BAN", name: "Ban quản lý" },
+    { key: 2, code: "TO", name: "Tổ quản lý" },
+    { key: 3, code: "DNHTX", name: "Doanh nghiệp/Hợp tác xã" },
+  ];
+
   //Viewchild & Input-----------------------------------------------------------------------
-  @ViewChildren(ReportDirective) inputs: QueryList<ReportDirective>
-  @ViewChild('new_element', { static: false }) ele: ElementRef;
-  @ViewChild('form', { static: false }) ngForm: NgForm;
+  @ViewChildren(ReportDirective) inputs: QueryList<ReportDirective>;
+  @ViewChild("new_element", { static: false }) ele: ElementRef;
+  @ViewChild("form", { static: false }) ngForm: NgForm;
   @ViewChild(MatAccordion, { static: false }) accordion: MatAccordion;
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
 
-  applyFilter1(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSourceHuyenThi.filter = filterValue.trim().toLowerCase();
-  }
   //Variable for HTML&TS-------------------------------------------------------------------------
-  public options: any = []
-  public model = {
-    tatca: true, dongxoai: false, phuoclong: false,
-    binhlong: false, budang: false, budop: false,
-    phurieng: false, dongphu: false, bugiamap: false,
-    locninh: false, hongquan: false, chonthanh: false
-  }
-  public formChangesSubscription;
-  districts: District[] = [{ id: 1, ten_quan_huyen: 'Thị xã Phước Long' },
-  { id: 2, ten_quan_huyen: 'Thành phố Đồng Xoài' },
-  { id: 3, ten_quan_huyen: 'Thị xã Bình Long' },
-  { id: 4, ten_quan_huyen: 'Huyện Bù Gia Mập' },
-  { id: 5, ten_quan_huyen: 'Huyện Lộc Ninh' },
-  { id: 6, ten_quan_huyen: 'Huyện Bù Đốp' },
-  { id: 7, ten_quan_huyen: 'Huyện Hớn Quản' },
-  { id: 8, ten_quan_huyen: 'Huyện Đồng Phú' },
-  { id: 9, ten_quan_huyen: 'Huyện Bù Đăng' },
-  { id: 10, ten_quan_huyen: 'Huyện Chơn Thành' },
-  { id: 11, ten_quan_huyen: 'Huyện Phú Riềng' }];
-  dataHuyenThi: Array<MarketCommonModel> = [{ huyen: "Đồng Xoài", tongsocho: 10, chohang1: 2, chohang2: 6, chohang3: 2 },
-  { huyen: "Phước Long", tongsocho: 10, chohang1: 2, chohang2: 6, chohang3: 2 },
-  { huyen: "Chơn Thành", tongsocho: 10, chohang1: 2, chohang2: 6, chohang3: 2 },
-  { huyen: "Bình Long", tongsocho: 10, chohang1: 2, chohang2: 6, chohang3: 2 },
-  { huyen: "Lộc Ninh", tongsocho: 10, chohang1: 2, chohang2: 6, chohang3: 2 },
-  { huyen: "Hớn Quản", tongsocho: 10, chohang1: 2, chohang2: 6, chohang3: 2 },
-  { huyen: "Đồng Phú", tongsocho: 10, chohang1: 2, chohang2: 6, chohang3: 2 },
-  { huyen: "Bù Đăng", tongsocho: 10, chohang1: 2, chohang2: 6, chohang3: 2 },
-  { huyen: "Bù Dốp", tongsocho: 10, chohang1: 2, chohang2: 6, chohang3: 2 },
-  { huyen: "Bù Gia Mập", tongsocho: 10, chohang1: 2, chohang2: 6, chohang3: 2 },
-  { huyen: "Phú Riềng", tongsocho: 10, chohang1: 2, chohang2: 6, chohang3: 2 },
-  ]
-  //Variable for only TS-------------------------------------------------------------------------
-
-  items: TreeviewItem[] = [];
-  values: number[] = [];
-  config = TreeviewConfig.create({
-    hasAllCheckBox: false,
-    hasFilter: true,
-    hasCollapseExpand: true,
-    decoupleChildFromParent: false,
-    maxHeight: 400
-  });
-
+  public year: number = 2019;
+  //Variable for Total---------------------------------------------------------------------------
+  public tongSoCho: number = 0;
+  //--
+  public choNongThon: number = 0;
+  public choThanhThi: number = 0;
+  //--
+  public choHangI: number = 0;
+  public choHangII: number = 0;
+  public choHangIII: number = 0;
+  public choHangIV: number = 0;
+  public choHangV: number = 0;
+  //--
+  public choKienCo: number = 0;
+  public choTam: number = 0;
+  public choBanKienCo: number = 0;
+  //--
+  public choBanLe: number = 0;
+  public choBanSi: number = 0;
+  //--
+  public choNhaNuoc: number = 0;
+  public choXaHoiHoa: number = 0;
+  //--
+  public vonDauTu: number = 0;
+  public vonDauTuNganSach: number = 0;
+  public vonDauTuXaHoiHoa: number = 0;
+  //--
+  public vonDauTuKeHoach: number = 0;
+  public vonDauTuKeHoachXaHoiHoa: number = 0;
+  public vonDauTuKeHoachNganSach: number = 0;
+  //--
+  public choCaiTao: number = 0;
+  public soSanhChoCaiTao: number = 0;
+  public choXayMoi: number = 0;
+  public soSanhChoXayMoi: number = 0;
   public tableMergeHader: Array<ToltalHeaderMerge> = [];
-  public mergeHeadersColumn: Array<string> = [];
-  public indexOftableMergeHader: number = 0;
-
-  columns: number = 1;
-
+  public filteredDataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
+  public attributes: Array<ReportAttribute> = [];
+  public attributeHeaders: Array<any>;
+  public dataSource: MatTableDataSource<ReportTable> = new MatTableDataSource<ReportTable>();
+  //Variable for only TS-------------------------------------------------------------------------
+  private _obj_id: number;
+  private _mergeHeadersColumn: Array<string> = [];
+  private _indexOftableMergeHader: number = 0;
+  private _time_id: number;
+  private _org_id: number = 0;
+  private _rows: number = 0;
+  private _indicators: Array<ReportIndicator> = [];
+  private _datarows: Array<ReportDatarow> = [];
+  private _object: ReportOject[] = [];
+  private _tableData: MatTableDataSource<ReportTable> = new MatTableDataSource<ReportTable>();
   //Angular FUnction --------------------------------------------------------------------
   constructor(
     public reportSevice: ReportService,
@@ -115,167 +162,12 @@ export class MarketCommecialManagementComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    let data: any = JSON.parse(localStorage.getItem('currentUser'));
-    this.org_id = parseInt(data.org_id);
-    this.filterEntity = new CompanyDetailModel();
-    this.tempFilter = new CompanyDetailModel();
-    this.filterType = MatTableFilter.ANYWHERE;
-    this.obj_id = this.OBJ_ID;
-    this.time_id = this.TIME_ID;
-    this.GetReportById(this.obj_id, this.time_id, this.org_id);
-    this.keyboardservice.keyBoard.subscribe(res => {
-      this.move(res)
-    })
-    // this.formChangesSubscription = this.ngForm.form.valueChanges.subscribe();
-    this.dataSourceHuyenThi.data = this.dataHuyenThi;
-    console.log(this.dataSourceHuyenThi.data);
-  }
-  ngAfterViewInit(): void {
-    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
-    //Add 'implements AfterViewInit' to the class.
-    this.accordion.openAll();
-    this.dataSourceHuyenThi.paginator = this.paginator;
-    this.paginator._intl.itemsPerPageLabel = 'Số hàng';
-    this.paginator._intl.firstPageLabel = "Trang Đầu";
-    this.paginator._intl.lastPageLabel = "Trang Cuối";
-    this.paginator._intl.previousPageLabel = "Trang Trước";
-    this.paginator._intl.nextPageLabel = "Trang Tiếp";
-  }
-  arrayTextHeader = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q',
-    'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'AA', 'AB', 'AC', 'AD', 'AE', 'AF', 'AG',
-    'AH', 'AI', 'AJ', 'AK', 'AL', 'AM', 'AN', 'AO', 'AP', 'AQ', 'AR', 'AS', 'AT', 'AU', 'AV',
-    'AW', 'AX', 'AY', 'AZ', 'BA', 'BB', 'BC', 'BD', 'BE', 'BF', 'BG', 'BH', 'BI', 'BJ', 'BK', 'BL',
-    'BM', 'BN', 'BO', 'BP', 'BQ', 'BR', 'BS', 'BT', 'BU', 'BV', 'AW', 'BX', 'BY', 'BZ', 'CA',
-    'CB', 'CC', 'CD', 'CE', 'CF', 'CG', 'CH', 'CI', 'CJ', 'CK', 'CL', 'CM', 'CN', 'CO', 'CP',
-    'CQ', 'CR', 'CS', 'CT', 'CU', 'CV', 'CW', 'CX', 'CY', 'CZ'];
-
-  headerArray = ['index', 'tenhuyenthi', 'tongsocho', 'chohang1', 'chohang2', 'chohang3']
-
-  obj_id: number;
-  time_id: number;
-  org_id: number = 0;
-  rows: number = 0;
-  is_sent: boolean = false;
-
-  thoigianbaocao: string = "";
-  tenbaocao: string = "";
-  ngaybatdaubaocao: string = "";
-  ngayketthucbaocao: string = "";
-
-
-  attributes: Array<ReportAttribute> = [];
-  attributeHeaders: Array<any>;
-  indicators: Array<ReportIndicator> = []
-  datarows: Array<ReportDatarow> = []
-  object: ReportOject[] = [];
-  dataSource: MatTableDataSource<ReportTable> = new MatTableDataSource<ReportTable>();
-  tableData: MatTableDataSource<ReportTable> = new MatTableDataSource<ReportTable>();
-  public filterEntity;
-  public tempFilter;
-  public filterType: MatTableFilter;
-  dataSourceHuyenThi: MatTableDataSource<MarketCommonModel> = new MatTableDataSource<MarketCommonModel>();
-  ///
-  isSearch_Advanced: boolean = true;
-  countNumberCondition: any[] = [{ id: 1, filed_name: 'ten_doanh_nghiep', filed_value: '' }];
-  count: number = 1;
-  public displayedFields1: string[];
-  ///
-  soChoHang1: number = 0;
-  soChoHang2: number = 0;
-  soChoHang3: number = 0;
-  tongVonDauTu: number = 0;
-  soLuongCho: number = 0;
-
-  add_condition() {
-    this.count++;
-    let new_ob = { id: this.count, filed_name: 'ten_doanh_nghiep', filed_value: '' }
-    this.countNumberCondition.push(new_ob);
-    // console.log(this.countNumberCondition)
-  }
-  ///
-  saveOptions(x: any[]) {
-    x.forEach(element => {
-      this.options.push(element);
-    });
-  }
-
-  move(object) {
-    const inputToArray = this.inputs.toArray()
-    let index = inputToArray.findIndex(x => x.element == object.element);
-    switch (object.action) {
-      case "UP":
-        index -= this.columns;
-        break;
-      case "DOWN":
-        index += this.columns;
-        break;
-      case "LEFT":
-        index -= this.rows;
-        break;
-      case "RIGHT":
-        index += this.rows;
-        break;
-    }
-
-    if (index >= 0 && index < this.inputs.length) {
-      inputToArray[index].element.nativeElement.focus();
-      // inputToArray[index].element.nativeElement.style.backgroundColor = '#5789D8';
-    }
-  }
-
-  checkAccessObj() {
-    var ret = 0;
-    if (ret > 0) {
-      return true;
-    }
-    switch (ret) {
-      case -2:
-        //alertify.error('Đã trình lãnh đạo!');
-        break;
-      case -3:
-        //alertify.error('Đã trình đơn vị giao!');
-        break;
-      case -4:
-        //alertify.error('Đơn vị giao đã phê duyệt!');
-        break;
-      case -7:
-        //alertify.error('Đã gửi yêu cầu đính chính đến đơn vị giao!');
-        break;
-      case -9:
-        //alertify.error('Đơn vị giao từ chối yêu cầu đính chính!');
-        break;
-      case -10:
-        //alertify.error('Không hoàn thành!');
-        break;
-      case -19:
-        //alertify.error('Báo cáo không tồn tại!');
-        break;
-      case -20:
-        //alertify.error('Báo cáo chưa được giao!');
-        break;
-      case -21:
-        //alertify.error('Báo cáo đã hết hạn!');
-        break;
-      case -22:
-        //alertify.error('Báo cáo là nhóm báo cáo!');
-        break;
-      case -23:
-        //alertify.error('Báo cáo chưa được kích hoạt!');
-        break;
-      case -24:
-        //alertify.error('Tài khoản không có quyền thực hiện báo cáo!');
-        break;
-      case -25:
-        //alertify.error('Báo cáo không phải là báo cáo số liệu, báo cáo danh sách!');
-        break;
-      case -26:
-        //alertify.error('Báo cáo đột xuất không được thực hiện liên kết báo cáo!');
-        break;
-      case -99:
-        //alertify.error('Có lỗi xảy ra!');
-        break;
-    }
-    return false;
+    let data: any = JSON.parse(localStorage.getItem("currentUser"));
+    this._org_id = parseInt(data.org_id);
+    this._obj_id = this.OBJ_ID;
+    this._time_id = this.TIME_ID;
+    this.GetReportById(this._obj_id, this._time_id, this._org_id);
+    this._autoOpenPanel();
   }
 
   //Xuất excel
@@ -291,63 +183,41 @@ export class MarketCommecialManagementComponent implements OnInit {
   cols: Array<any> = [];
   filteredOptions: any[];
   getListString(list: any[]) {
-    return list.map(x => x.name);
+    return list.map((x) => x.name);
   }
-  public filter() {
-    this.filterEntity = { ...this.tempFilter }
-  }
-  Xoa_dong() {
-    if (this.countNumberCondition.length === 1) {
-      return;
-    } else {
-      let cloneArray = [...this.countNumberCondition];
-      this.countNumberCondition = cloneArray.filter(item => item.id !== parseInt(this.ele.nativeElement.id));
-      // console.log(this.ele.nativeElement.id, this.countNumberCondition, this.ele);
-    }
 
-  }
   GetReportById(obj_id: number, time_id: number, org_id: number) {
-    console.log("+ Function: GetReportById(obj_id:", + obj_id + ",time_id: ", +time_id + ", org_id:" + org_id + ")");
-    this.reportSevice.GetReportByKey(obj_id, time_id, org_id).subscribe(
-      allRecord => {
-
+    console.log("+ Function: GetReportById(obj_id:", +obj_id + ",time_id: ", +time_id + ", org_id:" + org_id + ")");
+    this.reportSevice
+      .GetReportByKey(obj_id, time_id, org_id)
+      .subscribe((allRecord) => {
         this.cols = [];
-        allRecord.data[1].forEach(element => {
-          if (element.attr_code != 'IND_NAME')
-            this.cols.push({ field: element.fld_code, header: element.attr_name });
+        allRecord.data[1].forEach((element) => {
+          if (element.attr_code != "IND_NAME")
+            this.cols.push({
+              field: element.fld_code,
+              header: element.attr_name,
+            });
           else
-            this.cols.push({ field: element.attr_code, header: element.attr_name });
+            this.cols.push({
+              field: element.attr_code,
+              header: element.attr_name,
+            });
         });
 
         this.attributes = allRecord.data[1] as ReportAttribute[];
         this.attributes.sort((a, b) => a.attr_code.localeCompare(b.attr_code));
-        // this.attributes.forEach(item => this.displayedFields1.push(item.attr_code.toString()));
-        this.indicators = allRecord.data[2] as ReportIndicator[];
-        this.indicators.sort((a, b) => a.ind_code.toLocaleString().localeCompare(b.ind_code.toLocaleString()));
-        // console.log("Bảng indicator: ", this.displayedFields1);
-        this.datarows = allRecord.data[3] as ReportDatarow[];
-        this.object = allRecord.data[0];
-        // console.log(this.indicators);
-        // console.log(this.datarows);
-        this.is_sent = !(allRecord.data[0][0].state_id == 101 || allRecord.data[0][0].state_id == 401);
-        if (this.object[0]) {
-          this.formatFrameReport(this.object[0]);
-        }
-        //this.indicators.forEach(e => { console.log(e.ind_unit) });
+        this._indicators = allRecord.data[2] as ReportIndicator[];
+        this._indicators.sort((a, b) =>
+          a.ind_code.toLocaleString().localeCompare(b.ind_code.toLocaleString())
+        );
+        this._datarows = allRecord.data[3] as ReportDatarow[];
+        this._object = allRecord.data[0];
         this.CreateMergeHeaderTable(this.attributes);
-
         this.CreateReportTable();
-
-        this.items = this.getNestedChildren(this.indicators, null);
-        this.items[0].children.forEach(x => x.children = null);
-      }
-    )
-  }
-  formatFrameReport(report: ReportOject) {
-    this.tenbaocao = report.obj_name;
-    this.thoigianbaocao = this.convertTimeIdToTimePeriod(parseInt(report.time_id));
-    this.ngaybatdaubaocao = moment(report.start_date).format('DD/MM/YYYY');
-    this.ngayketthucbaocao = moment(report.end_date).format('DD/MM/YYYY');
+        this._paginatorAgain();
+        this._autoOpenPanel()
+      });
   }
 
   convertTimeIdToTimePeriod(time_id: number): string {
@@ -365,63 +235,73 @@ export class MarketCommecialManagementComponent implements OnInit {
   }
 
   countChildNode(attr_id: number, attributes: ReportAttribute[]): number {
-    var temp = attributes.filter(x => x.parent_id == attr_id);
-    if (temp.length == 0)
-      return 1;
+    var temp = attributes.filter((x) => x.parent_id == attr_id);
+    if (temp.length == 0) return 1;
     else {
       let sum = 0;
-      temp.forEach(attr => {
+      temp.forEach((attr) => {
         sum += this.countChildNode(attr.attr_id, attributes);
-      })
+      });
       return sum;
     }
   }
 
   CreateMergeHeaderTable(attributesValue: ReportAttribute[]) {
     let attributes: ReportAttribute[] = [];
-    attributesValue.forEach(val => attributes.push(Object.assign({}, val)));
+    attributesValue.forEach((val) => attributes.push(Object.assign({}, val)));
     let hashTableParentLength: HashTableNumber<number> = {};
-    attributes = attributes.filter(a => a.attr_code.toLowerCase() != 'rn');
+    attributes = attributes.filter((a) => a.attr_code.toLowerCase() != "rn");
 
-    attributes.forEach(element => {
-      // if (element.parent_id != null){
-      //   if (!hashTableParentLength[element.parent_id]){
-      //     hashTableParentLength[element.parent_id] = 0;
-      //   }
-      //   hashTableParentLength[element.parent_id]  +=1;
-      // }
-      hashTableParentLength[element.attr_id] = this.countChildNode(element.attr_id, attributes);
+    attributes.forEach((element) => {
+      hashTableParentLength[element.attr_id] = this.countChildNode(
+        element.attr_id,
+        attributes
+      );
     });
     let loopCount: number = 0;
     while (attributes.length > 3) {
       loopCount += 1;
-      this.indexOftableMergeHader += 1;
+      this._indexOftableMergeHader += 1;
       let totlmerge: ToltalHeaderMerge = new ToltalHeaderMerge();
       let mergerHaders: HeaderMerge[] = [];
-      let layerTop: ReportAttribute[] = attributes.filter(element => element.parent_id == null);
+      let layerTop: ReportAttribute[] = attributes.filter(
+        (element) => element.parent_id == null
+      );
       let lengthBeforeOfAttributes: number = attributes.length;
-      attributes = attributes.filter(e => e.parent_id != null || e.is_default == 1 || hashTableParentLength[e.attr_id] == 1);
-      attributes.forEach(attribute => {
+      attributes = attributes.filter(
+        (e) =>
+          e.parent_id != null ||
+          e.is_default == 1 ||
+          hashTableParentLength[e.attr_id] == 1
+      );
+      attributes.forEach((attribute) => {
         //if (attribute.is_default == 1) {
         attribute.attr_code = attribute.attr_code + loopCount.toString();
         //}
       });
-      layerTop.forEach(layer => {
+      layerTop.forEach((layer) => {
         let mergeHeader: HeaderMerge = new HeaderMerge();
-        mergeHeader.colLenght = hashTableParentLength[layer.attr_id] ? hashTableParentLength[layer.attr_id] : 1;
+        mergeHeader.colLenght = hashTableParentLength[layer.attr_id]
+          ? hashTableParentLength[layer.attr_id]
+          : 1;
         mergeHeader.colName = (layer.attr_code + "_TEST").toLowerCase();
-        mergeHeader.colText = hashTableParentLength[layer.attr_id] > 1 && hashTableParentLength[layer.attr_id] ? layer.attr_name : "";
+        mergeHeader.colText =
+          hashTableParentLength[layer.attr_id] > 1 &&
+            hashTableParentLength[layer.attr_id]
+            ? layer.attr_name
+            : "";
         mergeHeader.colDefault = layer.is_default;
         mergerHaders.push(mergeHeader);
       });
-      this.mergeHeadersColumn = mergerHaders.sort((a, b) => b.colDefault - a.colDefault)
-        .map(c => c.colName.toLowerCase());
-      totlmerge.headerColName = this.mergeHeadersColumn;
-      this.mergeHeadersColumn = [];
+      this._mergeHeadersColumn = mergerHaders
+        .sort((a, b) => b.colDefault - a.colDefault)
+        .map((c) => c.colName.toLowerCase());
+      totlmerge.headerColName = this._mergeHeadersColumn;
+      this._mergeHeadersColumn = [];
       totlmerge.headerMerge = mergerHaders;
       this.tableMergeHader.push(totlmerge);
-      attributes.forEach(element => {
-        layerTop.forEach(layer => {
+      attributes.forEach((element) => {
+        layerTop.forEach((layer) => {
           if (element.parent_id == layer.attr_id) {
             element.parent_id = null;
           }
@@ -435,17 +315,28 @@ export class MarketCommecialManagementComponent implements OnInit {
   }
 
   CreateReportTable() {
-    this.attributes = this.attributes.filter(a => a.fld_code && a.fld_code.toLowerCase() != 'null'
-      && a.attr_code.toLowerCase() != 'ind_code'
-      && a.attr_code.toLowerCase() != 'rn');
-    this.attributeHeaders = this.attributes.sort((a, b) => b.is_default - a.is_default)
-      .filter(a => a.fld_code.toLowerCase() != null)
-      .map(c => c.is_default == 1 ? c.attr_code.toLowerCase() : c.fld_code.toLowerCase());
-    this.attributeHeaders = this.attributeHeaders.filter(a => a.toLowerCase() != 'ind_code' && a.toLowerCase() != 'rn')
-    this.attributeHeaders.unshift('index');
-    for (let index = 0; index < this.indicators.length; index++) {
-      const elementIndicator = this.indicators[index];
-      const elementDatarow = this.datarows.find(e => e.ind_id == elementIndicator.ind_id);
+    this.attributes = this.attributes.filter(
+      (a) =>
+        a.fld_code &&
+        a.fld_code.toLowerCase() != "null" &&
+        a.attr_code.toLowerCase() != "ind_code" &&
+        a.attr_code.toLowerCase() != "rn"
+    );
+    this.attributeHeaders = this.attributes
+      .sort((a, b) => b.is_default - a.is_default)
+      .filter((a) => a.fld_code.toLowerCase() != null)
+      .map((c) =>
+        c.is_default == 1 ? c.attr_code.toLowerCase() : c.fld_code.toLowerCase()
+      );
+    this.attributeHeaders = this.attributeHeaders.filter(
+      (a) => a.toLowerCase() != "ind_code" && a.toLowerCase() != "rn"
+    );
+    this.attributeHeaders.unshift("index");
+    for (let index = 0; index < this._indicators.length; index++) {
+      const elementIndicator = this._indicators[index];
+      const elementDatarow = this._datarows.find(
+        (e) => e.ind_id == elementIndicator.ind_id
+      );
 
       let tableRow: ReportTable = new ReportTable();
       tableRow.ind_formula = elementIndicator.formula;
@@ -465,6 +356,16 @@ export class MarketCommecialManagementComponent implements OnInit {
         tableRow.fc08 = elementDatarow.fc08 ? elementDatarow.fc08 : "";
         tableRow.fc09 = elementDatarow.fc09 ? elementDatarow.fc09 : "";
         tableRow.fc10 = elementDatarow.fc10 ? elementDatarow.fc10 : "";
+        tableRow.fc11 = elementDatarow.fc11 ? elementDatarow.fc11 : "";
+        tableRow.fc12 = elementDatarow.fc12 ? elementDatarow.fc12 : "";
+        tableRow.fc13 = elementDatarow.fc13 ? elementDatarow.fc13 : "";
+        tableRow.fc14 = elementDatarow.fc14 ? elementDatarow.fc14 : "";
+        tableRow.fc15 = elementDatarow.fc15 ? elementDatarow.fc15 : "";
+        tableRow.fc16 = elementDatarow.fc16 ? elementDatarow.fc16 : "";
+        tableRow.fc17 = elementDatarow.fc17 ? elementDatarow.fc17 : "";
+        tableRow.fc18 = elementDatarow.fc18 ? elementDatarow.fc18 : "";
+        tableRow.fc19 = elementDatarow.fc19 ? elementDatarow.fc19 : "";
+        tableRow.fc10 = elementDatarow.fc10 ? elementDatarow.fc20 : "";
         tableRow.fn01 = elementDatarow.fn01 ? elementDatarow.fn01 : null;
         tableRow.fn01 = elementDatarow.fn01 ? elementDatarow.fn01 : null;
         tableRow.fn02 = elementDatarow.fn02 ? elementDatarow.fn02 : null;
@@ -492,16 +393,16 @@ export class MarketCommecialManagementComponent implements OnInit {
         tableRow.fd04 = elementDatarow.fd04 ? elementDatarow.fd04 : new Date();
         tableRow.fd05 = elementDatarow.fd05 ? elementDatarow.fd05 : new Date();
       } else {
-        tableRow.fc01 = '';
-        tableRow.fc02 = '';
-        tableRow.fc03 = '';
-        tableRow.fc04 = '';
-        tableRow.fc05 = '';
-        tableRow.fc06 = '';
-        tableRow.fc07 = '';
-        tableRow.fc08 = '';
-        tableRow.fc09 = '';
-        tableRow.fc10 = '';
+        tableRow.fc01 = "";
+        tableRow.fc02 = "";
+        tableRow.fc03 = "";
+        tableRow.fc04 = "";
+        tableRow.fc05 = "";
+        tableRow.fc06 = "";
+        tableRow.fc07 = "";
+        tableRow.fc08 = "";
+        tableRow.fc09 = "";
+        tableRow.fc10 = "";
         tableRow.fn01 = null;
         tableRow.fn01 = null;
         tableRow.fn02 = null;
@@ -529,117 +430,149 @@ export class MarketCommecialManagementComponent implements OnInit {
         tableRow.fd04 = new Date();
         tableRow.fd05 = new Date();
       }
-      this.tableData.data.push(tableRow);
-      // console.log(tableRow);
+      this._tableData.data.push(tableRow);
     }
-    this.tableData.data.forEach(element => {
-      if (element.ind_formula == null && element.ind_type == 1) this.rows++;
+    this._tableData.data.forEach((element) => {
+      if (element.ind_formula == null && element.ind_type == 1) this._rows++;
     });
-    this.dataSource.data = [...this.tableData.data];
-
-    this.dataSource.data.forEach(element => {
-      if (element["fn03"])
-        this.soChoHang1++;
-      if (element["fn07"])
-        this.soChoHang2++;
-      if (element["fn09"])
-        this.soChoHang3++;
-      if (element["ind_unit"])
-        this.soLuongCho++;
-      if (element["fn14"])
-        this.tongVonDauTu += element["fn14"];
-    });
-  }
-
-  applyFilter(event) {
-    let filteredData = [];
-
-    let temp = [];
-    event.forEach(element => {
-      temp.push(element);
-      this.indicators.filter(x => x.parent_id == element).map(y => y.ind_id).forEach(z => temp.push(z));
-    });
-
-    temp.forEach(element => {
-      this.tableData.data.filter(item => {
-        if (item.ind_id == element)
-          filteredData.push(item);
-      })
-    })
-
-    if (filteredData.length == 0) {
-      this.dataSource.data = this.tableData.data;
-    } else {
-      this.dataSource.data = filteredData;
-    }
-    this.soChoHang1 = 0;
-    this.soChoHang2 = 0;
-    this.soChoHang3 = 0;
-    this.tongVonDauTu = 0;
-    this.soLuongCho = 0;
-
-    this.dataSource.data.forEach(element => {
-      if (element["fn03"])
-        this.soChoHang1++;
-      if (element["fn07"])
-        this.soChoHang2++;
-      if (element["fn09"])
-        this.soChoHang3++;
-      if (element["ind_unit"])
-        this.soLuongCho++;
-      if (element["fn14"])
-        this.tongVonDauTu += element["fn14"];
-    });
-  }
-
-  SaveReport() {
-    console.log(this.dataSource.data);
-    this.reportSevice.PostReportData(this.obj_id, this.time_id, this.org_id, this.dataSource.data).subscribe(response => {
-      this.info.msgSuccess("Đã lưu thành công!");
-    },
-      error => {
-        this.info.msgError("Xảy ra lỗi: " + error.message);
-      })
-  }
-
-  SendReport() {
-    this.reportSevice.SendReport(this.obj_id, this.org_id, this.time_id.toString()).subscribe(response => {
-      this.info.msgSuccess("Đã trình lãnh đạo thành công!");
-    },
-      error => {
-        this.info.msgError("Xảy ra lỗi: " + error.message);
-      })
-    this.is_sent = true;
-  }
-
-  Back() {
-    //this.location.back();
+    this.dataSource.data = [...this._tableData.data];
   }
 
 
   getNestedChildren(indicators: Array<ReportIndicator>, parent: number) {
-    var out = []
+    var out = [];
     for (var i in indicators) {
       if (indicators[i].parent_id == parent) {
-        let temp = new TreeviewItem({ text: indicators[i].ind_name, value: indicators[i].ind_id });
-        var children = this.getNestedChildren(indicators, indicators[i].ind_id)
+        let temp = new TreeviewItem({
+          text: indicators[i].ind_name,
+          value: indicators[i].ind_id,
+        });
+        var children = this.getNestedChildren(indicators, indicators[i].ind_id);
         if (children.length) {
           temp.children = children;
         }
         out.push(temp);
       }
     }
-    return out
+    return out;
   }
 
   isSticky(column): boolean {
-    return column.attr_code.toLowerCase() === 'ind_unit' ? true : false;
+    return column.attr_code.toLowerCase() === "ind_unit" ? true : false;
   }
-  sortHeaderCondition(event) {
 
-   }
-   
-  applyDistrictFilter(event) {
-    
-   }
+  private _conditionArray: HashTableNumber<number[]> = {};
+  applyCondictionFilter(type: number, event: any) {
+    this._conditionArray[type] = event.value;
+    this._filterDataSource();
+  }
+
+  applyExpireCheck(event) {
+    this.filteredDataSource.filter = event.checked ? "true" : "";
+  }
+  //FUNCTION FOR ONLY TS _------------------------------
+  private _filterDataSource() {
+    if (this._countCondition() > 0) {
+      let dataFilterOriginal: ReportTable[] = [];
+      let dataFilterFinal: ReportTable[] = [];
+      dataFilterOriginal = [... this._tableData.data];
+      Object.keys(this._conditionArray).forEach(key => {
+        let array = this._conditionArray[key];
+        switch (key) {
+          case "1":
+            array.forEach((element) => {
+              dataFilterOriginal.filter((x) => x.fc03.includes(element)).forEach((item) => dataFilterFinal.push(item));
+            });
+            break;
+          case "2":
+            array.forEach((element) => {
+              if (element == 1) {
+                dataFilterOriginal.filter((x) => x.fn03 == 1).forEach((item) => dataFilterFinal.push(item));
+              }
+              else if (element == 2) {
+                dataFilterOriginal.filter((x) => x.fn07 == 1).forEach((item) => dataFilterFinal.push(item));
+              } else {
+                dataFilterOriginal.filter((x) => x.fn09 == 1).forEach((item) => dataFilterFinal.push(item));
+              }
+            });
+            break;
+          case "3":
+            array.forEach((element) => {
+              dataFilterOriginal.filter((x) => x.fc11.includes(element)).forEach((item) => dataFilterFinal.push(item));
+            });
+
+            break;
+          default:
+            array.forEach((element) => {
+              if (element == 1) {
+                dataFilterOriginal.filter((x) => x.fn10 >= 1).forEach((item) => dataFilterFinal.push(item));
+              }
+              else if (element == 2) {
+                dataFilterOriginal.filter((x) => x.fn20 >= 1).forEach((item) => dataFilterFinal.push(item));
+              } else {
+                dataFilterOriginal.filter((x) => x.fn08 >= 1).forEach((item) => dataFilterFinal.push(item));
+              }
+            });
+            break;
+        }
+        dataFilterOriginal = [...dataFilterFinal];
+        dataFilterFinal = [];
+      });
+      this.dataSource = new MatTableDataSource<ReportTable>(dataFilterOriginal);
+    } else {
+      this.dataSource = new MatTableDataSource<ReportTable>(this._tableData.data);
+    }
+    this._paginatorAgain();
+    this._caculator(this.dataSource.data);
+  }
+  private _countCondition(): number {
+    let countOfCondition = 0;
+    Object.keys(this._conditionArray).forEach(key => {
+      if (this._conditionArray[key])
+        countOfCondition += this._conditionArray[key].length;
+    });
+    return countOfCondition;
+  }
+  private _autoOpenPanel() {
+    setTimeout(() => this.accordion.openAll(), 1000);
+  }
+  private _caculator(data: Array<ReportTable>) {
+    this.tongSoCho = data.length;
+    //--
+    this.choNongThon =  data.filter((x) => x.fc01.includes("Thành thị")).length;
+    this.choThanhThi = this.tongSoCho - this.choNongThon;
+    //--
+    this.choHangI = data.filter((x) => x.fn03 == 1).length;
+    this.choHangII = data.filter((x) => x.fn07 == 1).length;;
+    this.choHangIII = data.filter((x) => x.fn09 == 1).length;;
+    this.choHangIV = 0;
+    this.choHangV = 0;
+    //--
+    this.choKienCo = data.filter((x) => x.fc11.includes("Kiên cố")).length;
+    this.choTam = data.filter((x) => x.fc11.includes("Tạm")).length;
+    this.choBanKienCo = data.filter((x) => x.fc11.includes("Bán kiên cố")).length;
+    //--
+    this.choBanLe = 0;
+    this.choBanSi = 0;
+    //--
+    this.choNhaNuoc = 0;
+    this.choXaHoiHoa = 0;
+    //--
+    this.vonDauTu = 0;
+    this.vonDauTuNganSach = 0;
+    this.vonDauTuXaHoiHoa = 0;
+    //--
+    this.vonDauTuKeHoach = 0;
+    this.vonDauTuKeHoachXaHoiHoa = 0;
+    this.vonDauTuKeHoachNganSach = 0;
+  }
+  private _paginatorAgain() {
+    this.dataSource.paginator = this.paginator;
+    this.paginator._intl.itemsPerPageLabel = 'Số hàng';
+    this.paginator._intl.firstPageLabel = "Trang Đầu";
+    this.paginator._intl.lastPageLabel = "Trang Cuối";
+    this.paginator._intl.previousPageLabel = "Trang Trước";
+    this.paginator._intl.nextPageLabel = "Trang Tiếp";
+    this.paginator._intl.getRangeLabel = this.RANK_LABLE;
+  }
 }

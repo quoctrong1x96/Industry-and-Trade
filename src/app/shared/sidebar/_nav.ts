@@ -80,25 +80,25 @@ export const navItemsManager: INavItem[] = [
     children: [
       {
         name: 'Giá cả trong nước',
-        url: '/sct/manager/market/domestic/price',
+        url: '/manager/market/domestic/price',
         icon: 'monetization_on',
         id: 'GCTN'
       },
       {
         name: 'Tình hình xuất khẩu',
-        url: '/sct/manager/market/domestic/export',
+        url: '/manager/market/domestic/export',
         icon: 'hourglass_top',
         id: 'THXK'
       },
       {
         name: 'Tình hình nhập khẩu',
-        url: '/sct/manager/market/domestic/import',
+        url: '/manager/market/domestic/import',
         icon: 'hourglass_bottom',
         id: 'THNK'
       },
       {
         name: 'Sản xuất nông sản',
-        url: '/sct/manager/market/domestic/production',
+        url: '/manager/market/domestic/production',
         icon: 'filter_9_plus',
         id: 'SXNS'
       },
@@ -114,7 +114,7 @@ export const navItemsManager: INavItem[] = [
     children: [
       {
         name: 'Giá cả nông sản',
-        url: '/sct/manager/market/foreign/price',
+        url: '/manager/market/foreign/price',
         icon: 'timeline',
         id: 'GCNSTTTG'
       },
@@ -129,13 +129,13 @@ export const navItemsManager: INavItem[] = [
     children: [
       {
         name: 'Điều chỉnh doanh nghiệp',
-        url: '/sct/manager/business/search',
+        url: '/manager/business/search',
         icon: 'create',
         id: 'DCDN'
       },
       {
         name: 'Xuất Nhập khẩu',
-        url: '/sct/manager/business/top-export',
+        url: '/manager/business/top-export',
         icon: 'swap_vert',
         id: 'TEXIM'
       },
@@ -153,7 +153,7 @@ export const navItemsManager: INavItem[] = [
   },
   {
     name: 'Chi tiết doanh nghiệp',
-    url: '/sct/manager/business/detail-business',
+    url: '/manager/business/detail-business',
     icon: 'business',
     id: 'QLDN',
     manager:true,
@@ -375,6 +375,41 @@ export const navItemsSpecialized: INavItem[] = [
       },
     ]
   },
+  {
+    name: 'Đăng xuất',
+    url: '/logout',
+    manager:true,
+    isSCT: true,
+    icon: 'login',
+    badge: {
+      variant: 'primary',
+      text: 'Sắp ra mắt'
+    },
+    attributes: { disabled: true },
+  },
+];
+
+export const navItemsReport: INavItem[] =[
+  {
+    name: 'Nhập báo cáo',
+    url: '/report/all',
+    icon: 'edit',
+  },
+  // {
+  //   name: 'Nhập báo cáo',
+  //   url: '/report/edit',
+  //   icon: 'border_all',
+  // },
+  {
+    name: 'Xem báo cáo',
+    url: '/report/view-all',
+    icon: 'pageview',
+  },
+  // {
+  //   name: 'Xem',
+  //   url: '/report/view',
+  //   icon: 'border_all',
+  // },
   {
     name: 'Đăng xuất',
     url: '/logout',

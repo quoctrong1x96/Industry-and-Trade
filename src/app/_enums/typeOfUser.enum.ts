@@ -3,4 +3,5 @@ export enum TYPE_OF_NAV {
     PUBLIC = 1,
     MANAGER = 2,
     SPECICALIZED = 3,
+    REPORT = 4,
   }

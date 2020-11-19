@@ -22,7 +22,9 @@
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 525;
 }
-
+.mat-option{
+    padding: auto 10px;
+}
 th,
 td {
     padding-left: 0px !important;
@@ -52,7 +54,7 @@ td {
 }
 
 .mat-table {
-    width: 100%;
+    width: 300%;
     border: 1px solid black;
     table-layout: initial;
 }

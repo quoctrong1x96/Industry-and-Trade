@@ -76,13 +76,17 @@ export class TopbarComponent implements OnInit {
     this._eventService.setvalue(false);
     this.open = this._eventService.getValue();
   }
-  public openDataSCTModule() {
-    this._router.navigate(['/sct/report/view-all']);
+  public openReportModule() {
+    this._router.navigate(['/report/view-all']);
     this._eventService.setvalue(false);
     this.open = this._eventService.getValue();
   }
-
-  public openHome() {
+  public openManagerModule() {
+    this._router.navigate(['/manager/market/domestic/price']);
+    this._eventService.setvalue(false);
+    this.open = this._eventService.getValue();
+  }
+  public openSpecializedModule() {
     this._router.navigate(['/specialized/commecial-management/domestic']);
     this._eventService.setvalue(false);
     this.open = this._eventService.getValue();

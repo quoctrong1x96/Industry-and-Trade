@@ -11,7 +11,7 @@ import { onSideNavChange, animateText } from '../../_animations/animation-sideba
 //Import Component-----------------------------------------------------------
 
 //Import Model-----------------------------------------------------------
-import { navItemsPublic, navItemsManager, navItemsSpecialized } from './_nav';
+import { navItemsPublic, navItemsManager, navItemsSpecialized, navItemsReport } from './_nav';
 import { INavItem } from '../../_models/_nav.model';
 import {TYPE_OF_NAV} from '../../_enums/typeOfUser.enum';
 import { STYLESCSS_TYPE } from 'src/app/_enums/styleChoose.enum';
@@ -162,7 +162,9 @@ export class SidebarComponent implements OnInit {
         break;
       case TYPE_OF_NAV.SPECICALIZED:
         navItems = navItemsSpecialized;
-        console.log("navItems:",navItems);
+        break;
+      case TYPE_OF_NAV.REPORT:
+        navItems = navItemsReport;
         break;
       default:
         navItems = [];
