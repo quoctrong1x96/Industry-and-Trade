@@ -32,7 +32,7 @@ export class filterModel {
 @Component({
   selector: 'business-export-import',
   templateUrl: './business-export-import.component.html',
-  styleUrls: ['./business-export-import.component.scss']
+  styleUrls: ['../../manager_layout.scss'],
 })
 
 export class BusinessExportImportComponent implements OnInit {
@@ -173,10 +173,11 @@ export class BusinessExportImportComponent implements OnInit {
           this.dataSourceImport = new MatTableDataSource<CompanyDetailModel>(allrecords.data[0]);
           if (this.dataSourceImport.data.length) {
             this.dataSourceImport.paginator = this.paginator1;
-            this.paginator1._intl.itemsPerPageLabel = 'Số công ty mỗi trang';
-            this.paginator1._intl.lastPageLabel = "Đến cuối";
-            this.paginator1._intl.nextPageLabel = "Trang tiếp";
-            this.paginator1._intl.previousPageLabel = "Trang trước";
+            this.paginator1._intl.itemsPerPageLabel = "Số hàng";
+            this.paginator1._intl.firstPageLabel = "Trang Đầu";
+            this.paginator1._intl.lastPageLabel = "Trang Cuối";
+            this.paginator1._intl.previousPageLabel = "Trang Trước";
+            this.paginator1._intl.nextPageLabel = "Trang Tiếp";
           }
         }
       },
@@ -210,10 +211,11 @@ export class BusinessExportImportComponent implements OnInit {
           this.dataSource = new MatTableDataSource<CompanyDetailModel>(allrecords.data[0]);
           if (this.dataSource.data.length) {
             this.dataSource.paginator = this.paginator;
-            this.paginator._intl.itemsPerPageLabel = 'Số công ty mỗi trang';
-            this.paginator._intl.lastPageLabel = "Đến cuối";
-            this.paginator._intl.nextPageLabel = "Trang tiếp";
-            this.paginator._intl.previousPageLabel = "Trang trước";
+            this.paginator._intl.itemsPerPageLabel = "Số hàng";
+            this.paginator._intl.firstPageLabel = "Trang Đầu";
+            this.paginator._intl.lastPageLabel = "Trang Cuối";
+            this.paginator._intl.previousPageLabel = "Trang Trước";
+            this.paginator._intl.nextPageLabel = "Trang Tiếp";
           }
         }
       },
@@ -225,10 +227,11 @@ export class BusinessExportImportComponent implements OnInit {
     this.productList = allrecords.data as Array<ProductModel>;
     if (this.typeShow == 1) {
       this.dataSource.paginator = this.paginator;
-      this.paginator._intl.itemsPerPageLabel = 'Số công ty mỗi trang';
-      this.paginator._intl.lastPageLabel = "Đến cuối";
-      this.paginator._intl.nextPageLabel = "Trang tiếp";
-      this.paginator._intl.previousPageLabel = "Trang trước";
+      this.paginator._intl.itemsPerPageLabel = "Số hàng";
+      this.paginator._intl.firstPageLabel = "Trang Đầu";
+      this.paginator._intl.lastPageLabel = "Trang Cuối";
+      this.paginator._intl.previousPageLabel = "Trang Trước";
+      this.paginator._intl.nextPageLabel = "Trang Tiếp";
     }
   }
   //Function for EVENT HTML     -------------------------------------------------------------------------------
@@ -252,7 +255,7 @@ export class BusinessExportImportComponent implements OnInit {
       data = Object.values(this.dataSource.data);
     else
       data = Object.values(this.dataSourceImport.data);
-      
+
     Object.keys(data).forEach((key, index) => {
       newArray.push({
         'Tên doanh nghiệp': this.formatString(data[key].ten_doanh_nghiep),
@@ -285,10 +288,11 @@ export class BusinessExportImportComponent implements OnInit {
       this.typeShow = 1;
       //this.ngAfterViewInit();
       this.dataSource.paginator = this.paginator;
-      this.paginator._intl.itemsPerPageLabel = 'Số công ty mỗi trang';
-      this.paginator._intl.lastPageLabel = "Đến cuối";
-      this.paginator._intl.nextPageLabel = "Trang tiếp";
-      this.paginator._intl.previousPageLabel = "Trang trước";
+      this.paginator._intl.itemsPerPageLabel = "Số hàng";
+      this.paginator._intl.firstPageLabel = "Trang Đầu";
+      this.paginator._intl.lastPageLabel = "Trang Cuối";
+      this.paginator._intl.previousPageLabel = "Trang Trước";
+      this.paginator._intl.nextPageLabel = "Trang Tiếp";
     }
   }
   public filter() {

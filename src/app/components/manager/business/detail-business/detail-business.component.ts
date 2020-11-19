@@ -18,7 +18,7 @@ import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/materia
 @Component({
     selector: 'detail-business',
     templateUrl: 'detail-business.component.html',
-    styleUrls: ['detail-business.component.scss'],
+    styleUrls: ['../../manager_layout.scss'],
     providers: [
         { provide: MAT_DATE_LOCALE, useValue: 'vi-VI' },
 
@@ -34,51 +34,51 @@ import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/materia
 export class DetailBussinessComponent implements OnInit {
     vall = new FormControl('', [
         Validators.required,
-        
+
     ]);
     vall1 = new FormControl('', [
         Validators.required,
-        
+
     ]);
     vall2 = new FormControl('', [
         Validators.required,
-        
+
     ]);
     vall3 = new FormControl('', [
         Validators.required,
-        
+
     ]);
     vall4 = new FormControl('', [
         Validators.required,
-        
+
     ]);
     vall5 = new FormControl('', [
         Validators.required,
-        
+
     ]);
     vall6 = new FormControl('', [
         Validators.required,
-        
+
     ]);
     vall7 = new FormControl('', [
         Validators.required,
-        
+
     ]);
     vall8 = new FormControl('', [
         Validators.required,
-        
+
     ]);
     vall9 = new FormControl('', [
         Validators.required,
-       
+
     ]);
     vall10 = new FormControl('', [
         Validators.required,
-        
+
     ]);
     vall11 = new FormControl('', [
         Validators.required,
-        
+
     ]);
 
     @Input() company: CompanyDetailModel;
@@ -121,7 +121,7 @@ export class DetailBussinessComponent implements OnInit {
         this.GetAllCSTT();
     }
 
-    setMST(){
+    setMST() {
         this.mst = JSON.parse(localStorage.getItem('currentUser'))['org_id'];
     }
 
@@ -174,6 +174,6 @@ export class DetailBussinessComponent implements OnInit {
     }
 
     onSubmit() {
-        
+
     }
 }

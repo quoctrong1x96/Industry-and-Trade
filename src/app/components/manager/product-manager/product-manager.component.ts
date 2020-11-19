@@ -41,7 +41,7 @@ export const MY_FORMATS = {
 @Component({
     selector: 'app-product-manager',
     templateUrl: 'product-manager.component.html',
-    styleUrls: ['product-manager.component.scss'],
+    styleUrls: ['../manager_layout.scss'],
     providers: [
         {
             provide: DateAdapter,

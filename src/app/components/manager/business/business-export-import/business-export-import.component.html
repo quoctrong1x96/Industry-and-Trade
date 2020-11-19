@@ -1,7 +1,7 @@
-<mat-card>
+<mat-card class="material">
     <mat-card-header>
         <mat-card-title>
-            <h3>Thống kê danh sách Doanh nghiệp có hoạt động Xuất-Nhập khẩu</h3>
+            <h3><strong>Thống kê danh sách Doanh nghiệp có hoạt động Xuất-Nhập khẩu</strong></h3>
         </mat-card-title>
         <mat-card-subtitle>
         </mat-card-subtitle>
@@ -11,7 +11,8 @@
             <div class="col-lg-3">
                 <div class="form-group">
                     <label for="period_select">Kỳ báo cáo</label>
-                    <select class="form-control" name="" id="period_select" (change)="changePeriod()" [(ngModel)]="selectedPeriod">
+                    <select class="form-control" name="" id="period_select" (change)="changePeriod()"
+                        [(ngModel)]="selectedPeriod">
                         <option *ngFor="let period of periods" [ngValue]="period">{{period}}</option>
                     </select>
                 </div>
@@ -33,7 +34,6 @@
                 </div>
             </div>
             <div class="col-lg-3" *ngIf="selectedPeriod === '6 Tháng'">
-                <!-- {{selectedHalf}} -->
                 <div class="form-group">
                     <label for="half_select">Báo cáo 6 Tháng</label>
                     <select class="form-control" name="" id="half_select" [(ngModel)]="selectedHalf">
@@ -49,32 +49,35 @@
                     </select>
                 </div>
             </div>
-            <div class="col-lg-1" style="display: flex;justify-content: center;">
-                <button mat-raised-button class="form-button" [ngStyle]="{'background-color': 'blue', 'color': 'white'}" (click)="timKiem()">Tìm kiếm</button>
+            <div class="col-lg-3  button-control my-auto">
+                <button mat-raised-button (click)="timKiem()">Tìm kiếm</button>
+
             </div>
         </div>
-        <br>
+        <hr>
         <div class="row">
-            <h4 class="col-lg-6">
-                Danh sách doanh nghiệp có hoạt động xuất khẩu
-            </h4>
-            <div class="col-lg-6" style="text-align: right;">
-                <button mat-raised-button [ngStyle]="{'background-color': 'green', 'color': 'white'}" (click)="exportToExcel('DanhNghiepXuatKhau','danh sach', true)">Xuất Excel</button>
+            <div class="col-lg-6">
+                <h4>
+                    <strong>Danh sách doanh nghiệp có hoạt động xuất khẩu</strong>
+                </h4>
             </div>
-
+            <div class="col-lg-6 button-control">
+                <button mat-raised-button (click)="exportToExcel('DanhNghiepXuatKhau','danh sach', true)">Xuất
+                    Excel</button>
+            </div>
         </div>
-        <br>
-        <div class="mat-elevation-z8" #TABLE1>
-            <table mat-table matTableFilter [exampleEntity]="filterEntity" [filterType]="filterType" [dataSource]="dataSource">
+        <div class="layout mat-elevation-z8" #TABLE1>
+            <table mat-table matTableFilter [exampleEntity]="filterEntity" [filterType]="filterType"
+                [dataSource]="dataSource" class="table-layout" id="small-table">
 
-                <ng-container matColumnDef="index" sticky>
+                <ng-container matColumnDef="index">
                     <th mat-header-cell *matHeaderCellDef class="stt"> STT
 
                     </th>
                     <td mat-cell *matCellDef="let element; let i = index;"> {{i+1}} </td>
                 </ng-container>
 
-                <ng-container matColumnDef="ten_doanh_nghiep" sticky>
+                <ng-container matColumnDef="ten_doanh_nghiep">
                     <th mat-header-cell *matHeaderCellDef> Tên doanh nghiệp </th>
                     <td mat-cell *matCellDef="let element"> {{element.ten_doanh_nghiep}} </td>
                 </ng-container>
@@ -120,35 +123,33 @@
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             </table>
             <div *ngIf="!dataSource.data.length">
-                <br>
                 <h1 class="text-center">Không có dữ liệu</h1>
             </div>
-            <mat-paginator #scheduledOrdersPaginator1 [pageSizeOptions]="[5, 19, 20]" showFirstLastButtons></mat-paginator>
-
+            <mat-paginator #scheduledOrdersPaginator1 [pageSizeOptions]="[5, 19, 20]" showFirstLastButtons>
+            </mat-paginator>
         </div>
-
-
         <hr>
         <div class="row">
             <h4 class="col-lg-6">
-                Danh sách doanh nghiệp có hoạt động nhập khẩu
+                <strong>Danh sách doanh nghiệp có hoạt động nhập khẩu</strong>
             </h4>
-            <div class="col-lg-6" style="text-align: right;">
-                <button mat-raised-button [ngStyle]="{'background-color': 'green', 'color': 'white'}" (click)="exportToExcel('DanhNghiepNhapKhau','danh sach', false)">Xuất Excel</button>
+            <div class="col-lg-6 button-control">
+                <button mat-raised-button [ngStyle]="{'background-color': 'green', 'color': 'white'}"
+                    (click)="exportToExcel('DanhNghiepNhapKhau','danh sach', false)">Xuất Excel</button>
             </div>
         </div>
-        <br>
-        <div class="mat-elevation-z8" #TABLE2>
-            <table mat-table matTableFilter [exampleEntity]="filterEntity" [filterType]="filterType" [dataSource]="dataSourceImport">
+        <div class="layout mat-elevation-z8" #TABLE2>
+            <table mat-table matTableFilter [exampleEntity]="filterEntity" [filterType]="filterType"
+                [dataSource]="dataSourceImport" class="table-layout" id="small-table">
 
-                <ng-container matColumnDef="index" sticky>
+                <ng-container matColumnDef="index">
                     <th mat-header-cell *matHeaderCellDef class="stt"> STT
 
                     </th>
                     <td mat-cell *matCellDef="let element; let i = index;"> {{i+1}} </td>
                 </ng-container>
 
-                <ng-container matColumnDef="ten_doanh_nghiep" sticky>
+                <ng-container matColumnDef="ten_doanh_nghiep">
                     <th mat-header-cell *matHeaderCellDef> Tên doanh nghiệp </th>
                     <td mat-cell *matCellDef="let element"> {{element.ten_doanh_nghiep}} </td>
                 </ng-container>
@@ -197,9 +198,8 @@
                 <br>
                 <h1 class="text-center">Không có dữ liệu</h1>
             </div>
-            <mat-paginator #scheduledOrdersPaginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-
+            <mat-paginator #scheduledOrdersPaginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
+            </mat-paginator>
         </div>
-
     </mat-card-content>
 </mat-card>
