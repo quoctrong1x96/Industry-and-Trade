@@ -352,22 +352,22 @@ export const navItemsSpecialized: INavItem[] = [
         url: '/specialized/industry-management/food',
         icon: 'hourglass_bottom',
       },
-      {
-        name: 'Chỉ số SX công nghiệp',
-        url: '/specialized/industry-management/focus',
-        icon: 'filter_9_plus',
-      },
+      // {
+      //   name: 'Chỉ số SX công nghiệp',
+      //   url: '/specialized/industry-management/focus',
+      //   icon: 'filter_9_plus',
+      // },
       {
         name: 'Cụm Công nghiệp',
         url: '/specialized/industry-management/cluster',
         icon: 'hourglass_bottom',
       },
-      {
-        name: 'Công bố hợp quy',
-        url: '/specialized/industry-management/other',
-        icon: 'hourglass_bottom',
-        attributes :{disabled: true},
-      },
+      // {
+      //   name: 'Công bố hợp quy',
+      //   url: '/specialized/industry-management/other',
+      //   icon: 'hourglass_bottom',
+      //   attributes :{disabled: true},
+      // },
       {
         name: 'Vật liệu nổ CN',
         url: '/specialized/industry-management/explosives',
