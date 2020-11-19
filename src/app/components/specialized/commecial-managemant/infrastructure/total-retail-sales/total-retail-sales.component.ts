@@ -76,7 +76,12 @@ export class TRSManagementComponent implements OnInit {
   ngOnInit(): void {
     let data: any = JSON.parse(localStorage.getItem('currentUser'));
     this.get12MonthData();
+    this.autoOpen();
   }
+
+  autoOpen() {
+    setTimeout(() => this.accordion.openAll(), 1000);
+}
 
   get12MonthData() {
     this.reportSevice.Get12MonthReports(10588757, 2020, 'THTKBC').subscribe(
@@ -105,7 +110,7 @@ export class TRSManagementComponent implements OnInit {
   ngAfterViewInit(): void {
     //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
     //Add 'implements AfterViewInit' to the class.
-    this.accordion.openAll();
+    // this.accordion.openAll();
   }
 
   //Xuất excel
@@ -120,7 +125,8 @@ export class TRSManagementComponent implements OnInit {
   }
 
   applyFilter(event) {
-
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }
 

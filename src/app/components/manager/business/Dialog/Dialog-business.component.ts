@@ -22,6 +22,7 @@ export class DialogBusinessComponent implements OnInit {
         const filterValue = (event.target as HTMLInputElement).value;
         this.dataSource.filter = filterValue.trim().toLowerCase();
     }
+    
     @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
     dataSource: MatTableDataSource<CSTTModel> = new MatTableDataSource();

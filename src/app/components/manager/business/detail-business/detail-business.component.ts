@@ -103,7 +103,6 @@ export class DetailBussinessComponent implements OnInit {
 
     openDialog(mst: string) {
         const dialogRef = this.dialog.open(DialogBusinessComponent, { data: mst });
-        console.log(mst);
 
         dialogRef.afterClosed().subscribe(result => {
             console.log(`Dialog result: ${result}`);
@@ -123,6 +122,7 @@ export class DetailBussinessComponent implements OnInit {
 
     setMST() {
         this.mst = JSON.parse(localStorage.getItem('currentUser'))['org_id'];
+        // this.mst = '3801083966';
     }
 
     GetAllCSTT() {
