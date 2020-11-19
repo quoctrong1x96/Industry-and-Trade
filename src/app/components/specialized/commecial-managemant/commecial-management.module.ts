@@ -25,6 +25,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { BorderTradeComponent } from './border-trade/border-trade.component';
 import { RegisteredSaleWebsiteComponent } from './e-commerce-managemant/registered-sale-website/registered-sale-website.component';
 import {dich} from '../commecial-managemant/border-trade/dich.pipe';
+import { MultilevelTradeComponent } from './multilevel-trade/multilevel-trade.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -58,7 +59,8 @@ import {dich} from '../commecial-managemant/border-trade/dich.pipe';
     ModalComponent,
     TRSManagementComponent,
     BorderTradeComponent,
-    dich],
+    dich,
+    MultilevelTradeComponent],
   entryComponents: [
     ModalComponent
   ],

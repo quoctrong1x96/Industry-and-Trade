@@ -303,6 +303,17 @@ export const navItemsSpecialized: INavItem[] = [
 
         ]
       },
+      {
+        name: 'Bán hàng đa cấp',
+        url: '/specialized/commecial-management/multilevel_trade',
+        icon: 'luggage',
+        id: 'TMBG',
+        manager: false,
+        expand: false,
+        children:[
+
+        ]
+      },
     ]
   },
   {

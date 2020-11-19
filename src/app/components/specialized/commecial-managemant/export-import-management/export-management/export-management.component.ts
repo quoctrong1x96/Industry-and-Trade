@@ -23,17 +23,7 @@ import { ModalComponent } from "../dialog-import-export/modal.component";
 })
 export class ExportManagementComponent implements OnInit {
     // displayedSumColumns: any[] = ['tong', 'tong_luong_thang', 'tong_gia_tri_thang', 'tong_luong_cong_don', 'tong_gia_tri_cong_don']
-    displayedColumns: string[] = [
-        "index",
-        "ten_san_pham",
-        "luong_thang",
-        "gia_tri_thang",
-        "luong_cong_don",
-        "gia_tri_cong_don",
-        "luong_thang_tc",
-        "gia_tri_thang_tc",
-        "danh_sach_doanh_nghiep",
-    ];
+    displayedColumns: string[] = ['index', 'ten_san_pham', 'luong_thang', 'gia_tri_thang', 'luong_cong_don', 'gia_tri_cong_don', 'luong_thang_tc', 'gia_tri_thang_tc', 'luong_thang_cong_don_tc', 'gia_tri_thang_cong_don_tc', 'danh_sach_doanh_nghiep'];
     dataSource: MatTableDataSource<ex_im_model> = new MatTableDataSource<ex_im_model>();
     dataDialog: any[] = [];
     filteredDataSource: MatTableDataSource<ex_im_model> = new MatTableDataSource<ex_im_model>();
@@ -50,7 +40,11 @@ export class ExportManagementComponent implements OnInit {
     @ViewChild(MatAccordion, { static: true }) accordion: MatAccordion;
     @ViewChild("paginator", { static: true }) paginator: MatPaginator;
     @ViewChild(MatSort, { static: false }) sort: MatSort;
-    nhap_khau_chu_yeu = [1,6,8,4,7,21,13,27,82,51,28,20,31,19,23]
+    nhap_khau_chu_yeu = [1, 6, 8, 4, 7, 21, 13, 27, 82, 51, 28, 20, 31, 19, 23]
+    tongluong_tc: number;
+    tonggiatri_tc: number;
+    tongluongcongdon_tc: number;
+    tonggiatricongdon_tc: number;
 
     constructor(
         public sctService: SCTService,
@@ -58,18 +52,23 @@ export class ExportManagementComponent implements OnInit {
         public marketService: MarketService
     ) { }
 
-    initVariable(){
+    initVariable() {
         this.TongLuongThangThucHien = 0;
         this.TongGiaTriThangThucHien = 0;
         this.TongLuongCongDon = 0;
         this.TongGiaTriCongDon = 0;
-      }
-  
-      kiem_tra(id_mat_hang){
-        if(this.nhap_khau_chu_yeu.includes(id_mat_hang))
-          return true
+        //toongr cuuc
+        this.tongluong_tc = 0;
+        this.tonggiatri_tc = 0;
+        this.tongluongcongdon_tc = 0;
+        this.tonggiatricongdon_tc = 0;
+    }
+
+    kiem_tra(id_mat_hang) {
+        if (this.nhap_khau_chu_yeu.includes(id_mat_hang))
+            return true
         return false;
-      }
+    }
 
     ngOnInit() {
         // this.years = this.getYears();
@@ -112,16 +111,21 @@ export class ExportManagementComponent implements OnInit {
         });
     }
 
-    tinh_tong(data){
+    tinh_tong(data) {
         this.initVariable();
         for (let item of data) {
-          // console.log(item)
-          this.TongLuongThangThucHien += item['luong_thang'];
-          this.TongGiaTriThangThucHien += item['gia_tri_thang'];
-          this.TongLuongCongDon += item['luong_cong_don'];
-          this.TongGiaTriCongDon += item['gia_tri_cong_don'];
+            // console.log(item)
+            this.TongLuongThangThucHien += item['luong_thang'];
+            this.TongGiaTriThangThucHien += item['gia_tri_thang'];
+            this.TongLuongCongDon += item['luong_cong_don'];
+            this.TongGiaTriCongDon += item['gia_tri_cong_don'];
+            // tổng cục hải quan
+            this.tongluong_tc += item['luong_thang_tc'];
+            this.tonggiatri_tc += item['gia_tri_thang_tc'];
+            this.tongluongcongdon_tc += item['luong_cong_don_tc'];
+            this.tonggiatricongdon_tc += item['gia_tri_cong_don_tc'];
         }
-      }
+    }
 
     ngAfterViewInit(): void {
         //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.

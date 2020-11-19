@@ -15,7 +15,7 @@ import {MarketService} from '../../../../../_services/APIService/market.service'
 export class ImportManagementComponent implements OnInit, AfterViewInit  {
 
   // displayedSumColumns: any[] = ['tong', 'tong_luong_thang', 'tong_gia_tri_thang', 'tong_luong_cong_don', 'tong_gia_tri_cong_don']
-  displayedColumns: string[] = ['index', 'ten_san_pham', 'luong_thang', 'gia_tri_thang', 'luong_cong_don', 'gia_tri_cong_don', 'luong_thang_tc', 'gia_tri_thang_tc', 'danh_sach_doanh_nghiep'];
+  displayedColumns: string[] = ['index', 'ten_san_pham', 'luong_thang', 'gia_tri_thang', 'luong_cong_don', 'gia_tri_cong_don', 'luong_thang_tc', 'gia_tri_thang_tc','luong_thang_cong_don_tc', 'gia_tri_thang_cong_don_tc', 'danh_sach_doanh_nghiep'];
     dataSource: MatTableDataSource<ex_im_model> = new MatTableDataSource<ex_im_model>();
     dataDialog: any[] = [];
     filteredDataSource: MatTableDataSource<ex_im_model> = new MatTableDataSource<ex_im_model>();
@@ -36,6 +36,12 @@ export class ImportManagementComponent implements OnInit, AfterViewInit  {
     TongGiaTriThangThucHien: number = 0;
     TongLuongCongDon: number = 0;
     TongGiaTriCongDon: number = 0;
+
+    // tổng cục
+    tongluong_tc: number = 0;
+    tonggiatri_tc:number = 0;
+    tongluongcongdon_tc:number = 0;
+    tonggiatricongdon_tc:number = 0;
     isChecked: boolean;
     pagesize: number = 0;
     curentmonth: number = new Date().getMonth() + 1;
@@ -56,6 +62,11 @@ export class ImportManagementComponent implements OnInit, AfterViewInit  {
       this.TongGiaTriThangThucHien = 0;
       this.TongLuongCongDon = 0;
       this.TongGiaTriCongDon = 0;
+      //toongr cuuc
+      this.tongluong_tc = 0;
+      this.tonggiatri_tc = 0;
+      this.tongluongcongdon_tc = 0;
+      this.tonggiatricongdon_tc = 0;
     }
 
     kiem_tra(id_mat_hang){
@@ -106,10 +117,17 @@ export class ImportManagementComponent implements OnInit, AfterViewInit  {
       this.initVariable();
       for (let item of data) {
         // console.log(item)
+        //cục hải quan
         this.TongLuongThangThucHien += item['luong_thang'];
         this.TongGiaTriThangThucHien += item['gia_tri_thang'];
         this.TongLuongCongDon += item['luong_cong_don'];
         this.TongGiaTriCongDon += item['gia_tri_cong_don'];
+
+        // tổng cục hải quan
+        this.tongluong_tc += item['luong_thang_tc'];
+        this.tonggiatri_tc += item['gia_tri_thang_tc'];
+        this.tongluongcongdon_tc += item['luong_cong_don_tc'];
+        this.tonggiatricongdon_tc += item['gia_tri_cong_don_tc'];
       }
     }
 

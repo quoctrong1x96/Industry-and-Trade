@@ -13,7 +13,7 @@ import { ImportManagementComponent } from "./export-import-management/import-man
 import { ExportManagementComponent } from "./export-import-management/export-management/export-management.component";
 import { BorderTradeComponent } from './border-trade/border-trade.component';
 import { RegisteredSaleWebsiteComponent } from './e-commerce-managemant/registered-sale-website/registered-sale-website.component';
-
+import { MultilevelTradeComponent } from "./multilevel-trade/multilevel-trade.component";
 const routes: Routes = [
   {
     path: 'domestic',
@@ -123,6 +123,10 @@ const routes: Routes = [
   {
     path: 'border_trade',
     component: BorderTradeComponent
+  },
+  {
+    path: 'multilevel_trade',
+    component: MultilevelTradeComponent
   }
 ];
 
