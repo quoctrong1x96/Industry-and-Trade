@@ -92,6 +92,10 @@ export class TopbarComponent implements OnInit {
     this.open = this._eventService.getValue();
   }
 
+  public openHome(){
+    
+  }
+
   public openDropdown() {
     document.getElementById('account-dropdown').setAttribute('style', 'display: block');
   }
