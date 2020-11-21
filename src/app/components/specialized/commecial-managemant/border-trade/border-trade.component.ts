@@ -93,9 +93,9 @@ export class BorderTradeComponent implements OnInit {
   groupIII: GroupProduct;
   groupIV: GroupProduct;
   groupV: GroupProduct;
-  Id_Array:number[] =[];
+  Id_Array: number[] = [];
   ds_san_pham_chu_luc: any[] = [
-    {id: 1, ten_sp: 'Hạt điều'}
+    { id: 1, ten_sp: 'Hạt điều' }
   ]
   TongKimNgachThangNhomIxk: number = 0;
   TongLuongThangNhomIxk: number = 0;
@@ -122,6 +122,8 @@ export class BorderTradeComponent implements OnInit {
   TongKimNgachThangNhomVnk: number = 0;
   TongLuongThangNhomVnk: number = 0;
 
+  TongKimNgachxk: number = 0;
+  TongKimNgachnk: number = 0;
   constructor(
     private sctService: SCTService,
     private matDialog: MatDialog,
@@ -159,19 +161,19 @@ export class BorderTradeComponent implements OnInit {
   // }
 
   selectGate(id_gate) {
-      this.id_cua_khau = id_gate;
-      this.getThuongMaiBG(this.curentmonth)
-      let tem_cua_khau = this.danh_sach_cua_khau.find(item => item.id_cua_khau === id_gate);
-      this.cua_khau = tem_cua_khau.ten_cua_khau;
-      this.Id_Array = [];
+    this.id_cua_khau = id_gate;
+    this.getThuongMaiBG(this.curentmonth)
+    let tem_cua_khau = this.danh_sach_cua_khau.find(item => item.id_cua_khau === id_gate);
+    this.cua_khau = tem_cua_khau.ten_cua_khau;
+    this.Id_Array = [];
   }
 
 
   selectMonth(month) {
-      this.curentmonth = month;
-      this.getThuongMaiBG(this.curentmonth);
-      this.Id_Array = [];
-    
+    this.curentmonth = month;
+    this.getThuongMaiBG(this.curentmonth);
+    this.Id_Array = [];
+
   }
 
   getThuongMaiBG(thang) {
@@ -184,53 +186,89 @@ export class BorderTradeComponent implements OnInit {
       this.getNhomV(result);
       this.dataSourceI = [...result.data[0], ...result.data[1], ...result.data[2], ...result.data[3], ...result.data[4], ...result.data[5], ...result.data[6], ...result.data[7], ...result.data[8], ...result.data[9]]
       console.log(this.dataSourceI)
+      this.TongKimNgachxk = this.TongKimNgachThangNhomIxk + this.TongKimNgachThangNhomIIxk + this.TongKimNgachThangNhomIIIxk + this.TongKimNgachThangNhomIVxk + this.TongKimNgachThangNhomVxk;
+      this.TongKimNgachnk = this.TongKimNgachThangNhomInk + this.TongKimNgachThangNhomIInk + this.TongKimNgachThangNhomIIInk + this.TongKimNgachThangNhomIVnk + this.TongKimNgachThangNhomVnk;
     });
   }
 
   getNhomI(result) {
-    this.sapxepXK(result.data[0], this.gr1);
-    this.sapxepNK(result.data[1], this.gr1);
+    this.sapxepXK(result.data[0], this.gr1, 1);
+    this.sapxepNK(result.data[1], this.gr1, 1);
     this.dulieuI = [...result.data[0], ...result.data[1]]
   }
   getNhomII(result) {
-    this.sapxepXK(result.data[2], this.gr2);
-    this.sapxepNK(result.data[3], this.gr2);
+    this.sapxepXK(result.data[2], this.gr2, 1);
+    this.sapxepNK(result.data[3], this.gr2, 1);
     this.dulieuII = [...result.data[2], ...result.data[3]]
   }
   getNhomIII(result) {
-    this.sapxepXK(result.data[4], this.gr3);
-    this.sapxepNK(result.data[5], this.gr3);
+    this.sapxepXK(result.data[4], this.gr3, 2);
+    this.sapxepNK(result.data[5], this.gr3, 2);
     this.dulieuIII = [...result.data[4], ...result.data[5]]
   }
   getNhomIV(result) {
-    this.sapxepXK(result.data[6], this.gr4);
-    this.sapxepNK(result.data[7], this.gr4);
+    this.sapxepXK(result.data[6], this.gr4, 3);
+    this.sapxepNK(result.data[7], this.gr4, 3);
     this.dulieuIV = [...result.data[6], ...result.data[7]]
   }
   getNhomV(result) {
-    this.sapxepXK(result.data[8], this.gr5);
-    this.sapxepNK(result.data[9], this.gr5);
+    this.sapxepXK(result.data[8], this.gr5, 4);
+    this.sapxepNK(result.data[9], this.gr5, 4);
     this.dulieuV = [...result.data[8], ...result.data[9]]
   }
 
-  sapxepXK(resultDataXK, gr) {
+  sapxepXK(resultDataXK, gr, ind) {
     let dataGroupIxk = this.xulysolieu(resultDataXK);
     resultDataXK.splice(0, 0, gr[0]);
     resultDataXK.splice(1, 0, gr[1]);
     // console.log(resultDataXK)
     resultDataXK.push(dataGroupIxk);
+    switch (ind) {
+      case 1:
+        this.TongKimNgachThangNhomIxk = dataGroupIxk.kim_ngach
+        break;
+      case 2:
+        this.TongKimNgachThangNhomIIxk = dataGroupIxk.kim_ngach
+        break;
+      case 3:
+        this.TongKimNgachThangNhomIIIxk = dataGroupIxk.kim_ngach
+        break;
+      case 4:
+        this.TongKimNgachThangNhomIVxk = dataGroupIxk.kim_ngach
+        break;
+      case 5:
+        this.TongKimNgachThangNhomVxk = dataGroupIxk.kim_ngach
+        break;
+      default:
+        break;
+    }
+    this.TongKimNgachThangNhomIxk = dataGroupIxk.kim_ngach;
     // console.log(resultDataXK)
 
   }
-  sapxepNK(resulDatatNK, gr) {
+  sapxepNK(resulDatatNK, gr, ind) {
     let dataGroupIxk = this.xulysolieu(resulDatatNK);
     resulDatatNK.push(dataGroupIxk);
     resulDatatNK.splice(0, 0, gr[2]);
-  }
-
-  applyFilter(event : Event){
-    // const filterValue = (event.target as HTMLInputElement).value;
-    // this.dataSource.filter = filterValue.trim().toLowerCase();
+    switch (ind) {
+      case 1:
+        this.TongKimNgachThangNhomInk = dataGroupIxk.kim_ngach
+        break;
+      case 2:
+        this.TongKimNgachThangNhomIInk = dataGroupIxk.kim_ngach
+        break;
+      case 3:
+        this.TongKimNgachThangNhomIIInk = dataGroupIxk.kim_ngach
+        break;
+      case 4:
+        this.TongKimNgachThangNhomIVnk = dataGroupIxk.kim_ngach
+        break;
+      case 5:
+        this.TongKimNgachThangNhomVnk = dataGroupIxk.kim_ngach
+        break;
+      default:
+        break;
+    }
   }
 
   xulysolieu(data) {

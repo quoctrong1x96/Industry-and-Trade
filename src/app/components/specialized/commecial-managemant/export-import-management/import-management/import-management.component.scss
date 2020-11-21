@@ -54,12 +54,16 @@ td {
     // overflow: auto;
 }
 
-.mat-cell {
+.mat-cell, .mat-footer-cell {
     border: 1px solid black;
     font-size: 15px;
     text-align: center;
     padding: 10px 10px 10px 10px;
 }
+.mat-footer-cell{
+    font-weight: bolder;
+}
+
 
 .mat-table {
     width: 100%;
@@ -95,4 +99,8 @@ td {
 .ten-hang{
     text-align: left;
     margin-left: 5px;
+}
+
+.mat-header-cell .mat-sort-header-container {
+    justify-content: center;
 }
