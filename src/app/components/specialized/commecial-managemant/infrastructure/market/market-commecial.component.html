@@ -98,10 +98,10 @@
                                     <h5 class="mb-1">8. Vốn đầu tư kế hoạch:</h5>
                                 </div>
                                 <p class="mb-1 config-p">
-                                    8.1 Vốn đầu tư kế hoạch: <strong>{{vondauTuKeHoach}}</strong>
-                                    <br> 8.2 Vốn đầu tư kế hoạch ngân sách: <strong>{{vondauTuKeHoachNganSach}}</strong>
+                                    8.1 Vốn đầu tư kế hoạch: <strong>{{vonDauTuKeHoach}}</strong>
+                                    <br> 8.2 Vốn đầu tư kế hoạch ngân sách: <strong>{{vonDauTuKeHoachNganSach}}</strong>
                                     <br> 8.3 Vốn đầu tư kế hoạch xã hội hóa:
-                                    <strong>{{vondauTuKeHoachXaHoiHoa}}</strong>
+                                    <strong>{{vonDauTuKeHoachXaHoiHoa}}</strong>
                                 </p>
                             </a>
                             <a class="list-group-item list-group-item-action flex-column align-items-start bg-warning">
@@ -110,11 +110,9 @@
                                 </div>
                                 <p class="mb-1 config-p">
                                     9.1 Chợ cải tạo trong năm <strong>{{year}}</strong> là:
-                                    <strong>{{choCaiTao}}</strong> tăng/giảm so
-                                    với năm {{year}} là: <strong>{{soSanhChoCaiTao}}</strong>
+                                    <strong>{{choCaiTao}}</strong> tăng/giảm so với năm {{year}} là: <strong>{{soSanhChoCaiTao}}</strong>
                                     <br> 9.2 Chợ xây mới trong năm <strong>{{year}}</strong> là:
-                                    <strong>{{choXayMoi}}</strong>tăng/giảm
-                                    so với năm {{year}} là: <strong>{{soSanhChoXayMoi}}</strong>
+                                    <strong>{{choXayMoi}}</strong>tăng/giảm so với năm {{year}} là: <strong>{{soSanhChoXayMoi}}</strong>
                                 </p>
                             </a>
                         </div>
@@ -171,7 +169,7 @@
                     </div>
                 </div>
 
-                <div *ngIf="dataSource.data.length; else ShowList" #TABLE>
+                <div *ngIf="dataSource.data.length; else ShowEmpty" #TABLE>
                     <table mat-table [dataSource]="dataSource" class="vertical-scroll">
                         <ng-container matColumnDef="index" sticky>
                             <th mat-header-cell *matHeaderCellDef >STT</th>
@@ -187,17 +185,14 @@
                                 'not-input' : 'input'" mat-cell *cdkCellDef="let row; let rowIndex = index">
                                 <!-- Trường hợp cột tên chỉ tiêu thì  dùngclass chitieu,
                                     nếu là cột default khác thì dùng not-input, các cột chỉ tiêu bình thường thì input-->
-                                <div
-                                    [ngClass]="{'not-input-r': column.attr_code != ATTRIBUTE_CODE && column.attr_code != UNIT_CODE}">
+                                <div [ngClass]="{'not-input-r': column.attr_code != ATTRIBUTE_CODE && column.attr_code != UNIT_CODE}">
                                     {{row[column.is_default === 1? column.attr_code.toLowerCase(): column.fld_code.toLowerCase()]}}
                                 </div>
                             </td>
                         </ng-container>
                         <div *ngFor="let table of tableMergeHader">
-                            <ng-container *ngFor="let mergeHeader of table.headerMerge;"
-                                [cdkColumnDef]="mergeHeader.colName">
-                                <th mat-header-cell *matHeaderCellDef style="text-align: center;"
-                                    [attr.colspan]="mergeHeader.colLenght">{{mergeHeader.colText}} </th>
+                            <ng-container *ngFor="let mergeHeader of table.headerMerge;" [cdkColumnDef]="mergeHeader.colName">
+                                <th mat-header-cell *matHeaderCellDef style="text-align: center;" [attr.colspan]="mergeHeader.colLenght">{{mergeHeader.colText}} </th>
                             </ng-container>
                             <tr mat-header-row *matHeaderRowDef="table.headerColName;"> </tr>
                         </div>

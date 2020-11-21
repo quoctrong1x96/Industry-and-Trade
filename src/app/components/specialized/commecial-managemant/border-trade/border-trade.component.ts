@@ -226,7 +226,11 @@ export class BorderTradeComponent implements OnInit {
     let dataGroupIxk = this.xulysolieu(resulDatatNK);
     resulDatatNK.push(dataGroupIxk);
     resulDatatNK.splice(0, 0, gr[2]);
+  }
 
+  applyFilter(event : Event){
+    // const filterValue = (event.target as HTMLInputElement).value;
+    // this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   xulysolieu(data) {

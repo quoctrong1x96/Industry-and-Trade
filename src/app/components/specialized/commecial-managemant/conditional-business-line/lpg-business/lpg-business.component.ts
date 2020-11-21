@@ -30,8 +30,7 @@ export class LPGBusinessComponent implements OnInit {
     { id: 9, ten_quan_huyen: 'Huyện Bù Đăng' },
     { id: 10, ten_quan_huyen: 'Huyện Chơn Thành' },
     { id: 11, ten_quan_huyen: 'Huyện Phú Riềng' }];
-    sanLuongBanRa: number;
-    soLuongDoanhNghiep: number;
+    soLuongCoSo: number;
     isChecked: boolean;
 
     @ViewChild('table', { static: false }) table: MatTable<ConditionalBusinessLineModel>;
@@ -69,6 +68,7 @@ export class LPGBusinessComponent implements OnInit {
     getDanhSachBuonBanLPG(time_id: number) {
         this.sctService.GetDanhSachBuonBanLPG(time_id).subscribe(result => {
             this.dataSource = new MatTableDataSource<ConditionalBusinessLineModel>(result.data[0]);
+            console.log(this.dataSource);
 
             this.dataSource.data.forEach(element => {
                 element.is_het_han = new Date(element.ngay_het_han) < new Date();
@@ -79,7 +79,10 @@ export class LPGBusinessComponent implements OnInit {
             });
 
             this.filteredDataSource.data = [...this.dataSource.data];
-            this.sanLuongBanRa = this.filteredDataSource.data.length ? this.filteredDataSource.data.map(x => x.san_luong).reduce((a, b) => a + b) : 0;
+            // this.filteredDataSource.data = this.filteredDataSource.data.concat(this.filteredDataSource.data);
+            // this.filteredDataSource.data = this.filteredDataSource.data.concat(this.filteredDataSource.data);
+            // this.filteredDataSource.data = this.filteredDataSource.data.concat(this.filteredDataSource.data);
+            this.soLuongCoSo = this.filteredDataSource.data.length ? this.filteredDataSource.data.map(x => x.san_luong).reduce((a, b) => a + b) : 0;
             this.filteredDataSource.paginator = this.paginator;
             this.paginator._intl.itemsPerPageLabel = 'Số hàng';
             this.paginator._intl.firstPageLabel = "Trang Đầu";
@@ -113,7 +116,7 @@ export class LPGBusinessComponent implements OnInit {
         else {
             this.filteredDataSource.data = filteredData;
         }
-        this.sanLuongBanRa = this.filteredDataSource.data.length ? this.filteredDataSource.data.map(x => x.san_luong).reduce((a, b) => a + b) : 0;
+        this.soLuongCoSo = this.filteredDataSource.data.length ? this.filteredDataSource.data.map(x => x.san_luong).reduce((a, b) => a + b) : 0;
     }
 
     // isHidden(row : any){

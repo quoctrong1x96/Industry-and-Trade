@@ -16,8 +16,8 @@ import { ChemicalLPGFoodManagementModel } from 'src/app/_models/APIModel/industr
 
 export class ChemicalManagementComponent implements OnInit {
     displayedColumns: string[] = [];
-    displayedColumns1: string[] = ['index', 'mst', 'ten_doanh_nghiep', 'dia_chi', 'nganh_nghe_kd', 'email', 'so_lao_dong', 'cong_suat', 'san_luong', 'so_gp_gcn', 'ngay_cap', 'ngay_het_han'];
-    displayedColumns2: string[] = ['index', 'ten_doanh_nghiep', 'dia_chi', 'nganh_nghe_kd', 'cong_suat', 'san_luong'];
+    displayedColumns1: string[] = ['index', 'mst', 'ten_doanh_nghiep', 'dia_chi', 'nganh_nghe_kd', 'email', 'so_lao_dong', 'cong_suat', 'san_luong', 'so_gp_gcn', 'ngay_cap', 'ngay_het_han', 'tinh_trang_hoat_dong'];
+    displayedColumns2: string[] = ['index', 'ten_doanh_nghiep', 'dia_chi', 'nganh_nghe_kd', 'cong_suat', 'san_luong', 'tinh_trang_hoat_dong'];
     dataSource: MatTableDataSource<ChemicalLPGFoodManagementModel> = new MatTableDataSource<ChemicalLPGFoodManagementModel>();
     filteredDataSource: MatTableDataSource<ChemicalLPGFoodManagementModel> = new MatTableDataSource<ChemicalLPGFoodManagementModel>();
     years: number[] = [];
@@ -53,7 +53,7 @@ export class ChemicalManagementComponent implements OnInit {
 
     ngOnInit() {
         this.years = this.getYears();
-        this.getDanhSachQuanLyHoaChat(2020);
+        this.getDanhSachQuanLyHoaChat(new Date().getFullYear() - 1);
         this.filteredDataSource.filterPredicate = function (data: ChemicalLPGFoodManagementModel, filter): boolean {
             return String(data.is_het_han).includes(filter);
         };
