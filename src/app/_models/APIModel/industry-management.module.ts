@@ -15,4 +15,5 @@ export class ChemicalLPGFoodManagementModel{
     ngay_het_han : Date;
     is_het_han : boolean;
     time_id : number;
+    loai_sp: number;
 }

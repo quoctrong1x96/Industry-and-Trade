@@ -27,7 +27,8 @@ export class MultilevelTradeComponent implements OnInit {
     @ViewChild(MatAccordion, { static: true }) accordion: MatAccordion;
     @ViewChild('paginator', { static: true }) paginator: MatPaginator;
     @ViewChild(MatSort, {static: false}) sort: MatSort;
-    nhap_khau_chu_yeu = [1,13,34,33,22,19,31,18,28,4,27,17,30,37,25,7,23]
+    nhap_khau_chu_yeu = [1,13,34,33,22,19,31,18,28,4,27,17,30,37,25,7,23];
+    pagesize : number = 10;
     constructor(
       public sctService: SCTService,
       public matDialog: MatDialog,

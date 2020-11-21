@@ -462,7 +462,7 @@ export class MarketCommecialManagementComponent implements OnInit {
   }
 
   private _conditionArray: HashTableNumber<number[]> = {};
-  applyCondictionFilter(type: number, event: any) {
+  applyCondictionFilter(type, event: any) {
     this._conditionArray[type] = event.value;
     this._filterDataSource();
   }
