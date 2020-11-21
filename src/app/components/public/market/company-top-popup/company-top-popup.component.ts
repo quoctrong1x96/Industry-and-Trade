@@ -16,7 +16,7 @@ import { InformationService } from 'src/app/shared/information/information.servi
 @Component({
     selector: 'company-top-popup',
     templateUrl: 'company-top-popup.component.html',
-    styleUrls: ['company-top-popup.component.scss']
+    styleUrls: ['../../public_layout.scss'],
 })
 
 export class CompanyTopPopup implements OnInit {
@@ -97,7 +97,7 @@ export class CompanyTopPopup implements OnInit {
     }
 
     OpenDetailCompany(mst: string) {
-        this.router.navigate(['sct/manager/business/search/' + mst]);
+        this.router.navigate(['/public/partner/search/' + mst]);
         this.dialogRef.close();
     }
 

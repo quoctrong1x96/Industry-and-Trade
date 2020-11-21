@@ -33,7 +33,7 @@ export const DDMMYY_FORMAT = {
 @Component({
   selector: 'app-domestic-price',
   templateUrl: 'domestic-price.component.html',
-  styleUrls: ['domestic-price.component.scss'],
+  styleUrls: ['../../public_layout.scss'],
   providers: [
     {
       provide: DateAdapter,

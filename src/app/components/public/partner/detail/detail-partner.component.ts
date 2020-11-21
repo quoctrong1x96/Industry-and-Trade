@@ -21,27 +21,27 @@ import { MatDatepicker, MatPaginator, MatTableDataSource } from '@angular/materi
 import { trigger, state, style, transition, animate } from '@angular/animations';
 export const MY_FORMATS = {
 	parse: {
-	  dateInput: 'MM/YYYY',
+		dateInput: 'MM/YYYY',
 	},
 	display: {
-	  dateInput: 'MM/YYYY',
-	  monthYearLabel: 'MMM YYYY',
-	  dateA11yLabel: 'LL',
-	  monthYearA11yLabel: 'MMMM YYYY',
+		dateInput: 'MM/YYYY',
+		monthYearLabel: 'MMM YYYY',
+		dateA11yLabel: 'LL',
+		monthYearA11yLabel: 'MMMM YYYY',
 	},
-  };
+};
 export let model_KNNK = {
-    id_san_pham: 0,
-    san_luong: 0,
-    tri_gia: 0,
-    id_quoc_gia: 0,
-    id_kn_xuat_nhap_khau: 0
+	id_san_pham: 0,
+	san_luong: 0,
+	tri_gia: 0,
+	id_quoc_gia: 0,
+	id_kn_xuat_nhap_khau: 0
 }
 
 @Component({
 	selector: 'app-company-detail',
 	templateUrl: './detail-partner.component.html',
-	styleUrls: ['./detail-partner.component.scss'],
+	styleUrls: ['../../public_layout.scss'],
 	providers: [
 		{ provide: MAT_DATE_LOCALE, useValue: 'vi-VI' },
 
@@ -51,25 +51,25 @@ export let model_KNNK = {
 			deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS]
 		},
 		{ provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS },
-		{provide: MAT_DATE_FORMATS, useValue: MY_FORMATS}
+		{ provide: MAT_DATE_FORMATS, useValue: MY_FORMATS }
 	],
 	animations: [
 		trigger('toggleBox', [
-		  // ...
-		  state('open', style({
-			height: '300px',
-			backgroundColor: '#061ff0'
-		  })),
-		  state('closed', style({
-			height: '70px',
-			backgroundColor: '#E91E63',
-		  })),
-		  transition('open => closed', [
-			animate('.3s')
-		  ]),
-		  transition('closed => open', [
-			animate('0.3s')
-		  ]),
+			// ...
+			state('open', style({
+				height: '300px',
+				backgroundColor: '#061ff0'
+			})),
+			state('closed', style({
+				height: '70px',
+				backgroundColor: '#E91E63',
+			})),
+			transition('open => closed', [
+				animate('.3s')
+			]),
+			transition('closed => open', [
+				animate('0.3s')
+			]),
 		])
 	]
 })
@@ -88,46 +88,46 @@ export class CompanyDetailComponent implements OnInit {
 	dataSourceKNXK = new MatTableDataSource<any>();
 	dataSourceKNNK = new MatTableDataSource<any>();
 
-	 // NK
-	 periodsNK = ["Tháng", "Quý", "6 Tháng", "Năm"];
-	 monthsNK: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-	 quartersNK: any[] = [
-	   { ma_so: 1, ma_chu: "I" },
-	   { ma_so: 2, ma_chu: "II" },
-	   { ma_so: 3, ma_chu: "III" },
-	   { ma_so: 4, ma_chu: "IV" },
-	 ];
-	 selectedHalfNK: number = 1;
-	 selectedMonthNK: number = 1;
-	 selectedQuarterNK: number = 0;
-	 selectedYearNK: number = 2020;
-	 selectedPeriodNK: string = "Tháng";
-	 yearsNK: Array<number> = [];
-	 halfsNK: number[] = [1, 2];
-   
-	 // XK
-	 periodsXK = ["Tháng", "Quý", "6 Tháng", "Năm"];
-	 monthsXK: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-	 quartersXK: any[] = [
-	   { ma_so: 1, ma_chu: "I" },
-	   { ma_so: 2, ma_chu: "II" },
-	   { ma_so: 3, ma_chu: "III" },
-	   { ma_so: 4, ma_chu: "IV" },
-	 ];
-	 selectedHalfXK: number = 1;
-	 selectedMonthXK: number = 1;
-	 selectedQuarterXK: number = 0;
-	 selectedYearXK: number = 2020;
-	 selectedPeriodXK: string = "Tháng";
-	 yearsXK: Array<number> = [];
-	 halfsXK: number[] = [1, 2];
+	// NK
+	periodsNK = ["Tháng", "Quý", "6 Tháng", "Năm"];
+	monthsNK: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+	quartersNK: any[] = [
+		{ ma_so: 1, ma_chu: "I" },
+		{ ma_so: 2, ma_chu: "II" },
+		{ ma_so: 3, ma_chu: "III" },
+		{ ma_so: 4, ma_chu: "IV" },
+	];
+	selectedHalfNK: number = 1;
+	selectedMonthNK: number = 1;
+	selectedQuarterNK: number = 0;
+	selectedYearNK: number = 2020;
+	selectedPeriodNK: string = "Tháng";
+	yearsNK: Array<number> = [];
+	halfsNK: number[] = [1, 2];
+
+	// XK
+	periodsXK = ["Tháng", "Quý", "6 Tháng", "Năm"];
+	monthsXK: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+	quartersXK: any[] = [
+		{ ma_so: 1, ma_chu: "I" },
+		{ ma_so: 2, ma_chu: "II" },
+		{ ma_so: 3, ma_chu: "III" },
+		{ ma_so: 4, ma_chu: "IV" },
+	];
+	selectedHalfXK: number = 1;
+	selectedMonthXK: number = 1;
+	selectedQuarterXK: number = 0;
+	selectedYearXK: number = 2020;
+	selectedPeriodXK: string = "Tháng";
+	yearsXK: Array<number> = [];
+	halfsXK: number[] = [1, 2];
 	products: any;
 	nationals: any;
 	messageNK: string;
 	messageXK: string;
 	@ViewChild('ImportPaginators', { static: true }) Importpaginator: MatPaginator;
 	@ViewChild('ExportPaginators', { static: true }) Exportpaginator: MatPaginator;
-  
+
 	constructor(
 		public route: ActivatedRoute,
 		public dialog: MatDialog,
@@ -182,188 +182,187 @@ export class CompanyDetailComponent implements OnInit {
 
 	changePeriod(isNK) {
 		if (isNK) {
-		  switch (this.selectedPeriodNK) {
-			case "Tháng":
-			  this.selectedMonthNK = this.GetCurrentMonth();
-			  this.selectedYearNK = this.GetCurrentYear();
-			  break;
-			case "Quý":
-			  this.selectedQuarterNK = this.GetCurrentQuarter();
-			  this.selectedYearNK = this.GetCurrentYear();
-			  break;
-			case "Năm":
-			  this.selectedYearNK = this.GetCurrentYear();
-			  break;
-			case "6 Tháng":
-			  this.selectedYearNK = this.GetCurrentYear();
-			  this.selectedHalfNK = 1;
-			  break;
-			default:
-			  break;
-		  }
-		  console.log(
-			"Chu kì báo cáo: " +
-			  this.selectedPeriodNK +
-			  " - Năm: " +
-			  this.selectedYearNK +
-			  " - Tháng: " +
-			  this.selectedMonthNK +
-			  " - Quý: " +
-			  this.selectedQuarterNK
-		  );
+			switch (this.selectedPeriodNK) {
+				case "Tháng":
+					this.selectedMonthNK = this.GetCurrentMonth();
+					this.selectedYearNK = this.GetCurrentYear();
+					break;
+				case "Quý":
+					this.selectedQuarterNK = this.GetCurrentQuarter();
+					this.selectedYearNK = this.GetCurrentYear();
+					break;
+				case "Năm":
+					this.selectedYearNK = this.GetCurrentYear();
+					break;
+				case "6 Tháng":
+					this.selectedYearNK = this.GetCurrentYear();
+					this.selectedHalfNK = 1;
+					break;
+				default:
+					break;
+			}
+			console.log(
+				"Chu kì báo cáo: " +
+				this.selectedPeriodNK +
+				" - Năm: " +
+				this.selectedYearNK +
+				" - Tháng: " +
+				this.selectedMonthNK +
+				" - Quý: " +
+				this.selectedQuarterNK
+			);
 		} else {
-		  switch (this.selectedPeriodXK) {
-			case "Tháng":
-			  this.selectedMonthXK = this.GetCurrentMonth();
-			  this.selectedYearXK = this.GetCurrentYear();
-			  break;
-			case "Quý":
-			  this.selectedQuarterXK = this.GetCurrentQuarter();
-			  this.selectedYearXK = this.GetCurrentYear();
-			  break;
-			case "Năm":
-			  this.selectedYearXK = this.GetCurrentYear();
-			  break;
-			case "6 Tháng":
-			  this.selectedYearXK = this.GetCurrentYear();
-			  this.selectedHalfXK = 1;
-			  break;
-			default:
-			  break;
-		  }
-		  console.log(
-			"Chu kì báo cáo: " +
-			  this.selectedPeriodXK +
-			  " - Năm: " +
-			  this.selectedYearXK +
-			  " - Tháng: " +
-			  this.selectedMonthXK +
-			  " - Quý: " +
-			  this.selectedQuarterXK
-		  );
+			switch (this.selectedPeriodXK) {
+				case "Tháng":
+					this.selectedMonthXK = this.GetCurrentMonth();
+					this.selectedYearXK = this.GetCurrentYear();
+					break;
+				case "Quý":
+					this.selectedQuarterXK = this.GetCurrentQuarter();
+					this.selectedYearXK = this.GetCurrentYear();
+					break;
+				case "Năm":
+					this.selectedYearXK = this.GetCurrentYear();
+					break;
+				case "6 Tháng":
+					this.selectedYearXK = this.GetCurrentYear();
+					this.selectedHalfXK = 1;
+					break;
+				default:
+					break;
+			}
+			console.log(
+				"Chu kì báo cáo: " +
+				this.selectedPeriodXK +
+				" - Năm: " +
+				this.selectedYearXK +
+				" - Tháng: " +
+				this.selectedMonthXK +
+				" - Quý: " +
+				this.selectedQuarterXK
+			);
 		}
-	  }
-	
-	  GetCurrentMonth() {
+	}
+
+	GetCurrentMonth() {
 		var currentDate = new Date();
 		return currentDate.getMonth() + 1;
-	  }
-	  GetCurrentYear() {
+	}
+	GetCurrentYear() {
 		var currentDate = new Date();
 		return currentDate.getFullYear();
-	  }
-	  GetCurrentQuarter() {
+	}
+	GetCurrentQuarter() {
 		let currentDate = new Date();
 		let month = currentDate.getMonth() + 1;
 		return month <= 3 ? 1 : month <= 6 ? 2 : month <= 9 ? 3 : 4;
-	  }
-	  InitialYears() {
+	}
+	InitialYears() {
 		let returnYear: Array<any> = [];
 		let currentDate = new Date();
 		let nextYear = currentDate.getFullYear() + 1;
 		for (let index = 0; index < 11; index++) {
-		  returnYear.push(nextYear - index);
+			returnYear.push(nextYear - index);
 		}
 		return returnYear;
-	  }
-	
-	
-findKNNK(){
-	this.getKNNK()
-}
-
-findKNXK(){
-	this.getKNXK();
-}
-
-handleReportMode(selectedPeriod) {
-    switch (selectedPeriod) {
-      case "Tháng":
-        return 1;
-      case "Quý":
-        return 2;
-      case "6 Tháng":
-        return 3;
-      default:
-        break;
-    }
-}
-
-  handlePeriod(selectedPeriod, type){
-	
-	if(selectedPeriod === 'Tháng' && type === 'NK'){
-		return this.selectedMonthNK;
-	}
-	if(selectedPeriod === 'Tháng' && type === 'XK'){
-		return this.selectedMonthXK;
 	}
 
-	if(selectedPeriod === 'Quý' && type === 'NK'){
-		return this.selectedQuarterNK;
-	} 
-	if(selectedPeriod === 'Quý' && type === 'XK'){
-		return this.selectedQuarterXK;
-	} 
 
-	if(selectedPeriod === '6 Tháng' && type === 'NK'){
-		return this.selectedHalfNK;
-	}
-	if(selectedPeriod === '6 Tháng' && type === 'XK'){
-		return this.selectedHalfXK;
+	findKNNK() {
+		this.getKNNK()
 	}
 
-  }
+	findKNXK() {
+		this.getKNXK();
+	}
 
-  getKNNK() {
-	let report_mode = this.handleReportMode(this.selectedPeriodNK);
-	let year = this.selectedYearNK;
-	let period = this.handlePeriod(this.selectedPeriodNK, 'NK')
-	console.log('xxxx', report_mode, year, period)
-    this.marketService.GetKNNK(this.mst, report_mode, year, period)
-      .subscribe((data) => {
-        if (data["data"]) {
-		  this.dataSourceKNNK = new MatTableDataSource<any>(data["data"]);
-		  this.dataSourceKNNK.paginator = this.Importpaginator;
-		  if (this.Importpaginator) {
-			this.Importpaginator._intl.itemsPerPageLabel = 'Số hàng';
-			this.Importpaginator._intl.firstPageLabel = "Trang Đầu";
-			this.Importpaginator._intl.lastPageLabel = "Trang Cuối";
-			this.Importpaginator._intl.previousPageLabel = "Trang Trước";
-			this.Importpaginator._intl.nextPageLabel = "Trang Tiếp";
-		  }
-		  this.messageNK = "";
-		} 
-		if(data['data'].length === 0) {
-          this.messageNK = "Không tìm thấy dữ liệu !!";
+	handleReportMode(selectedPeriod) {
+		switch (selectedPeriod) {
+			case "Tháng":
+				return 1;
+			case "Quý":
+				return 2;
+			case "6 Tháng":
+				return 3;
+			default:
+				break;
 		}
-		
-      });
-  }
+	}
 
-  getKNXK() {
-    let report_mode = this.handleReportMode(this.selectedPeriodXK);
-	let year = this.selectedYearXK;
-	let period = this.handlePeriod(this.selectedPeriodXK, 'XK');
-	console.log('xxxx', report_mode, year, period)
-    this.marketService.GetKNXK(this.mst, report_mode, year, period)
-      .subscribe((data) => {
-        if (data["data"]) {
-		  this.dataSourceKNXK = new MatTableDataSource<any>(data["data"]);
-		  this.dataSourceKNXK.paginator = this.Exportpaginator;
-		  if (this.Exportpaginator) {
-			this.Exportpaginator._intl.itemsPerPageLabel = 'Số hàng';
-			this.Exportpaginator._intl.firstPageLabel = "Trang Đầu";
-			this.Exportpaginator._intl.lastPageLabel = "Trang Cuối";
-			this.Exportpaginator._intl.previousPageLabel = "Trang Trước";
-			this.Exportpaginator._intl.nextPageLabel = "Trang Tiếp";
-		  }
-		  this.messageXK = "";
-		} 
-		if(data['data'].length === 0) {
-			this.messageXK = "Không tìm thấy dữ liệu !!";
+	handlePeriod(selectedPeriod, type) {
+
+		if (selectedPeriod === 'Tháng' && type === 'NK') {
+			return this.selectedMonthNK;
 		}
-      });
-  }
+		if (selectedPeriod === 'Tháng' && type === 'XK') {
+			return this.selectedMonthXK;
+		}
+
+		if (selectedPeriod === 'Quý' && type === 'NK') {
+			return this.selectedQuarterNK;
+		}
+		if (selectedPeriod === 'Quý' && type === 'XK') {
+			return this.selectedQuarterXK;
+		}
+
+		if (selectedPeriod === '6 Tháng' && type === 'NK') {
+			return this.selectedHalfNK;
+		}
+		if (selectedPeriod === '6 Tháng' && type === 'XK') {
+			return this.selectedHalfXK;
+		}
+
+	}
+
+	getKNNK() {
+		let report_mode = this.handleReportMode(this.selectedPeriodNK);
+		let year = this.selectedYearNK;
+		let period = this.handlePeriod(this.selectedPeriodNK, 'NK')
+		console.log('xxxx', report_mode, year, period)
+		this.marketService.GetKNNK(this.mst, report_mode, year, period)
+			.subscribe((data) => {
+				if (data["data"]) {
+					this.dataSourceKNNK = new MatTableDataSource<any>(data["data"]);
+					this.dataSourceKNNK.paginator = this.Importpaginator;
+					if (this.Importpaginator) {
+						this.Importpaginator._intl.itemsPerPageLabel = 'Số hàng';
+						this.Importpaginator._intl.firstPageLabel = "Trang Đầu";
+						this.Importpaginator._intl.lastPageLabel = "Trang Cuối";
+						this.Importpaginator._intl.previousPageLabel = "Trang Trước";
+						this.Importpaginator._intl.nextPageLabel = "Trang Tiếp";
+					}
+					this.messageNK = "";
+				}
+				if (data['data'].length === 0) {
+					this.messageNK = "Không tìm thấy dữ liệu !!";
+				}
+
+			});
+	}
+
+	getKNXK() {
+		let report_mode = this.handleReportMode(this.selectedPeriodXK);
+		let year = this.selectedYearXK;
+		let period = this.handlePeriod(this.selectedPeriodXK, 'XK');
+		console.log('xxxx', report_mode, year, period)
+		this.marketService.GetKNXK(this.mst, report_mode, year, period)
+			.subscribe((data) => {
+				if (data["data"]) {
+					this.dataSourceKNXK = new MatTableDataSource<any>(data["data"]);
+					this.dataSourceKNXK.paginator = this.Exportpaginator;
+					if (this.Exportpaginator) {
+						this.Exportpaginator._intl.itemsPerPageLabel = 'Số hàng';
+						this.Exportpaginator._intl.firstPageLabel = "Trang Đầu";
+						this.Exportpaginator._intl.lastPageLabel = "Trang Cuối";
+						this.Exportpaginator._intl.previousPageLabel = "Trang Trước";
+						this.Exportpaginator._intl.nextPageLabel = "Trang Tiếp";
+					}
+				}
+				if (data['data'].length === 0) {
+					this.messageXK = "Không tìm thấy dữ liệu !!";
+				}
+			});
+	}
 
 	openDialog(mst: string) {
 		const dialogRef = this.dialog.open(DialogPartnerComponent, { data: mst });
@@ -414,16 +413,16 @@ handleReportMode(selectedPeriod) {
 			});
 	}
 
-	getAllProducts(){
+	getAllProducts() {
 		this.marketService.GetAllProduct().subscribe(data => {
-			if(data['data'].length !== 0){
+			if (data['data'].length !== 0) {
 				this.products = data['data'];
 				// console.log('products ', this.products)
 			}
 		})
 	}
 
-	getAllNational(){
+	getAllNational() {
 		this.marketService.GetAllNational().subscribe(data => {
 			this.nationals = data['data'];
 			// console.log('nationals ', this.nationals)
@@ -433,12 +432,12 @@ handleReportMode(selectedPeriod) {
 	// Them_dong_NK(){
 	// 	let dataSource = [...this.dataSourceKNNK];
 	// 	let new_ob = {
-    //         id: Math.floor(Math.random() *100000) + 1,
-    //         id_san_pham: 0,
-    //         san_luong: 0,
-    //         tri_gia: 0,
-    //         id_quoc_gia: 0,
-    //         id_kn_nhap_khau: 0
+	//         id: Math.floor(Math.random() *100000) + 1,
+	//         id_san_pham: 0,
+	//         san_luong: 0,
+	//         tri_gia: 0,
+	//         id_quoc_gia: 0,
+	//         id_kn_nhap_khau: 0
 	// 	};
 	// 	dataSource.push(new_ob);
 	// 	this.dataSourceKNNK = [...dataSource]
@@ -479,18 +478,18 @@ handleReportMode(selectedPeriod) {
 	// 		alert(data['message']);
 	// 	})
 	// 	// let is_sct = JSON.parse(localStorage.getItem('currentUser')) === 3;
-    //     // console.log(is_sct['role'], is_sct)
+	//     // console.log(is_sct['role'], is_sct)
 	// }
 
 	// Them_dong_XK(){
 	// 	let dataSource = [...this.dataSourceKNXK];
 	// 	let new_ob = {
-    //         id: Math.floor(Math.random() *100000) + 1,
-    //         id_san_pham: 0,
-    //         san_luong: 0,
-    //         tri_gia: 0,
-    //         id_quoc_gia: 0,
-    //         id_kn_nhap_khau: 0
+	//         id: Math.floor(Math.random() *100000) + 1,
+	//         id_san_pham: 0,
+	//         san_luong: 0,
+	//         tri_gia: 0,
+	//         id_quoc_gia: 0,
+	//         id_kn_nhap_khau: 0
 	// 	};
 	// 	dataSource.push(new_ob);
 	// 	this.dataSourceKNXK = [...dataSource]
@@ -539,12 +538,16 @@ handleReportMode(selectedPeriod) {
 	// }
 
 
-		// this.marketService.GetKNXK(this.mst, null).subscribe(
-		// 	allrecords => {
-		// 		this.CSTT = allrecords as CSTTModel[];
-		// 		this.SLCSTT = this.CSTT.length;
-		// 	});
-		// }
+	// this.marketService.GetKNXK(this.mst, null).subscribe(
+	// 	allrecords => {
+	// 		this.CSTT = allrecords as CSTTModel[];
+	// 		this.SLCSTT = this.CSTT.length;
+	// 	});
+	// }
 	addToCart(company: Company) {
 	}
+
+	// back() {
+	// 	window.history.back();
+	// }
 }

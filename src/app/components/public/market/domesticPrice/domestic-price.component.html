@@ -1,31 +1,35 @@
-<mat-card>
+<mat-card class="material">
     <mat-card-header>
-        <mat-card-title><strong>
-                <h2>Thông tin về giá cả nông sản trong nước</h2>
-            </strong></mat-card-title>
+        <mat-card-title>
+            <strong>
+                Thông tin về giá cả trong nước
+            </strong>
+        </mat-card-title>
         <mat-card-subtitle></mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
         <div class="row">
             <div class="col-lg-2">
-                <mat-form-field>
+                <mat-form-field appearance="outline">
                     <mat-label>Ngày cập nhật giá</mat-label>
-                    <input matInput readonly [matDatepicker]="datePicker" [(ngModel)]="pickedDate.date" (ngModelChange)="getPriceChange($event)">
+                    <input matInput readonly [matDatepicker]="datePicker" [(ngModel)]="pickedDate.date"
+                        (ngModelChange)="getPriceChange($event)">
                     <mat-datepicker-toggle matSuffix [for]="datePicker" onclick="this.blur()"></mat-datepicker-toggle>
                     <mat-datepicker #datePicker></mat-datepicker>
                 </mat-form-field>
             </div>
-            <div class="col-lg-10" style="text-align: right;">
-                <button  *ngIf="!noData" mat-raised-button [ngStyle]="{'background-color': 'green', 'color': 'white'}" (click)="exportTOExcel('GiaCaNongSanTrongNuoc',timeDomesticPrice)" >Xuất Excel</button>
+            <div class="col-lg-10 button-control my-auto">
+                <button *ngIf="!noData" mat-raised-button
+                    (click)="exportTOExcel('Giá cả trong nước',timeDomesticPrice)">Xuất Excel</button>
             </div>
         </div>
-        <div class="mat-elevation-z8" #TABLE>
-            <mat-form-field>
+        <div class="layout" #TABLE>
+            <!-- <mat-form-field>
                 <mat-label>Lọc dữ liệu</mat-label>
                 <input id="inputt" matInput (keyup)="applyFilter($event)" placeholder="" #input>
-            </mat-form-field>
+            </mat-form-field> -->
 
-            <table mat-table [dataSource]="dataSource">
+            <table mat-table [dataSource]="dataSource" class="table-layout" id="small-table">
 
                 <ng-container matColumnDef="index">
                     <th mat-header-cell *matHeaderCellDef> STT </th>
@@ -55,30 +59,7 @@
 
             </table>
             <h1 *ngIf="noData" class="text-center">Không có dữ liệu</h1>
-            <mat-paginator [pageSizeOptions]="[5, 20, 50]" showFirstLastButtons></mat-paginator>
         </div>
+        <mat-paginator [pageSizeOptions]="[5, 10, 20, 50, 100]" showFirstLastButtons></mat-paginator>
     </mat-card-content>
 </mat-card>
-<!-- <hr>
-<mat-card>
-    <mat-card-header>
-        <mat-card-title><strong>
-                <h2>Giá cả nông sản trong nước thời gian gần đây</h2>
-            </strong></mat-card-title>
-        <mat-card-subtitle>Năm: {{chartYearModelSelected}}</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-        <div class="row">
-            <div class="col-lg-2">
-                <label for="year_select">Năm xem giá cả</label>
-                <select class="form-control" name="" id="year_select" (change)="changeYear()" [(ngModel)]="chartYearModelSelected">
-                    <option *ngFor="let year of chartyears" [ngValue]="year">{{year}}</option>
-                </select>
-            </div>
-            <div class="col-lg-10" style="text-align: right;">
-            </div>
-        </div>
-        <hr>
-        <img style="width: 100%;" src="assets/img/example/domesticPrice.png" alt="Biểu đồ hiển thị thử">
-    </mat-card-content>
-</mat-card> -->

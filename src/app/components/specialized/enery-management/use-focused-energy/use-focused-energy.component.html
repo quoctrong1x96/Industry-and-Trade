@@ -118,7 +118,7 @@
 
                 </div>
 
-                <div class="auto mat-elevation-z8" *ngIf="filteredDataSource.data.length; else ShowEmpty">
+                <div class="auto " *ngIf="filteredDataSource.data.length; else ShowEmpty">
                     <mat-form-field class="filter">
                         <mat-label>Lọc dữ liệu</mat-label>
                         <input matInput (keyup)="applyFilter($event)" placeholder="" #input>
@@ -132,22 +132,22 @@
 
                         <ng-container matColumnDef="ten_doanh_nghiep">
                             <th mat-header-cell *matHeaderCellDef> Tên doanh nghiệp </th>
-                            <td mat-cell *matCellDef="let element" class="stt"> {{element.ten_doanh_nghiep}}</td>
+                            <td mat-cell *matCellDef="let element" > {{element.ten_doanh_nghiep}}</td>
                         </ng-container>
 
                         <ng-container matColumnDef="dia_chi">
                             <th mat-header-cell *matHeaderCellDef> Địa chỉ </th>
-                            <td mat-cell *matCellDef="let element" class="stt"> {{element.dia_chi}}</td>
+                            <td mat-cell *matCellDef="let element" > {{element.dia_chi}}</td>
                         </ng-container>
 
                         <ng-container matColumnDef="nganh_nghe">
                             <th mat-header-cell *matHeaderCellDef>Ngành nghề sản xuất </th>
-                            <td mat-cell *matCellDef="let element" class="stt"> {{element.nganh_nghe}}</td>
+                            <td mat-cell *matCellDef="let element" > {{element.nganh_nghe}}</td>
                         </ng-container>
 
                         <ng-container matColumnDef="nang_luong_tieu_thu">
                             <th mat-header-cell *matHeaderCellDef> Năng lượng tiêu thụ </th>
-                            <td mat-cell *matCellDef="let element" class="stt"> {{element.nang_luong_tieu_thu}}</td>
+                            <td mat-cell *matCellDef="let element" > {{element.nang_luong_tieu_thu}}</td>
                         </ng-container>
 
                         <ng-container matColumnDef="nang_luong_quy_doi">

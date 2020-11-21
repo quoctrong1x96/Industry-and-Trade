@@ -5,9 +5,9 @@
     </mat-card-header>
     <mat-card-content>
         <div class="row">
-            <div class="col">
-                <mat-form-field>
-                    <mat-label>Thời gian sản xuất</mat-label>
+            <div class="col-lg-2">
+                <mat-form-field appearance="outline">
+                    <mat-label>Tháng cập nhật giá</mat-label>
                     <input matInput [matDatepicker]="dp" [formControl]="date" (dateChange)="addEvent('change', $event)"
                         readonly>
                     <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
@@ -61,7 +61,7 @@
             </div>
         </div>
 
-        <div class="layout mat-elevation-z8">
+        <div class="layout ">
             <!-- <mat-form-field id="filter">
                 <mat-label>Lọc dữ liệu</mat-label>
                 <input matInput (keyup)="applyFilter($event)" placeholder="" #input>

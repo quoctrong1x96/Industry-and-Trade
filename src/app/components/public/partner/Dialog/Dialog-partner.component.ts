@@ -13,7 +13,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 @Component({
     selector: 'dialog-partner-component',
     templateUrl: './dialog-partner.component.html',
-    styleUrls: ['./dialog-partner.component.scss']
+    styleUrls: ['../../public_layout.scss'],
 })
 
 export class DialogPartnerComponent implements OnInit {

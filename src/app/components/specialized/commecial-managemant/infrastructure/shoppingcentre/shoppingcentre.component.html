@@ -137,7 +137,7 @@
                         </mat-form-field>
                     </div>
                 </div>
-                <div class="auto mat-elevation-z8" *ngIf="dataSourceHuyenThi.data.length; else ShowEmpty">
+                <div class="auto " *ngIf="dataSourceHuyenThi.data.length; else ShowEmpty">
                     <mat-form-field class="filter">
                         <mat-label>Tìm tên trung tâm thương mại</mat-label>
                         <input matInput (keyup)="applyFilter1($event)" placeholder="" #input>

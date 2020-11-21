@@ -277,9 +277,10 @@ export class BusinessExportImportComponent implements OnInit {
   }
   public openDetailCompany(mst: string) {
     let url = this.router.serializeUrl(
-      this.router.createUrlTree([encodeURI('#') + '/partner/search/' + mst]));
+      this.router.createUrlTree([encodeURI('#') + 'manager/business/search/' + mst]));
     window.open(url.replace('%23', '#'), "_blank");
   }
+
   public changeType() {
     if (this.selectedType == this.types[0]) {
       this.typeShow = 0;

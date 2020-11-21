@@ -36,7 +36,7 @@ export const MY_FORMATS = {
 @Component({
   selector: 'app-domestic-import',
   templateUrl: 'domestic-import.component.html',
-  styleUrls: ['domestic-import.component.scss'],
+  styleUrls: ['../../public_layout.scss'],
   providers: [
     {
       provide: DateAdapter,

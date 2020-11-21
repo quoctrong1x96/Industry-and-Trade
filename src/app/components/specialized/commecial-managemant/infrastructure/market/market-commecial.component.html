@@ -172,7 +172,7 @@
                 <div *ngIf="dataSource.data.length; else ShowEmpty" #TABLE>
                     <table mat-table [dataSource]="dataSource" class="vertical-scroll">
                         <ng-container matColumnDef="index" sticky>
-                            <th mat-header-cell *matHeaderCellDef class="stt">STT</th>
+                            <th mat-header-cell *matHeaderCellDef >STT</th>
                             <td mat-cell *matCellDef="let element; let i = index" class="stt1">{{ i + 1 }}</td>
                         </ng-container>
                         <ng-container *ngFor="let column of attributes; let colIndex = index" [cdkColumnDef]="column.is_default === ATTRIBUTE_DEFAULT? 

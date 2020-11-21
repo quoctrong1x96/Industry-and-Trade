@@ -140,13 +140,13 @@
 
                             <ng-container matColumnDef="ten_san_pham">
                                 <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Tên hàng </th>
-                                <td mat-cell *matCellDef="let element" class="stt"> {{element.ten_san_pham}}</td>
+                                <td mat-cell *matCellDef="let element" > {{element.ten_san_pham}}</td>
                                 <td mat-footer-cell *matFooterCellDef> TỔNG </td>
                             </ng-container>
 
                             <ng-container matColumnDef="id_quoc_gia" style="text-align: left;">
                                 <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Thị trường chủ yếu </th>
-                                <td mat-cell *matCellDef="let element" class="stt"> {{element.ten_tieng_anh}}</td>
+                                <td mat-cell *matCellDef="let element" > {{element.ten_tieng_anh}}</td>
                                 <td mat-footer-cell *matFooterCellDef> : </td>
                             </ng-container>
 
@@ -160,25 +160,25 @@
 
                             <ng-container matColumnDef="luong_thang">
                                 <th mat-header-cell *matHeaderCellDef> Lượng (Tấn) </th>
-                                <td mat-cell *matCellDef="let element" class="stt"> {{element.luong_thang}}</td>
+                                <td mat-cell *matCellDef="let element" > {{element.luong_thang}}</td>
                                 <td mat-footer-cell *matFooterCellDef> {{TongLuongThangThucHien | number: '1.1-2'}} </td>
                             </ng-container>
 
                             <ng-container matColumnDef="gia_tri_thang">
                                 <th mat-header-cell *matHeaderCellDef> Trị giá (USD) </th>
-                                <td mat-cell *matCellDef="let element" class="stt"> {{element.gia_tri_thang}}</td>
+                                <td mat-cell *matCellDef="let element" > {{element.gia_tri_thang}}</td>
                                 <td mat-footer-cell *matFooterCellDef> {{TongGiaTriThangThucHien | number: '1.1-2'}} </td>
                             </ng-container>
 
                             <ng-container matColumnDef="luong_cong_don">
                                 <th mat-header-cell *matHeaderCellDef> Lượng (Tấn) </th>
-                                <td mat-cell *matCellDef="let element" class="stt"> {{element.luong_cong_don}}</td>
+                                <td mat-cell *matCellDef="let element" > {{element.luong_cong_don}}</td>
                                 <td mat-footer-cell *matFooterCellDef> {{TongLuongCongDon | number: '1.1-2'}} </td>
                             </ng-container>
 
                             <ng-container matColumnDef="gia_tri_cong_don">
                                 <th mat-header-cell *matHeaderCellDef> Trị giá (USD) </th>
-                                <td mat-cell *matCellDef="let element" class="stt"> {{element.gia_tri_cong_don}}</td>
+                                <td mat-cell *matCellDef="let element" > {{element.gia_tri_cong_don}}</td>
                                 <td mat-footer-cell *matFooterCellDef> {{TongGiaTriCongDon | number: '1.1-2'}} </td>
                             </ng-container>
 
@@ -325,7 +325,7 @@
                                     </ng-container> -->
 
                             <ng-container matColumnDef="index">
-                                <th mat-header-cell *matHeaderCellDef class="stt"> STT </th>
+                                <th mat-header-cell *matHeaderCellDef > STT </th>
                                 <td mat-cell *matCellDef="let element; let i = index;"> {{i+1}} </td>
                             </ng-container>
 

@@ -66,12 +66,12 @@
                     Excel</button>
             </div>
         </div>
-        <div class="layout mat-elevation-z8" #TABLE1>
+        <div class="layout " #TABLE1>
             <table mat-table matTableFilter [exampleEntity]="filterEntity" [filterType]="filterType"
                 [dataSource]="dataSource" class="table-layout" id="small-table">
 
                 <ng-container matColumnDef="index">
-                    <th mat-header-cell *matHeaderCellDef class="stt"> STT
+                    <th mat-header-cell *matHeaderCellDef > STT
 
                     </th>
                     <td mat-cell *matCellDef="let element; let i = index;"> {{i+1}} </td>
@@ -113,8 +113,8 @@
                 </ng-container>
 
                 <ng-container matColumnDef="chi_tiet_doanh_nghiep">
-                    <th mat-header-cell *matHeaderCellDef class="ct"> Chi tiết </th>
-                    <td mat-cell *matCellDef="let element">
+                    <th mat-header-cell *matHeaderCellDef> Chi tiết </th>
+                    <td mat-cell *matCellDef="let element" id="jump">
                         <mat-icon (click)="openDetailCompany(element.mst)">search</mat-icon>
                     </td>
                 </ng-container>
@@ -138,12 +138,12 @@
                     (click)="exportToExcel('DanhNghiepNhapKhau','danh sach', false)">Xuất Excel</button>
             </div>
         </div>
-        <div class="layout mat-elevation-z8" #TABLE2>
+        <div class="layout " #TABLE2>
             <table mat-table matTableFilter [exampleEntity]="filterEntity" [filterType]="filterType"
                 [dataSource]="dataSourceImport" class="table-layout" id="small-table">
 
                 <ng-container matColumnDef="index">
-                    <th mat-header-cell *matHeaderCellDef class="stt"> STT
+                    <th mat-header-cell *matHeaderCellDef > STT
 
                     </th>
                     <td mat-cell *matCellDef="let element; let i = index;"> {{i+1}} </td>
@@ -185,8 +185,8 @@
                 </ng-container>
 
                 <ng-container matColumnDef="chi_tiet_doanh_nghiep">
-                    <th mat-header-cell *matHeaderCellDef class="ct"> Chi tiết </th>
-                    <td mat-cell *matCellDef="let element">
+                    <th mat-header-cell *matHeaderCellDef> Chi tiết </th>
+                    <td mat-cell *matCellDef="let element" id="jump">
                         <mat-icon (click)="openDetailCompany(element.mst)">search</mat-icon>
                     </td>
                 </ng-container>

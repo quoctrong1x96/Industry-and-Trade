@@ -5,8 +5,8 @@
     </mat-card-header>
     <mat-card-content>
         <div class="row">
-            <div class="col">
-                <mat-form-field>
+            <div class="col-lg-2">
+                <mat-form-field appearance="outline">
                     <mat-label>Ngày cập nhật giá</mat-label>
                     <input matInput readonly [matDatepicker]="datePicker" [(ngModel)]="pickedDate.date"
                         (ngModelChange)="getPriceChange($event)" style="width: 120%;">
@@ -58,7 +58,7 @@
             </div>
         </div>
 
-        <div class="layout mat-elevation-z8">
+        <div class="layout ">
             <!-- <mat-form-field id="filter">
                 <mat-label>Lọc dữ liệu</mat-label>
                 <input matInput (keyup)="applyFilter($event)" placeholder="" #input>
