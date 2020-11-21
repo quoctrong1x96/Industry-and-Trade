@@ -1,36 +1,26 @@
-<div style="margin-top: 10px;" class="container-fluid">
-    <div class="row">
+<mat-card class="material">
+    <mat-card-header>
+        <mat-card-title>
+            <strong>CHI TIẾT DOANH NGHIỆP: {{company.ten_doanh_nghiep}} - SĐT: {{company.dien_thoai}}</strong>
+        </mat-card-title>
+        <mat-card-subtitle>
+        </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
         <div class="row">
             <div class="col-lg-4">
-                <div class="company-image">
-                    <div class="view hm-zoom z-depth-2" style="cursor: pointer">
-                        <img [src]="defaultLogo" [alt]="company.ten_doanh_nghiep" width="100%" class="img-fluid rounded">
-                    </div>
-                    <div style="margin-top:15px">
-                        <ul class="list-group mb-3">
-                            <li class="list-group-item d-flex justify-content-between lh-condensed">
-                                <div>
-                                    <h6 class="my-0">Tên doanh nghiệp</h6>
-                                </div>
-                                <span class="text-muted" style="color:rgb(151, 88, 101) !important">{{company.ten_doanh_nghiep}}</span>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between lh-condensed">
-                                <div>
-                                    <h6 class="my-0">Số điện thoại</h6>
-                                </div>
-                                <span class="text-muted" style="color:crimson !important">{{company.dien_thoai}}</span>
-                            </li>
-                        </ul>
-                        <button class="btn btn-primary">Gửi mail</button> &nbsp;
-                        <button mat-raised-button [ngStyle]="{'background-color': 'green', 'color': 'white'}" title="" (click)="openDialog(company.mst)">Danh sách cơ sở trực
-                            thuộc</button>
-                    </div>
+                <div>
+                    <img [src]="defaultLogo" [alt]="company.ten_doanh_nghiep" class="img-fluid rounded">
+                </div>
+                <hr>
+                <div class="button-control -align-left">
+                    <!-- <button mat-raised-button (click)="back()">Trở về danh sách DN</button> -->
+                    <button mat-raised-button (click)="openDialog(company.mst)">Danh sách CSTT</button>
                 </div>
             </div>
             <div class="col-lg-8">
-                <div class="company-detail">
-                    <h3 class="company-head">Thông tin chi tiết</h3>
-                    <table class="table" cellspacing="0" style="max-height: 28px;">
+                <div class="row">
+                    <table class="table" cellspacing="0">
                         <tbody>
                             <tr>
                                 <th scope="row">Tên doanh nghiệp</th>
@@ -107,9 +97,8 @@
                             <tr color="accent">
                                 <th scope="row">Ngày bắt đầu kinh doanh</th>
                                 <td>
-                                    <input matInput [matDatepicker]="date2" [(ngModel)]="company.ngay_bat_dau_kd" disabled>
-                                    <mat-datepicker-toggle matSuffix [for]="date2"></mat-datepicker-toggle>
-                                    <mat-datepicker #date2></mat-datepicker>
+                                    <input matInput [matDatepicker]="date2" [(ngModel)]="company.ngay_bat_dau_kd"
+                                        disabled>
                                 </td>
                             </tr>
 
@@ -135,14 +124,6 @@
                             </tr>
 
                             <tr>
-                                <th scope="row">Cơ sở trực thuộc</th>
-                                <td>
-                                    <button mat-raised-button [ngStyle]="{'background-color': 'green', 'color': 'white'}" title="" (click)="openDialog(company.mst)">Danh sách cơ sở trực
-                                    thuộc</button>
-                                </td>
-                            </tr>
-
-                            <tr>
                                 <th scope="row">Số GP/GCNĐĐKKD</th>
                                 <td>
                                     <input [(ngModel)]="company.so_gpgcn" disabled>
@@ -153,28 +134,25 @@
                                 <th scope="row">Ngày cấp</th>
                                 <td>
                                     <input matInput [matDatepicker]="date1" [(ngModel)]="company.ngay_cap" disabled>
-                                    <mat-datepicker-toggle matSuffix [for]="date1"></mat-datepicker-toggle>
-                                    <mat-datepicker #date1></mat-datepicker>
                                 </td>
                             </tr>
 
                             <tr color="accent">
                                 <th scope="row">Thời hạn</th>
                                 <td>
-                                    <input matInput [matDatepicker]="date_thoi_han" [(ngModel)]="company.ngay_het_han" disabled>
-                                    <mat-datepicker-toggle matSuffix [for]="date_thoi_han"></mat-datepicker-toggle>
-                                    <mat-datepicker #date_thoi_han></mat-datepicker>
+                                    <input matInput [matDatepicker]="date_thoi_han" [(ngModel)]="company.ngay_het_han"
+                                        disabled>
                                 </td>
                             </tr>
 
-                            <!-- phan mo rong hoac rut gon -->
                             <div class="expand-more">
                                 <span>
-                                    Mở rộng 
-            
+                                    Mở rộng/Thu hẹp
                                 </span>
-                                <mat-icon *ngIf="!isOpen" aria-hidden="false" aria-label="Example home icon" (click)="toggle()">expand_less</mat-icon>
-                                <mat-icon *ngIf="isOpen" aria-hidden="false" aria-label="Example home icon" (click)="toggle()">expand_more</mat-icon>
+                                <mat-icon *ngIf="!isOpen" aria-hidden="false" aria-label="Example home icon"
+                                    (click)="toggle()">expand_less</mat-icon>
+                                <mat-icon *ngIf="isOpen" aria-hidden="false" aria-label="Example home icon"
+                                    (click)="toggle()">expand_more</mat-icon>
                             </div>
                             <ng-container [@toggleBox]="isOpen ? 'open' : 'closed'" *ngIf="isOpen" class="custom-style">
                                 <tr>
@@ -236,28 +214,20 @@
                                     </td>
                                 </tr>
                             </ng-container>
-
-
-                            <!-- ket thuc phan mo rong-->
-
-
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-
-<ng-container>
-    <h4>KIM NGẠCH XUẤT KHẨU</h4>
-    <div class="row">
-        <div class="container-fluid">
+        <hr>
+        <ng-container>
+            <h4><strong>KIM NGẠCH XUẤT KHẨU</strong></h4>
             <div class="row">
                 <div class="col-lg-3">
                     <div class="form-group">
                         <label for="period_select">Kỳ báo cáo</label>
-                        <select class="form-control" name="" id="period_select" (change)="changePeriod(false)" [(ngModel)]="selectedPeriodXK">
+                        <select class="form-control" name="" id="period_select" (change)="changePeriod(false)"
+                            [(ngModel)]="selectedPeriodXK">
                             <option *ngFor="let period of periodsXK" [ngValue]="period">{{period}}</option>
                         </select>
                     </div>
@@ -274,12 +244,13 @@
                     <div class="form-group">
                         <label for="quarter_select">Quý báo cáo</label>
                         <select class="form-control" name="" id="quarter_select" [(ngModel)]="selectedQuarterXK">
-                            <option *ngFor="let quarter of quartersXK" [ngValue]="quarter.ma_so">{{quarter.ma_chu}}</option>
+                            <option *ngFor="let quarter of quartersXK" [ngValue]="quarter.ma_so">
+                                {{quarter.ma_chu}}
+                            </option>
                         </select>
                     </div>
                 </div>
                 <div class="col-lg-3" *ngIf="selectedPeriodXK === '6 Tháng'">
-                    <!-- {{selectedHalf}} -->
                     <div class="form-group">
                         <label for="half_select">Báo cáo 6 Tháng</label>
                         <select class="form-control" name="" id="half_select" [(ngModel)]="selectedHalfXK">
@@ -295,176 +266,144 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-lg-1">
-                    <div class="form-group" style="margin-top: 2em;">
-                        <button class="form-button" mat-raised-button [ngStyle]="{'background-color': 'green', 'color': 'white'}" (click)="findKNXK()">Tìm kiếm</button>
-                    </div>
+                <div class="col-lg-3 button-control my-auto">
+                    <button mat-raised-button (click)="findKNXK()">Tìm kiếm</button>
                 </div>
-                <!-- 
-                <div class="col-lg-1">
-                    <div class="form-group" style="margin-top: 2em;">
-                        <button class="form-button" mat-raised-button [ngStyle]="{'background-color': 'red', 'color': 'white'}" (click)="Them_dong_XK()">Thêm dòng</button>
-                    </div>
-                </div>
-                <div class="col-lg-1">
-                    <div class="form-group" style="margin-top: 2em;">
-                        <button class="form-button" mat-raised-button [ngStyle]="{'background-color': 'orange', 'color': 'white'}" (click)="Save_XK()">Lưu</button>
-                    </div>
-                </div> -->
             </div>
-            <table mat-table #table [dataSource]="dataSourceKNXK" class="mat-elevation-z2" *ngIf="dataSourceKNXK.data.length !== 0">
-                <ng-container matColumnDef="index">
-                    <th mat-header-cell *matHeaderCellDef> STT </th>
-                    <td mat-cell *matCellDef="let element; let i = index;" class='not-input'>{{i+1}}</td>
-                </ng-container>
-                <ng-container matColumnDef="SAN_PHAM">
-                    <th mat-header-cell *matHeaderCellDef> Tên sản phẩm </th>
-                    <td mat-cell *matCellDef="let element">
-                        <select class="form-control select-TSP" name="" id="period_select" [(ngModel)]="element.id_san_pham" [disabled]="true">
-                            <option *ngFor="let product of products" [ngValue]="product.ma_san_pham"> {{product.ten_san_pham}} </option>
-                        </select>
-                    </td>
-                </ng-container>
-                <ng-container matColumnDef="SAN_LUONG">
-                    <th mat-header-cell *matHeaderCellDef> Sản lượng</th>
-                    <td mat-cell *matCellDef="let element"><input maxlength="15" [(ngModel)]="element.san_luong" [disabled]="true" class="txt-content"></td>
-                </ng-container>
-                <ng-container matColumnDef="TRI_GIA">
-                    <th mat-header-cell *matHeaderCellDef> Trị giá </th>
-                    <td mat-cell *matCellDef="let element"><input class="text-left" [(ngModel)]="element.tri_gia" [disabled]="true" class="txt-content"> </td>
-                </ng-container>
-                <ng-container matColumnDef="DOI_TAC">
-                    <th mat-header-cell *matHeaderCellDef> Đối tác </th>
-                    <td mat-cell *matCellDef="let element">
-                        {{element.thi_truong}}
-                        <!-- <input type="text" [(ngModel)]="element.thi_truong" [disabled]="true" class="txt-content"/> -->
-                    </td>
-                </ng-container>
-                <!-- <ng-container matColumnDef="ACTION">
-                    <th mat-header-cell *matHeaderCellDef> Xóa </th>
-                    <td mat-cell *matCellDef="let element" >
-                        <button mat-stroked-button (click)="DeleteXK(element)">
-                            <mat-icon class="icon-color">delete</mat-icon>
-                        </button>
-                    </td>
-                </ng-container> -->
 
-                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;let i = index; "></tr>
-            </table>
-            <mat-paginator #ExportPaginators [hidden]="dataSourceKNXK.data.length === 0" [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons></mat-paginator>
-            <div *ngIf="dataSourceKNXK.data.length !== 0" class="messError">{{messageXK}}</div>
-        </div>
-    </div>
-</ng-container>
-<br/>
-<ng-container>
-    <h4>KIM NGẠCH NHẬP KHẨU</h4>
+            <div class="layout">
+                <table mat-table #table [dataSource]="dataSourceKNXK" *ngIf="dataSourceKNXK.data.length !== 0"
+                    class="table-layout" id="small-table">
+                    <ng-container matColumnDef="index">
+                        <th mat-header-cell *matHeaderCellDef> STT </th>
+                        <td mat-cell *matCellDef="let element; let i = index;">{{i+1}}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="SAN_PHAM">
+                        <th mat-header-cell *matHeaderCellDef> Tên sản phẩm </th>
+                        <td mat-cell *matCellDef="let element">
+                            <select [(ngModel)]="element.id_san_pham" [disabled]="true">
+                                <option *ngFor="let product of products" [ngValue]="product.ma_san_pham">
+                                    {{product.ten_san_pham}} </option>
+                            </select>
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="SAN_LUONG">
+                        <th mat-header-cell *matHeaderCellDef> Sản lượng</th>
+                        <td mat-cell *matCellDef="let element"><input [disabled]="true" [(ngModel)]="element.san_luong">
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="TRI_GIA">
+                        <th mat-header-cell *matHeaderCellDef> Trị giá </th>
+                        <td mat-cell *matCellDef="let element"><input [disabled]="true" [(ngModel)]="element.tri_gia">
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="DOI_TAC">
+                        <th mat-header-cell *matHeaderCellDef> Đối tác </th>
+                        <td mat-cell *matCellDef="let element">
+                            {{element.thi_truong}}
+                        </td>
+                    </ng-container>
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-3">
-                <div class="form-group">
-                    <label for="period_select">Kỳ báo cáo</label>
-                    <select class="form-control" name="" id="period_select" (change)="changePeriod(true)" [(ngModel)]="selectedPeriodNK">
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;let i = index; "></tr>
+                </table>
+            </div>
+            <mat-paginator #ExportPaginators [hidden]="dataSourceKNXK.data.length === 0"
+                [pageSizeOptions]="[5, 10, 20, 50, 100]" showFirstLastButtons></mat-paginator>
+            <div *ngIf="dataSourceKNXK.data.length !== 0">{{messageXK}}</div>
+        </ng-container>
+        <hr>
+        <ng-container>
+            <h4><strong>KIM NGẠCH NHẬP KHẨU</strong></h4>
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="form-group">
+                        <label for="period_select">Kỳ báo cáo</label>
+                        <select class="form-control" name="" id="period_select" (change)="changePeriod(true)"
+                            [(ngModel)]="selectedPeriodNK">
                             <option *ngFor="let period of periodsNK" [ngValue]="period">{{period}}</option>
                         </select>
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-3" *ngIf="selectedPeriodNK === 'Tháng'">
-                <div class="form-group">
-                    <label for="month_select">Tháng báo cáo</label>
-                    <select class="form-control" name="" id="month_select" [(ngModel)]="selectedMonthNK">
+                <div class="col-lg-3" *ngIf="selectedPeriodNK === 'Tháng'">
+                    <div class="form-group">
+                        <label for="month_select">Tháng báo cáo</label>
+                        <select class="form-control" name="" id="month_select" [(ngModel)]="selectedMonthNK">
                             <option *ngFor="let month of monthsNK" [ngValue]="month">{{month}}</option>
                         </select>
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-3" *ngIf="selectedPeriodNK === 'Quý'">
-                <div class="form-group">
-                    <label for="quarter_select">Quý báo cáo</label>
-                    <select class="form-control" name="" id="quarter_select" [(ngModel)]="selectedQuarterNK">
-                            <option *ngFor="let quarter of quartersNK" [ngValue]="quarter.ma_so">{{quarter.ma_chu}}</option>
+                <div class="col-lg-3" *ngIf="selectedPeriodNK === 'Quý'">
+                    <div class="form-group">
+                        <label for="quarter_select">Quý báo cáo</label>
+                        <select class="form-control" name="" id="quarter_select" [(ngModel)]="selectedQuarterNK">
+                            <option *ngFor="let quarter of quartersNK" [ngValue]="quarter.ma_so">{{quarter.ma_chu}}
+                            </option>
                         </select>
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-3" *ngIf="selectedPeriodNK === '6 Tháng'">
-                <!-- {{selectedHalf}} -->
-                <div class="form-group">
-                    <label for="half_select">Báo cáo 6 Tháng</label>
-                    <select class="form-control" name="" id="half_select" [(ngModel)]="selectedHalfNK">
+                <div class="col-lg-3" *ngIf="selectedPeriodNK === '6 Tháng'">
+                    <div class="form-group">
+                        <label for="half_select">Báo cáo 6 Tháng</label>
+                        <select class="form-control" name="" id="half_select" [(ngModel)]="selectedHalfNK">
                             <option *ngFor="let half of halfsNK" [ngValue]="half">{{half}}</option>
                         </select>
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-3" *ngIf="selectedYearNK >0">
-                <div class="form-group">
-                    <label for="year_select">Năm báo cáo</label>
-                    <select class="form-control" name="" id="year_select" [(ngModel)]="selectedYearNK">
+                <div class="col-lg-3" *ngIf="selectedYearNK >0">
+                    <div class="form-group">
+                        <label for="year_select">Năm báo cáo</label>
+                        <select class="form-control" name="" id="year_select" [(ngModel)]="selectedYearNK">
                             <option *ngFor="let year of yearsNK" [ngValue]="year">{{year}}</option>
                         </select>
-                </div>
-            </div>
-            <div class="col-lg-1">
-                <div class="form-group" style="margin-top: 2em;">
-                    <button class="form-button" mat-raised-button [ngStyle]="{'background-color': 'green', 'color': 'white'}" (click)="findKNNK()">Tìm kiếm</button>
-                </div>
-            </div>
-            <!-- 
-                <div class="col-lg-1">
-                    <div class="form-group" style="margin-top: 2em;">
-                        <button class="form-button" mat-raised-button [ngStyle]="{'background-color': 'red', 'color': 'white'}" (click)="Them_dong_NK()">Thêm dòng</button>
                     </div>
                 </div>
-                <div class="col-lg-1">
-                    <div class="form-group" style="margin-top: 2em;">
-                        <button class="form-button" mat-raised-button [ngStyle]="{'background-color': 'orange', 'color': 'white'}" (click)="Save_NK()">Lưu</button>
-                    </div>
-                </div> -->
-        </div>
-        <table mat-table #table [dataSource]="dataSourceKNNK" class="mat-elevation-z2" *ngIf="dataSourceKNNK.data.length !== 0">
-            <ng-container matColumnDef="index">
-                <th mat-header-cell *matHeaderCellDef> STT </th>
-                <td mat-cell *matCellDef="let element; let i = index;" class='not-input'>{{i+1}}</td>
-            </ng-container>
-            <ng-container matColumnDef="SAN_PHAM">
-                <th mat-header-cell *matHeaderCellDef> Tên sản phẩm </th>
-                <td mat-cell *matCellDef="let element">
-                    <select class="form-control select-TSP" name="" id="period_select" [(ngModel)]="element.id_san_pham" [disabled]="true">
-                            <option *ngFor="let product of products" [ngValue]="product.ma_san_pham"> {{product.ten_san_pham}} </option>
-                        </select>
-                </td>
-            </ng-container>
-            <ng-container matColumnDef="SAN_LUONG">
-                <th mat-header-cell *matHeaderCellDef> Sản lượng</th>
-                <td mat-cell *matCellDef="let element">
-                    <input [(ngModel)]="element.san_luong" type="number" [disabled]="true" class="txt-content">
-                </td>
-            </ng-container>
-            <ng-container matColumnDef="TRI_GIA">
-                <th mat-header-cell *matHeaderCellDef> Trị giá </th>
-                <td mat-cell *matCellDef="let element"><input [(ngModel)]="element.tri_gia" type="number" [disabled]="true" class="txt-content"> </td>
-            </ng-container>
-            <ng-container matColumnDef="DOI_TAC">
-                <th mat-header-cell *matHeaderCellDef> Đối tác </th>
-                <td mat-cell *matCellDef="let element" class='not-input'>
-                    {{element.thi_truong}}
-                    <!-- <input type="text" [(ngModel)]="element.thi_truong" [disabled]="true" class="txt-content"/> -->
-                </td>
-            </ng-container>
-            <!-- <ng-container matColumnDef="ACTION">
-                    <th mat-header-cell *matHeaderCellDef> Xóa </th>
-                    <td mat-cell *matCellDef="let element" >
-                        <button mat-stroked-button (click)="DeleteNK(element)">
-                            <mat-icon class="icon-color">delete</mat-icon>
-                          </button>
-                    </td>
-                </ng-container> -->
+                <div class="col-lg-3 button-control my-auto">
+                    <button mat-raised-button (click)="findKNNK()">Tìm kiếm</button>
+                </div>
+            </div>
+            <div class="layout">
+                <table mat-table #table [dataSource]="dataSourceKNNK" *ngIf="dataSourceKNNK.data.length !== 0"
+                    class="table-layout" id="small-table">
+                    <ng-container matColumnDef="index">
+                        <th mat-header-cell *matHeaderCellDef> STT </th>
+                        <td mat-cell *matCellDef="let element; let i = index;">{{i+1}}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="SAN_PHAM">
+                        <th mat-header-cell *matHeaderCellDef> Tên sản phẩm </th>
+                        <td mat-cell *matCellDef="let element">
+                            <select id="period_select" [(ngModel)]="element.id_san_pham" [disabled]="true">
+                                <option *ngFor="let product of products" [ngValue]="product.ma_san_pham">
+                                    {{product.ten_san_pham}} </option>
+                            </select>
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="SAN_LUONG">
+                        <th mat-header-cell *matHeaderCellDef> Sản lượng</th>
+                        <td mat-cell *matCellDef="let element">
+                            <input [(ngModel)]="element.san_luong" type="number" [disabled]="true">
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="TRI_GIA">
+                        <th mat-header-cell *matHeaderCellDef> Trị giá </th>
+                        <td mat-cell *matCellDef="let element"><input [(ngModel)]="element.tri_gia" type="number"
+                                [disabled]="true"> </td>
+                    </ng-container>
+                    <ng-container matColumnDef="DOI_TAC">
+                        <th mat-header-cell *matHeaderCellDef> Đối tác </th>
+                        <td mat-cell *matCellDef="let element">
+                            {{element.thi_truong}}
+                        </td>
+                    </ng-container>
 
-            <tr mat-header-row *matHeaderRowDef="displayedColumns" style="border: 1px solid;"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;let i = index; "></tr>
-        </table>
-        <mat-paginator #ImportPaginators [hidden]="dataSourceKNNK.data.length === 0" [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons></mat-paginator>
-        <div *ngIf="dataSourceKNNK.data.length !== 0" class="messError">{{messageNK}}</div>
-    </div>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;let i = index;"></tr>
+                </table>
+            </div>
+            <mat-paginator #ImportPaginators [hidden]="dataSourceKNNK.data.length === 0"
+                [pageSizeOptions]="[5, 10, 20, 50, 100]" showFirstLastButtons></mat-paginator>
+            <div *ngIf="dataSourceKNNK.data.length !== 0">{{messageNK}}</div>
+        </ng-container>
 
-</ng-container>
+    </mat-card-content>
+</mat-card>

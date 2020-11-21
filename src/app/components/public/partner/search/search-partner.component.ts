@@ -21,7 +21,7 @@ interface HashTableNumber<T> {
   [key: string]: T;
 }
 
-export class filterModel{
+export class filterModel {
   ten_doanh_nghiep: string = '';
   ten_quan_huyen: string = '';
   ten_nganh_nghe: string = '';
@@ -30,7 +30,7 @@ export class filterModel{
 @Component({
   selector: 'app-search-partner',
   templateUrl: './search-partner.component.html',
-  styleUrls: ['./search-partner.component.scss']
+  styleUrls: ['../../public_layout.scss'],
 })
 
 export class SearchPartnerComponent implements AfterViewInit, OnInit {
@@ -51,24 +51,24 @@ export class SearchPartnerComponent implements AfterViewInit, OnInit {
   public displayedColumns: string[] = ['index', 'ten_doanh_nghiep', 'mst', 'dia_chi', 'dien_thoai', 'ten_nganh_nghe', 'chi_tiet_doanh_nghiep'];
   public filteredCareerList: Observable<CareerModel[]>;
   public addresses: Array<any> = [null];
-  public loading:boolean = false;
+  public loading: boolean = false;
   public types = ['Dạng thẻ', 'Dạng bảng'];
-  public page:number = 1;
+  public page: number = 1;
   public pager: any = {};
   //Declare variable for ONLU TS
   public control = new FormControl();
   public _marketService: MarketService;
-  public errorMessage: any; 
+  public errorMessage: any;
   public careerList: Array<CareerModel> = new Array<CareerModel>();
   public districtList: Array<DistrictModel> = new Array<DistrictModel>();
   public categories = [null];//['Tất cả', 'Hạt điều', 'Hạt tiêu', 'Hạt cà phê', 'Cao su'];
   public pagedItems: any[];
   public pagerService: PagerService;
-  public productList:any;
+  public productList: any;
   //Viewchild
   @ViewChild('TABLE', { static: false }) table: ElementRef;
-  @ViewChild('scheduledOrdersPaginator', {static: true}) paginator: MatPaginator;
-  @ViewChild('selected_Career', {static: false}) careerEle : ElementRef;
+  @ViewChild('scheduledOrdersPaginator', { static: true }) paginator: MatPaginator;
+  @ViewChild('selected_Career', { static: false }) careerEle: ElementRef;
 
   constructor(
     public marketService: MarketService,
@@ -110,7 +110,7 @@ export class SearchPartnerComponent implements AfterViewInit, OnInit {
         this.careerList = allrecords.data as CareerModel[];
         this.careerList.forEach(element => element.ma_nganh_nghe.length > 3 ? this.categories.push(element.ten_kem_ma) : 0);
       });
-    
+
     this.filteredCareerList = this.control.valueChanges.pipe(
       startWith(''),
       map(value => this._filter(value))
@@ -124,78 +124,80 @@ export class SearchPartnerComponent implements AfterViewInit, OnInit {
         this.dataSource = new MatTableDataSource<CompanyDetailModel>(allrecords.data);
         this.dataSource.paginator = this.paginator;
         this.dataSource.paginator = this.paginator;
-          this.paginator._intl.itemsPerPageLabel = 'Số công ty mỗi trang';
-          this.paginator._intl.lastPageLabel = "Đến cuối";
-          this.paginator._intl.nextPageLabel = "Trang tiếp";
-          this.paginator._intl.previousPageLabel = "Trang trước";
+        this.paginator._intl.itemsPerPageLabel = 'Số hàng';
+        this.paginator._intl.firstPageLabel = "Trang Đầu";
+        this.paginator._intl.lastPageLabel = "Trang Cuối";
+        this.paginator._intl.previousPageLabel = "Trang Trước";
+        this.paginator._intl.nextPageLabel = "Trang Tiếp";
       },
       error => this.errorMessage = <any>error
     );
   }
   public getAllProduct(allrecords) {
     console.log("+ Function: GetAllProduct");
-        this.productList = allrecords.data as Array<ProductModel>;
-        if (this.typeShow == 1) {
-          this.dataSource.paginator = this.paginator;
-          this.paginator._intl.itemsPerPageLabel = 'Số công ty mỗi trang';
-          this.paginator._intl.lastPageLabel = "Đến cuối";
-          this.paginator._intl.nextPageLabel = "Trang tiếp";
-          this.paginator._intl.previousPageLabel = "Trang trước";
-        }
+    this.productList = allrecords.data as Array<ProductModel>;
+    if (this.typeShow == 1) {
+      this.dataSource.paginator = this.paginator;
+      this.paginator._intl.itemsPerPageLabel = 'Số hàng';
+      this.paginator._intl.firstPageLabel = "Trang Đầu";
+      this.paginator._intl.lastPageLabel = "Trang Cuối";
+      this.paginator._intl.previousPageLabel = "Trang Trước";
+      this.paginator._intl.nextPageLabel = "Trang Tiếp";
+    }
   }
   //Function for EVENT HTML     -------------------------------------------------------------------------------
   //Xuất excel
   public exportTOExcel(filename: string, sheetname: string) {
-    
+
     let excelFileName: string;
     let hashKeyDataSource: HashTableNumber<number> = {};
-    let newArray:any[]=[];
-   
+    let newArray: any[] = [];
+
     //Format name of Excel will be export
     sheetname = sheetname.replace('/', '_');
     excelFileName = filename + '.xlsx';
 
-     //Get key of current filter table in table html
-     const elements = this.table.nativeElement.querySelectorAll('.cdk-column-mst');
-     elements.forEach(e => {
-       hashKeyDataSource[e.textContent.trim()] = 10;
-     });
-     let outputDataExcel = this.dataSource.data.filter( data => hashKeyDataSource[data.mst] == 10);
-    
-     //Alias column name
+    //Get key of current filter table in table html
+    const elements = this.table.nativeElement.querySelectorAll('.cdk-column-mst');
+    elements.forEach(e => {
+      hashKeyDataSource[e.textContent.trim()] = 10;
+    });
+    let outputDataExcel = this.dataSource.data.filter(data => hashKeyDataSource[data.mst] == 10);
+
+    //Alias column name
     let data = Object.values(outputDataExcel);
-      Object.keys(data).forEach((key, index)=>{
-        newArray.push({
-          'Tên doanh nghiệp': data[key].ten_doanh_nghiep,
-          'Ngành nghề': data[key].ten_nganh_nghe,
-          'Địa chỉ': data[key].dia_chi_day_du,
-          'Ngành nghề Kinh doanh': data[key].nganh_nghe_kd,
-          'Người đại diện pháp lý': data[key].nguoi_dai_dien,
-          'Điện thoại': data[key].dien_thoai,
-          'Mã số thuế': data[key].mst,
-          'Số GPKD': data[key].so_giay_cndkkd,
-          'Ngày cấp GPKD': data[key].ngay_cap_gcndkkd,
-          'Loại hình kinh doanh': data[key].loai_hinh_doanh_nghiep,
-          'Vốn kinh doanh': data[key].von_kinh_doanh,
-          'Ngày bắt đầu kinh doanh': data[key].ngay_bat_dau_kd,
-          'Email': data[key].email,
-          'Số lao động': data[key].so_lao_dong,
-          'Công suất thiết kế': data[key].cong_suat_thiet_ke,
-          'Sản lượng': data[key].san_luong,
-          'Tiêu chuẩn sản phẩm': data[key].tieu_chuan_san_pham,
-          'Doanh thu': data[key].doanh_thu,
-          'Quy mô tài sản': data[key].quy_mo_tai_san,
-          'Lợi nhuận': data[key].loi_nhuan,
-          'Nhu cầu bán': data[key].nhu_cau_ban,
-          'Nhu cầu mua': data[key].nhu_cau_mua,
-          'Nhu cầu hợp tác': data[key].nhu_cau_hop_tac
-        });
+    Object.keys(data).forEach((key, index) => {
+      newArray.push({
+        'Tên doanh nghiệp': data[key].ten_doanh_nghiep,
+        'Ngành nghề': data[key].ten_nganh_nghe,
+        'Địa chỉ': data[key].dia_chi_day_du,
+        'Ngành nghề Kinh doanh': data[key].nganh_nghe_kd,
+        'Người đại diện pháp lý': data[key].nguoi_dai_dien,
+        'Điện thoại': data[key].dien_thoai,
+        'Mã số thuế': data[key].mst,
+        'Số GPKD': data[key].so_giay_cndkkd,
+        'Ngày cấp GPKD': data[key].ngay_cap_gcndkkd,
+        'Loại hình kinh doanh': data[key].loai_hinh_doanh_nghiep,
+        'Vốn kinh doanh': data[key].von_kinh_doanh,
+        'Ngày bắt đầu kinh doanh': data[key].ngay_bat_dau_kd,
+        'Email': data[key].email,
+        'Số lao động': data[key].so_lao_dong,
+        'Công suất thiết kế': data[key].cong_suat_thiet_ke,
+        'Sản lượng': data[key].san_luong,
+        'Tiêu chuẩn sản phẩm': data[key].tieu_chuan_san_pham,
+        'Doanh thu': data[key].doanh_thu,
+        'Quy mô tài sản': data[key].quy_mo_tai_san,
+        'Lợi nhuận': data[key].loi_nhuan,
+        'Nhu cầu bán': data[key].nhu_cau_ban,
+        'Nhu cầu mua': data[key].nhu_cau_mua,
+        'Nhu cầu hợp tác': data[key].nhu_cau_hop_tac
       });
-    const ws: XLSX.WorkSheet= XLSX.utils.json_to_sheet(newArray);
+    });
+    const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(newArray);
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    /* save to file */    
+    /* save to file */
     XLSX.utils.book_append_sheet(wb, ws, sheetname);
-    XLSX.writeFile(wb, excelFileName);    
+    XLSX.writeFile(wb, excelFileName);
   }
   public _filter(value: string): CareerModel[] {
     const filterValue = this._normalizeValue(value);
@@ -203,8 +205,8 @@ export class SearchPartnerComponent implements AfterViewInit, OnInit {
   }
   public openDetailCompany(mst: string) {
     let url = this.router.serializeUrl(
-      this.router.createUrlTree([encodeURI('#') + '/public/partner/search/' + mst]));    
-    window.open(url.replace('%23','#'), "_blank");
+      this.router.createUrlTree([encodeURI('#') + '/public/partner/search/' + mst]));
+    window.open(url.replace('%23', '#'), "_blank");
   }
   public setPage(page: number) {
     // get pager object from service
@@ -221,10 +223,11 @@ export class SearchPartnerComponent implements AfterViewInit, OnInit {
       this.typeShow = 1;
       this.ngAfterViewInit();
       this.dataSource.paginator = this.paginator;
-      this.paginator._intl.itemsPerPageLabel = 'Số công ty mỗi trang';
-      this.paginator._intl.lastPageLabel = "Đến cuối";
-      this.paginator._intl.nextPageLabel = "Trang tiếp";
-      this.paginator._intl.previousPageLabel = "Trang trước";
+      this.paginator._intl.itemsPerPageLabel = 'Số hàng';
+      this.paginator._intl.firstPageLabel = "Trang Đầu";
+      this.paginator._intl.lastPageLabel = "Trang Cuối";
+      this.paginator._intl.previousPageLabel = "Trang Trước";
+      this.paginator._intl.nextPageLabel = "Trang Tiếp";
     }
   }
   public filter() {
@@ -233,14 +236,14 @@ export class SearchPartnerComponent implements AfterViewInit, OnInit {
     // this.filterEntity.nganh_nghe_kd = this.selectedCategory == 'Tất cả'? null : this.selectedCategory;
     // this.tempFilter.ten_nganh_nghe = (document.getElementById('selected_Career') as HTMLInputElement).value.toString();
     // this.tempFilter.ten_nganh_nghe = document.getElementById('selected_Career')
-    this.filterEntity = {...this.tempFilter}
+    this.filterEntity = { ...this.tempFilter }
   }
   public change() {
 
   }
   public cancel() {
     this.tempFilter = new filterModel();
-    this.filterEntity = {...filterModel};
+    this.filterEntity = { ...filterModel };
   }
   //Function for EXTENTION      -------------------------------------------------------------------------------
   public loadLessonsPage() {
@@ -295,7 +298,7 @@ export class SearchPartnerComponent implements AfterViewInit, OnInit {
   //   console.log(this._currentFilter);
   //   this.dataSource.filter = this._currentFilter;
   // }
-  
+
   // removecompany(key: string) {
   //   console.log(key);
   // }

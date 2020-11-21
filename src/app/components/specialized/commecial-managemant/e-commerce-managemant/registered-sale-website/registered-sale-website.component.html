@@ -67,7 +67,7 @@
                     </div>
                 </div>
 
-                <div class="auto mat-elevation-z8" *ngIf="filteredDataSource.data.length; else ShowEmpty">
+                <div class="auto " *ngIf="filteredDataSource.data.length; else ShowEmpty">
                     <mat-form-field class="filter">
                         <mat-label>Lọc dữ liệu</mat-label>
                         <input matInput (keyup)="applyFilter1($event)" placeholder="" #input>
@@ -81,39 +81,39 @@
 
                         <ng-container matColumnDef="mst">
                             <th mat-header-cell *matHeaderCellDef> Mã số thuế </th>
-                            <td mat-cell *matCellDef="let element" class="stt">{{element.mst}}</td>
+                            <td mat-cell *matCellDef="let element" >{{element.mst}}</td>
                         </ng-container>
 
                         <ng-container matColumnDef="ten_tc_cn">
                             <th mat-header-cell *matHeaderCellDef>Tên tổ chức/cá nhân </th>
-                            <td mat-cell *matCellDef="let element" class="stt">{{element.ten_tc_cn}}</td>
+                            <td mat-cell *matCellDef="let element" >{{element.ten_tc_cn}}</td>
                         </ng-container>
 
                         <ng-container matColumnDef="dia_chi">
                             <th mat-header-cell *matHeaderCellDef> Địa chỉ </th>
-                            <td mat-cell *matCellDef="let element" class="stt">{{element.dia_chi}}</td>
+                            <td mat-cell *matCellDef="let element" >{{element.dia_chi}}</td>
                         </ng-container>
 
                         <ng-container matColumnDef="dien_thoai">
                             <th mat-header-cell *matHeaderCellDef> Điện thoại </th>
-                            <td mat-cell *matCellDef="let element" class="stt">{{element.dien_thoai}}</td>
+                            <td mat-cell *matCellDef="let element" >{{element.dien_thoai}}</td>
                         </ng-container>
 
                         <ng-container matColumnDef="ten_mien">
                             <th mat-header-cell *matHeaderCellDef> Tên miền </th>
-                            <td mat-cell *matCellDef="let element" class="stt"><a
+                            <td mat-cell *matCellDef="let element" ><a
                                     href="{{element.ten_mien.includes('http')? element.ten_mien : 'http://' + element.ten_mien}}"
                                     target="_blank">{{element.ten_mien}}</a></td>
                         </ng-container>
 
                         <ng-container matColumnDef="nganh_nghe">
                             <th mat-header-cell *matHeaderCellDef> Ngành nghề </th>
-                            <td mat-cell *matCellDef="let element" class="stt">{{element.nganh_nghe}}</td>
+                            <td mat-cell *matCellDef="let element" >{{element.nganh_nghe}}</td>
                         </ng-container>
 
                         <ng-container matColumnDef="ma_so_nganh_nghe">
                             <th mat-header-cell *matHeaderCellDef> Mã số ngành nghề </th>
-                            <td mat-cell *matCellDef="let element" class="stt">{{element.ma_so_nganh_nghe}}</td>
+                            <td mat-cell *matCellDef="let element" >{{element.ma_so_nganh_nghe}}</td>
                         </ng-container>
 
                         <tr mat-header-row *matHeaderRowDef="displayedColumns">

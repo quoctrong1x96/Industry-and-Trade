@@ -37,7 +37,7 @@ export const DDMMYY_FORMAT = {
 @Component({
   selector: 'app-foreign-price',
   templateUrl: 'foreign-price.component.html',
-  styleUrls: ['foreign-price.component.scss'],
+  styleUrls: ['../../public_layout.scss'],
   providers: [
     {
       provide: DateAdapter,

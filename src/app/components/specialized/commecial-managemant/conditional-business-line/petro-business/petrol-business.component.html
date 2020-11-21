@@ -81,7 +81,7 @@
                     </div>
                 </div>
 
-                <div class="auto mat-elevation-z8" *ngIf="filteredDataSource.data.length; else ShowEmpty">
+                <div class="auto " *ngIf="filteredDataSource.data.length; else ShowEmpty">
                     <mat-form-field class="filter">
                         <mat-label>Lọc dữ liệu</mat-label>
                         <input matInput (keyup)="applyFilter($event)" placeholder="" #input>

@@ -1,8 +1,7 @@
 .material {
-  $backcolor_defaut: #1f7ed0;
-  $color_default: white;
-  $backcolor_menu_default: white;
-  $color_menu_defaut: #000000;
+  $blue: #1f7ed0;
+  $white: white;
+  $black: #000000;
   .sidenav_container .mat-elevation-z5 {
     min-width: 60px;
     height: 100%;
@@ -10,43 +9,49 @@
     z-index: -1 !important;
     .sct-sidebar {
       height: 100%;
-      background-color: $color_default;
+      background-color: $white;
     }
+  }
+
+  .line {
+    border-top-width: 1px;
+    // border-top-style: dashed;
   }
 
   .mat-list-item {
     font-size: 1em;
-    background-color: $backcolor_menu_default;
-    color: $color_menu_defaut;
+    background-color: $white;
+    color: $black;
     .submenu {
-      color: $color_menu_defaut;
-      background-color: $backcolor_menu_default;
+      color: $black;
+      background-color: $white;
     }
-
-    
   }
   .mat-list-base {
     padding-top: 0px !important;
   }
   .mat-list-item.parent {
     text-transform: uppercase;
-    color: $color_default;
-    background-color: $backcolor_defaut;
+    color: $blue;
+    font-weight: bold;
+  }
+
+  .mat-list-base .mat-list-item .mat-list-icon,
+  .mat-list-base .mat-list-option .mat-list-icon {
+    margin-right: 5px;
+    padding: 0px;
   }
 
   .mat-list-item.child {
     font-size: 1em;
+    font-weight: bold;
   }
-
-  .mat-list-item.small {
-    font-size: 1em;
-  }
-  .mat-icon{
-      margin-right: 5px;
+  .mat-icon {
+    margin-right: 5px;
   }
   .mat-list-item:hover {
-    background-color: $backcolor_defaut;
-    color: $color_default;
+    background-color: $blue;
+    color: $white;
   }
 
   .mat-list-item:active {
@@ -54,13 +59,13 @@
     transition: 1s ease all;
     -moz-transition: 1s ease all;
     -webkit-transition: 1s ease all;
-    background-color: $backcolor_defaut;
-    color: #000000;
+    background-color: $blue;
+    color: $black;
   }
 
   .mat-list-item:focus {
-    background-color: $backcolor_defaut;
-    color: #000000;
+    background-color: $blue;
+    color: $white;
   }
 
   .mat-list-item-active {
