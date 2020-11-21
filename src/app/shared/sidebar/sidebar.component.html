@@ -20,19 +20,15 @@
                 class="parent">
                 <mat-icon>{{navItem.icon}}</mat-icon>
                 <span [@animateText]="linkText ? 'show' : 'hide'">{{navItem.name}}</span>
-                <mat-icon class="menu-button" [ngClass]="{'rotated' : navItem.expand}">
-                  expand_more
-                </mat-icon>
+                <mat-icon class="menu-button" [ngClass]="{'rotated' : navItem.expand}">expand_more</mat-icon>
               </a>
               <div *ngFor="let child of navItem.children">
                 <ng-container *ngIf="child.manager; else elseTemplate">
                   <mat-nav-list #elem [id]="child.id" class="submenu" *ngIf="navItem.expand">
                     <a mat-list-item id={{child?.icon}} (click)="OpenSubChildren(i, child)" class="child">
                       <mat-icon>{{child.icon}}</mat-icon>
-                      <span [@animateText]="linkText ? 'show' : 'hide'">{{child.name}}</span>                      
-                      <mat-icon class="menu-button" [ngClass]="{'rotated' : child.expand}">
-                        expand_more
-                      </mat-icon>
+                      <span [@animateText]="linkText ? 'show' : 'hide'">{{child.name}}</span>
+                      <mat-icon class="menu-button" [ngClass]="{'rotated' : child.expand}">expand_more</mat-icon>
                     </a>
                     <div *ngFor="let subchild of child.children">
                       <a mat-list-item id={{subchild?.icon}} [routerLink]='subchild.url' *ngIf="child.expand"
@@ -47,10 +43,9 @@
                 <ng-template #elseTemplate>
                   <mat-nav-list #elem [id]="child.id" class="submenu" *ngIf="navItem.expand">
                     <a mat-list-item id={{child?.icon}} [routerLink]="child.url" class="child">
+                      <mat-icon mat-list-icon>{{child.icon}}</mat-icon>
                       <span [@animateText]="linkText ? 'show' : 'hide'">{{child.name}}</span>
-                      <mat-icon mat-list-icon></mat-icon>
                       <mat-icon class="menu-button" [ngClass]="{'rotated' : child.expand}">
-
                       </mat-icon>
                     </a>
                   </mat-nav-list>

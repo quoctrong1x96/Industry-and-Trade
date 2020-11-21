@@ -32,6 +32,7 @@ import { CommecialManagementRoutingModule } from '../components/specialized/comm
 import { SpecializedLayoutComponent } from './specialized-layout/specialized-layout.component';
 import { EnergyLayoutComponent } from './energy-layout/energy-layout.component';
 import { ReportLayoutComponent } from './report-layout/report-layout.component';
+import { HomeSpecializedComponent } from '../components/specialized/home-specialized/home-specialized.component';
 
 // import {FlexLayoutModule} from '@angular/flex-layout';
 
@@ -63,6 +64,15 @@ const routes: Routes = [
     data: {
       title: 'Đăng nhập'
     }
+  },
+  {
+    path: 'specialized/home',
+    component: HomeSpecializedComponent,
+    canActivate: [LoginAuthGuardService],
+    data: {
+      title: 'Quản lý chuyên ngành'
+    }
+    
   },
   {//Update user
     path: 'update_user',
@@ -187,6 +197,7 @@ const routes: Routes = [
     P404Component,
     P500Component,
     LoginComponent,
+    HomeSpecializedComponent,
     LogoutComponent,
     RegisterComponent,
     UpdateuserComponent,

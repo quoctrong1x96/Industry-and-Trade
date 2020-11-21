@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ChemicalManagementComponent } from './chemical-management/chemical-management.component';
 import { ClusterManagementComponent } from './cluster-management/cluster-management.component';
+import { DetailClusterManagementComponent } from './cluster-management/detail-cluster-management/detail-cluster-management.component';
 import { FoodIndustryManagementComponent } from './food-industry/food-industry-management.component';
 import { IndustrialExplosivesComponent } from './industrial-explosives/industrial-explosives.component';
 import { LPGManagementComponent } from './lpg-management/lpg-management.component';
@@ -47,7 +48,15 @@ const routes: Routes = [
                 data: {
                     title: 'Quản lý Cụm Công nghiệp',
                 }
-            }]
+            },
+            {
+                path: 'cluster/:id',
+                component: DetailClusterManagementComponent,
+                data: {
+                    title: 'Cụm công nghiệp A',
+                }
+            }
+        ]
     }
 ];
 

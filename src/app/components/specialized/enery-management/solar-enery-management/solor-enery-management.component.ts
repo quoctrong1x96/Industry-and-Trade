@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatAccordion, MatPaginator, MatTable, MatTableDataSource } from '@angular/material';
 import { DistrictModel } from 'src/app/_models/APIModel/domestic-market.model';
 import { HydroElectricManagementModel, SolarEneryManagementModel } from 'src/app/_models/APIModel/electric-management.module';
+import { LinkModel } from 'src/app/_models/link.model';
+import { BreadCrumService } from 'src/app/_services/injectable-service/breadcrums.service';
 
 @Component({
   selector: 'app-solar-enery-management',
@@ -42,21 +44,31 @@ export class SolarEneryManagementComponent implements OnInit {
   sanluongnam: number;
   soLuongDoanhNghiep: number;
   isChecked: boolean;
-
-  constructor() {
+  private _linkOutput: LinkModel = new LinkModel();
+  constructor(private _breadCrumService: BreadCrumService) {
   }
 
   ngOnInit() {
     this.years = this.getYears();
-  }
-  ngAfterViewInit(): void {
-    this.accordion.openAll();
-
+    this._linkOutput.link = "/specialized/enery-management/countryside_electric";
+    this._linkOutput.title = "Năng lượng - Init";
+    this._linkOutput.text = "Năng lượng";
+    this._breadCrumService.sendLink(this._linkOutput);
     this.dataSource.data = this.data;
-    console.log(this.dataSource);
     this.filteredDataSource.data = [...this.dataSource.data];
     this.caculatorValue();
     this.paginatorAgain();
+    this.autoOpen();
+  }
+
+  autoOpen() {
+    setTimeout(() => this.accordion.openAll(), 1000);
+  }
+  ngOnDestroy(): void {
+    this._linkOutput.link = "/specialized/enery-management/countryside_electric";
+    this._linkOutput.title = "Năng lượng - Destroy";
+    this._linkOutput.text = "Năng lượng";
+    this._breadCrumService.sendLink(this._linkOutput);
   }
 
   applyFilter(event: Event) {

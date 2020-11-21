@@ -244,9 +244,6 @@ export const navItemsSpecialized: INavItem[] = [
         id: 'TMBG',
         manager: false,
         expand: false,
-        children:[
-
-        ]
       },
       {
         name: 'Thương mại điện tử',
@@ -294,19 +291,8 @@ export const navItemsSpecialized: INavItem[] = [
       },
       {
         name: 'Hoạt động bán hàng đa cấp',
-        url: '/specialized/commecial-management/multi-level',
-        icon: 'supervisor_account',
-        id: 'XTTM',
-        manager:false,
-        expand: false,
-        children:[
-
-        ]
-      },
-      {
-        name: 'Bán hàng đa cấp',
         url: '/specialized/commecial-management/multilevel_trade',
-        icon: 'luggage',
+        icon: 'device_hub',
         id: 'TMBG',
         manager: false,
         expand: false,
@@ -372,6 +358,25 @@ export const navItemsSpecialized: INavItem[] = [
         name: 'Cụm Công nghiệp',
         url: '/specialized/industry-management/cluster',
         icon: 'hourglass_bottom',
+        manager:true,
+        expand: false,
+        children: [
+          {
+            name: 'Tổng quan',
+            url: '/specialized/industry-management/cluster',
+            icon: 'call_split',
+          },
+          {
+            name: 'Địa bàn',
+            url: '/specialized/enery-management/cluster',
+            icon: 'call_split',
+          },
+          {
+            name: 'Báo cáo',
+            url: '/specialized/enery-management/cluster',
+            icon: 'call_split',
+          },
+        ]
       },
       // {
       //   name: 'Công bố hợp quy',

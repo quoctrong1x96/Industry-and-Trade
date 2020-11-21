@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatAccordion, MatPaginator, MatTable, MatTableDataSource } from '@angular/material';
 import { DistrictModel } from 'src/app/_models/APIModel/domestic-market.model';
 import { HydroElectricManagementModel } from 'src/app/_models/APIModel/electric-management.module';
+import { LinkModel } from 'src/app/_models/link.model';
+import { BreadCrumService } from 'src/app/_services/injectable-service/breadcrums.service';
 
 @Component({
   selector: 'app-hydroelectric',
@@ -39,21 +41,21 @@ export class HydroelectricComponent implements OnInit {
   sanluongnam: number;
   soLuongDoanhNghiep: number;
   isChecked: boolean;
-
   constructor() {
   }
 
   ngOnInit() {
-    this.years = this.getYears();
-  }
-  ngAfterViewInit(): void {
-    this.accordion.openAll();
+    this.years = this.getYears();    
 
     this.dataSource.data = this.data;
-    console.log(this.dataSource);
     this.filteredDataSource.data = [...this.dataSource.data];
     this.caculatorValue();
     this.paginatorAgain();
+    this.autoOpen();
+  }
+
+  autoOpen() {
+    setTimeout(() => this.accordion.openAll(), 1000);
   }
 
   applyFilter(event: Event) {
