@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatAccordion, MatPaginator, MatTable, MatTableDataSource } from '@angular/material';
 import { DistrictModel } from 'src/app/_models/APIModel/domestic-market.model';
 import { HydroElectricManagementModel, SolarEneryManagementModel } from 'src/app/_models/APIModel/electric-management.module';
+import { LinkModel } from 'src/app/_models/link.model';
+import { BreadCrumService } from 'src/app/_services/injectable-service/breadcrums.service';
 
 @Component({
   selector: 'app-solar-enery-management',
@@ -29,11 +31,11 @@ export class SolarEneryManagementComponent implements OnInit {
   { id: 9, ten_quan_huyen: 'Huyện Bù Đăng' },
   { id: 10, ten_quan_huyen: 'Huyện Chơn Thành' },
   { id: 11, ten_quan_huyen: 'Huyện Phú Riềng' }];
-  public data: Array<SolarEneryManagementModel> = [{ trang_thai: "Đang hoạt động", mst: '111', ten_doanh_nghiep: 'Công ty Cổ phần thủy điện Thác Mơ', ten_du_an: ' Nhà máy điện mặt trời Thác Mơ', ten_huyen_thi: 'huyện Bù Gia Mập', ma_huyen_thi: 4, cong_xuat_thiet_ke: 50, san_luong_6_thang: 10800, san_luong_nam: 4665600000000, doanh_thu: 9051264000000000 },
-  { trang_thai: "Đang hoạt động", mst: '222', ten_doanh_nghiep: 'Nhà máy điện mặt trời Lộc Ninh 1', ten_du_an: 'Nhà máy điện mặt trời Lộc Ninh 1', ten_huyen_thi: 'Xã Lộc Thạnh, huyện Lộc Ninh', ma_huyen_thi: 5, cong_xuat_thiet_ke: 200, san_luong_6_thang: 43200, san_luong_nam: 18662400000000, doanh_thu: 36205056000000000 },
-  { trang_thai: "Đang hoạt động", mst: '333', ten_doanh_nghiep: 'Nhà máy điện mặt trời Lộc Ninh 2', ten_du_an: 'Nhà máy điện mặt trời Lộc Ninh 2', ten_huyen_thi: 'Xã Lộc Thạnh, huyện Lộc Ninh', ma_huyen_thi: 5, cong_xuat_thiet_ke: 200, san_luong_6_thang: 43200, san_luong_nam: 18662400000000, doanh_thu: 36205056000000000 },
-  { trang_thai: "Đang hoạt động", mst: '444', ten_doanh_nghiep: 'Nhà máy điện mặt trời Lộc Ninh 3', ten_du_an: 'Nhà máy điện mặt trời Lộc Ninh 3', ten_huyen_thi: 'Xã Lộc Thạnh, huyện Lộc Ninh', ma_huyen_thi: 5, cong_xuat_thiet_ke: 150, san_luong_6_thang: 32400, san_luong_nam: 13996800000000, doanh_thu: 27153792000000000 },
-  { trang_thai: "Đang hoạt động", mst: '555', ten_doanh_nghiep: 'Nhà máy điện mặt trời Lộc Ninh 4', ten_du_an: 'Nhà máy điện mặt trời Lộc Ninh 4', ten_huyen_thi: 'Xã Lộc Thạnh, huyện Lộc Ninh', ma_huyen_thi: 5, cong_xuat_thiet_ke: 200, san_luong_6_thang: 43200, san_luong_nam: 18662400000000, doanh_thu: 36205056000000000 },
+  public data: Array<SolarEneryManagementModel> = [{ trang_thai: "Đang hoạt động", mst: '111', ten_doanh_nghiep: 'Công ty Cổ phần thủy điện Thác Mơ', ten_du_an: ' Nhà máy điện mặt trời Thác Mơ', ten_huyen_thi: 'huyện Bù Gia Mập', ma_huyen_thi: 4, cong_xuat_thiet_ke: 50, san_luong_6_thang: 10800, san_luong_nam: 4665600000000, doanh_thu: 9051264 },
+  { trang_thai: "Đang hoạt động", mst: '222', ten_doanh_nghiep: 'Nhà máy điện mặt trời Lộc Ninh 1', ten_du_an: 'Nhà máy điện mặt trời Lộc Ninh 1', ten_huyen_thi: 'Xã Lộc Thạnh, huyện Lộc Ninh', ma_huyen_thi: 5, cong_xuat_thiet_ke: 200, san_luong_6_thang: 43200, san_luong_nam: 18662400000000, doanh_thu: 36205056 },
+  { trang_thai: "Đang hoạt động", mst: '333', ten_doanh_nghiep: 'Nhà máy điện mặt trời Lộc Ninh 2', ten_du_an: 'Nhà máy điện mặt trời Lộc Ninh 2', ten_huyen_thi: 'Xã Lộc Thạnh, huyện Lộc Ninh', ma_huyen_thi: 5, cong_xuat_thiet_ke: 200, san_luong_6_thang: 43200, san_luong_nam: 18662400000000, doanh_thu: 36205056 },
+  { trang_thai: "Đang hoạt động", mst: '444', ten_doanh_nghiep: 'Nhà máy điện mặt trời Lộc Ninh 3', ten_du_an: 'Nhà máy điện mặt trời Lộc Ninh 3', ten_huyen_thi: 'Xã Lộc Thạnh, huyện Lộc Ninh', ma_huyen_thi: 5, cong_xuat_thiet_ke: 150, san_luong_6_thang: 32400, san_luong_nam: 13996800000000, doanh_thu: 27153792 },
+  { trang_thai: "Đang hoạt động", mst: '555', ten_doanh_nghiep: 'Nhà máy điện mặt trời Lộc Ninh 4', ten_du_an: 'Nhà máy điện mặt trời Lộc Ninh 4', ten_huyen_thi: 'Xã Lộc Thạnh, huyện Lộc Ninh', ma_huyen_thi: 5, cong_xuat_thiet_ke: 200, san_luong_6_thang: 43200, san_luong_nam: 18662400000000, doanh_thu: 36205056 },
   ]
   //Only TS Variable
   years: number[] = [];
@@ -42,21 +44,21 @@ export class SolarEneryManagementComponent implements OnInit {
   sanluongnam: number;
   soLuongDoanhNghiep: number;
   isChecked: boolean;
-
-  constructor() {
+  private _linkOutput: LinkModel = new LinkModel();
+  constructor(private _breadCrumService: BreadCrumService) {
   }
 
   ngOnInit() {
     this.years = this.getYears();
-  }
-  ngAfterViewInit(): void {
-    this.accordion.openAll();
-
     this.dataSource.data = this.data;
-    console.log(this.dataSource);
     this.filteredDataSource.data = [...this.dataSource.data];
     this.caculatorValue();
     this.paginatorAgain();
+    this.autoOpen();
+  }
+
+  autoOpen() {
+    setTimeout(() => this.accordion.openAll(), 1000);
   }
 
   applyFilter(event: Event) {

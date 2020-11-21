@@ -152,14 +152,14 @@
 
                         <ng-container matColumnDef="nang_luong_quy_doi">
                             <th mat-header-cell *matHeaderCellDef> Năng lượng quy đổi (TOE) </th>
-                            <td mat-cell *matCellDef="let element" > {{element.nang_luong_quy_doi}}
+                            <td mat-cell *matCellDef="let element" class="stt"> {{element.nang_luong_quy_doi | number: '1.0-0'}}
                             </td>
                         </ng-container>
 
                         <ng-container matColumnDef="suat_tieu_hao">
                             <th mat-header-cell *matHeaderCellDef> Suất tiêu hao/1 đơn vị sản phẩm </th>
-                            <td mat-cell *matCellDef="let element" >
-                                {{element.suat_tieu_hao}}</td>
+                            <td mat-cell *matCellDef="let element" class="stt">
+                                {{element.suat_tieu_hao | number: '1.0-0'}}</td>
                         </ng-container>
 
                         <ng-container matColumnDef="indexM">

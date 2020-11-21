@@ -38,15 +38,16 @@ export class PowerProductionManagementComponent implements OnInit {
 
   ngOnInit() {
     this.years = this.getYears();
-  }
-  ngAfterViewInit(): void {
-    this.accordion.openAll();
     this.year = this.getCurrentSelectedYear()
     this.dataSource.data = this.data;
-    console.log(this.dataSource);
     this.filteredDataSource.data = [...this.dataSource.data];
     this.caculatorValue();
     this.paginatorAgain();
+    this.autoOpen();
+  }
+
+  autoOpen() {
+    setTimeout(() => this.accordion.openAll(), 1000);
   }
 
   applyFilter(event: Event) {

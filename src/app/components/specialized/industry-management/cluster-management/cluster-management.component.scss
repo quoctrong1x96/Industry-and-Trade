@@ -60,6 +60,11 @@ td {
     padding: 10px 10px 10px 10px;
 }
 
+.mat-table.small {
+    width: 100%;
+    border: 1px solid black;
+    table-layout: initial;
+}
 .mat-table {
     width: 150%;
     border: 1px solid black;
@@ -82,4 +87,8 @@ td {
 .filter {
     font-size: 14px;
     width: 150%;
+}
+.view-detail{
+    cursor: pointer;
+    color:  #1f7ed0;
 }

@@ -8,6 +8,7 @@
     </mat-sidenav>
     <mat-sidenav-content [@onMainContentChange]="onSideNavChange ? 'open': 'close'" style="margin-left: 200px;">
         <div class="main_content" style="margin: 20px; height: 84vh;">
+            <app-header></app-header>
             <router-outlet></router-outlet>
             <app-footer></app-footer>
         </div>

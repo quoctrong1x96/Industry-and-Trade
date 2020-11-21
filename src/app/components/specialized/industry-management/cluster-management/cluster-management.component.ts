@@ -8,6 +8,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { District } from 'src/app/_models/district.model';
 import { ClusterFilterModel, ClusterModel } from 'src/app/_models/APIModel/cluster.model';
 import { each } from 'highcharts';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'cluster-management',
@@ -16,7 +17,10 @@ import { each } from 'highcharts';
 })
 
 export class ClusterManagementComponent implements OnInit {
-    topColumns: string[] = ['index', 'ten_cum_cn', 'dien_tich_qh', 'dien_tich_tl', 'chu_dau_tu', 'dien_tich_qhct', 'tinh_hinh_dau_tu'];
+    showColumns: string[] = [];
+    showSubColumns: string[] = [];
+    subColumns: string[] = ['dien_tich_da_dang_dau_tu', 'ten_hien_trang_ha_tang', 'ten_hien_trang_xlnt', 'tong_von_dau_tu'];
+    topColumns: string[] = ['index', 'ten_cum_cn', 'dien_tich_qh', 'chu_dau_tu', 'dien_tich_qhct'];
     totalColumns: string[] = ['index', 'ten_cum_cn', 'dien_tich_qh', 'dien_tich_tl', 'chu_dau_tu', 'dien_tich_qhct', 'dien_tich_da_dang_dau_tu', 'ten_hien_trang_ha_tang', 'ten_hien_trang_xlnt', 'tong_von_dau_tu'];
     dataSource: MatTableDataSource<ClusterModel> = new MatTableDataSource<ClusterModel>();
     filteredDataSource: MatTableDataSource<ClusterModel> = new MatTableDataSource<ClusterModel>();
@@ -43,7 +47,7 @@ export class ClusterManagementComponent implements OnInit {
     { id: 2, ten_hien_trang_xlnt: 'Có' },
     { id: 3, ten_hien_trang_xlnt: 'Đang xây dựng' }];
 
-    isChecked: boolean;
+    isChecked: boolean = false;
     sanLuongSanXuat: number = 0;
     sanLuongKinhDoanh: number = 0;
     filterModel: ClusterFilterModel = { id_hien_trang_ht: [], id_hien_trang_xlnt: [], id_quan_huyen: [] };
@@ -52,10 +56,14 @@ export class ClusterManagementComponent implements OnInit {
     @ViewChild(MatAccordion, { static: false }) accordion: MatAccordion;
     @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-    constructor(public sctService: SCTService) {
-    }
+    constructor(
+        public sctService: SCTService,
+        public router: Router,
+    ) { }
 
     ngOnInit() {
+        this.showColumns = this.topColumns;
+        this.showSubColumns = [];
         this.years = this.getYears();
         this.getDanhSachQuanLyCumCongNghiep(2020);
         this.autoOpen();
@@ -78,19 +86,22 @@ export class ClusterManagementComponent implements OnInit {
     //     this.accordion.openAll();
     // }
 
-  autoOpen() {
-    setTimeout(() => this.accordion.openAll(), 1000);
-}
+    autoOpen() {
+        setTimeout(() => this.accordion.openAll(), 1000);
+    }
 
     getDanhSachQuanLyCumCongNghiep(time_id: number) {
         this.sctService.GetDanhSachQuanLyCumCongNghiep(time_id).subscribe(result => {
+            result.data.sort((a, b) => b.chu_dau_tu.localeCompare(a.chu_dau_tu));
+            console.log("result.data:", result.data);
             this.dataSource = new MatTableDataSource<ClusterModel>(result.data);
+
 
             this.filteredDataSource.data = [...this.dataSource.data];
             // this.sanLuongKinhDoanh = this.filteredDataSource.data.length ? this.filteredDataSource.data.map(x => parseInt(x.san_luong)||0).reduce((a, b) => a + b) : 0;
             // this.sanLuongSanXuat = this.filteredDataSource.data.length ? this.filteredDataSource.data.map(x => parseInt(x.cong_suat)||0).reduce((a, b) => a + b) : 0;
             this.filteredDataSource.paginator = this.paginator;
-            this.paginator._intl.itemsPerPageLabel = 'Số hàng';
+            this.paginator._intl.itemsPerPageLabel = 'Số cụm công nghiệp đang hiển thị';
             this.paginator._intl.firstPageLabel = "Trang Đầu";
             this.paginator._intl.lastPageLabel = "Trang Cuối";
             this.paginator._intl.previousPageLabel = "Trang Trước";
@@ -104,6 +115,24 @@ export class ClusterManagementComponent implements OnInit {
 
     getYears() {
         return Array(5).fill(1).map((element, index) => new Date().getFullYear() - index);
+    }
+
+    changeTable(event) {
+        this.isChecked = event.checked;
+        if (this.isChecked) {
+            this.showColumns = this.totalColumns;
+            this.showSubColumns = this.subColumns;
+        }
+        else {
+            this.showColumns = this.topColumns;
+            this.showSubColumns = [];
+        }
+    }
+
+    public openDetailCluster(id: string) {
+        let url = this.router.serializeUrl(
+            this.router.createUrlTree([encodeURI('#') + '/specialized/industry-management/cluster/' + id]));
+        window.open(url.replace('%23', '#'), "_blank");
     }
 
     // applyDistrictFilter(event) {

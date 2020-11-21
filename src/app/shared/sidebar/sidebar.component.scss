@@ -36,10 +36,9 @@
     font-weight: bold;
   }
 
-  .mat-list-base .mat-list-item .mat-list-icon,
-  .mat-list-base .mat-list-option .mat-list-icon {
-    margin-right: 5px;
-    padding: 0px;
+  .mat-list-item.child {
+    font-size: 1em;
+    // padding-left: 28px;
   }
 
   .mat-list-item.child {
@@ -48,6 +47,10 @@
   }
   .mat-icon {
     margin-right: 5px;
+  }
+  .mat-list-base .mat-list-item .mat-list-icon, .mat-list-base .mat-list-option .mat-list-icon{
+    margin-right: 5px;
+    padding:0px;
   }
   .mat-list-item:hover {
     background-color: $blue;
