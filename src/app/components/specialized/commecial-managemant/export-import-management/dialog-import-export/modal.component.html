@@ -1,9 +1,11 @@
 <ng-container *ngIf="id === 1; else elseTemplate">
     <mat-card class="liquor">
         <mat-card-content>
-            <div class="example-action-buttons">
-                <button mat-raised-button color="primary" (click)="accordion.openAll()">Mở Tất Cả</button> &nbsp;
-                <button mat-raised-button color="warn" (click)="accordion.closeAll()">Đóng tất cả</button>
+            <div class="row example-action-buttons ">
+                <!-- <button mat-raised-button color="primary" (click)="accordion.openAll()">Mở Tất Cả</button> &nbsp;
+                <button mat-raised-button color="warn" (click)="accordion.closeAll()">Đóng tất cả</button> -->
+
+                <button mat-raised-button color="warn" mat-dialog-close>Đóng</button>
             </div>
             <mat-accordion class="example-headers-align" multi>
                 <mat-expansion-panel>
@@ -28,7 +30,7 @@
                                     </mat-card-title>
                                     <br>
                                     <mat-card-subtitle class="value">
-                                        <strong>{{TongLuongThangThucHien | number: '1.1-2' }} (Tấn)</strong>
+                                        <strong>{{TongLuongThangThucHien | formatNumber }} (Tấn)</strong>
                                     </mat-card-subtitle>
                                 </mat-card-header>
                                 <mat-card-content>
@@ -44,7 +46,7 @@
                                     <mat-card-title>Tổng giá trị thực hiện tháng:
                                     </mat-card-title>
                                     <mat-card-subtitle class="value">
-                                        <strong>{{TongGiaTriThangThucHien | number: '1.1-2' }} (USD)</strong>
+                                        <strong>{{TongGiaTriThangThucHien | formatNumber }} (USD)</strong>
                                     </mat-card-subtitle>
                                 </mat-card-header>
                                 <mat-card-content>
@@ -61,7 +63,7 @@
                                     <mat-card-title>Tổng sản lượng cộng dồn tới tháng báo cáo:
                                     </mat-card-title>
                                     <mat-card-subtitle class="value">
-                                        <strong>{{TongLuongCongDon | number: '1.1-2' }} (Tấn)</strong>
+                                        <strong>{{TongLuongCongDon | formatNumber }} (Tấn)</strong>
                                     </mat-card-subtitle>
                                 </mat-card-header>
                                 <mat-card-content>
@@ -77,7 +79,7 @@
                                     <mat-card-title>Tổng giá trị cộng dồn tới tháng báo cáo:
                                     </mat-card-title>
                                     <mat-card-subtitle class="value">
-                                        <strong>{{TongGiaTriCongDon | number: '1.1-2' }} (USD)</strong>
+                                        <strong>{{TongGiaTriCongDon | formatNumber }} (USD)</strong>
                                     </mat-card-subtitle>
                                 </mat-card-header>
                                 <mat-card-content>
@@ -131,7 +133,7 @@
                             <input matInput (keyup)="applyFilter($event)" placeholder="" #input>
                         </mat-form-field>
 
-                        <table mat-table [dataSource]="dataSource" #table>
+                        <table mat-table [dataSource]="dataSource" #table matSort>
                             <ng-container matColumnDef="index">
                                 <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> STT </th>
                                 <td mat-cell *matCellDef="let element; let i = index;" class='stt'>{{i+1}}</td>
@@ -159,27 +161,27 @@
                             </ng-container>
 
                             <ng-container matColumnDef="luong_thang">
-                                <th mat-header-cell *matHeaderCellDef> Lượng (Tấn) </th>
-                                <td mat-cell *matCellDef="let element" > {{element.luong_thang}}</td>
-                                <td mat-footer-cell *matFooterCellDef> {{TongLuongThangThucHien | number: '1.1-2'}} </td>
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Lượng (Tấn) </th>
+                                <td mat-cell *matCellDef="let element" class="stt"> {{element.luong_thang}}</td>
+                                <td mat-footer-cell *matFooterCellDef> {{TongLuongThangThucHien | formatNumber}} </td>
                             </ng-container>
 
                             <ng-container matColumnDef="gia_tri_thang">
-                                <th mat-header-cell *matHeaderCellDef> Trị giá (USD) </th>
-                                <td mat-cell *matCellDef="let element" > {{element.gia_tri_thang}}</td>
-                                <td mat-footer-cell *matFooterCellDef> {{TongGiaTriThangThucHien | number: '1.1-2'}} </td>
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Trị giá (USD) </th>
+                                <td mat-cell *matCellDef="let element" class="stt"> {{element.gia_tri_thang}}</td>
+                                <td mat-footer-cell *matFooterCellDef> {{TongGiaTriThangThucHien | formatNumber}} </td>
                             </ng-container>
 
                             <ng-container matColumnDef="luong_cong_don">
-                                <th mat-header-cell *matHeaderCellDef> Lượng (Tấn) </th>
-                                <td mat-cell *matCellDef="let element" > {{element.luong_cong_don}}</td>
-                                <td mat-footer-cell *matFooterCellDef> {{TongLuongCongDon | number: '1.1-2'}} </td>
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Lượng (Tấn) </th>
+                                <td mat-cell *matCellDef="let element" class="stt"> {{element.luong_cong_don}}</td>
+                                <td mat-footer-cell *matFooterCellDef> {{TongLuongCongDon | formatNumber}} </td>
                             </ng-container>
 
                             <ng-container matColumnDef="gia_tri_cong_don">
-                                <th mat-header-cell *matHeaderCellDef> Trị giá (USD) </th>
-                                <td mat-cell *matCellDef="let element" > {{element.gia_tri_cong_don}}</td>
-                                <td mat-footer-cell *matFooterCellDef> {{TongGiaTriCongDon | number: '1.1-2'}} </td>
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Trị giá (USD) </th>
+                                <td mat-cell *matCellDef="let element" class="stt"> {{element.gia_tri_cong_don}}</td>
+                                <td mat-footer-cell *matFooterCellDef> {{TongGiaTriCongDon | formatNumber}} </td>
                             </ng-container>
 
                             <tr mat-header-row *matHeaderRowDef="['index', 'ten_san_pham', 'id_quoc_gia', 'thuc_hien_bao_cao_thang', 'cong_don_den_ky_bao_cao']">
@@ -198,14 +200,18 @@
             </mat-accordion>
 
         </mat-card-content>
+        <mat-dialog-actions align="end">
+            <button mat-raised-button color="warn" mat-dialog-close>Đóng</button>
+          </mat-dialog-actions>
     </mat-card>
 </ng-container>
 <ng-template #elseTemplate>
     <mat-card>
         <mat-card-content class="mat-typography">
-            <div class="example-action-buttons">
-                <button mat-raised-button color="primary" (click)="accordion.openAll()">Mở Tất Cả</button> &nbsp;
-                <button mat-raised-button color="warn" (click)="accordion.closeAll()">Đóng tất cả</button>
+            <div class="row example-action-buttons ">
+                <!-- <button mat-raised-button color="primary" (click)="accordion.openAll()">Mở Tất Cả</button> &nbsp;
+                <button mat-raised-button color="warn" (click)="accordion.closeAll()">Đóng tất cả</button> &nbsp; -->
+                <button mat-raised-button color="warn" mat-dialog-close>Đóng</button>
             </div>
             <mat-accordion class="example-headers-align" multi>
                 <mat-expansion-panel>
@@ -373,5 +379,8 @@
                 </mat-expansion-panel>
             </mat-accordion>
         </mat-card-content>
+        <mat-dialog-actions align="end">
+            <button mat-raised-button color="warn" mat-dialog-close>Đóng</button>
+          </mat-dialog-actions>
     </mat-card>
 </ng-template>

@@ -19,7 +19,7 @@ import { ConfirmationDialogComponent } from './shared/confirmation-dialog/confir
 import { ConfirmationDialogService } from './shared/confirmation-dialog/confirmation-dialog.service';
 // import {ToastrModule} from 'ngx-toastr';
 import {MatPaginatorModule} from '@angular/material/paginator';
-import { FormatNumberReportPipe } from './shared/pipes/formatNumber.pipe';
+// import { FormatNumberReportPipe } from './shared/pipes/formatNumber.pipe';
 import { dich } from 'src/app/components/specialized/commecial-managemant/border-trade/dich.pipe';
 @NgModule({
   imports: [
@@ -37,9 +37,11 @@ import { dich } from 'src/app/components/specialized/commecial-managemant/border
   declarations:[
     InformationComponent,
     ConfirmationDialogComponent,
-    FormatNumberReportPipe
+    // FormatNumberReportPipe
   ],
-  exports : [FormatNumberReportPipe],
+  exports : [
+    // FormatNumberReportPipe
+  ],
   providers: [
    // { provide: APP_INITIALIZER, useFactory: appInitializer, multi: true, deps: [LoginService] },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
