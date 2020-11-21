@@ -125,4 +125,8 @@ export class PetrolBusinessComponent implements OnInit {
         console.log(event);
         this.filteredDataSource.filter = (event.checked) ? "true" : "";
     }
+
+    countBusiness() : number{
+        return [...new Set(this.filteredDataSource.data.map( x => x.mst))].length;
+    }
 }

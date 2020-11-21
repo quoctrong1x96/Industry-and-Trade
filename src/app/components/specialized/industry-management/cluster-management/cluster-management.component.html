@@ -140,7 +140,7 @@
                             <td mat-cell *matCellDef="let element; let i = index;" class='stt'>{{i+1}}</td>
                         </ng-container>
 
-                        <ng-container matColumnDef="ten_cum_cn">
+                        <ng-container matColumnDef="ten_cum_cn" [sticky]="true">
                             <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Tên, địa điểm CCN </th>
                             <td mat-cell *matCellDef="let element">
                                 <a href={{element.lien_ket}} target="_blank">{{element.ten_cum_cn}}</a>
@@ -192,8 +192,8 @@
                             <th mat-header-cell *matHeaderCellDef [attr.colspan]="4"> Tình hình đầu tư hạ tầng CCN </th>
                         </ng-container>
 
-                        <tr mat-header-row *matHeaderRowDef="topColumns"></tr>
-                        <tr mat-header-row *matHeaderRowDef="['dien_tich_da_dang_dau_tu', 'ten_hien_trang_ha_tang', 'ten_hien_trang_xlnt', 'tong_von_dau_tu']">
+                        <tr mat-header-row *matHeaderRowDef="topColumns; sticky : true"></tr>
+                        <tr mat-header-row *matHeaderRowDef="['dien_tich_da_dang_dau_tu', 'ten_hien_trang_ha_tang', 'ten_hien_trang_xlnt', 'tong_von_dau_tu']; sticky : true">
                         </tr>
                         <tr mat-row *matRowDef="let row; columns: totalColumns;let i = index; ">
                     </table>

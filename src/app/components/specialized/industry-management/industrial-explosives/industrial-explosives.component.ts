@@ -17,8 +17,8 @@ import { filter } from 'rxjs/operators';
 })
 
 export class IndustrialExplosivesComponent implements OnInit {
-    displayedColumns: string[] = ['index', 'mst', 'ten_doanh_nghiep', 'nganh_nghe_kd', 'dien_thoai', 'dia_chi', 'so_lao_dong', 'cong_suat', 'san_luong', 'so_gp_gcn', 'ngay_cap', 'ngay_het_han', 'tinh_hinh_6thang', 'tinh_hinh_ca_nam', 'dang_hoat_dong'];
-    totalColumns: string[] = ['index', 'mst', 'ten_doanh_nghiep', 'nganh_nghe_kd', 'dien_thoai', 'dia_chi', 'so_lao_dong', 'cong_suat', 'san_luong', 'so_gp_gcn', 'ngay_cap', 'ngay_het_han', 'thuoc_no_6thang', 'kip_no_6thang', 'moi_no_6thang', 'day_no_6thang', 'thuoc_no', 'kip_no', 'moi_no', 'day_no', 'dang_hoat_dong'];
+    displayedColumns: string[] = ['index', 'mst', 'ten_doanh_nghiep', 'nganh_nghe_kd', 'dien_thoai', 'dia_chi', 'so_lao_dong', 'cong_suat', 'san_luong', 'so_gp_gcn', 'ngay_cap', 'ngay_het_han', 'dang_hoat_dong', 'tinh_hinh_6thang', 'tinh_hinh_ca_nam'];
+    totalColumns: string[] = ['index', 'mst', 'ten_doanh_nghiep', 'nganh_nghe_kd', 'dien_thoai', 'dia_chi', 'so_lao_dong', 'cong_suat', 'san_luong', 'so_gp_gcn', 'ngay_cap', 'ngay_het_han', 'dang_hoat_dong', 'thuoc_no_6thang', 'kip_no_6thang', 'moi_no_6thang', 'day_no_6thang', 'thuoc_no', 'kip_no', 'moi_no', 'day_no'];
     dataSource: MatTableDataSource<IndustrialExplosivesModel> = new MatTableDataSource<IndustrialExplosivesModel>();
     filteredDataSource: MatTableDataSource<IndustrialExplosivesModel> = new MatTableDataSource<IndustrialExplosivesModel>();
     years: number[] = [];

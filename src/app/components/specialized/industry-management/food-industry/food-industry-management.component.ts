@@ -16,8 +16,8 @@ import { ChemicalLPGFoodManagementModel } from 'src/app/_models/APIModel/industr
 
 export class FoodIndustryManagementComponent implements OnInit {
     displayedColumns: string[] = [];
-    displayedColumns1: string[] = ['index', 'mst', 'ten_doanh_nghiep', 'nganh_nghe_kd', 'dia_chi', 'so_lao_dong', 'cong_suat', 'san_luong', 'von_dau_tu', 'so_gp_gcn', 'ngay_cap', 'ngay_het_han'];
-    displayedColumns2: string[] = ['index', 'ten_doanh_nghiep', 'nganh_nghe_kd', 'dia_chi', 'cong_suat', 'san_luong'];
+    displayedColumns1: string[] = ['index', 'mst', 'ten_doanh_nghiep', 'nganh_nghe_kd', 'dia_chi', 'so_lao_dong', 'cong_suat', 'san_luong', 'von_dau_tu', 'so_gp_gcn', 'ngay_cap', 'ngay_het_han', 'trang_thai_hoat_dong'];
+    displayedColumns2: string[] = ['index', 'ten_doanh_nghiep', 'nganh_nghe_kd', 'dia_chi', 'cong_suat', 'san_luong', 'trang_thai_hoat_dong'];
     dataSource: MatTableDataSource<ChemicalLPGFoodManagementModel> = new MatTableDataSource<ChemicalLPGFoodManagementModel>();
     filteredDataSource: MatTableDataSource<ChemicalLPGFoodManagementModel> = new MatTableDataSource<ChemicalLPGFoodManagementModel>();
     years: number[] = [];
@@ -33,8 +33,8 @@ export class FoodIndustryManagementComponent implements OnInit {
     { id: 10, ten_quan_huyen: 'Huyện Chơn Thành' },
     { id: 11, ten_quan_huyen: 'Huyện Phú Riềng' }];
     isChecked: boolean;
-    sanLuongSanXuat: number = 0;
-    sanLuongKinhDoanh: number = 0;
+    sanLuongBotMy: number = 0;
+    sanLuongRuou: number = 0;
 
     @ViewChild('table', { static: false }) table: MatTable<ChemicalLPGFoodManagementModel>;
     @ViewChild(MatAccordion, { static: false }) accordion: MatAccordion;
@@ -54,7 +54,7 @@ export class FoodIndustryManagementComponent implements OnInit {
 
     ngOnInit() {
         this.years = this.getYears();
-        this.getDanhSachQuanLyCongNghiepThucPham(2020);
+        this.getDanhSachQuanLyCongNghiepThucPham(new Date().getFullYear() - 1);
         this.filteredDataSource.filterPredicate = function (data: ChemicalLPGFoodManagementModel, filter): boolean {
             return String(data.is_het_han).includes(filter);
         };
@@ -77,8 +77,8 @@ export class FoodIndustryManagementComponent implements OnInit {
             });
 
             this.filteredDataSource.data = [...this.dataSource.data];
-            // this.sanLuongKinhDoanh = this.filteredDataSource.data.length ? this.filteredDataSource.data.map(x => parseInt(x.san_luong)||0).reduce((a, b) => a + b) : 0;
-            // this.sanLuongSanXuat = this.filteredDataSource.data.length ? this.filteredDataSource.data.map(x => parseInt(x.cong_suat)||0).reduce((a, b) => a + b) : 0;
+            this.sanLuongBotMy = this.filteredDataSource.data.length ? this.filteredDataSource.data.filter(x => x.loai_sp == 1).map(x => parseInt(x.san_luong)||0).reduce((a, b) => a + b) : 0;
+            this.sanLuongRuou = this.filteredDataSource.data.length ? this.filteredDataSource.data.filter(x => x.loai_sp == 2).map(x => parseInt(x.san_luong)||0).reduce((a, b) => a + b) : 0;
             this.filteredDataSource.paginator = this.paginator;
             this.paginator._intl.itemsPerPageLabel = 'Số hàng';
             this.paginator._intl.firstPageLabel = "Trang Đầu";
@@ -112,8 +112,8 @@ export class FoodIndustryManagementComponent implements OnInit {
         else {
             this.filteredDataSource.data = filteredData;
         }
-        // this.sanLuongKinhDoanh = this.filteredDataSource.data.length ? this.filteredDataSource.data.map(x => parseInt(x.san_luong) || 0).reduce((a, b) => a + b) : 0;
-        // this.sanLuongSanXuat = this.filteredDataSource.data.length ? this.filteredDataSource.data.map(x => parseInt(x.cong_suat)||0).reduce((a, b) => a + b) : 0;
+        this.sanLuongBotMy = this.filteredDataSource.data.length ? this.filteredDataSource.data.filter(x => x.loai_sp == 1).map(x => parseInt(x.san_luong)||0).reduce((a, b) => a + b) : 0;
+        this.sanLuongRuou = this.filteredDataSource.data.length ? this.filteredDataSource.data.filter(x => x.loai_sp == 2).map(x => parseInt(x.san_luong)||0).reduce((a, b) => a + b) : 0;
     }
 
     // isHidden(row : any){

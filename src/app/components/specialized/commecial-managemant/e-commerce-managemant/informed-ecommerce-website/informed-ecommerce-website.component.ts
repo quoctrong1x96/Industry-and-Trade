@@ -51,6 +51,9 @@ export class InformedEcommerceWebsiteComponent implements OnInit {
     this.sctService.GetDanhSachWebTMDT().subscribe(response => {
       this.dataSource = new MatTableDataSource<ECommerceWebsite>(response.data);
       this.filteredDataSource.data = [...this.dataSource.data];
+      // this.filteredDataSource.data = this.filteredDataSource.data.concat(this.filteredDataSource.data);
+      // this.filteredDataSource.data = this.filteredDataSource.data.concat(this.filteredDataSource.data);
+      // this.filteredDataSource.data = this.filteredDataSource.data.concat(this.filteredDataSource.data);
       this.filteredDataSource.paginator = this.paginator;
       this.paginator._intl.itemsPerPageLabel = 'Số hàng';
       this.paginator._intl.firstPageLabel = "Trang Đầu";
