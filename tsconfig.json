@@ -18,10 +18,13 @@
       "es2018",
       "dom"
     ],
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": false,
     "strictInjectionParameters": true
-  }
+  },
 }
