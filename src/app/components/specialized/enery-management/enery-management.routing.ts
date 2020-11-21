@@ -23,7 +23,7 @@ const routes: Routes = [
       {
         path: 'hydroelectric',
         data: {
-          title: 'Năng lượng - Thủy điện',
+          title: 'Năng lượng',
         },
         component: ElectricManagementComponent
       },
@@ -37,7 +37,7 @@ const routes: Routes = [
       {
         path: 'focused_energy',
         data: {
-          title: 'Cơ sở sử dụng năng lượng trọng điểm',
+          title: 'Tiết kiệm điện',
         },
         component: UseFocusedEnergyComponent
       },

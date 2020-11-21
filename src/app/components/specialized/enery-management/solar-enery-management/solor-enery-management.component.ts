@@ -31,11 +31,11 @@ export class SolarEneryManagementComponent implements OnInit {
   { id: 9, ten_quan_huyen: 'Huyện Bù Đăng' },
   { id: 10, ten_quan_huyen: 'Huyện Chơn Thành' },
   { id: 11, ten_quan_huyen: 'Huyện Phú Riềng' }];
-  public data: Array<SolarEneryManagementModel> = [{ trang_thai: "Đang hoạt động", mst: '111', ten_doanh_nghiep: 'Công ty Cổ phần thủy điện Thác Mơ', ten_du_an: ' Nhà máy điện mặt trời Thác Mơ', ten_huyen_thi: 'huyện Bù Gia Mập', ma_huyen_thi: 4, cong_xuat_thiet_ke: 50, san_luong_6_thang: 10800, san_luong_nam: 4665600000000, doanh_thu: 9051264000000000 },
-  { trang_thai: "Đang hoạt động", mst: '222', ten_doanh_nghiep: 'Nhà máy điện mặt trời Lộc Ninh 1', ten_du_an: 'Nhà máy điện mặt trời Lộc Ninh 1', ten_huyen_thi: 'Xã Lộc Thạnh, huyện Lộc Ninh', ma_huyen_thi: 5, cong_xuat_thiet_ke: 200, san_luong_6_thang: 43200, san_luong_nam: 18662400000000, doanh_thu: 36205056000000000 },
-  { trang_thai: "Đang hoạt động", mst: '333', ten_doanh_nghiep: 'Nhà máy điện mặt trời Lộc Ninh 2', ten_du_an: 'Nhà máy điện mặt trời Lộc Ninh 2', ten_huyen_thi: 'Xã Lộc Thạnh, huyện Lộc Ninh', ma_huyen_thi: 5, cong_xuat_thiet_ke: 200, san_luong_6_thang: 43200, san_luong_nam: 18662400000000, doanh_thu: 36205056000000000 },
-  { trang_thai: "Đang hoạt động", mst: '444', ten_doanh_nghiep: 'Nhà máy điện mặt trời Lộc Ninh 3', ten_du_an: 'Nhà máy điện mặt trời Lộc Ninh 3', ten_huyen_thi: 'Xã Lộc Thạnh, huyện Lộc Ninh', ma_huyen_thi: 5, cong_xuat_thiet_ke: 150, san_luong_6_thang: 32400, san_luong_nam: 13996800000000, doanh_thu: 27153792000000000 },
-  { trang_thai: "Đang hoạt động", mst: '555', ten_doanh_nghiep: 'Nhà máy điện mặt trời Lộc Ninh 4', ten_du_an: 'Nhà máy điện mặt trời Lộc Ninh 4', ten_huyen_thi: 'Xã Lộc Thạnh, huyện Lộc Ninh', ma_huyen_thi: 5, cong_xuat_thiet_ke: 200, san_luong_6_thang: 43200, san_luong_nam: 18662400000000, doanh_thu: 36205056000000000 },
+  public data: Array<SolarEneryManagementModel> = [{ trang_thai: "Đang hoạt động", mst: '111', ten_doanh_nghiep: 'Công ty Cổ phần thủy điện Thác Mơ', ten_du_an: ' Nhà máy điện mặt trời Thác Mơ', ten_huyen_thi: 'huyện Bù Gia Mập', ma_huyen_thi: 4, cong_xuat_thiet_ke: 50, san_luong_6_thang: 10800, san_luong_nam: 4665600000000, doanh_thu: 9051264 },
+  { trang_thai: "Đang hoạt động", mst: '222', ten_doanh_nghiep: 'Nhà máy điện mặt trời Lộc Ninh 1', ten_du_an: 'Nhà máy điện mặt trời Lộc Ninh 1', ten_huyen_thi: 'Xã Lộc Thạnh, huyện Lộc Ninh', ma_huyen_thi: 5, cong_xuat_thiet_ke: 200, san_luong_6_thang: 43200, san_luong_nam: 18662400000000, doanh_thu: 36205056 },
+  { trang_thai: "Đang hoạt động", mst: '333', ten_doanh_nghiep: 'Nhà máy điện mặt trời Lộc Ninh 2', ten_du_an: 'Nhà máy điện mặt trời Lộc Ninh 2', ten_huyen_thi: 'Xã Lộc Thạnh, huyện Lộc Ninh', ma_huyen_thi: 5, cong_xuat_thiet_ke: 200, san_luong_6_thang: 43200, san_luong_nam: 18662400000000, doanh_thu: 36205056 },
+  { trang_thai: "Đang hoạt động", mst: '444', ten_doanh_nghiep: 'Nhà máy điện mặt trời Lộc Ninh 3', ten_du_an: 'Nhà máy điện mặt trời Lộc Ninh 3', ten_huyen_thi: 'Xã Lộc Thạnh, huyện Lộc Ninh', ma_huyen_thi: 5, cong_xuat_thiet_ke: 150, san_luong_6_thang: 32400, san_luong_nam: 13996800000000, doanh_thu: 27153792 },
+  { trang_thai: "Đang hoạt động", mst: '555', ten_doanh_nghiep: 'Nhà máy điện mặt trời Lộc Ninh 4', ten_du_an: 'Nhà máy điện mặt trời Lộc Ninh 4', ten_huyen_thi: 'Xã Lộc Thạnh, huyện Lộc Ninh', ma_huyen_thi: 5, cong_xuat_thiet_ke: 200, san_luong_6_thang: 43200, san_luong_nam: 18662400000000, doanh_thu: 36205056 },
   ]
   //Only TS Variable
   years: number[] = [];
@@ -50,10 +50,6 @@ export class SolarEneryManagementComponent implements OnInit {
 
   ngOnInit() {
     this.years = this.getYears();
-    this._linkOutput.link = "/specialized/enery-management/countryside_electric";
-    this._linkOutput.title = "Năng lượng - Init";
-    this._linkOutput.text = "Năng lượng";
-    this._breadCrumService.sendLink(this._linkOutput);
     this.dataSource.data = this.data;
     this.filteredDataSource.data = [...this.dataSource.data];
     this.caculatorValue();
@@ -63,12 +59,6 @@ export class SolarEneryManagementComponent implements OnInit {
 
   autoOpen() {
     setTimeout(() => this.accordion.openAll(), 1000);
-  }
-  ngOnDestroy(): void {
-    this._linkOutput.link = "/specialized/enery-management/countryside_electric";
-    this._linkOutput.title = "Năng lượng - Destroy";
-    this._linkOutput.text = "Năng lượng";
-    this._breadCrumService.sendLink(this._linkOutput);
   }
 
   applyFilter(event: Event) {
