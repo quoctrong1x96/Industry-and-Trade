@@ -188,6 +188,7 @@ export class BorderTradeComponent implements OnInit {
       console.log(this.dataSourceI)
       this.TongKimNgachxk = this.TongKimNgachThangNhomIxk + this.TongKimNgachThangNhomIIxk + this.TongKimNgachThangNhomIIIxk + this.TongKimNgachThangNhomIVxk + this.TongKimNgachThangNhomVxk;
       this.TongKimNgachnk = this.TongKimNgachThangNhomInk + this.TongKimNgachThangNhomIInk + this.TongKimNgachThangNhomIIInk + this.TongKimNgachThangNhomIVnk + this.TongKimNgachThangNhomVnk;
+      console.log('tong xk', this.TongKimNgachxk)
     });
   }
 
@@ -225,24 +226,24 @@ export class BorderTradeComponent implements OnInit {
     resultDataXK.push(dataGroupIxk);
     switch (ind) {
       case 1:
-        this.TongKimNgachThangNhomIxk = dataGroupIxk.kim_ngach
+        this.TongKimNgachThangNhomIxk += dataGroupIxk.kim_ngach
         break;
       case 2:
-        this.TongKimNgachThangNhomIIxk = dataGroupIxk.kim_ngach
+        this.TongKimNgachThangNhomIIxk += dataGroupIxk.kim_ngach
         break;
       case 3:
-        this.TongKimNgachThangNhomIIIxk = dataGroupIxk.kim_ngach
+        this.TongKimNgachThangNhomIIIxk += dataGroupIxk.kim_ngach
         break;
       case 4:
-        this.TongKimNgachThangNhomIVxk = dataGroupIxk.kim_ngach
+        this.TongKimNgachThangNhomIVxk += dataGroupIxk.kim_ngach
         break;
       case 5:
-        this.TongKimNgachThangNhomVxk = dataGroupIxk.kim_ngach
+        this.TongKimNgachThangNhomVxk += dataGroupIxk.kim_ngach
         break;
       default:
         break;
     }
-    this.TongKimNgachThangNhomIxk = dataGroupIxk.kim_ngach;
+    // this.TongKimNgachThangNhomIxk = dataGroupIxk.kim_ngach;
     // console.log(resultDataXK)
 
   }
@@ -252,19 +253,19 @@ export class BorderTradeComponent implements OnInit {
     resulDatatNK.splice(0, 0, gr[2]);
     switch (ind) {
       case 1:
-        this.TongKimNgachThangNhomInk = dataGroupIxk.kim_ngach
+        this.TongKimNgachThangNhomInk += dataGroupIxk.kim_ngach
         break;
       case 2:
-        this.TongKimNgachThangNhomIInk = dataGroupIxk.kim_ngach
+        this.TongKimNgachThangNhomIInk += dataGroupIxk.kim_ngach
         break;
       case 3:
-        this.TongKimNgachThangNhomIIInk = dataGroupIxk.kim_ngach
+        this.TongKimNgachThangNhomIIInk += dataGroupIxk.kim_ngach
         break;
       case 4:
-        this.TongKimNgachThangNhomIVnk = dataGroupIxk.kim_ngach
+        this.TongKimNgachThangNhomIVnk += dataGroupIxk.kim_ngach
         break;
       case 5:
-        this.TongKimNgachThangNhomVnk = dataGroupIxk.kim_ngach
+        this.TongKimNgachThangNhomVnk += dataGroupIxk.kim_ngach
         break;
       default:
         break;

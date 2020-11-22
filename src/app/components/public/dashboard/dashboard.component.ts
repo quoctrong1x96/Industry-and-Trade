@@ -7,7 +7,7 @@ import { ChartOptions, ChartDataSets, ChartType } from 'chart.js';
 import { DashboardService } from 'src/app/_services/APIService/dashboard.service';
 import { CHART_TYPE } from 'src/app/_enums/chart.type.enum';
 import { regExpEscape } from '@ng-bootstrap/ng-bootstrap/util/util';
-import * as moment from 'moment';
+import moment from 'moment';
 import * as Highcharts from "highcharts";
 
 interface HashTableNumber<T> {

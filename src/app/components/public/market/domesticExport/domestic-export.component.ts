@@ -20,7 +20,7 @@ import { CompanyTopPopup } from '../company-top-popup/company-top-popup.componen
 //Moment
 import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
-import * as _moment from 'moment';
+import _moment from 'moment';
 import { defaultFormat as _rollupMoment, Moment } from 'moment';
 const moment = _rollupMoment || _moment;
 export const MY_FORMATS = {

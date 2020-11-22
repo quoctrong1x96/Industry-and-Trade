@@ -16,7 +16,7 @@ import {
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { FormControl } from '@angular/forms';
 import { Moment } from 'moment';
-import * as moment from 'moment';
+import moment from 'moment';
 import { MatDatepicker, MatPaginator, MatTableDataSource } from '@angular/material';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 export const MY_FORMATS = {

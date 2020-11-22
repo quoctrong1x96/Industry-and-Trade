@@ -17,7 +17,7 @@ import {MatSort} from '@angular/material/sort';
     encapsulation: ViewEncapsulation.None
 })
 export class ModalComponent implements OnInit {
-    public displayedColumns_business: string[] = ['index', 'ten_doanh_nghiep', 'cong_suat', 'mst', 'dia_chi', 'dien_thoai', 'nganh_nghe_kd', 'chi_tiet_doanh_nghiep'];
+    public displayedColumns_business: string[] = ['index', 'ten_doanh_nghiep', 'cong_suat', 'mst', 'dia_chi', 'dien_thoai', 'chi_tiet_doanh_nghiep'];
     ten_san_pham: string = '';
     so_doanh_nghiep: number = 0;
     displayedColumns: string[] = ['index', 'ten_san_pham', 'id_quoc_gia', 'luong_thang', 'gia_tri_thang', 'luong_cong_don', 'gia_tri_cong_don'];
@@ -62,6 +62,7 @@ export class ModalComponent implements OnInit {
         this.id = this.data['id'];
         if(this.id === 1){
             this.dataSource = new MatTableDataSource<ex_im_model>(this.data['data']);
+            console.log('zxzxzxz', this.dataSource.data)
             for (let item of this.data['data']) {
                 // console.log(item)
                 this.TongLuongThangThucHien += item['luong_thang'];
@@ -92,7 +93,7 @@ export class ModalComponent implements OnInit {
 
       public OpenDetailCompany(mst: string) {
         let url = this.router.serializeUrl(
-          this.router.createUrlTree([encodeURI('#') + '/partner/search/' + mst]));
+          this.router.createUrlTree([encodeURI('#') + '/manager/business/search/' + mst]));
         window.open(url.replace('%23', '#'), "_blank");
       }
 
