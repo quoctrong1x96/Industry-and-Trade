@@ -5,7 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import * as XLSX from 'xlsx';
-import * as _moment from 'moment';
+import _moment from 'moment';
 import { defaultFormat as _rollupMoment, Moment } from 'moment';
 import { DateAdapter, MAT_DATE_LOCALE, MAT_DATE_FORMATS, MatDatepicker } from '@angular/material';
 import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';

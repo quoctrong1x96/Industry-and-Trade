@@ -16,7 +16,7 @@ import { DomesticPriceModel } from '../../../../_models/APIModel/domestic-market
 
 //Moment
 import { defaultFormat as _rollupMoment, Moment } from 'moment';
-import * as _moment from 'moment';
+import _moment from 'moment';
 const moment = _rollupMoment || _moment;
 export const DDMMYY_FORMAT = {
   parse: {
