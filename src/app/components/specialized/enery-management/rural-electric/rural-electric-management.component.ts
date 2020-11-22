@@ -7,7 +7,7 @@ import { ElectricityDevelopmentModel, HydroElectricManagementModel, RuralElectri
 @Component({
   selector: 'rural-electric-management',
   templateUrl: './rural-electric-management.component.html',
-  styleUrls: ['./rural-electric-management.component.scss'],
+  styleUrls: ['/../../special_layout.scss'],
 })
 
 export class RuralElectricManagementComponent implements OnInit {

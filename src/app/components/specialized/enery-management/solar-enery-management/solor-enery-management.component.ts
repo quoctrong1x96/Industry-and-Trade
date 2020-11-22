@@ -8,7 +8,7 @@ import { BreadCrumService } from 'src/app/_services/injectable-service/breadcrum
 @Component({
   selector: 'app-solar-enery-management',
   templateUrl: './solor-enery-management.component.html',
-  styleUrls: ['./solor-enery-management.component.scss']
+  styleUrls: ['/../../special_layout.scss'],
 })
 export class SolarEneryManagementComponent implements OnInit {
   //ViewChild 

@@ -1,14 +1,12 @@
 <mat-card class="material">
     <mat-card-content>
-        <div class="row">
-            <div class="col button-control">
-                <button mat-raised-button (click)="accordion.openAll()">
-                    <mat-icon>flip_to_front</mat-icon> Mở Tất Cả
-                </button>               
-                <button mat-raised-button (click)="accordion.closeAll()">
-                    <mat-icon>flip_to_back</mat-icon> Đóng tất cả
-                </button>
-            </div>
+        <div class="button-control">
+            <button mat-raised-button (click)="accordion.openAll()">
+                <mat-icon>flip_to_front</mat-icon> Mở Tất Cả
+            </button>
+            <button mat-raised-button (click)="accordion.closeAll()">
+                <mat-icon>flip_to_back</mat-icon> Đóng tất cả
+            </button>
         </div>
         <mat-accordion class="example-headers-align" multi>
             <mat-expansion-panel>
@@ -66,12 +64,14 @@
                         </mat-checkbox>
                     </div>
                 </div>
-                <div class="row">
-                   
-                </div>
 
-                <div class="auto" *ngIf="dataSourceHuyenThi.data.length; else ShowEmpty">
-                    <table mat-table [dataSource]="dataSourceHuyenThi">
+                <div class="layout" *ngIf="dataSourceHuyenThi.data.length; else ShowEmpty">
+                    <mat-form-field id="filter1">
+                        <mat-label>Lọc dữ liệu</mat-label>
+                        <input matInput (keyup)="applyFilter1($event)" placeholder="" #input>
+                    </mat-form-field>
+
+                    <table mat-table [dataSource]="dataSourceHuyenThi" class="table-layout" id="small-table1">
 
                         <ng-container matColumnDef="index">
                             <th mat-header-cell style="text-align: center;" *matHeaderCellDef> STT </th>
@@ -153,7 +153,7 @@
                         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                     </table>
                 </div>
-                <mat-paginator [pageSizeOptions]="[10, 20, 50, 100]" showFirstLastButtons></mat-paginator>
+                <mat-paginator [pageSizeOptions]="[5, 10, 20, 50, 100]" showFirstLastButtons></mat-paginator>
                 <ng-template #ShowEmpty>
                     <h1>Không có dữ liệu</h1>
                 </ng-template>

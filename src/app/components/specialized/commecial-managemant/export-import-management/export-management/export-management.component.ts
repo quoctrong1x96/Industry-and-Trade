@@ -14,12 +14,12 @@ import { ex_im_model } from "src/app/_models/APIModel/export-import.model";
 import { ModalService } from "../dialog-import-export/modal.service";
 import { MarketService } from "src/app/_services/APIService/market.service";
 import { ModalComponent } from "../dialog-import-export/modal.component";
-import {MatSort} from '@angular/material/sort';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
     selector: "app-export-management",
     templateUrl: "./export-management.component.html",
-    styleUrls: ["./export-management.component.scss"],
+    styleUrls: ['../../../special_layout.scss'],
 })
 export class ExportManagementComponent implements OnInit {
     displayedColumns: string[] = [];
@@ -107,11 +107,11 @@ export class ExportManagementComponent implements OnInit {
             // console.log(this.TongGiaTriCongDon, this.TongGiaTriThangThucHien, this.TongLuongCongDon, this.TongLuongThangThucHien)
             this.filteredDataSource.data = [...this.dataSource.data];
             this.filteredDataSource.paginator = this.paginator;
-            // this.paginator._intl.itemsPerPageLabel = 'Số hàng';
-            // this.paginator._intl.firstPageLabel = "Trang Đầu";
-            // this.paginator._intl.lastPageLabel = "Trang Cuối";
-            // this.paginator._intl.previousPageLabel = "Trang Trước";
-            // this.paginator._intl.nextPageLabel = "Trang Tiếp";
+            this.paginator._intl.itemsPerPageLabel = 'Số hàng';
+            this.paginator._intl.firstPageLabel = "Trang Đầu";
+            this.paginator._intl.lastPageLabel = "Trang Cuối";
+            this.paginator._intl.previousPageLabel = "Trang Trước";
+            this.paginator._intl.nextPageLabel = "Trang Tiếp";
 
         });
     }

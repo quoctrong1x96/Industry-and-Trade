@@ -6,7 +6,7 @@ import { ElectricityDevelopmentModel, HydroElectricManagementModel, PowerProduct
 @Component({
   selector: 'app-power-production',
   templateUrl: './power-production.component.html',
-  styleUrls: ['./power-production.component.scss']
+  styleUrls: ['/../../special_layout.scss'],
 })
 export class PowerProductionManagementComponent implements OnInit {
   //ViewChild 

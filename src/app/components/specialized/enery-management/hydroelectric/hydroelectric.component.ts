@@ -8,7 +8,7 @@ import { BreadCrumService } from 'src/app/_services/injectable-service/breadcrum
 @Component({
   selector: 'app-hydroelectric',
   templateUrl: './hydroelectric.component.html',
-  styleUrls: ['./hydroelectric.component.scss']
+  styleUrls: ['/../../special_layout.scss'],
 })
 export class HydroelectricComponent implements OnInit {
   //ViewChild 
@@ -45,7 +45,7 @@ export class HydroelectricComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.years = this.getYears();    
+    this.years = this.getYears();
 
     this.dataSource.data = this.data;
     this.filteredDataSource.data = [...this.dataSource.data];

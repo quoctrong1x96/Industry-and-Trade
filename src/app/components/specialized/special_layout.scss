@@ -14,7 +14,7 @@
         .card1 {
             height: 100px;
             .mat-card-header .mat-card-title {
-                margin-bottom: 20px;
+                margin-bottom: 15px;
                 font-size: 20px;
             }
             .mat-card-content,
@@ -26,14 +26,18 @@
         }
 
         .card2 {
-            height: 100px;
+            height: 125px;
             .mat-card-header .mat-card-title {
-                margin-bottom: 20px;
-                font-size: 30px;
+                margin-bottom: 5px;
+                font-size: 15px;
             }
-            .mat-card-content,
+            .mat-card-content {
+                font-size: 15px;
+                text-align: center;
+                font-weight: bold;
+            }
             .mat-card-subtitle {
-                font-size: 30px;
+                font-size: 10px;
                 text-align: center;
                 font-weight: bold;
             }
@@ -74,9 +78,6 @@
             max-width: 100%;
             max-height: 590px;
             overflow: auto;
-            #filter {
-                width: 550%;
-            }
             table.mat-table.table-layout {
                 width: 550%;
                 table-layout: initial;
@@ -94,6 +95,12 @@
                     font-size: 15px;
                     text-align: center;
                     height: 50px;
+                }
+                .mat-footer-cell {
+                    border: 1px solid black;
+                    padding: 5px;
+                    text-align: center;
+                    font-weight: bolder;
                 }
                 .mat-cell {
                     padding: 5px;

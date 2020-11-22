@@ -13,7 +13,7 @@ import { filter } from 'rxjs/operators';
 @Component({
     selector: 'industrial-explosives',
     templateUrl: './industrial-explosives.component.html',
-    styleUrls: ['./industrial-explosives.component.scss'],
+    styleUrls: ['/../../special_layout.scss'],
 })
 
 export class IndustrialExplosivesComponent implements OnInit {
@@ -66,10 +66,10 @@ export class IndustrialExplosivesComponent implements OnInit {
     // ngAfterViewInit(): void {
     //     this.accordion.openAll();
     // }
-    
-  autoOpen() {
-    setTimeout(() => this.accordion.openAll(), 1000);
-}
+
+    autoOpen() {
+        setTimeout(() => this.accordion.openAll(), 1000);
+    }
 
     applySelectFilter() {
         // console.log(this.filterModel)

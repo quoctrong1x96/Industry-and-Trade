@@ -5,7 +5,7 @@ import { BreadCrumService } from 'src/app/_services/injectable-service/breadcrum
 @Component({
     selector: 'electric-management',
     templateUrl: './electric-management.component.html',
-    styleUrls: ['./electric-management.component.scss'],
+    styleUrls: ['/../../special_layout.scss'],
 })
 
 export class ElectricManagementComponent implements OnInit {
