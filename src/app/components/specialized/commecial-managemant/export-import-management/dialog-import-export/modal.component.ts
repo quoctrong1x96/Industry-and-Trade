@@ -7,6 +7,8 @@ import { CompanyDetailModel } from 'src/app/_models/APIModel/domestic-market.mod
 import { log } from 'util';
 import { Route } from '@angular/compiler/src/core';
 import { Router } from '@angular/router';
+import {MatSort} from '@angular/material/sort';
+
 
 @Component({ 
     selector: 'jw-modal', 
@@ -24,24 +26,14 @@ export class ModalComponent implements OnInit {
     filteredDataSource: MatTableDataSource<ex_im_model> = new MatTableDataSource<ex_im_model>();
     years: number[] = [];
     months: number[] = [1,2,3,4,5,6,7,8,9,10,11,12]
-    districts: District[] = [{ id: 1, ten_quan_huyen: 'Thị xã Phước Long' },
-    { id: 2, ten_quan_huyen: 'Thành phố Đồng Xoài' },
-    { id: 3, ten_quan_huyen: 'Thị xã Bình Long' },
-    { id: 4, ten_quan_huyen: 'Huyện Bù Gia Mập' },
-    { id: 5, ten_quan_huyen: 'Huyện Lộc Ninh' },
-    { id: 6, ten_quan_huyen: 'Huyện Bù Đốp' },
-    { id: 7, ten_quan_huyen: 'Huyện Hớn Quản' },
-    { id: 8, ten_quan_huyen: 'Huyện Đồng Phú' },
-    { id: 9, ten_quan_huyen: 'Huyện Bù Đăng' },
-    { id: 10, ten_quan_huyen: 'Huyện Chơn Thành' },
-    { id: 11, ten_quan_huyen: 'Huyện Phú Riềng' }];
     sanLuongBanRa: number = 0;
     soLuongdoanhNghiep: number;
     isChecked: boolean;
     curentmonth: number = new Date().getMonth();
     @ViewChild('table', { static: false }) table: MatTable<ex_im_model>;
     @ViewChild(MatAccordion, { static: false }) accordion: MatAccordion;
-    @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+    @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+    @ViewChild(MatSort, { static: false }) sort: MatSort;
     TongLuongThangThucHien: number = 0;
     TongGiaTriThangThucHien: number = 0;
     TongLuongCongDon: number = 0;
@@ -62,6 +54,8 @@ export class ModalComponent implements OnInit {
         //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
         //Add 'implements AfterViewInit' to the class.
         setTimeout(() => this.accordion.openAll(), 500)
+        this.dataSource.paginator = this.paginator
+        this.dataSource.sort = this.sort;
     }
 
     handleData(){
@@ -95,9 +89,16 @@ export class ModalComponent implements OnInit {
           this.dataSource.paginator.firstPage();
         }
       }
+
       public OpenDetailCompany(mst: string) {
         let url = this.router.serializeUrl(
           this.router.createUrlTree([encodeURI('#') + '/partner/search/' + mst]));
         window.open(url.replace('%23', '#'), "_blank");
       }
+
+    closeDialog(){
+
+    }
+
+    
 }
