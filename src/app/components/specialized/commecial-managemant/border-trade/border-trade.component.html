@@ -41,11 +41,11 @@
                                 <div mat-card-avatar>
                                     <mat-icon> business</mat-icon>
                                 </div>
-                                <mat-card-title>Tổng kim ngạch XK: (USD)
+                                <mat-card-title>Tổng kim ngạch xuất khẩu: (USD)
                                 </mat-card-title>
                             </mat-card-header>
                             <mat-card-content>
-                                <strong>{{TongKimNgachxk }}</strong>
+                                <strong>{{TongKimNgachxk | formatNumber }}</strong>
                             </mat-card-content>
                         </mat-card>
                     </div>
@@ -56,11 +56,11 @@
                                 <div mat-card-avatar>
                                     <mat-icon> business</mat-icon>
                                 </div>
-                                <mat-card-title>Tổng kim ngạch XK: (USD)
+                                <mat-card-title>Tổng kim ngạch nhập khẩu: (USD)
                                 </mat-card-title>
                             </mat-card-header>
                             <mat-card-content>
-                                <strong>{{TongKimNgachnk}}</strong>
+                                <strong>{{TongKimNgachnk | formatNumber}}</strong>
                             </mat-card-content>
                         </mat-card>
                     </div>
@@ -171,7 +171,7 @@
                         <tr mat-row *matRowDef="let row; columns: ['groupHeader']; when: isGroup"></tr>
                     </table>
                 </div>
-                <mat-paginator [pageSizeOptions]="[10, 20, 50, 100]" showFirstLastButtons></mat-paginator>
+                <!-- <mat-paginator [pageSizeOptions]="[10, 20, 50, 100]" showFirstLastButtons></mat-paginator> -->
                 <ng-template #ShowEmpty>
                     <h1>Không có dữ liệu</h1>
                 </ng-template>

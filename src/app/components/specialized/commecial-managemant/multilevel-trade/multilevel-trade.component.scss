@@ -51,7 +51,7 @@ td {
 .auto {
     max-width: 100%;
     height: 100%;
-    // overflow: auto;
+    overflow: auto;
 }
 
 .mat-cell {
@@ -62,9 +62,10 @@ td {
 }
 
 .mat-table {
-    width: 100%;
+    width: 300%;
     border: 1px solid black;
-    table-layout: initial;
+    // table-layout: initial;
+    margin: 11px;
 }
 
 .mat-form-field {

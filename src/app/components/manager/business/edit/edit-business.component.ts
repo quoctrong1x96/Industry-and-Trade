@@ -30,7 +30,7 @@ import {
 import { MatTableDataSource, MatDatepicker, MatPaginator } from "@angular/material";
 import { formatDate } from "@angular/common";
 import { Moment } from "moment";
-import * as moment from "moment";
+import moment from "moment";
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { trigger, state, style, transition, animate, group } from '@angular/animations';
 

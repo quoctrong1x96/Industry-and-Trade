@@ -13,7 +13,7 @@ import { InformationService } from 'src/app/shared/information/information.servi
 import { Location } from '@angular/common';
 import { element } from 'protractor';
 import { merge } from 'rxjs';
-import * as moment from 'moment';
+import moment from 'moment';
 
 
 interface HashTableNumber<T> {
