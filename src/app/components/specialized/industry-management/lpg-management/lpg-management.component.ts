@@ -11,7 +11,7 @@ import { ChemicalLPGFoodManagementModel } from 'src/app/_models/APIModel/industr
 @Component({
     selector: 'lpg-management',
     templateUrl: './lpg-management.component.html',
-    styleUrls: ['./lpg-management.component.scss'],
+    styleUrls: ['/../../special_layout.scss'],
 })
 
 export class LPGManagementComponent implements OnInit {
@@ -51,7 +51,7 @@ export class LPGManagementComponent implements OnInit {
     autoOpen() {
         setTimeout(() => this.accordion.openAll(), 1000);
     }
-    
+
     ngOnInit() {
         this.years = this.getYears();
         this.getDanhSachQuanLyChietNapLPG(new Date().getFullYear() - 1);

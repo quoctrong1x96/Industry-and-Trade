@@ -35,7 +35,7 @@ interface HashTableNumber<T> {
 @Component({
   selector: 'app-food-commecial',
   templateUrl: './food-commecial.component.html',
-  styleUrls: ['./food-commecial.component.scss']
+  styleUrls: ['../../../special_layout.scss'],
 })
 
 export class FoodManagementComponent implements OnInit {

@@ -33,7 +33,7 @@ interface HashTableNumber<T> {
 @Component({
   selector: 'app-shoppingcentre',
   templateUrl: './shoppingcentre.component.html',
-  styleUrls: ['./shoppingcentre.component.scss']
+  styleUrls: ['../../../special_layout.scss'],
 })
 export class ShoppingcentreComponent implements OnInit {
   //Constant-------------------------------------------------------------------------

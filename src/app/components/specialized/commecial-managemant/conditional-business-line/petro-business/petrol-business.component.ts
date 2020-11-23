@@ -11,7 +11,7 @@ import { District } from 'src/app/_models/district.model';
 @Component({
     selector: 'petrol-business',
     templateUrl: './petrol-business.component.html',
-    styleUrls: ['./petrol-business.component.scss'],
+    styleUrls: ['../../../special_layout.scss'],
 })
 
 export class PetrolBusinessComponent implements OnInit {
@@ -126,7 +126,7 @@ export class PetrolBusinessComponent implements OnInit {
         this.filteredDataSource.filter = (event.checked) ? "true" : "";
     }
 
-    countBusiness() : number{
-        return [...new Set(this.filteredDataSource.data.map( x => x.mst))].length;
+    countBusiness(): number {
+        return [...new Set(this.filteredDataSource.data.map(x => x.mst))].length;
     }
 }

@@ -1,10 +1,10 @@
-<mat-card>
+<mat-card class="material">
     <mat-card-content>
-        <div class="example-action-buttons">
-            <button mat-raised-button style="color: orangered;" (click)="accordion.openAll()">
+        <div class="button-control">
+            <button mat-raised-button (click)="accordion.openAll()">
                 <mat-icon>flip_to_front</mat-icon> Mở Tất Cả
-            </button> &nbsp;
-            <button mat-raised-button style="color: orangered;" (click)="accordion.closeAll()">
+            </button>
+            <button mat-raised-button (click)="accordion.closeAll()">
                 <mat-icon>flip_to_back</mat-icon> Đóng tất cả
             </button>
         </div>
@@ -22,62 +22,54 @@
 
                 <div class="row">
                     <div class="col-lg-3">
-                        <mat-card class="cards" id="ccards">
+                        <mat-card class="card1">
                             <mat-card-header>
-                                <div mat-card-avatar>
-                                    <mat-icon>filter</mat-icon>
-                                </div>
-                                <mat-card-title> Số xã
+                                <mat-card-title>
+                                    <mat-icon>filter</mat-icon> Số xã:
                                 </mat-card-title>
                                 <mat-card-subtitle></mat-card-subtitle>
                             </mat-card-header>
                             <mat-card-content>
-                                <strong>{{tongSoXa| number:'1.0-0'}}</strong>
+                                {{tongSoXa| number:'1.0-0'}}
                             </mat-card-content>
                         </mat-card>
                     </div>
                     <div class="col-lg-3">
-                        <mat-card class="cards" id="ccards">
+                        <mat-card class="card1">
                             <mat-card-header>
-                                <div mat-card-avatar>
-                                    <mat-icon>filter</mat-icon>
-                                </div>
-                                <mat-card-title> Số hộ
+                                <mat-card-title>
+                                    <mat-icon>filter</mat-icon> Số hộ:
                                 </mat-card-title>
                                 <mat-card-subtitle></mat-card-subtitle>
                             </mat-card-header>
                             <mat-card-content>
-                                <strong>{{tongSoHo| number:'1.0-0'}}</strong>
+                                {{tongSoHo| number:'1.0-0'}}
                             </mat-card-content>
                         </mat-card>
                     </div>
                     <div class="col-lg-3">
-                        <mat-card class="cards" id="ccards">
+                        <mat-card class="card1">
                             <mat-card-header>
-                                <div mat-card-avatar>
-                                    <mat-icon>filter</mat-icon>
-                                </div>
-                                <mat-card-title> Hộ có điện
+                                <mat-card-title>
+                                    <mat-icon>filter</mat-icon> Hộ có điện:
                                 </mat-card-title>
                                 <mat-card-subtitle></mat-card-subtitle>
                             </mat-card-header>
                             <mat-card-content>
-                                <strong>{{tongHoCoDien| number:'1.0-0'}}</strong>
+                                {{tongHoCoDien| number:'1.0-0'}}
                             </mat-card-content>
                         </mat-card>
                     </div>
                     <div class="col-lg-3">
-                        <mat-card class="cards" id="ccards">
+                        <mat-card class="card1">
                             <mat-card-header>
-                                <div mat-card-avatar>
-                                    <mat-icon>filter</mat-icon>
-                                </div>
-                                <mat-card-title> Hộ chưa có điện
+                                <mat-card-title>
+                                    <mat-icon>filter</mat-icon> Hộ chưa có điện:
                                 </mat-card-title>
                                 <mat-card-subtitle></mat-card-subtitle>
                             </mat-card-header>
                             <mat-card-content>
-                                <strong>{{tongHoKhongCoDien| number:'1.0-0'}}</strong>
+                                {{tongHoKhongCoDien| number:'1.0-0'}}
                             </mat-card-content>
                         </mat-card>
                     </div>
@@ -123,13 +115,13 @@
                     </div>
                 </div>
 
-                <div class="auto " *ngIf="filteredDataSource.data.length; else ShowEmpty">
-                    <mat-form-field class="filter">
+                <div class="layout" *ngIf="filteredDataSource.data.length; else ShowEmpty">
+                    <mat-form-field id="filter">
                         <mat-label>Lọc dữ liệu</mat-label>
                         <input matInput (keyup)="applyFilter($event)" placeholder="" #input>
                     </mat-form-field>
 
-                    <table mat-table [dataSource]="filteredDataSource" #table>
+                    <table mat-table [dataSource]="filteredDataSource" #table class="table-layout" id="small-table">
                         <ng-container matColumnDef="index">
                             <th mat-header-cell *matHeaderCellDef> STT </th>
                             <td mat-cell *matCellDef="let element; let i = index;" class='stt'>{{i+1}}</td>
@@ -137,43 +129,43 @@
 
                         <ng-container matColumnDef="dia_ban">
                             <th mat-header-cell *matHeaderCellDef> Địa bàn (xã, phường, thị trấn) </th>
-                            <td mat-cell *matCellDef="let element" > {{element.ten_huyen_thi}}</td>
+                            <td mat-cell *matCellDef="let element"> {{element.ten_huyen_thi}}</td>
                         </ng-container>
                         <ng-container matColumnDef="tong_so_ho">
                             <th mat-header-cell *matHeaderCellDef> Tổng </th>
-                            <td mat-cell *matCellDef="let element" > {{element.tong_ho_su_dung_dien}}</td>
+                            <td mat-cell *matCellDef="let element"> {{element.tong_ho_su_dung_dien}}</td>
                         </ng-container>
 
                         <ng-container matColumnDef="ho_co_dien">
                             <th mat-header-cell *matHeaderCellDef> Có điện </th>
-                            <td mat-cell *matCellDef="let element" > {{element.tong_ho_co_dien}}</td>
+                            <td mat-cell *matCellDef="let element"> {{element.tong_ho_co_dien}}</td>
                         </ng-container>
 
                         <ng-container matColumnDef="ho_chua_co_dien">
                             <th mat-header-cell *matHeaderCellDef> Chưa có điện </th>
-                            <td mat-cell *matCellDef="let element" > {{element.tong_ho_khong_co_dien}}</td>
+                            <td mat-cell *matCellDef="let element"> {{element.tong_ho_khong_co_dien}}</td>
                         </ng-container>
 
                         <ng-container matColumnDef="ty_le">
                             <th mat-header-cell *matHeaderCellDef> Tỷ lệ </th>
-                            <td mat-cell *matCellDef="let element" > {{element.ty_le}}</td>
+                            <td mat-cell *matCellDef="let element"> {{element.ty_le}}</td>
                         </ng-container>
 
                         <ng-container matColumnDef="tieu_chi_41">
                             <th mat-header-cell *matHeaderCellDef> Tiêu chí 4.1 </th>
-                            <td mat-cell *matCellDef="let element" > {{element.tieu_chi_1}}
+                            <td mat-cell *matCellDef="let element"> {{element.tieu_chi_1}}
                             </td>
                         </ng-container>
 
                         <ng-container matColumnDef="tieu_chi_42">
                             <th mat-header-cell *matHeaderCellDef> Tiêu chí 4.2 </th>
-                            <td mat-cell *matCellDef="let element" >
+                            <td mat-cell *matCellDef="let element">
                                 {{element.tieu_chi_1}}</td>
                         </ng-container>
 
                         <ng-container matColumnDef="tieu_chi_43">
                             <th mat-header-cell *matHeaderCellDef>Tiêu chí 4.3 </th>
-                            <td mat-cell *matCellDef="let element" > {{element.tieu_chi_1}}</td>
+                            <td mat-cell *matCellDef="let element"> {{element.tieu_chi_1}}</td>
                         </ng-container>
 
                         <ng-container matColumnDef="indexM">
@@ -199,7 +191,7 @@
                     </table>
 
                 </div>
-                <mat-paginator [pageSizeOptions]="[10, 20, 50, 100]" showFirstLastButtons></mat-paginator>
+                <mat-paginator [pageSizeOptions]="[5, 10, 20, 50, 100]" showFirstLastButtons></mat-paginator>
                 <ng-template #ShowEmpty>
                     <h1>Không có dữ liệu</h1>
                 </ng-template>

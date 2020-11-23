@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation, ElementRef, Input, OnInit, OnDestroy, Inject, ViewChild } from '@angular/core';
-import {MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatTableDataSource, MatTable, MatAccordion, MatPaginator } from '@angular/material';
 import { ex_im_model } from 'src/app/_models/APIModel/export-import.model';
 import { District } from 'src/app/_models/district.model';
@@ -7,13 +7,13 @@ import { CompanyDetailModel } from 'src/app/_models/APIModel/domestic-market.mod
 import { log } from 'util';
 import { Route } from '@angular/compiler/src/core';
 import { Router } from '@angular/router';
-import {MatSort} from '@angular/material/sort';
+import { MatSort } from '@angular/material/sort';
 
 
-@Component({ 
-    selector: 'jw-modal', 
-    templateUrl: 'modal.component.html', 
-    styleUrls: ['modal.component.scss'],
+@Component({
+    selector: 'jw-modal',
+    templateUrl: 'modal.component.html',
+    styleUrls: ['../../../special_layout.scss'],
     encapsulation: ViewEncapsulation.None
 })
 export class ModalComponent implements OnInit {
@@ -25,7 +25,7 @@ export class ModalComponent implements OnInit {
     dataDialog: any[] = [];
     filteredDataSource: MatTableDataSource<ex_im_model> = new MatTableDataSource<ex_im_model>();
     years: number[] = [];
-    months: number[] = [1,2,3,4,5,6,7,8,9,10,11,12]
+    months: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
     sanLuongBanRa: number = 0;
     soLuongdoanhNghiep: number;
     isChecked: boolean;
@@ -41,8 +41,8 @@ export class ModalComponent implements OnInit {
     id: number = 1;
     constructor(
         @Inject(MAT_DIALOG_DATA) public data: any,
-        public router : Router
-        ) {
+        public router: Router
+    ) {
     }
 
     ngOnInit(): void {
@@ -58,9 +58,9 @@ export class ModalComponent implements OnInit {
         this.dataSource.sort = this.sort;
     }
 
-    handleData(){
+    handleData() {
         this.id = this.data['id'];
-        if(this.id === 1){
+        if (this.id === 1) {
             this.dataSource = new MatTableDataSource<ex_im_model>(this.data['data']);
             console.log('zxzxzxz', this.dataSource.data)
             for (let item of this.data['data']) {
@@ -73,7 +73,7 @@ export class ModalComponent implements OnInit {
         } else {
             this.ten_san_pham = this.data['ten_san_pham'];
             this.so_doanh_nghiep = this.data['data'].length;
-            if(this.data['data'].length)
+            if (this.data['data'].length)
                 this.dataSource = new MatTableDataSource<CompanyDetailModel>(this.data['data'])
             else
                 this.dataSource = new MatTableDataSource<CompanyDetailModel>()
@@ -87,19 +87,19 @@ export class ModalComponent implements OnInit {
         this.dataSource.filter = filterValue.trim().toLowerCase();
         // debugger
         if (this.dataSource.paginator) {
-          this.dataSource.paginator.firstPage();
+            this.dataSource.paginator.firstPage();
         }
-      }
+    }
 
-      public OpenDetailCompany(mst: string) {
+    public OpenDetailCompany(mst: string) {
         let url = this.router.serializeUrl(
-          this.router.createUrlTree([encodeURI('#') + '/manager/business/search/' + mst]));
+            this.router.createUrlTree([encodeURI('#') + '/manager/business/search/' + mst]));
         window.open(url.replace('%23', '#'), "_blank");
-      }
+    }
 
-    closeDialog(){
+    closeDialog() {
 
     }
 
-    
+
 }

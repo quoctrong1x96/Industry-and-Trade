@@ -1,10 +1,10 @@
-<mat-card>
+<mat-card class="material">
     <mat-card-content>
-        <div class="example-action-buttons">
-            <button mat-raised-button style="color: orangered;" (click)="accordion.openAll()">
+        <div class="button-control">
+            <button mat-raised-button (click)="accordion.openAll()">
                 <mat-icon>flip_to_front</mat-icon> Mở Tất Cả
             </button> &nbsp;
-            <button mat-raised-button style="color: orangered;" (click)="accordion.closeAll()">
+            <button mat-raised-button (click)="accordion.closeAll()">
                 <mat-icon>flip_to_back</mat-icon> Đóng tất cả
             </button>
         </div>
@@ -22,47 +22,47 @@
 
                 <div class="row">
                     <div class="col-4 col-lg-4">
-                        <mat-card class="cards" id="ccards">
+                        <mat-card class="card1">
                             <mat-card-header>
-                                <div mat-card-avatar>
-                                    <mat-icon>filter</mat-icon>
-                                </div>
-                                <mat-card-title>Tổng số lượng DN:
+                                <!-- <div mat-card-avatar>
+                                </div> -->
+                                <mat-card-title>
+                                    <mat-icon>filter</mat-icon> Tổng số lượng DN:
                                 </mat-card-title>
                                 <mat-card-subtitle></mat-card-subtitle>
                             </mat-card-header>
                             <mat-card-content>
-                                <strong>{{this.filteredDataSource.filteredData.length | number: '1.0-0'}} doanh nghiệp</strong>
+                                {{this.filteredDataSource.filteredData.length | number: '1.0-0'}} doanh nghiệp
                             </mat-card-content>
                         </mat-card>
                     </div>
                     <div class="col-4 col-lg-4">
-                        <mat-card class="cards" id="ccards">
+                        <mat-card class="card1">
                             <mat-card-header>
-                                <div mat-card-avatar>
-                                    <mat-icon>filter</mat-icon>
-                                </div>
-                                <mat-card-title>Tổng sản lượng bán ra:
+                                <!-- <div mat-card-avatar>
+                                </div> -->
+                                <mat-card-title>
+                                    <mat-icon>filter</mat-icon> Tổng sản lượng bán ra:
                                 </mat-card-title>
                                 <mat-card-subtitle></mat-card-subtitle>
                             </mat-card-header>
                             <mat-card-content>
-                                <strong>{{sanLuongBanRa | number: '1.0-0'}} bao</strong>
+                                {{sanLuongBanRa | number: '1.0-0'}} bao
                             </mat-card-content>
                         </mat-card>
                     </div>
                     <div class="col-4 col-lg-4">
-                        <mat-card class="cards" id="ccards">
+                        <mat-card class="card1">
                             <mat-card-header>
-                                <div mat-card-avatar>
-                                    <mat-icon>filter</mat-icon>
-                                </div>
-                                <mat-card-title>Tổng giá trị sản phẩm:
+                                <!-- <div mat-card-avatar>
+                                </div> -->
+                                <mat-card-title>
+                                    <mat-icon>filter</mat-icon> Tổng giá trị sản phẩm:
                                 </mat-card-title>
                                 <mat-card-subtitle></mat-card-subtitle>
                             </mat-card-header>
                             <mat-card-content>
-                                <strong>{{giaTriSanPham | number: '1.0-0'}} triệu đồng</strong>
+                                {{giaTriSanPham | number: '1.0-0'}} triệu đồng
                             </mat-card-content>
                         </mat-card>
                     </div>
@@ -107,14 +107,13 @@
                     </div>
                 </div>
 
-                <div class="row">
-                    <mat-form-field class="filter">
+                <div *ngIf="filteredDataSource.data.length; else ShowEmpty" class="layout">
+                    <mat-form-field id="filter2">
                         <mat-label>Lọc dữ liệu</mat-label>
                         <input matInput (keyup)="applyFilter($event)" placeholder="" #input>
                     </mat-form-field>
-                </div>
-                <div class="auto mat-elevation-z8" *ngIf="filteredDataSource.data.length; else ShowEmpty">
-                    <table mat-table [dataSource]="filteredDataSource" #table>
+
+                    <table mat-table [dataSource]="filteredDataSource" #table class="table-layout" id="small-table2">
                         <ng-container matColumnDef="index">
                             <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> STT </th>
                             <td mat-cell *matCellDef="let element; let i = index;" class='stt'>{{i+1}}</td>
@@ -125,7 +124,7 @@
                             <td mat-cell *matCellDef="let element"> {{element.mst}}</td>
                         </ng-container>
 
-                        <ng-container matColumnDef="ten_doanh_nghiep" [sticky]="true">
+                        <ng-container matColumnDef="ten_doanh_nghiep">
                             <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Tên doanh nghiệp </th>
                             <td mat-cell *matCellDef="let element"> {{element.ten_doanh_nghiep}}</td>
                         </ng-container>
@@ -179,13 +178,14 @@
                             <th mat-header-cell *matHeaderCellDef [attr.colspan]="2"> Sản lượng bán ra/năm </th>
                         </ng-container>
 
-                        <tr mat-header-row *matHeaderRowDef="['index', 'mst', 'ten_doanh_nghiep', 'dia_chi', 'dien_thoai', 'so_giay_phep', 'ngay_cap','ngay_het_han', 'danh_sach_thuong_nhan', 'san_luong_ban_ra']; sticky : true">
+                        <tr mat-header-row
+                            *matHeaderRowDef="['index', 'mst', 'ten_doanh_nghiep', 'dia_chi', 'dien_thoai', 'so_giay_phep', 'ngay_cap','ngay_het_han', 'danh_sach_thuong_nhan', 'san_luong_ban_ra']; sticky : true">
                         </tr>
                         <tr mat-header-row *matHeaderRowDef="['san_luong', 'tri_gia']; sticky : true"></tr>
                         <tr mat-row *matRowDef="let row; columns: displayedColumns;let i = index; ">
                     </table>
                 </div>
-                <mat-paginator [pageSizeOptions]="[10, 20, 50, 100]" showFirstLastButtons></mat-paginator>
+                <mat-paginator [pageSizeOptions]="[5, 10, 20, 50, 100]" showFirstLastButtons></mat-paginator>
                 <ng-template #ShowEmpty>
                     <h1>Không có dữ liệu</h1>
                 </ng-template>

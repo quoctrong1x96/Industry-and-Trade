@@ -10,7 +10,7 @@ import { MatPaginator } from '@angular/material/paginator';
 @Component({
   selector: 'app-informed-ecommerce-website',
   templateUrl: './informed-ecommerce-website.component.html',
-  styleUrls: ['./informed-ecommerce-website.component.scss']
+  styleUrls: ['../../../special_layout.scss'],
 })
 export class InformedEcommerceWebsiteComponent implements OnInit {
 

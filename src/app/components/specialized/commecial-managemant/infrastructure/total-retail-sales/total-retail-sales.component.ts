@@ -31,7 +31,7 @@ interface HashTableNumber<T> {
 @Component({
   selector: 'total-retail-sales-commecial',
   templateUrl: './total-retail-sales.component.html',
-  styleUrls: ['./total-retail-sales.component.scss']
+  styleUrls: ['../../../special_layout.scss'],
 })
 
 export class TRSManagementComponent implements OnInit {
@@ -81,7 +81,7 @@ export class TRSManagementComponent implements OnInit {
 
   autoOpen() {
     setTimeout(() => this.accordion.openAll(), 1000);
-}
+  }
 
   get12MonthData() {
     this.reportSevice.Get12MonthReports(10588757, 2020, 'THTKBC').subscribe(

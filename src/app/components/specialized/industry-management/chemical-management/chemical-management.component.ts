@@ -11,7 +11,7 @@ import { ChemicalLPGFoodManagementModel } from 'src/app/_models/APIModel/industr
 @Component({
     selector: 'chemical-management',
     templateUrl: './chemical-management.component.html',
-    styleUrls: ['./chemical-management.component.scss'],
+    styleUrls: ['/../../special_layout.scss'],
 })
 
 export class ChemicalManagementComponent implements OnInit {
