@@ -40,6 +40,7 @@ export class IndustrialExplosivesComponent implements OnInit {
     tongSoLaoDong: number = 0;
     tongCongSuatThietKe: number = 0;
     tongMucSanLuong: number = 0;
+    year : number;
     filterModel: IndustrialExplosivesFilterModel = { id_quan_huyen: [], id_tinh_trang_hoat_dong: [], is_het_han: false };
 
     @ViewChild('table', { static: false }) table: MatTable<IndustrialExplosivesModel>;
@@ -51,7 +52,8 @@ export class IndustrialExplosivesComponent implements OnInit {
 
     ngOnInit() {
         this.years = this.getYears();
-        this.getDanhSachQuanLyVatLieuNoCongNghiep(2020);
+        this.year = new Date().getFullYear() - 1;
+        this.getDanhSachQuanLyVatLieuNoCongNghiep(this.year);
         this.filteredDataSource.filterPredicate = function (data: IndustrialExplosivesModel, filter): boolean {
             return String(data.is_het_han).includes(filter);
         };
