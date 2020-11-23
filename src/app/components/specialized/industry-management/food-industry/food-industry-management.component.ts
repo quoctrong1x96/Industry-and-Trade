@@ -16,7 +16,7 @@ import { ChemicalLPGFoodManagementModel } from 'src/app/_models/APIModel/industr
 
 export class FoodIndustryManagementComponent implements OnInit {
     displayedColumns: string[] = [];
-    displayedColumns1: string[] = ['index', 'mst', 'ten_doanh_nghiep', 'nganh_nghe_kd', 'dia_chi', 'so_lao_dong', 'cong_suat', 'san_luong', 'von_dau_tu', 'so_gp_gcn', 'ngay_cap', 'ngay_het_han', 'trang_thai_hoat_dong'];
+    displayedColumns1: string[] = ['index', 'ten_doanh_nghiep', 'mst', 'nganh_nghe_kd', 'dia_chi', 'so_lao_dong', 'cong_suat', 'san_luong', 'von_dau_tu', 'so_gp_gcn', 'ngay_cap', 'ngay_het_han', 'trang_thai_hoat_dong'];
     displayedColumns2: string[] = ['index', 'ten_doanh_nghiep', 'nganh_nghe_kd', 'dia_chi', 'cong_suat', 'san_luong', 'trang_thai_hoat_dong'];
     dataSource: MatTableDataSource<ChemicalLPGFoodManagementModel> = new MatTableDataSource<ChemicalLPGFoodManagementModel>();
     filteredDataSource: MatTableDataSource<ChemicalLPGFoodManagementModel> = new MatTableDataSource<ChemicalLPGFoodManagementModel>();
@@ -129,7 +129,7 @@ export class FoodIndustryManagementComponent implements OnInit {
         this.displayedColumns = (event.checked) ? this.displayedColumns1 : this.displayedColumns2;
     }
 
-    showRightUnit(value, type){
-        return value + (type == 1? ' tấn' : ' lít');
+    showRightUnit(value, type) {
+        return value + (type == 1 ? ' tấn' : ' lít');
     }
 }

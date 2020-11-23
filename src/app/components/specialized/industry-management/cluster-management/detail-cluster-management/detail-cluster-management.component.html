@@ -1,14 +1,10 @@
-<mat-card class="petrol">
+<mat-card class="material">
     <div *ngIf="dataSource.data.length; else ShowEmpty">
-
-
         <mat-card-content>
             <h3>Cụm công nghiệp: {{_clusterDetail.ten_cum_cong_nghiep}}</h3>
-            <div class="row">
-
-            </div>
-            <div>
-                <table mat-table [dataSource]="dataSource" #table>
+            <hr>
+            <div class="layout">
+                <table mat-table [dataSource]="dataSource" #table class="table-layout" id="small-table">
                     <ng-container matColumnDef="index">
                         <th mat-header-cell *matHeaderCellDef class="stt"> STT </th>
                         <td mat-cell *matCellDef="let element; let i = index;" class='stt'>{{i+1}}</td>
@@ -33,38 +29,38 @@
                 </table>
             </div>
             <div class="row">
-                <div class="card" style="width: 18rem;">
+                <div class="card">
 
                     <div class="card-body">
                         <img class="card-img-top" src="{{_clusterDetail.hinh_anhs[0]}}" alt="Qui hoạch">
                         <p class="card-text">Chi tiết quy hoạch</p>
                     </div>
                 </div>
-                <div class="card" style="width: 18rem;">
+                <div class="card">
                     <div class="card-body">
                         <img class="card-img-top" src="{{_clusterDetail.hinh_anhs[1]}}" alt="Sơ đồ">
                         <p class="card-text">Sơ đồ Quy hoạch</p>
                     </div>
                 </div>
-                <div class="card" style="width: 18rem;">
+                <div class="card">
                     <div class="card-body">
                         <img class="card-img-top" src="{{_clusterDetail.hinh_anhs[2]}}" alt="Chi tiết 1">
                         <p class="card-text">Tổng quan chi tiết</p>
                     </div>
                 </div>
-                <div class="card" style="width: 18rem;">
+                <div class="card">
                     <div class="card-body">
                         <img class="card-img-top" src="{{_clusterDetail.hinh_anhs[3]}}" alt="Chi tiết 2">
                         <p class="card-text">Tổng quan chi tiết</p>
                     </div>
                 </div>
-                <div class="card" style="width: 18rem;">
+                <div class="card">
                     <div class="card-body">
                         <img class="card-img-top" src="{{_clusterDetail.hinh_anhs[4]}}" alt="Chi tiết 3">
                         <p class="card-text">Tổng quan chi tiết</p>
                     </div>
                 </div>
-                <div class="card" style="width: 18rem;">
+                <div class="card">
                     <div class="card-body">
                         <img class="card-img-top" src="{{_clusterDetail.hinh_anhs[5]}}" alt="Chi tiết 3">
                         <p class="card-text">Tổng quan chi tiết</p>
@@ -74,7 +70,6 @@
             <div class="row">
                 <a href="{{_clusterDetail.downloadPDF}}" target="blank">Tải xuống tài liệu chi tiết</a>
             </div>
-
         </mat-card-content>
     </div>
     <ng-template #ShowEmpty>
