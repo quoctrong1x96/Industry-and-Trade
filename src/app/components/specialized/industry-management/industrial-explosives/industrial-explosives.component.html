@@ -257,11 +257,11 @@
 
                         <ng-container matColumnDef="day_no">
                             <th mat-header-cell *matHeaderCellDef> Dây nổ (mét) </th>
-                            <td mat-cell *matCellDef="let element"> {{element.day_no | number:'1.0-0'git config --global user.name "FIRST_NAME LAST_NAME"}}</td>
+                            <td mat-cell *matCellDef="let element"> {{element.day_no | number:'1.0-0'}}</td>
                         </ng-container>
 
                         <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky : true"></tr>
-                        <tr mat-header-row *matHeaderRowDef="['thuoc_no_6thang', 'kip_no_6thang', 'moi_no_6thang','day_no_6thang','thuoc_no', 'kip_no', 'moi_no','day_no']; sticky : true">
+                        <tr mat-header-row *matHeaderRowDef="['thuoc_no_6thang', 'kip_no_6thang', 'moi_no_6thang','day_no_6thang','thuoc_no', 'kip_no', 'moi_no','day_no']; sticky : true;">
                         </tr>
                         <tr mat-row *matRowDef="let row; columns: totalColumns;let i = index; ">
                     </table>
