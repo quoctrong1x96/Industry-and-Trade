@@ -11,7 +11,7 @@ import { ChemicalLPGFoodManagementModel } from 'src/app/_models/APIModel/industr
 @Component({
     selector: 'food-industry-management',
     templateUrl: './food-industry-management.component.html',
-    styleUrls: ['./food-industry-management.component.scss'],
+    styleUrls: ['/../../special_layout.scss'],
 })
 
 export class FoodIndustryManagementComponent implements OnInit {
@@ -35,6 +35,7 @@ export class FoodIndustryManagementComponent implements OnInit {
     isChecked: boolean;
     sanLuongBotMy: number = 0;
     sanLuongRuou: number = 0;
+    year : number;
 
     @ViewChild('table', { static: false }) table: MatTable<ChemicalLPGFoodManagementModel>;
     @ViewChild(MatAccordion, { static: false }) accordion: MatAccordion;
@@ -54,7 +55,8 @@ export class FoodIndustryManagementComponent implements OnInit {
 
     ngOnInit() {
         this.years = this.getYears();
-        this.getDanhSachQuanLyCongNghiepThucPham(new Date().getFullYear() - 1);
+        this.year = new Date().getFullYear() - 1;
+        this.getDanhSachQuanLyCongNghiepThucPham(this.year);
         this.filteredDataSource.filterPredicate = function (data: ChemicalLPGFoodManagementModel, filter): boolean {
             return String(data.is_het_han).includes(filter);
         };
@@ -77,8 +79,8 @@ export class FoodIndustryManagementComponent implements OnInit {
             });
 
             this.filteredDataSource.data = [...this.dataSource.data];
-            this.sanLuongBotMy = this.filteredDataSource.data.length ? this.filteredDataSource.data.filter(x => x.loai_sp == 1).map(x => parseInt(x.san_luong)||0).reduce((a, b) => a + b) : 0;
-            this.sanLuongRuou = this.filteredDataSource.data.length ? this.filteredDataSource.data.filter(x => x.loai_sp == 2).map(x => parseInt(x.san_luong)||0).reduce((a, b) => a + b) : 0;
+            this.sanLuongBotMy = this.filteredDataSource.data.length ? this.filteredDataSource.data.filter(x => x.loai_sp == 1).map(x => parseInt(x.san_luong) || 0).reduce((a, b) => a + b) : 0;
+            this.sanLuongRuou = this.filteredDataSource.data.length ? this.filteredDataSource.data.filter(x => x.loai_sp == 2).map(x => parseInt(x.san_luong) || 0).reduce((a, b) => a + b) : 0;
             this.filteredDataSource.paginator = this.paginator;
             this.paginator._intl.itemsPerPageLabel = 'Số hàng';
             this.paginator._intl.firstPageLabel = "Trang Đầu";
@@ -112,8 +114,8 @@ export class FoodIndustryManagementComponent implements OnInit {
         else {
             this.filteredDataSource.data = filteredData;
         }
-        this.sanLuongBotMy = this.filteredDataSource.data.length ? this.filteredDataSource.data.filter(x => x.loai_sp == 1).map(x => parseInt(x.san_luong)||0).reduce((a, b) => a + b) : 0;
-        this.sanLuongRuou = this.filteredDataSource.data.length ? this.filteredDataSource.data.filter(x => x.loai_sp == 2).map(x => parseInt(x.san_luong)||0).reduce((a, b) => a + b) : 0;
+        this.sanLuongBotMy = this.filteredDataSource.data.length ? this.filteredDataSource.data.filter(x => x.loai_sp == 1).map(x => parseInt(x.san_luong) || 0).reduce((a, b) => a + b) : 0;
+        this.sanLuongRuou = this.filteredDataSource.data.length ? this.filteredDataSource.data.filter(x => x.loai_sp == 2).map(x => parseInt(x.san_luong) || 0).reduce((a, b) => a + b) : 0;
     }
 
     // isHidden(row : any){
@@ -127,5 +129,9 @@ export class FoodIndustryManagementComponent implements OnInit {
 
     showMoreDetail(event) {
         this.displayedColumns = (event.checked) ? this.displayedColumns1 : this.displayedColumns2;
+    }
+
+    showRightUnit(value, type){
+        return value + (type == 1? ' tấn' : ' lít');
     }
 }

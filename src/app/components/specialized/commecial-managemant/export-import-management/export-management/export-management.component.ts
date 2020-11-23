@@ -4,7 +4,6 @@ import {
     MatTable,
     MatAccordion,
     MatPaginator,
-    MatSort,
     MatDialog,
     MatDialogConfig,
 } from "@angular/material";
@@ -15,15 +14,18 @@ import { ex_im_model } from "src/app/_models/APIModel/export-import.model";
 import { ModalService } from "../dialog-import-export/modal.service";
 import { MarketService } from "src/app/_services/APIService/market.service";
 import { ModalComponent } from "../dialog-import-export/modal.component";
+import { MatSort } from '@angular/material/sort';
 
 @Component({
     selector: "app-export-management",
     templateUrl: "./export-management.component.html",
-    styleUrls: ["./export-management.component.scss"],
+    styleUrls: ['../../../special_layout.scss'],
 })
 export class ExportManagementComponent implements OnInit {
-    // displayedSumColumns: any[] = ['tong', 'tong_luong_thang', 'tong_gia_tri_thang', 'tong_luong_cong_don', 'tong_gia_tri_cong_don']
-    displayedColumns: string[] = ['index', 'ten_san_pham', 'luong_thang', 'gia_tri_thang', 'luong_cong_don', 'gia_tri_cong_don', 'luong_thang_tc', 'gia_tri_thang_tc', 'luong_thang_cong_don_tc', 'gia_tri_thang_cong_don_tc', 'danh_sach_doanh_nghiep'];
+    displayedColumns: string[] = [];
+    displayRow1Header: string[] = []
+    displaRow2Header: string[] = []
+    displayRow3Header: string[] = [];
     dataSource: MatTableDataSource<ex_im_model> = new MatTableDataSource<ex_im_model>();
     dataDialog: any[] = [];
     filteredDataSource: MatTableDataSource<ex_im_model> = new MatTableDataSource<ex_im_model>();
@@ -38,14 +40,19 @@ export class ExportManagementComponent implements OnInit {
     curentmonth: number = new Date().getMonth() + 1;
     @ViewChild("table", { static: false }) table: MatTable<ex_im_model>;
     @ViewChild(MatAccordion, { static: true }) accordion: MatAccordion;
-    @ViewChild("paginator", { static: true }) paginator: MatPaginator;
+    @ViewChild("paginator", { static: false }) paginator: MatPaginator;
     @ViewChild(MatSort, { static: false }) sort: MatSort;
     nhap_khau_chu_yeu = [1, 6, 8, 4, 7, 21, 13, 27, 82, 51, 28, 20, 31, 19, 23]
-    tongluong_tc: number;
-    tonggiatri_tc: number;
-    tongluongcongdon_tc: number;
-    tonggiatricongdon_tc: number;
-
+    tongluong_tc: number = 0;
+    tonggiatri_tc: number = 0;
+    tongluongcongdon_tc: number = 0;
+    tonggiatricongdon_tc: number = 0;
+    dataTargets: any[] = [
+        { id: 1, unit: 'Cục hải quan' },
+        { id: 2, unit: 'Tổng cục hải quan' }
+    ]
+    dataTargetId = [2];
+    isOnlyTongCucHQ: boolean = true;
     constructor(
         public sctService: SCTService,
         public matDialog: MatDialog,
@@ -71,7 +78,7 @@ export class ExportManagementComponent implements OnInit {
     }
 
     ngOnInit() {
-        // this.years = this.getYears();
+        this.applyDataTarget(this.dataTargetId);
         this.getDanhSachXuatKhau(this.curentmonth);
         this.autoOpen();
         // this.filteredDataSource.filterPredicate = function (data: ex_im_model, filter): boolean {
@@ -92,22 +99,21 @@ export class ExportManagementComponent implements OnInit {
         if (thang !== this.curentmonth && thang) {
             this.curentmonth = thang;
         }
+        this.dataTargetId = [2];
         this.sctService.GetDanhSachXuatKhau(tem).subscribe((result) => {
-            this.dataSource = new MatTableDataSource<ex_im_model>(result.data[1]);
-            this.log(this.dataSource);
+            this.log(this.dataSource)
             this.dataDialog = result.data[0];
-            this.pagesize = this.dataSource.data.length / 25;
-            this.tinh_tong(this.dataSource.data);
+            this.applyExpireCheck(result.data[1])
 
             // console.log(this.TongGiaTriCongDon, this.TongGiaTriThangThucHien, this.TongLuongCongDon, this.TongLuongThangThucHien)
             this.filteredDataSource.data = [...this.dataSource.data];
             this.filteredDataSource.paginator = this.paginator;
-            // this.paginator._intl.itemsPerPageLabel = 'Số hàng';
-            // this.paginator._intl.firstPageLabel = "Trang Đầu";
-            // this.paginator._intl.lastPageLabel = "Trang Cuối";
-            // this.paginator._intl.previousPageLabel = "Trang Trước";
-            // this.paginator._intl.nextPageLabel = "Trang Tiếp";
-            this.dataSource.paginator = this.paginator;
+            this.paginator._intl.itemsPerPageLabel = 'Số hàng';
+            this.paginator._intl.firstPageLabel = "Trang Đầu";
+            this.paginator._intl.lastPageLabel = "Trang Cuối";
+            this.paginator._intl.previousPageLabel = "Trang Trước";
+            this.paginator._intl.nextPageLabel = "Trang Tiếp";
+
         });
     }
 
@@ -159,11 +165,13 @@ export class ExportManagementComponent implements OnInit {
     //     return (this.isChecked)? (row.is_het_han) : false;
     // }
 
-    applyExpireCheck(event) {
-        console.log(event);
-        let tem_data = [...this.dataSource.data]
-        event.checked ? this.dataSource.data = tem_data.filter(item => this.nhap_khau_chu_yeu.includes(item.id_mat_hang)) : this.dataSource.data = this.filteredDataSource.data;
+    applyExpireCheck(data) {
+        // console.log(data);
+        let tem_data = [...data]
+        this.dataSource = new MatTableDataSource<ex_im_model>(tem_data.filter(item => this.nhap_khau_chu_yeu.includes(item.id_mat_hang)));
         this.tinh_tong(this.dataSource.data)
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
     }
 
     openDialog(id_mat_hang) {
@@ -199,5 +207,63 @@ export class ExportManagementComponent implements OnInit {
                 };
                 this.matDialog.open(ModalComponent, dialogConfig);
             });
+    }
+
+    applyDataTarget(value: number[]) {
+        // this.dataTargetId[0] = 2
+        // 1: cuc hai quan
+        // 2: tong cuc hai quan
+        this.isOnlyTongCucHQ = value.includes(1) && value.includes(2);
+        if (this.isOnlyTongCucHQ) {
+            this.displayedColumns = [
+                'index', 'ten_san_pham', 'luong_thang', 'gia_tri_thang', 'luong_cong_don',
+                'gia_tri_cong_don', 'luong_thang_tc', 'gia_tri_thang_tc', 'luong_thang_cong_don_tc',
+                'gia_tri_thang_cong_don_tc', 'danh_sach_doanh_nghiep', 'chi_tiet_doanh_nghiep'];
+            this.displayRow1Header = [
+                'index',
+                'ten_san_pham',
+                'cuc_hai_quan',
+                'tong_cuc_hai_quan',
+                'danh_sach_doanh_nghiep',
+                'chi_tiet_doanh_nghiep'
+            ]
+            this.displaRow2Header = [
+                'thuc_hien_bao_cao_thang',
+                'cong_don_den_ky_bao_cao',
+                'thuc_hien_bao_cao_thang1',
+                'cong_don_den_ky_bao_cao1'
+            ]
+            this.displayRow3Header = [
+                'luong_thang',
+                'gia_tri_thang',
+                'luong_cong_don',
+                'gia_tri_cong_don',
+                'luong_thang_tc',
+                'gia_tri_thang_tc',
+                'luong_thang_cong_don_tc',
+                'gia_tri_thang_cong_don_tc'
+            ]
+        } else {
+            this.displayedColumns = [
+                'index', 'ten_san_pham', 'luong_thang_tc', 'gia_tri_thang_tc', 'luong_thang_cong_don_tc',
+                'gia_tri_thang_cong_don_tc', 'danh_sach_doanh_nghiep', 'chi_tiet_doanh_nghiep'];
+            this.displayRow1Header = [
+                'index',
+                'ten_san_pham',
+                'tong_cuc_hai_quan',
+                'danh_sach_doanh_nghiep',
+                'chi_tiet_doanh_nghiep'
+            ]
+            this.displaRow2Header = [
+                'thuc_hien_bao_cao_thang1',
+                'cong_don_den_ky_bao_cao1'
+            ]
+            this.displayRow3Header = [
+                'luong_thang_tc',
+                'gia_tri_thang_tc',
+                'luong_thang_cong_don_tc',
+                'gia_tri_thang_cong_don_tc'
+            ]
+        }
     }
 }

@@ -22,7 +22,7 @@ import { InformationService } from 'src/app/shared/information/information.servi
 //Moment
 import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
-import * as _moment from 'moment';
+import _moment from 'moment';
 import { defaultFormat as _rollupMoment, Moment } from 'moment';
 import * as _ from 'lodash';
 import { Subject } from 'rxjs';
@@ -63,7 +63,7 @@ export class ExportManagerComponent implements OnInit {
     public readonly ARRAY_HEADER_EXCEL = ["STT", "Mã sản phẩm", "Tên sản phẩm", "Sản lượng (Cục Hải Quan)", "Giá trị (Cục Hải Quan)",
         "Giá trị (Tổng cục)", "Giá trị (Tổng cục)"]
     //Declare variable for HTML&TS
-    public date = new FormControl(_moment.default());
+    public date = new FormControl(_moment());
     public columns: number = 1;
     public timeExportManager: string;
     public displayedColumns: string[] = ['index', 'ten_san_pham', 'san_luong', 'tri_gia', 'san_luong_ct', 'tri_gia_ct', 'top_xuat_khau'];

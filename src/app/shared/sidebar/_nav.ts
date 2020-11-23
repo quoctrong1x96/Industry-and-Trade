@@ -310,17 +310,17 @@ export const navItemsSpecialized: INavItem[] = [
     expand: false,
     children: [
       {
-        name: 'Năng lượng - Thủy điện',
+        name: 'Năng lượng',
         url: '/specialized/enery-management/hydroelectric',
         icon: 'call_split',
       },
       {
-        name: 'Điện nông thôn',
+        name: 'Phát triển điện',
         url: '/specialized/enery-management/countryside_electric',
         icon: 'home',
       },
       {
-        name: 'Cơ sở sử dụng năng lượng trọng điểm',
+        name: 'Tiết kiệm năng lượng',
         url: '/specialized/enery-management/focused_energy',
         icon: 'group_work',
       },

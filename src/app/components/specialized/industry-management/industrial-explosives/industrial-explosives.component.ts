@@ -13,7 +13,7 @@ import { filter } from 'rxjs/operators';
 @Component({
     selector: 'industrial-explosives',
     templateUrl: './industrial-explosives.component.html',
-    styleUrls: ['./industrial-explosives.component.scss'],
+    styleUrls: ['/../../special_layout.scss'],
 })
 
 export class IndustrialExplosivesComponent implements OnInit {
@@ -40,6 +40,7 @@ export class IndustrialExplosivesComponent implements OnInit {
     tongSoLaoDong: number = 0;
     tongCongSuatThietKe: number = 0;
     tongMucSanLuong: number = 0;
+    year : number;
     filterModel: IndustrialExplosivesFilterModel = { id_quan_huyen: [], id_tinh_trang_hoat_dong: [], is_het_han: false };
 
     @ViewChild('table', { static: false }) table: MatTable<IndustrialExplosivesModel>;
@@ -51,7 +52,8 @@ export class IndustrialExplosivesComponent implements OnInit {
 
     ngOnInit() {
         this.years = this.getYears();
-        this.getDanhSachQuanLyVatLieuNoCongNghiep(2020);
+        this.year = new Date().getFullYear() - 1;
+        this.getDanhSachQuanLyVatLieuNoCongNghiep(this.year);
         this.filteredDataSource.filterPredicate = function (data: IndustrialExplosivesModel, filter): boolean {
             return String(data.is_het_han).includes(filter);
         };
@@ -66,10 +68,10 @@ export class IndustrialExplosivesComponent implements OnInit {
     // ngAfterViewInit(): void {
     //     this.accordion.openAll();
     // }
-    
-  autoOpen() {
-    setTimeout(() => this.accordion.openAll(), 1000);
-}
+
+    autoOpen() {
+        setTimeout(() => this.accordion.openAll(), 1000);
+    }
 
     applySelectFilter() {
         // console.log(this.filterModel)

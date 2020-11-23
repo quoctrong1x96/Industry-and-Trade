@@ -16,7 +16,7 @@ import {
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { FormControl } from '@angular/forms';
 import { Moment } from 'moment';
-import * as moment from 'moment';
+import moment from 'moment';
 import { MatDatepicker, MatPaginator, MatTableDataSource } from '@angular/material';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 export const MY_FORMATS = {
@@ -173,8 +173,8 @@ export class CompanyDetailComponent implements OnInit {
 
 	message: String = '';
 	// cuDate = new Date();
-	dateNK = new FormControl(moment.default());
-	dateXK = new FormControl(moment.default());
+	dateNK = new FormControl(moment());
+	dateXK = new FormControl(moment());
 	// displayedColumns: String[] = ['index', 'SAN_PHAM', 'SAN_LUONG', 'TRI_GIA', 'DOI_TAC', 'ACTION'];
 	displayedColumns: String[] = ['index', 'SAN_PHAM', 'SAN_LUONG', 'TRI_GIA', 'DOI_TAC'];
 	public readonly formatDate = 'dd/MM/yyyy';

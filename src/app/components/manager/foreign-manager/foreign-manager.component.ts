@@ -3,7 +3,7 @@ import { Component, OnInit, ViewChild, ElementRef, ChangeDetectorRef, QueryList,
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { FormControl } from '@angular/forms';
-import * as _moment from 'moment';
+import _moment from 'moment';
 import { defaultFormat as _rollupMoment, Moment } from 'moment';
 import { DateAdapter, MAT_DATE_LOCALE, MAT_DATE_FORMATS, MatDatepicker } from '@angular/material';
 import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
@@ -110,7 +110,7 @@ export class ForeignManagerComponent implements OnInit {
   }
   //Get Foreign market price
   public getAllForegionManagerPrevious(time: Date) {
-    this._managerService.GetForeignMarket(_moment.default(time).format('DD/MM/YYYY')).subscribe(
+    this._managerService.GetForeignMarket(_moment(time).format('DD/MM/YYYY')).subscribe(
       allrecords => {
         console.log(allrecords);
         allrecords.data.forEach(row => {

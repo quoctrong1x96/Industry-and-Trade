@@ -23,7 +23,7 @@ import { Subject } from 'rxjs';
 //Moment
 import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
-import * as _moment from 'moment';
+import _moment from 'moment';
 import { defaultFormat as _rollupMoment, Moment } from 'moment';
 const moment = _rollupMoment || _moment;
 export const MY_FORMATS = {
@@ -61,7 +61,7 @@ export class ProductManagerComponent implements OnInit {
     public readonly LOCALE = 'en-GB';
 
     //Declare variable for HTML&TS
-    public date = new FormControl(_moment.default());
+    public date = new FormControl(_moment());
     public modeQuery: MODE = MODE.INSERT;
     public columns: number = 1;
     public timeProductManager: string;

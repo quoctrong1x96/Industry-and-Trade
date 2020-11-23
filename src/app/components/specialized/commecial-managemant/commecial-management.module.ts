@@ -28,7 +28,10 @@ import {dich} from '../commecial-managemant/border-trade/dich.pipe';
 import { MultilevelTradeComponent } from './multilevel-trade/multilevel-trade.component';
 import { RetailMonthComponent } from './retail/retail-month/retail-month.component';
 import { RetailComponent } from './retail/retail.component';
-import { ZeroAsSubPipe } from 'src/app/shared/pipes/filterZeroAsSub.pipe';
+import { FormatNumberReportPipe } from "src/app/shared/pipes/formatNumber.pipe";
+import { MatSortModule } from '@angular/material';
+import { PipeModule } from 'src/app/pipe.module';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -38,14 +41,14 @@ import { ZeroAsSubPipe } from 'src/app/shared/pipes/filterZeroAsSub.pipe';
     CommecialManagementRoutingModule,
     MatDialogModule,
     MatPaginatorModule,
-    
+    PipeModule,
   ],
   exports: [
     MatPaginatorModule,
-    ZeroAsSubPipe
+    MatSortModule,
+    FormatNumberReportPipe
   ],
   declarations: [
-    ZeroAsSubPipe,
     MarketCommecialManagementComponent,
     CommonCommecialComponent,
     TobaccoBusinessComponent,
@@ -68,7 +71,9 @@ import { ZeroAsSubPipe } from 'src/app/shared/pipes/filterZeroAsSub.pipe';
     RetailMonthComponent,
     RetailComponent,
     dich,
-    MultilevelTradeComponent],
+    MultilevelTradeComponent,
+    FormatNumberReportPipe
+  ],
   entryComponents: [
     ModalComponent
   ],

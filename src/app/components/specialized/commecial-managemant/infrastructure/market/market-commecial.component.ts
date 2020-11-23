@@ -34,7 +34,7 @@ interface HashTableNumber<T> {
 @Component({
   selector: "app-market-commecial",
   templateUrl: "./market-commecial.component.html",
-  styleUrls: ["./market-commecial.component.scss"],
+  styleUrls: ['../../../special_layout.scss'],
 })
 export class MarketCommecialManagementComponent implements OnInit {
   //Constant-------------------------------------------------------------------------
@@ -539,7 +539,7 @@ export class MarketCommecialManagementComponent implements OnInit {
   private _caculator(data: Array<ReportTable>) {
     this.tongSoCho = data.length;
     //--
-    this.choNongThon =  data.filter((x) => x.fc01.includes("Thành thị")).length;
+    this.choNongThon = data.filter((x) => x.fc01.includes("Thành thị")).length;
     this.choThanhThi = this.tongSoCho - this.choNongThon;
     //--
     this.choHangI = data.filter((x) => x.fn03 == 1).length;

@@ -22,7 +22,7 @@ import { InformationService } from 'src/app/shared/information/information.servi
 //Moment
 import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
-import * as _moment from 'moment';
+import _moment from 'moment';
 import { defaultFormat as _rollupMoment, Moment } from 'moment';
 import { Subject } from 'rxjs';
 const moment = _rollupMoment || _moment;
@@ -59,7 +59,7 @@ export class ImportManagerComponent implements OnInit {
     public readonly ARRAY_PRODUCT = [1, 27, 13, 34, 25, 33, 22, 4, 31, 28, 18, 38, 19, 30, 7, 17, 37, 32, 21, 24, 23];
     public readonly MAX_PRODUCT = 21;
     //Declare variable for HTML&TS
-    public date = new FormControl(_moment.default());
+    public date = new FormControl(_moment());
     public columns: number = 1;
     public timeImportManager: string;
     public displayedColumns: string[] = ['index', 'ten_san_pham', 'san_luong', 'tri_gia', 'san_luong_ct', 'tri_gia_ct', 'top_xuat_khau'];

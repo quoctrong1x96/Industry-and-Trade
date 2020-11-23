@@ -13,7 +13,7 @@ import { InformationService } from 'src/app/shared/information/information.servi
 import { Location } from '@angular/common';
 import { element } from 'protractor';
 import { merge } from 'rxjs';
-import * as moment from 'moment';
+import moment from 'moment';
 
 
 interface HashTableNumber<T> {
@@ -218,8 +218,8 @@ export class ViewReportComponent implements OnInit {
   formatFrameReport(report: ReportOject){
     this.tenbaocao = report.obj_name;
     this.thoigianbaocao = this.convertTimeIdToTimePeriod(parseInt(report.time_id));
-    this.ngaybatdaubaocao = moment.default(report.start_date).format('DD/MM/YYYY');
-    this.ngayketthucbaocao = moment.default(report.end_date).format('DD/MM/YYYY');
+    this.ngaybatdaubaocao = moment(report.start_date).format('DD/MM/YYYY');
+    this.ngayketthucbaocao = moment(report.end_date).format('DD/MM/YYYY');
   }
 
   convertTimeIdToTimePeriod(time_id:number):string{

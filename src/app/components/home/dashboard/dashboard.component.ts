@@ -7,7 +7,7 @@ import { ChartOptions, ChartDataSets, ChartType } from 'chart.js';
 import { DashboardService } from 'src/app/_services/APIService/dashboard.service';
 import { CHART_TYPE } from 'src/app/_enums/chart.type.enum';
 import { regExpEscape } from '@ng-bootstrap/ng-bootstrap/util/util';
-import * as moment from 'moment';
+import moment from 'moment';
 
 interface HashTableNumber<T> {
   [key: number]: T;
@@ -139,7 +139,7 @@ export class DashboardComponent implements OnInit {
     let newDate = new Date(date);
     console.log(newDate);
     //return this.GetMonthAndYear(newDate.toISOString().replace('-', '').replace('-', ''));
-    return moment.default(newDate).format('DD/MM/YYYY');
+    return moment(newDate).format('DD/MM/YYYY');
   }
 
   public get SelectedTheme() {

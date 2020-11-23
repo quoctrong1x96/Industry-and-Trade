@@ -11,7 +11,7 @@ import { ChemicalLPGFoodManagementModel } from 'src/app/_models/APIModel/industr
 @Component({
     selector: 'lpg-management',
     templateUrl: './lpg-management.component.html',
-    styleUrls: ['./lpg-management.component.scss'],
+    styleUrls: ['/../../special_layout.scss'],
 })
 
 export class LPGManagementComponent implements OnInit {
@@ -35,6 +35,7 @@ export class LPGManagementComponent implements OnInit {
     isChecked: boolean;
     sanLuongSanXuat: number = 0;
     sanLuongKinhDoanh: number = 0;
+    year : number;
 
     @ViewChild('table', { static: false }) table: MatTable<ChemicalLPGFoodManagementModel>;
     @ViewChild(MatAccordion, { static: false }) accordion: MatAccordion;
@@ -51,10 +52,11 @@ export class LPGManagementComponent implements OnInit {
     autoOpen() {
         setTimeout(() => this.accordion.openAll(), 1000);
     }
-    
+
     ngOnInit() {
         this.years = this.getYears();
-        this.getDanhSachQuanLyChietNapLPG(new Date().getFullYear() - 1);
+        this.year = new Date().getFullYear() - 1;
+        this.getDanhSachQuanLyChietNapLPG(this.year);
         this.filteredDataSource.filterPredicate = function (data: ChemicalLPGFoodManagementModel, filter): boolean {
             return String(data.is_het_han).includes(filter);
         };

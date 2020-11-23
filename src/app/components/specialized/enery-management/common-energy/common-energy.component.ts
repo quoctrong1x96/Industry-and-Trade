@@ -20,18 +20,18 @@ export interface PeriodicElement {
 
 const ELEMENT_DATA: PeriodicElement[] = [
   {
-    stt: 1, name: 'Lĩnh vực về Năng lượng - Thủy điện.', 
-    t1: '1', t2: '2', t3: '3', t4: '4', t5: '5', t6: '6', 
+    stt: 1, name: 'Lĩnh vực về Năng lượng - Thủy điện.',
+    t1: '1', t2: '2', t3: '3', t4: '4', t5: '5', t6: '6',
     t7: '7', t8: '8', t9: '9', t10: '10', t11: '11', t12: '12'
   },
   {
-    stt: 2, name: 'Điện nông thôn', 
-    t1: '1', t2: '2', t3: '3', t4: '4', t5: '5', t6: '6', 
+    stt: 2, name: 'Điện nông thôn',
+    t1: '1', t2: '2', t3: '3', t4: '4', t5: '5', t6: '6',
     t7: '7', t8: '8', t9: '9', t10: '10', t11: '11', t12: '12'
   },
   {
-    stt: 3, name: 'Cơ sở sử dụng năng lượng trọng điểm', 
-    t1: '1', t2: '2', t3: '3', t4: '4', t5: '5', t6: '6', 
+    stt: 3, name: 'Cơ sở sử dụng năng lượng trọng điểm',
+    t1: '1', t2: '2', t3: '3', t4: '4', t5: '5', t6: '6',
     t7: '7', t8: '8', t9: '9', t10: '10', t11: '11', t12: '12'
   },
 ];
@@ -39,7 +39,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
 @Component({
   selector: 'app-common-energy',
   templateUrl: './common-energy.component.html',
-  styles: []
+  styleUrls: ['/../../special_layout.scss'],
 })
 export class CommonEnergyComponent implements OnInit {
 
@@ -47,7 +47,7 @@ export class CommonEnergyComponent implements OnInit {
 
   ngOnInit() {
   }
-  @ViewChild(MatAccordion,{ static: true }) accordion: MatAccordion;
+  @ViewChild(MatAccordion, { static: true }) accordion: MatAccordion;
   displayedColumns: string[] = [
     'stt', 'name', 't1', 't2', 't3', 't4', 't5', 't6', 't7', 't8', 't9', 't10', 't11', 't12'
   ];

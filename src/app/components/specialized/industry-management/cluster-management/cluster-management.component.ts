@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 @Component({
     selector: 'cluster-management',
     templateUrl: './cluster-management.component.html',
-    styleUrls: ['./cluster-management.component.scss'],
+    styleUrls: ['/../../special_layout.scss'],
 })
 
 export class ClusterManagementComponent implements OnInit {

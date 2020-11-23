@@ -5,7 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import * as XLSX from 'xlsx';
-import * as _moment from 'moment';
+import _moment from 'moment';
 import { defaultFormat as _rollupMoment, Moment } from 'moment';
 import { DateAdapter, MAT_DATE_LOCALE, MAT_DATE_FORMATS, MatDatepicker } from '@angular/material';
 import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
@@ -97,11 +97,11 @@ export class ForeignMarketPriceComponent implements OnInit {
     this.inititalChartOther();
   }
   public getForeignMarketPriceByTime(time: Date) {
-    this.marketService.GetForeignMarket(_moment.default(time).format('DD/MM/YYYY')).subscribe(
+    this.marketService.GetForeignMarket(_moment(time).format('DD/MM/YYYY')).subscribe(
       allrecords => {
         console.log(allrecords)
         allrecords.data.forEach(row => {
-          row.ngay_cap_nhat = _moment.default(row.ngay_cap_nhat).format('DD/MM/YYYY')
+          row.ngay_cap_nhat = _moment(row.ngay_cap_nhat).format('DD/MM/YYYY')
         });
         this.dataSource = new MatTableDataSource<ForeignMarketModel>(allrecords.data);
         if (this.dataSource.data.length == 0) {
@@ -250,7 +250,7 @@ export class ForeignMarketPriceComponent implements OnInit {
   //Initialize Other
   public inititalChartOther() {
     this._mainChartType = 'line';
-    this.timeDomesticPrice = _moment.default(this.pickedDate.date).format('DD/MM/YYYY');
+    this.timeDomesticPrice = _moment(this.pickedDate.date).format('DD/MM/YYYY');
     this._theYear = 2020;
     this._mainChartLegend = false;
   }
