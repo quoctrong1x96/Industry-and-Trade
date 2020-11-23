@@ -315,7 +315,6 @@ export class RetailMonthComponent implements OnInit {
             { thu_tu: "2", chi_tieu: "Dịch vụ ăn uống", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 0, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
             { thu_tu: "3", chi_tieu: "Dịch vụ lữ hành và hoạt động hỗ trợ du lịch", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 0, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
         ],
-
     ]
     //TS & HTML variable -----------------------------------------------------------
     public dataSource: MatTableDataSource<RetailMonthModel> = new MatTableDataSource<RetailMonthModel>();
