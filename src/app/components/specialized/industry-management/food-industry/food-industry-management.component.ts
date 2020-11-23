@@ -35,6 +35,7 @@ export class FoodIndustryManagementComponent implements OnInit {
     isChecked: boolean;
     sanLuongBotMy: number = 0;
     sanLuongRuou: number = 0;
+    year : number;
 
     @ViewChild('table', { static: false }) table: MatTable<ChemicalLPGFoodManagementModel>;
     @ViewChild(MatAccordion, { static: false }) accordion: MatAccordion;
@@ -54,7 +55,8 @@ export class FoodIndustryManagementComponent implements OnInit {
 
     ngOnInit() {
         this.years = this.getYears();
-        this.getDanhSachQuanLyCongNghiepThucPham(new Date().getFullYear() - 1);
+        this.year = new Date().getFullYear() - 1;
+        this.getDanhSachQuanLyCongNghiepThucPham(this.year);
         this.filteredDataSource.filterPredicate = function (data: ChemicalLPGFoodManagementModel, filter): boolean {
             return String(data.is_het_han).includes(filter);
         };
