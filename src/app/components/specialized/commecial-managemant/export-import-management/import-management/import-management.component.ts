@@ -46,7 +46,7 @@ export class ImportManagementComponent implements OnInit, AfterViewInit {
   @ViewChild(MatAccordion, { static: true }) accordion: MatAccordion;
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
-  nhap_khau_chu_yeu = [1, 13, 34, 33, 22, 19, 31, 18, 28, 4, 27, 17, 30, 37, 25, 7, 23]
+  nhap_khau_chu_yeu = [1,13,34,15,22,19,31,18,28,4,27,17,30,37,25,7,23]
   isOnlyTongCucHQ: boolean = true;
   constructor(
     public sctService: SCTService,
@@ -96,6 +96,7 @@ export class ImportManagementComponent implements OnInit, AfterViewInit {
     this.isChecked = false;
     let tem = new Date().getFullYear() * 100 + thang;
     this.dataTargetId = [2];
+    this.applyDataTarget(this.dataTargetId);
     this.sctService.GetDanhSachNhapKhau(tem).subscribe(result => {
       // this.dataSource = new MatTableDataSource<ex_im_model>(result.data[1]);
       this.log(this.dataSource)
@@ -208,7 +209,7 @@ export class ImportManagementComponent implements OnInit, AfterViewInit {
     // this.dataTargetId[0] = 2
     // 1: cuc hai quan
     // 2: tong cuc hai quan
-    this.isOnlyTongCucHQ = value.includes(1) && value.includes(2);
+    this.isOnlyTongCucHQ = this.dataTargetId.includes(1) && this.dataTargetId.includes(2);
     if (this.isOnlyTongCucHQ) {
       this.displayedColumns = [
         'index', 'ten_san_pham', 'luong_thang', 'gia_tri_thang', 'luong_cong_don',

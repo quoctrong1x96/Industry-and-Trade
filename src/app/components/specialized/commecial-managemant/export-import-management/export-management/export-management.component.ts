@@ -42,7 +42,8 @@ export class ExportManagementComponent implements OnInit {
     @ViewChild(MatAccordion, { static: true }) accordion: MatAccordion;
     @ViewChild("paginator", { static: false }) paginator: MatPaginator;
     @ViewChild(MatSort, { static: false }) sort: MatSort;
-    nhap_khau_chu_yeu = [1, 6, 8, 4, 7, 21, 13, 27, 82, 51, 28, 20, 31, 19, 23]
+    nhap_khau_chu_yeu = [1,	6,	8,	4,	7,	7,	13	,27	,82	,51	,28	,20	,31	,19	,23]
+    
     tongluong_tc: number = 0;
     tonggiatri_tc: number = 0;
     tongluongcongdon_tc: number = 0;
@@ -100,6 +101,7 @@ export class ExportManagementComponent implements OnInit {
             this.curentmonth = thang;
         }
         this.dataTargetId = [2];
+        this.applyDataTarget(this.dataTargetId);
         this.sctService.GetDanhSachXuatKhau(tem).subscribe((result) => {
             this.log(this.dataSource)
             this.dataDialog = result.data[0];
@@ -213,7 +215,7 @@ export class ExportManagementComponent implements OnInit {
         // this.dataTargetId[0] = 2
         // 1: cuc hai quan
         // 2: tong cuc hai quan
-        this.isOnlyTongCucHQ = value.includes(1) && value.includes(2);
+        this.isOnlyTongCucHQ = this.dataTargetId.includes(1) && this.dataTargetId.includes(2);
         if (this.isOnlyTongCucHQ) {
             this.displayedColumns = [
                 'index', 'ten_san_pham', 'luong_thang', 'gia_tri_thang', 'luong_cong_don',
