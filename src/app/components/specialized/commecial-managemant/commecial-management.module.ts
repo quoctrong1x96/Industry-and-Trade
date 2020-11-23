@@ -26,8 +26,11 @@ import { BorderTradeComponent } from './border-trade/border-trade.component';
 import { RegisteredSaleWebsiteComponent } from './e-commerce-managemant/registered-sale-website/registered-sale-website.component';
 import {dich} from '../commecial-managemant/border-trade/dich.pipe';
 import { MultilevelTradeComponent } from './multilevel-trade/multilevel-trade.component';
+import { RetailMonthComponent } from './retail/retail-month/retail-month.component';
+import { RetailComponent } from './retail/retail.component';
 import { FormatNumberReportPipe } from "src/app/shared/pipes/formatNumber.pipe";
 import { MatSortModule } from '@angular/material';
+import { PipeModule } from 'src/app/pipe.module';
 
 @NgModule({
   imports: [
@@ -38,10 +41,11 @@ import { MatSortModule } from '@angular/material';
     CommecialManagementRoutingModule,
     MatDialogModule,
     MatPaginatorModule,
-    MatSortModule
+    PipeModule,
   ],
   exports: [
     MatPaginatorModule,
+    MatSortModule,
     FormatNumberReportPipe
   ],
   declarations: [
@@ -64,6 +68,8 @@ import { MatSortModule } from '@angular/material';
     ModalComponent,
     TRSManagementComponent,
     BorderTradeComponent,
+    RetailMonthComponent,
+    RetailComponent,
     dich,
     MultilevelTradeComponent,
     FormatNumberReportPipe

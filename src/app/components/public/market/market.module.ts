@@ -12,10 +12,10 @@ import { MaterialModule } from '../../../material.module';
 import { DomesticExportComponent } from './domesticExport/domestic-export.component';
 import { DomesticImportComponent } from './domesticImport/domestic-import.component';
 import { DomesticProductComponent } from './domesticProduct/domestic-product.component';
-import { ZeroAsSubPipe } from '../../../shared/pipes/filterZeroAsSub.pipe';
 import { ForeignMarketPriceComponent } from './foreignPrice/foreign-price.component';
 import { CompanyTopPopup } from './company-top-popup/company-top-popup.component';
 import { CurrencyMaskInputMode, NgxCurrencyModule } from "ngx-currency";
+import { PipeModule } from 'src/app/pipe.module';
 
 export const customCurrencyMaskConfig = {
   align: "right",
@@ -41,10 +41,10 @@ export const customCurrencyMaskConfig = {
     MatDialogModule,
     MaterialModule,
     ReactiveFormsModule,
+    PipeModule,
     NgxCurrencyModule.forRoot(customCurrencyMaskConfig),
   ],
   exports: [
-    ZeroAsSubPipe
   ],
   declarations: [
     DomesticPriceComponent,
@@ -52,11 +52,11 @@ export const customCurrencyMaskConfig = {
     DomesticImportComponent,
     DomesticProductComponent,
     ForeignMarketPriceComponent,
-    ZeroAsSubPipe,
-    CompanyTopPopup
+    CompanyTopPopup,
   ],
   providers: [
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },
+  
   ],
   entryComponents: [CompanyTopPopup]
 })

@@ -14,6 +14,8 @@ import { ExportManagementComponent } from "./export-import-management/export-man
 import { BorderTradeComponent } from './border-trade/border-trade.component';
 import { RegisteredSaleWebsiteComponent } from './e-commerce-managemant/registered-sale-website/registered-sale-website.component';
 import { MultilevelTradeComponent } from "./multilevel-trade/multilevel-trade.component";
+import { RetailComponent } from './retail/retail.component';
+import { RetailMonthComponent } from './retail/retail-month/retail-month.component';
 const routes: Routes = [
   {
     path: 'domestic',
@@ -106,6 +108,14 @@ const routes: Routes = [
         component: RegisteredSaleWebsiteComponent
       }
     ]
+  },
+  {
+    path: 'retail',
+    component: RetailComponent,
+  },
+  {
+    path: 'retail/retail-detail',
+    component: RetailMonthComponent
   },
   {
     path: 'export_import',
