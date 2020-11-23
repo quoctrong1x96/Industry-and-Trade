@@ -16,7 +16,7 @@ import { ChemicalLPGFoodManagementModel } from 'src/app/_models/APIModel/industr
 
 export class ChemicalManagementComponent implements OnInit {
     displayedColumns: string[] = [];
-    displayedColumns1: string[] = ['index', 'mst', 'ten_doanh_nghiep', 'dia_chi', 'nganh_nghe_kd', 'email', 'so_lao_dong', 'cong_suat', 'san_luong', 'so_gp_gcn', 'ngay_cap', 'ngay_het_han', 'tinh_trang_hoat_dong'];
+    displayedColumns1: string[] = ['index', 'ten_doanh_nghiep', 'mst', 'dia_chi', 'nganh_nghe_kd', 'email', 'so_lao_dong', 'cong_suat', 'san_luong', 'so_gp_gcn', 'ngay_cap', 'ngay_het_han', 'tinh_trang_hoat_dong'];
     displayedColumns2: string[] = ['index', 'ten_doanh_nghiep', 'dia_chi', 'nganh_nghe_kd', 'cong_suat', 'san_luong', 'tinh_trang_hoat_dong'];
     dataSource: MatTableDataSource<ChemicalLPGFoodManagementModel> = new MatTableDataSource<ChemicalLPGFoodManagementModel>();
     filteredDataSource: MatTableDataSource<ChemicalLPGFoodManagementModel> = new MatTableDataSource<ChemicalLPGFoodManagementModel>();
@@ -35,7 +35,7 @@ export class ChemicalManagementComponent implements OnInit {
     isChecked: boolean;
     sanLuongSanXuat: number = 0;
     sanLuongKinhDoanh: number = 0;
-    year : number;
+    year: number;
 
     @ViewChild('table', { static: false }) table: MatTable<ChemicalLPGFoodManagementModel>;
     @ViewChild(MatAccordion, { static: false }) accordion: MatAccordion;

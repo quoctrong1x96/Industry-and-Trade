@@ -17,7 +17,7 @@ export class InformedEcommerceWebsiteComponent implements OnInit {
   @ViewChild(MatAccordion, { static: true }) accordion: MatAccordion;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-  displayedColumns: string[] = ['index', 'mst', 'ten_doanh_nghiep', 'dia_chi', 'dien_thoai', 'ten_mien', 'loai_hhdv', 'email', 'so_gian_hang'];
+  displayedColumns: string[] = ['index', 'ten_doanh_nghiep', 'mst', 'dia_chi', 'dien_thoai', 'ten_mien', 'loai_hhdv', 'email', 'so_gian_hang'];
   dataSource: MatTableDataSource<ECommerceWebsite>;
   filteredDataSource: MatTableDataSource<ECommerceWebsite> = new MatTableDataSource<ECommerceWebsite>();
   filterModel: ECommerceWebsiteFilterModel = { id_quan_huyen: [] };
@@ -82,10 +82,10 @@ export class InformedEcommerceWebsiteComponent implements OnInit {
   //   //Add 'implements AfterViewInit' to the class.
   //   this.accordion.openAll();
   // }
-  
+
   autoOpen() {
     setTimeout(() => this.accordion.openAll(), 1000);
-}
+  }
 
   filterArray(array, filters) {
     const filterKeys = Object.keys(filters);

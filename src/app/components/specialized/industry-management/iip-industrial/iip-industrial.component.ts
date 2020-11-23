@@ -13,7 +13,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 @Component({
     selector: 'iip-industrial',
     templateUrl: './iip-industrial.component.html',
-    styleUrls: ['./iip-industrial.component.scss'],
+    styleUrls: ['/../../special_layout.scss'],
 })
 
 export class IipIndustrialComponent implements OnInit {
@@ -93,7 +93,7 @@ export class IipIndustrialComponent implements OnInit {
     //ViewChild & Input & Output -------------------------------------------------
     @ViewChild('table', { static: false }) table: MatTable<IIPIndustrialModel>;
     @ViewChild(MatAccordion, { static: false }) accordion: MatAccordion;
-    // @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+    @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
     //Contructor + Init + Destroy
     constructor(
@@ -110,22 +110,30 @@ export class IipIndustrialComponent implements OnInit {
     public ChangeYear(year: number): void {
         if (year == 2020) {
             this.dataSource = new MatTableDataSource(this.DATA_DEFAULT);
+            this.dataSource.paginator = this.paginator;
         }
         else {
             this.dataSource = new MatTableDataSource();
+            this.dataSource.paginator = this.paginator;
         }
     }
     public OpenDetail(month: number, year: number) {
         this._router.navigate([this.REDIRECT_PAGE], { queryParams: { year: year, month: month } });
-    //     const url = this._router.serializeUrl(this._router.createUrlTree([encodeURI('#') + this.REDIRECT_PAGE], { queryParams: { month: month, year: year} })
-    //   );
-    //   window.open(url.replace('%23','#'));
+        //     const url = this._router.serializeUrl(this._router.createUrlTree([encodeURI('#') + this.REDIRECT_PAGE], { queryParams: { month: month, year: year} })
+        //   );
+        //   window.open(url.replace('%23','#'));
     }
     //TS Function -----------------------------------------------------------------
     private initData(): void {
         this.year = this.getCurrentYear();
         console.log("year:", this.year);
         this.dataSource = new MatTableDataSource(this.DATA_DEFAULT);
+        this.dataSource.paginator = this.paginator;
+        this.paginator._intl.itemsPerPageLabel = 'Số hàng';
+        this.paginator._intl.firstPageLabel = "Trang Đầu";
+        this.paginator._intl.lastPageLabel = "Trang Cuối";
+        this.paginator._intl.previousPageLabel = "Trang Trước";
+        this.paginator._intl.nextPageLabel = "Trang Tiếp";
     }
 
     private sendLinkToNext(type: boolean): void {
