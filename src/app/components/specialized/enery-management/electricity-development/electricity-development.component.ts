@@ -6,7 +6,7 @@ import { ElectricityDevelopmentModel, HydroElectricManagementModel } from 'src/a
 @Component({
   selector: 'app-electricity-development',
   templateUrl: './electricity-development.component.html',
-  styleUrls: ['./electricity-development.component.scss']
+  styleUrls: ['/../../special_layout.scss'],
 })
 export class ElectricDevelopmentManagementComponent implements OnInit {
   //ViewChild 

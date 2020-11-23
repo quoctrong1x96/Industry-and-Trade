@@ -8,7 +8,7 @@ import { MarketService } from 'src/app/_services/APIService/market.service';
 @Component({
   selector: 'app-multilevel-trade',
   templateUrl: './multilevel-trade.component.html',
-  styleUrls: ['./multilevel-trade.component.scss']
+  styleUrls: ['/../../special_layout.scss'],
 })
 export class MultilevelTradeComponent implements OnInit {
 

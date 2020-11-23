@@ -15,7 +15,7 @@ export class GroupProduct {
 @Component({
   selector: 'app-border-trade',
   templateUrl: './border-trade.component.html',
-  styleUrls: ['./border-trade.component.scss']
+  styleUrls: ['/../../special_layout.scss'],
 })
 export class BorderTradeComponent implements OnInit {
   displayedColumns: string[] = [

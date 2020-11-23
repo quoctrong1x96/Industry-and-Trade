@@ -11,7 +11,7 @@ import { District } from 'src/app/_models/district.model';
 @Component({
     selector: 'lpg-business',
     templateUrl: './lpg-business.component.html',
-    styleUrls: ['./lpg-business.component.scss'],
+    styleUrls: ['../../../special_layout.scss'],
 })
 
 export class LPGBusinessComponent implements OnInit {

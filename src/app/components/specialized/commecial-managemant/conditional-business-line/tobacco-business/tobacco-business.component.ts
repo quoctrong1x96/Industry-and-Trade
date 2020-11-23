@@ -12,7 +12,7 @@ import { District } from 'src/app/_models/district.model';
 @Component({
     selector: 'tobacco-business',
     templateUrl: './tobacco-business.component.html',
-    styleUrls: ['./tobacco-business.component.scss'],
+    styleUrls: ['../../../special_layout.scss'],
 })
 
 export class TobaccoBusinessComponent implements OnInit {
@@ -50,7 +50,7 @@ export class TobaccoBusinessComponent implements OnInit {
         // };
         this.autoOpen()
     }
-    
+
     autoOpen() {
         setTimeout(() => this.accordion.openAll(), 1000);
     }

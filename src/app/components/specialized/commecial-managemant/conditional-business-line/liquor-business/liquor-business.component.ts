@@ -11,7 +11,7 @@ import { District } from 'src/app/_models/district.model';
 @Component({
     selector: 'liquor-business',
     templateUrl: './liquor-business.component.html',
-    styleUrls: ['./liquor-business.component.scss'],
+    styleUrls: ['../../../special_layout.scss'],
 })
 
 export class LiquorBusinessComponent implements OnInit {

@@ -33,7 +33,7 @@ interface HashTableNumber<T> {
 @Component({
   selector: 'app-supermarket-commecial',
   templateUrl: './supermarket-commecial.component.html',
-  styleUrls: ['./supermarket-commecial.component.scss']
+  styleUrls: ['../../../special_layout.scss'],
 })
 
 export class SuperMarketCommecialManagementComponent implements OnInit {
@@ -89,7 +89,7 @@ export class SuperMarketCommecialManagementComponent implements OnInit {
 
   autoOpen() {
     setTimeout(() => this.accordion.openAll(), 1000);
-}
+  }
 
   items: TreeviewItem[] = [];
   values: number[] = [];

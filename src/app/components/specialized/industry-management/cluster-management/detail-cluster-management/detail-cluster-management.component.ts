@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
     selector: 'detail-cluster-management',
     templateUrl: './detail-cluster-management.component.html',
-    styleUrls: ['./detail-cluster-management.component.scss'],
+    styleUrls: ['../../../special_layout.scss'],
 })
 
 export class DetailClusterManagementComponent implements OnInit {
@@ -236,7 +236,7 @@ export class DetailClusterManagementComponent implements OnInit {
             dataTableTemp.push(new ClusterDetailShortModel("Diễn giải", this._clusterDetail.dien_giai));
             this.dataSource = new MatTableDataSource(dataTableTemp);
         }
-        else{
+        else {
 
         }
 
