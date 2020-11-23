@@ -28,6 +28,7 @@ import {dich} from '../commecial-managemant/border-trade/dich.pipe';
 import { MultilevelTradeComponent } from './multilevel-trade/multilevel-trade.component';
 import { RetailMonthComponent } from './retail/retail-month/retail-month.component';
 import { RetailComponent } from './retail/retail.component';
+import { ZeroAsSubPipe } from 'src/app/shared/pipes/filterZeroAsSub.pipe';
 @NgModule({
   imports: [
     CommonModule,
@@ -37,11 +38,14 @@ import { RetailComponent } from './retail/retail.component';
     CommecialManagementRoutingModule,
     MatDialogModule,
     MatPaginatorModule,
+    
   ],
   exports: [
-    MatPaginatorModule
+    MatPaginatorModule,
+    ZeroAsSubPipe
   ],
   declarations: [
+    ZeroAsSubPipe,
     MarketCommecialManagementComponent,
     CommonCommecialComponent,
     TobaccoBusinessComponent,

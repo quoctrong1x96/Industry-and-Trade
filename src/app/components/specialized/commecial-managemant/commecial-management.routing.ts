@@ -114,7 +114,7 @@ const routes: Routes = [
     component: RetailComponent,
   },
   {
-    path: 'retail/retial-month',
+    path: 'retail/retail-detail',
     component: RetailMonthComponent
   },
   {
