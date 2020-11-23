@@ -95,6 +95,7 @@ export class ImportManagementComponent implements OnInit, AfterViewInit {
   getDanhSachNhapKhau(thang) {
     this.isChecked = false;
     let tem = new Date().getFullYear() * 100 + thang;
+    this.dataTargetId = [2];
     this.sctService.GetDanhSachNhapKhau(tem).subscribe(result => {
       // this.dataSource = new MatTableDataSource<ex_im_model>(result.data[1]);
       this.log(this.dataSource)

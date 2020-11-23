@@ -6,10 +6,14 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class FormatNumberReportPipe implements PipeTransform {
 
     transform(value: any): string {
-        value = value.toString().replace(',', '').replace(',', '').replace(',', '');
-        return new Intl.NumberFormat('en-us', {
-            minimumFractionDigits: 0
-        }).format(Number(value));
+        if(value){
+            value = value.toString().replace(',', '').replace(',', '').replace(',', '');
+            return new Intl.NumberFormat('en-us', {
+                minimumFractionDigits: 0
+            }).format(Number(value));
+        } else{
+            return "-";
+        }
     }
 
 }
