@@ -207,12 +207,12 @@ export const navItemsSpecialized: INavItem[] = [
             icon: 'smoking_rooms',
             id: 'KDCDK',
           },
-          // {
-          //   name: 'Tổng mức bán lẻ hàng hóa và dịch vụ',
-          //   url: '/specialized/commecial-management/domestic/trs',
-          //   icon: 'tty',
-          //   id: 'HHDV',
-          // },
+          {
+            name: 'Tổng mức bán lẻ hàng hóa và dịch vụ',
+            url: '/specialized/commecial-management/retail',
+            icon: 'tty',
+            id: 'HHDV',
+          },
         ]
       },
       {
@@ -310,17 +310,17 @@ export const navItemsSpecialized: INavItem[] = [
     expand: false,
     children: [
       {
-        name: 'Năng lượng - Thủy điện',
+        name: 'Năng lượng',
         url: '/specialized/enery-management/hydroelectric',
         icon: 'call_split',
       },
       {
-        name: 'Điện nông thôn',
+        name: 'Phát triển điện',
         url: '/specialized/enery-management/countryside_electric',
         icon: 'home',
       },
       {
-        name: 'Cơ sở sử dụng năng lượng trọng điểm',
+        name: 'Tiết kiệm năng lượng',
         url: '/specialized/enery-management/focused_energy',
         icon: 'group_work',
       },
@@ -351,7 +351,7 @@ export const navItemsSpecialized: INavItem[] = [
       },
       {
         name: 'Chỉ số SX công nghiệp',
-        url: '/specialized/commecial-management/domestic/trs',
+        url: '/specialized/industry-management/iip',
         icon: 'filter_9_plus',
       },
       {

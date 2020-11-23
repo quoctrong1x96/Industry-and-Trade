@@ -21,6 +21,7 @@ import { ConfirmationDialogService } from './shared/confirmation-dialog/confirma
 import {MatPaginatorModule} from '@angular/material/paginator';
 // import { FormatNumberReportPipe } from './shared/pipes/formatNumber.pipe';
 import { dich } from 'src/app/components/specialized/commecial-managemant/border-trade/dich.pipe';
+import { PipeModule } from './pipe.module';
 @NgModule({
   imports: [
     BrowserModule,
@@ -30,8 +31,9 @@ import { dich } from 'src/app/components/specialized/commecial-managemant/border
     RoutingModule,
     NgbModule,
     MaterialModule,
+    PipeModule,
     ReactiveFormsModule,
-    MatPaginatorModule
+    MatPaginatorModule,
     // ToastrModule.forRoot()
   ],
   declarations:[
@@ -41,6 +43,7 @@ import { dich } from 'src/app/components/specialized/commecial-managemant/border
   ],
   exports : [
     // FormatNumberReportPipe
+    
   ],
   providers: [
    // { provide: APP_INITIALIZER, useFactory: appInitializer, multi: true, deps: [LoginService] },
@@ -51,7 +54,7 @@ import { dich } from 'src/app/components/specialized/commecial-managemant/border
       useClass: HashLocationStrategy,
     },
     InformationService,
-    ConfirmationDialogService
+    ConfirmationDialogService,
   ],
   entryComponents:[
     InformationComponent,

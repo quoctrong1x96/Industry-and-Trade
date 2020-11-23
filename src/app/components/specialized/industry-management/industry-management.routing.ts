@@ -4,6 +4,8 @@ import { ChemicalManagementComponent } from './chemical-management/chemical-mana
 import { ClusterManagementComponent } from './cluster-management/cluster-management.component';
 import { DetailClusterManagementComponent } from './cluster-management/detail-cluster-management/detail-cluster-management.component';
 import { FoodIndustryManagementComponent } from './food-industry/food-industry-management.component';
+import { IipIndustrialComponent } from './iip-industrial/iip-industrial.component';
+import { IipMonthComponent } from './iip-industrial/iip-month/iip-month.component';
 import { IndustrialExplosivesComponent } from './industrial-explosives/industrial-explosives.component';
 import { LPGManagementComponent } from './lpg-management/lpg-management.component';
 
@@ -33,6 +35,23 @@ const routes: Routes = [
                 component: FoodIndustryManagementComponent,
                 data: {
                     title: 'Công nghiệp thực phẩm',
+                }
+            },
+            {
+                path: 'iip',
+                component: IipIndustrialComponent,
+                data: {
+                    title: 'Chỉ số sản xuất công nghiệp',
+                },
+                children:[
+                    
+                ]
+            },
+            {
+                path: 'iip/iip-detail',
+                component: IipMonthComponent,
+                data: {
+                    title: 'Chi tiết Chỉ số tháng',
                 }
             },
             {
