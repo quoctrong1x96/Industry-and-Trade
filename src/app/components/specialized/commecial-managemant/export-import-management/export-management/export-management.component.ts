@@ -99,6 +99,7 @@ export class ExportManagementComponent implements OnInit {
         if (thang !== this.curentmonth && thang) {
             this.curentmonth = thang;
         }
+        this.dataTargetId = [2];
         this.sctService.GetDanhSachXuatKhau(tem).subscribe((result) => {
             this.log(this.dataSource)
             this.dataDialog = result.data[0];
