@@ -59,7 +59,7 @@ export class DomesticProductComponent implements OnInit {
   public dataGet: Array<any>;
   public chartYearModelSelected: number;
   public chartyears: Array<number> = [];
-  public date = new FormControl(_moment());
+  public date = new FormControl(_moment.default());
   //Derclare variable for TS  
   public mainChartLegend: boolean;
   public mainChartType: string = 'line';

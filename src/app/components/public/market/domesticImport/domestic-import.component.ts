@@ -58,7 +58,7 @@ export class DomesticImportComponent implements OnInit {
   public dataSource: MatTableDataSource<ImportMarketModel>;
   public dataGet: Array<any>;
   public chartYearModelSelected: number;
-  public date = new FormControl(_moment());
+  public date = new FormControl(_moment.default());
   public chartyears: Array<number> = [];
   public mainChartData: Array<any> = new Array<any>();
   //Declare variable for ONLY TS

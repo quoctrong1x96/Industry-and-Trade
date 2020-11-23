@@ -121,7 +121,7 @@ export class DomesticManagerComponent implements OnInit {
    * 4. Regist key arrown
    */
   public ngOnInit() {
-    // this.timeDomesticManager = _moment(this.pickedDate.date).format('DD/MM/YYYY');
+    // this.timeDomesticManager = _moment.default(this.pickedDate.date).format('DD/MM/YYYY');
     this.timeDomesticManager = this.getCurrentDate();
     this.getListProduct();
     this.getPreviousDomesticManager(this.pickedDate.date);

@@ -110,7 +110,7 @@ export class ForeignManagerComponent implements OnInit {
   }
   //Get Foreign market price
   public getAllForegionManagerPrevious(time: Date) {
-    this._managerService.GetForeignMarket(_moment(time).format('DD/MM/YYYY')).subscribe(
+    this._managerService.GetForeignMarket(_moment.default(time).format('DD/MM/YYYY')).subscribe(
       allrecords => {
         console.log(allrecords);
         allrecords.data.forEach(row => {

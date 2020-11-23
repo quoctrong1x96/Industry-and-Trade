@@ -173,8 +173,8 @@ export class CompanyDetailComponent implements OnInit {
 
 	message: String = '';
 	// cuDate = new Date();
-	dateNK = new FormControl(moment());
-	dateXK = new FormControl(moment());
+	dateNK = new FormControl(moment.default());
+	dateXK = new FormControl(moment.default());
 	// displayedColumns: String[] = ['index', 'SAN_PHAM', 'SAN_LUONG', 'TRI_GIA', 'DOI_TAC', 'ACTION'];
 	displayedColumns: String[] = ['index', 'SAN_PHAM', 'SAN_LUONG', 'TRI_GIA', 'DOI_TAC'];
 	public readonly formatDate = 'dd/MM/yyyy';

@@ -91,7 +91,7 @@ export class DomesticPriceComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.timeDomesticPrice = _moment(this.pickedDate.date).format('DD/MM/YYYY');
+    this.timeDomesticPrice = _moment.default(this.pickedDate.date).format('DD/MM/YYYY');
     this.chartYearModelSelected = this.getCurrentYear();
     this.chartyears = this.initialYears();
     this.getDomesticMarketPriceByTime(this.pickedDate.date);
@@ -271,7 +271,7 @@ export class DomesticPriceComponent implements OnInit {
     this.mainChartLegend = false;
   }
   public getChartDataByTimePeriod(listProduct: any[], from_date: Date, to_date: Date) {
-    // this.marketService.GetPriceByTimePeriod(listProduct,_moment(from_date).format('DD/MM/YYYY').toString(), _moment(to_date).format('DD/MM/YYYY').toString()).subscribe(
+    // this.marketService.GetPriceByTimePeriod(listProduct,_moment.default(from_date).format('DD/MM/YYYY').toString(), _moment.default(to_date).format('DD/MM/YYYY').toString()).subscribe(
     //   result =>{
     //     console.log(result);
     //   }

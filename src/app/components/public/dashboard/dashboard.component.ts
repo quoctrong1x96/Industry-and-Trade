@@ -169,7 +169,7 @@ export class DashboardComponent implements OnInit {
     let newDate = new Date(date);
     // console.log(newDate);
     //return this.GetMonthAndYear(newDate.toISOString().replace('-', '').replace('-', ''));
-    return moment(newDate).format('DD/MM/YYYY');
+    return moment.default(newDate).format('DD/MM/YYYY');
   }
 
   public get SelectedTheme() {

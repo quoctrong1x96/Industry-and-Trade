@@ -207,12 +207,12 @@ export const navItemsSpecialized: INavItem[] = [
             icon: 'smoking_rooms',
             id: 'KDCDK',
           },
-          // {
-          //   name: 'Tổng mức bán lẻ hàng hóa và dịch vụ',
-          //   url: '/specialized/commecial-management/domestic/trs',
-          //   icon: 'tty',
-          //   id: 'HHDV',
-          // },
+          {
+            name: 'Tổng mức bán lẻ hàng hóa và dịch vụ',
+            url: '/specialized/commecial-management/retail',
+            icon: 'tty',
+            id: 'HHDV',
+          },
         ]
       },
       {
@@ -351,7 +351,7 @@ export const navItemsSpecialized: INavItem[] = [
       },
       {
         name: 'Chỉ số SX công nghiệp',
-        url: '/specialized/commecial-management/domestic/trs',
+        url: '/specialized/industry-management/iip',
         icon: 'filter_9_plus',
       },
       {

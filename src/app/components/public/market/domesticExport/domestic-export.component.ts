@@ -62,7 +62,7 @@ export class DomesticExportComponent implements OnInit {
   public total: ExportMarketModel
   public chartYearModelSelected: number;
   public chartyears: Array<number> = [];
-  public date = new FormControl(_moment());
+  public date = new FormControl(_moment.default());
   //Declare variable for ONLY TS
   public theYear: number = 0;
   public theMonth: number = 0;

@@ -219,8 +219,8 @@ export class FillReportComponent implements OnInit {
   formatFrameReport(report: ReportOject) {
     this.tenbaocao = report.obj_name;
     this.thoigianbaocao = this.convertTimeIdToTimePeriod(parseInt(report.time_id));
-    this.ngaybatdaubaocao = moment(report.start_date).format('DD/MM/YYYY');
-    this.ngayketthucbaocao = moment(report.end_date).format('DD/MM/YYYY');
+    this.ngaybatdaubaocao = moment.default(report.start_date).format('DD/MM/YYYY');
+    this.ngayketthucbaocao = moment.default(report.end_date).format('DD/MM/YYYY');
   }
 
   convertTimeIdToTimePeriod(time_id: number): string {

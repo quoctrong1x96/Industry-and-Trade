@@ -102,8 +102,8 @@ export class EditBusinessComponent implements OnInit {
   vall17 = new FormControl("", [Validators.required]);
 
   message: String;
-  dateNK = new FormControl(moment());
-  dateXK = new FormControl(moment());
+  dateNK = new FormControl(moment.default());
+  dateXK = new FormControl(moment.default());
 
   @Input() company: CompanyDetailModel;
   mst: string;

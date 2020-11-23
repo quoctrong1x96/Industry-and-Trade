@@ -59,7 +59,7 @@ export class ImportManagerComponent implements OnInit {
     public readonly ARRAY_PRODUCT = [1, 27, 13, 34, 25, 33, 22, 4, 31, 28, 18, 38, 19, 30, 7, 17, 37, 32, 21, 24, 23];
     public readonly MAX_PRODUCT = 21;
     //Declare variable for HTML&TS
-    public date = new FormControl(_moment());
+    public date = new FormControl(_moment.default());
     public columns: number = 1;
     public timeImportManager: string;
     public displayedColumns: string[] = ['index', 'ten_san_pham', 'san_luong', 'tri_gia', 'san_luong_ct', 'tri_gia_ct', 'top_xuat_khau'];

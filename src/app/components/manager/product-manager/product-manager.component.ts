@@ -61,7 +61,7 @@ export class ProductManagerComponent implements OnInit {
     public readonly LOCALE = 'en-GB';
 
     //Declare variable for HTML&TS
-    public date = new FormControl(_moment());
+    public date = new FormControl(_moment.default());
     public modeQuery: MODE = MODE.INSERT;
     public columns: number = 1;
     public timeProductManager: string;
