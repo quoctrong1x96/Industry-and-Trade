@@ -15,7 +15,7 @@ import { RetailModel, RetailMonthModel } from 'src/app/_models/commecial.model';
 @Component({
     selector: 'retail-month',
     templateUrl: './retail-month.component.html',
-    styleUrls: ['./retail-month.component.scss'],
+    styleUrls: ['../../../special_layout.scss'],
 })
 
 export class RetailMonthComponent implements OnInit {
@@ -274,7 +274,7 @@ export class RetailMonthComponent implements OnInit {
             { thu_tu: "11", chi_tieu: "Đá quý, kim loại quý và sản phẩm", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 114255.5, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
             { thu_tu: "12", chi_tieu: "Các hợp chất từ cao su", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 66575.5, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
             { thu_tu: "II", chi_tieu: "Doanh thu hoạt động dịch vụ (trừ lưu trú, ăn uống, dịch vụ lữ hành)", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 380501.68, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
-            { thu_tu: "1", chi_tieu: "Dịch vụ kinh doanh bất động sản", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang:44180.57, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
+            { thu_tu: "1", chi_tieu: "Dịch vụ kinh doanh bất động sản", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 44180.57, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
             { thu_tu: "2", chi_tieu: "Dịch vụ hành chính và dịch vụ hỗ trợ", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 27850.01, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
             { thu_tu: "3", chi_tieu: "Dịch vụ giáo dục và đào tạo", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 1119.03, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
             { thu_tu: "4", chi_tieu: "Dịch vụ y tế và hoạt động trợ giúp xã hội", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 2597.04, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
@@ -315,7 +315,6 @@ export class RetailMonthComponent implements OnInit {
             { thu_tu: "2", chi_tieu: "Dịch vụ ăn uống", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 0, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
             { thu_tu: "3", chi_tieu: "Dịch vụ lữ hành và hoạt động hỗ trợ du lịch", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 0, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
         ],
-        
     ]
     //TS & HTML variable -----------------------------------------------------------
     public dataSource: MatTableDataSource<RetailMonthModel> = new MatTableDataSource<RetailMonthModel>();
@@ -350,6 +349,12 @@ export class RetailMonthComponent implements OnInit {
     private initData(): void {
 
         this.dataSource = new MatTableDataSource(this.getDataByMonth(this.month, this.year));
+        this.dataSource.paginator = this.paginator;
+        this.paginator._intl.itemsPerPageLabel = 'Số hàng';
+        this.paginator._intl.firstPageLabel = "Trang Đầu";
+        this.paginator._intl.lastPageLabel = "Trang Cuối";
+        this.paginator._intl.previousPageLabel = "Trang Trước";
+        this.paginator._intl.nextPageLabel = "Trang Tiếp";
     }
     private sendLinkToNext(type: boolean): void {
         this._linkOutput.link = this.LINK_DEFAULT + "yaer=" + this.year + "&month=" + this.month;
@@ -360,7 +365,7 @@ export class RetailMonthComponent implements OnInit {
     }
 
     private getDataByMonth(month: number, year: number) {
-        console.log("year:",year," and month: ", month);
+        console.log("year:", year, " and month: ", month);
         if (year != 2020 || month > 10) {
             return [];
         }

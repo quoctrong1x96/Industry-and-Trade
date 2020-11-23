@@ -14,7 +14,7 @@ import { MatPaginator } from '@angular/material/paginator';
 })
 export class RegisteredSaleWebsiteComponent implements OnInit {
 
-  displayedColumns: string[] = ['index', 'mst', 'ten_tc_cn', 'dia_chi', 'dien_thoai', 'ten_mien', 'nganh_nghe', 'ma_so_nganh_nghe'];
+  displayedColumns: string[] = ['index', 'ten_tc_cn', 'mst', 'dia_chi', 'dien_thoai', 'ten_mien', 'nganh_nghe', 'ma_so_nganh_nghe'];
   dataSource: MatTableDataSource<SaleWebsite>;
   filteredDataSource: MatTableDataSource<SaleWebsite> = new MatTableDataSource<SaleWebsite>();
   filterModel: SaleWebsiteFilterModel = { id_quan_huyen: [] };

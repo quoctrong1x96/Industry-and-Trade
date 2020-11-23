@@ -15,11 +15,16 @@
             height: 100px;
             .mat-card-header .mat-card-title {
                 margin-bottom: 15px;
-                font-size: 20px;
+                font-size: 15px;
             }
-            .mat-card-content,
+            .mat-card-content {
+                font-size: 22px;
+                text-align: center;
+                font-weight: bolder;
+                color: $blue;
+            }
             .mat-card-subtitle {
-                font-size: 20px;
+                font-size: 10px;
                 text-align: center;
                 font-weight: bold;
             }
@@ -32,14 +37,28 @@
                 font-size: 15px;
             }
             .mat-card-content {
-                font-size: 15px;
+                font-size: 18px;
                 text-align: center;
-                font-weight: bold;
+                font-weight: bolder;
+                color: $blue;
             }
             .mat-card-subtitle {
                 font-size: 10px;
                 text-align: center;
                 font-weight: bold;
+            }
+        }
+
+        .card3 {
+            .detail-img {
+                width: 500px;
+                height: 300px;
+            }
+        }
+
+        .checkbox {
+            .mat-checkbox {
+                padding-left: 20px;
             }
         }
 
@@ -52,7 +71,7 @@
         .mat-paginator {
             display: flex;
             align-items: center;
-            // justify-content: flex-end;
+            justify-content: flex-end;
             min-height: 30px;
             width: 100%;
         }
@@ -79,6 +98,15 @@
             max-height: 590px;
             overflow: auto;
             table.mat-table.table-layout {
+                // .mat-table-sticky:first-child {
+                //     border-right: 1px solid blue;
+                // }
+
+                // .mat-table-sticky:last-child {
+                //     border-left: 1px solid blue;
+                // }
+                border-collapse: separate;
+
                 width: 550%;
                 table-layout: initial;
                 th,
@@ -90,21 +118,21 @@
                     background-color: $blue;
                     color: $white;
                     padding: 5px;
-                    border: 1px solid black;
+                    border: 0.01em solid rgb(192, 192, 192);
                     font-weight: bold;
                     font-size: 15px;
                     text-align: center;
                     height: 50px;
                 }
                 .mat-footer-cell {
-                    border: 1px solid black;
+                    border: 0.01em solid rgb(192, 192, 192);
                     padding: 5px;
                     text-align: center;
                     font-weight: bolder;
                 }
                 .mat-cell {
-                    padding: 5px;
-                    border: 1px solid black;
+                    border-width: 1px;
+                    border: 0.01em solid rgb(192, 192, 192);
                     font-size: 14px;
                     text-align: center;
                     max-width: 350px;
@@ -173,6 +201,10 @@
         width: 200%;
     }
 
+    .table-layout#small-table3 {
+        width: 300%;
+    }
+
     #filter {
         width: 100%;
     }
@@ -183,6 +215,10 @@
 
     #filter2 {
         width: 200%;
+    }
+
+    #filter3 {
+        width: 300%;
     }
 
     #large-filter {

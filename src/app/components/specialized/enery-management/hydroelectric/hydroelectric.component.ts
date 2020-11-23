@@ -16,7 +16,7 @@ export class HydroelectricComponent implements OnInit {
   @ViewChild('table', { static: false }) table: MatTable<HydroElectricManagementModel>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   //Constant variable
-  public readonly displayedColumns: string[] = ['index', 'mst', 'ten_doanh_nghiep', 'ten_phuong_xa', 'ten_huyen_thi', 'cong_xuat_thiet_ke', 'luong_nuoc_xa', 'dung_tich_ho', 'san_luong_6_thang', 'san_luong_nam', 'doanh_thu', 'trang_thai'];
+  public readonly displayedColumns: string[] = ['index', 'ten_doanh_nghiep', 'mst', 'ten_phuong_xa', 'ten_huyen_thi', 'cong_xuat_thiet_ke', 'luong_nuoc_xa', 'dung_tich_ho', 'san_luong_6_thang', 'san_luong_nam', 'doanh_thu', 'trang_thai'];
   //TS & HTML Variable
   public dataSource: MatTableDataSource<HydroElectricManagementModel> = new MatTableDataSource<HydroElectricManagementModel>();
   public filteredDataSource: MatTableDataSource<HydroElectricManagementModel> = new MatTableDataSource<HydroElectricManagementModel>();

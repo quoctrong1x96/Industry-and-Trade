@@ -124,7 +124,7 @@
                             <td mat-cell *matCellDef="let element"> {{element.mst}}</td>
                         </ng-container>
 
-                        <ng-container matColumnDef="ten_doanh_nghiep">
+                        <ng-container matColumnDef="ten_doanh_nghiep" sticky>
                             <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Tên doanh nghiệp </th>
                             <td mat-cell *matCellDef="let element"> {{element.ten_doanh_nghiep}}</td>
                         </ng-container>
@@ -159,7 +159,7 @@
                         <ng-container matColumnDef="danh_sach_thuong_nhan">
                             <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Thương nhân cung cấp thuốc lá
                             </th>
-                            <td mat-cell *matCellDef="let element"> <pre>{{element.danh_sach_thuong_nhan}}</pre></td>
+                            <td mat-cell *matCellDef="let element">{{element.danh_sach_thuong_nhan}}</td>
                         </ng-container>
 
                         <ng-container matColumnDef="san_luong">

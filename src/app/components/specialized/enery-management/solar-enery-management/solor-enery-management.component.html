@@ -126,7 +126,7 @@
                             <td mat-cell *matCellDef="let element; let i = index;" class='stt'>{{i+1}}</td>
                         </ng-container>
 
-                        <ng-container matColumnDef="ten_du_an">
+                        <ng-container matColumnDef="ten_du_an" sticky>
                             <th mat-header-cell *matHeaderCellDef> Tên dự án</th>
                             <td mat-cell *matCellDef="let element"> {{element.ten_du_an}}</td>
                         </ng-container>
