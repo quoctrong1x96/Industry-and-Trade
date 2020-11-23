@@ -15,11 +15,16 @@
             height: 100px;
             .mat-card-header .mat-card-title {
                 margin-bottom: 15px;
-                font-size: 20px;
+                font-size: 15px;
             }
-            .mat-card-content,
+            .mat-card-content {
+                font-size: 22px;
+                text-align: center;
+                font-weight: bolder;
+                color: $blue;
+            }
             .mat-card-subtitle {
-                font-size: 20px;
+                font-size: 10px;
                 text-align: center;
                 font-weight: bold;
             }
@@ -32,9 +37,10 @@
                 font-size: 15px;
             }
             .mat-card-content {
-                font-size: 15px;
+                font-size: 18px;
                 text-align: center;
-                font-weight: bold;
+                font-weight: bolder;
+                color: $blue;
             }
             .mat-card-subtitle {
                 font-size: 10px;
