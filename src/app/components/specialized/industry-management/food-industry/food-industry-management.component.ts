@@ -128,4 +128,8 @@ export class FoodIndustryManagementComponent implements OnInit {
     showMoreDetail(event) {
         this.displayedColumns = (event.checked) ? this.displayedColumns1 : this.displayedColumns2;
     }
+
+    showRightUnit(value, type){
+        return value + (type == 1? ' tấn' : ' lít');
+    }
 }

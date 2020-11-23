@@ -158,18 +158,18 @@
 
                         <ng-container matColumnDef="danh_sach_thuong_nhan">
                             <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Thương nhân cung cấp rượu </th>
-                            <td mat-cell *matCellDef="let element"> {{element.danh_sach_thuong_nhan}}</td>
+                            <td mat-cell *matCellDef="let element"> <pre>{{element.danh_sach_thuong_nhan}}</pre></td>
                         </ng-container>
 
                         <ng-container matColumnDef="san_luong">
                             <th mat-header-cell *matHeaderCellDef> Số lượng (Lít) </th>
-                            <td mat-cell *matCellDef="let element"> {{element.san_luong | number: '1.0-0'}}
+                            <td mat-cell *matCellDef="let element"> {{element.san_luong | number: '1.0-4'}}
                             </td>
                         </ng-container>
 
                         <ng-container matColumnDef="tri_gia">
                             <th mat-header-cell *matHeaderCellDef> Trị giá (1000 đ) </th>
-                            <td mat-cell *matCellDef="let element"> {{element.tri_gia | number: '1.0-0'}}
+                            <td mat-cell *matCellDef="let element"> {{element.tri_gia | number: '1.0-4'}}
                             </td>
                         </ng-container>
 
