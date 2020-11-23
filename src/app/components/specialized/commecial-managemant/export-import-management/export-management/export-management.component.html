@@ -194,7 +194,7 @@
             <mat-form-field appearance="outline">
               <mat-label>Nguồn dữ liệu: </mat-label>
               <mat-select (selectionChange)="applyDataTarget($event.value)" multiple [(ngModel)]="dataTargetId">
-                <mat-option *ngFor="let item of dataTargets" [value]="item.id">
+                <mat-option *ngFor="let item of dataTargets" [value]="item.id" [disabled]="(item.id ===2) ? 'true' : 'false'">
                   {{ item.unit }}
                 </mat-option>
               </mat-select>
