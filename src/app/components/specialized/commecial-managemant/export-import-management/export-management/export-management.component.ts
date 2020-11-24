@@ -42,7 +42,7 @@ export class ExportManagementComponent implements OnInit {
     @ViewChild(MatAccordion, { static: true }) accordion: MatAccordion;
     @ViewChild("paginator", { static: false }) paginator: MatPaginator;
     @ViewChild(MatSort, { static: false }) sort: MatSort;
-    nhap_khau_chu_yeu = [1,	6,	8,	4,	7,	7,	13	,27	,82	,51	,28	,20	,31	,19	,23]
+    nhap_khau_chu_yeu = [1,	6,	8,	4,	7,	21,	13	,27	,82	,51	,28	,20	,31	,19	,23]
     
     tongluong_tc: number = 0;
     tonggiatri_tc: number = 0;
