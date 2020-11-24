@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatTable, MatTableDataSource } from '@angular/material';
 import { element } from 'protractor';
 import { ReportService } from 'src/app/_services/APIService/report.service';
@@ -9,6 +9,7 @@ import { District } from 'src/app/_models/district.model';
 import { ChemicalLPGFoodManagementModel } from 'src/app/_models/APIModel/industry-management.module';
 import { LinkModel } from 'src/app/_models/link.model';
 import { BreadCrumService } from 'src/app/_services/injectable-service/breadcrums.service';
+import * as XLSX from 'xlsx';
 
 @Component({
     selector: 'chemical-management',
@@ -45,7 +46,7 @@ export class ChemicalManagementComponent implements OnInit {
     sanLuongKinhDoanh: number = 0;
     year: number;
 
-    @ViewChild('table', { static: false }) table: MatTable<ChemicalLPGFoodManagementModel>;
+    @ViewChild('table', { static: false }) table: ElementRef;
     @ViewChild(MatAccordion, { static: false }) accordion: MatAccordion;
     @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
@@ -145,5 +146,15 @@ export class ChemicalManagementComponent implements OnInit {
 
     showMoreDetail(event) {
         this.displayedColumns = (event.checked) ? this.displayedColumns1 : this.displayedColumns2;
+    }
+    
+    public ExportTOExcel(filename: string, sheetname: string) {
+        const excelExtention: string = ".xlsx";
+        let excelFileName: string = filename + excelExtention;
+        const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);
+        const wb: XLSX.WorkBook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, sheetname);
+        /* save to file */
+        XLSX.writeFile(wb, excelFileName);
     }
 }

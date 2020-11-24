@@ -104,16 +104,21 @@
                         <mat-checkbox (change)="applyExpireCheck($event)" [ngModel]="isChecked">DN hết hạn
                         </mat-checkbox>
                     </div>
+
+                    <div class="col-lg-3 button-control my-auto">
+                        <button mat-raised-button (click)="ExportTOExcel('KDCĐK - Xăng dầu','Xăng dầu')">Xuất
+                            Excel</button>
+                    </div>
                 </div>
 
 
-                <div *ngIf="filteredDataSource.data.length; else ShowEmpty" class="layout">
+                <div *ngIf="filteredDataSource.data.length; else ShowEmpty" class="layout" #table>
                     <mat-form-field id="filter2">
                         <mat-label>Lọc dữ liệu</mat-label>
                         <input matInput (keyup)="applyFilter($event)" placeholder="" #input>
                     </mat-form-field>
 
-                    <table mat-table [dataSource]="filteredDataSource" #table class="table-layout" id="small-table2">
+                    <table mat-table [dataSource]="filteredDataSource" class="table-layout" id="small-table2">
                         <ng-container matColumnDef="index">
                             <th mat-header-cell *matHeaderCellDef> STT </th>
                             <td mat-cell *matCellDef="let element; let i = index;" class='stt'>{{i+1}}</td>
@@ -171,8 +176,7 @@
                             <td mat-cell *matCellDef="let element"> {{element.san_luong | number: '1.0-0'}}</td>
                         </ng-container>
 
-                        <tr mat-header-row
-                            *matHeaderRowDef="['index', 'mst', 'ten_doanh_nghiep', 'ten_cua_hang', 'dia_chi', 'dien_thoai', 'so_giay_phep', 'ngay_cap','ngay_het_han', 'danh_sach_thuong_nhan', 'san_luong']; sticky : true">
+                        <tr mat-header-row *matHeaderRowDef="['index', 'mst', 'ten_doanh_nghiep', 'ten_cua_hang', 'dia_chi', 'dien_thoai', 'so_giay_phep', 'ngay_cap','ngay_het_han', 'danh_sach_thuong_nhan', 'san_luong']; sticky : true">
                         </tr>
                         <tr mat-row *matRowDef="let row; columns: displayedColumns;let i = index; ">
                     </table>
