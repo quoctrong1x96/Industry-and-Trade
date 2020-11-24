@@ -22,48 +22,77 @@
 
                 <div class="row">
                     <div class="col-6 col-lg-6">
-                        <div class="list-group">
-                            <a class="list-group-item list-group-item-action flex-column align-items-start">
-                                <div class="d-flex w-100 justify-content-between">
-                                    <h5 class="mb-1">1 Tổng số cửa hàng: <strong>0</strong></h5>
-                                </div>
-                                <p class="mb-1"></p>
-                            </a>
-                            <a class="list-group-item list-group-item-action flex-column align-items-start">
-                                <div class="d-flex w-100 justify-content-between">
-                                    <h5 class="mb-1">2. hình thức kinh doanh:</h5>
-                                </div>
-                                <p class="mb-1 config-p">
-                                    <br> 2.1 Tổng số cửa hàng tiện lợi: <strong>0</strong>
-                                    <br> 2.2 Khác: <strong>0</strong>
-                                </p>
-                            </a>
-                        </div>
+                        <mat-card class="card1">
+                            <mat-card-header>
+                                <mat-card-title>
+                                    <mat-icon>filter</mat-icon> Tổng số cửa hàng:
+                                </mat-card-title>
+                                <mat-card-subtitle></mat-card-subtitle>
+                            </mat-card-header>
+                            <mat-card-content>
+                                0 cửa hàng
+                            </mat-card-content>
+                        </mat-card>
                     </div>
-
                     <div class="col-6 col-lg-6">
-                        <div class="list-group">
-                            <a class="list-group-item list-group-item-action flex-column align-items-start">
-                                <div class="d-flex w-100 justify-content-between">
-                                    <h5 class="mb-1">3. Tổng số cửa hàng trong huyện <strong>...</strong> là:</h5>
-                                </div>
-                                <p class="mb-1 config-p">
-                                </p>
-                            </a>
-                            <a class="list-group-item list-group-item-action flex-column align-items-start">
-                                <div class="d-flex w-100 justify-content-between">
-                                    <h5 class="mb-1">4. Thống kê số lượng siêu thị theo năm:</h5>
-                                </div>
-                                <p class="mb-1 config-p">
-                                    4.1 Tổng số cửa hàng hoạt động trong năm <strong>...</strong> là: <strong>0</strong>
-                                    <br> 4.2 Chênh lệch số cửa hàng hoạt động trong năm <strong>...</strong> so với năm
-                                    trước là:
-                                    <strong>0</strong>
-                                </p>
-                            </a>
-                        </div>
+                        <mat-card class="card1">
+                            <mat-card-header>
+                                <mat-card-title>
+                                    <mat-icon>filter</mat-icon> Tổng số cửa hàng trong huyện năm ... là:
+                                </mat-card-title>
+                                <mat-card-subtitle></mat-card-subtitle>
+                            </mat-card-header>
+                            <mat-card-content>
+                                0 cửa hàng
+                            </mat-card-content>
+                        </mat-card>
                     </div>
                 </div>
+
+                <br>
+                <div class="row">
+                    <div class="col-6 col-lg-6">
+                        <mat-card class="card4">
+                            <mat-card-header>
+                                <mat-card-title>
+                                    <mat-icon>filter</mat-icon> Hình thức kinh doanh:
+                                </mat-card-title>
+                                <mat-card-subtitle></mat-card-subtitle>
+                            </mat-card-header>
+                            <mat-card-content>
+                                <ul>
+                                    <li>
+                                        Tổng số cửa hàng tiện lợi: 0
+                                    </li>
+                                    <li>
+                                        Tổng số cửa hàng khác: 0
+                                    </li>
+                                </ul>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                    <div class="col-6 col-lg-6">
+                        <mat-card class="card4">
+                            <mat-card-header>
+                                <mat-card-title>
+                                    <mat-icon>filter</mat-icon> Thống kê số lượng cửa hàng theo năm:
+                                </mat-card-title>
+                                <mat-card-subtitle></mat-card-subtitle>
+                            </mat-card-header>
+                            <mat-card-content style="font-size: 13px;">
+                                <ul>
+                                    <li>
+                                        Tổng số cửa hàng hoạt động trong năm ... là: 0
+                                    </li>
+                                    <li>
+                                        Chênh lệch số cửa hàng hoạt động trong năm ... so với năm trước là: 0
+                                    </li>
+                                </ul>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                </div>
+
             </mat-expansion-panel>
 
             <mat-expansion-panel>
