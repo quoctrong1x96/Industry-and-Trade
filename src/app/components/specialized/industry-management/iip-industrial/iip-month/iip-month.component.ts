@@ -20,8 +20,8 @@ import { Route } from '@angular/compiler/src/core';
 export class IipMonthComponent implements OnInit {
     //Constant variable -----------------------------------------------------------
     private readonly LINK_DEFAULT: string = "/specialized/industry-management/iip-industrial/month?";
-    private readonly TITLE_DEFAULT: string = "Chỉ số công nghiệp IIP tháng ";
-    private readonly TEXT_DEFAULT: string = "Chỉ số công nghiệp IIP tháng ";
+    private readonly TITLE_DEFAULT: string = "Chỉ số sản xuất công nghiệp tháng ";
+    private readonly TEXT_DEFAULT: string = "Chỉ số sản xuất công nghiệp tháng ";
     public readonly DISPLAY_COLS: string[] = ['index', 'chi_tieu', 'don_vi', 'cung_ky', 'thuc_hien_thang_truoc', 'thuc_hien_thang', 'thuc_hien_so_voi_thang_truoc', 'thuc_hien_so_voi_cung_ky'];
     private readonly DATA_DEFAULT: Array<IIPIndustrialMonthModel[]> = [
         [

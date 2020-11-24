@@ -105,9 +105,14 @@
                         <mat-checkbox (change)="applyExpireCheck($event)" [ngModel]="isChecked">DN hết hạn
                         </mat-checkbox>
                     </div>
+
+                    <div class="col-lg-3 button-control my-auto">
+                        <button mat-raised-button (click)="ExportTOExcel('KDCĐK - Rượu bia','Rượu bia')">Xuất
+                            Excel</button>
+                    </div>
                 </div>
 
-                <div class="layout" *ngIf="filteredDataSource.data.length; else ShowEmpty">
+                <div class="layout" *ngIf="filteredDataSource.data.length; else ShowEmpty" #table>
                     <mat-form-field id="filter2">
                         <mat-label>Lọc dữ liệu</mat-label>
                         <input matInput (keyup)="applyFilter($event)" placeholder="" #input>
@@ -177,8 +182,7 @@
                             <th mat-header-cell *matHeaderCellDef [attr.colspan]="2"> Bán trong năm </th>
                         </ng-container>
 
-                        <tr mat-header-row
-                            *matHeaderRowDef="['index', 'mst', 'ten_doanh_nghiep', 'dia_chi', 'dien_thoai', 'so_giay_phep', 'ngay_cap','ngay_het_han', 'danh_sach_thuong_nhan', 'san_luong_ban_ra']; sticky : true">
+                        <tr mat-header-row *matHeaderRowDef="['index', 'mst', 'ten_doanh_nghiep', 'dia_chi', 'dien_thoai', 'so_giay_phep', 'ngay_cap','ngay_het_han', 'danh_sach_thuong_nhan', 'san_luong_ban_ra']; sticky : true">
                         </tr>
                         <tr mat-header-row *matHeaderRowDef="['san_luong', 'tri_gia']; sticky : true"></tr>
                         <tr mat-row *matRowDef="let row; columns: displayedColumns;let i = index; ">

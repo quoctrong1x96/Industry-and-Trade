@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatTable, MatTableDataSource } from '@angular/material';
 import { element } from 'protractor';
 import { ReportService } from 'src/app/_services/APIService/report.service';
@@ -7,6 +7,9 @@ import { MatAccordion } from '@angular/material/expansion';
 import { MatPaginator } from '@angular/material/paginator';
 import { District } from 'src/app/_models/district.model';
 import { ChemicalLPGFoodManagementModel } from 'src/app/_models/APIModel/industry-management.module';
+import { LinkModel } from 'src/app/_models/link.model';
+import { BreadCrumService } from 'src/app/_services/injectable-service/breadcrums.service';
+import * as XLSX from 'xlsx';
 
 @Component({
     selector: 'food-industry-management',
@@ -15,6 +18,12 @@ import { ChemicalLPGFoodManagementModel } from 'src/app/_models/APIModel/industr
 })
 
 export class FoodIndustryManagementComponent implements OnInit {
+    //Constant
+  private readonly LINK_DEFAULT: string = "/specialized/industry-management/food";
+  private readonly TITLE_DEFAULT: string = "Công nghiệp - Công nghiệp thực phẩm";
+  private readonly TEXT_DEFAULT: string = "Công nghiệp - Công nghiệp thực phẩm";
+  //Variable for only ts
+  private _linkOutput: LinkModel = new LinkModel();
     displayedColumns: string[] = [];
     displayedColumns1: string[] = ['index', 'ten_doanh_nghiep', 'mst', 'nganh_nghe_kd', 'dia_chi', 'so_lao_dong', 'cong_suat', 'san_luong', 'von_dau_tu', 'so_gp_gcn', 'ngay_cap', 'ngay_het_han', 'trang_thai_hoat_dong'];
     displayedColumns2: string[] = ['index', 'ten_doanh_nghiep', 'nganh_nghe_kd', 'dia_chi', 'cong_suat', 'san_luong', 'trang_thai_hoat_dong'];
@@ -37,11 +46,11 @@ export class FoodIndustryManagementComponent implements OnInit {
     sanLuongRuou: number = 0;
     year : number;
 
-    @ViewChild('table', { static: false }) table: MatTable<ChemicalLPGFoodManagementModel>;
+    @ViewChild('table', { static: false }) table: ElementRef;
     @ViewChild(MatAccordion, { static: false }) accordion: MatAccordion;
     @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-    constructor(public sctService: SCTService) {
+    constructor(public sctService: SCTService,private _breadCrumService: BreadCrumService) {
     }
 
 
@@ -62,6 +71,14 @@ export class FoodIndustryManagementComponent implements OnInit {
         };
         this.displayedColumns = this.displayedColumns2;
         this.autoOpen();
+        this.sendLinkToNext(true);
+    }
+    public sendLinkToNext(type: boolean) {
+      this._linkOutput.link = this.LINK_DEFAULT;
+      this._linkOutput.title = this.TITLE_DEFAULT;
+      this._linkOutput.text = this.TEXT_DEFAULT;
+      this._linkOutput.type = type;
+      this._breadCrumService.sendLink(this._linkOutput);
     }
 
     applyFilter(event: Event) {
@@ -133,5 +150,15 @@ export class FoodIndustryManagementComponent implements OnInit {
 
     showRightUnit(value, type) {
         return value + (type == 1 ? ' tấn' : ' lít');
+    }
+    
+    public ExportTOExcel(filename: string, sheetname: string) {
+        const excelExtention: string = ".xlsx";
+        let excelFileName: string = filename + excelExtention;
+        const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);
+        const wb: XLSX.WorkBook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, sheetname);
+        /* save to file */
+        XLSX.writeFile(wb, excelFileName);
     }
 }

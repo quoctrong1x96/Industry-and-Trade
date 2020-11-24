@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatTable, MatTableDataSource } from '@angular/material';
 import { element } from 'protractor';
 import { ReportService } from 'src/app/_services/APIService/report.service';
@@ -9,6 +9,7 @@ import { District } from 'src/app/_models/district.model';
 import { ChemicalLPGFoodManagementModel } from 'src/app/_models/APIModel/industry-management.module';
 import { IndustrialExplosivesFilterModel, IndustrialExplosivesModel } from 'src/app/_models/APIModel/industrial-explosives.model';
 import { filter } from 'rxjs/operators';
+import * as XLSX from 'xlsx';
 
 @Component({
     selector: 'industrial-explosives',
@@ -43,7 +44,7 @@ export class IndustrialExplosivesComponent implements OnInit {
     year : number;
     filterModel: IndustrialExplosivesFilterModel = { id_quan_huyen: [], id_tinh_trang_hoat_dong: [], is_het_han: false };
 
-    @ViewChild('table', { static: false }) table: MatTable<IndustrialExplosivesModel>;
+    @ViewChild('table', { static: false }) table: ElementRef;
     @ViewChild(MatAccordion, { static: false }) accordion: MatAccordion;
     @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
@@ -136,5 +137,15 @@ export class IndustrialExplosivesComponent implements OnInit {
                 }
         })
         return temp;
+    }
+    
+    public ExportTOExcel(filename: string, sheetname: string) {
+        const excelExtention: string = ".xlsx";
+        let excelFileName: string = filename + excelExtention;
+        const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);
+        const wb: XLSX.WorkBook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, sheetname);
+        /* save to file */
+        XLSX.writeFile(wb, excelFileName);
     }
 }

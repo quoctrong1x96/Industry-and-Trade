@@ -9,6 +9,8 @@ import { District } from 'src/app/_models/district.model';
 import { ClusterFilterModel, ClusterModel } from 'src/app/_models/APIModel/cluster.model';
 import { each } from 'highcharts';
 import { Router } from '@angular/router';
+import { LinkModel } from 'src/app/_models/link.model';
+import { BreadCrumService } from 'src/app/_services/injectable-service/breadcrums.service';
 
 @Component({
     selector: 'cluster-management',
@@ -17,6 +19,12 @@ import { Router } from '@angular/router';
 })
 
 export class ClusterManagementComponent implements OnInit {
+    //Constant
+    private readonly LINK_DEFAULT: string = "/specialized/industry-management/cluster";
+    private readonly TITLE_DEFAULT: string = "Tổng quan cụm công nghiệp";
+    private readonly TEXT_DEFAULT: string = "Tổng quan cụm công nghiệp";
+    //Variable for only ts
+    private _linkOutput: LinkModel = new LinkModel();
     showColumns: string[] = [];
     showSubColumns: string[] = [];
     subColumns: string[] = ['dien_tich_da_dang_dau_tu', 'ten_hien_trang_ha_tang', 'ten_hien_trang_xlnt', 'tong_von_dau_tu'];
@@ -59,6 +67,7 @@ export class ClusterManagementComponent implements OnInit {
     constructor(
         public sctService: SCTService,
         public router: Router,
+        private _breadCrumService: BreadCrumService,
     ) { }
 
     ngOnInit() {
@@ -67,8 +76,15 @@ export class ClusterManagementComponent implements OnInit {
         this.years = this.getYears();
         this.getDanhSachQuanLyCumCongNghiep(2020);
         this.autoOpen();
+        this.sendLinkToNext(true);
     }
-
+    public sendLinkToNext(type: boolean) {
+        this._linkOutput.link = this.LINK_DEFAULT;
+        this._linkOutput.title = this.TITLE_DEFAULT;
+        this._linkOutput.text = this.TEXT_DEFAULT;
+        this._linkOutput.type = type;
+        this._breadCrumService.sendLink(this._linkOutput);
+    }
     applyFilter() {
         let filteredData = this.filterArray(this.dataSource.data, this.filterModel);
         if (!filteredData.length) {

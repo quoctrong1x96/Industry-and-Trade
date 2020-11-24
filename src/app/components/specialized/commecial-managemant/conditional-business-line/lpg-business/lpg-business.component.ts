@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatTable, MatTableDataSource } from '@angular/material';
 import { element } from 'protractor';
 import { ConditionalBusinessLineModel } from 'src/app/_models/APIModel/conditional-business-line.model';
@@ -7,6 +7,7 @@ import { SCTService } from 'src/app/_services/APIService/sct.service';
 import { MatAccordion } from '@angular/material/expansion';
 import { MatPaginator } from '@angular/material/paginator';
 import { District } from 'src/app/_models/district.model';
+import * as XLSX from 'xlsx';
 
 @Component({
     selector: 'lpg-business',
@@ -33,7 +34,7 @@ export class LPGBusinessComponent implements OnInit {
     soLuongCoSo: number;
     isChecked: boolean;
 
-    @ViewChild('table', { static: false }) table: MatTable<ConditionalBusinessLineModel>;
+    @ViewChild('table', { static: false }) table: ElementRef;
     @ViewChild(MatAccordion, { static: false }) accordion: MatAccordion;
     @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
@@ -126,5 +127,15 @@ export class LPGBusinessComponent implements OnInit {
     applyExpireCheck(event) {
         console.log(event);
         this.filteredDataSource.filter = (event.checked) ? "true" : "";
+    }
+    
+    public ExportTOExcel(filename: string, sheetname: string) {
+        const excelExtention: string = ".xlsx";
+        let excelFileName: string = filename + excelExtention;
+        const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);
+        const wb: XLSX.WorkBook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, sheetname);
+        /* save to file */
+        XLSX.writeFile(wb, excelFileName);
     }
 }

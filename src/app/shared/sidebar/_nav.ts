@@ -311,7 +311,7 @@ export const navItemsSpecialized: INavItem[] = [
       {
         name: 'Năng lượng',
         url: '/specialized/enery-management/hydroelectric',
-        icon: 'call_split',
+        icon: 'trending_up',
       },
       {
         name: 'Phát triển điện',
@@ -336,17 +336,17 @@ export const navItemsSpecialized: INavItem[] = [
       {
         name: 'Hóa chất',
         url: '/specialized/industry-management/chemical',
-        icon: 'monetization_on',
+        icon: 'warning',
       },
       {
         name: 'Chiết nạp khí hóa lỏng',
         url: '/specialized/industry-management/lpg',
-        icon: 'hourglass_top',
+        icon: 'auto_delete',
       },
       {
         name: 'Công nghiệp thực phẩm',
         url: '/specialized/industry-management/food',
-        icon: 'hourglass_bottom',
+        icon: 'biotech',
       },
       {
         name: 'Chỉ số SX công nghiệp',
@@ -356,24 +356,24 @@ export const navItemsSpecialized: INavItem[] = [
       {
         name: 'Cụm Công nghiệp',
         url: '/specialized/industry-management/cluster',
-        icon: 'hourglass_bottom',
-        manager: true,
+        icon: 'location_city',
+        manager:true,
         expand: false,
         children: [
           {
             name: 'Tổng quan',
             url: '/specialized/industry-management/cluster',
-            icon: 'call_split',
+            icon: 'perm_media',
           },
           {
             name: 'Địa bàn',
-            url: '/specialized/enery-management/cluster',
-            icon: 'call_split',
+            url: '/specialized/industry-management/cluster',
+            icon: 'extension',
           },
           {
             name: 'Báo cáo',
-            url: '/specialized/enery-management/cluster',
-            icon: 'call_split',
+            url: '/specialized/industry-management/cluster',
+            icon: 'feedback',
           },
         ]
       },
@@ -386,7 +386,7 @@ export const navItemsSpecialized: INavItem[] = [
       {
         name: 'Vật liệu nổ CN',
         url: '/specialized/industry-management/explosives',
-        icon: 'hourglass_bottom',
+        icon: 'sick',
       },
     ]
   },

@@ -25,7 +25,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
     t7: '7', t8: '8', t9: '9', t10: '10', t11: '11', t12: '12'
   },
   {
-    stt: 2, name: 'Điện nông thôn',
+    stt: 2, name: 'Phát triển điện',
     t1: '1', t2: '2', t3: '3', t4: '4', t5: '5', t6: '6',
     t7: '7', t8: '8', t9: '9', t10: '10', t11: '11', t12: '12'
   },

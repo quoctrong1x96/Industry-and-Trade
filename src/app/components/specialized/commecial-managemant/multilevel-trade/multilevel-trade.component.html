@@ -53,20 +53,37 @@
                     </mat-panel-description>
                 </mat-expansion-panel-header>
 
-                <div class="layout">
+                <div class="row">
+                    <div class="col-lg-3 button-control my-auto">
+
+                    </div>
+
+                    <div class="col-lg-3 button-control my-auto">
+
+                    </div>
+
+                    <div class="col-lg-3 button-control my-auto">
+
+                    </div>
+
+                    <div class="col-lg-3 button-control my-auto">
+                        <button mat-raised-button (click)="ExportTOExcel('KD đa cấp','KD đa cấp')">Xuất
+                            Excel</button>
+                    </div>
+                </div>
+                <div class="layout" #table>
                     <mat-form-field id="filter2">
                         <mat-label>Lọc dữ liệu</mat-label>
                         <input matInput (keyup)="applyFilter($event)" placeholder="" #input>
                     </mat-form-field>
 
-                    <table mat-table [dataSource]="dataSource" #table class="table-layout" id="small-table2">
+                    <table mat-table [dataSource]="dataSource" class="table-layout" id="small-table2">
                         <ng-container matColumnDef="thong_tin_dn">
                             <th mat-header-cell *matHeaderCellDef [attr.colspan]='3'> Thông tin doanh nghiệp</th>
                         </ng-container>
 
                         <ng-container matColumnDef="xac_nhan_dk">
-                            <th mat-header-cell *matHeaderCellDef [attr.colspan]='3'>Xác nhận đăng ký bán hàng đa cấp
-                                tại địa phương</th>
+                            <th mat-header-cell *matHeaderCellDef [attr.colspan]='3'>Xác nhận đăng ký bán hàng đa cấp tại địa phương</th>
                         </ng-container>
 
                         <ng-container matColumnDef="to_chuc_hoi_thao">
@@ -147,8 +164,7 @@
 
                         </ng-container>
 
-                        <tr mat-header-row
-                            *matHeaderRowDef="['index', 'thong_tin_dn', 'xac_nhan_dk', 'to_chuc_hoi_thao']">
+                        <tr mat-header-row *matHeaderRowDef="['index', 'thong_tin_dn', 'xac_nhan_dk', 'to_chuc_hoi_thao']">
                         </tr>
                         <tr mat-header-row *matHeaderRowDef="['ten_doanh_nghiep','dia_chi','mst','vb_xac_nhan_dp','co_quan_bh_dp','ngay_thang_dp',
                         'vb_xac_nhan_tc','co_quan_bh_tc',	'ngay_thang_tc', 'tg_hoi_thao', 'dia_diem_hoi_thao']"></tr>

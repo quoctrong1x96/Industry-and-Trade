@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
 import { MatTableDataSource, MatTable, MatAccordion, MatPaginator, MatSort } from '@angular/material';
 import { ex_im_model } from 'src/app/_models/APIModel/export-import.model';
 import { District } from 'src/app/_models/district.model';
@@ -7,13 +7,21 @@ import { ModalComponent } from '../dialog-import-export/modal.component';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { tap } from 'rxjs/operators';
 import { MarketService } from '../../../../../_services/APIService/market.service';
+import { BreadCrumService } from 'src/app/_services/injectable-service/breadcrums.service';
+import { LinkModel } from 'src/app/_models/link.model';
+import * as XLSX from 'xlsx';
 @Component({
   selector: 'app-import-management',
   templateUrl: './import-management.component.html',
   styleUrls: ['../../../special_layout.scss'],
 })
 export class ImportManagementComponent implements OnInit, AfterViewInit {
-
+//Constant
+private readonly LINK_DEFAULT: string = "/specialized/commecial-management/export_import/imported_products";
+private readonly TITLE_DEFAULT: string = "Thông tin nhập khẩu";
+private readonly TEXT_DEFAULT: string = "Thông tin nhập khẩu";
+//Variable for only ts
+private _linkOutput: LinkModel = new LinkModel();
   // displayedSumColumns: any[] = ['tong', 'tong_luong_thang', 'tong_gia_tri_thang', 'tong_luong_cong_don', 'tong_gia_tri_cong_don']
   displayedColumns: string[] = [];
   displayRow1Header: string[] = []
@@ -42,7 +50,7 @@ export class ImportManagementComponent implements OnInit, AfterViewInit {
   isChecked: boolean;
   pagesize: number = 0;
   curentmonth: number = new Date().getMonth() + 1;
-  @ViewChild('table', { static: false }) table: MatTable<ex_im_model>;
+  @ViewChild('table', { static: false }) table: ElementRef;
   @ViewChild(MatAccordion, { static: true }) accordion: MatAccordion;
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
@@ -51,7 +59,8 @@ export class ImportManagementComponent implements OnInit, AfterViewInit {
   constructor(
     public sctService: SCTService,
     public matDialog: MatDialog,
-    public marketService: MarketService
+    public marketService: MarketService,
+    private _breadCrumService: BreadCrumService
   ) {
   }
 
@@ -81,7 +90,16 @@ export class ImportManagementComponent implements OnInit, AfterViewInit {
     // this.filteredDataSource.filterPredicate = function (data: ex_im_model, filter): boolean {
     //     return String(data.is_het_han).includes(filter);
     // };
+    this.sendLinkToNext(true);
 
+  }
+
+  public sendLinkToNext(type: boolean) {
+    this._linkOutput.link = this.LINK_DEFAULT;
+    this._linkOutput.title = this.TITLE_DEFAULT;
+    this._linkOutput.text = this.TEXT_DEFAULT;
+    this._linkOutput.type = type;
+    this._breadCrumService.sendLink(this._linkOutput);
   }
 
   autoOpen() {
@@ -261,5 +279,15 @@ export class ImportManagementComponent implements OnInit, AfterViewInit {
         'gia_tri_thang_cong_don_tc'
       ]
     }
+  }
+    
+  public ExportTOExcel(filename: string, sheetname: string) {
+      const excelExtention: string = ".xlsx";
+      let excelFileName: string = filename + excelExtention;
+      const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);
+      const wb: XLSX.WorkBook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, sheetname);
+      /* save to file */
+      XLSX.writeFile(wb, excelFileName);
   }
 }
