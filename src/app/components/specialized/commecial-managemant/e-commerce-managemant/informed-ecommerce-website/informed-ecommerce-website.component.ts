@@ -6,6 +6,8 @@ import { SCTService } from 'src/app/_services/APIService/sct.service';
 import { notification_management } from '../../../../../_models/APIModel/ecommerce.model'
 import { MatAccordion } from '@angular/material/expansion';
 import { MatPaginator } from '@angular/material/paginator';
+import { LinkModel } from 'src/app/_models/link.model';
+import { BreadCrumService } from 'src/app/_services/injectable-service/breadcrums.service';
 
 @Component({
   selector: 'app-informed-ecommerce-website',
@@ -13,7 +15,12 @@ import { MatPaginator } from '@angular/material/paginator';
   styleUrls: ['../../../special_layout.scss'],
 })
 export class InformedEcommerceWebsiteComponent implements OnInit {
-
+//Constant
+private readonly LINK_DEFAULT: string = "/specialized/commecial-management/e-commerce/ecommerce-website";
+private readonly TITLE_DEFAULT: string = "Quản lý đăng ký website cung cấp dịch vụ TMĐT";
+private readonly TEXT_DEFAULT: string = "Quản lý đăng ký website cung cấp dịch vụ TMĐT";
+//Variable for only ts
+private _linkOutput: LinkModel = new LinkModel();
   @ViewChild(MatAccordion, { static: true }) accordion: MatAccordion;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
@@ -21,11 +28,20 @@ export class InformedEcommerceWebsiteComponent implements OnInit {
   dataSource: MatTableDataSource<ECommerceWebsite>;
   filteredDataSource: MatTableDataSource<ECommerceWebsite> = new MatTableDataSource<ECommerceWebsite>();
   filterModel: ECommerceWebsiteFilterModel = { id_quan_huyen: [] };
-  constructor(public sctService: SCTService) { }
+  constructor(public sctService: SCTService,private _breadCrumService: BreadCrumService) { }
 
   ngOnInit() {
     this.GetDanhSachWebsiteTMDT();
     this.autoOpen();
+    this.sendLinkToNext(true);
+  }
+
+  public sendLinkToNext(type: boolean) {
+    this._linkOutput.link = this.LINK_DEFAULT;
+    this._linkOutput.title = this.TITLE_DEFAULT;
+    this._linkOutput.text = this.TEXT_DEFAULT;
+    this._linkOutput.type = type;
+    this._breadCrumService.sendLink(this._linkOutput);
   }
 
   applyFilter1(event: Event) {

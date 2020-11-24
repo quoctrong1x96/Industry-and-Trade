@@ -5,6 +5,8 @@ import { District } from 'src/app/_models/district.model';
 import { ClusterFilterModel, ClusterModel } from 'src/app/_models/APIModel/cluster.model';
 import { ClusterDetailModel, ClusterDetailShortModel } from 'src/app/_models/industry.model';
 import { ActivatedRoute } from '@angular/router';
+import { LinkModel } from 'src/app/_models/link.model';
+import { BreadCrumService } from 'src/app/_services/injectable-service/breadcrums.service';
 
 
 @Component({
@@ -198,6 +200,12 @@ export class DetailClusterManagementComponent implements OnInit {
         //40: Nha Bích, 21: Minh hưng 1, 22: Minh hưng 2, 18: Tân Tiến 1, 19:Tân Tiến 2, 20: Tân Phú, 30: Tiến hưng 1,
         //14: Hà Mị
     ]
+    //Constant
+    private readonly LINK_DEFAULT: string = "/specialized/industry-management/cluster";
+    private readonly TITLE_DEFAULT: string = "Chi tiết - Cụm công nghiệp";
+    private readonly TEXT_DEFAULT: string = "Chi tiết - Cụm công nghiệp";
+    //Variable for only ts
+    private _linkOutput: LinkModel = new LinkModel();
 
 
     public _clusterDetail: ClusterDetailModel = new ClusterDetailModel();
@@ -207,6 +215,7 @@ export class DetailClusterManagementComponent implements OnInit {
 
     constructor(
         public sctService: SCTService,
+        private _breadCrumService: BreadCrumService,
         public route: ActivatedRoute,) {
         this.route.params.subscribe(params => {
             this._id = params['id'];
@@ -215,6 +224,15 @@ export class DetailClusterManagementComponent implements OnInit {
 
     ngOnInit() {
         this._getClusterDetail(this._id);
+        this.sendLinkToNext(true);
+    }
+
+    public sendLinkToNext(type: boolean) {
+        this._linkOutput.link = this.LINK_DEFAULT;
+        this._linkOutput.title = this.TITLE_DEFAULT;
+        this._linkOutput.text = this.TEXT_DEFAULT;
+        this._linkOutput.type = type;
+        this._breadCrumService.sendLink(this._linkOutput);
     }
     private _getClusterDetail(id_cluster: number) {
         let dataClusterDetails: ClusterDetailModel[] = new MatTableDataSource<ClusterDetailModel>(this.data).data;

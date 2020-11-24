@@ -7,6 +7,8 @@ import { MatAccordion } from '@angular/material/expansion';
 import { MatPaginator } from '@angular/material/paginator';
 import { District } from 'src/app/_models/district.model';
 import { ChemicalLPGFoodManagementModel } from 'src/app/_models/APIModel/industry-management.module';
+import { LinkModel } from 'src/app/_models/link.model';
+import { BreadCrumService } from 'src/app/_services/injectable-service/breadcrums.service';
 
 @Component({
     selector: 'chemical-management',
@@ -15,6 +17,12 @@ import { ChemicalLPGFoodManagementModel } from 'src/app/_models/APIModel/industr
 })
 
 export class ChemicalManagementComponent implements OnInit {
+    //Constant
+    private readonly LINK_DEFAULT: string = "/specialized/industry-management/chemical";
+    private readonly TITLE_DEFAULT: string = "Công nghiệp - Hoá chất";
+    private readonly TEXT_DEFAULT: string = "Công nghiệp - Hoá chất";
+    //Variable for only ts
+    private _linkOutput: LinkModel = new LinkModel();
     displayedColumns: string[] = [];
     displayedColumns1: string[] = ['index', 'ten_doanh_nghiep', 'mst', 'dia_chi', 'nganh_nghe_kd', 'email', 'so_lao_dong', 'cong_suat', 'san_luong', 'so_gp_gcn', 'ngay_cap', 'ngay_het_han', 'tinh_trang_hoat_dong'];
     displayedColumns2: string[] = ['index', 'ten_doanh_nghiep', 'dia_chi', 'nganh_nghe_kd', 'cong_suat', 'san_luong', 'tinh_trang_hoat_dong'];
@@ -41,7 +49,7 @@ export class ChemicalManagementComponent implements OnInit {
     @ViewChild(MatAccordion, { static: false }) accordion: MatAccordion;
     @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-    constructor(public sctService: SCTService) {
+    constructor(public sctService: SCTService,private _breadCrumService: BreadCrumService) {
     }
 
     // ngAfterViewInit(): void {
@@ -61,7 +69,17 @@ export class ChemicalManagementComponent implements OnInit {
         };
         this.displayedColumns = this.displayedColumns2;
         this.autoOpen();
+        this.sendLinkToNext(true);
     }
+
+    public sendLinkToNext(type: boolean) {
+        this._linkOutput.link = this.LINK_DEFAULT;
+        this._linkOutput.title = this.TITLE_DEFAULT;
+        this._linkOutput.text = this.TEXT_DEFAULT;
+        this._linkOutput.type = type;
+        this._breadCrumService.sendLink(this._linkOutput);
+      }
+    
 
     applyFilter(event: Event) {
         const filterValue = (event.target as HTMLInputElement).value;

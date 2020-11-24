@@ -30,14 +30,14 @@ const routes: Routes = [
       {
         path: 'countryside_electric',
         data: {
-          title: 'Điện nông thôn',
+          title: 'Phát triển điện',
         },
         component: CountrysideElectricComponent
       },
       {
         path: 'focused_energy',
         data: {
-          title: 'Tiết kiệm điện',
+          title: 'Tiết kiệm năng lượng',
         },
         component: UseFocusedEnergyComponent
       },

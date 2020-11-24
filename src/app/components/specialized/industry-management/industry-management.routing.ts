@@ -34,7 +34,7 @@ const routes: Routes = [
                 path: 'food',
                 component: FoodIndustryManagementComponent,
                 data: {
-                    title: 'Công nghiệp thực phẩm',
+                    title: 'Công nghiệp - Công nghiệp thực phẩm',
                 }
             },
             {

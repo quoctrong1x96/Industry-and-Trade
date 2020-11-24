@@ -1,10 +1,14 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatTable, MatAccordion, MatPaginator, MatSort, MatDialog, MatDialogConfig } from '@angular/material';
 import { SCTService } from 'src/app/_services/APIService/sct.service';
 import { MarketService } from 'src/app/_services/APIService/market.service';
 import { ModalComponent } from '../export-import-management/dialog-import-export/modal.component';
 import { BorderTrade } from 'src/app/_models/APIModel/border-trade.model'
 import { concat } from 'rxjs';
+import { LinkModel } from 'src/app/_models/link.model';
+import { BreadCrumService } from 'src/app/_services/injectable-service/breadcrums.service';
+import { ExcelUitl } from 'src/app/_services/excelUtil.service';
+import * as XLSX from 'xlsx';
 
 export class GroupProduct {
   group_code: number;
@@ -18,6 +22,11 @@ export class GroupProduct {
   styleUrls: ['/../../special_layout.scss'],
 })
 export class BorderTradeComponent implements OnInit {
+  //Constant
+  private readonly LINK_DEFAULT: string = "/specialized/commecial-management/border_trade";
+  private readonly TITLE_DEFAULT: string = "Thương mại biên giới";
+  private readonly TEXT_DEFAULT: string = "Thương mại biên giới";
+  //
   displayedColumns: string[] = [
     "id_mat_hang_xnk",
     "so_luong",
@@ -84,7 +93,7 @@ export class BorderTradeComponent implements OnInit {
   isChecked: boolean;
   pagesize: number = 0;
   curentmonth: number = new Date().getMonth() + 1;
-  @ViewChild("table", { static: false }) table: MatTable<BorderTrade>;
+  @ViewChild("table", { static: false }) table: ElementRef;
   @ViewChild(MatAccordion, { static: true }) accordion: MatAccordion;
   @ViewChild("paginator", { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
@@ -124,10 +133,13 @@ export class BorderTradeComponent implements OnInit {
 
   TongKimNgachxk: number = 0;
   TongKimNgachnk: number = 0;
+  //Private Variable for TS
+  private _linkOutput: LinkModel = new LinkModel();
   constructor(
     private sctService: SCTService,
     private matDialog: MatDialog,
-    private marketService: MarketService
+    private marketService: MarketService,
+    private _breadCrumService: BreadCrumService
   ) { }
 
   ngOnInit() {
@@ -136,6 +148,16 @@ export class BorderTradeComponent implements OnInit {
     console.log(this.groupI)
     this.getThuongMaiBG(this.curentmonth);
     this.autoOpen();
+    this.sendLinkToNext(true);
+    console.log("Border Trade:",this._linkOutput.title);
+  }
+
+  public sendLinkToNext(type: boolean) {
+    this._linkOutput.link = this.LINK_DEFAULT;
+    this._linkOutput.title = this.TITLE_DEFAULT;
+    this._linkOutput.text = this.TEXT_DEFAULT;
+    this._linkOutput.type = type;
+    this._breadCrumService.sendLink(this._linkOutput);
   }
 
   createGroup() {
@@ -168,6 +190,15 @@ export class BorderTradeComponent implements OnInit {
     this.Id_Array = [];
   }
 
+//   public ExportTOExcel(filename: string, sheetname: string) {
+//     const excelExtention: string = ".xlsx";
+//     let excelFileName: string = filename + excelExtention;
+//     const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);
+//     const wb: XLSX.WorkBook = XLSX.utils.book_new();
+//     XLSX.utils.book_append_sheet(wb, ws, sheetname);
+//     /* save to file */
+//     XLSX.writeFile(wb, excelFileName);s
+// }
 
   selectMonth(month) {
     this.curentmonth = month;

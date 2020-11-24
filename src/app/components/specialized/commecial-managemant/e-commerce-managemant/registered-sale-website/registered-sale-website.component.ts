@@ -6,6 +6,8 @@ import { SCTService } from 'src/app/_services/APIService/sct.service';
 import { registration_management } from "../../../../../_models/APIModel/ecommerce.model";
 import { MatAccordion } from '@angular/material/expansion';
 import { MatPaginator } from '@angular/material/paginator';
+import { BreadCrumService } from 'src/app/_services/injectable-service/breadcrums.service';
+import { LinkModel } from 'src/app/_models/link.model';
 
 @Component({
   selector: 'registered-sale-website',
@@ -14,15 +16,30 @@ import { MatPaginator } from '@angular/material/paginator';
 })
 export class RegisteredSaleWebsiteComponent implements OnInit {
 
+  //Constant
+  private readonly LINK_DEFAULT: string = "/specialized/commecial-management/e-commerce/sale-website";
+  private readonly TITLE_DEFAULT: string = "Quản lý thông báo website bán hàng";
+  private readonly TEXT_DEFAULT: string = "Quản lý thông báo website bán hàng";
+  //Variable for only ts
+  private _linkOutput: LinkModel = new LinkModel();
   displayedColumns: string[] = ['index', 'ten_tc_cn', 'mst', 'dia_chi', 'dien_thoai', 'ten_mien', 'nganh_nghe', 'ma_so_nganh_nghe'];
   dataSource: MatTableDataSource<SaleWebsite>;
   filteredDataSource: MatTableDataSource<SaleWebsite> = new MatTableDataSource<SaleWebsite>();
   filterModel: SaleWebsiteFilterModel = { id_quan_huyen: [] };
-  constructor(public sctService: SCTService) { }
+  constructor(public sctService: SCTService,private _breadCrumService: BreadCrumService) { }
 
   ngOnInit() {
     this.GetDanhSachWebsiteTMDT();
     this.autoOpen();
+    this.sendLinkToNext(true);
+  }
+
+  public sendLinkToNext(type: boolean) {
+    this._linkOutput.link = this.LINK_DEFAULT;
+    this._linkOutput.title = this.TITLE_DEFAULT;
+    this._linkOutput.text = this.TEXT_DEFAULT;
+    this._linkOutput.type = type;
+    this._breadCrumService.sendLink(this._linkOutput);
   }
 
   districts: District[] = [

@@ -17,8 +17,8 @@ export class UseFocusedEnergyComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   //Constant variable
   private readonly LINK_DEFAULT: string = "/specialized/enery-management/countryside_electric";
-  private readonly TITLE_DEFAULT: string = "Tiết kiệm điện";
-  private readonly TEXT_DEFAULT: string = "Tiết kiệm điện";
+  private readonly TITLE_DEFAULT: string = "Tiết kiệm năng lượng";
+  private readonly TEXT_DEFAULT: string = "Tiết kiệm năng lượng";
   public readonly displayedColumns: string[] = ['index', 'ten_doanh_nghiep', 'dia_chi', 'nganh_nghe', 'nang_luong_tieu_thu', 'nang_luong_quy_doi', 'suat_tieu_hao'];
   public readonly displayMergeColumns: string[] = ['indexM', 'ten_doanh_nghiepM', 'nganh_ngheM', 'nang_luong_trong_diemM'];
   //TS & HTML Variable

@@ -11,8 +11,8 @@ import { BreadCrumService } from 'src/app/_services/injectable-service/breadcrum
 export class CountrysideElectricComponent implements OnInit {
   //Constant
   private readonly LINK_DEFAULT: string = "/specialized/enery-management/countryside_electric";
-  private readonly TITLE_DEFAULT: string = "Điện nông thôn";
-  private readonly TEXT_DEFAULT: string = "Điện nông thôn";
+  private readonly TITLE_DEFAULT: string = "Phát triển điện";
+  private readonly TEXT_DEFAULT: string = "Phát triển điện";
   //Variable for only ts
   private _linkOutput: LinkModel = new LinkModel();
   constructor(private _breadCrumService: BreadCrumService) { }

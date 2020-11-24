@@ -102,14 +102,20 @@
                         </mat-form-field>
                     </div>
                 </div>
-
-                <div class="layout">
-                    <mat-form-field id="filter">
+                <!-- <div class="row">
+                    <div class="col-lg-10"></div>
+                    <div class="col-lg-2 button-control my-auto">
+                        <button mat-raised-button (click)="ExportTOExcel('Thương mại biên giới',curentmonth)">Xuất
+                            Excel</button>
+                    </div>
+                </div> -->
+                <div class="layout" #table>
+                    <!-- <mat-form-field id="filter">
                         <mat-label>Lọc dữ liệu</mat-label>
                         <input matInput (keyup)="applyFilter($event)" placeholder="" #input>
-                    </mat-form-field>
+                    </mat-form-field> -->
 
-                    <table mat-table [dataSource]="dataSourceI" #table class="table-layout" id="small-table">
+                    <table mat-table [dataSource]="dataSourceI"  class="table-layout" id="small-table">
 
                         <ng-container matColumnDef="index">
                             <th mat-header-cell *matHeaderCellDef> STT </th>

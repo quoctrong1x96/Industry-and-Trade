@@ -4,6 +4,8 @@ import { multilevel } from 'src/app/_models/APIModel/mutillevel.model';
 import { District } from 'src/app/_models/district.model';
 import { SCTService } from 'src/app/_services/APIService/sct.service';
 import { MarketService } from 'src/app/_services/APIService/market.service';
+import { BreadCrumService } from 'src/app/_services/injectable-service/breadcrums.service';
+import { LinkModel } from 'src/app/_models/link.model';
 
 @Component({
   selector: 'app-multilevel-trade',
@@ -11,7 +13,12 @@ import { MarketService } from 'src/app/_services/APIService/market.service';
   styleUrls: ['/../../special_layout.scss'],
 })
 export class MultilevelTradeComponent implements OnInit {
-
+  //Constant
+  private readonly LINK_DEFAULT: string = "/specialized/commecial-management/multilevel_trade";
+  private readonly TITLE_DEFAULT: string = "Hoạt động bán hàng đa cấp";
+  private readonly TEXT_DEFAULT: string = "Hoạt động bán hàng đa cấp";
+  //Variable for only ts
+  private _linkOutput: LinkModel = new LinkModel();
 
   // displayedSumColumns: any[] = ['tong', 'tong_luong_thang', 'tong_gia_tri_thang', 'tong_luong_cong_don', 'tong_gia_tri_cong_don']
   displayedColumns: string[] = ['index', 'ten_doanh_nghiep', 'dia_chi', 'mst', 'vb_xac_nhan_dp', 'co_quan_bh_dp', 'ngay_thang_dp',
@@ -32,7 +39,8 @@ export class MultilevelTradeComponent implements OnInit {
   constructor(
     public sctService: SCTService,
     public matDialog: MatDialog,
-    public marketService: MarketService
+    public marketService: MarketService,
+    private _breadCrumService: BreadCrumService
   ) {
   }
 
@@ -53,7 +61,15 @@ export class MultilevelTradeComponent implements OnInit {
     // this.filteredDataSource.filterPredicate = function (data: multilevel, filter): boolean {
     //     return String(data.is_het_han).includes(filter);
     // };
+    this.sendLinkToNext(true);
+  }
 
+  public sendLinkToNext(type: boolean) {
+    this._linkOutput.link = this.LINK_DEFAULT;
+    this._linkOutput.title = this.TITLE_DEFAULT;
+    this._linkOutput.text = this.TEXT_DEFAULT;
+    this._linkOutput.type = type;
+    this._breadCrumService.sendLink(this._linkOutput);
   }
 
   autoOpen() {

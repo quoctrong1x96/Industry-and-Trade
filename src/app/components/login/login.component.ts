@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     if((this.returnUrl.indexOf('specialized')) ==-1||(this.returnUrl.indexOf('manager') ==-1)){
-      this.returnUrl = 'specialized/commecial-management/domestic';
+      this.returnUrl = 'specialized/home';
     }
     console.log("returnUrl", this.returnUrl);
   }
