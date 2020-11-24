@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatTable, MatAccordion, MatPaginator, MatSort, MatDialog } from '@angular/material';
 import { multilevel } from 'src/app/_models/APIModel/mutillevel.model';
 import { District } from 'src/app/_models/district.model';
@@ -6,6 +6,7 @@ import { SCTService } from 'src/app/_services/APIService/sct.service';
 import { MarketService } from 'src/app/_services/APIService/market.service';
 import { BreadCrumService } from 'src/app/_services/injectable-service/breadcrums.service';
 import { LinkModel } from 'src/app/_models/link.model';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-multilevel-trade',
@@ -30,7 +31,7 @@ export class MultilevelTradeComponent implements OnInit {
   months: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
   isChecked: boolean;
   curentmonth: number = new Date().getMonth() + 1;
-  @ViewChild('table', { static: false }) table: MatTable<multilevel>;
+  @ViewChild('table', { static: false }) table: ElementRef;
   @ViewChild(MatAccordion, { static: true }) accordion: MatAccordion;
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
@@ -142,4 +143,13 @@ export class MultilevelTradeComponent implements OnInit {
 
   }
 
+  public ExportTOExcel(filename: string, sheetname: string) {
+    const excelExtention: string = ".xlsx";
+    let excelFileName: string = filename + excelExtention;
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, sheetname);
+    /* save to file */
+    XLSX.writeFile(wb, excelFileName);
+}
 }

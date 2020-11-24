@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
 import { MatTableDataSource, MatTable, MatAccordion, MatPaginator, MatSort } from '@angular/material';
 import { ex_im_model } from 'src/app/_models/APIModel/export-import.model';
 import { District } from 'src/app/_models/district.model';
@@ -9,6 +9,7 @@ import { tap } from 'rxjs/operators';
 import { MarketService } from '../../../../../_services/APIService/market.service';
 import { BreadCrumService } from 'src/app/_services/injectable-service/breadcrums.service';
 import { LinkModel } from 'src/app/_models/link.model';
+import * as XLSX from 'xlsx';
 @Component({
   selector: 'app-import-management',
   templateUrl: './import-management.component.html',
@@ -49,7 +50,7 @@ private _linkOutput: LinkModel = new LinkModel();
   isChecked: boolean;
   pagesize: number = 0;
   curentmonth: number = new Date().getMonth() + 1;
-  @ViewChild('table', { static: false }) table: MatTable<ex_im_model>;
+  @ViewChild('table', { static: false }) table: ElementRef;
   @ViewChild(MatAccordion, { static: true }) accordion: MatAccordion;
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
@@ -278,5 +279,15 @@ private _linkOutput: LinkModel = new LinkModel();
         'gia_tri_thang_cong_don_tc'
       ]
     }
+  }
+    
+  public ExportTOExcel(filename: string, sheetname: string) {
+      const excelExtention: string = ".xlsx";
+      let excelFileName: string = filename + excelExtention;
+      const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);
+      const wb: XLSX.WorkBook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, sheetname);
+      /* save to file */
+      XLSX.writeFile(wb, excelFileName);
   }
 }

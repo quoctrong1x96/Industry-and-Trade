@@ -8,6 +8,7 @@ import { log } from 'util';
 import { Route } from '@angular/compiler/src/core';
 import { Router } from '@angular/router';
 import { MatSort } from '@angular/material/sort';
+import * as XLSX from 'xlsx';
 
 
 @Component({
@@ -30,7 +31,7 @@ export class ModalComponent implements OnInit {
     soLuongdoanhNghiep: number;
     isChecked: boolean;
     curentmonth: number = new Date().getMonth();
-    @ViewChild('table', { static: false }) table: MatTable<ex_im_model>;
+    @ViewChild('table', { static: false }) table: ElementRef;
     @ViewChild(MatAccordion, { static: false }) accordion: MatAccordion;
     @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
     @ViewChild(MatSort, { static: false }) sort: MatSort;
@@ -101,5 +102,13 @@ export class ModalComponent implements OnInit {
 
     }
 
-
+    public ExportTOExcel(filename: string, sheetname: string) {
+        const excelExtention: string = ".xlsx";
+        let excelFileName: string = filename + excelExtention;
+        const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);
+        const wb: XLSX.WorkBook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, sheetname);
+        /* save to file */
+        XLSX.writeFile(wb, excelFileName);
+    }
 }

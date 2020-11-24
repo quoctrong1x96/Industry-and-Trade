@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import {
     MatTableDataSource,
     MatTable,
@@ -17,6 +17,7 @@ import { ModalComponent } from "../dialog-import-export/modal.component";
 import { MatSort } from '@angular/material/sort';
 import { LinkModel } from 'src/app/_models/link.model';
 import { BreadCrumService } from 'src/app/_services/injectable-service/breadcrums.service';
+import * as XLSX from 'xlsx';
 
 @Component({
     selector: "app-export-management",
@@ -46,7 +47,7 @@ export class ExportManagementComponent implements OnInit {
     isChecked: boolean;
     pagesize: number = 0;
     curentmonth: number = new Date().getMonth() + 1;
-    @ViewChild("table", { static: false }) table: MatTable<ex_im_model>;
+    @ViewChild("table", { static: false }) table: ElementRef;
     @ViewChild(MatAccordion, { static: true }) accordion: MatAccordion;
     @ViewChild("paginator", { static: false }) paginator: MatPaginator;
     @ViewChild(MatSort, { static: false }) sort: MatSort;
@@ -284,5 +285,15 @@ export class ExportManagementComponent implements OnInit {
                 'gia_tri_thang_cong_don_tc'
             ]
         }
+    }
+    
+    public ExportTOExcel(filename: string, sheetname: string) {
+        const excelExtention: string = ".xlsx";
+        let excelFileName: string = filename + excelExtention;
+        const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);
+        const wb: XLSX.WorkBook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, sheetname);
+        /* save to file */
+        XLSX.writeFile(wb, excelFileName);
     }
 }
