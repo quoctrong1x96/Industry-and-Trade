@@ -16,12 +16,12 @@ import * as XLSX from 'xlsx';
   styleUrls: ['../../../special_layout.scss'],
 })
 export class ImportManagementComponent implements OnInit, AfterViewInit {
-//Constant
-private readonly LINK_DEFAULT: string = "/specialized/commecial-management/export_import/imported_products";
-private readonly TITLE_DEFAULT: string = "Thông tin nhập khẩu";
-private readonly TEXT_DEFAULT: string = "Thông tin nhập khẩu";
-//Variable for only ts
-private _linkOutput: LinkModel = new LinkModel();
+  //Constant
+  private readonly LINK_DEFAULT: string = "/specialized/commecial-management/export_import/imported_products";
+  private readonly TITLE_DEFAULT: string = "Thông tin nhập khẩu";
+  private readonly TEXT_DEFAULT: string = "Thông tin nhập khẩu";
+  //Variable for only ts
+  private _linkOutput: LinkModel = new LinkModel();
   // displayedSumColumns: any[] = ['tong', 'tong_luong_thang', 'tong_gia_tri_thang', 'tong_luong_cong_don', 'tong_gia_tri_cong_don']
   displayedColumns: string[] = [];
   displayRow1Header: string[] = []
@@ -54,8 +54,8 @@ private _linkOutput: LinkModel = new LinkModel();
   @ViewChild(MatAccordion, { static: true }) accordion: MatAccordion;
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
-  nhap_khau_chu_yeu = [1,13,34,15,22,19,31,18,28,4,27,17,30,37,25,7,23]
-  isOnlyTongCucHQ: boolean = true;
+  nhap_khau_chu_yeu = [1, 13, 34, 15, 22, 19, 31, 18, 28, 4, 27, 17, 30, 37, 25, 7, 23]
+  isOnlyTongCucHQ: number = 2;
   constructor(
     public sctService: SCTService,
     public matDialog: MatDialog,
@@ -111,9 +111,15 @@ private _linkOutput: LinkModel = new LinkModel();
   // }
 
   getDanhSachNhapKhau(thang) {
-    this.isChecked = false;
     let tem = new Date().getFullYear() * 100 + thang;
-    this.dataTargetId = [2];
+    if (thang !== this.curentmonth && thang) {
+      this.curentmonth = thang;
+    }
+    if (thang === 10) {
+      this.dataTargetId = [1];
+    } else {
+      this.dataTargetId = [2];
+    }
     this.applyDataTarget(this.dataTargetId);
     this.sctService.GetDanhSachNhapKhau(tem).subscribe(result => {
       // this.dataSource = new MatTableDataSource<ex_im_model>(result.data[1]);
@@ -225,69 +231,104 @@ private _linkOutput: LinkModel = new LinkModel();
 
   applyDataTarget(value: number[]) {
     // this.dataTargetId[0] = 2
-    // 1: cuc hai quan
-    // 2: tong cuc hai quan
-    this.isOnlyTongCucHQ = this.dataTargetId.includes(1) && this.dataTargetId.includes(2);
-    if (this.isOnlyTongCucHQ) {
-      this.displayedColumns = [
-        'index', 'ten_san_pham', 'luong_thang', 'gia_tri_thang', 'luong_cong_don',
-        'gia_tri_cong_don', 'luong_thang_tc', 'gia_tri_thang_tc', 'luong_thang_cong_don_tc',
-        'gia_tri_thang_cong_don_tc', 'danh_sach_doanh_nghiep', 'chi_tiet_doanh_nghiep'];
-      this.displayRow1Header = [
-        'index',
-        'ten_san_pham',
-        'cuc_hai_quan',
-        'tong_cuc_hai_quan',
-        'danh_sach_doanh_nghiep',
-        'chi_tiet_doanh_nghiep'
-      ]
-      this.displaRow2Header = [
-        'thuc_hien_bao_cao_thang',
-        'cong_don_den_ky_bao_cao',
-        'thuc_hien_bao_cao_thang1',
-        'cong_don_den_ky_bao_cao1'
-      ]
-      this.displayRow3Header = [
-        'luong_thang',
-        'gia_tri_thang',
-        'luong_cong_don',
-        'gia_tri_cong_don',
-        'luong_thang_tc',
-        'gia_tri_thang_tc',
-        'luong_thang_cong_don_tc',
-        'gia_tri_thang_cong_don_tc'
-      ]
-    } else {
-      this.displayedColumns = [
-        'index', 'ten_san_pham', 'luong_thang_tc', 'gia_tri_thang_tc', 'luong_thang_cong_don_tc',
-        'gia_tri_thang_cong_don_tc', 'danh_sach_doanh_nghiep', 'chi_tiet_doanh_nghiep'];
-      this.displayRow1Header = [
-        'index',
-        'ten_san_pham',
-        'tong_cuc_hai_quan',
-        'danh_sach_doanh_nghiep',
-        'chi_tiet_doanh_nghiep'
-      ]
-      this.displaRow2Header = [
-        'thuc_hien_bao_cao_thang1',
-        'cong_don_den_ky_bao_cao1'
-      ]
-      this.displayRow3Header = [
-        'luong_thang_tc',
-        'gia_tri_thang_tc',
-        'luong_thang_cong_don_tc',
-        'gia_tri_thang_cong_don_tc'
-      ]
-    }
+        // 1: cuc hai quan
+        // 2: tong cuc hai quan
+        // 3: cả 2 
+        if (this.dataTargetId.includes(1) && this.dataTargetId.includes(2)) {
+          this.isOnlyTongCucHQ = 3
+      } else if (this.dataTargetId.includes(1)) {
+          this.isOnlyTongCucHQ = 1
+      } else {
+          this.isOnlyTongCucHQ = 2;
+      }
+
+      switch (this.isOnlyTongCucHQ) {
+          case 1:
+              this.displayedColumns = [
+                  'index', 'ten_san_pham', 'luong_thang', 'gia_tri_thang', 'luong_cong_don',
+                  'gia_tri_cong_don', 'danh_sach_doanh_nghiep', 'chi_tiet_doanh_nghiep'];
+              this.displayRow1Header = [
+                  'index',
+                  'ten_san_pham',
+                  'cuc_hai_quan',
+                  'danh_sach_doanh_nghiep',
+                  'chi_tiet_doanh_nghiep'
+              ]
+              this.displaRow2Header = [
+                  'thuc_hien_bao_cao_thang',
+                  'cong_don_den_ky_bao_cao',
+              ]
+              this.displayRow3Header = [
+                  'luong_thang',
+                  'gia_tri_thang',
+                  'luong_cong_don',
+                  'gia_tri_cong_don',
+              ]
+              break;
+          case 2:
+              this.displayedColumns = [
+                  'index', 'ten_san_pham', 'luong_thang_tc', 'gia_tri_thang_tc', 'luong_thang_cong_don_tc',
+                  'gia_tri_thang_cong_don_tc', 'danh_sach_doanh_nghiep', 'chi_tiet_doanh_nghiep'];
+              this.displayRow1Header = [
+                  'index',
+                  'ten_san_pham',
+                  'tong_cuc_hai_quan',
+                  'danh_sach_doanh_nghiep',
+                  'chi_tiet_doanh_nghiep'
+              ]
+              this.displaRow2Header = [
+                  'thuc_hien_bao_cao_thang1',
+                  'cong_don_den_ky_bao_cao1'
+              ]
+              this.displayRow3Header = [
+                  'luong_thang_tc',
+                  'gia_tri_thang_tc',
+                  'luong_thang_cong_don_tc',
+                  'gia_tri_thang_cong_don_tc'
+              ]
+              break;
+          case 3:
+              this.displayedColumns = [
+                  'index', 'ten_san_pham', 'luong_thang', 'gia_tri_thang', 'luong_cong_don',
+                  'gia_tri_cong_don', 'luong_thang_tc', 'gia_tri_thang_tc', 'luong_thang_cong_don_tc',
+                  'gia_tri_thang_cong_don_tc', 'danh_sach_doanh_nghiep', 'chi_tiet_doanh_nghiep'];
+              this.displayRow1Header = [
+                  'index',
+                  'ten_san_pham',
+                  'cuc_hai_quan',
+                  'tong_cuc_hai_quan',
+                  'danh_sach_doanh_nghiep',
+                  'chi_tiet_doanh_nghiep'
+              ]
+              this.displaRow2Header = [
+                  'thuc_hien_bao_cao_thang',
+                  'cong_don_den_ky_bao_cao',
+                  'thuc_hien_bao_cao_thang1',
+                  'cong_don_den_ky_bao_cao1'
+              ]
+              this.displayRow3Header = [
+                  'luong_thang',
+                  'gia_tri_thang',
+                  'luong_cong_don',
+                  'gia_tri_cong_don',
+                  'luong_thang_tc',
+                  'gia_tri_thang_tc',
+                  'luong_thang_cong_don_tc',
+                  'gia_tri_thang_cong_don_tc'
+              ]
+              break;
+          default:
+              break;
+      }
   }
-    
+
   public ExportTOExcel(filename: string, sheetname: string) {
-      const excelExtention: string = ".xlsx";
-      let excelFileName: string = filename + excelExtention;
-      const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);
-      const wb: XLSX.WorkBook = XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(wb, ws, sheetname);
-      /* save to file */
-      XLSX.writeFile(wb, excelFileName);
+    const excelExtention: string = ".xlsx";
+    let excelFileName: string = filename + excelExtention;
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, sheetname);
+    /* save to file */
+    XLSX.writeFile(wb, excelFileName);
   }
 }
