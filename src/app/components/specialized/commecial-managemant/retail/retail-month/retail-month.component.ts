@@ -1,5 +1,5 @@
 //Import library
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { MatTable, MatTableDataSource } from '@angular/material';
 import { MatAccordion } from '@angular/material/expansion';
 import { MatPaginator } from '@angular/material/paginator';
@@ -11,6 +11,8 @@ import { LinkModel } from 'src/app/_models/link.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Route } from '@angular/compiler/src/core';
 import { RetailModel, RetailMonthModel } from 'src/app/_models/commecial.model';
+import * as XLSX from 'xlsx';
+
 
 @Component({
     selector: 'retail-month',
@@ -328,9 +330,18 @@ export class RetailMonthComponent implements OnInit {
     //Only TS Variable ------------------------------------------------------------
     private _linkOutput: LinkModel = new LinkModel();
     //ViewChild & Input & Output -------------------------------------------------
-    @ViewChild('table', { static: false }) table: MatTable<RetailMonthModel>;
     @ViewChild(MatAccordion, { static: false }) accordion: MatAccordion;
     @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+    @ViewChild('TABLE', { static: false }) table: ElementRef;
+
+    exportExcel() {
+        const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);
+        const wb: XLSX.WorkBook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, 'Tổng mức bán lẻ hàng hóa');
+
+        XLSX.writeFile(wb, 'Tổng mức bán lẻ hàng hóa.xlsx');
+
+    }
 
     //Contructor + Init + Destroy
     constructor(

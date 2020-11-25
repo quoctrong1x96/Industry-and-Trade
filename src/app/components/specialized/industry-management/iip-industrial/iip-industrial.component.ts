@@ -1,5 +1,5 @@
 //Import library
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { MatTable, MatTableDataSource } from '@angular/material';
 import { MatAccordion } from '@angular/material/expansion';
 import { MatPaginator } from '@angular/material/paginator';
@@ -9,6 +9,7 @@ import { BreadCrumService } from 'src/app/_services/injectable-service/breadcrum
 import { IIPIndustrialModel } from 'src/app/_models/industry.model';
 import { LinkModel } from 'src/app/_models/link.model';
 import { ActivatedRoute, Router } from '@angular/router';
+import * as XLSX from 'xlsx';
 
 @Component({
     selector: 'iip-industrial',
@@ -91,9 +92,18 @@ export class IipIndustrialComponent implements OnInit {
     //Only TS Variable ------------------------------------------------------------
     private _linkOutput: LinkModel = new LinkModel();
     //ViewChild & Input & Output -------------------------------------------------
-    @ViewChild('table', { static: false }) table: MatTable<IIPIndustrialModel>;
     @ViewChild(MatAccordion, { static: false }) accordion: MatAccordion;
     @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+    @ViewChild('TABLE', { static: false }) table: ElementRef;
+
+    exportExcel() {
+        const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);
+        const wb: XLSX.WorkBook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, 'Chỉ số sản xuất công nghiệp');
+
+        XLSX.writeFile(wb, 'Chỉ số sản xuất công nghiệp.xlsx');
+
+    }
 
     //Contructor + Init + Destroy
     constructor(

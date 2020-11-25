@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
 import { SaleWebsite, SaleWebsiteFilterModel, ECommerceWebsite } from 'src/app/_models/APIModel/e-commerce.model';
 import { District } from 'src/app/_models/district.model';
@@ -8,6 +8,7 @@ import { MatAccordion } from '@angular/material/expansion';
 import { MatPaginator } from '@angular/material/paginator';
 import { BreadCrumService } from 'src/app/_services/injectable-service/breadcrums.service';
 import { LinkModel } from 'src/app/_models/link.model';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'registered-sale-website',
@@ -26,7 +27,7 @@ export class RegisteredSaleWebsiteComponent implements OnInit {
   dataSource: MatTableDataSource<SaleWebsite>;
   filteredDataSource: MatTableDataSource<SaleWebsite> = new MatTableDataSource<SaleWebsite>();
   filterModel: SaleWebsiteFilterModel = { id_quan_huyen: [] };
-  constructor(public sctService: SCTService,private _breadCrumService: BreadCrumService) { }
+  constructor(public sctService: SCTService, private _breadCrumService: BreadCrumService) { }
 
   ngOnInit() {
     this.GetDanhSachWebsiteTMDT();
@@ -69,6 +70,16 @@ export class RegisteredSaleWebsiteComponent implements OnInit {
 
   @ViewChild(MatAccordion, { static: true }) accordion: MatAccordion;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild('TABLE', { static: false }) table: ElementRef;
+
+  exportExcel() {
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Website bán hàng');
+
+    XLSX.writeFile(wb, 'Website bán hàng.xlsx');
+
+  }
 
   GetDanhSachWebsiteTMDT() {
     this.sctService.GetDanhSachWebBH().subscribe(response => {

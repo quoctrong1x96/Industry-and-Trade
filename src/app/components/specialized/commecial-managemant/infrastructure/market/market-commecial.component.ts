@@ -100,6 +100,16 @@ export class MarketCommecialManagementComponent implements OnInit {
   @ViewChild("form", { static: false }) ngForm: NgForm;
   @ViewChild(MatAccordion, { static: false }) accordion: MatAccordion;
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+  @ViewChild('TABLE', { static: false }) table: ElementRef;
+
+  exportExcel() {
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'HTTM - Chợ');
+
+    XLSX.writeFile(wb, 'HTTM - Chợ.xlsx');
+
+  }
 
   //Variable for HTML&TS-------------------------------------------------------------------------
   public year: number = 2019;

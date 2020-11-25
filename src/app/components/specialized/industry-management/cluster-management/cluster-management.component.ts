@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { MatTable, MatTableDataSource } from '@angular/material';
 import { element } from 'protractor';
 import { ReportService } from 'src/app/_services/APIService/report.service';
@@ -11,6 +11,7 @@ import { each } from 'highcharts';
 import { Router } from '@angular/router';
 import { LinkModel } from 'src/app/_models/link.model';
 import { BreadCrumService } from 'src/app/_services/injectable-service/breadcrums.service';
+import * as XLSX from 'xlsx';
 
 @Component({
     selector: 'cluster-management',
@@ -60,9 +61,18 @@ export class ClusterManagementComponent implements OnInit {
     sanLuongKinhDoanh: number = 0;
     filterModel: ClusterFilterModel = { id_hien_trang_ht: [], id_hien_trang_xlnt: [], id_quan_huyen: [] };
 
-    @ViewChild('table', { static: false }) table: MatTable<ClusterModel>;
     @ViewChild(MatAccordion, { static: false }) accordion: MatAccordion;
     @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+    @ViewChild('TABLE', { static: false }) table: ElementRef;
+
+    exportExcel() {
+        const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);
+        const wb: XLSX.WorkBook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, 'Cụm công nghiệp');
+
+        XLSX.writeFile(wb, 'Cụm công nghiệp.xlsx');
+
+    }
 
     constructor(
         public sctService: SCTService,

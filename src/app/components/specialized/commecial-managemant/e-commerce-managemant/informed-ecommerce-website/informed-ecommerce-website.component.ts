@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
 import { ECommerceWebsite, ECommerceWebsiteFilterModel } from 'src/app/_models/APIModel/e-commerce.model';
 import { District } from 'src/app/_models/district.model';
@@ -8,6 +8,7 @@ import { MatAccordion } from '@angular/material/expansion';
 import { MatPaginator } from '@angular/material/paginator';
 import { LinkModel } from 'src/app/_models/link.model';
 import { BreadCrumService } from 'src/app/_services/injectable-service/breadcrums.service';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-informed-ecommerce-website',
@@ -15,20 +16,30 @@ import { BreadCrumService } from 'src/app/_services/injectable-service/breadcrum
   styleUrls: ['../../../special_layout.scss'],
 })
 export class InformedEcommerceWebsiteComponent implements OnInit {
-//Constant
-private readonly LINK_DEFAULT: string = "/specialized/commecial-management/e-commerce/ecommerce-website";
-private readonly TITLE_DEFAULT: string = "Quản lý đăng ký website cung cấp dịch vụ TMĐT";
-private readonly TEXT_DEFAULT: string = "Quản lý đăng ký website cung cấp dịch vụ TMĐT";
-//Variable for only ts
-private _linkOutput: LinkModel = new LinkModel();
+  //Constant
+  private readonly LINK_DEFAULT: string = "/specialized/commecial-management/e-commerce/ecommerce-website";
+  private readonly TITLE_DEFAULT: string = "Quản lý đăng ký website cung cấp dịch vụ TMĐT";
+  private readonly TEXT_DEFAULT: string = "Quản lý đăng ký website cung cấp dịch vụ TMĐT";
+  //Variable for only ts
+  private _linkOutput: LinkModel = new LinkModel();
   @ViewChild(MatAccordion, { static: true }) accordion: MatAccordion;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild('TABLE', { static: false }) table: ElementRef;
+
+  exportExcel() {
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Dịch vụ TMDT');
+
+    XLSX.writeFile(wb, 'Dịch vụ TMDT.xlsx');
+
+  }
 
   displayedColumns: string[] = ['index', 'ten_doanh_nghiep', 'mst', 'dia_chi', 'dien_thoai', 'ten_mien', 'loai_hhdv', 'email', 'so_gian_hang'];
   dataSource: MatTableDataSource<ECommerceWebsite>;
   filteredDataSource: MatTableDataSource<ECommerceWebsite> = new MatTableDataSource<ECommerceWebsite>();
   filterModel: ECommerceWebsiteFilterModel = { id_quan_huyen: [] };
-  constructor(public sctService: SCTService,private _breadCrumService: BreadCrumService) { }
+  constructor(public sctService: SCTService, private _breadCrumService: BreadCrumService) { }
 
   ngOnInit() {
     this.GetDanhSachWebsiteTMDT();
