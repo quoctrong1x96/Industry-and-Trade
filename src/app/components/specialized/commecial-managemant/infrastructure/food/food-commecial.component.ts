@@ -45,6 +45,16 @@ export class FoodManagementComponent implements OnInit {
   @ViewChildren(ReportDirective) inputs: QueryList<ReportDirective>
   @ViewChild(MatAccordion, { static: false }) accordion: MatAccordion;
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+  @ViewChild('TABLE', { static: false }) table: ElementRef;
+
+  exportExcel() {
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'HTTM - Thực phẩm');
+
+    XLSX.writeFile(wb, 'HTTM - Thực phẩm.xlsx');
+
+  }
 
   applyFilter1(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

@@ -43,6 +43,16 @@ export class SuperMarketCommecialManagementComponent implements OnInit {
   @ViewChildren(ReportDirective) inputs: QueryList<ReportDirective>
   @ViewChild(MatAccordion, { static: false }) accordion: MatAccordion;
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+  @ViewChild('TABLE', { static: false }) table: ElementRef;
+
+  exportExcel() {
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'HTTM - Siêu thị');
+
+    XLSX.writeFile(wb, 'HTTM - Siêu thị.xlsx');
+
+  }
   //Variable for HTML&TS-------------------------------------------------------------------------
   districts: District[] = [{ id: 1, ten_quan_huyen: 'Thị xã Phước Long' },
   { id: 2, ten_quan_huyen: 'Thành phố Đồng Xoài' },

@@ -89,10 +89,11 @@
                 </mat-expansion-panel-header>
 
                 <div class="row">
-                    <div class="col-3 col-lg-3">
+                    <div class="col-2 col-lg-2">
                         <mat-form-field appearance="outline">
                             <mat-label>Kỳ dữ liệu</mat-label>
-                            <mat-select (selectionChange)="getDanhSachQuanLyVatLieuNoCongNghiep($event.value)" [(value)]="year">
+                            <mat-select (selectionChange)="getDanhSachQuanLyVatLieuNoCongNghiep($event.value)"
+                                [(value)]="year">
                                 <mat-option *ngFor='let year of years' [value]='year'>{{year}}</mat-option>
                             </mat-select>
                         </mat-form-field>
@@ -101,7 +102,8 @@
                     <div class="col-3 col-lg-3">
                         <mat-form-field appearance="outline">
                             <mat-label>Địa bàn</mat-label>
-                            <mat-select (selectionChange)="applySelectFilter()" [(ngModel)]="filterModel.id_quan_huyen" multiple>
+                            <mat-select (selectionChange)="applySelectFilter()" [(ngModel)]="filterModel.id_quan_huyen"
+                                multiple>
                                 <mat-option *ngFor='let district of districts' [value]='district.id'>
                                     {{district.ten_quan_huyen}}
                                 </mat-option>
@@ -109,10 +111,11 @@
                         </mat-form-field>
                     </div>
 
-                    <div class="col-3 col-lg-3 my-auto">
+                    <div class="col-3 col-lg-3">
                         <mat-form-field appearance="outline">
                             <mat-label>Tình trạng hoạt động</mat-label>
-                            <mat-select (selectionChange)="applySelectFilter()" [(ngModel)]="filterModel.id_tinh_trang_hoat_dong" multiple>
+                            <mat-select (selectionChange)="applySelectFilter()"
+                                [(ngModel)]="filterModel.id_tinh_trang_hoat_dong" multiple>
                                 <mat-option *ngFor='let tinhTrang of tinhTrangHoatDong' [value]='tinhTrang.id'>
                                     {{tinhTrang.tinh_trang}}
                                 </mat-option>
@@ -120,12 +123,12 @@
                         </mat-form-field>
                     </div>
 
-                    <div class="col-3 col-lg-3 my-auto">
+                    <div class="col-2 col-lg-2 checkbox">
                         <mat-checkbox (change)="applySelectFilter()" [(ngModel)]="filterModel.is_het_han">DN hết hạn
                         </mat-checkbox>
                     </div>
 
-                    <div class="col-lg-3 button-control my-auto">
+                    <div class="col-2 col-lg-2 button-control">
                         <button mat-raised-button (click)="ExportTOExcel('QLCN - VLNCN',year.toString())">Xuất
                             Excel</button>
                     </div>
@@ -256,7 +259,8 @@
                         </ng-container>
 
                         <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky : true"></tr>
-                        <tr mat-header-row *matHeaderRowDef="['thuoc_no_6thang', 'kip_no_6thang', 'moi_no_6thang','day_no_6thang','thuoc_no', 'kip_no', 'moi_no','day_no']; sticky : true;">
+                        <tr mat-header-row
+                            *matHeaderRowDef="['thuoc_no_6thang', 'kip_no_6thang', 'moi_no_6thang','day_no_6thang','thuoc_no', 'kip_no', 'moi_no','day_no']; sticky : true;">
                         </tr>
                         <tr mat-row *matRowDef="let row; columns: totalColumns;let i = index; ">
                     </table>

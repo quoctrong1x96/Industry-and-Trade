@@ -66,9 +66,13 @@
                             </mat-select>
                         </mat-form-field>
                     </div>
+
+                    <div class="col-9 col-lg-9 button-control">
+                        <button mat-raised-button (click)="exportExcel()">Xuất Excel</button>
+                    </div>
                 </div>
 
-                <div class="layout" *ngIf="filteredDataSource.data.length; else ShowEmpty">
+                <div class="layout" *ngIf="filteredDataSource.data.length; else ShowEmpty" #TABLE>
                     <mat-form-field id="filter2">
                         <mat-label>Lọc dữ liệu</mat-label>
                         <input matInput (keyup)="applyFilter1($event)" placeholder="" #input>

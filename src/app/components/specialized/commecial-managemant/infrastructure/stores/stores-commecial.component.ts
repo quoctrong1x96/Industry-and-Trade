@@ -45,6 +45,16 @@ export class StoreManagementComponent implements OnInit {
   @ViewChildren(ReportDirective) inputs: QueryList<ReportDirective>
   @ViewChild(MatAccordion, { static: false }) accordion: MatAccordion;
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+  @ViewChild('TABLE', { static: false }) table: ElementRef;
+
+  exportExcel() {
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'HTTM - Cửa hàng');
+
+    XLSX.writeFile(wb, 'HTTM - Cửa hàng.xlsx');
+
+  }
   //Variable for HTML&TS-------------------------------------------------------------------------
   displayedColumns = ['index', 'tencuahang', 'sanphamkinhdoanh', 'scndkkd', 'ngaycap', 'noicap', 'diachi', 'sogcn', 'ngaycaogcn', 'ngayhethangcn', 'sdtlienhe'];
   dataHuyenThi: Array<StoreCommonModel> = [{ tencuahang: ' CH BHX Bình Phước số 3', sanphamkinhdoanh: 'Thực phẩm tiêu dùng', scndkkd: '00003', ngaycap: new Date('2018-12-12'), noicap: 'Bình Phước', diachi: 'Đường ĐT741, ấp chợ, Xã Tân Tiến, Huyện Đồng Phú', sogcn: '03.2019KD/GCNATTP-SCT', ngaycaogcn: new Date('2019-02-13'), ngayhethangcn: new Date('2022-02-12'), sdtlienhe: '0902789078' },
