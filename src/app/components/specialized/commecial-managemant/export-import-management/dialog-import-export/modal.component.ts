@@ -31,7 +31,8 @@ export class ModalComponent implements OnInit {
     soLuongdoanhNghiep: number;
     isChecked: boolean;
     curentmonth: number = new Date().getMonth();
-    @ViewChild('table', { static: false }) table: ElementRef;
+    @ViewChild("table", { static: false }) table: ElementRef;
+    @ViewChild("table", { static: false }) table1: ElementRef;
     @ViewChild(MatAccordion, { static: false }) accordion: MatAccordion;
     @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
     @ViewChild(MatSort, { static: false }) sort: MatSort;
@@ -47,7 +48,7 @@ export class ModalComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        console.log('xxx', this.data)
+        console.log('xxx', this.data, this.table)
         this.handleData();
     }
 
@@ -94,7 +95,7 @@ export class ModalComponent implements OnInit {
 
     public OpenDetailCompany(mst: string) {
         let url = this.router.serializeUrl(
-            this.router.createUrlTree([encodeURI('#') + '/manager/business/search/' + mst]));
+            this.router.createUrlTree([encodeURI('#') + '/public/partner/search/' + mst]));
         window.open(url.replace('%23', '#'), "_blank");
     }
 
@@ -106,6 +107,16 @@ export class ModalComponent implements OnInit {
         const excelExtention: string = ".xlsx";
         let excelFileName: string = filename + excelExtention;
         const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);
+        const wb: XLSX.WorkBook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, sheetname);
+        /* save to file */
+        XLSX.writeFile(wb, excelFileName);
+    }
+
+    public ExportTOExcel1(filename: string, sheetname: string) {
+        const excelExtention: string = ".xlsx";
+        let excelFileName: string = filename + excelExtention;
+        const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table1.nativeElement);
         const wb: XLSX.WorkBook = XLSX.utils.book_new();
         XLSX.utils.book_append_sheet(wb, ws, sheetname);
         /* save to file */
