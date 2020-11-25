@@ -56,6 +56,39 @@
             }
         }
 
+        #card4-1 {
+            height: 140px !important;
+        }
+        #card4-2 {
+            height: 160px !important;
+            #card4-3 .mat-card-content {
+                font-size: 13px !important;
+            }
+        }
+
+        .card4 {
+            height: 100px;
+            .mat-card-header .mat-card-title {
+                margin-bottom: 5px;
+                font-size: 15px;
+            }
+            .mat-card-content {
+                font-size: 15px;
+                text-align: center;
+                font-weight: bolder;
+                color: $blue;
+                ul {
+                    padding: 0;
+                    list-style-type: none;
+                }
+            }
+            .mat-card-subtitle {
+                font-size: 10px;
+                text-align: center;
+                font-weight: bold;
+            }
+        }
+
         .checkbox {
             .mat-checkbox {
                 padding-left: 20px;

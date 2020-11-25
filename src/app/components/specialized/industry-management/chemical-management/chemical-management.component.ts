@@ -96,6 +96,7 @@ export class ChemicalManagementComponent implements OnInit {
             });
 
             this.filteredDataSource.data = [...this.dataSource.data];
+            console.log(this.filteredDataSource)
             // this.sanLuongKinhDoanh = this.filteredDataSource.data.length ? this.filteredDataSource.data.map(x => parseInt(x.san_luong)||0).reduce((a, b) => a + b) : 0;
             // this.sanLuongSanXuat = this.filteredDataSource.data.length ? this.filteredDataSource.data.map(x => parseInt(x.cong_suat)||0).reduce((a, b) => a + b) : 0;
             this.filteredDataSource.paginator = this.paginator;

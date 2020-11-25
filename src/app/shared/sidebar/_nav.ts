@@ -67,14 +67,14 @@ export const navItemsManager: INavItem[] = [
   {
     title: true,
     name: 'Quản lý',
-    manager:true,
+    manager: true,
     isSCT: true,
     id: 'QLSCT'
   },
   {
     name: 'Thị trường trong nước',
     icon: 'border_all',
-    manager:true,
+    manager: true,
     isSCT: true,
     id: 'QLSCT',
     children: [
@@ -108,7 +108,7 @@ export const navItemsManager: INavItem[] = [
   {
     name: 'Thị trường thế giới',
     icon: 'language',
-    manager:true,
+    manager: true,
     isSCT: true,
     id: 'QLSCT',
     children: [
@@ -123,7 +123,7 @@ export const navItemsManager: INavItem[] = [
   {
     name: 'Doanh nghiệp',
     icon: 'business',
-    manager:true,
+    manager: true,
     isSCT: true,
     id: 'QLSCT',
     children: [
@@ -142,12 +142,12 @@ export const navItemsManager: INavItem[] = [
     ]
   },
 
-  
+
   //muc nay danh cho user la doanh nghiep 
   {
     title: true,
     name: 'Doanh nghiệp',
-    manager:true,
+    manager: true,
     isSCT: false,
     id: 'QLDN'
   },
@@ -162,7 +162,7 @@ export const navItemsManager: INavItem[] = [
   {
     name: 'Đăng xuất',
     url: '/logout',
-    manager:true,
+    manager: true,
     isSCT: true,
     icon: 'login',
     badge: {
@@ -171,19 +171,19 @@ export const navItemsManager: INavItem[] = [
     },
     attributes: { disabled: true },
   },
-  
+
 ];
 export const navItemsSpecialized: INavItem[] = [
   // dữ liệu ngàng công thương
   {
     title: true,
     name: 'Dữ liệu ngành',
-    manager:true,
+    manager: true,
     isSCT: true,
   },
   {
     name: 'QUẢN LÝ THƯƠNG MẠI',
-    manager:true,
+    manager: true,
     isSCT: true,
     icon: 'integration_instructions',
     expand: false,
@@ -192,9 +192,9 @@ export const navItemsSpecialized: INavItem[] = [
         name: 'Thương mại nội địa',
         icon: 'roofing',
         id: 'TMND',
-        manager:true,
+        manager: true,
         expand: false,
-        children:[
+        children: [
           {
             name: 'Hạ tầng thương mại',
             url: '/specialized/commecial-management/domestic',
@@ -220,9 +220,9 @@ export const navItemsSpecialized: INavItem[] = [
         url: '/specialized/commecial-management/ecommerce',
         icon: 'share',
         id: 'XNK',
-        manager:true,
+        manager: true,
         expand: false,
-        children:[
+        children: [
           {
             name: 'Xuất khẩu',
             url: '/specialized/commecial-management/export_import/exported_products',
@@ -250,9 +250,9 @@ export const navItemsSpecialized: INavItem[] = [
         url: '/specialized/commecial-management/multi-level',
         icon: 'vibration',
         id: 'TMDT',
-        manager:true,
+        manager: true,
         expand: false,
-        children:[
+        children: [
           {
             name: 'Quản lý thông báo website bán hàng',
             url: '/specialized/commecial-management/e-commerce/sale-website',
@@ -269,23 +269,22 @@ export const navItemsSpecialized: INavItem[] = [
       },
       {
         name: 'Xúc tiến thương mại',
-        url: '/specialized/commecial-management/multi-level',
         icon: 'support_agent',
-        id: 'XTTM',
-        manager:true,
+        id: 'TD',
+        manager: true,
         expand: false,
-        children:[
+        children: [
           {
-            name: 'Hội chợ, triển lãm',
-            url: '/specialized/commecial-management/domestic',
+            name: 'Hội chợ triển lãm',
+            url: '/specialized/commecial-management/trade-development/TFE',
             icon: 'food_bank',
-            id: 'HTTM',
+            id: 'TFE',
           },
           {
             name: 'Khuyến mại',
-            url: '/specialized/commecial-management/domestic',
+            url: '/specialized/commecial-management/trade-development/SD',
             icon: 'movie_filter',
-            id: 'KDCDK',
+            id: 'SD',
           },
         ]
       },
@@ -296,7 +295,7 @@ export const navItemsSpecialized: INavItem[] = [
         id: 'TMBG',
         manager: false,
         expand: false,
-        children:[
+        children: [
 
         ]
       },
@@ -304,7 +303,7 @@ export const navItemsSpecialized: INavItem[] = [
   },
   {
     name: 'QUẢN LÝ NĂNG LƯỢNG',
-    manager:true,
+    manager: true,
     isSCT: true,
     icon: 'speed',
     expand: false,
@@ -329,7 +328,7 @@ export const navItemsSpecialized: INavItem[] = [
   {
     name: 'QUẢN LÝ CÔNG NGHIỆP',
     url: '/specialized/industrial-management/',
-    manager:true,
+    manager: true,
     isSCT: true,
     icon: 'business',
     expand: false,
@@ -394,7 +393,7 @@ export const navItemsSpecialized: INavItem[] = [
   {
     name: 'Đăng xuất',
     url: '/logout',
-    manager:true,
+    manager: true,
     isSCT: true,
     icon: 'login',
     badge: {
@@ -405,7 +404,7 @@ export const navItemsSpecialized: INavItem[] = [
   },
 ];
 
-export const navItemsReport: INavItem[] =[
+export const navItemsReport: INavItem[] = [
   {
     name: 'Nhập báo cáo',
     url: '/report/all',
@@ -429,7 +428,7 @@ export const navItemsReport: INavItem[] =[
   {
     name: 'Đăng xuất',
     url: '/logout',
-    manager:true,
+    manager: true,
     isSCT: true,
     icon: 'login',
     badge: {

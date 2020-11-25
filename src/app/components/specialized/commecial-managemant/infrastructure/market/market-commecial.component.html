@@ -21,101 +21,209 @@
                 </mat-expansion-panel-header>
 
                 <div class="row">
-                    <div class="col-6 col-lg-6">
-                        <div class="list-group">
-                            <a class="list-group-item list-group-item-action flex-column align-items-start">
-                                <div class="d-flex w-100 justify-content-between">
-                                    <h5 class="mb-1">1 Tổng số chợ: <strong>{{tongSoCho}}</strong></h5>
-                                </div>
-                                <p class="mb-1"></p>
-                            </a>
-                            <a class="list-group-item list-group-item-action flex-column align-items-start">
-                                <div class="d-flex w-100 justify-content-between">
-                                    <h5 class="mb-1">2. Chợ thành thị/nông thôn:</h5>
-                                </div>
-                                <p class="mb-1 config-p">
-                                    2.1 Chợ nông thôn: <strong>{{choNongThon}}</strong>
-                                    <br> 2.2 Chợ thành thị: <strong>{{choThanhThi}}</strong>
-                                </p>
-                            </a>
-                            <a class="list-group-item list-group-item-action flex-column align-items-start">
-                                <div class="d-flex w-100 justify-content-between">
-                                    <h5 class="mb-1">3. Hạng chợ:</h5>
-                                </div>
-                                <p class="mb-1 config-p">
-                                    3.1 Chợ hạng 1: <strong>{{choHangI}}</strong>
-                                    <br> 3.2 Chợ hạng 2: <strong>{{choHangII}}</strong>
-                                    <br> 3.3 Chợ hạng 3: <strong>{{choHangIII}}</strong>
-                                    <br> 3.4 Chợ hạng 4: <strong>{{choHangIV}}</strong>
-                                    <br> 3.5 Chợ hạng 5: <strong>{{choHangV}}</strong>
-                                </p>
-                            </a>
-                            <a class="list-group-item list-group-item-action flex-column align-items-start">
-                                <div class="d-flex w-100 justify-content-between">
-                                    <h5 class="mb-1">4. Tính chất công trình:</h5>
-                                </div>
-                                <p class="mb-1 config-p">
-                                    4.1 Chợ Kiên cố: <strong>{{choKienCo}}</strong>
-                                    <br> 4.2 Chợ bán kiên cố: <strong>{{choBanKienCo}}</strong>
-                                    <br> 4.3 Chợ tạm: <strong>{{choTam}}</strong>
-                                </p>
-                            </a>
-                            <a class="list-group-item list-group-item-action flex-column align-items-start">
-                                <div class="d-flex w-100 justify-content-between">
-                                    <h5 class="mb-1">5. Hình thức kinh doanh:</h5>
-                                </div>
-                                <p class="mb-1 config-p">
-                                    5.1 Chợ bán lẻ: <strong>{{choBanLe}}</strong>
-                                    <br> 5.2 Chợ bán sỉ: <strong>{{choBanSi}}</strong>
-                                </p>
-                            </a>
-                        </div>
+                    <div class="col-4 col-lg-4">
+                        <mat-card class="card1">
+                            <mat-card-header>
+                                <mat-card-title>
+                                    <mat-icon>filter</mat-icon> Tổng số chợ:
+                                </mat-card-title>
+                                <mat-card-subtitle></mat-card-subtitle>
+                            </mat-card-header>
+                            <mat-card-content>
+                                0 chợ
+                            </mat-card-content>
+                        </mat-card>
                     </div>
-                    <div class="col-6 col-lg-6">
-                        <div class="list-group">
-                            <a class="list-group-item list-group-item-action flex-column align-items-start">
-                                <div class="d-flex w-100 justify-content-between">
-                                    <h5 class="mb-1">6. Hình thức quản lý:</h5>
-                                </div>
-                                <p class="mb-1 config-p">
-                                    5.1 Chợ nhà nước: <strong>{{choNhaNuoc}}</strong>
-                                    <br> 5.2 Chợ xã hội hóa: <strong>{{choXaHoiHoa}}</strong>
-                                </p>
-                            </a>
-                            <a class="list-group-item list-group-item-action flex-column align-items-start">
-                                <div class="d-flex w-100 justify-content-between">
-                                    <h5 class="mb-1">7. Vốn đầu tư hiện tại:</h5>
-                                </div>
-                                <p class="mb-1 config-p">7.1 Vốn đầu tư: <strong>{{vonDauTu}}</strong>
-                                    <br> 7.2 Vốn đầu tư ngân sách: <strong>{{vonDauTuNganSach}}</strong>
-                                    <br> 7.3 Vốn đầu tư xã hội hóa: <strong>{{vonDauTuXaHoiHoa}}</strong>
-                                </p>
-                            </a>
-                            <a class="list-group-item list-group-item-action flex-column align-items-start">
-                                <div class="d-flex w-100 justify-content-between">
-                                    <h5 class="mb-1">8. Vốn đầu tư kế hoạch:</h5>
-                                </div>
-                                <p class="mb-1 config-p">
-                                    8.1 Vốn đầu tư kế hoạch: <strong>{{vonDauTuKeHoach}}</strong>
-                                    <br> 8.2 Vốn đầu tư kế hoạch ngân sách: <strong>{{vonDauTuKeHoachNganSach}}</strong>
-                                    <br> 8.3 Vốn đầu tư kế hoạch xã hội hóa:
-                                    <strong>{{vonDauTuKeHoachXaHoiHoa}}</strong>
-                                </p>
-                            </a>
-                            <a class="list-group-item list-group-item-action flex-column align-items-start">
-                                <div class="d-flex w-100 justify-content-between">
-                                    <h5 class="mb-1">9. Thống kê xây dựng:</h5>
-                                </div>
-                                <p class="mb-1 config-p">
-                                    9.1 Chợ cải tạo trong năm <strong>{{year}}</strong> là:
-                                    <strong>{{choCaiTao}}</strong> tăng/giảm so với năm {{year}} là:
-                                    <strong>{{soSanhChoCaiTao}}</strong>
-                                    <br> 9.2 Chợ xây mới trong năm <strong>{{year}}</strong> là:
-                                    <strong>{{choXayMoi}}</strong> tăng/giảm so với năm {{year}} là:
-                                    <strong>{{soSanhChoXayMoi}}</strong>
-                                </p>
-                            </a>
-                        </div>
+                    <div class="col-4 col-lg-4">
+                        <mat-card class="card4" id="card4-2">
+                            <mat-card-header>
+                                <mat-card-title>
+                                    <mat-icon>filter</mat-icon> Hạng chợ:
+                                </mat-card-title>
+                                <mat-card-subtitle></mat-card-subtitle>
+                            </mat-card-header>
+                            <mat-card-content>
+                                <ul>
+                                    <li>
+                                        Chợ hạng 1: {{choHangI}}
+                                    </li>
+                                    <li>
+                                        Chợ hạng 2: {{choHangII}}
+                                    </li>
+                                    <li>
+                                        Chợ hạng 3: {{choHangIII}}
+                                    </li>
+                                    <li>
+                                        Chợ hạng 4: {{choHangIV}}
+                                    </li>
+                                    <li>
+                                        Chợ hạng 5: {{choHangV}}
+                                    </li>
+                                </ul>
+                            </mat-card-content>
+                        </mat-card>
+
+                    </div>
+                    <div class="col-4 col-lg-4">
+                        <mat-card class="card4" id="card4-2">
+                            <mat-card-header>
+                                <mat-card-title>
+                                    <mat-icon>filter</mat-icon> Thống kê xây dựng:
+                                </mat-card-title>
+                                <mat-card-subtitle></mat-card-subtitle>
+                            </mat-card-header>
+                            <mat-card-content>
+                                <ul>
+                                    <li>
+                                        Chợ cải tạo trong năm {{year}} là:
+                                        {{choCaiTao}} tăng/giảm so với năm {{year}} là:
+                                        {{soSanhChoCaiTao}}
+                                    </li>
+                                    <li>
+                                        Chợ xây mới trong năm {{year}} là:
+                                        {{choXayMoi}} tăng/giảm so với năm {{year}} là:
+                                        {{soSanhChoXayMoi}}
+                                    </li>
+                                </ul>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                </div>
+
+                <br>
+                <div class="row">
+                    <div class="col-4 col-lg-4">
+                        <mat-card class="card4">
+                            <mat-card-header>
+                                <mat-card-title>
+                                    <mat-icon>filter</mat-icon> Chợ thành thị/nông thôn:
+                                </mat-card-title>
+                                <mat-card-subtitle></mat-card-subtitle>
+                            </mat-card-header>
+                            <mat-card-content>
+                                <ul>
+                                    <li>
+                                        Chợ nông thôn: {{choNongThon}}
+                                    </li>
+                                    <li>
+                                        Chợ thành thị: {{choThanhThi}}
+                                    </li>
+                                </ul>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                    <div class="col-4 col-lg-4">
+                        <mat-card class="card4">
+                            <mat-card-header>
+                                <mat-card-title>
+                                    <mat-icon>filter</mat-icon> Hình thức quản lý:
+                                </mat-card-title>
+                                <mat-card-subtitle></mat-card-subtitle>
+                            </mat-card-header>
+                            <mat-card-content>
+                                <ul>
+                                    <li>
+                                        Chợ nhà nước: {{choNhaNuoc}}
+                                    </li>
+                                    <li>
+                                        Chợ xã hội hóa: {{choXaHoiHoa}}
+                                    </li>
+                                </ul>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                    <div class="col-4 col-lg-4">
+                        <mat-card class="card4">
+                            <mat-card-header>
+                                <mat-card-title>
+                                    <mat-icon>filter</mat-icon> Hình thức kinh doanh:
+                                </mat-card-title>
+                                <mat-card-subtitle></mat-card-subtitle>
+                            </mat-card-header>
+                            <mat-card-content>
+                                <ul>
+                                    <li>
+                                        Chợ bán lẻ: {{choBanLe}}
+                                    </li>
+                                    <li>
+                                        Chợ bán sỉ: {{choBanSi}}
+                                    </li>
+                                </ul>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                </div>
+
+                <br>
+                <div class="row">
+                    <div class="col-4 col-lg-4">
+                        <mat-card class="card4" id="card4-1">
+                            <mat-card-header>
+                                <mat-card-title>
+                                    <mat-icon>filter</mat-icon> Tính chất công trình:
+                                </mat-card-title>
+                                <mat-card-subtitle></mat-card-subtitle>
+                            </mat-card-header>
+                            <mat-card-content>
+                                <ul>
+                                    <li>
+                                        Chợ Kiên cố: {{choKienCo}}
+                                    </li>
+                                    <li>
+                                        Chợ bán kiên cố: {{choBanKienCo}}
+                                    </li>
+                                    <li>
+                                        Chợ tạm: {{choTam}}
+                                    </li>
+                                </ul>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                    <div class="col-4 col-lg-4">
+                        <mat-card class="card4" id="card4-1">
+                            <mat-card-header>
+                                <mat-card-title>
+                                    <mat-icon>filter</mat-icon> Vốn đầu tư hiện tại:
+                                </mat-card-title>
+                                <mat-card-subtitle></mat-card-subtitle>
+                            </mat-card-header>
+                            <mat-card-content>
+                                <ul>
+                                    <li>
+                                        Vốn đầu tư: {{vonDauTu}}
+                                    </li>
+                                    <li>
+                                        Vốn đầu tư ngân sách: {{vonDauTuNganSach}}
+                                    </li>
+                                    <li>
+                                        Vốn đầu tư xã hội hóa: {{vonDauTuXaHoiHoa}}
+                                    </li>
+                                </ul>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                    <div class="col-4 col-lg-4">
+                        <mat-card class="card4" id="card4-1">
+                            <mat-card-header>
+                                <mat-card-title>
+                                    <mat-icon>filter</mat-icon> Vốn đầu tư kế hoạch:
+                                </mat-card-title>
+                                <mat-card-subtitle></mat-card-subtitle>
+                            </mat-card-header>
+                            <mat-card-content>
+                                <ul>
+                                    <li>
+                                        Vốn đầu tư kế hoạch: {{vonDauTuKeHoach}}
+                                    </li>
+                                    <li>
+                                        Vốn đầu tư kế hoạch ngân sách: {{vonDauTuKeHoachNganSach}}
+                                    </li>
+                                    <li>
+                                        Vốn đầu tư kế hoạch xã hội hóa: {{vonDauTuKeHoachXaHoiHoa}}
+                                    </li>
+                                </ul>
+                            </mat-card-content>
+                        </mat-card>
                     </div>
                 </div>
             </mat-expansion-panel>

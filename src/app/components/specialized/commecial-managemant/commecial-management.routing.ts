@@ -8,7 +8,7 @@ import { TobaccoBusinessComponent } from './conditional-business-line/tobacco-bu
 import { CommonCommecialComponent } from './infrastructure/common/common-commecial.component';
 import { MarketCommecialManagementComponent } from './infrastructure/market/market-commecial.component';
 import { SuperMarketCommecialManagementComponent } from './infrastructure/supermarket/supermarket-commecial.component';
-import { InformedEcommerceWebsiteComponent } from './e-commerce-managemant/informed-ecommerce-website/informed-ecommerce-website.component';import { TRSManagementComponent } from './infrastructure/total-retail-sales/total-retail-sales.component';
+import { InformedEcommerceWebsiteComponent } from './e-commerce-managemant/informed-ecommerce-website/informed-ecommerce-website.component'; import { TRSManagementComponent } from './infrastructure/total-retail-sales/total-retail-sales.component';
 import { ImportManagementComponent } from "./export-import-management/import-management/import-management.component";
 import { ExportManagementComponent } from "./export-import-management/export-management/export-management.component";
 import { BorderTradeComponent } from './border-trade/border-trade.component';
@@ -16,6 +16,8 @@ import { RegisteredSaleWebsiteComponent } from './e-commerce-managemant/register
 import { MultilevelTradeComponent } from "./multilevel-trade/multilevel-trade.component";
 import { RetailComponent } from './retail/retail.component';
 import { RetailMonthComponent } from './retail/retail-month/retail-month.component';
+import { TradeFairsExhibitionsComponent } from './trade-development/trade-fairs-exhibitions/trade-fairs-exhibitions.component';
+import { SubscribeDiscountComponent } from './trade-development/subscribe-discount/subscribe-discount.component';
 const routes: Routes = [
   {
     path: 'domestic',
@@ -94,6 +96,32 @@ const routes: Routes = [
           title: 'Tổng mức bán lẻ HH&DV',
         }
       },
+      // {
+      //   path: 'trs',
+      //   component: TRSManagementComponent,
+      //   data: {
+      //     title: 'Đăng ký khuyến mãi',
+      //   }
+      // },
+    ]
+  },
+  {
+    path: 'trade-development',
+    children: [
+      {
+        path: 'TFE',
+        component: TradeFairsExhibitionsComponent,
+        data: {
+          title: 'Hội trợ triển lãm',
+        }
+      },
+      {
+        path: 'SD',
+        component: SubscribeDiscountComponent,
+        data: {
+          title: 'Đăng ký khuyến mãi',
+        }
+      },
     ]
   },
   {
@@ -102,7 +130,7 @@ const routes: Routes = [
       {
         path: 'ecommerce-website',
         component: InformedEcommerceWebsiteComponent
-      }, 
+      },
       {
         path: 'sale-website',
         component: RegisteredSaleWebsiteComponent
@@ -123,7 +151,7 @@ const routes: Routes = [
       {
         path: 'imported_products',
         component: ImportManagementComponent
-      }, 
+      },
       {
         path: 'exported_products',
         component: ExportManagementComponent
