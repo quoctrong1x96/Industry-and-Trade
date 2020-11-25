@@ -8,6 +8,10 @@ export class ClusterDetailModel{
     co_so_phap_lys:string[];
     dien_giai: string;
     downloadPDF:string;
+    dang_ki_kinh_doanh : string[];
+    vi_tri_quy_mo : string[];
+    quy_mo_dien_tich : string;
+    tong_muc_dau_tu : string;
 }
 
 export class ClusterDetailShortModel{
