@@ -26,11 +26,11 @@ import * as XLSX from 'xlsx';
 })
 export class ExportManagementComponent implements OnInit {
     //Constant
-  private readonly LINK_DEFAULT: string = "/specialized/commecial-management/export_import/exported_products";
-  private readonly TITLE_DEFAULT: string = "Thông tin xuất khẩu";
-  private readonly TEXT_DEFAULT: string = "Thông tin xuất khẩu";
-  //Variable for only ts
-  private _linkOutput: LinkModel = new LinkModel();
+    private readonly LINK_DEFAULT: string = "/specialized/commecial-management/export_import/exported_products";
+    private readonly TITLE_DEFAULT: string = "Thông tin xuất khẩu";
+    private readonly TEXT_DEFAULT: string = "Thông tin xuất khẩu";
+    //Variable for only ts
+    private _linkOutput: LinkModel = new LinkModel();
     displayedColumns: string[] = [];
     displayRow1Header: string[] = []
     displaRow2Header: string[] = []
@@ -51,8 +51,8 @@ export class ExportManagementComponent implements OnInit {
     @ViewChild(MatAccordion, { static: true }) accordion: MatAccordion;
     @ViewChild("paginator", { static: false }) paginator: MatPaginator;
     @ViewChild(MatSort, { static: false }) sort: MatSort;
-    nhap_khau_chu_yeu = [1,	6,	8,	4,	7,	21,	13	,27	,82	,51	,28	,20	,31	,19	,23]
-    
+    nhap_khau_chu_yeu = [1, 6, 8, 4, 7, 21, 13, 27, 82, 51, 28, 20, 31, 19, 23]
+
     tongluong_tc: number = 0;
     tonggiatri_tc: number = 0;
     tongluongcongdon_tc: number = 0;
@@ -62,7 +62,7 @@ export class ExportManagementComponent implements OnInit {
         { id: 2, unit: 'Tổng cục hải quan' }
     ]
     dataTargetId = [2];
-    isOnlyTongCucHQ: boolean = true;
+    isOnlyTongCucHQ: number = 2;
     constructor(
         public sctService: SCTService,
         public matDialog: MatDialog,
@@ -103,7 +103,7 @@ export class ExportManagementComponent implements OnInit {
         this._linkOutput.text = this.TEXT_DEFAULT;
         this._linkOutput.type = type;
         this._breadCrumService.sendLink(this._linkOutput);
-      }
+    }
 
     autoOpen() {
         setTimeout(() => this.accordion.openAll(), 1000);
@@ -118,7 +118,11 @@ export class ExportManagementComponent implements OnInit {
         if (thang !== this.curentmonth && thang) {
             this.curentmonth = thang;
         }
-        this.dataTargetId = [2];
+        if (thang === 10) {
+            this.dataTargetId = [1];
+        } else {
+            this.dataTargetId = [2];
+        }
         this.applyDataTarget(this.dataTargetId);
         this.sctService.GetDanhSachXuatKhau(tem).subscribe((result) => {
             this.log(this.dataSource)
@@ -233,60 +237,95 @@ export class ExportManagementComponent implements OnInit {
         // this.dataTargetId[0] = 2
         // 1: cuc hai quan
         // 2: tong cuc hai quan
-        this.isOnlyTongCucHQ = this.dataTargetId.includes(1) && this.dataTargetId.includes(2);
-        if (this.isOnlyTongCucHQ) {
-            this.displayedColumns = [
-                'index', 'ten_san_pham', 'luong_thang', 'gia_tri_thang', 'luong_cong_don',
-                'gia_tri_cong_don', 'luong_thang_tc', 'gia_tri_thang_tc', 'luong_thang_cong_don_tc',
-                'gia_tri_thang_cong_don_tc', 'danh_sach_doanh_nghiep', 'chi_tiet_doanh_nghiep'];
-            this.displayRow1Header = [
-                'index',
-                'ten_san_pham',
-                'cuc_hai_quan',
-                'tong_cuc_hai_quan',
-                'danh_sach_doanh_nghiep',
-                'chi_tiet_doanh_nghiep'
-            ]
-            this.displaRow2Header = [
-                'thuc_hien_bao_cao_thang',
-                'cong_don_den_ky_bao_cao',
-                'thuc_hien_bao_cao_thang1',
-                'cong_don_den_ky_bao_cao1'
-            ]
-            this.displayRow3Header = [
-                'luong_thang',
-                'gia_tri_thang',
-                'luong_cong_don',
-                'gia_tri_cong_don',
-                'luong_thang_tc',
-                'gia_tri_thang_tc',
-                'luong_thang_cong_don_tc',
-                'gia_tri_thang_cong_don_tc'
-            ]
+        // 3: cả 2 
+        if (this.dataTargetId.includes(1) && this.dataTargetId.includes(2)) {
+            this.isOnlyTongCucHQ = 3
+        } else if (this.dataTargetId.includes(1)) {
+            this.isOnlyTongCucHQ = 1
         } else {
-            this.displayedColumns = [
-                'index', 'ten_san_pham', 'luong_thang_tc', 'gia_tri_thang_tc', 'luong_thang_cong_don_tc',
-                'gia_tri_thang_cong_don_tc', 'danh_sach_doanh_nghiep', 'chi_tiet_doanh_nghiep'];
-            this.displayRow1Header = [
-                'index',
-                'ten_san_pham',
-                'tong_cuc_hai_quan',
-                'danh_sach_doanh_nghiep',
-                'chi_tiet_doanh_nghiep'
-            ]
-            this.displaRow2Header = [
-                'thuc_hien_bao_cao_thang1',
-                'cong_don_den_ky_bao_cao1'
-            ]
-            this.displayRow3Header = [
-                'luong_thang_tc',
-                'gia_tri_thang_tc',
-                'luong_thang_cong_don_tc',
-                'gia_tri_thang_cong_don_tc'
-            ]
+            this.isOnlyTongCucHQ = 2;
+        }
+
+        switch (this.isOnlyTongCucHQ) {
+            case 1:
+                this.displayedColumns = [
+                    'index', 'ten_san_pham', 'luong_thang', 'gia_tri_thang', 'luong_cong_don',
+                    'gia_tri_cong_don', 'danh_sach_doanh_nghiep', 'chi_tiet_doanh_nghiep'];
+                this.displayRow1Header = [
+                    'index',
+                    'ten_san_pham',
+                    'cuc_hai_quan',
+                    'danh_sach_doanh_nghiep',
+                    'chi_tiet_doanh_nghiep'
+                ]
+                this.displaRow2Header = [
+                    'thuc_hien_bao_cao_thang',
+                    'cong_don_den_ky_bao_cao',
+                ]
+                this.displayRow3Header = [
+                    'luong_thang',
+                    'gia_tri_thang',
+                    'luong_cong_don',
+                    'gia_tri_cong_don',
+                ]
+                break;
+            case 2:
+                this.displayedColumns = [
+                    'index', 'ten_san_pham', 'luong_thang_tc', 'gia_tri_thang_tc', 'luong_thang_cong_don_tc',
+                    'gia_tri_thang_cong_don_tc', 'danh_sach_doanh_nghiep', 'chi_tiet_doanh_nghiep'];
+                this.displayRow1Header = [
+                    'index',
+                    'ten_san_pham',
+                    'tong_cuc_hai_quan',
+                    'danh_sach_doanh_nghiep',
+                    'chi_tiet_doanh_nghiep'
+                ]
+                this.displaRow2Header = [
+                    'thuc_hien_bao_cao_thang1',
+                    'cong_don_den_ky_bao_cao1'
+                ]
+                this.displayRow3Header = [
+                    'luong_thang_tc',
+                    'gia_tri_thang_tc',
+                    'luong_thang_cong_don_tc',
+                    'gia_tri_thang_cong_don_tc'
+                ]
+                break;
+            case 3:
+                this.displayedColumns = [
+                    'index', 'ten_san_pham', 'luong_thang', 'gia_tri_thang', 'luong_cong_don',
+                    'gia_tri_cong_don', 'luong_thang_tc', 'gia_tri_thang_tc', 'luong_thang_cong_don_tc',
+                    'gia_tri_thang_cong_don_tc', 'danh_sach_doanh_nghiep', 'chi_tiet_doanh_nghiep'];
+                this.displayRow1Header = [
+                    'index',
+                    'ten_san_pham',
+                    'cuc_hai_quan',
+                    'tong_cuc_hai_quan',
+                    'danh_sach_doanh_nghiep',
+                    'chi_tiet_doanh_nghiep'
+                ]
+                this.displaRow2Header = [
+                    'thuc_hien_bao_cao_thang',
+                    'cong_don_den_ky_bao_cao',
+                    'thuc_hien_bao_cao_thang1',
+                    'cong_don_den_ky_bao_cao1'
+                ]
+                this.displayRow3Header = [
+                    'luong_thang',
+                    'gia_tri_thang',
+                    'luong_cong_don',
+                    'gia_tri_cong_don',
+                    'luong_thang_tc',
+                    'gia_tri_thang_tc',
+                    'luong_thang_cong_don_tc',
+                    'gia_tri_thang_cong_don_tc'
+                ]
+                break;
+            default:
+                break;
         }
     }
-    
+
     public ExportTOExcel(filename: string, sheetname: string) {
         const excelExtention: string = ".xlsx";
         let excelFileName: string = filename + excelExtention;
