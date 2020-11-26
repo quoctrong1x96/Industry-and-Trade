@@ -45,8 +45,13 @@ export class IIPIndustrialMonthModel{
     chi_tieu: string;
     don_vi: string;
     cung_ky: number;
+    luy_ke_cung_ky: number;
+    ke_hoach_nam: number;
     thuc_hien_thang_truoc:number;
     thuc_hien_thang:number;
+    luy_ke:number;
     thuc_hien_so_voi_thang_truoc:number;
+    luy_ke_so_so_voi_cung_ky:number;
     thuc_hien_so_voi_cung_ky:number;
+    luy_ke_so_voi_ke_hoach:number;
 }

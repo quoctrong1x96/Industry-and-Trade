@@ -38,7 +38,34 @@ interface HashTableNumber<T> {
 
 export class SuperMarketCommecialManagementComponent implements OnInit {
   //Constant-------------------------------------------------------------------------
+  public readonly RANK_LABLE = (page: number, pageSize: number, length: number) => {
+    if (length == 0 || pageSize == 0) { return `0 của ${length}`; }
 
+    length = Math.max(length, 0);
+
+    const startIndex = page * pageSize;
+
+    // If the start index exceeds the list length, do not try and fix the end index to the end.
+    const endIndex = startIndex < length ?
+      Math.min(startIndex + pageSize, length) :
+      startIndex + pageSize;
+
+    return `${startIndex + 1} - ${endIndex} của ${length}`;
+  }
+  //
+  private _conditionArray: HashTableNumber<string[]> = {};
+  private _tableData: MatTableDataSource<SuperMarketCommonModel> = new MatTableDataSource<SuperMarketCommonModel>();
+  
+  public sieuThiTongHop: number;
+  public sieuThiChuyenNganh: number;
+  //
+  public sieuThiHangI: number;
+  public sieuThiHangII: number;
+  public sieuThiHangIII: number;
+  //
+  public sieuThiDauTuTrongNam:number;
+  public sieuThiNgungHoatDong: number;
+  
   //Viewchild & Input-----------------------------------------------------------------------
   @ViewChildren(ReportDirective) inputs: QueryList<ReportDirective>
   @ViewChild(MatAccordion, { static: false }) accordion: MatAccordion;
@@ -54,17 +81,21 @@ export class SuperMarketCommecialManagementComponent implements OnInit {
 
   }
   //Variable for HTML&TS-------------------------------------------------------------------------
-  districts: District[] = [{ id: 1, ten_quan_huyen: 'Thị xã Phước Long' },
-  { id: 2, ten_quan_huyen: 'Thành phố Đồng Xoài' },
-  { id: 3, ten_quan_huyen: 'Thị xã Bình Long' },
-  { id: 4, ten_quan_huyen: 'Huyện Bù Gia Mập' },
-  { id: 5, ten_quan_huyen: 'Huyện Lộc Ninh' },
-  { id: 6, ten_quan_huyen: 'Huyện Bù Đốp' },
-  { id: 7, ten_quan_huyen: 'Huyện Hớn Quản' },
-  { id: 8, ten_quan_huyen: 'Huyện Đồng Phú' },
-  { id: 9, ten_quan_huyen: 'Huyện Bù Đăng' },
-  { id: 10, ten_quan_huyen: 'Huyện Chơn Thành' },
-  { id: 11, ten_quan_huyen: 'Huyện Phú Riềng' }];
+  public readonly districts: District[] = [{ id: 1, ten_quan_huyen: 'Phước Long' },
+  { id: 2, ten_quan_huyen: 'Đồng Xoài' },
+  { id: 3, ten_quan_huyen: 'Bình Long' },
+  { id: 4, ten_quan_huyen: 'Bù Gia Mập' },
+  { id: 5, ten_quan_huyen: 'Lộc Ninh' },
+  { id: 6, ten_quan_huyen: 'Bù Đốp' },
+  { id: 7, ten_quan_huyen: 'Hớn Quản' },
+  { id: 8, ten_quan_huyen: 'Đồng Phú' },
+  { id: 9, ten_quan_huyen: 'Bù Đăng' },
+  { id: 10, ten_quan_huyen: 'Chơn Thành' },
+  { id: 11, ten_quan_huyen: 'Phú Riềng' }];
+  public readonly phanloais: District[] =[{id: 1, ten_quan_huyen: "Loại I"}
+,{id: 1, ten_quan_huyen: "Loại II"}
+,{id: 1, ten_quan_huyen: "Loại III"}]
+
   headerArray = ['index', 'tenhuyenthi', 'ten_tttm', 'dientich', 'vondautu', 'namdautuxaydung', 'phanloai'];
   dataHuyenThi: Array<SuperMarketCommonModel> = [
     { huyen: "Đồng Xoài", ten_tttm: "Siêu thị Co.opMart Đồng Xoài", dientich: 3107, namdautuxaydung: "2009", phanloai: "II", vondautu: 0 },
@@ -82,14 +113,14 @@ export class SuperMarketCommecialManagementComponent implements OnInit {
 
   applyFilter1(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSourceHuyenThi.filter = filterValue.trim().toLowerCase();
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   ngAfterViewInit(): void {
     //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
     //Add 'implements AfterViewInit' to the class.
     // this.accordion.openAll();
-    this.dataSourceHuyenThi.paginator = this.paginator;
+    this.dataSource.paginator = this.paginator;
     this.paginator._intl.itemsPerPageLabel = 'Số hàng';
     this.paginator._intl.firstPageLabel = "Trang Đầu";
     this.paginator._intl.lastPageLabel = "Trang Cuối";
@@ -114,7 +145,7 @@ export class SuperMarketCommecialManagementComponent implements OnInit {
   public tableMergeHader: Array<ToltalHeaderMerge> = [];
   public mergeHeadersColumn: Array<string> = [];
   public indexOftableMergeHader: number = 0;
-
+  public dataSource: MatTableDataSource<SuperMarketCommonModel> = new MatTableDataSource<SuperMarketCommonModel>();
   columns: number = 1;
 
   //Angular FUnction --------------------------------------------------------------------
@@ -127,27 +158,82 @@ export class SuperMarketCommecialManagementComponent implements OnInit {
 
   ngOnInit(): void {
     let data: any = JSON.parse(localStorage.getItem('currentUser'));
-    this.dataSourceHuyenThi.data = this.dataHuyenThi;
+    this.dataSource = new  MatTableDataSource<SuperMarketCommonModel>(this.dataHuyenThi);
+    this._tableData = new MatTableDataSource<SuperMarketCommonModel>(this.dataHuyenThi);
     this.autoOpen();
   }
-  dataSourceHuyenThi: MatTableDataSource<SuperMarketCommonModel> = new MatTableDataSource<SuperMarketCommonModel>();
+  
 
   //Xuất excel
   ExportTOExcel(filename: string, sheetname: string) {
-    // sheetname = sheetname.replace('/', '_');
-    // let excelFileName: string = filename + '.xlsx';
-    // const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);
-    // const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    // XLSX.utils.book_append_sheet(wb, ws, sheetname);
-    // /* save to file */
-    // XLSX.writeFile(wb, excelFileName);
+    sheetname = sheetname.replace('/', '_');
+    let excelFileName: string = filename + '.xlsx';
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, sheetname);
+    /* save to file */
+    XLSX.writeFile(wb, excelFileName);
   }
-
-  sortHeaderCondition(event) {
-
+  //FUNCTION FOR ONLY TS _------------------------------
+  applyCondictionFilter(type, event: any) {
+    this._conditionArray[type] = event.value;
+    this._filterDataSource();
   }
+  private _filterDataSource() {
+    if (this._countCondition() > 0) {
+      let dataFilterOriginal: SuperMarketCommonModel[] = [];
+      let dataFilterFinal: SuperMarketCommonModel[] = [];
+      dataFilterOriginal = [... this._tableData.data];
+      Object.keys(this._conditionArray).forEach(key => {
+        let array = this._conditionArray[key];
+        switch (key) {
+          case "1":
+            array.forEach((element) => {
+              dataFilterOriginal.filter((x) => x.huyen.includes(element)).forEach((item) => dataFilterFinal.push(item));
+            });
+            break;
+          case "2":
+            array.forEach((element) => {
 
-  applyDistrictFilter(event) {
+              dataFilterOriginal.filter((x) => element.includes(x.phanloai)).forEach((item) => dataFilterFinal.push(item));
+            });
+            break;
+    
+          default:
 
+            break;
+        }
+        dataFilterOriginal = [...dataFilterFinal];
+        dataFilterFinal = [];
+      });
+      this.dataSource = new MatTableDataSource<SuperMarketCommonModel>(dataFilterOriginal);
+    } else {
+      this.dataSource = new MatTableDataSource<SuperMarketCommonModel>(this._tableData.data);
+    }
+    this._paginatorAgain();
+    this._caculator(this.dataSource.data);
+  }
+  private _countCondition(): number {
+    let countOfCondition = 0;
+    Object.keys(this._conditionArray).forEach(key => {
+      if (this._conditionArray[key])
+        countOfCondition += this._conditionArray[key].length;
+    });
+    return countOfCondition;
+  }
+  private _autoOpenPanel() {
+    setTimeout(() => this.accordion.openAll(), 1000);
+  }
+  private _caculator(data: Array<SuperMarketCommonModel>) {
+      
+  }
+  private _paginatorAgain() {
+    this.dataSource.paginator = this.paginator;
+    this.paginator._intl.itemsPerPageLabel = 'Số hàng';
+    this.paginator._intl.firstPageLabel = "Trang Đầu";
+    this.paginator._intl.lastPageLabel = "Trang Cuối";
+    this.paginator._intl.previousPageLabel = "Trang Trước";
+    this.paginator._intl.nextPageLabel = "Trang Tiếp";
+    this.paginator._intl.getRangeLabel = this.RANK_LABLE;
   }
 }
