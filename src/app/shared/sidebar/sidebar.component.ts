@@ -13,7 +13,7 @@ import { onSideNavChange, animateText } from '../../_animations/animation-sideba
 //Import Model-----------------------------------------------------------
 import { navItemsPublic, navItemsManager, navItemsSpecialized, navItemsReport } from './_nav';
 import { INavItem } from '../../_models/_nav.model';
-import {TYPE_OF_NAV} from '../../_enums/typeOfUser.enum';
+import { TYPE_OF_NAV } from '../../_enums/typeOfUser.enum';
 import { STYLESCSS_TYPE } from 'src/app/_enums/styleChoose.enum';
 
 
@@ -69,7 +69,7 @@ export class SidebarComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    
+
     this.styleOfScss = this.STYLE_SCSS_DEFAULTL;
     this._loginService.refreshToken();
     this.onSinenavToggle();
@@ -85,7 +85,7 @@ export class SidebarComponent implements OnInit {
 
   //Function for event HTML-----------------------------------------------------------
   //When toggle menu click
-  public onSinenavToggle() {
+  onSinenavToggle() {
     this.sideNavState = !this.sideNavState
 
     setTimeout(() => {
