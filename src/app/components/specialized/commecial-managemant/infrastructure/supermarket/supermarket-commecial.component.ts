@@ -69,6 +69,33 @@ export class SuperMarketCommecialManagementComponent implements OnInit {
     { huyen: "Bù Đăng", ten_tttm: "Dự án Siêu Thị Boobo và chợ đêm", dientich: 0, namdautuxaydung: "", phanloai: "", vondautu: 0 },
   ]
   //Variable for only TS-------------------------------------------------------------------------
+  supermarketTypeI: number = 0;
+  supermarketTypeII: number = 0;
+  supermarketTypeIII: number = 0;
+  supermarketFuture: number = 0;
+  generalSupermarket: number = 0;
+  specializedSupermarket: number = 0;
+
+  filterTyppeMarket() {
+    this.dataHuyenThi.forEach(element => {
+      switch (element.phanloai) {
+        case "I":
+          this.supermarketTypeI +=1;
+          break;
+        case "II":
+          this.supermarketTypeII+=1;
+          break;
+        case "III":
+          this.supermarketTypeIII+=1;
+          break;
+        case "":
+          this.supermarketFuture +=1;
+          break;
+        default:
+          break;
+      }
+    });
+  }
 
   applyFilter1(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -118,6 +145,7 @@ export class SuperMarketCommecialManagementComponent implements OnInit {
   ngOnInit(): void {
     let data: any = JSON.parse(localStorage.getItem('currentUser'));
     this.dataSourceHuyenThi.data = this.dataHuyenThi;
+    this.filterTyppeMarket();
     this.autoOpen();
   }
   dataSourceHuyenThi: MatTableDataSource<SuperMarketCommonModel> = new MatTableDataSource<SuperMarketCommonModel>();
