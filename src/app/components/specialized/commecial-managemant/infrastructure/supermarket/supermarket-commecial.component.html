@@ -69,16 +69,16 @@
                             <mat-card-content>
                                 <ul>
                                     <li>
-                                        Tổng số siêu thị hạng I: 0
+                                        Tổng số siêu thị hạng I: {{sieuThiHangI}}
                                     </li>
                                     <li>
-                                        Tổng số siêu thị hạng II: 0
+                                        Tổng số siêu thị hạng II: {{sieuThiHangII}}
                                     </li>
                                     <li>
-                                        Tổng số siêu thị hạng III: 0
+                                        Tổng số siêu thị hạng III: {{sieuThiHangIII}}
                                     </li>
                                     <li>
-                                        Tổng số siêu thị đang xây dựng: 0
+                                        Tổng số siêu thị đang xây dựng: {{sieuThiDangXayDung}}
                                     </li>
                                 </ul>
                             </mat-card-content>
@@ -95,16 +95,16 @@
                             <mat-card-content style="font-size: 13px;">
                                 <ul>
                                     <li>
-                                        Tổng số siêu thị đầu tư xây dựng trong năm... là: 0
+                                        Tổng số siêu thị đầu tư xây dựng trong năm {{year}} là: {{sieuThiDauTuTrongNam}}
                                     </li>
                                     <li>
-                                        Chênh lệch số siêu thị đầu tư xây dựng trong năm ... so với năm trước là: 0
+                                        Chênh lệch số siêu thị đầu tư xây dựng trong năm {{year}} so với năm trước là: {{sieuThiDauTuTrongNam - sieuThiDauTuNamTruoc}}
                                     </li>
                                     <li>
-                                        Tổng số siêu thị ngừng hoạt động trong năm ... là: 0
+                                        Tổng số siêu thị ngừng hoạt động trong năm {{year}} là: 0
                                     </li>
                                     <li>
-                                        Chênh lệch số siêu thị ngừng hoạt động trong năm ... so với năm trước là: 0
+                                        Chênh lệch số siêu thị ngừng hoạt động trong năm {{year}} so với năm trước là: 0
                                     </li>
                                 </ul>
                             </mat-card-content>
@@ -129,8 +129,8 @@
                     <div class="col-3 col-lg-3">
                         <mat-form-field appearance="outline">
                             <mat-label>Địa bàn</mat-label>
-                            <mat-select (selectionChange)="applyCondictionFilter(1,$event)" multiple>
-                                <mat-option *ngFor='let district of districts' [value]='district.ten_quan_huyen'>
+                            <mat-select (selectionChange)="applyFilter()" [(ngModel)]="filterModel.id_quan_huyen" multiple>
+                                <mat-option *ngFor='let district of districts' [value]='district.id'>
                                     {{district.ten_quan_huyen}}
                                 </mat-option>
                             </mat-select>
@@ -138,10 +138,10 @@
                     </div>
                     <div class="col-3 col-lg-3">
                         <mat-form-field appearance="outline">
-                            <mat-label>Hạng chợ</mat-label>
-                            <mat-select (selectionChange)="applyCondictionFilter(2,$event)" multiple>
-                                <mat-option *ngFor='let phanloai of phanloais' [value]='phanloai.ten_quan_huyen'>
-                                    {{phanloai.ten_quan_huyen}}</mat-option>
+                            <mat-label>Hạng siêu thị</mat-label>
+                            <mat-select (selectionChange)="applyFilter()" [(ngModel)]="filterModel.phanloai" multiple>
+                                <mat-option *ngFor='let phanloai of phanloais' [value]='phanloai.value'>
+                                    {{phanloai.text}}</mat-option>
                             </mat-select>
                         </mat-form-field>
                     </div>
@@ -150,9 +150,9 @@
                         <button mat-raised-button (click)="exportExcel()">Xuất Excel</button>
                     </div>
                 </div>
-                <div class="layout" *ngIf="dataSource.data.length; else ShowEmpty" #TABLE>
+                <div class="layout" *ngIf="filteredDataSource.data.length; else ShowEmpty" #TABLE>
 
-                    <table mat-table [dataSource]="dataSource" class="table-layout" id="small-table">
+                    <table mat-table [dataSource]="filteredDataSource" class="table-layout" id="small-table">
                         <ng-container matColumnDef="index">
                             <th mat-header-cell *matHeaderCellDef> STT </th>
                             <td mat-cell *matCellDef="let element; let i = index;">{{i+1}}</td>

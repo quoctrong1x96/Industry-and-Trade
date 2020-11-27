@@ -21,7 +21,7 @@ import * as moment from 'moment';
 import { CompanyDetailModel } from 'src/app/_models/APIModel/domestic-market.model';
 import { TreeviewConfig, TreeviewItem, TreeviewModule } from 'ngx-treeview';
 import { element } from 'protractor';
-import { MarketCommonModel, SuperMarketCommonModel } from 'src/app/_models/APIModel/commecial-management.model';
+import { MarketCommonModel, SuperMarketCommonModel, SuperMarketFilterModel } from 'src/app/_models/APIModel/commecial-management.model';
 import { MatAccordion } from '@angular/material/expansion';
 import { MatPaginator } from '@angular/material/paginator';
 import { District } from 'src/app/_models/district.model';
@@ -66,15 +66,15 @@ export class ShoppingcentreComponent implements OnInit {
   { id: 11, ten_quan_huyen: 'Huyện Phú Riềng' }];
   headerArray = ['index', 'tenhuyenthi', 'ten_tttm', 'dientich', 'vondautu', 'namdautuxaydung', 'phanloai'];
   dataHuyenThi: Array<SuperMarketCommonModel> = [
-    { huyen: "Đồng Xoài", ten_tttm: "Trung tâm thương mại ITC Đồng Xoài", dientich: 9000, namdautuxaydung: "", phanloai: "III", vondautu: 150 },
-    { huyen: "Đồng Xoài", ten_tttm: "Vincom Đồng Xoài", dientich: 33000, namdautuxaydung: "", phanloai: "", vondautu: 240 },
-    { huyen: "Bình Long", ten_tttm: "Trung tâm thương mại An Lộc - Bình Long", dientich: 26000, namdautuxaydung: "", phanloai: "III", vondautu: 200 },
-    { huyen: "Phước Long", ten_tttm: "Trung tâm thương mại Phước Binh", dientich: 10000, namdautuxaydung: "", phanloai: "III", vondautu: 50 },
-    { huyen: "Phước Long", ten_tttm: "Trung tâm thương mại Sơn Thành - Phước Long", dientich: 12000, namdautuxaydung: "", phanloai: "Đang xây dựng", vondautu: 300 },
-    { huyen: "Phước Long", ten_tttm: "Vincom Phước Long", dientich: 15000, namdautuxaydung: "", phanloai: "", vondautu: 190 },
-    { huyen: "Bù Đốp", ten_tttm: "Trung tâm thương mại Thanh Bình - Bù Đốp", dientich: 61000, namdautuxaydung: "", phanloai: "III", vondautu: 100 },
-    { huyen: "Chơn Thành", ten_tttm: "TTTM Đô Thành - Chơn Thành", dientich: 10000, namdautuxaydung: "", phanloai: "Đang xây dựng", vondautu: 300 },
-    { huyen: "Chơn Thành", ten_tttm: "Vincom Chơn Thành", dientich: 31000, namdautuxaydung: "", phanloai: "III", vondautu: 220 },
+    { huyen: "Đồng Xoài", ten_tttm: "Trung tâm thương mại ITC Đồng Xoài", dientich: 9000, namdautuxaydung: "", phanloai: "III", id_quan_huyen : 2, vondautu: 150 },
+    { huyen: "Đồng Xoài", ten_tttm: "Vincom Đồng Xoài", dientich: 33000, namdautuxaydung: "", phanloai: "", id_quan_huyen : 2, vondautu: 240 },
+    { huyen: "Bình Long", ten_tttm: "Trung tâm thương mại An Lộc - Bình Long", dientich: 26000, namdautuxaydung: "", phanloai: "III", id_quan_huyen : 3, vondautu: 200 },
+    { huyen: "Phước Long", ten_tttm: "Trung tâm thương mại Phước Binh", dientich: 10000, namdautuxaydung: "", phanloai: "III", id_quan_huyen : 1, vondautu: 50 },
+    { huyen: "Phước Long", ten_tttm: "Trung tâm thương mại Sơn Thành - Phước Long", dientich: 12000, namdautuxaydung: "", phanloai: "Đang xây dựng", id_quan_huyen : 1, vondautu: 300 },
+    { huyen: "Phước Long", ten_tttm: "Vincom Phước Long", dientich: 15000, namdautuxaydung: "", phanloai: "", id_quan_huyen : 1, vondautu: 190 },
+    { huyen: "Bù Đốp", ten_tttm: "Trung tâm thương mại Thanh Bình - Bù Đốp", dientich: 61000, namdautuxaydung: "", phanloai: "III", id_quan_huyen : 6, vondautu: 100 },
+    { huyen: "Chơn Thành", ten_tttm: "TTTM Đô Thành - Chơn Thành", dientich: 10000, namdautuxaydung: "", phanloai: "Đang xây dựng", id_quan_huyen : 10, vondautu: 300 },
+    { huyen: "Chơn Thành", ten_tttm: "Vincom Chơn Thành", dientich: 31000, namdautuxaydung: "", phanloai: "III", id_quan_huyen : 10, vondautu: 220 },
   ]
   //Variable for only TS-------------------------------------------------------------------------
 
@@ -98,6 +98,15 @@ export class ShoppingcentreComponent implements OnInit {
   public indexOftableMergeHader: number = 0;
 
   columns: number = 1;
+  tttmHangI : number;
+  tttmHangII : number;
+  tttmHangIII : number;
+  tttmDangXayDung : number;
+  year : number;
+  tttmDauTuTrongNam : number;
+  tttmDauTuNamTruoc : number;
+
+  public filterModel : SuperMarketFilterModel = new SuperMarketFilterModel();
 
   //Angular FUnction --------------------------------------------------------------------
   constructor(
@@ -110,6 +119,16 @@ export class ShoppingcentreComponent implements OnInit {
   ngOnInit(): void {
     let data: any = JSON.parse(localStorage.getItem('currentUser'));
     this.dataSourceHuyenThi.data = this.dataHuyenThi;
+    this.filteredDataSource.data = [...this.dataSourceHuyenThi.data];
+
+    this.tttmHangI = this.dataSourceHuyenThi.data.filter(x => x.phanloai == "I").length;
+    this.tttmHangII = this.dataSourceHuyenThi.data.filter(x => x.phanloai == "II").length;
+    this.tttmHangIII = this.dataSourceHuyenThi.data.filter(x => x.phanloai == "III").length;
+    this.tttmDangXayDung = this.dataSourceHuyenThi.data.length - this.tttmHangI - this.tttmHangII - this.tttmHangIII;
+    this.year = new Date().getFullYear();
+    
+    this.tttmDauTuTrongNam = this.dataSourceHuyenThi.data.filter( x => x.namdautuxaydung == this.year.toString()).length;
+    this.tttmDauTuNamTruoc= this.dataSourceHuyenThi.data.filter( x => x.namdautuxaydung == (this.year - 1).toString()).length;
     this.autoOpen()
   }
 
@@ -129,6 +148,7 @@ export class ShoppingcentreComponent implements OnInit {
     // this.accordion.openAll();
   }
   dataSourceHuyenThi: MatTableDataSource<SuperMarketCommonModel> = new MatTableDataSource<SuperMarketCommonModel>();
+  filteredDataSource : MatTableDataSource<SuperMarketCommonModel> = new MatTableDataSource<SuperMarketCommonModel>();
 
   //Xuất excel
   ExportTOExcel(filename: string, sheetname: string) {
@@ -151,5 +171,35 @@ export class ShoppingcentreComponent implements OnInit {
 
   applyExpireCheck(event) {
 
+  }
+  
+
+  applyFilter() {
+    console.log(this.filterModel)
+    let filteredData = this.filterArray(this.dataSourceHuyenThi.data, this.filterModel);
+    if (!filteredData.length) {
+      if (this.filterModel)
+        this.filteredDataSource.data = [];
+      else
+        this.filteredDataSource.data = this.dataSourceHuyenThi.data;
+    }
+    else {
+      this.filteredDataSource.data = filteredData;
+    }
+  }
+
+  filterArray(array, filters) {
+    const filterKeys = Object.keys(filters);
+    let temp = [...array];
+    filterKeys.forEach(key => {
+      let temp2 = [];
+      if (filters[key].length) {
+        filters[key].forEach(criteria => {
+          temp2 = temp2.concat(temp.filter(x => x[key] == criteria));
+        });
+        temp = [...temp2];
+      }
+    })
+    return temp;
   }
 }

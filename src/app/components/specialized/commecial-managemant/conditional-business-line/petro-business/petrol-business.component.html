@@ -174,7 +174,12 @@
                             <td mat-cell *matCellDef="let element"> {{element.san_luong | number: '1.0-0'}}</td>
                         </ng-container>
 
-                        <tr mat-header-row *matHeaderRowDef="['index', 'mst', 'ten_doanh_nghiep', 'ten_cua_hang', 'dia_chi', 'dien_thoai', 'so_giay_phep', 'ngay_cap','ngay_het_han', 'danh_sach_thuong_nhan', 'san_luong']; sticky : true">
+                        <ng-container matColumnDef="ghi_chu">
+                            <th mat-header-cell *matHeaderCellDef> Ghi chú </th>
+                            <td mat-cell *matCellDef="let element"></td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="['index', 'mst', 'ten_doanh_nghiep', 'ten_cua_hang', 'dia_chi', 'dien_thoai', 'so_giay_phep', 'ngay_cap','ngay_het_han', 'danh_sach_thuong_nhan', 'san_luong', 'ghi_chu']; sticky : true">
                         </tr>
                         <tr mat-row *matRowDef="let row; columns: displayedColumns;let i = index; ">
                     </table>
