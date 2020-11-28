@@ -57,37 +57,54 @@
         }
 
         #card4-1 {
-            height: 140px !important;
+            height: 120px !important;
         }
         #card4-2 {
             height: 160px !important;
-            #card4-3 .mat-card-content {
+            #small-text .mat-card-content {
                 font-size: 13px !important;
             }
         }
-
+        #card4-3 {
+            height: 140px !important;
+        }
         .card4 {
             height: 100px;
             .mat-card-header .mat-card-title {
                 margin-bottom: 5px;
                 font-size: 15px;
+                text-align: left !important;
             }
             .mat-card-content {
                 font-size: 15px;
-                text-align: center;
-                font-weight: bolder;
-                color: $blue;
                 ul {
-                    padding: 0;
-                    list-style-type: none;
+                    list-style-type: square;
+                    // display: flex;
+                    justify-content: center;
+                }
+                span {
+                    font-weight: bolder;
+                    color: blue;
                 }
             }
             .mat-card-subtitle {
                 font-size: 10px;
-                text-align: center;
                 font-weight: bold;
             }
         }
+
+        .card5 {
+            height: 60px;
+            .mat-card-header .mat-card-title {
+                margin-bottom: 5px;
+                font-size: 20px;
+                span {
+                    font-weight: bolder;
+                    color: blue;
+                }
+            }
+        }
+
         .mat-form-field {
             width: 100%;
         }
