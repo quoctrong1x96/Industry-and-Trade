@@ -22,15 +22,14 @@
 
                 <div class="row">
                     <div class="col-6 col-lg-6">
-                        <mat-card class="card1">
+                        <mat-card class="card5">
                             <mat-card-header>
                                 <mat-card-title>
-                                    <mat-icon>filter</mat-icon> Tổng số TTTM:
+                                    <mat-icon>filter</mat-icon> Tổng số TTTM: <span>{{tongSieuThi}} TTTM</span>
                                 </mat-card-title>
                                 <mat-card-subtitle></mat-card-subtitle>
                             </mat-card-header>
                             <mat-card-content>
-                                {{tongTTTM}} TTTM
                             </mat-card-content>
                         </mat-card>
                     </div>
@@ -45,10 +44,10 @@
                             <mat-card-content>
                                 <ul>
                                     <li>
-                                        Tổng số TTTM tổng hợp: 0
+                                        Tổng số TTTM tổng hợp: <span>0</span>
                                     </li>
                                     <li>
-                                        Tổng số TTTM chuyên doanh: 0
+                                        Tổng số TTTM chuyên doanh: <span>0</span>
                                     </li>
                                 </ul>
                             </mat-card-content>
@@ -59,7 +58,7 @@
                 <br>
                 <div class="row">
                     <div class="col-6 col-lg-6">
-                        <mat-card class="card4" id="card4-2">
+                        <mat-card class="card4" id="card4-3">
                             <mat-card-header>
                                 <mat-card-title>
                                     <mat-icon>filter</mat-icon> Phân hệ:
@@ -69,42 +68,47 @@
                             <mat-card-content>
                                 <ul>
                                     <li>
-                                        Tổng số TTTM hạng I: {{tttmHangI}}
+                                        Tổng số TTTM hạng I: <span>{{sieuThiHangI}}</span>
                                     </li>
                                     <li>
-                                        Tổng số TTTM hạng II: {{tttmHangII}}
+                                        Tổng số TTTM hạng II: <span>{{sieuThiHangII}}</span>
                                     </li>
                                     <li>
-                                        Tổng số TTTM hạng III: {{tttmHangIII}}
+                                        Tổng số TTTM hạng III: <span>{{sieuThiHangIII}}</span>
                                     </li>
                                     <li>
-                                        Tổng số TTTM đang xây dựng: {{tttmDangXayDung}}
+                                        Tổng số TTTM đang xây dựng: <span>{{sieuThiDangXayDung}}</span>
                                     </li>
                                 </ul>
                             </mat-card-content>
                         </mat-card>
                     </div>
                     <div class="col-6 col-lg-6">
-                        <mat-card class="card4" id="card4-2">
+                        <mat-card class="card4" id="card4-3">
                             <mat-card-header>
                                 <mat-card-title>
                                     <mat-icon>filter</mat-icon> Thống kê số lượng TTTM theo năm:
                                 </mat-card-title>
                                 <mat-card-subtitle></mat-card-subtitle>
                             </mat-card-header>
-                            <mat-card-content style="font-size: 13px;">
+                            <mat-card-content style="font-size: 12px;">
                                 <ul>
                                     <li>
-                                        Tổng số TTTM đầu tư xây dựng trong năm {{year}} là: {{tttmDauTuTrongNam}}
+                                        Tổng số TTTM đầu tư xây dựng trong năm <span>{{year}}</span> là:
+                                        <span>{{sieuThiDauTuTrongNam}}</span>
                                     </li>
                                     <li>
-                                        Chênh lệch số TTTM đầu tư xây dựng trong năm {{year}} so với năm trước là: {{tttmDauTuTrongNam - tttmDauTuNamTruoc}}
+                                        Chênh lệch số TTTM đầu tư xây dựng trong năm <span>{{year}}</span> so với
+                                        năm trước là:
+                                        <span>{{sieuThiDauTuTrongNam - sieuThiDauTuNamTruoc}}</span>
                                     </li>
                                     <li>
-                                        Tổng số TTTM ngừng hoạt động trong năm {{year}} là: 0
+                                        Tổng số TTTM ngừng hoạt động trong năm <span>{{year}}</span> là:
+                                        <span>0</span>
                                     </li>
                                     <li>
-                                        Chênh lệch số TTTM ngừng hoạt động trong năm {{year}} so với năm trước là: 0
+                                        Chênh lệch số TTTM ngừng hoạt động trong năm <span>{{year}}</span> so với
+                                        năm trước là: <span>0</span>
                                     </li>
                                 </ul>
                             </mat-card-content>
@@ -137,7 +141,8 @@
                     <div class="col-3 col-lg-3">
                         <mat-form-field appearance="outline">
                             <mat-label>Địa bàn</mat-label>
-                            <mat-select (selectionChange)="applyFilter()" [(ngModel)]="filterModel.id_quan_huyen" multiple>
+                            <mat-select (selectionChange)="applyFilter()" [(ngModel)]="filterModel.id_quan_huyen"
+                                multiple>
                                 <mat-option *ngFor='let district of districts' [value]='district.id'>
                                     {{district.ten_quan_huyen}}
                                 </mat-option>

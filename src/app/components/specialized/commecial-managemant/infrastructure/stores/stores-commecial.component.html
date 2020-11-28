@@ -22,28 +22,27 @@
 
                 <div class="row">
                     <div class="col-6 col-lg-6">
-                        <mat-card class="card1">
+                        <mat-card class="card5">
                             <mat-card-header>
                                 <mat-card-title>
-                                    <mat-icon>filter</mat-icon> Tổng số cửa hàng:
+                                    <mat-icon>filter</mat-icon> Tổng số cửa hàng: <span>{{tongCuaHang}} cửa hàng</span>
                                 </mat-card-title>
                                 <mat-card-subtitle></mat-card-subtitle>
                             </mat-card-header>
                             <mat-card-content>
-                                {{tongCuaHang}} cửa hàng
                             </mat-card-content>
                         </mat-card>
                     </div>
                     <div class="col-6 col-lg-6">
-                        <mat-card class="card1">
+                        <mat-card class="card5">
                             <mat-card-header>
                                 <mat-card-title>
-                                    <mat-icon>filter</mat-icon> Tổng số cửa hàng trong huyện năm {{year}} là:
+                                    <mat-icon>filter</mat-icon> Tổng số cửa hàng trong huyện năm {{year}} là: <span>0
+                                        cửa hàng</span>
                                 </mat-card-title>
                                 <mat-card-subtitle></mat-card-subtitle>
                             </mat-card-header>
                             <mat-card-content>
-                                0 cửa hàng
                             </mat-card-content>
                         </mat-card>
                     </div>
@@ -62,10 +61,10 @@
                             <mat-card-content>
                                 <ul>
                                     <li>
-                                        Tổng số cửa hàng tiện lợi: {{soCuaHangTL}}
+                                        Tổng số cửa hàng tiện lợi: <span>{{soCuaHangTL}}</span>
                                     </li>
                                     <li>
-                                        Tổng số cửa hàng khác: {{soCuaHangKhac}}
+                                        Tổng số cửa hàng khác: <span>{{soCuaHangKhac}}</span>
                                     </li>
                                 </ul>
                             </mat-card-content>
@@ -82,10 +81,13 @@
                             <mat-card-content style="font-size: 13px;">
                                 <ul>
                                     <li>
-                                        Tổng số cửa hàng hoạt động trong năm {{year}} là: {{soCuaHangDauTuTrongNam}}
+                                        Tổng số cửa hàng hoạt động trong năm <span>{{year}}</span> là:
+                                        <span>{{soCuaHangDauTuTrongNam}}</span>
                                     </li>
                                     <li>
-                                        Chênh lệch số cửa hàng hoạt động trong năm {{year}} so với năm trước là: {{soCuaHangDauTuTrongNam - soCuaHangDauTuNamTruoc}}
+                                        Chênh lệch số cửa hàng hoạt động trong năm <span>{{year}}</span> so với năm
+                                        trước là:
+                                        <span>{{soCuaHangDauTuTrongNam - soCuaHangDauTuNamTruoc}}</span>
                                     </li>
                                 </ul>
                             </mat-card-content>
@@ -106,12 +108,13 @@
                     </mat-panel-description>
                 </mat-expansion-panel-header>
                 <div class="row">
-                
+
 
                     <div class="col-3 col-lg-3">
                         <mat-form-field appearance="outline">
                             <mat-label>Địa bàn</mat-label>
-                            <mat-select (selectionChange)="applyFilter()" [(ngModel)]="filterModel.id_quan_huyen" multiple>
+                            <mat-select (selectionChange)="applyFilter()" [(ngModel)]="filterModel.id_quan_huyen"
+                                multiple>
                                 <mat-option *ngFor='let district of districts' [value]='district.id'>
                                     {{district.ten_quan_huyen}}
                                 </mat-option>
@@ -233,7 +236,8 @@
                             <th mat-header-cell *matHeaderCellDef style="text-align: center;" [attr.colspan]="1">
                         </ng-container>
 
-                        <tr mat-header-row *matHeaderRowDef="['stt1','tch', 'spkd','cndkkd','diachim','cnddkattp','sdtm']">
+                        <tr mat-header-row
+                            *matHeaderRowDef="['stt1','tch', 'spkd','cndkkd','diachim','cnddkattp','sdtm']">
                         </tr>
                         <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky: true"></tr>
                         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

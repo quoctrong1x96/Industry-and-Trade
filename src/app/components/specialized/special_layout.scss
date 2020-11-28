@@ -11,7 +11,7 @@
         }
     }
     .mat-card-content {
-        .bold{
+        .bold {
             font-weight: bold;
         }
         .card1 {
@@ -64,9 +64,6 @@
         }
         #card4-2 {
             height: 160px !important;
-            #small-text .mat-card-content {
-                font-size: 13px !important;
-            }
         }
         #card4-3 {
             height: 140px !important;
@@ -100,7 +97,8 @@
             height: 60px;
             .mat-card-header .mat-card-title {
                 margin-bottom: 5px;
-                font-size: 20px;
+                font-size: 15px;
+                text-align: left !important;
                 span {
                     font-weight: bolder;
                     color: blue;
