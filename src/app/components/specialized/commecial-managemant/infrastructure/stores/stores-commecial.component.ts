@@ -151,11 +151,14 @@ export class StoreManagementComponent implements OnInit {
   filterModel: StoreFilterModel = new StoreFilterModel();
   filteredDataSource: MatTableDataSource<StoreCommonModel> = new MatTableDataSource<StoreCommonModel>();
 
-  soCuaHangTL: number;
-  soCuaHangKhac: number;
+  //
+  public tongCuaHang:number;
+  public soCuaHangTL: number;
+  public soCuaHangKhac: number;
+  public soCuaHangDauTuTrongNam: number = 0;
+  public soCuaHangDauTuNamTruoc: number = 0;
   year: number;
-  soCuaHangDauTuTrongNam: number = 0;
-  soCuaHangDauTuNamTruoc: number = 0;
+ 
 
   //Angular FUnction --------------------------------------------------------------------
   constructor(
@@ -170,13 +173,11 @@ export class StoreManagementComponent implements OnInit {
     this.dataSourceHuyenThi.data = this.dataHuyenThi;
     this.filteredDataSource.data = [...this.dataSourceHuyenThi.data];
 
-    this.soCuaHangTL = this.dataSourceHuyenThi.data.length;
-    this.soCuaHangKhac = this.dataSourceHuyenThi.data.length - this.soCuaHangTL;
+    this._caculator(this.dataSourceHuyenThi.data);
     this.year = new Date().getFullYear();
 
-    // this.soCuaHangDauTuTrongNam = this.dataSourceHuyenThi.data.filter( x => x.namdautuxaydung == this.year.toString()).length;
-    // this.soCuaHangDauTuNamTruoc= this.dataSourceHuyenThi.data.filter( x => x.namdautuxaydung == (this.year - 1).toString()).length;
     this.autoOpen();
+    // this._paginator();
   }
 
   autoOpen() {
@@ -184,44 +185,44 @@ export class StoreManagementComponent implements OnInit {
   }
 
   ngAfterViewInit(): void {
-    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
-    //Add 'implements AfterViewInit' to the class.
-    // this.accordion.openAll();
-    this.dataSourceHuyenThi.paginator = this.paginator;
-    this.paginator._intl.itemsPerPageLabel = 'Số hàng';
-    this.paginator._intl.firstPageLabel = "Trang Đầu";
-    this.paginator._intl.lastPageLabel = "Trang Cuối";
-    this.paginator._intl.previousPageLabel = "Trang Trước";
-    this.paginator._intl.nextPageLabel = "Trang Tiếp";
+    this._paginator();
   }
   dataSourceHuyenThi: MatTableDataSource<StoreCommonModel> = new MatTableDataSource<StoreCommonModel>();
 
   //Xuất excel
   ExportTOExcel(filename: string, sheetname: string) {
-    // sheetname = sheetname.replace('/', '_');
-    // let excelFileName: string = filename + '.xlsx';
-    // const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);
-    // const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    // XLSX.utils.book_append_sheet(wb, ws, sheetname);
-    // /* save to file */
-    // XLSX.writeFile(wb, excelFileName);
+    sheetname = sheetname.replace('/', '_');
+    let excelFileName: string = filename + '.xlsx';
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, sheetname);
+    /* save to file */
+    XLSX.writeFile(wb, excelFileName);
   }
 
   sortHeaderCondition(event) {
 
   }
 
-  // applyDistrictFilter(event) {
+  private _paginator():void{
+    this.filteredDataSource.paginator = this.paginator;
+    this.paginator._intl.itemsPerPageLabel = 'Số hàng';
+    this.paginator._intl.firstPageLabel = "Trang Đầu";
+    this.paginator._intl.lastPageLabel = "Trang Cuối";
+    this.paginator._intl.previousPageLabel = "Trang Trước";
+    this.paginator._intl.nextPageLabel = "Trang Tiếp";
+  }
 
-  // }
-
-  // applyExpireCheck(event) {
-
-  // }
+  private _caculator(data:StoreCommonModel[]):void{
+    this.soCuaHangTL = data.length;
+    this.soCuaHangKhac = data.length - this.soCuaHangTL;
+    this.tongCuaHang = data.length;
+  }
 
   applyFilter() {
     console.log(this.filterModel)
     let filteredData = this.filterArray(this.dataSourceHuyenThi.data, this.filterModel);
+    this._caculator(filteredData);
     if (!filteredData.length) {
       if (this.filterModel)
         this.filteredDataSource.data = [];
@@ -231,6 +232,7 @@ export class StoreManagementComponent implements OnInit {
     else {
       this.filteredDataSource.data = filteredData;
     }
+    this._paginator();
   }
 
   filterArray(array, filters) {

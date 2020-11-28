@@ -98,13 +98,19 @@ export class ShoppingcentreComponent implements OnInit {
   public indexOftableMergeHader: number = 0;
 
   columns: number = 1;
-  tttmHangI : number;
-  tttmHangII : number;
-  tttmHangIII : number;
-  tttmDangXayDung : number;
+  //
+  public tongTTTM: number;
+  //
+  public tttmHangI : number;
+  public tttmHangII : number;
+  public tttmHangIII : number;
+  //
+  public tttmDangXayDung : number;
+  public tttmDauTuTrongNam : number;
+  public tttmDauTuNamTruoc : number;
+  
   year : number;
-  tttmDauTuTrongNam : number;
-  tttmDauTuNamTruoc : number;
+ 
 
   public filterModel : SuperMarketFilterModel = new SuperMarketFilterModel();
 
@@ -120,15 +126,7 @@ export class ShoppingcentreComponent implements OnInit {
     let data: any = JSON.parse(localStorage.getItem('currentUser'));
     this.dataSourceHuyenThi.data = this.dataHuyenThi;
     this.filteredDataSource.data = [...this.dataSourceHuyenThi.data];
-
-    this.tttmHangI = this.dataSourceHuyenThi.data.filter(x => x.phanloai == "I").length;
-    this.tttmHangII = this.dataSourceHuyenThi.data.filter(x => x.phanloai == "II").length;
-    this.tttmHangIII = this.dataSourceHuyenThi.data.filter(x => x.phanloai == "III").length;
-    this.tttmDangXayDung = this.dataSourceHuyenThi.data.length - this.tttmHangI - this.tttmHangII - this.tttmHangIII;
-    this.year = new Date().getFullYear();
-    
-    this.tttmDauTuTrongNam = this.dataSourceHuyenThi.data.filter( x => x.namdautuxaydung == this.year.toString()).length;
-    this.tttmDauTuNamTruoc= this.dataSourceHuyenThi.data.filter( x => x.namdautuxaydung == (this.year - 1).toString()).length;
+    this._caculator(this.dataSourceHuyenThi.data);
     this.autoOpen()
   }
 
@@ -172,11 +170,24 @@ export class ShoppingcentreComponent implements OnInit {
   applyExpireCheck(event) {
 
   }
+
+  private _caculator(data: SuperMarketCommonModel[]):void{
+    this.tongTTTM = data.length;
+    this.tttmHangI = data.filter(x => x.phanloai == "I").length;
+    this.tttmHangII = data.filter(x => x.phanloai == "II").length;
+    this.tttmHangIII = data.filter(x => x.phanloai == "III").length;
+    this.tttmDangXayDung = data.length - this.tttmHangI - this.tttmHangII - this.tttmHangIII;
+    this.year = new Date().getFullYear();
+    
+    this.tttmDauTuTrongNam = data.filter( x => x.namdautuxaydung == this.year.toString()).length;
+    this.tttmDauTuNamTruoc= data.filter( x => x.namdautuxaydung == (this.year - 1).toString()).length;
+  }
   
 
-  applyFilter() {
+  public applyFilter():void {
     console.log(this.filterModel)
     let filteredData = this.filterArray(this.dataSourceHuyenThi.data, this.filterModel);
+    this._caculator(filteredData);
     if (!filteredData.length) {
       if (this.filterModel)
         this.filteredDataSource.data = [];
@@ -186,6 +197,7 @@ export class ShoppingcentreComponent implements OnInit {
     else {
       this.filteredDataSource.data = filteredData;
     }
+    
   }
 
   filterArray(array, filters) {
