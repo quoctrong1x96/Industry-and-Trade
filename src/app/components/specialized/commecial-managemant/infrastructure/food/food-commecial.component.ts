@@ -123,7 +123,7 @@ export class FoodManagementComponent implements OnInit {
   { id: 11, ten_quan_huyen: 'Huyện Phú Riềng' }];
   headerArray: string[] = ['index', 'tenhuyenthi', 'ten_tttm', 'dientich', 'vondautu', 'namdautuxaydung', 'phanloai'];
   isChecked: boolean;
-
+  public tongDoanhNghiep: number;
   //
   filterModel: FoodFilterModel = new FoodFilterModel();
 
@@ -139,6 +139,7 @@ export class FoodManagementComponent implements OnInit {
     let data: any = JSON.parse(localStorage.getItem('currentUser'));
     this.dataSourceHuyenThi.data = this.dataHuyenThi;
     this.filteredDataSource.data = [...this.dataSourceHuyenThi.data];
+    this._caculator(this.dataSourceHuyenThi.data);
     this.autoOpen();
   }
 
@@ -150,12 +151,7 @@ export class FoodManagementComponent implements OnInit {
     //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
     //Add 'implements AfterViewInit' to the class.
     // this.accordion.openAll();
-    this.dataSourceHuyenThi.paginator = this.paginator;
-    this.paginator._intl.itemsPerPageLabel = 'Số hàng';
-    this.paginator._intl.firstPageLabel = "Trang Đầu";
-    this.paginator._intl.lastPageLabel = "Trang Cuối";
-    this.paginator._intl.previousPageLabel = "Trang Trước";
-    this.paginator._intl.nextPageLabel = "Trang Tiếp";
+    this._paginator();
   }
   dataSourceHuyenThi: MatTableDataSource<FoodCommonModel> = new MatTableDataSource<FoodCommonModel>();
   filteredDataSource: MatTableDataSource<FoodCommonModel> = new MatTableDataSource<FoodCommonModel>();
@@ -175,6 +171,17 @@ export class FoodManagementComponent implements OnInit {
 
   }
 
+  private _caculator(data: FoodCommonModel[]){
+    this.tongDoanhNghiep = data.length;
+  }
+  private _paginator(){
+    this.filteredDataSource.paginator = this.paginator;
+    this.paginator._intl.itemsPerPageLabel = 'Số hàng';
+    this.paginator._intl.firstPageLabel = "Trang Đầu";
+    this.paginator._intl.lastPageLabel = "Trang Cuối";
+    this.paginator._intl.previousPageLabel = "Trang Trước";
+    this.paginator._intl.nextPageLabel = "Trang Tiếp";
+  }
   // applyDistrictFilter(event) {
 
   // }
@@ -186,6 +193,7 @@ export class FoodManagementComponent implements OnInit {
   applyFilter() {
     console.log(this.filterModel)
     let filteredData = this.filterArray(this.dataSourceHuyenThi.data, this.filterModel);
+    this._caculator(filteredData);
     if (!filteredData.length) {
       if (this.filterModel)
         this.filteredDataSource.data = [];
@@ -195,6 +203,7 @@ export class FoodManagementComponent implements OnInit {
     else {
       this.filteredDataSource.data = filteredData;
     }
+    this._paginator();
   }
 
   filterArray(array, filters) {

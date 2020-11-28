@@ -32,7 +32,7 @@
                                 <mat-card-subtitle></mat-card-subtitle>
                             </mat-card-header>
                             <mat-card-content>
-                                {{dataSourceHuyenThi.data.length}} doanh nghiệp
+                                {{tongDoanhNghiep}} doanh nghiệp
                             </mat-card-content>
                         </mat-card>
                     </div>
@@ -52,15 +52,7 @@
                     </mat-panel-description>
                 </mat-expansion-panel-header>
                 <div class="row">
-                    <div class="col-3 col-lg-3">
-                        <mat-form-field appearance="outline">
-                            <mat-label>Kiểu sắp xếp</mat-label>
-                            <mat-select (selectionChange)="sortHeaderCondition($event.value)" [value]="'dientich'">
-                                <mat-option *ngFor='let header of headerArray' [value]='header'>{{header}}</mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </div>
-
+                
                     <div class="col-3 col-lg-3">
                         <mat-form-field appearance="outline">
                             <mat-label>Địa bàn</mat-label>
@@ -71,6 +63,15 @@
                             </mat-select>
                         </mat-form-field>
                     </div>
+                    <div class="col-3 col-lg-3">
+                        <!-- <mat-form-field appearance="outline">
+                            <mat-label>Kiểu sắp xếp</mat-label>
+                            <mat-select (selectionChange)="sortHeaderCondition($event.value)" [value]="'dientich'">
+                                <mat-option *ngFor='let header of headerArray' [value]='header'>{{header}}</mat-option>
+                            </mat-select>
+                        </mat-form-field> -->
+                    </div>
+
 
                     <div class="col-3 col-lg-3 checkbox">
                         <mat-checkbox (change)="applyFilter()" [ngModel]="isChecked">Hết hạn ĐKKD
@@ -83,10 +84,10 @@
                 </div>
 
                 <div class="layout" *ngIf="filteredDataSource.data.length; else ShowEmpty" #TABLE>
-                    <mat-form-field id="filter1">
+                    <!-- <mat-form-field id="filter1">
                         <mat-label>Lọc dữ liệu</mat-label>
                         <input matInput (keyup)="applyFilter1($event)" placeholder="" #input>
-                    </mat-form-field>
+                    </mat-form-field> -->
 
                     <table mat-table [dataSource]="filteredDataSource" class="table-layout" id="small-table1">
 

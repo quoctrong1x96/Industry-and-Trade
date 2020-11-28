@@ -56,6 +56,7 @@ export class SuperMarketCommecialManagementComponent implements OnInit {
   private _conditionArray: HashTableNumber<string[]> = {};
   private _tableData: MatTableDataSource<SuperMarketCommonModel> = new MatTableDataSource<SuperMarketCommonModel>();
 
+  public tongSieuThi:number;
   public sieuThiTongHop: number;
   public sieuThiChuyenNganh: number;
   //
@@ -160,15 +161,7 @@ export class SuperMarketCommecialManagementComponent implements OnInit {
   ngOnInit(): void {
     let data: any = JSON.parse(localStorage.getItem('currentUser'));
     this.dataSource = new MatTableDataSource<SuperMarketCommonModel>(this.dataHuyenThi);
-    this.sieuThiHangI = this.dataSource.data.filter(x => x.phanloai == "I").length;
-    this.sieuThiHangII = this.dataSource.data.filter(x => x.phanloai == "II").length;
-    this.sieuThiHangIII = this.dataSource.data.filter(x => x.phanloai == "III").length;
-    this.sieuThiDangXayDung = this.dataSource.data.length - this.sieuThiHangI - this.sieuThiHangII - this.sieuThiHangIII;
-    this.year = new Date().getFullYear();
-    
-    this.sieuThiDauTuTrongNam = this.dataSource.data.filter( x => x.namdautuxaydung == this.year.toString()).length;
-    this.sieuThiDauTuNamTruoc= this.dataSource.data.filter( x => x.namdautuxaydung == (this.year - 1).toString()).length;
-    this.filteredDataSource.data = [...this.dataSource.data];
+    this._caculator(this.dataSource.data);
     // this._tableData = new MatTableDataSource<SuperMarketCommonModel>(this.dataHuyenThi);
     this.autoOpen();
   }
@@ -235,7 +228,16 @@ export class SuperMarketCommecialManagementComponent implements OnInit {
     setTimeout(() => this.accordion.openAll(), 1000);
   }
   private _caculator(data: Array<SuperMarketCommonModel>) {
-
+    this.tongSieuThi = data.length;
+    this.sieuThiHangI = data.filter(x => x.phanloai == "I").length;
+    this.sieuThiHangII = data.filter(x => x.phanloai == "II").length;
+    this.sieuThiHangIII = data.filter(x => x.phanloai == "III").length;
+    this.sieuThiDangXayDung = data.length - this.sieuThiHangI - this.sieuThiHangII - this.sieuThiHangIII;
+    this.year = new Date().getFullYear();
+    
+    this.sieuThiDauTuTrongNam = data.filter( x => x.namdautuxaydung == this.year.toString()).length;
+    this.sieuThiDauTuNamTruoc= data.filter( x => x.namdautuxaydung == (this.year - 1).toString()).length;
+    this.filteredDataSource.data = [...data];
   }
   private _paginatorAgain() {
     this.dataSource.paginator = this.paginator;
@@ -250,6 +252,7 @@ export class SuperMarketCommecialManagementComponent implements OnInit {
   applyFilter() {
     console.log(this.filterModel)
     let filteredData = this.filterArray(this.dataSource.data, this.filterModel);
+    this._caculator(filteredData);
     if (!filteredData.length) {
       if (this.filterModel)
         this.filteredDataSource.data = [];
