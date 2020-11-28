@@ -28,7 +28,7 @@ export class RetailMonthComponent implements OnInit {
     public readonly DISPLAY_COLS: string[] = ['index', 'chi_tieu', 'don_vi', 'cung_ky', 'thuc_hien_thang_truoc', 'thuc_hien_thang', 'thuc_hien_so_voi_thang_truoc', 'thuc_hien_so_voi_cung_ky'];
     private readonly DATA_DEFAULT: Array<RetailMonthModel[]> = [
         [
-            { thu_tu: " ", chi_tieu: "TỔNG MỨC BLHH VÀ DTDVTD", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 0, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
+            { thu_tu: "A", chi_tieu: "TỔNG MỨC BLHH VÀ DTDVTD", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 0, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
             { thu_tu: "I", chi_tieu: "Tổng mức bán lẻ hàng hóa", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 0, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
             { thu_tu: "1", chi_tieu: "Lương thực, thực phẩm", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 0, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
             { thu_tu: "2", chi_tieu: "Hàng may mặc", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 0, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
@@ -57,7 +57,7 @@ export class RetailMonthComponent implements OnInit {
             { thu_tu: "3", chi_tieu: "Dịch vụ lữ hành và hoạt động hỗ trợ du lịch", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 0, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
         ],
         [
-            { thu_tu: " ", chi_tieu: "TỔNG MỨC BLHH VÀ DTDVTD", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 0, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
+            { thu_tu: "A", chi_tieu: "TỔNG MỨC BLHH VÀ DTDVTD", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 0, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
             { thu_tu: "I", chi_tieu: "Tổng mức bán lẻ hàng hóa", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 0, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
             { thu_tu: "1", chi_tieu: "Lương thực, thực phẩm", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 0, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
             { thu_tu: "2", chi_tieu: "Hàng may mặc", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 0, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
@@ -86,7 +86,7 @@ export class RetailMonthComponent implements OnInit {
             { thu_tu: "3", chi_tieu: "Dịch vụ lữ hành và hoạt động hỗ trợ du lịch", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 0, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
         ],
         [
-            { thu_tu: " ", chi_tieu: "TỔNG MỨC BLHH VÀ DTDVTD", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 0, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
+            { thu_tu: "A", chi_tieu: "TỔNG MỨC BLHH VÀ DTDVTD", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 0, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
             { thu_tu: "I", chi_tieu: "Tổng mức bán lẻ hàng hóa", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 0, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
             { thu_tu: "1", chi_tieu: "Lương thực, thực phẩm", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 0, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
             { thu_tu: "2", chi_tieu: "Hàng may mặc", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 0, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
@@ -115,7 +115,7 @@ export class RetailMonthComponent implements OnInit {
             { thu_tu: "3", chi_tieu: "Dịch vụ lữ hành và hoạt động hỗ trợ du lịch", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 0, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
         ],
         [
-            { thu_tu: " ", chi_tieu: "TỔNG MỨC BLHH VÀ DTDVTD", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 0, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
+            { thu_tu: "A", chi_tieu: "TỔNG MỨC BLHH VÀ DTDVTD", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 0, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
             { thu_tu: "I", chi_tieu: "Tổng mức bán lẻ hàng hóa", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 0, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
             { thu_tu: "1", chi_tieu: "Lương thực, thực phẩm", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 0, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
             { thu_tu: "2", chi_tieu: "Hàng may mặc", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 0, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
@@ -144,7 +144,7 @@ export class RetailMonthComponent implements OnInit {
             { thu_tu: "3", chi_tieu: "Dịch vụ lữ hành và hoạt động hỗ trợ du lịch", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 0, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
         ],
         [
-            { thu_tu: " ", chi_tieu: "TỔNG MỨC BLHH VÀ DTDVTD", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 0, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
+            { thu_tu: "A", chi_tieu: "TỔNG MỨC BLHH VÀ DTDVTD", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 0, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
             { thu_tu: "I", chi_tieu: "Tổng mức bán lẻ hàng hóa", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 0, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
             { thu_tu: "1", chi_tieu: "Lương thực, thực phẩm", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 0, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
             { thu_tu: "2", chi_tieu: "Hàng may mặc", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 0, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
@@ -174,7 +174,7 @@ export class RetailMonthComponent implements OnInit {
         ],
         //Tháng 6
         [
-            { thu_tu: " ", chi_tieu: "TỔNG MỨC BLHH VÀ DTDVTD", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 3867798.54, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
+            { thu_tu: "A", chi_tieu: "TỔNG MỨC BLHH VÀ DTDVTD", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 3867798.54, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
             { thu_tu: "I", chi_tieu: "Tổng mức bán lẻ hàng hóa", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 3235631.15, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
             { thu_tu: "1", chi_tieu: "Lương thực, thực phẩm", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 1704508.5, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
             { thu_tu: "2", chi_tieu: "Hàng may mặc", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 184965.24, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
@@ -204,7 +204,7 @@ export class RetailMonthComponent implements OnInit {
         ],
         //Tháng 7
         [
-            { thu_tu: " ", chi_tieu: "TỔNG MỨC BLHH VÀ DTDVTD", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 4131798.3, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
+            { thu_tu: "A", chi_tieu: "TỔNG MỨC BLHH VÀ DTDVTD", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 4131798.3, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
             { thu_tu: "I", chi_tieu: "Tổng mức bán lẻ hàng hóa", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 3401167.8, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
             { thu_tu: "1", chi_tieu: "Lương thực, thực phẩm", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 1804166.3, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
             { thu_tu: "2", chi_tieu: "Hàng may mặc", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 195766.3, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
@@ -234,7 +234,7 @@ export class RetailMonthComponent implements OnInit {
         ],
         //Tháng 8
         [
-            { thu_tu: " ", chi_tieu: "TỔNG MỨC BLHH VÀ DTDVTD", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 4352513.4, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
+            { thu_tu: "A", chi_tieu: "TỔNG MỨC BLHH VÀ DTDVTD", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 4352513.4, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
             { thu_tu: "I", chi_tieu: "Tổng mức bán lẻ hàng hóa", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 3556926.4, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
             { thu_tu: "1", chi_tieu: "Lương thực, thực phẩm", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 1889130.1, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
             { thu_tu: "2", chi_tieu: "Hàng may mặc", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 205625.3, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
@@ -264,7 +264,7 @@ export class RetailMonthComponent implements OnInit {
         ],
         //Tháng 9
         [
-            { thu_tu: " ", chi_tieu: "TỔNG MỨC BLHH VÀ DTDVTD", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 4441344.20000216, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
+            { thu_tu: "A", chi_tieu: "TỔNG MỨC BLHH VÀ DTDVTD", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 4441344.20000216, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
             { thu_tu: "I", chi_tieu: "Tổng mức bán lẻ hàng hóa", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 3634958.5, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
             { thu_tu: "1", chi_tieu: "Lương thực, thực phẩm", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 1934012.5, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
             { thu_tu: "2", chi_tieu: "Hàng may mặc", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 210779, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
@@ -294,7 +294,7 @@ export class RetailMonthComponent implements OnInit {
         ],
         //Tháng 10
         [
-            { thu_tu: " ", chi_tieu: "TỔNG MỨC BLHH VÀ DTDVTD", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 4554828.67, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
+            { thu_tu: "A", chi_tieu: "TỔNG MỨC BLHH VÀ DTDVTD", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 4554828.67, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
             { thu_tu: "I", chi_tieu: "Tổng mức bán lẻ hàng hóa", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 3729298.41, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
             { thu_tu: "1", chi_tieu: "Lương thực, thực phẩm", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 1987192.85, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },
             { thu_tu: "2", chi_tieu: "Hàng may mặc", don_vi: "triệu đồng", cung_ky: 0, thuc_hien_so_voi_thang_truoc: 0, thuc_hien_thang: 215975.69, thuc_hien_thang_truoc: 0, thuc_hien_so_voi_cung_ky: 0, },

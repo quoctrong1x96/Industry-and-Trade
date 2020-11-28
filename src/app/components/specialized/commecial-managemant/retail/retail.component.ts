@@ -27,7 +27,7 @@ export class RetailComponent implements OnInit {
     public readonly DISPLAY_COLS: string[] = ['index', 'chi_tieu', 'don_vi', 'thang_1', 'thang_2', 'thang_3',
         'thang_4', 'thang_5', 'thang_6', 'thang_7', 'thang_8', 'thang_9', 'thang_10', 'thang_11', 'thang_12'];
     private readonly DATA_DEFAULT: RetailModel[] = [
-        { thu_tu: " ", chi_tieu: "TỔNG MỨC BLHH VÀ DTDVTD", don_vi: "triệu đồng", thang_1: 0, thang_2: 0, thang_3: 0, thang_4: 0, thang_5: 0, thang_6: 3867798.54, thang_7: 4131798.3, thang_8: 4352513.4, thang_9: 4441344.20000216, thang_10: 4554828.67, thang_11: 0, thang_12: 0 },
+        { thu_tu: "A", chi_tieu: "TỔNG MỨC BLHH VÀ DTDVTD", don_vi: "triệu đồng", thang_1: 0, thang_2: 0, thang_3: 0, thang_4: 0, thang_5: 0, thang_6: 3867798.54, thang_7: 4131798.3, thang_8: 4352513.4, thang_9: 4441344.20000216, thang_10: 4554828.67, thang_11: 0, thang_12: 0 },
         { thu_tu: "I", chi_tieu: "Tổng mức bán lẻ hàng hóa", don_vi: "triệu đồng", thang_1: 0, thang_2: 0, thang_3: 0, thang_4: 0, thang_5: 0, thang_6: 3235631.15, thang_7: 3401167.8, thang_8: 3556926.4, thang_9: 3634958.5, thang_10: 3729298.41, thang_11: 0, thang_12: 0 },
         { thu_tu: "1", chi_tieu: "Lương thực, thực phẩm", don_vi: "triệu đồng", thang_1: 0, thang_2: 0, thang_3: 0, thang_4: 0, thang_5: 0, thang_6: 1704508.5, thang_7: 1804166.3, thang_8: 1889130.1, thang_9: 1934012.5, thang_10: 1987192.85, thang_11: 0, thang_12: 0 },
         { thu_tu: "2", chi_tieu: "Hàng may mặc", don_vi: "triệu đồng", thang_1: 0, thang_2: 0, thang_3: 0, thang_4: 0, thang_5: 0, thang_6: 184965.24, thang_7: 195766.3, thang_8: 205625.3, thang_9: 210779, thang_10: 215975.69, thang_11: 0, thang_12: 0 },
