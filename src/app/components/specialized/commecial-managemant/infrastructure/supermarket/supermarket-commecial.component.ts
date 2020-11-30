@@ -56,7 +56,7 @@ export class SuperMarketCommecialManagementComponent implements OnInit {
   private _conditionArray: HashTableNumber<string[]> = {};
   private _tableData: MatTableDataSource<SuperMarketCommonModel> = new MatTableDataSource<SuperMarketCommonModel>();
 
-  public tongSieuThi:number;
+  public tongSieuThi: number;
   public sieuThiTongHop: number;
   public sieuThiChuyenNganh: number;
   //
@@ -65,12 +65,12 @@ export class SuperMarketCommecialManagementComponent implements OnInit {
   public sieuThiHangIII: number;
   //
   public sieuThiDauTuTrongNam: number;
-  public sieuThiDauTuNamTruoc : number;
+  public sieuThiDauTuNamTruoc: number;
   public sieuThiNgungHoatDong: number;
   public sieuThiDangXayDung: number;
   //
   public filterModel: SuperMarketFilterModel = new SuperMarketFilterModel();
-  public year :number;
+  public year: number;
 
   //Viewchild & Input-----------------------------------------------------------------------
   @ViewChildren(ReportDirective) inputs: QueryList<ReportDirective>
@@ -234,9 +234,9 @@ export class SuperMarketCommecialManagementComponent implements OnInit {
     this.sieuThiHangIII = data.filter(x => x.phanloai == "III").length;
     this.sieuThiDangXayDung = data.length - this.sieuThiHangI - this.sieuThiHangII - this.sieuThiHangIII;
     this.year = new Date().getFullYear();
-    
-    this.sieuThiDauTuTrongNam = data.filter( x => x.namdautuxaydung == this.year.toString()).length;
-    this.sieuThiDauTuNamTruoc= data.filter( x => x.namdautuxaydung == (this.year - 1).toString()).length;
+
+    this.sieuThiDauTuTrongNam = data.filter(x => x.namdautuxaydung == this.year.toString()).length;
+    this.sieuThiDauTuNamTruoc = data.filter(x => x.namdautuxaydung == (this.year - 1).toString()).length;
     this.filteredDataSource.data = [...data];
   }
   private _paginatorAgain() {
