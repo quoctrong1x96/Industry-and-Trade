@@ -265,6 +265,10 @@ export class ForeignManagerComponent implements OnInit {
     this.dataSource.data.forEach(element => {
       let x: number = + element.gia.toString().replace(',', '').replace(',', '').replace(',', '');
       element.gia = x;
+      if(element.ngay_cap_nhat){
+        let x = formatDate(this.pickedDate.date, this.FORMAT, this.LOCALE);
+        element.ngay_cap_nhat = x;
+      }
     });
     this._managerService.PostForeignManager(this.dataSource.data).subscribe(
       next => {

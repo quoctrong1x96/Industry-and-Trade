@@ -176,11 +176,10 @@ export class DomesticManagerComponent implements OnInit {
         let x: number = + element.gia.toString().replace(',', '').replace(',', '').replace(',', '');
         element.gia = x;
       }
-      // if(element.ngay_cap_nhat){
-      //   let x = new Date(element.ngay_cap_nhat.split("/").reverse().map(Number).toString()).toUTCString();
-      //   element.ngay_cap_nhat = x;
-      //   console.log(x);
-      // }
+      if(element.ngay_cap_nhat){
+        let x = formatDate(this.pickedDate.date, this.FORMAT, this.LOCALE);
+        element.ngay_cap_nhat = x;
+      }
     });
     // // if(this._mode == MODE.INSERT)
     // // {
