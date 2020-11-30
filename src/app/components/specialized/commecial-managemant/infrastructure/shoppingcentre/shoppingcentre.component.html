@@ -58,6 +58,42 @@
                 <br>
                 <div class="row">
                     <div class="col-6 col-lg-6">
+                        <mat-card class="card5">
+                            <mat-card-header>
+                                <mat-card-title>
+                                    <mat-icon>filter</mat-icon> Tổng số TTTM: <span>{{tongTTTM}} TTTM</span>
+                                </mat-card-title>
+                                <mat-card-subtitle></mat-card-subtitle>
+                            </mat-card-header>
+                            <mat-card-content>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                    <div class="col-6 col-lg-6">
+                        <mat-card class="card4">
+                            <mat-card-header>
+                                <mat-card-title>
+                                    <mat-icon>filter</mat-icon> Đặc điểm kinh doanh tại TTTM:
+                                </mat-card-title>
+                                <mat-card-subtitle></mat-card-subtitle>
+                            </mat-card-header>
+                            <mat-card-content>
+                                <ul>
+                                    <li>
+                                        Tổng số TTTM tổng hợp: <span>0</span>
+                                    </li>
+                                    <li>
+                                        Tổng số TTTM chuyên doanh: <span>0</span>
+                                    </li>
+                                </ul>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                </div>
+
+                <br>
+                <div class="row">
+                    <div class="col-6 col-lg-6">
                         <mat-card class="card4" id="card4-3">
                             <mat-card-header>
                                 <mat-card-title>
@@ -68,16 +104,16 @@
                             <mat-card-content>
                                 <ul>
                                     <li>
-                                        Tổng số TTTM hạng I: <span>{{sieuThiHangI}}</span>
+                                        Tổng số TTTM hạng I: <span>{{tttmHangI}}</span>
                                     </li>
                                     <li>
-                                        Tổng số TTTM hạng II: <span>{{sieuThiHangII}}</span>
+                                        Tổng số TTTM hạng II: <span>{{tttmHangII}}</span>
                                     </li>
                                     <li>
-                                        Tổng số TTTM hạng III: <span>{{sieuThiHangIII}}</span>
+                                        Tổng số TTTM hạng III: <span>{{tttmHangIII}}</span>
                                     </li>
                                     <li>
-                                        Tổng số TTTM đang xây dựng: <span>{{sieuThiDangXayDung}}</span>
+                                        Tổng số TTTM đang xây dựng: <span>{{tttmDangXayDung}}</span>
                                     </li>
                                 </ul>
                             </mat-card-content>
@@ -95,20 +131,19 @@
                                 <ul>
                                     <li>
                                         Tổng số TTTM đầu tư xây dựng trong năm <span>{{year}}</span> là:
-                                        <span>{{sieuThiDauTuTrongNam}}</span>
+                                        <span>{{tttmDauTuTrongNam}}</span>
                                     </li>
-                                    <li>
-                                        Chênh lệch số TTTM đầu tư xây dựng trong năm <span>{{year}}</span> so với
-                                        năm trước là:
-                                        <span>{{sieuThiDauTuTrongNam - sieuThiDauTuNamTruoc}}</span>
+                                    <li>Chênh lệch số TTTM đầu tư xây dựng trong năm <span>{{year}}</span> so với năm
+                                        trước là:
+                                        <span>{{tttmDauTuTrongNam - tttmDauTuNamTruoc}}</span>
                                     </li>
                                     <li>
                                         Tổng số TTTM ngừng hoạt động trong năm <span>{{year}}</span> là:
                                         <span>0</span>
                                     </li>
                                     <li>
-                                        Chênh lệch số TTTM ngừng hoạt động trong năm <span>{{year}}</span> so với
-                                        năm trước là: <span>0</span>
+                                        Chênh lệch số TTTM ngừng hoạt động trong năm <span>{{year}}</span> so với năm
+                                        trước là: <span>0</span>
                                     </li>
                                 </ul>
                             </mat-card-content>
