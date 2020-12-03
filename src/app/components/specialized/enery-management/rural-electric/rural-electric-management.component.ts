@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { MatAccordion, MatPaginator, MatTable, MatTableDataSource } from '@angular/material';
 import { DistrictModel } from 'src/app/_models/APIModel/domestic-market.model';
 import { ElectricityDevelopmentModel, HydroElectricManagementModel, RuralElectricModel } from 'src/app/_models/APIModel/electric-management.module';
+import * as XLSX from 'xlsx';
 
 
 @Component({
@@ -13,8 +14,18 @@ import { ElectricityDevelopmentModel, HydroElectricManagementModel, RuralElectri
 export class RuralElectricManagementComponent implements OnInit {
   //ViewChild 
   @ViewChild(MatAccordion, { static: true }) accordion: MatAccordion;
-  @ViewChild('table', { static: false }) table: MatTable<RuralElectricModel>;
+  @ViewChild('TABLE', { static: false }) table: ElementRef;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+
+  exportExcel() {
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Số hộ sử dụng điện');
+
+    XLSX.writeFile(wb, 'Số hộ sử dụng điện.xlsx');
+
+  }
+
   //Constant variable
   public readonly displayedColumns: string[] = ['index', 'dia_ban', 'tong_so_ho', 'ho_co_dien', 'ho_chua_co_dien', 'ty_le', 'tieu_chi_41', 'tieu_chi_42', 'tieu_chi_43'];
   public readonly dsplayMergeColumns: string[] = ['indexM', 'dia_banM', 'so_ho_su_dung_dienM', 'ty_leM', 'tieu_chi_so_4M'];

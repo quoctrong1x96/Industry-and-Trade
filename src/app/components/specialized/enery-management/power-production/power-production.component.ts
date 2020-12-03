@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { MatAccordion, MatPaginator, MatTable, MatTableDataSource } from '@angular/material';
 import { DistrictModel } from 'src/app/_models/APIModel/domestic-market.model';
 import { ElectricityDevelopmentModel, HydroElectricManagementModel, PowerProductionModel } from 'src/app/_models/APIModel/electric-management.module';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-power-production',
@@ -11,8 +12,17 @@ import { ElectricityDevelopmentModel, HydroElectricManagementModel, PowerProduct
 export class PowerProductionManagementComponent implements OnInit {
   //ViewChild 
   @ViewChild(MatAccordion, { static: true }) accordion: MatAccordion;
-  @ViewChild('table', { static: false }) table: MatTable<PowerProductionModel>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild('TABLE', { static: false }) table: ElementRef;
+
+  exportExcel() {
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Điện thương phẩm');
+
+    XLSX.writeFile(wb, 'Điện thương phẩm.xlsx');
+
+  }
   //Constant variable
   public readonly displayedColumns: string[] = ['index', 'chi_tieu', 'san_luong_nam_truoc', 'san_luong_nam_thuc_hien', 'so_sanh_cung_ky'];
   //TS & HTML Variable

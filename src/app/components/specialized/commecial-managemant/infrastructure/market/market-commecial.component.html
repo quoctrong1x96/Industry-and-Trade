@@ -22,15 +22,14 @@
 
                 <div class="row">
                     <div class="col-4 col-lg-4">
-                        <mat-card class="card1">
+                        <mat-card class="card5">
                             <mat-card-header>
                                 <mat-card-title>
-                                    <mat-icon>filter</mat-icon> Tổng số chợ:
+                                    <mat-icon>filter</mat-icon> Tổng số chợ: <span>0 chợ</span>
                                 </mat-card-title>
                                 <mat-card-subtitle></mat-card-subtitle>
                             </mat-card-header>
                             <mat-card-content>
-                                0 chợ
                             </mat-card-content>
                         </mat-card>
                     </div>
@@ -45,19 +44,19 @@
                             <mat-card-content>
                                 <ul>
                                     <li>
-                                        Chợ hạng 1: {{choHangI}}
+                                        Chợ hạng 1: <span>{{choHangI}}</span>
                                     </li>
                                     <li>
-                                        Chợ hạng 2: {{choHangII}}
+                                        Chợ hạng 2: <span>{{choHangII}}</span>
                                     </li>
                                     <li>
-                                        Chợ hạng 3: {{choHangIII}}
+                                        Chợ hạng 3: <span>{{choHangIII}}</span>
                                     </li>
                                     <li>
-                                        Chợ hạng 4: {{choHangIV}}
+                                        Chợ hạng 4: <span>{{choHangIV}}</span>
                                     </li>
                                     <li>
-                                        Chợ hạng 5: {{choHangV}}
+                                        Chợ hạng 5: <span>{{choHangV}}</span>
                                     </li>
                                 </ul>
                             </mat-card-content>
@@ -65,7 +64,7 @@
 
                     </div>
                     <div class="col-4 col-lg-4">
-                        <mat-card class="card4" id="card4-2">
+                        <mat-card class="card4" id="card4-3">
                             <mat-card-header>
                                 <mat-card-title>
                                     <mat-icon>filter</mat-icon> Thống kê xây dựng:
@@ -75,14 +74,12 @@
                             <mat-card-content>
                                 <ul>
                                     <li>
-                                        Chợ cải tạo trong năm {{year}} là:
-                                        {{choCaiTao}} tăng/giảm so với năm {{year}} là:
-                                        {{soSanhChoCaiTao}}
+                                        Chợ cải tạo trong năm {{year}} là: <span>{{choCaiTao}}</span>
+                                        tăng/giảm so với năm {{year}} là: <span>{{soSanhChoCaiTao}}</span>
                                     </li>
                                     <li>
-                                        Chợ xây mới trong năm {{year}} là:
-                                        {{choXayMoi}} tăng/giảm so với năm {{year}} là:
-                                        {{soSanhChoXayMoi}}
+                                        Chợ xây mới trong năm {{year}} là: <span>{{choXayMoi}}</span>
+                                        tăng/giảm so với năm {{year}} là: <span>{{soSanhChoXayMoi}}</span>
                                     </li>
                                 </ul>
                             </mat-card-content>
@@ -103,10 +100,10 @@
                             <mat-card-content>
                                 <ul>
                                     <li>
-                                        Chợ nông thôn: {{choNongThon}}
+                                        Chợ nông thôn: <span>{{choNongThon}}</span>
                                     </li>
                                     <li>
-                                        Chợ thành thị: {{choThanhThi}}
+                                        Chợ thành thị: <span>{{choThanhThi}}</span>
                                     </li>
                                 </ul>
                             </mat-card-content>
@@ -123,10 +120,10 @@
                             <mat-card-content>
                                 <ul>
                                     <li>
-                                        Chợ nhà nước: {{choNhaNuoc}}
+                                        Chợ nhà nước: <span>{{choNhaNuoc}}</span>
                                     </li>
                                     <li>
-                                        Chợ xã hội hóa: {{choXaHoiHoa}}
+                                        Chợ xã hội hóa: <span>{{choXaHoiHoa}}</span>
                                     </li>
                                 </ul>
                             </mat-card-content>
@@ -143,10 +140,10 @@
                             <mat-card-content>
                                 <ul>
                                     <li>
-                                        Chợ bán lẻ: {{choBanLe}}
+                                        Chợ bán lẻ: <span>{{choBanLe}}</span>
                                     </li>
                                     <li>
-                                        Chợ bán sỉ: {{choBanSi}}
+                                        Chợ bán sỉ: <span>{{choBanSi}}</span>
                                     </li>
                                 </ul>
                             </mat-card-content>
@@ -167,13 +164,13 @@
                             <mat-card-content>
                                 <ul>
                                     <li>
-                                        Chợ Kiên cố: {{choKienCo}}
+                                        Chợ Kiên cố: <span>{{choKienCo}}</span>
                                     </li>
                                     <li>
-                                        Chợ bán kiên cố: {{choBanKienCo}}
+                                        Chợ bán kiên cố: <span>{{choBanKienCo}}</span>
                                     </li>
                                     <li>
-                                        Chợ tạm: {{choTam}}
+                                        Chợ tạm: <span>{{choTam}}</span>
                                     </li>
                                 </ul>
                             </mat-card-content>
@@ -190,13 +187,13 @@
                             <mat-card-content>
                                 <ul>
                                     <li>
-                                        Vốn đầu tư: {{vonDauTu}}
+                                        Vốn đầu tư: <span>{{vonDauTu}}</span>
                                     </li>
                                     <li>
-                                        Vốn đầu tư ngân sách: {{vonDauTuNganSach}}
+                                        Vốn đầu tư ngân sách: <span>{{vonDauTuNganSach}}</span>
                                     </li>
                                     <li>
-                                        Vốn đầu tư xã hội hóa: {{vonDauTuXaHoiHoa}}
+                                        Vốn đầu tư xã hội hóa: <span>{{vonDauTuXaHoiHoa}}</span>
                                     </li>
                                 </ul>
                             </mat-card-content>
@@ -213,13 +210,13 @@
                             <mat-card-content>
                                 <ul>
                                     <li>
-                                        Vốn đầu tư kế hoạch: {{vonDauTuKeHoach}}
+                                        Vốn đầu tư kế hoạch: <span>{{vonDauTuKeHoach}}</span>
                                     </li>
                                     <li>
-                                        Vốn đầu tư kế hoạch ngân sách: {{vonDauTuKeHoachNganSach}}
+                                        Vốn đầu tư kế hoạch ngân sách: <span>{{vonDauTuKeHoachNganSach}}</span>
                                     </li>
                                     <li>
-                                        Vốn đầu tư kế hoạch xã hội hóa: {{vonDauTuKeHoachXaHoiHoa}}
+                                        Vốn đầu tư kế hoạch xã hội hóa: <span>{{vonDauTuKeHoachXaHoiHoa}}</span>
                                     </li>
                                 </ul>
                             </mat-card-content>
@@ -240,7 +237,7 @@
                 </mat-expansion-panel-header>
 
                 <div class="row">
-                    <div class="col-3 col-lg-3">
+                    <div class="col-2 col-lg-2">
                         <mat-form-field appearance="outline">
                             <mat-label>Địa bàn</mat-label>
                             <mat-select (selectionChange)="applyCondictionFilter('1',$event)" multiple>
@@ -250,7 +247,7 @@
                             </mat-select>
                         </mat-form-field>
                     </div>
-                    <div class="col-3 col-lg-3">
+                    <div class="col-2 col-lg-2">
                         <mat-form-field appearance="outline">
                             <mat-label>Hạng chợ</mat-label>
                             <mat-select (selectionChange)="applyCondictionFilter('2', $event)" multiple>
@@ -277,6 +274,10 @@
                                     {{managerType.name}}</mat-option>
                             </mat-select>
                         </mat-form-field>
+                    </div>
+
+                    <div class="col-2 col-lg-2 button-control">
+                        <button mat-raised-button (click)="exportExcel()">Xuất Excel</button>
                     </div>
                 </div>
 

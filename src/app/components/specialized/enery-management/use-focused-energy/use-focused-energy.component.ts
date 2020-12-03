@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { MatAccordion, MatPaginator, MatTable, MatTableDataSource } from '@angular/material';
 import { DistrictModel } from 'src/app/_models/APIModel/domestic-market.model';
 import { UserForcusEnergy } from 'src/app/_models/APIModel/electric-management.module';
 import { LinkModel } from 'src/app/_models/link.model';
 import { BreadCrumService } from 'src/app/_services/injectable-service/breadcrums.service';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-use-focused-energy',
@@ -13,8 +14,17 @@ import { BreadCrumService } from 'src/app/_services/injectable-service/breadcrum
 export class UseFocusedEnergyComponent implements OnInit {
   //ViewChild 
   @ViewChild(MatAccordion, { static: true }) accordion: MatAccordion;
-  @ViewChild('table', { static: false }) table: MatTable<UserForcusEnergy>;
+  @ViewChild('TABLE', { static: false }) table: ElementRef;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+
+  exportExcel() {
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Tiết kiệm năng lượng');
+
+    XLSX.writeFile(wb, 'Tiết kiệm năng lượng.xlsx');
+
+  }
   //Constant variable
   private readonly LINK_DEFAULT: string = "/specialized/enery-management/countryside_electric";
   private readonly TITLE_DEFAULT: string = "Tiết kiệm năng lượng";

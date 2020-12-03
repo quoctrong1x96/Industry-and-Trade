@@ -108,13 +108,17 @@
                         </mat-form-field>
                     </div>
 
-                    <div class="col-3 col-lg-3 my-auto">
+                    <div class="col-3 col-lg-3 checkbox">
                         <mat-checkbox (change)="applyActionCheck($event)" [ngModel]="isChecked">DN đang xây dựng
                         </mat-checkbox>
                     </div>
+
+                    <div class="col-3 col-lg-3 button-control">
+                        <button mat-raised-button (click)="exportExcel()">Xuất Excel</button>
+                    </div>
                 </div>
 
-                <div class="layout" *ngIf="filteredDataSource.data.length; else ShowEmpty">
+                <div class="layout" *ngIf="filteredDataSource.data.length; else ShowEmpty" #TABLE>
                     <mat-form-field id="filter1">
                         <mat-label>Lọc dữ liệu</mat-label>
                         <input matInput (keyup)="applyFilter($event)" placeholder="" #input>

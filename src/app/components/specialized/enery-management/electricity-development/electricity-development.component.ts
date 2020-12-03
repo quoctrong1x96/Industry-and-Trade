@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { MatAccordion, MatPaginator, MatTable, MatTableDataSource } from '@angular/material';
 import { DistrictModel } from 'src/app/_models/APIModel/domestic-market.model';
 import { ElectricityDevelopmentModel, HydroElectricManagementModel } from 'src/app/_models/APIModel/electric-management.module';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-electricity-development',
@@ -11,8 +12,18 @@ import { ElectricityDevelopmentModel, HydroElectricManagementModel } from 'src/a
 export class ElectricDevelopmentManagementComponent implements OnInit {
   //ViewChild 
   @ViewChild(MatAccordion, { static: true }) accordion: MatAccordion;
-  @ViewChild('table', { static: false }) table: MatTable<ElectricityDevelopmentModel>;
+  @ViewChild('TABLE', { static: false }) table: ElementRef;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+
+  exportExcel() {
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Phát triển điện');
+
+    XLSX.writeFile(wb, 'Phát triển điện.xlsx');
+
+  }
+
   //Constant variable
   public readonly displayedColumns: string[] = ['index', 'ten_huyen_thi', 'trung_ap_3p', 'trung_ap_1p', 'ha_ap_3p', 'ha_ap_1p', 'so_tram_bien_ap', 'cong_xuat_bien_ap'];
   public readonly dsplayMergeColumns: string[] = ['indexM', 'ten_huyen_thiM', 'trung_apM', 'ha_apM', 'bien_apM'];

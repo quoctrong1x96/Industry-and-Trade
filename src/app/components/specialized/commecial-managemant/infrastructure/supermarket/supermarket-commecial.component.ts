@@ -21,7 +21,7 @@ import * as moment from 'moment';
 import { CompanyDetailModel } from 'src/app/_models/APIModel/domestic-market.model';
 import { TreeviewConfig, TreeviewItem, TreeviewModule } from 'ngx-treeview';
 import { element } from 'protractor';
-import { MarketCommonModel, SuperMarketCommonModel } from 'src/app/_models/APIModel/commecial-management.model';
+import { MarketCommonModel, SuperMarketCommonModel, SuperMarketFilterModel } from 'src/app/_models/APIModel/commecial-management.model';
 import { MatAccordion } from '@angular/material/expansion';
 import { MatPaginator } from '@angular/material/paginator';
 import { District } from 'src/app/_models/district.model';
@@ -38,35 +38,82 @@ interface HashTableNumber<T> {
 
 export class SuperMarketCommecialManagementComponent implements OnInit {
   //Constant-------------------------------------------------------------------------
+  public readonly RANK_LABLE = (page: number, pageSize: number, length: number) => {
+    if (length == 0 || pageSize == 0) { return `0 của ${length}`; }
+
+    length = Math.max(length, 0);
+
+    const startIndex = page * pageSize;
+
+    // If the start index exceeds the list length, do not try and fix the end index to the end.
+    const endIndex = startIndex < length ?
+      Math.min(startIndex + pageSize, length) :
+      startIndex + pageSize;
+
+    return `${startIndex + 1} - ${endIndex} của ${length}`;
+  }
+  //
+  private _conditionArray: HashTableNumber<string[]> = {};
+  private _tableData: MatTableDataSource<SuperMarketCommonModel> = new MatTableDataSource<SuperMarketCommonModel>();
+
+  public tongSieuThi: number;
+  public sieuThiTongHop: number;
+  public sieuThiChuyenNganh: number;
+  //
+  public sieuThiHangI: number;
+  public sieuThiHangII: number;
+  public sieuThiHangIII: number;
+  //
+  public sieuThiDauTuTrongNam: number;
+  public sieuThiDauTuNamTruoc: number;
+  public sieuThiNgungHoatDong: number;
+  public sieuThiDangXayDung: number;
+  //
+  public filterModel: SuperMarketFilterModel = new SuperMarketFilterModel();
+  public year: number;
 
   //Viewchild & Input-----------------------------------------------------------------------
   @ViewChildren(ReportDirective) inputs: QueryList<ReportDirective>
   @ViewChild(MatAccordion, { static: false }) accordion: MatAccordion;
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+  @ViewChild('TABLE', { static: false }) table: ElementRef;
+
+  exportExcel() {
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'HTTM - Siêu thị');
+
+    XLSX.writeFile(wb, 'HTTM - Siêu thị.xlsx');
+
+  }
   //Variable for HTML&TS-------------------------------------------------------------------------
-  districts: District[] = [{ id: 1, ten_quan_huyen: 'Thị xã Phước Long' },
-  { id: 2, ten_quan_huyen: 'Thành phố Đồng Xoài' },
-  { id: 3, ten_quan_huyen: 'Thị xã Bình Long' },
-  { id: 4, ten_quan_huyen: 'Huyện Bù Gia Mập' },
-  { id: 5, ten_quan_huyen: 'Huyện Lộc Ninh' },
-  { id: 6, ten_quan_huyen: 'Huyện Bù Đốp' },
-  { id: 7, ten_quan_huyen: 'Huyện Hớn Quản' },
-  { id: 8, ten_quan_huyen: 'Huyện Đồng Phú' },
-  { id: 9, ten_quan_huyen: 'Huyện Bù Đăng' },
-  { id: 10, ten_quan_huyen: 'Huyện Chơn Thành' },
-  { id: 11, ten_quan_huyen: 'Huyện Phú Riềng' }];
+  public readonly districts: District[] = [{ id: 1, ten_quan_huyen: 'Phước Long' },
+  { id: 2, ten_quan_huyen: 'Đồng Xoài' },
+  { id: 3, ten_quan_huyen: 'Bình Long' },
+  { id: 4, ten_quan_huyen: 'Bù Gia Mập' },
+  { id: 5, ten_quan_huyen: 'Lộc Ninh' },
+  { id: 6, ten_quan_huyen: 'Bù Đốp' },
+  { id: 7, ten_quan_huyen: 'Hớn Quản' },
+  { id: 8, ten_quan_huyen: 'Đồng Phú' },
+  { id: 9, ten_quan_huyen: 'Bù Đăng' },
+  { id: 10, ten_quan_huyen: 'Chơn Thành' },
+  { id: 11, ten_quan_huyen: 'Phú Riềng' }];
+  public readonly phanloais: any[] = [{ value: "I", text: "Loại I" }
+    , { value: "II", text: "Loại II" }
+    , { value: "III", text: "Loại III" }]
+
   headerArray = ['index', 'tenhuyenthi', 'ten_tttm', 'dientich', 'vondautu', 'namdautuxaydung', 'phanloai'];
   dataHuyenThi: Array<SuperMarketCommonModel> = [
-    { huyen: "Đồng Xoài", ten_tttm: "Siêu thị Co.opMart Đồng Xoài", dientich: 3107, namdautuxaydung: "2009", phanloai: "II", vondautu: 0 },
-    { huyen: "Đồng Xoài", ten_tttm: "Siêu thị điện máy nội thất Chợ Lớn, chi nhánh Bình Phước", dientich: 4000, namdautuxaydung: "2017", phanloai: "III", vondautu: 0 },
-    { huyen: "Đồng Xoài", ten_tttm: "Siêu thị The Gold Mart ", dientich: 4500, namdautuxaydung: "2019", phanloai: "II", vondautu: 0 },
-    { huyen: "Đồng Xoài", ten_tttm: "Siêu thị điện máy Nguyễn Kim", dientich: 400, namdautuxaydung: "2014", phanloai: "III", vondautu: 0 },
-    { huyen: "Đồng Xoài", ten_tttm: "Siêu thị điện máy xanh Bình Phước", dientich: 3400, namdautuxaydung: "2016", phanloai: "III", vondautu: 0 },
-    { huyen: "Bình Long", ten_tttm: "Siêu thị Bé Lan", dientich: 1000, namdautuxaydung: "2017", phanloai: "III", vondautu: 0 },
-    { huyen: "Phước Long", ten_tttm: "Siêu thị Phương Lan", dientich: 800, namdautuxaydung: "2014", phanloai: "III", vondautu: 0 },
-    { huyen: "Đồng Phú", ten_tttm: "Siêu thị Co.opMart Đồng Phú", dientich: 3000, namdautuxaydung: "2019", phanloai: "II", vondautu: 0 },
-    { huyen: "Bù Đăng", ten_tttm: "Dự  án Siêu thị Co.opMart Bù Đăng", dientich: 0, namdautuxaydung: "", phanloai: "", vondautu: 0 },
-    { huyen: "Bù Đăng", ten_tttm: "Dự án Siêu Thị Boobo và chợ đêm", dientich: 0, namdautuxaydung: "", phanloai: "", vondautu: 0 },
+    { huyen: "Đồng Xoài", ten_tttm: "Siêu thị Co.opMart Đồng Xoài", dientich: 3107, namdautuxaydung: "2009", phanloai: "II", vondautu: 0, id_quan_huyen: 2 },
+    { huyen: "Đồng Xoài", ten_tttm: "Siêu thị điện máy nội thất Chợ Lớn, chi nhánh Bình Phước", dientich: 4000, namdautuxaydung: "2017", phanloai: "III", vondautu: 0, id_quan_huyen: 2 },
+    { huyen: "Đồng Xoài", ten_tttm: "Siêu thị The Gold Mart ", dientich: 4500, namdautuxaydung: "2019", phanloai: "II", vondautu: 0, id_quan_huyen: 2 },
+    { huyen: "Đồng Xoài", ten_tttm: "Siêu thị điện máy Nguyễn Kim", dientich: 400, namdautuxaydung: "2014", phanloai: "III", vondautu: 0, id_quan_huyen: 2 },
+    { huyen: "Đồng Xoài", ten_tttm: "Siêu thị điện máy xanh Bình Phước", dientich: 3400, namdautuxaydung: "2016", phanloai: "III", vondautu: 0, id_quan_huyen: 2 },
+    { huyen: "Bình Long", ten_tttm: "Siêu thị Bé Lan", dientich: 1000, namdautuxaydung: "2017", phanloai: "III", vondautu: 0, id_quan_huyen: 3 },
+    { huyen: "Phước Long", ten_tttm: "Siêu thị Phương Lan", dientich: 800, namdautuxaydung: "2014", phanloai: "III", vondautu: 0, id_quan_huyen: 1 },
+    { huyen: "Đồng Phú", ten_tttm: "Siêu thị Co.opMart Đồng Phú", dientich: 3000, namdautuxaydung: "2019", phanloai: "II", vondautu: 0, id_quan_huyen: 8 },
+    { huyen: "Bù Đăng", ten_tttm: "Dự án Siêu thị Co.opMart Bù Đăng", dientich: 0, namdautuxaydung: "", phanloai: "", vondautu: 0, id_quan_huyen: 9 },
+    { huyen: "Bù Đăng", ten_tttm: "Dự án Siêu Thị Boobo và chợ đêm", dientich: 0, namdautuxaydung: "", phanloai: "", vondautu: 0, id_quan_huyen: 9 },
   ]
   //Variable for only TS-------------------------------------------------------------------------
   supermarketTypeI: number = 0;
@@ -97,16 +144,11 @@ export class SuperMarketCommecialManagementComponent implements OnInit {
     });
   }
 
-  applyFilter1(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSourceHuyenThi.filter = filterValue.trim().toLowerCase();
-  }
-
   ngAfterViewInit(): void {
     //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
     //Add 'implements AfterViewInit' to the class.
     // this.accordion.openAll();
-    this.dataSourceHuyenThi.paginator = this.paginator;
+    this.dataSource.paginator = this.paginator;
     this.paginator._intl.itemsPerPageLabel = 'Số hàng';
     this.paginator._intl.firstPageLabel = "Trang Đầu";
     this.paginator._intl.lastPageLabel = "Trang Cuối";
@@ -131,7 +173,8 @@ export class SuperMarketCommecialManagementComponent implements OnInit {
   public tableMergeHader: Array<ToltalHeaderMerge> = [];
   public mergeHeadersColumn: Array<string> = [];
   public indexOftableMergeHader: number = 0;
-
+  public dataSource: MatTableDataSource<SuperMarketCommonModel> = new MatTableDataSource<SuperMarketCommonModel>();
+  public filteredDataSource: MatTableDataSource<SuperMarketCommonModel> = new MatTableDataSource<SuperMarketCommonModel>();
   columns: number = 1;
 
   //Angular FUnction --------------------------------------------------------------------
@@ -144,28 +187,122 @@ export class SuperMarketCommecialManagementComponent implements OnInit {
 
   ngOnInit(): void {
     let data: any = JSON.parse(localStorage.getItem('currentUser'));
-    this.dataSourceHuyenThi.data = this.dataHuyenThi;
-    this.filterTyppeMarket();
+    this.dataSource = new MatTableDataSource<SuperMarketCommonModel>(this.dataHuyenThi);
+    this._caculator(this.dataSource.data);
+    // this._tableData = new MatTableDataSource<SuperMarketCommonModel>(this.dataHuyenThi);
     this.autoOpen();
   }
-  dataSourceHuyenThi: MatTableDataSource<SuperMarketCommonModel> = new MatTableDataSource<SuperMarketCommonModel>();
+
 
   //Xuất excel
   ExportTOExcel(filename: string, sheetname: string) {
-    // sheetname = sheetname.replace('/', '_');
-    // let excelFileName: string = filename + '.xlsx';
-    // const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);
-    // const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    // XLSX.utils.book_append_sheet(wb, ws, sheetname);
-    // /* save to file */
-    // XLSX.writeFile(wb, excelFileName);
+    sheetname = sheetname.replace('/', '_');
+    let excelFileName: string = filename + '.xlsx';
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, sheetname);
+    /* save to file */
+    XLSX.writeFile(wb, excelFileName);
+  }
+  //FUNCTION FOR ONLY TS _------------------------------
+  // applyCondictionFilter(type, event: any) {
+  //   this._conditionArray[type] = event.value;
+  // this._filterDataSource();
+  // }
+  // private _filterDataSource() {
+  //   if (this._countCondition() > 0) {
+  //     let dataFilterOriginal: SuperMarketCommonModel[] = [];
+  //     let dataFilterFinal: SuperMarketCommonModel[] = [];
+  //     dataFilterOriginal = [... this._tableData.data];
+  //     Object.keys(this._conditionArray).forEach(key => {
+  //       let array = this._conditionArray[key];
+  //       switch (key) {
+  //         case "1":
+  //           array.forEach((element) => {
+  //             dataFilterOriginal.filter((x) => x.huyen.includes(element)).forEach((item) => dataFilterFinal.push(item));
+  //           });
+  //           break;
+  //         case "2":
+  //           array.forEach((element) => {
+
+  //             dataFilterOriginal.filter((x) => element.includes(x.phanloai)).forEach((item) => dataFilterFinal.push(item));
+  //           });
+  //           break;
+
+  //         default:
+
+  //           break;
+  //       }
+  //       dataFilterOriginal = [...dataFilterFinal];
+  //       dataFilterFinal = [];
+  //     });
+  //     this.dataSource = new MatTableDataSource<SuperMarketCommonModel>(dataFilterOriginal);
+  //   } else {
+  //     this.dataSource = new MatTableDataSource<SuperMarketCommonModel>(this._tableData.data);
+  //   }
+  //   this._paginatorAgain();
+  //   this._caculator(this.dataSource.data);
+  // }
+  // private _countCondition(): number {
+  //   let countOfCondition = 0;
+  //   Object.keys(this._conditionArray).forEach(key => {
+  //     if (this._conditionArray[key])
+  //       countOfCondition += this._conditionArray[key].length;
+  //   });
+  //   return countOfCondition;
+  // }
+  private _autoOpenPanel() {
+    setTimeout(() => this.accordion.openAll(), 1000);
+  }
+  private _caculator(data: Array<SuperMarketCommonModel>) {
+    this.tongSieuThi = data.length;
+    this.sieuThiHangI = data.filter(x => x.phanloai == "I").length;
+    this.sieuThiHangII = data.filter(x => x.phanloai == "II").length;
+    this.sieuThiHangIII = data.filter(x => x.phanloai == "III").length;
+    this.sieuThiDangXayDung = data.length - this.sieuThiHangI - this.sieuThiHangII - this.sieuThiHangIII;
+    this.year = new Date().getFullYear();
+
+    this.sieuThiDauTuTrongNam = data.filter(x => x.namdautuxaydung == this.year.toString()).length;
+    this.sieuThiDauTuNamTruoc = data.filter(x => x.namdautuxaydung == (this.year - 1).toString()).length;
+    this.filteredDataSource.data = [...data];
+  }
+  private _paginatorAgain() {
+    this.dataSource.paginator = this.paginator;
+    this.paginator._intl.itemsPerPageLabel = 'Số hàng';
+    this.paginator._intl.firstPageLabel = "Trang Đầu";
+    this.paginator._intl.lastPageLabel = "Trang Cuối";
+    this.paginator._intl.previousPageLabel = "Trang Trước";
+    this.paginator._intl.nextPageLabel = "Trang Tiếp";
+    this.paginator._intl.getRangeLabel = this.RANK_LABLE;
   }
 
-  sortHeaderCondition(event) {
-
+  applyFilter() {
+    console.log(this.filterModel)
+    let filteredData = this.filterArray(this.dataSource.data, this.filterModel);
+    this._caculator(filteredData);
+    if (!filteredData.length) {
+      if (this.filterModel)
+        this.filteredDataSource.data = [];
+      else
+        this.filteredDataSource.data = this.dataSource.data;
+    }
+    else {
+      this.filteredDataSource.data = filteredData;
+    }
   }
 
-  applyDistrictFilter(event) {
-
+  filterArray(array, filters) {
+    const filterKeys = Object.keys(filters);
+    let temp = [...array];
+    filterKeys.forEach(key => {
+      let temp2 = [];
+      if (filters[key].length) {
+        filters[key].forEach(criteria => {
+          temp2 = temp2.concat(temp.filter(x => x[key] == criteria));
+        });
+        temp = [...temp2];
+      }
+    })
+    return temp;
   }
 }

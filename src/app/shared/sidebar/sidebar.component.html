@@ -66,5 +66,11 @@
         </mat-nav-list>
       </div>
     </ngx-simplebar>
+    <div style="text-align: center;">
+      <button mat-icon-button (click)="onSinenavToggle()">
+        <mat-icon *ngIf="sideNavState">arrow_back_ios</mat-icon>
+        <mat-icon *ngIf="!sideNavState">arrow_forward_ios</mat-icon>
+      </button>
+    </div>
   </div>
 </div>

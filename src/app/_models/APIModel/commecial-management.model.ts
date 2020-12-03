@@ -13,6 +13,12 @@ export class SuperMarketCommonModel {
     vondautu: number;
     phanloai: string;
     namdautuxaydung: string;
+    id_quan_huyen : number;
+}
+
+export class SuperMarketFilterModel {
+    id_quan_huyen : number[] =[];
+    phanloai : string[] = [];
 }
 
 export class StoreCommonModel {
@@ -26,6 +32,10 @@ export class StoreCommonModel {
     ngaycaogcn: Date;
     ngayhethangcn:Date;
     sdtlienhe: string;
+    id_quan_huyen : number;
+}
+export class StoreFilterModel{
+    id_quan_huyen : number[] = [];
 }
 
 export class FoodCommonModel {
@@ -37,4 +47,9 @@ export class FoodCommonModel {
     noicap:string;
     tennddpl:string;
     sdtnddpl: string;
+    id_quan_huyen : number;
+}
+
+export class FoodFilterModel{
+    id_quan_huyen : number[] = [];
 }

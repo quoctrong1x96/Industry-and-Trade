@@ -32,7 +32,7 @@
                                 <mat-card-subtitle></mat-card-subtitle>
                             </mat-card-header>
                             <mat-card-content>
-                                0 doanh nghiệp
+                                {{tongDoanhNghiep}} doanh nghiệp
                             </mat-card-content>
                         </mat-card>
                     </div>
@@ -52,39 +52,44 @@
                     </mat-panel-description>
                 </mat-expansion-panel-header>
                 <div class="row">
-                    <div class="col-3 col-lg-3">
-                        <mat-form-field appearance="outline">
-                            <mat-label>Kiểu sắp xếp</mat-label>
-                            <mat-select (selectionChange)="sortHeaderCondition($event.value)" [value]="'dientich'">
-                                <mat-option *ngFor='let header of headerArray' [value]='header'>{{header}}</mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </div>
-
+                
                     <div class="col-3 col-lg-3">
                         <mat-form-field appearance="outline">
                             <mat-label>Địa bàn</mat-label>
-                            <mat-select (selectionChange)="applyDistrictFilter($event)" multiple>
+                            <mat-select (selectionChange)="applyFilter()" [(ngModel)]="filterModel.id_quan_huyen" multiple>
                                 <mat-option *ngFor='let district of districts' [value]='district.id'>
                                     {{district.ten_quan_huyen}}
                                 </mat-option>
                             </mat-select>
                         </mat-form-field>
                     </div>
+                    <div class="col-3 col-lg-3">
+                        <!-- <mat-form-field appearance="outline">
+                            <mat-label>Kiểu sắp xếp</mat-label>
+                            <mat-select (selectionChange)="sortHeaderCondition($event.value)" [value]="'dientich'">
+                                <mat-option *ngFor='let header of headerArray' [value]='header'>{{header}}</mat-option>
+                            </mat-select>
+                        </mat-form-field> -->
+                    </div>
 
-                    <div class="col-3 col-lg-3 my-auto">
-                        <mat-checkbox (change)="applyExpireCheck($event)" [ngModel]="isChecked">Hết hạn ĐKKD
+
+                    <div class="col-3 col-lg-3 checkbox">
+                        <mat-checkbox (change)="applyFilter()" [ngModel]="isChecked">Hết hạn ĐKKD
                         </mat-checkbox>
+                    </div>
+
+                    <div class="col-3 col-lg-3 button-control">
+                        <button mat-raised-button (click)="exportExcel()">Xuất Excel</button>
                     </div>
                 </div>
 
-                <div class="layout" *ngIf="dataSourceHuyenThi.data.length; else ShowEmpty">
-                    <mat-form-field id="filter1">
+                <div class="layout" *ngIf="filteredDataSource.data.length; else ShowEmpty" #TABLE>
+                    <!-- <mat-form-field id="filter1">
                         <mat-label>Lọc dữ liệu</mat-label>
                         <input matInput (keyup)="applyFilter1($event)" placeholder="" #input>
-                    </mat-form-field>
+                    </mat-form-field> -->
 
-                    <table mat-table [dataSource]="dataSourceHuyenThi" class="table-layout" id="small-table1">
+                    <table mat-table [dataSource]="filteredDataSource" class="table-layout" id="small-table1">
 
                         <ng-container matColumnDef="index">
                             <th mat-header-cell style="text-align: center;" *matHeaderCellDef> STT </th>
@@ -152,8 +157,7 @@
                         </ng-container>
 
                         <ng-container matColumnDef="nddpl">
-                            <th mat-header-cell *matHeaderCellDef style="text-align: center;" [attr.colspan]="2"> Người
-                                đại diện pháp lý </th>
+                            <th mat-header-cell *matHeaderCellDef style="text-align: center;" [attr.colspan]="2"> Người đại diện pháp lý </th>
                         </ng-container>
 
                         <ng-container matColumnDef="spkdd">

@@ -11,6 +11,9 @@
         }
     }
     .mat-card-content {
+        .bold {
+            font-weight: bold;
+        }
         .card1 {
             height: 100px;
             .mat-card-header .mat-card-title {
@@ -57,41 +60,49 @@
         }
 
         #card4-1 {
-            height: 140px !important;
+            height: 120px !important;
         }
         #card4-2 {
             height: 160px !important;
-            #card4-3 .mat-card-content {
-                font-size: 13px !important;
-            }
         }
-
+        #card4-3 {
+            height: 140px !important;
+        }
         .card4 {
             height: 100px;
             .mat-card-header .mat-card-title {
                 margin-bottom: 5px;
                 font-size: 15px;
+                text-align: left !important;
             }
             .mat-card-content {
                 font-size: 15px;
-                text-align: center;
-                font-weight: bolder;
-                color: $blue;
                 ul {
-                    padding: 0;
-                    list-style-type: none;
+                    list-style-type: square;
+                    // display: flex;
+                    justify-content: center;
+                }
+                span {
+                    font-weight: bolder;
+                    color: blue;
                 }
             }
             .mat-card-subtitle {
                 font-size: 10px;
-                text-align: center;
                 font-weight: bold;
             }
         }
 
-        .checkbox {
-            .mat-checkbox {
-                padding-left: 20px;
+        .card5 {
+            height: 60px;
+            .mat-card-header .mat-card-title {
+                margin-bottom: 5px;
+                font-size: 15px;
+                text-align: left !important;
+                span {
+                    font-weight: bolder;
+                    color: blue;
+                }
             }
         }
 
@@ -108,13 +119,18 @@
             min-height: 30px;
             width: 100%;
         }
+        .checkbox {
+            margin-top: 17px;
+            text-align: center;
+        }
         .button-control {
             text-align: right;
             margin-bottom: 10px;
             button.mat-raised-button {
                 background-color: $blue !important;
                 color: $white !important;
-                margin: auto 3px;
+                margin-right: 5px;
+                margin-top: 10px;
                 box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14),
                     0 1px 5px 0 rgba(0, 0, 0, 0.12);
             }

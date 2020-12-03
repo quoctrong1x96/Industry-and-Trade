@@ -22,28 +22,27 @@
 
                 <div class="row">
                     <div class="col-6 col-lg-6">
-                        <mat-card class="card1">
+                        <mat-card class="card5">
                             <mat-card-header>
                                 <mat-card-title>
-                                    <mat-icon>filter</mat-icon> Tổng số cửa hàng:
+                                    <mat-icon>filter</mat-icon> Tổng số cửa hàng: <span>{{tongCuaHang}} cửa hàng</span>
                                 </mat-card-title>
                                 <mat-card-subtitle></mat-card-subtitle>
                             </mat-card-header>
                             <mat-card-content>
-                                0 cửa hàng
                             </mat-card-content>
                         </mat-card>
                     </div>
                     <div class="col-6 col-lg-6">
-                        <mat-card class="card1">
+                        <mat-card class="card5">
                             <mat-card-header>
                                 <mat-card-title>
-                                    <mat-icon>filter</mat-icon> Tổng số cửa hàng trong huyện năm ... là:
+                                    <mat-icon>filter</mat-icon> Tổng số cửa hàng trong huyện năm {{year}} là: <span>0
+                                        cửa hàng</span>
                                 </mat-card-title>
                                 <mat-card-subtitle></mat-card-subtitle>
                             </mat-card-header>
                             <mat-card-content>
-                                0 cửa hàng
                             </mat-card-content>
                         </mat-card>
                     </div>
@@ -62,10 +61,10 @@
                             <mat-card-content>
                                 <ul>
                                     <li>
-                                        Tổng số cửa hàng tiện lợi: 0
+                                        Tổng số cửa hàng tiện lợi: <span>{{soCuaHangTL}}</span>
                                     </li>
                                     <li>
-                                        Tổng số cửa hàng khác: 0
+                                        Tổng số cửa hàng khác: <span>{{soCuaHangKhac}}</span>
                                     </li>
                                 </ul>
                             </mat-card-content>
@@ -82,10 +81,13 @@
                             <mat-card-content style="font-size: 13px;">
                                 <ul>
                                     <li>
-                                        Tổng số cửa hàng hoạt động trong năm ... là: 0
+                                        Tổng số cửa hàng hoạt động trong năm <span>{{year}}</span> là:
+                                        <span>{{soCuaHangDauTuTrongNam}}</span>
                                     </li>
                                     <li>
-                                        Chênh lệch số cửa hàng hoạt động trong năm ... so với năm trước là: 0
+                                        Chênh lệch số cửa hàng hoạt động trong năm <span>{{year}}</span> so với năm
+                                        trước là:
+                                        <span>{{soCuaHangDauTuTrongNam - soCuaHangDauTuNamTruoc}}</span>
                                     </li>
                                 </ul>
                             </mat-card-content>
@@ -106,39 +108,45 @@
                     </mat-panel-description>
                 </mat-expansion-panel-header>
                 <div class="row">
-                    <div class="col-3 col-lg-3">
-                        <mat-form-field appearance="outline">
-                            <mat-label>Kiểu sắp xếp</mat-label>
-                            <mat-select (selectionChange)="sortHeaderCondition($event.value)" [value]="'dientich'">
-                                <mat-option *ngFor='let header of headerArray' [value]='header'>{{header}}</mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </div>
+
 
                     <div class="col-3 col-lg-3">
                         <mat-form-field appearance="outline">
                             <mat-label>Địa bàn</mat-label>
-                            <mat-select (selectionChange)="applyDistrictFilter($event)" multiple>
+                            <mat-select (selectionChange)="applyFilter()" [(ngModel)]="filterModel.id_quan_huyen"
+                                multiple>
                                 <mat-option *ngFor='let district of districts' [value]='district.id'>
                                     {{district.ten_quan_huyen}}
                                 </mat-option>
                             </mat-select>
                         </mat-form-field>
                     </div>
+                    <div class="col-3 col-lg-3">
+                        <!-- <mat-form-field appearance="outline">
+                            <mat-label>Kiểu sắp xếp</mat-label>
+                            <mat-select (selectionChange)="sortHeaderCondition($event.value)" [value]="'dientich'">
+                                <mat-option *ngFor='let header of headerArray' [value]='header'>{{header}}</mat-option>
+                            </mat-select>
+                        </mat-form-field> -->
+                    </div>
 
-                    <div class="col-3 col-lg-3 my-auto">
-                        <mat-checkbox (change)="applyExpireCheck($event)" [ngModel]="isChecked">Hết hạn ĐKKD
+                    <div class="col-3 col-lg-3 checkbox">
+                        <mat-checkbox (change)="applyFilter()" [(ngModel)]="isChecked">Hết hạn ĐKKD
                         </mat-checkbox>
+                    </div>
+
+                    <div class="col-3 col-lg-3 button-control">
+                        <button mat-raised-button (click)="exportExcel()">Xuất Excel</button>
                     </div>
                 </div>
 
-                <div class="layout" *ngIf="dataSourceHuyenThi.data.length; else ShowEmpty">
-                    <mat-form-field class="filter2">
+                <div class="layout" *ngIf="filteredDataSource.data.length; else ShowEmpty" #TABLE>
+                    <!-- <mat-form-field class="filter2">
                         <mat-label>Lọc dữ liệu</mat-label>
                         <input matInput (keyup)="applyFilter1($event)" placeholder="" #input>
-                    </mat-form-field>
+                    </mat-form-field> -->
 
-                    <table mat-table [dataSource]="dataSourceHuyenThi" class="table-layout" id="small-table2">
+                    <table mat-table [dataSource]="filteredDataSource" class="table-layout" id="small-table2">
 
                         <ng-container matColumnDef="index">
                             <th mat-header-cell style="text-align: center;" *matHeaderCellDef> STT </th>

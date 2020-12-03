@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { MatAccordion, MatPaginator, MatTable, MatTableDataSource } from '@angular/material';
 import { DistrictModel } from 'src/app/_models/APIModel/domestic-market.model';
 import { HydroElectricManagementModel, SolarEneryManagementModel } from 'src/app/_models/APIModel/electric-management.module';
 import { LinkModel } from 'src/app/_models/link.model';
 import { BreadCrumService } from 'src/app/_services/injectable-service/breadcrums.service';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-solar-enery-management',
@@ -13,8 +14,17 @@ import { BreadCrumService } from 'src/app/_services/injectable-service/breadcrum
 export class SolarEneryManagementComponent implements OnInit {
   //ViewChild 
   @ViewChild(MatAccordion, { static: true }) accordion: MatAccordion;
-  @ViewChild('table', { static: false }) table: MatTable<SolarEneryManagementModel>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild('TABLE', { static: false }) table: ElementRef;
+
+  exportExcel() {
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Điện mặt trời');
+
+    XLSX.writeFile(wb, 'Điện mặt trời.xlsx');
+
+  }
   //Constant variable
   public readonly displayedColumns: string[] = ['index', 'ten_du_an', 'ten_doanh_nghiep', 'ten_huyen_thi', 'cong_xuat_thiet_ke', 'san_luong_6_thang', 'san_luong_nam', 'doanh_thu', 'trang_thai'];
   //TS & HTML Variable
