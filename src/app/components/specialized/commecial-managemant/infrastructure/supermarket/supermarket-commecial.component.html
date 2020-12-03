@@ -98,8 +98,7 @@
                                         <span>{{sieuThiDauTuTrongNam}}</span>
                                     </li>
                                     <li>
-                                        Chênh lệch số siêu thị đầu tư xây dựng trong năm <span>{{year}}</span> so với
-                                        năm trước là:
+                                        Chênh lệch số siêu thị đầu tư xây dựng trong năm <span>{{year}}</span> so với năm trước là:
                                         <span>{{sieuThiDauTuTrongNam - sieuThiDauTuNamTruoc}}</span>
                                     </li>
                                     <li>
@@ -107,8 +106,7 @@
                                         <span>0</span>
                                     </li>
                                     <li>
-                                        Chênh lệch số siêu thị ngừng hoạt động trong năm <span>{{year}}</span> so với
-                                        năm trước là: <span>0</span>
+                                        Chênh lệch số siêu thị ngừng hoạt động trong năm <span>{{year}}</span> so với năm trước là: <span>0</span>
                                     </li>
                                 </ul>
                             </mat-card-content>
@@ -133,8 +131,7 @@
                     <div class="col-3 col-lg-3">
                         <mat-form-field appearance="outline">
                             <mat-label>Địa bàn</mat-label>
-                            <mat-select (selectionChange)="applyFilter()" [(ngModel)]="filterModel.id_quan_huyen"
-                                multiple>
+                            <mat-select (selectionChange)="applyFilter()" [(ngModel)]="filterModel.id_quan_huyen" multiple>
                                 <mat-option *ngFor='let district of districts' [value]='district.id'>
                                     {{district.ten_quan_huyen}}
                                 </mat-option>
@@ -190,7 +187,7 @@
                         <tr mat-row *matRowDef="let row; columns: headerArray;let i = index"></tr>
                     </table>
                 </div>
-                <mat-paginator [pageSizeOptions]="[5, 10, 20, 50, 100]" showFirstLastButtons></mat-paginator>
+                <mat-paginator [pageSizeOptions]="[20, 50, 100]" showFirstLastButtons></mat-paginator>
                 <ng-template #ShowEmpty>
                     <h1>Không có dữ liệu</h1>
                 </ng-template>

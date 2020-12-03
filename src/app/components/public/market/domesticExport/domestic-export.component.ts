@@ -87,7 +87,7 @@ export class DomesticExportComponent implements OnInit {
     this.chartYearModelSelected = this.getCurrentYear();
     this.chartyears = this.initialYears();
     this.theYear = this.getCurrentYear();
-    this.theMonth = this.getCurrentMonth();
+    this.theMonth = (this.getCurrentMonth() - 1) == 0? 12 : this.getCurrentMonth() - 1;
     this.timeDomesticPrice = this.theMonth + "/" + this.theYear;
     this.getDomesticMarketExport(this.theMonth, this.theYear);
   }

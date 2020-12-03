@@ -4,6 +4,7 @@ import { CountrysideElectricComponent } from './countryside-electric/countryside
 import { UseFocusedEnergyComponent } from './use-focused-energy/use-focused-energy.component';
 import { CommonEnergyComponent } from './common-energy/common-energy.component';
 import { ElectricManagementComponent } from './electric-management/electric-management.component';
+import { ElectricalPlanComponent } from './electrical-plan/electrical-plan.component';
 
 const routes: Routes = [
   
@@ -40,6 +41,14 @@ const routes: Routes = [
           title: 'Tiết kiệm năng lượng',
         },
         component: UseFocusedEnergyComponent
+      },
+
+      {
+        path: 'electrical_plan',
+        data: {
+          title: 'QH lưới điện 110 trở lên',
+        },
+        component: ElectricalPlanComponent
       },
     
     ],

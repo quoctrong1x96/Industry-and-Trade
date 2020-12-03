@@ -12,15 +12,13 @@
             <div class="col-lg-2">
                 <mat-form-field appearance="outline">
                     <mat-label>Ngày cập nhật giá</mat-label>
-                    <input matInput readonly [matDatepicker]="datePicker" [(ngModel)]="pickedDate.date"
-                        (ngModelChange)="getPriceChange($event)">
+                    <input matInput readonly [matDatepicker]="datePicker" [(ngModel)]="pickedDate.date" (ngModelChange)="getPriceChange($event)">
                     <mat-datepicker-toggle matSuffix [for]="datePicker" onclick="this.blur()"></mat-datepicker-toggle>
                     <mat-datepicker #datePicker></mat-datepicker>
                 </mat-form-field>
             </div>
             <div class="col-lg-10 button-control my-auto">
-                <button *ngIf="!noData" mat-raised-button
-                    (click)="exportTOExcel('Giá cả trong nước',timeDomesticPrice)">Xuất Excel</button>
+                <button *ngIf="!noData" mat-raised-button (click)="exportTOExcel('Giá cả trong nước',timeDomesticPrice)">Xuất Excel</button>
             </div>
         </div>
         <div class="layout" #TABLE>
@@ -60,6 +58,6 @@
             </table>
             <h1 *ngIf="noData" class="text-center">Không có dữ liệu</h1>
         </div>
-        <mat-paginator [pageSizeOptions]="[5, 10, 20, 50, 100]" showFirstLastButtons></mat-paginator>
+        <mat-paginator [pageSizeOptions]="[20, 50, 100]" showFirstLastButtons></mat-paginator>
     </mat-card-content>
 </mat-card>

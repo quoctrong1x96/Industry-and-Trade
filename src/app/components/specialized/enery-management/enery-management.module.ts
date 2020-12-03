@@ -13,6 +13,9 @@ import {SolarEneryManagementComponent} from './solar-enery-management/solor-ener
 import { ElectricDevelopmentManagementComponent } from './electricity-development/electricity-development.component';
 import { PowerProductionManagementComponent } from './power-production/power-production.component';
 import { RuralElectricManagementComponent } from './rural-electric/rural-electric-management.component';
+import { ElectricalPlanComponent } from './electrical-plan/electrical-plan.component';
+import { CurrentElectricalPlanComponent } from './current-electrical-plan/current-electrical-plan.component';
+import { FutureElectricalPlanComponent } from './future-electrical-plan/future-electrical-plan.component';
 
 
 @NgModule({
@@ -35,6 +38,9 @@ import { RuralElectricManagementComponent } from './rural-electric/rural-electri
     ElectricDevelopmentManagementComponent,
     PowerProductionManagementComponent,
     RuralElectricManagementComponent,
+    ElectricalPlanComponent,
+    CurrentElectricalPlanComponent,
+    FutureElectricalPlanComponent
 ],
   entryComponents: []
 })

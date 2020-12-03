@@ -74,12 +74,10 @@
                             <mat-card-content>
                                 <ul>
                                     <li>
-                                        Chợ cải tạo trong năm {{year}} là: <span>{{choCaiTao}}</span>
-                                        tăng/giảm so với năm {{year}} là: <span>{{soSanhChoCaiTao}}</span>
+                                        Chợ cải tạo trong năm {{year}} là: <span>{{choCaiTao}}</span> tăng/giảm so với năm {{year}} là: <span>{{soSanhChoCaiTao}}</span>
                                     </li>
                                     <li>
-                                        Chợ xây mới trong năm {{year}} là: <span>{{choXayMoi}}</span>
-                                        tăng/giảm so với năm {{year}} là: <span>{{soSanhChoXayMoi}}</span>
+                                        Chợ xây mới trong năm {{year}} là: <span>{{choXayMoi}}</span> tăng/giảm so với năm {{year}} là: <span>{{soSanhChoXayMoi}}</span>
                                     </li>
                                 </ul>
                             </mat-card-content>
@@ -302,17 +300,14 @@
                                 'not-input' : 'input'" mat-cell *cdkCellDef="let row; let rowIndex = index">
                                 <!-- Trường hợp cột tên chỉ tiêu thì  dùngclass chitieu,
                                     nếu là cột default khác thì dùng not-input, các cột chỉ tiêu bình thường thì input-->
-                                <div
-                                    [ngClass]="{'not-input-r': column.attr_code != ATTRIBUTE_CODE && column.attr_code != UNIT_CODE}">
+                                <div [ngClass]="{'not-input-r': column.attr_code != ATTRIBUTE_CODE && column.attr_code != UNIT_CODE}">
                                     {{row[column.is_default === 1? column.attr_code.toLowerCase(): column.fld_code.toLowerCase()]}}
                                 </div>
                             </td>
                         </ng-container>
                         <div *ngFor="let table of tableMergeHader">
-                            <ng-container *ngFor="let mergeHeader of table.headerMerge;"
-                                [cdkColumnDef]="mergeHeader.colName">
-                                <th mat-header-cell *matHeaderCellDef style="text-align: center;"
-                                    [attr.colspan]="mergeHeader.colLenght">{{mergeHeader.colText}} </th>
+                            <ng-container *ngFor="let mergeHeader of table.headerMerge;" [cdkColumnDef]="mergeHeader.colName">
+                                <th mat-header-cell *matHeaderCellDef style="text-align: center;" [attr.colspan]="mergeHeader.colLenght">{{mergeHeader.colText}} </th>
                             </ng-container>
                             <tr mat-header-row *matHeaderRowDef="table.headerColName;"> </tr>
                         </div>
@@ -321,7 +316,7 @@
                         <tr mat-row *matRowDef="let row; columns: attributeHeaders; let i = index"></tr>
                     </table>
                 </div>
-                <mat-paginator [pageSizeOptions]="[5, 10, 20, 50, 100]" showFirstLastButtons></mat-paginator>
+                <mat-paginator [pageSizeOptions]="[20, 50, 100]" showFirstLastButtons></mat-paginator>
                 <ng-template #ShowEmpty>
                     <h1>Không có dữ liệu</h1>
                 </ng-template>
