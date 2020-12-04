@@ -333,6 +333,11 @@ export const navItemsSpecialized: INavItem[] = [
         url: '/specialized/enery-management/manage_aprove_hddl',
         icon: 'group_work',
       },
+      {
+        name: 'QH điện 110 trở lên',
+        url: '/specialized/enery-management/electrical_plan',
+        icon: 'group_work',
+      },
     ]
   },
   {
