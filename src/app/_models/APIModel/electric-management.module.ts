@@ -122,3 +122,24 @@ export class UserForcusEnergy {
     suat_tieu_hao: number;
 
 }
+
+export class BlockElectricModel{
+    ten_du_an: string;
+    ten_doanh_nghiep: string;
+    dia_chi:string;
+    cong_xuat_thiet_ke:number;
+    san_luong_6_thang:number;
+    san_luong_nam:number;
+    doanh_thu:number;
+    trang_thai:string;
+}
+
+export class ManageAproveElectronic {
+    ten_doanh_nghiep: string;
+    dia_chi:string;
+    so_dien_thoai:string;
+    so_giay_phep:string;
+    ngay_cap: string;
+    ngay_het_han: string;
+    id_group: number;
+}

@@ -4,7 +4,8 @@ import { CountrysideElectricComponent } from './countryside-electric/countryside
 import { UseFocusedEnergyComponent } from './use-focused-energy/use-focused-energy.component';
 import { CommonEnergyComponent } from './common-energy/common-energy.component';
 import { ElectricManagementComponent } from './electric-management/electric-management.component';
-
+import { BlockElectricComponent } from "./block-electric/block-electric.component";
+import { ManageApproveHddlComponent } from "./manage-approve-hddl/manage-approve-hddl.component"
 const routes: Routes = [
   
   {
@@ -40,6 +41,20 @@ const routes: Routes = [
           title: 'Tiết kiệm năng lượng',
         },
         component: UseFocusedEnergyComponent
+      },
+      {
+        path: 'block_electric',
+        data: {
+          title: 'Điện sinh khối',
+        },
+        component: BlockElectricComponent
+      },
+      {
+        path: 'manage_aprove_hddl',
+        data: {
+          title: 'Điện sinh khối',
+        },
+        component: ManageApproveHddlComponent
       },
     
     ],

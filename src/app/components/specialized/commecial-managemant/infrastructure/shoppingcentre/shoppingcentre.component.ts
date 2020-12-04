@@ -77,6 +77,33 @@ export class ShoppingcentreComponent implements OnInit {
     { huyen: "Chơn Thành", ten_tttm: "Vincom Chơn Thành", dientich: 31000, namdautuxaydung: "", phanloai: "III", id_quan_huyen : 10, vondautu: 220 },
   ]
   //Variable for only TS-------------------------------------------------------------------------
+  centerTypeI: number = 0;
+  centerTypeII: number = 0;
+  centerTypeIII: number = 0;
+  centerFuture: number = 0;
+  generalCenter:number = 0;
+  specializedCenter: number = 0;
+
+  filterTyppeCenter() {
+    this.dataHuyenThi.forEach(element => {
+      switch (element.phanloai) {
+        case "I":
+          this.centerTypeI +=1;
+          break;
+        case "II":
+          this.centerTypeII+=1;
+          break;
+        case "III":
+          this.centerTypeIII+=1;
+          break;
+        case "Đang xây dựng":
+          this.centerFuture +=1;
+          break;
+        default:
+          break;
+      }
+    });
+  }
 
   applyFilter1(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
