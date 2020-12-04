@@ -5,7 +5,6 @@ import { UseFocusedEnergyComponent } from './use-focused-energy/use-focused-ener
 import { CommonEnergyComponent } from './common-energy/common-energy.component';
 import { ElectricManagementComponent } from './electric-management/electric-management.component';
 import { ElectricalPlanComponent } from './electrical-plan/electrical-plan.component';
-
 const routes: Routes = [
   
   {
@@ -42,7 +41,6 @@ const routes: Routes = [
         },
         component: UseFocusedEnergyComponent
       },
-
       {
         path: 'electrical_plan',
         data: {

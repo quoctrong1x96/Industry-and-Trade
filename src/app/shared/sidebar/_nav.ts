@@ -324,6 +324,16 @@ export const navItemsSpecialized: INavItem[] = [
         icon: 'group_work',
       },
       {
+        name: 'Điện sinh khối',
+        url: '/specialized/enery-management/block_electric',
+        icon: 'group_work',
+      },
+      {
+        name: 'Quản lý cấp phép HĐĐL',
+        url: '/specialized/enery-management/manage_aprove_hddl',
+        icon: 'group_work',
+      },
+      {
         name: 'QH điện 110 trở lên',
         url: '/specialized/enery-management/electrical_plan',
         icon: 'group_work',
