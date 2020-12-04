@@ -97,8 +97,7 @@
                             <tr color="accent">
                                 <th scope="row">Ngày bắt đầu kinh doanh</th>
                                 <td>
-                                    <input matInput [matDatepicker]="date2" [(ngModel)]="company.ngay_bat_dau_kd"
-                                        disabled>
+                                    <input matInput [matDatepicker]="date2" [(ngModel)]="company.ngay_bat_dau_kd" disabled>
                                 </td>
                             </tr>
 
@@ -140,8 +139,7 @@
                             <tr color="accent">
                                 <th scope="row">Thời hạn</th>
                                 <td>
-                                    <input matInput [matDatepicker]="date_thoi_han" [(ngModel)]="company.ngay_het_han"
-                                        disabled>
+                                    <input matInput [matDatepicker]="date_thoi_han" [(ngModel)]="company.ngay_het_han" disabled>
                                 </td>
                             </tr>
 
@@ -149,10 +147,8 @@
                                 <span>
                                     Mở rộng/Thu hẹp
                                 </span>
-                                <mat-icon *ngIf="!isOpen" aria-hidden="false" aria-label="Example home icon"
-                                    (click)="toggle()">expand_less</mat-icon>
-                                <mat-icon *ngIf="isOpen" aria-hidden="false" aria-label="Example home icon"
-                                    (click)="toggle()">expand_more</mat-icon>
+                                <mat-icon *ngIf="!isOpen" aria-hidden="false" aria-label="Example home icon" (click)="toggle()">expand_less</mat-icon>
+                                <mat-icon *ngIf="isOpen" aria-hidden="false" aria-label="Example home icon" (click)="toggle()">expand_more</mat-icon>
                             </div>
                             <ng-container [@toggleBox]="isOpen ? 'open' : 'closed'" *ngIf="isOpen" class="custom-style">
                                 <tr>
@@ -226,8 +222,7 @@
                 <div class="col-lg-3">
                     <div class="form-group">
                         <label for="period_select">Kỳ báo cáo</label>
-                        <select class="form-control" name="" id="period_select" (change)="changePeriod(false)"
-                            [(ngModel)]="selectedPeriodXK">
+                        <select class="form-control" name="" id="period_select" (change)="changePeriod(false)" [(ngModel)]="selectedPeriodXK">
                             <option *ngFor="let period of periodsXK" [ngValue]="period">{{period}}</option>
                         </select>
                     </div>
@@ -272,8 +267,7 @@
             </div>
 
             <div class="layout">
-                <table mat-table #table [dataSource]="dataSourceKNXK" *ngIf="dataSourceKNXK.data.length !== 0"
-                    class="table-layout" id="small-table">
+                <table mat-table #table [dataSource]="dataSourceKNXK" *ngIf="dataSourceKNXK.data.length !== 0" class="table-layout" id="small-table">
                     <ng-container matColumnDef="index">
                         <th mat-header-cell *matHeaderCellDef> STT </th>
                         <td mat-cell *matCellDef="let element; let i = index;">{{i+1}}</td>
@@ -308,8 +302,7 @@
                     <tr mat-row *matRowDef="let row; columns: displayedColumns;let i = index; "></tr>
                 </table>
             </div>
-            <mat-paginator #ExportPaginators [hidden]="dataSourceKNXK.data.length === 0"
-                [pageSizeOptions]="[5, 10, 20, 50, 100]" showFirstLastButtons></mat-paginator>
+            <mat-paginator #ExportPaginators [hidden]="dataSourceKNXK.data.length === 0" [pageSizeOptions]="[20, 50, 100]" showFirstLastButtons></mat-paginator>
             <div *ngIf="dataSourceKNXK.data.length !== 0">{{messageXK}}</div>
         </ng-container>
         <hr>
@@ -319,8 +312,7 @@
                 <div class="col-lg-3">
                     <div class="form-group">
                         <label for="period_select">Kỳ báo cáo</label>
-                        <select class="form-control" name="" id="period_select" (change)="changePeriod(true)"
-                            [(ngModel)]="selectedPeriodNK">
+                        <select class="form-control" name="" id="period_select" (change)="changePeriod(true)" [(ngModel)]="selectedPeriodNK">
                             <option *ngFor="let period of periodsNK" [ngValue]="period">{{period}}</option>
                         </select>
                     </div>
@@ -363,8 +355,7 @@
                 </div>
             </div>
             <div class="layout">
-                <table mat-table #table [dataSource]="dataSourceKNNK" *ngIf="dataSourceKNNK.data.length !== 0"
-                    class="table-layout" id="small-table">
+                <table mat-table #table [dataSource]="dataSourceKNNK" *ngIf="dataSourceKNNK.data.length !== 0" class="table-layout" id="small-table">
                     <ng-container matColumnDef="index">
                         <th mat-header-cell *matHeaderCellDef> STT </th>
                         <td mat-cell *matCellDef="let element; let i = index;">{{i+1}}</td>
@@ -386,8 +377,7 @@
                     </ng-container>
                     <ng-container matColumnDef="TRI_GIA">
                         <th mat-header-cell *matHeaderCellDef> Trị giá </th>
-                        <td mat-cell *matCellDef="let element"><input [(ngModel)]="element.tri_gia" type="number"
-                                [disabled]="true"> </td>
+                        <td mat-cell *matCellDef="let element"><input [(ngModel)]="element.tri_gia" type="number" [disabled]="true"> </td>
                     </ng-container>
                     <ng-container matColumnDef="DOI_TAC">
                         <th mat-header-cell *matHeaderCellDef> Đối tác </th>
@@ -400,8 +390,7 @@
                     <tr mat-row *matRowDef="let row; columns: displayedColumns;let i = index;"></tr>
                 </table>
             </div>
-            <mat-paginator #ImportPaginators [hidden]="dataSourceKNNK.data.length === 0"
-                [pageSizeOptions]="[5, 10, 20, 50, 100]" showFirstLastButtons></mat-paginator>
+            <mat-paginator #ImportPaginators [hidden]="dataSourceKNNK.data.length === 0" [pageSizeOptions]="[20, 50, 100]" showFirstLastButtons></mat-paginator>
             <div *ngIf="dataSourceKNNK.data.length !== 0">{{messageNK}}</div>
         </ng-container>
 

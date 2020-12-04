@@ -85,7 +85,7 @@ export class DomesticProductComponent implements OnInit {
   ngOnInit() {
     this.chartYearModelSelected = this.getCurrentYear();
     this.theYear = this.getCurrentYear();
-    this.theMonth = this.getCurrentMonth();
+    this.theMonth = (this.getCurrentMonth() - 1) == 0? 12 : this.getCurrentMonth() - 1;
     this.chartyears = this.initialYears();
     this.timeDomesticPrice = this.theMonth + "/" + this.theYear;
     this.getDomesticMarketProduct(this.theMonth, this.theYear);

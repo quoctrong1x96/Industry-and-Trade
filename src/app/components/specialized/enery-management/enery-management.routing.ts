@@ -4,8 +4,7 @@ import { CountrysideElectricComponent } from './countryside-electric/countryside
 import { UseFocusedEnergyComponent } from './use-focused-energy/use-focused-energy.component';
 import { CommonEnergyComponent } from './common-energy/common-energy.component';
 import { ElectricManagementComponent } from './electric-management/electric-management.component';
-import { BlockElectricComponent } from "./block-electric/block-electric.component";
-import { ManageApproveHddlComponent } from "./manage-approve-hddl/manage-approve-hddl.component"
+import { ElectricalPlanComponent } from './electrical-plan/electrical-plan.component';
 const routes: Routes = [
   
   {
@@ -43,18 +42,11 @@ const routes: Routes = [
         component: UseFocusedEnergyComponent
       },
       {
-        path: 'block_electric',
+        path: 'electrical_plan',
         data: {
-          title: 'Điện sinh khối',
+          title: 'QH lưới điện 110 trở lên',
         },
-        component: BlockElectricComponent
-      },
-      {
-        path: 'manage_aprove_hddl',
-        data: {
-          title: 'Điện sinh khối',
-        },
-        component: ManageApproveHddlComponent
+        component: ElectricalPlanComponent
       },
     
     ],

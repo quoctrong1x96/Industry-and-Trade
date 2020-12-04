@@ -75,6 +75,7 @@ export class LiquorBusinessComponent implements OnInit {
             });
 
             this.filteredDataSource.data = [...this.dataSource.data];
+            console.log(this.filteredDataSource.data);
             // this.filteredDataSource.data = this.filteredDataSource.data.concat(this.filteredDataSource.data);
             // this.filteredDataSource.data = this.filteredDataSource.data.concat(this.filteredDataSource.data);
             // this.filteredDataSource.data = this.filteredDataSource.data.concat(this.filteredDataSource.data);

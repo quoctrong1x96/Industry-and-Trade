@@ -67,7 +67,7 @@ export class PetrolBusinessComponent implements OnInit {
     }
 
     getDanhSachBuonBanLeXangDau(time_id: number) {
-        this.sctService.GetDanhSachBanLeXangDau(time_id).subscribe(result => {
+        this.sctService.GetDanhSachBanLeXangDau(2020).subscribe(result => {
             this.dataSource = new MatTableDataSource<ConditionalBusinessLineModel>(result.data[0]);
 
 
@@ -79,8 +79,7 @@ export class PetrolBusinessComponent implements OnInit {
                 });
             });
 
-
-            this.filteredDataSource.data = [...this.dataSource.data];
+            this.filteredDataSource.data = [...this.dataSource.data.filter( x => new Date(x.ngay_cap).getFullYear() == time_id)];
             this.sanLuongBanRa = this.filteredDataSource.data.length ? this.filteredDataSource.data.map(x => x.san_luong).reduce((a, b) => a + b) : 0;
             this.filteredDataSource.paginator = this.paginator;
             this.paginator._intl.itemsPerPageLabel = 'Số hàng';

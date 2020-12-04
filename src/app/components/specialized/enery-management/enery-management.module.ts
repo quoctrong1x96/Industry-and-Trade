@@ -13,10 +13,9 @@ import {SolarEneryManagementComponent} from './solar-enery-management/solor-ener
 import { ElectricDevelopmentManagementComponent } from './electricity-development/electricity-development.component';
 import { PowerProductionManagementComponent } from './power-production/power-production.component';
 import { RuralElectricManagementComponent } from './rural-electric/rural-electric-management.component';
-import { BlockElectricComponent } from './block-electric/block-electric.component';
-import { ManageApproveHddlComponent } from './manage-approve-hddl/manage-approve-hddl.component';
-import { ConsultantElectricComponent } from './manage-approve-hddl/consultant-electric/consultant-electric.component';
-import { ManufacturingElectronicComponent } from './manage-approve-hddl/manufacturing-electronic/manufacturing-electronic.component';
+import { ElectricalPlanComponent } from './electrical-plan/electrical-plan.component';
+import { CurrentElectricalPlanComponent } from './current-electrical-plan/current-electrical-plan.component';
+import { FutureElectricalPlanComponent } from './future-electrical-plan/future-electrical-plan.component';
 
 
 @NgModule({
@@ -39,10 +38,9 @@ import { ManufacturingElectronicComponent } from './manage-approve-hddl/manufact
     ElectricDevelopmentManagementComponent,
     PowerProductionManagementComponent,
     RuralElectricManagementComponent,
-    BlockElectricComponent,
-    ManageApproveHddlComponent,
-    ConsultantElectricComponent,
-    ManufacturingElectronicComponent,
+    ElectricalPlanComponent,
+    CurrentElectricalPlanComponent,
+    FutureElectricalPlanComponent
 ],
   entryComponents: []
 })

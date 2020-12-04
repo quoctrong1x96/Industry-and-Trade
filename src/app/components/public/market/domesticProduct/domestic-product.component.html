@@ -12,11 +12,9 @@
             <div class="col-lg-2">
                 <mat-form-field appearance="outline">
                     <mat-label>Thời gian</mat-label>
-                    <input matInput [matDatepicker]="dp" [formControl]="date" (dateChange)="addEvent('change', $event)"
-                        readonly>
+                    <input matInput [matDatepicker]="dp" [formControl]="date" (dateChange)="addEvent('change', $event)" readonly>
                     <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
-                    <mat-datepicker #dp startView="multi-year" (yearSelected)="chosenYearHandler($event)"
-                        (monthSelected)="chosenMonthHandler($event, dp)" panelClass="example-month-picker">
+                    <mat-datepicker #dp startView="multi-year" (yearSelected)="chosenYearHandler($event)" (monthSelected)="chosenMonthHandler($event, dp)" panelClass="example-month-picker">
                     </mat-datepicker>
                 </mat-form-field>
             </div>
@@ -65,6 +63,6 @@
                 <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
             </table>
         </div>
-        <mat-paginator [pageSizeOptions]="[5, 10, 20, 50, 100]" showFirstLastButtons></mat-paginator>
+        <mat-paginator [pageSizeOptions]="[20, 50, 100]" showFirstLastButtons></mat-paginator>
     </mat-card-content>
 </mat-card>

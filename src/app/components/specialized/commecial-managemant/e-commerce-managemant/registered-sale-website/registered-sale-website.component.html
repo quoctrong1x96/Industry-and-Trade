@@ -58,8 +58,7 @@
                     <div class="col-3 col-lg-3">
                         <mat-form-field appearance="outline">
                             <mat-label>Địa bàn</mat-label>
-                            <mat-select placeholder="Chọn địa bàn" (selectionChange)="applyFilter()"
-                                [(ngModel)]="filterModel.id_quan_huyen" multiple>
+                            <mat-select placeholder="Chọn địa bàn" (selectionChange)="applyFilter()" [(ngModel)]="filterModel.id_quan_huyen" multiple>
                                 <mat-option *ngFor='let district of districts' [value]='district.id'>
                                     {{district.ten_quan_huyen}}
                                 </mat-option>
@@ -106,9 +105,7 @@
 
                         <ng-container matColumnDef="ten_mien">
                             <th mat-header-cell *matHeaderCellDef> Tên miền </th>
-                            <td mat-cell *matCellDef="let element" class="stt"><a
-                                    href="{{element.ten_mien.includes('http')? element.ten_mien : 'http://' + element.ten_mien}}"
-                                    target="_blank">{{element.ten_mien}}</a></td>
+                            <td mat-cell *matCellDef="let element" class="stt"><a href="{{element.ten_mien.includes('http')? element.ten_mien : 'http://' + element.ten_mien}}" target="_blank">{{element.ten_mien}}</a></td>
                         </ng-container>
 
                         <ng-container matColumnDef="nganh_nghe">
@@ -126,7 +123,7 @@
                         <tr mat-row *matRowDef="let row; columns: displayedColumns;let i = index; ">
                     </table>
                 </div>
-                <mat-paginator [pageSizeOptions]="[5, 10, 20, 50, 100]" showFirstLastButtons></mat-paginator>
+                <mat-paginator [pageSizeOptions]="[20, 50, 100]" showFirstLastButtons></mat-paginator>
 
                 <ng-template #ShowEmpty>
                     <h1>Không có dữ liệu</h1>

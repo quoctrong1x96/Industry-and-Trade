@@ -16,28 +16,17 @@ export class HydroElectricManagementModel {
 
     Tdn: string;
     mst: string;
-    Dd: string;
-    Cx: string;
-    Lnxbq: string;
-    Dthc: number;
-    Sl6tck: number;
-    Slnck: number;
-    Dt: number;
-    trang_thai: string;
-
-    Paupttcctvhd: string;
-    Pdpauptt: string;
-    Paupvthkcdhctd: string;
-    Qtvhhctd: string;
-    Qtdhctd: string;
-    Kdd: string;
-    Ldhtcbvhd: string;
-    Btct: string;
-    Lcsdlhctd: string;
-    Pabvdhctd: string;
-    Bcdgatdhctd: string;
-    Bchtatdhctd: string;
-    Tkdkatdhctd: string;
+    ten_doanh_nghiep: string;
+    ten_phuong_xa: string;
+    ten_huyen_thi: string;
+    ma_huyen_thi: number;
+    cong_suat_thiet_ke:number;
+    luong_nuoc_xa:number;
+    dung_tich_ho:number;
+    san_luong_6_thang:number;
+    san_luong_nam:number;
+    doanh_thu:number;
+    trang_thai:string;
 
 }
 
@@ -47,11 +36,12 @@ export class SolarEneryManagementModel {
     ten_doanh_nghiep: string;
     ten_huyen_thi: string;
     ma_huyen_thi: number;
-    cong_xuat_thiet_ke: number;
-    san_luong_6_thang: number;
-    san_luong_nam: number;
-    doanh_thu: number;
-    trang_thai: string;
+    cong_suat_thiet_ke:number;
+    san_luong_6_thang:number;
+    san_luong_nam:number;
+    doanh_thu:number;
+    trang_thai:string;
+
 }
 
 export class ElectricityDevelopmentModel {
@@ -123,23 +113,17 @@ export class UserForcusEnergy {
 
 }
 
-export class BlockElectricModel{
-    ten_du_an: string;
-    ten_doanh_nghiep: string;
-    dia_chi:string;
-    cong_xuat_thiet_ke:number;
-    san_luong_6_thang:number;
-    san_luong_nam:number;
-    doanh_thu:number;
-    trang_thai:string;
-}
-
-export class ManageAproveElectronic {
-    ten_doanh_nghiep: string;
-    dia_chi:string;
-    so_dien_thoai:string;
-    so_giay_phep:string;
-    ngay_cap: string;
-    ngay_het_han: string;
-    id_group: number;
+export class ElectricalPlan{
+    ten_tram : string;
+    duong_day_so_mach : string;
+    tba : number;
+    tiet_dien_day_dan : string;
+    dien_ap : string;
+    chieu_dai : number;
+    p_max : number;
+    p_min : number;
+    p_tb : number;
+    mang_tai : number;
+    loai_quy_hoach : number;
+    trang_thai_hoat_dong : number;
 }
