@@ -49,7 +49,7 @@ export class ImportManagementComponent implements OnInit, AfterViewInit {
   tonggiatricongdon_tc: number = 0;
   isChecked: boolean;
   pagesize: number = 0;
-  curentmonth: number = new Date().getMonth() + 1;
+  curentmonth: number = new Date().getMonth();
   @ViewChild('table', { static: false }) table: ElementRef;
   @ViewChild(MatAccordion, { static: true }) accordion: MatAccordion;
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
