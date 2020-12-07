@@ -46,7 +46,7 @@ export class ExportManagementComponent implements OnInit {
     TongGiaTriCongDon: number = 0;
     isChecked: boolean;
     pagesize: number = 0;
-    curentmonth: number = new Date().getMonth() + 1;
+    curentmonth: number = new Date().getMonth();
     @ViewChild("table", { static: false }) table: ElementRef;
     @ViewChild(MatAccordion, { static: true }) accordion: MatAccordion;
     @ViewChild("paginator", { static: false }) paginator: MatPaginator;
