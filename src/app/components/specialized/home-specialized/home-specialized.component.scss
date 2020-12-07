@@ -1,18 +1,18 @@
 .basic-1 {
-    padding-top: 1rem;
+	padding-top: 1rem;
 }
 
 .basic-1 .text-container {
-    margin-bottom: 0;
+	margin-bottom: 0;
 }
 .basic-1 .text-container {
-    margin-top: 1.875rem;
-    margin-right: 3rem;
+	margin-top: 1.875rem;
+	margin-right: 3rem;
 }
 
 .basic-1 {
-    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), 
-    url('src/assets/img/background/header-background.jpg');
+	background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)),
+		url("src/assets/img/background/header-background.jpg");
 	background-size: cover;
 	padding-top: 0rem;
 	padding-bottom: 0rem;
@@ -23,7 +23,7 @@
 }
 
 .basic-1 .section-title {
-	color:  #1f7ed0;
+	color: orange;
 	margin-bottom: 0.5rem;
 }
 
@@ -60,25 +60,25 @@
 }
 
 .cards-1 .card {
-    display: inline-block;
-    max-width: 17.5rem;
-    text-align: left;
-    vertical-align: top;
-    cursor: pointer !important;
+	display: inline-block;
+	max-width: 17.5rem;
+	text-align: left;
+	vertical-align: top;
+	cursor: pointer !important;
 }
 
-.cards-1 div.card:nth-child(3n+2) {
-    margin-right: 2.5rem;
-    margin-left: 2.5rem;
+.cards-1 div.card:nth-child(3n + 2) {
+	margin-right: 2.5rem;
+	margin-left: 2.5rem;
 }
 /* Description */
 .cards-1 .card {
-    max-width: 21rem;
+	max-width: 21rem;
 }
 
-.cards-1 div.card:nth-child(3n+2) {
-    margin-right: 2.875rem;
-    margin-left: 2.875rem;
+.cards-1 div.card:nth-child(3n + 2) {
+	margin-right: 2.875rem;
+	margin-left: 2.875rem;
 }
 /* end of description */
 
@@ -110,7 +110,7 @@
 	position: absolute;
 	width: 6rem;
 	height: 6rem;
-	background: url('src/assets/img/background/hexagon-green.svg') center center no-repeat;
+	background: url("src/assets/img/background/hexagon-green.svg") center center no-repeat;
 	background-size: 6rem 6rem;
 }
 
@@ -126,37 +126,44 @@
 .cards-1 .card-title {
 	margin-bottom: 0.625rem;
 }
- /*------------------------------------*/
+
+/*------------------------------------*/
 .fa-binoculars:before {
-    content: "\f1e5";
+	content: "\f1e5";
 }
 .fa-stack {
-    display: inline-block;
-    height: 2em;
-    line-height: 2em;
-    position: relative;
-    vertical-align: middle;
-    width: 2em;
+	display: inline-block;
+	height: 2em;
+	line-height: 2em;
+	position: relative;
+	vertical-align: middle;
+	width: 2em;
 }
-.fa, .fas {
-    font-family: 'Font Awesome 5 Free';
-    font-weight: 900;
+.fa,
+.fas {
+	font-family: "Font Awesome 5 Free";
+	font-weight: 900;
 }
 .fa-stack-1x {
-    line-height: inherit;
+	line-height: inherit;
 }
-.fa-stack-1x, .fa-stack-2x {
-    left: 0;
-    position: absolute;
-    text-align: center;
-    width: 100%;
+.fa-stack-1x,
+.fa-stack-2x {
+	left: 0;
+	position: absolute;
+	text-align: center;
+	width: 100%;
 }
-.fa, .fas, .far, .fal, .fab {
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
-    display: inline-block;
-    font-style: normal;
-    font-variant: normal;
-    text-rendering: auto;
-    line-height: 1;
+.fa,
+.fas,
+.far,
+.fal,
+.fab {
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	display: inline-block;
+	font-style: normal;
+	font-variant: normal;
+	text-rendering: auto;
+	line-height: 1;
 }
