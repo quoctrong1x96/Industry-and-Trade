@@ -54,10 +54,7 @@
                         </mat-card>
                     </div>
                 </div>
-
-                <br>
-
-                <br>
+                
                 <div class="row">
                     <div class="col-6 col-lg-6">
                         <mat-card class="card4" id="card4-3">
@@ -99,7 +96,8 @@
                                         Tổng số TTTM đầu tư xây dựng trong năm <span>{{year}}</span> là:
                                         <span>{{tttmDauTuTrongNam}}</span>
                                     </li>
-                                    <li>Chênh lệch số TTTM đầu tư xây dựng trong năm <span>{{year}}</span> so với năm trước là:
+                                    <li>Chênh lệch số TTTM đầu tư xây dựng trong năm <span>{{year}}</span> so với năm
+                                        trước là:
                                         <span>{{tttmDauTuTrongNam - tttmDauTuNamTruoc}}</span>
                                     </li>
                                     <li>
@@ -107,7 +105,8 @@
                                         <span>0</span>
                                     </li>
                                     <li>
-                                        Chênh lệch số TTTM ngừng hoạt động trong năm <span>{{year}}</span> so với năm trước là: <span>0</span>
+                                        Chênh lệch số TTTM ngừng hoạt động trong năm <span>{{year}}</span> so với năm
+                                        trước là: <span>0</span>
                                     </li>
                                 </ul>
                             </mat-card-content>
@@ -140,7 +139,8 @@
                     <div class="col-3 col-lg-3">
                         <mat-form-field appearance="outline">
                             <mat-label>Địa bàn</mat-label>
-                            <mat-select (selectionChange)="applyFilter()" [(ngModel)]="filterModel.id_quan_huyen" multiple>
+                            <mat-select (selectionChange)="applyFilter()" [(ngModel)]="filterModel.id_quan_huyen"
+                                multiple>
                                 <mat-option *ngFor='let district of districts' [value]='district.id'>
                                     {{district.ten_quan_huyen}}
                                 </mat-option>

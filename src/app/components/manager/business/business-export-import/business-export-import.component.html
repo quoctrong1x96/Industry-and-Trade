@@ -125,7 +125,7 @@
             <div *ngIf="!dataSource.data.length">
                 <h1 class="text-center">Không có dữ liệu</h1>
             </div>
-            <mat-paginator #scheduledOrdersPaginator1 [pageSizeOptions]="[5, 19, 20]" showFirstLastButtons>
+            <mat-paginator #scheduledOrdersPaginator1 [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
             </mat-paginator>
         </div>
         <hr>
@@ -195,7 +195,6 @@
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             </table>
             <div *ngIf="!dataSourceImport.data.length">
-                <br>
                 <h1 class="text-center">Không có dữ liệu</h1>
             </div>
             <mat-paginator #scheduledOrdersPaginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>

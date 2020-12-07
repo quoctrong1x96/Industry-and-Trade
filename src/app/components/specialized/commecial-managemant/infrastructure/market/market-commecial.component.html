@@ -61,7 +61,6 @@
                                 </ul>
                             </mat-card-content>
                         </mat-card>
-
                     </div>
                     <div class="col-4 col-lg-4">
                         <mat-card class="card4" id="card4-3">
@@ -74,10 +73,12 @@
                             <mat-card-content>
                                 <ul>
                                     <li>
-                                        Chợ cải tạo trong năm {{year}} là: <span>{{choCaiTao}}</span> tăng/giảm so với năm {{year}} là: <span>{{soSanhChoCaiTao}}</span>
+                                        Chợ cải tạo trong năm {{year}} là: <span>{{choCaiTao}}</span> tăng/giảm so với
+                                        năm {{year}} là: <span>{{soSanhChoCaiTao}}</span>
                                     </li>
                                     <li>
-                                        Chợ xây mới trong năm {{year}} là: <span>{{choXayMoi}}</span> tăng/giảm so với năm {{year}} là: <span>{{soSanhChoXayMoi}}</span>
+                                        Chợ xây mới trong năm {{year}} là: <span>{{choXayMoi}}</span> tăng/giảm so với
+                                        năm {{year}} là: <span>{{soSanhChoXayMoi}}</span>
                                     </li>
                                 </ul>
                             </mat-card-content>
@@ -85,7 +86,6 @@
                     </div>
                 </div>
 
-                <br>
                 <div class="row">
                     <div class="col-4 col-lg-4">
                         <mat-card class="card4">
@@ -148,8 +148,7 @@
                         </mat-card>
                     </div>
                 </div>
-
-                <br>
+                
                 <div class="row">
                     <div class="col-4 col-lg-4">
                         <mat-card class="card4" id="card4-1">
@@ -300,14 +299,17 @@
                                 'not-input' : 'input'" mat-cell *cdkCellDef="let row; let rowIndex = index">
                                 <!-- Trường hợp cột tên chỉ tiêu thì  dùngclass chitieu,
                                     nếu là cột default khác thì dùng not-input, các cột chỉ tiêu bình thường thì input-->
-                                <div [ngClass]="{'not-input-r': column.attr_code != ATTRIBUTE_CODE && column.attr_code != UNIT_CODE}">
+                                <div
+                                    [ngClass]="{'not-input-r': column.attr_code != ATTRIBUTE_CODE && column.attr_code != UNIT_CODE}">
                                     {{row[column.is_default === 1? column.attr_code.toLowerCase(): column.fld_code.toLowerCase()]}}
                                 </div>
                             </td>
                         </ng-container>
                         <div *ngFor="let table of tableMergeHader">
-                            <ng-container *ngFor="let mergeHeader of table.headerMerge;" [cdkColumnDef]="mergeHeader.colName">
-                                <th mat-header-cell *matHeaderCellDef style="text-align: center;" [attr.colspan]="mergeHeader.colLenght">{{mergeHeader.colText}} </th>
+                            <ng-container *ngFor="let mergeHeader of table.headerMerge;"
+                                [cdkColumnDef]="mergeHeader.colName">
+                                <th mat-header-cell *matHeaderCellDef style="text-align: center;"
+                                    [attr.colspan]="mergeHeader.colLenght">{{mergeHeader.colText}} </th>
                             </ng-container>
                             <tr mat-header-row *matHeaderRowDef="table.headerColName;"> </tr>
                         </div>
