@@ -16,8 +16,10 @@ import { RuralElectricManagementComponent } from './rural-electric/rural-electri
 import { ElectricalPlanComponent } from './electrical-plan/electrical-plan.component';
 import { CurrentElectricalPlanComponent } from './current-electrical-plan/current-electrical-plan.component';
 import { FutureElectricalPlanComponent } from './future-electrical-plan/future-electrical-plan.component';
-
-
+import {BlockElectricComponent} from './block-electric/block-electric.component'
+import { ManageApproveHddlComponent } from "./manage-approve-hddl/manage-approve-hddl.component";
+import { ConsultantElectricComponent } from "./manage-approve-hddl/consultant-electric/consultant-electric.component";
+import { ManufacturingElectronicComponent } from "./manage-approve-hddl/manufacturing-electronic/manufacturing-electronic.component";
 @NgModule({
   imports: [
     CommonModule,
@@ -40,7 +42,11 @@ import { FutureElectricalPlanComponent } from './future-electrical-plan/future-e
     RuralElectricManagementComponent,
     ElectricalPlanComponent,
     CurrentElectricalPlanComponent,
-    FutureElectricalPlanComponent
+    FutureElectricalPlanComponent,
+    BlockElectricComponent,
+    ManageApproveHddlComponent,
+    ConsultantElectricComponent,
+    ManufacturingElectronicComponent
 ],
   entryComponents: []
 })

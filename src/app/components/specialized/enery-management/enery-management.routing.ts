@@ -5,6 +5,8 @@ import { UseFocusedEnergyComponent } from './use-focused-energy/use-focused-ener
 import { CommonEnergyComponent } from './common-energy/common-energy.component';
 import { ElectricManagementComponent } from './electric-management/electric-management.component';
 import { ElectricalPlanComponent } from './electrical-plan/electrical-plan.component';
+import { BlockElectricComponent } from './block-electric/block-electric.component';
+import { ManageApproveHddlComponent } from './manage-approve-hddl/manage-approve-hddl.component';
 const routes: Routes = [
   
   {
@@ -48,7 +50,20 @@ const routes: Routes = [
         },
         component: ElectricalPlanComponent
       },
-    
+      {
+        path: 'block_electric',
+        data: {
+          title: 'Điện sinh khối',
+        },
+        component: BlockElectricComponent
+      },
+      {
+        path: 'manage_aprove_hddl',
+        data: {
+          title: 'Điện sinh khối',
+        },
+        component: ManageApproveHddlComponent
+      },
     ],
   },
   
