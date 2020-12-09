@@ -30,4 +30,5 @@ export class ConditionalBusinessLineModel {
     id_quan_huyen : number;
     is_het_han : boolean;
     ten_cua_hang : string;
+    so_luong_thuong_nhan : number;
 }

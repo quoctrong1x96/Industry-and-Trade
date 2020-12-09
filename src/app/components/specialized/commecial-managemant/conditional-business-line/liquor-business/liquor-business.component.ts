@@ -44,7 +44,7 @@ export class LiquorBusinessComponent implements OnInit {
 
     ngOnInit() {
         this.years = this.getYears();
-        this.getDanhSachBanRuou(2020);
+        this.getDanhSachBanRuou(0);
 
         // this.filteredDataSource.filterPredicate = function (data: ConditionalBusinessLineModel, filter): boolean {
         //     return String(data.is_het_han).includes(filter);
@@ -63,7 +63,7 @@ export class LiquorBusinessComponent implements OnInit {
     // }
 
     getDanhSachBanRuou(time_id: number) {
-        this.sctService.GetDanhSachBuonBanRuou(time_id).subscribe(result => {
+        this.sctService.GetDanhSachBuonBanRuou(2020).subscribe(result => {
             this.dataSource = new MatTableDataSource<ConditionalBusinessLineModel>(result.data[0]);
 
             this.dataSource.data.forEach(element => {
@@ -74,11 +74,11 @@ export class LiquorBusinessComponent implements OnInit {
                 });
             });
 
-            this.filteredDataSource.data = [...this.dataSource.data];
-            console.log(this.filteredDataSource.data);
-            // this.filteredDataSource.data = this.filteredDataSource.data.concat(this.filteredDataSource.data);
-            // this.filteredDataSource.data = this.filteredDataSource.data.concat(this.filteredDataSource.data);
-            // this.filteredDataSource.data = this.filteredDataSource.data.concat(this.filteredDataSource.data);
+
+            if (time_id != 0)
+                this.filteredDataSource.data = [...this.dataSource.data.filter(x => new Date(x.ngay_cap).getFullYear() == time_id)];
+            else
+                this.filteredDataSource.data = [...this.dataSource.data];
 
             this.sanLuongBanRa = this.filteredDataSource.data.length ? this.filteredDataSource.data.map(x => x.san_luong).reduce((a, b) => a + b) : 0;
             this.giaTriSanPham = this.filteredDataSource.data.length ? this.filteredDataSource.data.map(x => x.tri_gia).reduce((a, b) => a + b) : 0 / 1000;
@@ -101,7 +101,7 @@ export class LiquorBusinessComponent implements OnInit {
     }
 
     getYears() {
-        return Array(5).fill(1).map((element, index) => new Date().getFullYear() - index);
+        return [0, ...Array(5).fill(1).map((element, index) => new Date().getFullYear() - index)];
     }
 
     applyDistrictFilter(event) {
