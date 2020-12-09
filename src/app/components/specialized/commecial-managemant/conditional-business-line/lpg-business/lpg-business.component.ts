@@ -43,7 +43,7 @@ export class LPGBusinessComponent implements OnInit {
 
     ngOnInit() {
         this.years = this.getYears();
-        this.getDanhSachBuonBanLPG(2020);
+        this.getDanhSachBuonBanLPG(0);
 
         // this.filteredDataSource.filterPredicate = function (data: ConditionalBusinessLineModel, filter): boolean {
         //     return String(data.is_het_han).includes(filter);
@@ -67,7 +67,7 @@ export class LPGBusinessComponent implements OnInit {
     }
 
     getDanhSachBuonBanLPG(time_id: number) {
-        this.sctService.GetDanhSachBuonBanLPG(time_id).subscribe(result => {
+        this.sctService.GetDanhSachBuonBanLPG(2020).subscribe(result => {
             this.dataSource = new MatTableDataSource<ConditionalBusinessLineModel>(result.data[0]);
             console.log(this.dataSource);
 
@@ -79,7 +79,11 @@ export class LPGBusinessComponent implements OnInit {
                 });
             });
 
-            this.filteredDataSource.data = [...this.dataSource.data];
+            if (time_id != 0)
+                this.filteredDataSource.data = [...this.dataSource.data.filter(x => new Date(x.ngay_cap).getFullYear() == time_id)];
+            else
+                this.filteredDataSource.data = [...this.dataSource.data];
+
             // this.filteredDataSource.data = this.filteredDataSource.data.concat(this.filteredDataSource.data);
             // this.filteredDataSource.data = this.filteredDataSource.data.concat(this.filteredDataSource.data);
             // this.filteredDataSource.data = this.filteredDataSource.data.concat(this.filteredDataSource.data);
@@ -98,7 +102,7 @@ export class LPGBusinessComponent implements OnInit {
     }
 
     getYears() {
-        return Array(5).fill(1).map((element, index) => new Date().getFullYear() - index);
+        return [0, ...Array(5).fill(1).map((element, index) => new Date().getFullYear() - index)];
     }
 
     applyDistrictFilter(event) {

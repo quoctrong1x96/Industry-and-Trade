@@ -33,6 +33,7 @@ export class PetrolBusinessComponent implements OnInit {
     { id: 11, ten_quan_huyen: 'Huyện Phú Riềng' }];
     sanLuongBanRa: number;
     soLuongDoanhNghiep: number;
+    soLuongThuongNhanCungCap : number;
     isChecked: boolean;
 
     @ViewChild('table', { static: false }) table: ElementRef;
@@ -47,7 +48,7 @@ export class PetrolBusinessComponent implements OnInit {
         // this.filteredDataSource.filterPredicate = function (data: ConditionalBusinessLineModel, filter): boolean {
         //     return String(data.is_het_han).includes(filter);
         // };
-        this.getDanhSachBuonBanLeXangDau(2020);
+        this.getDanhSachBuonBanLeXangDau(0);
         this.autoOpen();
     }
 
@@ -73,14 +74,21 @@ export class PetrolBusinessComponent implements OnInit {
 
             this.dataSource.data.forEach(element => {
                 element.is_het_han = new Date(element.ngay_het_han) < new Date();
+                element.so_luong_thuong_nhan = 0;
                 result.data[1].forEach(businessman => {
                     if (businessman.id_kd_co_dk === element.id)
+                    {
                         element.danh_sach_thuong_nhan += businessman.ten_thuong_nhan + '\n';
+                        element.so_luong_thuong_nhan++;
+                    }
                 });
             });
-
-            this.filteredDataSource.data = [...this.dataSource.data.filter( x => new Date(x.ngay_cap).getFullYear() == time_id)];
+            if (time_id != 0)
+                this.filteredDataSource.data = [...this.dataSource.data.filter(x => new Date(x.ngay_cap).getFullYear() == time_id)];
+            else
+                this.filteredDataSource.data = [...this.dataSource.data];
             this.sanLuongBanRa = this.filteredDataSource.data.length ? this.filteredDataSource.data.map(x => x.san_luong).reduce((a, b) => a + b) : 0;
+            this.soLuongThuongNhanCungCap = this.filteredDataSource.data.length ? this.filteredDataSource.data.map(x => x.so_luong_thuong_nhan).reduce((a, b) => a + b) : 0;
             this.filteredDataSource.paginator = this.paginator;
             this.paginator._intl.itemsPerPageLabel = 'Số hàng';
             this.paginator._intl.firstPageLabel = "Trang Đầu";
@@ -95,7 +103,7 @@ export class PetrolBusinessComponent implements OnInit {
     }
 
     getYears() {
-        return Array(5).fill(1).map((element, index) => new Date().getFullYear() - index);
+        return [0, ...Array(5).fill(1).map((element, index) => new Date().getFullYear() - index)];
     }
 
     applyDistrictFilter(event) {
@@ -115,6 +123,7 @@ export class PetrolBusinessComponent implements OnInit {
             this.filteredDataSource.data = filteredData;
         }
         this.sanLuongBanRa = this.filteredDataSource.data.length ? this.filteredDataSource.data.map(x => x.san_luong).reduce((a, b) => a + b) : 0;
+        this.soLuongThuongNhanCungCap = this.filteredDataSource.data.length ? this.filteredDataSource.data.map(x => x.so_luong_thuong_nhan).reduce((a, b) => a + b) : 0;
     }
 
     // isHidden(row : any){
