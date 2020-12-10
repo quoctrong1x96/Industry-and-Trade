@@ -33,9 +33,11 @@ export class StoreCommonModel {
     ngayhethangcn:Date;
     sdtlienhe: string;
     id_quan_huyen : number;
+    is_het_han? : boolean;
 }
 export class StoreFilterModel{
     id_quan_huyen : number[] = [];
+    is_het_han : boolean;
 }
 
 export class FoodCommonModel {
@@ -52,4 +54,5 @@ export class FoodCommonModel {
 
 export class FoodFilterModel{
     id_quan_huyen : number[] = [];
+    sanphamkinhdoanh : string[] = [];
 }

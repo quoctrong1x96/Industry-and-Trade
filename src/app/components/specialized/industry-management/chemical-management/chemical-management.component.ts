@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { MatTable, MatTableDataSource } from '@angular/material';
+import { MatOption, MatSelect, MatTable, MatTableDataSource } from '@angular/material';
 import { element } from 'protractor';
 import { ReportService } from 'src/app/_services/APIService/report.service';
 import { SCTService } from 'src/app/_services/APIService/sct.service';
@@ -157,5 +157,18 @@ export class ChemicalManagementComponent implements OnInit {
         XLSX.utils.book_append_sheet(wb, ws, sheetname);
         /* save to file */
         XLSX.writeFile(wb, excelFileName);
+    }
+    
+    @ViewChild('dSelect', { static: false }) dSelect: MatSelect;
+    allSelected = false;
+    toggleAllSelection() {
+        this.allSelected = !this.allSelected;  // to control select-unselect
+
+        if (this.allSelected) {
+            this.dSelect.options.forEach((item: MatOption) => item.select());
+        } else {
+            this.dSelect.options.forEach((item: MatOption) => item.deselect());
+        }
+        this.dSelect.close();
     }
 }
