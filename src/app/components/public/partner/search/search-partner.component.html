@@ -13,15 +13,13 @@
             <div class="col-lg-3">
                 <div class="form-group">
                     <label for="name_select">Tên công ty</label>
-                    <input id="name_select" class="form-control" [(ngModel)]="tempFilter.ten_doanh_nghiep" type="text"
-                        placeholder="Tên Doanh nghiệp" aria-label="Doanh nghiệp">
+                    <input id="name_select" class="form-control" [(ngModel)]="tempFilter.ten_doanh_nghiep" type="text" placeholder="Tên Doanh nghiệp" aria-label="Doanh nghiệp">
                 </div>
             </div>
             <div class="col-lg-3">
                 <div class="form-group">
                     <label for="selected_Career">Ngành nghề</label>
-                    <input id="selected_Career" class="form-control" [(ngModel)]="tempFilter.ten_nganh_nghe" type="text"
-                        placeholder="" aria-label="Doanh nghiệp">
+                    <input id="selected_Career" class="form-control" [(ngModel)]="tempFilter.ten_nganh_nghe" type="text" placeholder="" aria-label="Doanh nghiệp">
                 </div>
             </div>
             <div class="col-lg-2">
@@ -45,13 +43,13 @@
             <input id="inputt" matInput (keyup)="applyFilter($event)" placeholder="" #input>
         </mat-form-field> -->
 
-            <table mat-table matTableFilter [exampleEntity]="filterEntity" [filterType]="filterType"
-                [dataSource]="dataSource" class="table-layout" id="small-table1">
+            <table mat-table matTableFilter [exampleEntity]="filterEntity" [filterType]="filterType" [dataSource]="dataSource" class="table-layout" id="small-table1">
 
                 <ng-container matColumnDef="index" sticky>
                     <th mat-header-cell *matHeaderCellDef> STT
                     </th>
-                    <td mat-cell *matCellDef="let element; let i = index;"> {{i+1}} </td>
+                    <td mat-cell *matCellDef="let element; let i = index;"> {{this.paginator.pageIndex == 0 ? i + 1 : 1 + i + this.paginator.pageIndex * this.paginator.pageSize}}
+                    </td>
                 </ng-container>
 
                 <ng-container matColumnDef="ten_doanh_nghiep">

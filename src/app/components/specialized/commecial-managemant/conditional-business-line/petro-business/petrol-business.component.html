@@ -63,6 +63,20 @@
                             </mat-card-content>
                         </mat-card>
                     </div>
+                    <div class="col-4 col-lg-4">
+                        <mat-card class="card1">
+                            <mat-card-header>
+                                <!-- <div mat-card-avatar>
+                                </div> -->
+                                <mat-card-title>
+                                    <mat-icon>filter</mat-icon> SL thương nhân cung cấp:
+                                </mat-card-title>
+                            </mat-card-header>
+                            <mat-card-content>
+                                {{soLuongThuongNhanCungCap | number: '1.0-0'}} thương nhân
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
                 </div>
             </mat-expansion-panel>
 
@@ -81,7 +95,7 @@
                     <div class="col-3 col-lg-3">
                         <mat-form-field appearance="outline">
                             <mat-label>Kỳ dữ liệu</mat-label>
-                            <mat-select (selectionChange)="getDanhSachBuonBanLeXangDau($event.value)" [value]="2020">
+                            <mat-select (selectionChange)="getDanhSachBuonBanLeXangDau($event.value)" [value]="">
                                 <mat-option *ngFor='let year of years' [value]='year'>{{year}}</mat-option>
                             </mat-select>
                         </mat-form-field>
@@ -90,7 +104,8 @@
                     <div class="col-3 col-lg-3">
                         <mat-form-field appearance="outline">
                             <mat-label>Địa bàn</mat-label>
-                            <mat-select (selectionChange)="applyDistrictFilter($event)" multiple>
+                            <mat-select #dSelect (selectionChange)="applyDistrictFilter($event)" multiple>
+                                <mat-option [value]="0" (click)="toggleAllSelection()">Tất cả</mat-option>
                                 <mat-option *ngFor='let district of districts' [value]='district.id'>
                                     {{district.ten_quan_huyen}}
                                 </mat-option>
@@ -119,7 +134,8 @@
                     <table mat-table [dataSource]="filteredDataSource" class="table-layout" id="small-table2">
                         <ng-container matColumnDef="index">
                             <th mat-header-cell *matHeaderCellDef> STT </th>
-                            <td mat-cell *matCellDef="let element; let i = index;" class='stt'>{{i+1}}</td>
+                            <td mat-cell *matCellDef="let element; let i = index;"> {{this.paginator.pageIndex == 0 ? i + 1 : 1 + i + this.paginator.pageIndex * this.paginator.pageSize}}
+                            </td>
                         </ng-container>
 
                         <ng-container matColumnDef="mst">

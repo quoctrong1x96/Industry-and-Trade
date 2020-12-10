@@ -126,6 +126,7 @@ export class FoodManagementComponent implements OnInit {
   public tongDoanhNghiep: number;
   //
   filterModel: FoodFilterModel = new FoodFilterModel();
+  listProduct : string[] = [];
 
   //Angular FUnction --------------------------------------------------------------------
   constructor(
@@ -141,6 +142,8 @@ export class FoodManagementComponent implements OnInit {
     this.filteredDataSource.data = [...this.dataSourceHuyenThi.data];
     this._caculator(this.dataSourceHuyenThi.data);
     this.autoOpen();
+    this.listProduct = [...new Set( this.dataHuyenThi.map( x => x.sanphamkinhdoanh))];
+    console.log(this.listProduct);
   }
 
   autoOpen() {
@@ -191,7 +194,6 @@ export class FoodManagementComponent implements OnInit {
   // }
 
   applyFilter() {
-    console.log(this.filterModel)
     let filteredData = this.filterArray(this.dataSourceHuyenThi.data, this.filterModel);
     this._caculator(filteredData);
     if (!filteredData.length) {

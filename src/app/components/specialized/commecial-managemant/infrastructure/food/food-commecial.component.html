@@ -64,19 +64,20 @@
                         </mat-form-field>
                     </div>
                     <div class="col-3 col-lg-3">
-                        <!-- <mat-form-field appearance="outline">
-                            <mat-label>Kiểu sắp xếp</mat-label>
-                            <mat-select (selectionChange)="sortHeaderCondition($event.value)" [value]="'dientich'">
-                                <mat-option *ngFor='let header of headerArray' [value]='header'>{{header}}</mat-option>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Sản phẩm</mat-label>
+                            <mat-select (selectionChange)="applyFilter()" [(ngModel)]="filterModel.sanphamkinhdoanh" multiple>
+                                <mat-option *ngFor='let product of listProduct' [value]='product'>
+                                    {{product}}
+                                </mat-option>
                             </mat-select>
-                        </mat-form-field> -->
+                        </mat-form-field>
                     </div>
 
-
-                    <div class="col-3 col-lg-3 checkbox">
+                    <!-- <div class="col-3 col-lg-3 checkbox">
                         <mat-checkbox (change)="applyFilter()" [ngModel]="isChecked">Hết hạn ĐKKD
                         </mat-checkbox>
-                    </div>
+                    </div> -->
 
                     <div class="col-3 col-lg-3 button-control">
                         <button mat-raised-button (click)="exportExcel()">Xuất Excel</button>
