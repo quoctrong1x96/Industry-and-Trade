@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { MatTableDataSource } from '@angular/material';
+import { MatOption, MatSelect, MatTableDataSource } from '@angular/material';
 import { SaleWebsite, SaleWebsiteFilterModel, ECommerceWebsite } from 'src/app/_models/APIModel/e-commerce.model';
 import { District } from 'src/app/_models/district.model';
 import { SCTService } from 'src/app/_services/APIService/sct.service';
@@ -127,5 +127,18 @@ export class RegisteredSaleWebsiteComponent implements OnInit {
       }
     })
     return temp;
+  }
+  
+  @ViewChild('dSelect', { static: false }) dSelect: MatSelect;
+  allSelected = false;
+  toggleAllSelection() {
+      this.allSelected = !this.allSelected;  // to control select-unselect
+
+      if (this.allSelected) {
+          this.dSelect.options.forEach((item: MatOption) => item.select());
+      } else {
+          this.dSelect.options.forEach((item: MatOption) => item.deselect());
+      }
+      this.dSelect.close();
   }
 }

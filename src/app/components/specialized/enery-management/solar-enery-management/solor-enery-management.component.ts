@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { MatAccordion, MatPaginator, MatTable, MatTableDataSource } from '@angular/material';
+import { MatAccordion, MatOption, MatPaginator, MatSelect, MatTable, MatTableDataSource } from '@angular/material';
 import { DistrictModel } from 'src/app/_models/APIModel/domestic-market.model';
 import { HydroElectricManagementModel, SolarEneryManagementModel } from 'src/app/_models/APIModel/electric-management.module';
 import { LinkModel } from 'src/app/_models/link.model';
@@ -193,5 +193,18 @@ export class SolarEneryManagementComponent implements OnInit {
     this.filteredDataSource.filter = (event.checked) ? "true" : "";
     this.caculatorValue();
     this.paginatorAgain();
+  }
+  
+  @ViewChild('dSelect', { static: false }) dSelect: MatSelect;
+  allSelected = false;
+  toggleAllSelection() {
+      this.allSelected = !this.allSelected;  // to control select-unselect
+
+      if (this.allSelected) {
+          this.dSelect.options.forEach((item: MatOption) => item.select());
+      } else {
+          this.dSelect.options.forEach((item: MatOption) => item.deselect());
+      }
+      this.dSelect.close();
   }
 }
