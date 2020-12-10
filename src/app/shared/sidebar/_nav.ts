@@ -372,7 +372,7 @@ export const navItemsSpecialized: INavItem[] = [
         name: 'Cụm Công nghiệp',
         url: '/specialized/industry-management/cluster',
         icon: 'location_city',
-        manager:true,
+        manager: true,
         expand: false,
         children: [
           {
@@ -391,6 +391,11 @@ export const navItemsSpecialized: INavItem[] = [
             icon: 'feedback',
           },
         ]
+      },
+      {
+        name: 'Công bố hợp quy',
+        url: '/specialized/industry-management/cr',
+        icon: 'filter_9_plus',
       },
       // {
       //   name: 'Công bố hợp quy',

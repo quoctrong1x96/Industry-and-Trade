@@ -169,6 +169,12 @@
                     padding-left: 0px !important;
                     padding-right: 0px !important;
                 }
+                .img-zoom {
+                    transition: transform 0.2s;
+                }
+                .img-zoom:hover {
+                    transform: scale(3);
+                }
                 .mat-header-cell {
                     background-color: $blue;
                     color: $white;
@@ -178,6 +184,7 @@
                     font-size: 15px;
                     text-align: center;
                     height: 50px;
+                    z-index: -5;
                 }
                 .mat-footer-cell {
                     border: 0.01em solid rgb(192, 192, 192);
