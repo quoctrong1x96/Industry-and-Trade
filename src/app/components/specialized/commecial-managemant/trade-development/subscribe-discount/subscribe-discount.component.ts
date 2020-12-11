@@ -1,12 +1,13 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { MatTable, MatTableDataSource } from '@angular/material';
+import { MatOption, MatSelect, MatTable, MatTableDataSource } from '@angular/material';
 import { element } from 'protractor';
 import { SCTService } from 'src/app/_services/APIService/sct.service';
 import { MatAccordion } from '@angular/material/expansion';
 import { MatPaginator } from '@angular/material/paginator';
 import { District } from 'src/app/_models/district.model';
-import { SD, SDType } from 'src/app/_models/APIModel/trade-development.model';
+import { SD, SDFilterModel } from 'src/app/_models/APIModel/trade-development.model';
 import * as XLSX from 'xlsx';
+import { throwIfEmpty } from 'rxjs/operators';
 
 @Component({
   selector: 'app-subscribe-discount',
@@ -24,10 +25,11 @@ export class SubscribeDiscountComponent implements OnInit {
       Thoi_gian_KM: '10/7/2020 - 30/9/2020',
       Hang_hoa_dung_de_KM: 'Xe máy (Airblade 125, Wave RSX, Wave Blade, Wave Alpha, Quạt điều hòa Kangaroo KG50F62), quạt điều hòa, áo mua, mũ bảo hiểm',
       Dia_diem_KM: '3 địa điểm: KP5, TT Tân Khai, Hớn Quản; ấp 3B, xã Minh Hưng, huyện Chơn Thành; KP Phú Nghĩa, P. Phú Đức, Tx.Bình Long',
-      Hinh_thuc_KM: 'Bốc thăm ',
+      Hinh_thuc_KM: 'Bốc thăm',
       So_Van_ban: '1089/SCT-VP',
       Co_quan_ban_hanh: 'Sở Công Thương',
-      Ngay_thang_nam: '07-07-2020'
+      Ngay_thang_nam: '07-07-2020',
+      Id_quan_huyen: 5
     },
     {
       Ten_doanh_nghiep: 'Công ty TNHH MTV An An Bách Việt Nam',
@@ -40,7 +42,8 @@ export class SubscribeDiscountComponent implements OnInit {
       Hinh_thuc_KM: 'Rút thăm',
       So_Van_ban: '1113/SCT-VP',
       Co_quan_ban_hanh: 'Sở Công Thương',
-      Ngay_thang_nam: '07-09-2020'
+      Ngay_thang_nam: '07-09-2020',
+      Id_quan_huyen: 9
     },
     {
       Ten_doanh_nghiep: 'Công ty TNHH MTV TMDV Sài Gòn - Bình Phước',
@@ -53,7 +56,8 @@ export class SubscribeDiscountComponent implements OnInit {
       Hinh_thuc_KM: 'Rút thăm',
       So_Van_ban: '730/SCT-VP',
       Co_quan_ban_hanh: 'Sở Công Thương',
-      Ngay_thang_nam: '15-05-2020'
+      Ngay_thang_nam: '15-05-2020',
+      Id_quan_huyen: 2
     },
     {
       Ten_doanh_nghiep: 'Công ty TNHH xe máy Hưng Phát',
@@ -63,10 +67,11 @@ export class SubscribeDiscountComponent implements OnInit {
       Thoi_gian_KM: '01/4/2020 đến 30/6/2020',
       Hang_hoa_dung_de_KM: 'Xe máy (Airblade 125, Wave RSX, Wave Blade, Wave Alpha, Quạt điều hòa Kangaroo KG50F62), quạt điều hòa, áo mua, mũ bảo hiểm',
       Dia_diem_KM: '3 địa điểm: KP5, TT Tân Khai, Hớn Quản; ấp 3B, xã Minh Hưng, huyện Chơn Thành; KP Phú Nghĩa, P. Phú Đức, Tx.Bình Long',
-      Hinh_thuc_KM: 'Bốc thăm ',
+      Hinh_thuc_KM: 'Bốc thăm',
       So_Van_ban: '449/SCT-VP',
       Co_quan_ban_hanh: 'Sở Công Thương',
-      Ngay_thang_nam: '25-03-2020'
+      Ngay_thang_nam: '25-03-2020',
+      Id_quan_huyen: 5
     },
     {
       Ten_doanh_nghiep: 'Công ty TNHH xe máy Hưng Phát',
@@ -76,10 +81,11 @@ export class SubscribeDiscountComponent implements OnInit {
       Thoi_gian_KM: '15/4/2020 đến 15/7/2020',
       Hang_hoa_dung_de_KM: 'Xe máy (Airblade 125, Wave RSX, Wave Blade, Wave Alpha, Quạt điều hòa Kangaroo KG50F62), quạt điều hòa, áo mua, mũ bảo hiểm',
       Dia_diem_KM: 'KP. Ninh Phú, TT.Lộc Ninh, huyện Lộc Ninh',
-      Hinh_thuc_KM: 'Bốc thăm ',
+      Hinh_thuc_KM: 'Bốc thăm',
       So_Van_ban: '473/SCT-VP',
       Co_quan_ban_hanh: 'Sở Công Thương',
-      Ngay_thang_nam: '30-03-2020'
+      Ngay_thang_nam: '30-03-2020',
+      Id_quan_huyen: 5
     },
     {
       Ten_doanh_nghiep: 'Công ty CP Đầu tư BĐS Thành Phương',
@@ -89,10 +95,11 @@ export class SubscribeDiscountComponent implements OnInit {
       Thoi_gian_KM: '27/5/2020 đến 12/7/2020',
       Hang_hoa_dung_de_KM: 'Đồng hồ tự động, bật lửa Cartier, Vàng SIC, Voucher mua hàng tại siêu thị The Gold Mart',
       Dia_diem_KM: 'Khu đô thị TM DV Tiến Hưng, xã Tiến Hưng, TP.Đồng Xoài',
-      Hinh_thuc_KM: 'Bốc thăm ',
+      Hinh_thuc_KM: 'Bốc thăm',
       So_Van_ban: '151/SCT-VP',
       Co_quan_ban_hanh: 'Sở Công Thương',
-      Ngay_thang_nam: '20-05-2020'
+      Ngay_thang_nam: '20-05-2020',
+      Id_quan_huyen: 2
     },
     {
       Ten_doanh_nghiep: 'Chi nhánh Công ty TNHH TM Dung Vượng',
@@ -105,7 +112,8 @@ export class SubscribeDiscountComponent implements OnInit {
       Hinh_thuc_KM: 'Quay thưởng',
       So_Van_ban: '902/SCT-VP',
       Co_quan_ban_hanh: 'Sở Công Thương',
-      Ngay_thang_nam: '06-11-2020'
+      Ngay_thang_nam: '06-11-2020',
+      Id_quan_huyen: 2
     },
     {
       Ten_doanh_nghiep: 'Công ty CP Diana Unicharm',
@@ -118,7 +126,8 @@ export class SubscribeDiscountComponent implements OnInit {
       Hinh_thuc_KM: 'Quay may mắn xác định trúng thưởng',
       So_Van_ban: '877/SCT-VP',
       Co_quan_ban_hanh: 'Sở Công Thương',
-      Ngay_thang_nam: '06-08-2020'
+      Ngay_thang_nam: '06-08-2020',
+      Id_quan_huyen: 99
     },
     {
       Ten_doanh_nghiep: 'Viettel Bình Phước - CN Tập đoàn công nghiệp viễn thông quân đội',
@@ -131,7 +140,8 @@ export class SubscribeDiscountComponent implements OnInit {
       Hinh_thuc_KM: 'Quay số trúng thưởng',
       So_Van_ban: '67/SCT-VP',
       Co_quan_ban_hanh: 'Sở Công Thương',
-      Ngay_thang_nam: '13-01-2020'
+      Ngay_thang_nam: '13-01-2020',
+      Id_quan_huyen: 99
     },
     {
       Ten_doanh_nghiep: 'Viettel Bình Phước - CN Tập đoàn công nghiệp viễn thông quân đội',
@@ -144,7 +154,8 @@ export class SubscribeDiscountComponent implements OnInit {
       Hinh_thuc_KM: 'Quay số trúng thưởng',
       So_Van_ban: '1644/SCT-VP',
       Co_quan_ban_hanh: 'Sở Công Thương',
-      Ngay_thang_nam: '01-12-2020'
+      Ngay_thang_nam: '01-12-2020',
+      Id_quan_huyen: 99
     },
     {
       Ten_doanh_nghiep: 'Công ty TNHH SX - TM Tô Ba',
@@ -157,7 +168,8 @@ export class SubscribeDiscountComponent implements OnInit {
       Hinh_thuc_KM: 'Thẻ cào',
       So_Van_ban: '636/SCT-VP',
       Co_quan_ban_hanh: 'Sở Công Thương',
-      Ngay_thang_nam: '29-04-2020'
+      Ngay_thang_nam: '29-04-2020',
+      Id_quan_huyen: 99
     },
     {
       Ten_doanh_nghiep: 'Công ty TNHH TM và DV Linh',
@@ -170,7 +182,8 @@ export class SubscribeDiscountComponent implements OnInit {
       Hinh_thuc_KM: 'Rút thăm',
       So_Van_ban: '1276/SCT-VP',
       Co_quan_ban_hanh: 'Sở Công Thương',
-      Ngay_thang_nam: '08-06-2020'
+      Ngay_thang_nam: '08-06-2020',
+      Id_quan_huyen: 1
     },
     {
       Ten_doanh_nghiep: 'Công ty TNHH TM và DV Linh',
@@ -183,7 +196,8 @@ export class SubscribeDiscountComponent implements OnInit {
       Hinh_thuc_KM: 'Rút thăm',
       So_Van_ban: '1774/SCT-VP',
       Co_quan_ban_hanh: 'Sở Công Thương',
-      Ngay_thang_nam: '11-03-2020'
+      Ngay_thang_nam: '11-03-2020',
+      Id_quan_huyen: 1
     },
     {
       Ten_doanh_nghiep: 'Công ty TNHH TM và DV Linh',
@@ -196,7 +210,8 @@ export class SubscribeDiscountComponent implements OnInit {
       Hinh_thuc_KM: 'Rút thăm',
       So_Van_ban: '1775/SCT-VP',
       Co_quan_ban_hanh: 'Sở Công Thương',
-      Ngay_thang_nam: '11-03-2020'
+      Ngay_thang_nam: '11-03-2020',
+      Id_quan_huyen: 1
     },
     {
       Ten_doanh_nghiep: 'Công ty Bảo việt nhân thọ Bình Phước',
@@ -209,7 +224,8 @@ export class SubscribeDiscountComponent implements OnInit {
       Hinh_thuc_KM: 'Quay số trúng thưởng',
       So_Van_ban: '1820/SCT-VP',
       Co_quan_ban_hanh: 'Sở Công Thương',
-      Ngay_thang_nam: '11-11-2020'
+      Ngay_thang_nam: '11-11-2020',
+      Id_quan_huyen: 2
     }
   ]
 
@@ -217,6 +233,8 @@ export class SubscribeDiscountComponent implements OnInit {
     'Hang_hoa_dung_de_KM', 'Dia_diem_KM', 'Hinh_thuc_KM', 'So_Van_ban', 'Co_quan_ban_hanh', 'Ngay_thang_nam',
   ];
   dataSource: MatTableDataSource<SD> = new MatTableDataSource<SD>();
+  filteredDataSource: MatTableDataSource<SD> = new MatTableDataSource<SD>();
+  filterModel: SDFilterModel = new SDFilterModel();
 
   years: number[] = [];
   districts: District[] = [{ id: 1, ten_quan_huyen: 'Thị xã Phước Long' },
@@ -231,14 +249,7 @@ export class SubscribeDiscountComponent implements OnInit {
   { id: 10, ten_quan_huyen: 'Huyện Chơn Thành' },
   { id: 11, ten_quan_huyen: 'Huyện Phú Riềng' }];
 
-  sdtypes: SDType[] = [
-    { id: 1, ten_chuong_trinh_km: 'Bốc thăm' },
-    { id: 2, ten_chuong_trinh_km: 'Rút thăm' },
-    { id: 3, ten_chuong_trinh_km: 'Quay thưởng' },
-    { id: 4, ten_chuong_trinh_km: 'Quay may mắn xác định trúng thưởng' },
-    { id: 5, ten_chuong_trinh_km: 'Quay số trúng thưởng' },
-    { id: 6, ten_chuong_trinh_km: 'Thẻ cào' },
-  ];
+  sdtypes: string[] = [];
 
   @ViewChild(MatAccordion, { static: false }) accordion: MatAccordion;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -266,14 +277,58 @@ export class SubscribeDiscountComponent implements OnInit {
     setTimeout(() => this.accordion.openAll(), 1000);
   }
 
-  applyFilter(event: Event) {
+  applyFilter1(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  applyFilter() {
+    console.log(this.filterModel)
+    let filteredData = this.filterArray(this.dataSource.data, this.filterModel);
+    if (!filteredData.length) {
+      if (this.filterModel)
+        this.filteredDataSource.data = [];
+      else
+        this.filteredDataSource.data = this.dataSource.data;
+    }
+    else {
+      this.filteredDataSource.data = filteredData;
+    }
+  }
+
+  filterArray(array, filters) {
+    const filterKeys = Object.keys(filters);
+    let temp = [...array];
+    filterKeys.forEach(key => {
+      let temp2 = [];
+      switch (key) {
+        case 'Id_quan_huyen':
+          if (filters[key].length) {
+            filters[key].forEach(criteria => {
+              temp2 = temp2.concat(temp.filter(x => x[key] == criteria || x[key] == 99));
+            });
+            temp = [...temp2];
+          }
+          break;
+          default: 
+          if (filters[key].length) {
+            filters[key].forEach(criteria => {
+              temp2 = temp2.concat(temp.filter(x => x[key] == criteria));
+              console.log(temp2);
+            });
+            temp = [...temp2];
+          }
+          break;
+      }
+    })
+    return temp;
   }
 
   getSDList(): void {
     this.dataSource = new MatTableDataSource(this.DataSD);
     console.log(this.dataSource)
+    this.filteredDataSource.data = [...this.dataSource.data];
+    this.sdtypes = [...new Set(this.dataSource.data.map(x => x.Hinh_thuc_KM))];
     this.dataSource.paginator = this.paginator;
     this.paginator._intl.itemsPerPageLabel = 'Số hàng';
     this.paginator._intl.firstPageLabel = "Trang Đầu";
@@ -291,7 +346,19 @@ export class SubscribeDiscountComponent implements OnInit {
   }
 
   countBusiness(): number {
-    return [...new Set(this.dataSource.data.map(x => x.Ten_chuong_trinh_KM))].length;
+    return [...new Set(this.dataSource.data.map(x => x.Ma_so_thue))].length;
   }
 
+  @ViewChild('dSelect', { static: false }) dSelect: MatSelect;
+  allSelected = false;
+  toggleAllSelection() {
+    this.allSelected = !this.allSelected;  // to control select-unselect
+
+    if (this.allSelected) {
+      this.dSelect.options.forEach((item: MatOption) => item.select());
+    } else {
+      this.dSelect.options.forEach((item: MatOption) => item.deselect());
+    }
+    this.dSelect.close();
+  }
 }
