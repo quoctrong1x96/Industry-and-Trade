@@ -18,7 +18,7 @@ import { MatSort } from '@angular/material/sort';
 import { LinkModel } from 'src/app/_models/link.model';
 import { BreadCrumService } from 'src/app/_services/injectable-service/breadcrums.service';
 import * as XLSX from 'xlsx';
-
+import { dataExport } from "./data";
 @Component({
     selector: "app-export-management",
     templateUrl: "./export-management.component.html",
@@ -29,16 +29,47 @@ export class ExportManagementComponent implements OnInit {
     private readonly LINK_DEFAULT: string = "/specialized/commecial-management/export_import/exported_products";
     private readonly TITLE_DEFAULT: string = "Thông tin xuất khẩu";
     private readonly TEXT_DEFAULT: string = "Thông tin xuất khẩu";
+    displayedColumns = [
+        'index', 'ten_san_pham', 
+        'luong_thang', 'gia_tri_thang', 
+        'uoc_th_so_cungky_tht', 
+        'uoc_th_so_thg_truoc_tht',
+        
+        'luong_cong_don', 'gia_tri_cong_don', 
+        'uoc_th_so_cungky_cong_don', 
+        'uoc_th_so_thg_truoc_cong_don',
+        'danh_sach_doanh_nghiep', 
+        'chi_tiet_doanh_nghiep'];
+    displayRow1Header = [
+        'index',
+        'ten_san_pham',
+        'thuc_hien_bao_cao_thang',
+        'cong_don_den_ky_bao_cao',
+        
+        'danh_sach_doanh_nghiep',
+        'chi_tiet_doanh_nghiep'
+    ]
+    displaRow2Header = [
+        'luong_thang',
+        'gia_tri_thang',
+        'uoc_th_so_cungky_cong_don', 
+        'uoc_th_so_thg_truoc_cong_don',
+        'luong_cong_don',
+        'gia_tri_cong_don',
+        'uoc_th_so_cungky_cong_don', 
+        'uoc_th_so_thg_truoc_cong_don',
+    ]
     //Variable for only ts
     private _linkOutput: LinkModel = new LinkModel();
-    displayedColumns: string[] = [];
-    displayRow1Header: string[] = []
-    displaRow2Header: string[] = []
-    displayRow3Header: string[] = [];
-    dataSource: MatTableDataSource<ex_im_model> = new MatTableDataSource<ex_im_model>();
+    // displayedColumns: string[] = [];
+    // displayRow1Header: string[] = []
+    // displaRow2Header: string[] = []
+    // displayRow3Header: string[] = [];
+    // dataSource: MatTableDataSource<ex_im_model> = new MatTableDataSource<ex_im_model>();
+    dataSource: MatTableDataSource<ex_im_model> = new MatTableDataSource<ex_im_model>(dataExport);
     dataDialog: any[] = [];
     filteredDataSource: MatTableDataSource<ex_im_model> = new MatTableDataSource<ex_im_model>();
-    years: number[] = [];
+    years: number[] =this.getYears();
     months: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
     TongLuongThangThucHien: number = 0;
     TongGiaTriThangThucHien: number = 0;
@@ -47,6 +78,7 @@ export class ExportManagementComponent implements OnInit {
     isChecked: boolean;
     pagesize: number = 0;
     curentmonth: number = new Date().getMonth();
+    curentYear: number = new Date().getFullYear();
     @ViewChild("table", { static: false }) table: ElementRef;
     @ViewChild(MatAccordion, { static: true }) accordion: MatAccordion;
     @ViewChild("paginator", { static: false }) paginator: MatPaginator;
@@ -89,8 +121,8 @@ export class ExportManagementComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.applyDataTarget(this.dataTargetId);
-        this.getDanhSachXuatKhau(this.curentmonth);
+        // this.applyDataTarget(this.dataTargetId);
+        // this.getDanhSachXuatKhau(this.curentmonth);
         this.autoOpen();
         this.sendLinkToNext(true);
         // this.filteredDataSource.filterPredicate = function (data: ex_im_model, filter): boolean {
@@ -115,15 +147,15 @@ export class ExportManagementComponent implements OnInit {
 
     getDanhSachXuatKhau(thang) {
         let tem = new Date().getFullYear() * 100 + thang;
-        if (thang !== this.curentmonth && thang) {
-            this.curentmonth = thang;
-        }
-        if (thang === 10) {
-            this.dataTargetId = [1];
-        } else {
-            this.dataTargetId = [2];
-        }
-        this.applyDataTarget(this.dataTargetId);
+        // if (thang !== this.curentmonth && thang) {
+        //     this.curentmonth = thang;
+        // }
+        // if (thang === 10) {
+        //     this.dataTargetId = [1];
+        // } else {
+        //     this.dataTargetId = [2];
+        // }
+        // this.applyDataTarget(this.dataTargetId);
         this.sctService.GetDanhSachXuatKhau(tem).subscribe((result) => {
             this.log(this.dataSource)
             this.dataDialog = result.data[0];
@@ -146,9 +178,9 @@ export class ExportManagementComponent implements OnInit {
         for (let item of data) {
             // console.log(item)
             this.TongLuongThangThucHien += item['luong_thang'];
-            this.TongGiaTriThangThucHien += item['gia_tri_thang'];
+            this.TongGiaTriThangThucHien += item['gia_tri_thang']/1000000;
             this.TongLuongCongDon += item['luong_cong_don'];
-            this.TongGiaTriCongDon += item['gia_tri_cong_don'];
+            this.TongGiaTriCongDon += item['gia_tri_cong_don']/1000000;
             // tổng cục hải quan
             this.tongluong_tc += item['luong_thang_tc'];
             this.tonggiatri_tc += item['gia_tri_thang_tc'];
@@ -246,84 +278,84 @@ export class ExportManagementComponent implements OnInit {
             this.isOnlyTongCucHQ = 2;
         }
 
-        switch (this.isOnlyTongCucHQ) {
-            case 1:
-                this.displayedColumns = [
-                    'index', 'ten_san_pham', 'luong_thang', 'gia_tri_thang', 'luong_cong_don',
-                    'gia_tri_cong_don', 'danh_sach_doanh_nghiep', 'chi_tiet_doanh_nghiep'];
-                this.displayRow1Header = [
-                    'index',
-                    'ten_san_pham',
-                    'cuc_hai_quan',
-                    'danh_sach_doanh_nghiep',
-                    'chi_tiet_doanh_nghiep'
-                ]
-                this.displaRow2Header = [
-                    'thuc_hien_bao_cao_thang',
-                    'cong_don_den_ky_bao_cao',
-                ]
-                this.displayRow3Header = [
-                    'luong_thang',
-                    'gia_tri_thang',
-                    'luong_cong_don',
-                    'gia_tri_cong_don',
-                ]
-                break;
-            case 2:
-                this.displayedColumns = [
-                    'index', 'ten_san_pham', 'luong_thang_tc', 'gia_tri_thang_tc', 'luong_thang_cong_don_tc',
-                    'gia_tri_thang_cong_don_tc', 'danh_sach_doanh_nghiep', 'chi_tiet_doanh_nghiep'];
-                this.displayRow1Header = [
-                    'index',
-                    'ten_san_pham',
-                    'tong_cuc_hai_quan',
-                    'danh_sach_doanh_nghiep',
-                    'chi_tiet_doanh_nghiep'
-                ]
-                this.displaRow2Header = [
-                    'thuc_hien_bao_cao_thang1',
-                    'cong_don_den_ky_bao_cao1'
-                ]
-                this.displayRow3Header = [
-                    'luong_thang_tc',
-                    'gia_tri_thang_tc',
-                    'luong_thang_cong_don_tc',
-                    'gia_tri_thang_cong_don_tc'
-                ]
-                break;
-            case 3:
-                this.displayedColumns = [
-                    'index', 'ten_san_pham', 'luong_thang', 'gia_tri_thang', 'luong_cong_don',
-                    'gia_tri_cong_don', 'luong_thang_tc', 'gia_tri_thang_tc', 'luong_thang_cong_don_tc',
-                    'gia_tri_thang_cong_don_tc', 'danh_sach_doanh_nghiep', 'chi_tiet_doanh_nghiep'];
-                this.displayRow1Header = [
-                    'index',
-                    'ten_san_pham',
-                    'cuc_hai_quan',
-                    'tong_cuc_hai_quan',
-                    'danh_sach_doanh_nghiep',
-                    'chi_tiet_doanh_nghiep'
-                ]
-                this.displaRow2Header = [
-                    'thuc_hien_bao_cao_thang',
-                    'cong_don_den_ky_bao_cao',
-                    'thuc_hien_bao_cao_thang1',
-                    'cong_don_den_ky_bao_cao1'
-                ]
-                this.displayRow3Header = [
-                    'luong_thang',
-                    'gia_tri_thang',
-                    'luong_cong_don',
-                    'gia_tri_cong_don',
-                    'luong_thang_tc',
-                    'gia_tri_thang_tc',
-                    'luong_thang_cong_don_tc',
-                    'gia_tri_thang_cong_don_tc'
-                ]
-                break;
-            default:
-                break;
-        }
+        // switch (this.isOnlyTongCucHQ) {
+        //     case 1:
+        //         this.displayedColumns = [
+        //             'index', 'ten_san_pham', 'luong_thang', 'gia_tri_thang', 'luong_cong_don',
+        //             'gia_tri_cong_don', 'danh_sach_doanh_nghiep', 'chi_tiet_doanh_nghiep'];
+        //         this.displayRow1Header = [
+        //             'index',
+        //             'ten_san_pham',
+        //             'cuc_hai_quan',
+        //             'danh_sach_doanh_nghiep',
+        //             'chi_tiet_doanh_nghiep'
+        //         ]
+        //         this.displaRow2Header = [
+        //             'thuc_hien_bao_cao_thang',
+        //             'cong_don_den_ky_bao_cao',
+        //         ]
+        //         this.displayRow3Header = [
+        //             'luong_thang',
+        //             'gia_tri_thang',
+        //             'luong_cong_don',
+        //             'gia_tri_cong_don',
+        //         ]
+        //         break;
+        //     case 2:
+        //         this.displayedColumns = [
+        //             'index', 'ten_san_pham', 'luong_thang_tc', 'gia_tri_thang_tc', 'luong_thang_cong_don_tc',
+        //             'gia_tri_thang_cong_don_tc', 'danh_sach_doanh_nghiep', 'chi_tiet_doanh_nghiep'];
+        //         this.displayRow1Header = [
+        //             'index',
+        //             'ten_san_pham',
+        //             'tong_cuc_hai_quan',
+        //             'danh_sach_doanh_nghiep',
+        //             'chi_tiet_doanh_nghiep'
+        //         ]
+        //         this.displaRow2Header = [
+        //             'thuc_hien_bao_cao_thang1',
+        //             'cong_don_den_ky_bao_cao1'
+        //         ]
+        //         this.displayRow3Header = [
+        //             'luong_thang_tc',
+        //             'gia_tri_thang_tc',
+        //             'luong_thang_cong_don_tc',
+        //             'gia_tri_thang_cong_don_tc'
+        //         ]
+        //         break;
+        //     case 3:
+        //         this.displayedColumns = [
+        //             'index', 'ten_san_pham', 'luong_thang', 'gia_tri_thang', 'luong_cong_don',
+        //             'gia_tri_cong_don', 'luong_thang_tc', 'gia_tri_thang_tc', 'luong_thang_cong_don_tc',
+        //             'gia_tri_thang_cong_don_tc', 'danh_sach_doanh_nghiep', 'chi_tiet_doanh_nghiep'];
+        //         this.displayRow1Header = [
+        //             'index',
+        //             'ten_san_pham',
+        //             'cuc_hai_quan',
+        //             'tong_cuc_hai_quan',
+        //             'danh_sach_doanh_nghiep',
+        //             'chi_tiet_doanh_nghiep'
+        //         ]
+        //         this.displaRow2Header = [
+        //             'thuc_hien_bao_cao_thang',
+        //             'cong_don_den_ky_bao_cao',
+        //             'thuc_hien_bao_cao_thang1',
+        //             'cong_don_den_ky_bao_cao1'
+        //         ]
+        //         this.displayRow3Header = [
+        //             'luong_thang',
+        //             'gia_tri_thang',
+        //             'luong_cong_don',
+        //             'gia_tri_cong_don',
+        //             'luong_thang_tc',
+        //             'gia_tri_thang_tc',
+        //             'luong_thang_cong_don_tc',
+        //             'gia_tri_thang_cong_don_tc'
+        //         ]
+        //         break;
+        //     default:
+        //         break;
+        // }
     }
 
     public ExportTOExcel(filename: string, sheetname: string) {
