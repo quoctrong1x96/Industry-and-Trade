@@ -12,6 +12,7 @@ import { IipMonthComponent } from './iip-industrial/iip-month/iip-month.componen
 import { IndustrialExplosivesComponent } from './industrial-explosives/industrial-explosives.component';
 import { IndustryManagementRoutingModule } from './industry-management.routing';
 import { LPGManagementComponent } from './lpg-management/lpg-management.component';
+import { CertificateRegulationComponent } from './certificate-regulation/certificate-regulation.component';
 
 @NgModule({
     imports: [
@@ -32,7 +33,8 @@ import { LPGManagementComponent } from './lpg-management/lpg-management.componen
         ClusterManagementComponent,
         DetailClusterManagementComponent,
         IipIndustrialComponent,
-        IipMonthComponent
+        IipMonthComponent,
+        CertificateRegulationComponent
       ],
       entryComponents: []
 })

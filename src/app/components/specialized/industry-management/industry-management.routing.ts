@@ -8,6 +8,7 @@ import { IipIndustrialComponent } from './iip-industrial/iip-industrial.componen
 import { IipMonthComponent } from './iip-industrial/iip-month/iip-month.component';
 import { IndustrialExplosivesComponent } from './industrial-explosives/industrial-explosives.component';
 import { LPGManagementComponent } from './lpg-management/lpg-management.component';
+import { CertificateRegulationComponent } from './certificate-regulation/certificate-regulation.component';
 
 const routes: Routes = [
     {
@@ -43,8 +44,8 @@ const routes: Routes = [
                 data: {
                     title: 'Chỉ số sản xuất công nghiệp',
                 },
-                children:[
-                    
+                children: [
+
                 ]
             },
             {
@@ -74,7 +75,14 @@ const routes: Routes = [
                 data: {
                     title: 'Cụm công nghiệp A',
                 }
-            }
+            },
+            {
+                path: 'cr',
+                component: CertificateRegulationComponent,
+                data: {
+                    title: 'Công bố hợp quy',
+                }
+            },
         ]
     }
 ];
