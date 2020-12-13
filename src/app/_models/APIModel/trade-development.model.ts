@@ -11,6 +11,11 @@ export class TFE {
     So_Van_ban: string;
     Co_quan_ban_hanh: string;
     Ngay_thang_nam: string;
+    Id_quan_huyen : number;
+}
+
+export class TFEFilterModel{
+    Id_Quan_huyen : number[]=[];
 }
 
 export class SD {
@@ -25,9 +30,9 @@ export class SD {
     So_Van_ban: string;
     Co_quan_ban_hanh: string;
     Ngay_thang_nam: string;
+    Id_quan_huyen : number;
 }
-
-export class SDType {
-    id: number;
-    ten_chuong_trinh_km: string;
+export class SDFilterModel{
+    Id_quan_huyen : number[]=[];
+    Hinh_thuc_KM : string[] = [];
 }
