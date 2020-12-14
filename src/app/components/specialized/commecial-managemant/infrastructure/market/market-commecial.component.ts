@@ -85,8 +85,8 @@ export class MarketCommecialManagementComponent implements OnInit {
     { key: 1, code: "HANGI", name: "Chợ hạng I" },
     { key: 2, code: "HANGII", name: "Chợ hạng II" },
     { key: 3, code: "HANGIII", name: "Chợ hạng III" },
-    { key: 4, code: "HANGIV", name: "Chợ hạng IV" },
-    { key: 5, code: "HANGV", name: "Chợ hạng V" },
+    { key: 4, code: "HANGIV", name: "Chợ khác" },
+    { key: 5, code: "HANGV", name: "Chưa có chợ" },
   ];
   public readonly managerTypes: FilterModel[] = [
     { key: 1, code: "BAN", name: "Ban quản lý" },
@@ -221,6 +221,7 @@ export class MarketCommecialManagementComponent implements OnInit {
         this._indicators.sort((a, b) =>
           a.ind_code.toLocaleString().localeCompare(b.ind_code.toLocaleString())
         );
+        console.log(this._indicators);
         this._datarows = allRecord.data[3] as ReportDatarow[];
         this._object = allRecord.data[0];
         this.CreateMergeHeaderTable(this.attributes);
@@ -342,6 +343,7 @@ export class MarketCommecialManagementComponent implements OnInit {
       (a) => a.toLowerCase() != "ind_code" && a.toLowerCase() != "rn"
     );
     this.attributeHeaders.unshift("index");
+    console.log("Attribute Header:", this.attributeHeaders);
     for (let index = 0; index < this._indicators.length; index++) {
       const elementIndicator = this._indicators[index];
       const elementDatarow = this._datarows.find(
@@ -440,12 +442,15 @@ export class MarketCommecialManagementComponent implements OnInit {
         tableRow.fd04 = new Date();
         tableRow.fd05 = new Date();
       }
-      this._tableData.data.push(tableRow);
+      if (tableRow.ind_name.length > 10)
+        this._tableData.data.push(tableRow);
     }
     this._tableData.data.forEach((element) => {
       if (element.ind_formula == null && element.ind_type == 1) this._rows++;
     });
     this.dataSource.data = [...this._tableData.data];
+    console.log("attributes:", this.attributes);
+    this._caculator(this.dataSource.data);
   }
 
 
@@ -474,6 +479,8 @@ export class MarketCommecialManagementComponent implements OnInit {
   private _conditionArray: HashTableNumber<number[]> = {};
   applyCondictionFilter(type, event: any) {
     this._conditionArray[type] = event.value;
+
+    console.log("Filter: ", this._conditionArray);
     this._filterDataSource();
   }
 
@@ -488,45 +495,48 @@ export class MarketCommecialManagementComponent implements OnInit {
       dataFilterOriginal = [... this._tableData.data];
       Object.keys(this._conditionArray).forEach(key => {
         let array = this._conditionArray[key];
-        switch (key) {
-          case "1":
-            array.forEach((element) => {
-              dataFilterOriginal.filter((x) => x.fc03.includes(element)).forEach((item) => dataFilterFinal.push(item));
-            });
-            break;
-          case "2":
-            array.forEach((element) => {
-              if (element == 1) {
-                dataFilterOriginal.filter((x) => x.fn03 == 1).forEach((item) => dataFilterFinal.push(item));
-              }
-              else if (element == 2) {
-                dataFilterOriginal.filter((x) => x.fn07 == 1).forEach((item) => dataFilterFinal.push(item));
-              } else {
-                dataFilterOriginal.filter((x) => x.fn09 == 1).forEach((item) => dataFilterFinal.push(item));
-              }
-            });
-            break;
-          case "3":
-            array.forEach((element) => {
-              dataFilterOriginal.filter((x) => x.fc11.includes(element)).forEach((item) => dataFilterFinal.push(item));
-            });
+        if (array && array.length > 0) {
+          switch (key) {
+            case "1":
+              array.forEach((element) => {
+                dataFilterOriginal.filter((x) => x.fc03.includes(element)).forEach((item) => dataFilterFinal.push(item));
+              });
+              break;
+            case "2":
+              array.forEach((element) => {
+                if (element == 1) {
+                  dataFilterOriginal.filter((x) => x.fn03 == 1).forEach((item) => dataFilterFinal.push(item));
+                }
+                else if (element == 2) {
+                  dataFilterOriginal.filter((x) => x.fn07 == 1).forEach((item) => dataFilterFinal.push(item));
+                } else {
+                  dataFilterOriginal.filter((x) => x.fn09 == 1).forEach((item) => dataFilterFinal.push(item));
+                }
+              });
+              break;
+            case "3":
+              array.forEach((element) => {
+                dataFilterOriginal.filter((x) => x.fc11.includes(element)).forEach((item) => dataFilterFinal.push(item));
+              });
 
-            break;
-          default:
-            array.forEach((element) => {
-              if (element == 1) {
-                dataFilterOriginal.filter((x) => x.fn10 >= 1).forEach((item) => dataFilterFinal.push(item));
-              }
-              else if (element == 2) {
-                dataFilterOriginal.filter((x) => x.fn20 >= 1).forEach((item) => dataFilterFinal.push(item));
-              } else {
-                dataFilterOriginal.filter((x) => x.fn08 >= 1).forEach((item) => dataFilterFinal.push(item));
-              }
-            });
-            break;
+              break;
+            default:
+              array.forEach((element) => {
+                if (element == 1) {
+                  dataFilterOriginal.filter((x) => x.fn10 >= 1).forEach((item) => dataFilterFinal.push(item));
+                }
+                else if (element == 2) {
+                  dataFilterOriginal.filter((x) => x.fn20 >= 1).forEach((item) => dataFilterFinal.push(item));
+                } else {
+                  dataFilterOriginal.filter((x) => x.fn08 >= 1).forEach((item) => dataFilterFinal.push(item));
+                }
+              });
+              break;
+          }
+          dataFilterOriginal = [...dataFilterFinal];
+          dataFilterFinal = [];
         }
-        dataFilterOriginal = [...dataFilterFinal];
-        dataFilterFinal = [];
+
       });
       this.dataSource = new MatTableDataSource<ReportTable>(dataFilterOriginal);
     } else {
@@ -547,20 +557,23 @@ export class MarketCommecialManagementComponent implements OnInit {
     setTimeout(() => this.accordion.openAll(), 1000);
   }
   private _caculator(data: Array<ReportTable>) {
-    this.tongSoCho = data.length;
+
     //--
-    this.choNongThon = data.filter((x) => x.fc01.includes("Thành thị")).length;
-    this.choThanhThi = this.tongSoCho - this.choNongThon;
+    this.choNongThon = data.filter((x) => x.fc01.includes("Nông thôn")).length;
+    this.choThanhThi = data.filter((x) => x.fc01.includes("Thành thị")).length;
+    //
+    this.tongSoCho = this.choNongThon + this.choThanhThi;
     //--
     this.choHangI = data.filter((x) => x.fn03 == 1).length;
     this.choHangII = data.filter((x) => x.fn07 == 1).length;;
     this.choHangIII = data.filter((x) => x.fn09 == 1).length;;
-    this.choHangIV = 0;
-    this.choHangV = 0;
+    this.choHangIV = data.filter((x) => x.fn23 == 1).length;;
+    this.choHangV = data.filter((x) => x.fn01 == 1).length;;
     //--
     this.choKienCo = data.filter((x) => x.fc11.includes("Kiên cố")).length;
-    this.choTam = data.filter((x) => x.fc11.includes("Tạm")).length;
+
     this.choBanKienCo = data.filter((x) => x.fc11.includes("Bán kiên cố")).length;
+    this.choTam = this.tongSoCho - this.choBanKienCo - this.choKienCo;
     //--
     this.choBanLe = 0;
     this.choBanSi = 0;
@@ -568,9 +581,18 @@ export class MarketCommecialManagementComponent implements OnInit {
     this.choNhaNuoc = 0;
     this.choXaHoiHoa = 0;
     //--
-    this.vonDauTu = 0;
-    this.vonDauTuNganSach = 0;
-    this.vonDauTuXaHoiHoa = 0;
+    data.forEach(element => {
+      if (element.fn14)
+        this.vonDauTu += element.fn14;
+    });
+    data.forEach(element => {
+      if (element.fn04)
+        this.vonDauTuNganSach += element.fn04;
+    });
+    data.forEach(element => {
+      if (element.fn11)
+        this.vonDauTuXaHoiHoa += element.fn11;
+    });
     //--
     this.vonDauTuKeHoach = 0;
     this.vonDauTuKeHoachXaHoiHoa = 0;

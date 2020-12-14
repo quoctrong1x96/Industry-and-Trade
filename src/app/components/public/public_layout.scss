@@ -70,8 +70,16 @@
         table-layout: initial;
         th,
         td {
-          padding-left: 0px !important;
-          padding-right: 0px !important;
+          padding-left: 5px !important;
+          padding-right: 5px !important;
+          max-width: 130px!important;
+        }
+        .text{
+          text-align: left!important;
+        }
+        .number{
+          text-align: right!important;
+          width: 110px !important;
         }
         .mat-header-cell {
           background-color: $blue;

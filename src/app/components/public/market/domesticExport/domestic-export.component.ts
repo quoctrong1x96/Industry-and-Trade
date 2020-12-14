@@ -89,6 +89,7 @@ export class DomesticExportComponent implements OnInit {
     this.theYear = this.getCurrentYear();
     this.theMonth = (this.getCurrentMonth() - 1) == 0? 12 : this.getCurrentMonth() - 1;
     this.timeDomesticPrice = this.theMonth + "/" + this.theYear;
+    this.date.setValue(new Date(this.theYear, this.theMonth -1));
     this.getDomesticMarketExport(this.theMonth, this.theYear);
   }
 
