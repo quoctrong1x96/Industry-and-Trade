@@ -33,12 +33,12 @@
                             </mat-card-content>
                         </mat-card>
                     </div>
-                    <div class="col-6 col-lg-6">
+                    <div class="col-6 col-lg-6" *ngIf="filterModel.ngaycapgcn!=0">
                         <mat-card class="card5">
                             <mat-card-header>
                                 <mat-card-title>
-                                    <mat-icon>filter</mat-icon> Số cửa hàng hoạt động trong năm <span>{{year}}</span>:
-                                    <span>{{soCuaHangDauTuTrongNam}}</span>
+                                    <mat-icon>filter</mat-icon> Số cửa hàng hoạt động trong năm <span>{{filterModel.ngaycapgcn}}</span>:
+                                    <span>{{filteredDataSource.data.length}}</span>
                                 </mat-card-title>
                                 <mat-card-subtitle></mat-card-subtitle>
                             </mat-card-header>
@@ -119,7 +119,14 @@
                     </mat-panel-description>
                 </mat-expansion-panel-header>
                 <div class="row">
-
+                    <div class="col-3 col-lg-3">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Kỳ dữ liệu</mat-label>
+                            <mat-select (selectionChange)="applyFilter()" [(ngModel)]="filterModel.ngaycapgcn">
+                                <mat-option *ngFor='let year of years' [value]='year'>{{year}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
 
                     <div class="col-3 col-lg-3">
                         <mat-form-field appearance="outline">
@@ -131,14 +138,14 @@
                             </mat-select>
                         </mat-form-field>
                     </div>
-                    <div class="col-3 col-lg-3">
-                        <!-- <mat-form-field appearance="outline">
+                    <!-- <div class="col-3 col-lg-3"> -->
+                    <!-- <mat-form-field appearance="outline">
                             <mat-label>Kiểu sắp xếp</mat-label>
                             <mat-select (selectionChange)="sortHeaderCondition($event.value)" [value]="'dientich'">
                                 <mat-option *ngFor='let header of headerArray' [value]='header'>{{header}}</mat-option>
                             </mat-select>
                         </mat-form-field> -->
-                    </div>
+                    <!-- </div> -->
 
                     <div class="col-3 col-lg-3 checkbox">
                         <mat-checkbox (change)="applyFilter()" [(ngModel)]="isChecked">Hết hạn CNATTP
@@ -201,9 +208,9 @@
                             <td mat-cell *matCellDef="let element"> {{element.sogcn}} </td>
                         </ng-container>
 
-                        <ng-container matColumnDef="ngaycaogcn">
+                        <ng-container matColumnDef="ngaycapgcn">
                             <th mat-header-cell *matHeaderCellDef> Ngày cấp </th>
-                            <td mat-cell *matCellDef="let element"> {{element.ngaycaogcn|date:'dd/MM/yyyy'}} </td>
+                            <td mat-cell *matCellDef="let element"> {{element.ngaycapgcn|date:'dd/MM/yyyy'}} </td>
                         </ng-container>
 
                         <ng-container matColumnDef="ngayhethangcn">

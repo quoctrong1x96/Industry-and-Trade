@@ -29,7 +29,7 @@ export class StoreCommonModel {
     noicap:string;
     diachi:string;
     sogcn:string;
-    ngaycaogcn: Date;
+    ngaycapgcn: Date;
     ngayhethangcn:Date;
     sdtlienhe: string;
     id_quan_huyen : number;
@@ -37,7 +37,8 @@ export class StoreCommonModel {
 }
 export class StoreFilterModel{
     id_quan_huyen : number[] = [];
-    is_het_han : boolean;
+    is_het_han : boolean = null;
+    ngaycapgcn: number = 0;
 }
 
 export class FoodCommonModel {

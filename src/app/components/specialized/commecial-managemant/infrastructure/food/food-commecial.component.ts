@@ -143,7 +143,6 @@ export class FoodManagementComponent implements OnInit {
     this._caculator(this.dataSourceHuyenThi.data);
     this.autoOpen();
     this.listProduct = [...new Set( this.dataHuyenThi.map( x => x.sanphamkinhdoanh))];
-    console.log(this.listProduct);
   }
 
   autoOpen() {
