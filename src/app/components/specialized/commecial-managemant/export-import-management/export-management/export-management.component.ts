@@ -52,8 +52,8 @@ export class ExportManagementComponent implements OnInit {
     displaRow2Header = [
         'luong_thang',
         'gia_tri_thang',
-        'uoc_th_so_cungky_cong_don', 
-        'uoc_th_so_thg_truoc_cong_don',
+        'uoc_th_so_cungky_tht', 
+        'uoc_th_so_thg_truoc_tht',
         'luong_cong_don',
         'gia_tri_cong_don',
         'uoc_th_so_cungky_cong_don', 
@@ -71,10 +71,13 @@ export class ExportManagementComponent implements OnInit {
     filteredDataSource: MatTableDataSource<ex_im_model> = new MatTableDataSource<ex_im_model>();
     years: number[] =this.getYears();
     months: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-    TongLuongThangThucHien: number = 0;
+    
     TongGiaTriThangThucHien: number = 0;
     TongLuongCongDon: number = 0;
+    TongLuongThangThucHien: number = 0;
     TongGiaTriCongDon: number = 0;
+    uth_so_cungky: number = 0;
+    uth_so_khn: number = 0;
     isChecked: boolean;
     pagesize: number = 0;
     curentmonth: number = new Date().getMonth();
@@ -89,6 +92,7 @@ export class ExportManagementComponent implements OnInit {
     tonggiatri_tc: number = 0;
     tongluongcongdon_tc: number = 0;
     tonggiatricongdon_tc: number = 0;
+    
     dataTargets: any[] = [
         { id: 1, unit: 'Cục hải quan' },
         { id: 2, unit: 'Tổng cục hải quan' }
@@ -101,6 +105,17 @@ export class ExportManagementComponent implements OnInit {
         public marketService: MarketService,
         private _breadCrumService: BreadCrumService
     ) { }
+
+    handleGTXK(){
+        // this.dataSource.data.forEach(item => {
+        //     this.TongGiaTriThangThucHien += item['gia_tri_thang'];
+        //     this.uth_so_cungky = 
+        // })
+        this.TongGiaTriThangThucHien = this.dataSource.data[15].gia_tri_thang;
+        this.uth_so_cungky = this.dataSource.data[15].uoc_th_so_cungky_tht;
+        this.TongGiaTriCongDon = this.dataSource.data[15].gia_tri_cong_don;
+        this.uth_so_khn = this.dataSource.data[15].uoc_th_so_thg_truoc_cong_don;
+    }
 
     initVariable() {
         this.TongLuongThangThucHien = 0;
@@ -121,6 +136,7 @@ export class ExportManagementComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.curentmonth = 1;
         // this.applyDataTarget(this.dataTargetId);
         // this.getDanhSachXuatKhau(this.curentmonth);
         this.autoOpen();
@@ -128,6 +144,7 @@ export class ExportManagementComponent implements OnInit {
         // this.filteredDataSource.filterPredicate = function (data: ex_im_model, filter): boolean {
         //     return String(data.is_het_han).includes(filter);
         // };
+        this.handleGTXK();
     }
     public sendLinkToNext(type: boolean) {
         this._linkOutput.link = this.LINK_DEFAULT;

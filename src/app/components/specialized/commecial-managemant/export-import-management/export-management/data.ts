@@ -16,6 +16,6 @@ export const dataExport: ex_im_model[]= [
 {ten_san_pham: 'Nguyên phụ liệu dệt, may, da, giày',luong_thang:0,gia_tri_thang:0.78,uoc_th_so_cungky_tht:68.79,uoc_th_so_thg_truoc_tht:105.53,luong_cong_don:0,gia_tri_cong_don:0.78,uoc_th_so_cungky_cong_don:68.79,uoc_th_so_thg_truoc_cong_don:0},
 {ten_san_pham: 'Sản phẩm hóa chất',luong_thang:0,gia_tri_thang:0.51,uoc_th_so_cungky_tht:47.1,uoc_th_so_thg_truoc_tht:77.39,luong_cong_don:0,gia_tri_cong_don:0.51,uoc_th_so_cungky_cong_don:47.1,uoc_th_so_thg_truoc_cong_don:0},
 {ten_san_pham: 'Hàng hóa khác',luong_thang:0,gia_tri_thang:4.48,uoc_th_so_cungky_tht:97.58,uoc_th_so_thg_truoc_tht:89.96,luong_cong_don:0,gia_tri_cong_don:4.48,uoc_th_so_cungky_cong_don:97.58,uoc_th_so_thg_truoc_cong_don:0},
-{ten_san_pham: 'Tổng ',luong_thang:0,gia_tri_thang:186.27,uoc_th_so_cungky_tht:84.47,uoc_th_so_thg_truoc_tht:64.15,luong_cong_don:0,gia_tri_cong_don:186.27,uoc_th_so_cungky_cong_don:84.47,uoc_th_so_thg_truoc_cong_don:0},
+{ten_san_pham: 'Tổng ',luong_thang:0,gia_tri_thang:186.27,uoc_th_so_cungky_tht:84.47,uoc_th_so_thg_truoc_tht:64.15,luong_cong_don:0,gia_tri_cong_don:186.27,uoc_th_so_cungky_cong_don:84.47,uoc_th_so_thg_truoc_cong_don:13.74},
 
 ]

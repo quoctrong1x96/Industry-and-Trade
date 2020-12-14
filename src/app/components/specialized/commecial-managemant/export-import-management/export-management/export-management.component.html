@@ -19,15 +19,15 @@
                     <mat-panel-description> </mat-panel-description>
                 </mat-expansion-panel-header>
 
-                <div class="row" *ngIf="isOnlyTongCucHQ == 1">
+                <div class="row">
                     <div class="col-3">
                         <mat-card class="card2">
                             <mat-card-header>
                                 <mat-card-title>
-                                    <mat-icon> business</mat-icon> Kim ngạch xuất khẩu tháng {{ curentmonth }} với trị giá: (triệu USD)
+                                    <mat-icon> business</mat-icon> Giá trị xuất khẩu tháng {{ curentmonth }} (triệu USD)
                                 </mat-card-title>
                                 <mat-card-subtitle>
-                                    Số liệu Cục hải quan
+                                    <!-- Số liệu Cục hải quan -->
                                 </mat-card-subtitle>
                             </mat-card-header>
                             <mat-card-content>
@@ -40,14 +40,14 @@
                         <mat-card class="card2">
                             <mat-card-header>
                                 <mat-card-title>
-                                    <mat-icon> equalizer</mat-icon> Kim ngach xuất khẩu {{ curentmonth }} tháng với trị giá: (triệu USD)
+                                    <mat-icon> equalizer</mat-icon> ƯTH so với cùng kỳ (%)
                                 </mat-card-title>
                                 <mat-card-subtitle>
-                                    Số liệu Cục hải quan
+                                    <!-- Số liệu Cục hải quan -->
                                 </mat-card-subtitle>
                             </mat-card-header>
                             <mat-card-content>
-                                {{TongGiaTriThangThucHien | formatNumber}}
+                                {{uth_so_cungky | formatNumber}}
                             </mat-card-content>
                         </mat-card>
                     </div>
@@ -56,14 +56,14 @@
                         <mat-card class="card2">
                             <mat-card-header>
                                 <mat-card-title>
-                                    <mat-icon> business</mat-icon> Tổng sản lượng cộng dồn tới {{ curentmonth }} tháng:
+                                    <mat-icon> business</mat-icon> Tổng giá trị {{ curentmonth }} tháng (Triệu USD)
                                 </mat-card-title>
                                 <mat-card-subtitle>
-                                    Số liệu Cục hải quan
+                                    <!-- Số liệu Cục hải quan -->
                                 </mat-card-subtitle>
                             </mat-card-header>
                             <mat-card-content>
-                                {{ TongLuongCongDon | formatNumber }} (Tấn)
+                                {{ TongGiaTriCongDon | formatNumber }}
                             </mat-card-content>
                         </mat-card>
                     </div>
@@ -72,19 +72,19 @@
                         <mat-card class="card2">
                             <mat-card-header>
                                 <mat-card-title>
-                                    <mat-icon> equalizer</mat-icon> Tổng giá trị cộng dồn tới {{ curentmonth }} tháng:
+                                    <mat-icon> equalizer</mat-icon> ƯTH so với kế hoạch năm (%)
                                 </mat-card-title>
                                 <mat-card-subtitle>
-                                    Số liệu Cục hải quan
+                                    <!-- Số liệu Cục hải quan -->
                                 </mat-card-subtitle>
                             </mat-card-header>
                             <mat-card-content>
-                                {{ TongGiaTriCongDon | formatNumber }} (USD)
+                                {{ uth_so_khn | formatNumber }}
                             </mat-card-content>
                         </mat-card>
                     </div>
                 </div>
-                <div class="row" *ngIf="isOnlyTongCucHQ == 2">
+                <!-- <div class="row" *ngIf="isOnlyTongCucHQ == 2">
                     <div class="col-3">
                         <mat-card class="card2">
                             <mat-card-header>
@@ -202,8 +202,7 @@
                         <div class="col-3">
                             <mat-card class="card2">
                                 <mat-card-header>
-                                    <!-- <div mat-card-avatar>
-                      </div> -->
+                               
                                     <mat-card-title>
                                         <mat-icon> equalizer</mat-icon> Tổng giá trị cộng dồn tới {{ curentmonth }} tháng:
                                     </mat-card-title>
@@ -221,8 +220,7 @@
                         <div class="col-3">
                             <mat-card class="card2">
                                 <mat-card-header>
-                                    <!-- <div mat-card-avatar>
-                      </div> -->
+                                 
                                     <mat-card-title>
                                         <mat-icon> business</mat-icon> Tổng sản lượng thực hiện tháng {{ curentmonth }}:
                                     </mat-card-title>
@@ -239,8 +237,7 @@
                         <div class="col-3">
                             <mat-card class="card2">
                                 <mat-card-header>
-                                    <!-- <div mat-card-avatar>
-                    </div> -->
+                                 
                                     <mat-card-title>
                                         <mat-icon> equalizer</mat-icon> Tổng giá trị thực hiện tháng {{ curentmonth }}:
                                     </mat-card-title>
@@ -257,8 +254,7 @@
                         <div class="col-3">
                             <mat-card class="card2">
                                 <mat-card-header>
-                                    <!-- <div mat-card-avatar>
-                  </div> -->
+                     
                                     <mat-card-title>
                                         <mat-icon> business</mat-icon> Tổng sản lượng cộng dồn tới {{ curentmonth }} tháng:
                                     </mat-card-title>
@@ -275,8 +271,7 @@
                         <div class="col-3">
                             <mat-card class="card2">
                                 <mat-card-header>
-                                    <!-- <div mat-card-avatar>
-                </div> -->
+                                
                                     <mat-card-title>
                                         <mat-icon> equalizer</mat-icon> Tổng giá trị cộng dồn tới {{ curentmonth }} tháng:
                                     </mat-card-title>
@@ -290,7 +285,7 @@
                             </mat-card>
                         </div>
                     </div>
-                </ng-container>
+                </ng-container> -->
 
 
             </mat-expansion-panel>
@@ -369,13 +364,13 @@
 
                             <ng-container matColumnDef="thuc_hien_bao_cao_thang">
                                 <th mat-header-cell *matHeaderCellDef [attr.colspan]="4" class="fillColor">
-                                    Tháng {{curentmonth + 1}}
+                                    Tháng {{curentmonth}}
                                 </th>
                             </ng-container>
 
                             <ng-container matColumnDef="cong_don_den_ky_bao_cao">
                                 <th mat-header-cell *matHeaderCellDef [attr.colspan]="4" class="fillColor">
-                                    {{curentmonth + 1}} Tháng
+                                    {{curentmonth}} Tháng
                                 </th>
                             </ng-container>
 
@@ -401,7 +396,7 @@
 
                             <ng-container matColumnDef="uoc_th_so_cungky_tht">
                                 <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2">ƯTH
-                                    so…cùng kỳ</th>
+                                    so với tháng {{curentmonth}} cùng kỳ</th>
                                 <td mat-cell *matCellDef="let element" class="gia-tri">
                                     {{ element.uoc_th_so_cungky_tht | formatNumber }}
                                 </td>
@@ -411,8 +406,8 @@
                             </ng-container>
 
                             <ng-container matColumnDef="uoc_th_so_thg_truoc_tht">
-                                <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2">"ƯTH
-                                    so…tháng trước"</th>
+                                <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2">ƯTH
+                                    so với tháng trước"</th>
                                 <td mat-cell *matCellDef="let element" class="gia-tri">
                                     {{ element.uoc_th_so_thg_truoc_tht | formatNumber }}
                                 </td>
@@ -422,7 +417,7 @@
                             </ng-container>
 
                             <ng-container matColumnDef="luong_cong_don">
-                                <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2">Lượng (Tấn)</th>
+                                <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2">Sản lượng (Nghìn tấn)</th>
                                 <td mat-cell *matCellDef="let element" class="luong">
                                     {{ element.luong_cong_don | formatNumber }}
                                 </td>
@@ -432,7 +427,7 @@
                             </ng-container>
 
                             <ng-container matColumnDef="gia_tri_cong_don">
-                                <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2">Trị giá (USD)</th>
+                                <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2">Trị giá (Triệu USD)</th>
                                 <td mat-cell *matCellDef="let element" class="gia-tri">
                                     {{ element.gia_tri_cong_don | formatNumber }}
                                 </td>
@@ -442,8 +437,8 @@
                             </ng-container>
 
                             <ng-container matColumnDef="uoc_th_so_cungky_cong_don">
-                                <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2">"ƯTH
-                                    so…cùng kỳ"</th>
+                                <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2">ƯTH
+                                    so với {{curentmonth}} tháng cùng kỳ</th>
                                 <td mat-cell *matCellDef="let element" class="gia-tri">
                                     {{ element.uoc_th_so_cungky_cong_don | formatNumber }}
                                 </td>
@@ -453,8 +448,8 @@
                             </ng-container>
 
                             <ng-container matColumnDef="uoc_th_so_thg_truoc_cong_don">
-                                <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2">"ƯTH
-                                    so… KH năm "</th>
+                                <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2">ƯTH
+                                    so với kế hoạch năm</th>
                                 <td mat-cell *matCellDef="let element" class="gia-tri">
                                     {{ element.uoc_th_so_thg_truoc_cong_don | formatNumber }}
                                 </td>
