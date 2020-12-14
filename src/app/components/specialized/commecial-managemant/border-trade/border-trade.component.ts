@@ -4,11 +4,12 @@ import { SCTService } from 'src/app/_services/APIService/sct.service';
 import { MarketService } from 'src/app/_services/APIService/market.service';
 import { ModalComponent } from '../export-import-management/dialog-import-export/modal.component';
 import { BorderTrade } from 'src/app/_models/APIModel/border-trade.model'
-import { concat } from 'rxjs';
+import { concat, Observable, from, forkJoin } from 'rxjs';
 import { LinkModel } from 'src/app/_models/link.model';
 import { BreadCrumService } from 'src/app/_services/injectable-service/breadcrums.service';
 import { ExcelUitl } from 'src/app/_services/excelUtil.service';
 import * as XLSX from 'xlsx';
+import { mergeMap, tap } from 'rxjs/operators';
 
 export class GroupProduct {
   group_code: number;
@@ -39,7 +40,7 @@ export class BorderTradeComponent implements OnInit {
     { id: 2, value: 'II. Hàng hóa mua bán, trao đổi của cư dân biên giới' },
     { id: 3, value: 'III. Hàng kinh doanh miễn thuế' },
     { id: 4, value: 'IV. Hàng hóa kinh doanh tậm nhập, tái xuất: ' },
-    { id: 5, value: 'V. Khác' },
+    { id: 5, value: 'V. Hàng hóa khác' },
   ];
 
   danh_sach_con: string[] = [
@@ -75,18 +76,41 @@ export class BorderTradeComponent implements OnInit {
     { group_code: 5, group_name: this.danh_sach_con[1], isGroup: true },
   ]
   danh_sach_cua_khau: any[] = [
+    { ten_cua_khau: 'Tất cả', id_cua_khau: 4 },
     { ten_cua_khau: "Lộc Thịnh", id_cua_khau: 3 },
     { ten_cua_khau: "Hoàng Diệu", id_cua_khau: 2 },
     { ten_cua_khau: "Hoa Lư", id_cua_khau: 1 }
   ]
   id_cua_khau: number = 1;
-  cua_khau: string = this.danh_sach_cua_khau[2].ten_cua_khau;
+  cua_khau: string = this.danh_sach_cua_khau[3].ten_cua_khau;
+  dataSource: (BorderTrade | GroupProduct)[] = [];
   dataSourceI: (BorderTrade | GroupProduct)[] = [];
-  dulieuI: (BorderTrade | GroupProduct)[] = [];
-  dulieuII: (BorderTrade | GroupProduct)[] = [];
-  dulieuIII: (BorderTrade | GroupProduct)[] = [];
-  dulieuIV: (BorderTrade | GroupProduct)[] = [];
-  dulieuV: (BorderTrade | GroupProduct)[] = [];
+  dataSourceII: (BorderTrade | GroupProduct)[] = [];
+  dataSourceIII: (BorderTrade | GroupProduct)[] = [];
+
+  AlldataSource: any[] = [];
+
+  // Hoa Lu Gate 
+  dulieuI_gateI: (BorderTrade | GroupProduct)[] = [];
+  dulieuII_gateI: (BorderTrade | GroupProduct)[] = [];
+  dulieuIII_gateI: (BorderTrade | GroupProduct)[] = [];
+  dulieuIV_gateI: (BorderTrade | GroupProduct)[] = [];
+  dulieuV_gateI: (BorderTrade | GroupProduct)[] = [];
+
+  // Hoang Diu Gate 
+  dulieuI_gateII: (BorderTrade | GroupProduct)[] = [];
+  dulieuII_gateII: (BorderTrade | GroupProduct)[] = [];
+  dulieuIII_gateII: (BorderTrade | GroupProduct)[] = [];
+  dulieuIV_gateII: (BorderTrade | GroupProduct)[] = [];
+  dulieuV_gateII: (BorderTrade | GroupProduct)[] = [];
+
+  // Loc Thinh Gate 
+  dulieuI_gateIII: (BorderTrade | GroupProduct)[] = [];
+  dulieuII_gateIII: (BorderTrade | GroupProduct)[] = [];
+  dulieuIII_gateIII: (BorderTrade | GroupProduct)[] = [];
+  dulieuIV_gateIII: (BorderTrade | GroupProduct)[] = [];
+  dulieuV_gateIII: (BorderTrade | GroupProduct)[] = [];
+
   filteredDataSource: (BorderTrade | GroupProduct)[] = [];
   months: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
@@ -131,8 +155,17 @@ export class BorderTradeComponent implements OnInit {
   TongKimNgachThangNhomVnk: number = 0;
   TongLuongThangNhomVnk: number = 0;
 
+  // Hoa Lu
   TongKimNgachxk: number = 0;
   TongKimNgachnk: number = 0;
+
+  // Hoang Diu
+  TongKimNgachxkII: number = 0;
+  TongKimNgachnkII: number = 0;
+
+  // Loc Thinh
+  TongKimNgachxkIII: number = 0;
+  TongKimNgachnkIII: number = 0;
   //Private Variable for TS
   private _linkOutput: LinkModel = new LinkModel();
   constructor(
@@ -149,7 +182,7 @@ export class BorderTradeComponent implements OnInit {
     this.getThuongMaiBG(this.curentmonth);
     this.autoOpen();
     this.sendLinkToNext(true);
-    console.log("Border Trade:",this._linkOutput.title);
+    console.log("Border Trade:", this._linkOutput.title);
   }
 
   public sendLinkToNext(type: boolean) {
@@ -174,6 +207,14 @@ export class BorderTradeComponent implements OnInit {
     gr.isGroup = true;
   }
 
+  ngAfterViewInit(): void {
+    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    //Add 'implements AfterViewInit' to the class.
+    // this.getThuongMaiBGGateII();
+    // this.getThuongMaiBGGateIII();
+    
+  }
+
   autoOpen() {
     setTimeout(() => this.accordion.openAll(), 1000);
   }
@@ -184,22 +225,22 @@ export class BorderTradeComponent implements OnInit {
 
   selectGate(id_gate) {
     this.id_cua_khau = id_gate;
-    this.getThuongMaiBG(this.curentmonth)
     let tem_cua_khau = this.danh_sach_cua_khau.find(item => item.id_cua_khau === id_gate);
     this.cua_khau = tem_cua_khau.ten_cua_khau;
     this.Id_Array = [];
+    this.getThuongMaiBG(this.curentmonth)
   }
 
   public ExportTOExcel(filename: string, sheetname: string) {
     const excelExtention: string = ".xlsx";
     let excelFileName: string = filename + excelExtention;
-    
+
     const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, sheetname);
     /* save to file */
     XLSX.writeFile(wb, excelFileName);
-}
+  }
 
   selectMonth(month) {
     this.curentmonth = month;
@@ -207,47 +248,160 @@ export class BorderTradeComponent implements OnInit {
     this.Id_Array = [];
 
   }
+  dulieutonghop() {
+    return [
+      { cua_khau: 'Hoa Lư', TongKimNgachxk: this.TongKimNgachxk, TongKimNgachnk: this.TongKimNgachnk },
+      { cua_khau: 'Hoàng Diệu', TongKimNgachxk: this.TongKimNgachxkII, TongKimNgachnk: this.TongKimNgachnkII },
+      { cua_khau: 'Lộc Thịnh', TongKimNgachxk: this.TongKimNgachxkIII, TongKimNgachnk: this.TongKimNgachnkIII },
+    ]
+  }
 
   getThuongMaiBG(thang) {
-    let tem = new Date().getFullYear() * 100 + thang;
-    this.sctService.GetDanhSachXuatNhapKhauBG(tem, this.id_cua_khau).subscribe((result) => {
-      this.getNhomI(result);
-      this.getNhomII(result);
-      this.getNhomIII(result);
-      this.getNhomIV(result);
-      this.getNhomV(result);
-      this.dataSourceI = [...result.data[0], ...result.data[1], ...result.data[2], ...result.data[3], ...result.data[4], ...result.data[5], ...result.data[6], ...result.data[7], ...result.data[8], ...result.data[9]]
+    switch (this.id_cua_khau) {
+      case 1:
+        this.getThuongMaiBGGateI();
+        break;
+      case 2:
+        this.getThuongMaiBGGateII();
+        break;
+      case 3:
+        this.getThuongMaiBGGateIII();
+        break;
+      case 4:
+        this.initValueXNK();
+        this.excuteAllGate()
+        break;
+      default:
+        break;
+    }
+  }
+
+  excuteAllGate(){
+    let tem = new Date().getFullYear() * 100 + this.curentmonth;
+    const excuteallgate = forkJoin(
+      [
+        this.sctService.GetDanhSachXuatNhapKhauBG(tem, 1),
+        this.sctService.GetDanhSachXuatNhapKhauBG(tem, 2),
+        this.sctService.GetDanhSachXuatNhapKhauBG(tem, 3)
+      ]).pipe(tap(console.log)).subscribe((data) => {
+        this.xulyDulieunhomI(data[0]);
+        this.xulyDulieunhomII(data[1]);
+        this.xulyDulieunhomIII(data[2]);
+        // this.AlldataSource = [this.dataSourceI, this.dataSourceII, this.dataSourceIII]
+      })
+  }
+
+  xulyDulieunhomI(result){
+    this.getNhomI(result, this.dulieuI_gateI);
+      this.getNhomII(result, this.dulieuII_gateI);
+      this.getNhomIII(result, this.dulieuIII_gateI);
+      this.getNhomIV(result, this.dulieuIV_gateI);
+      this.getNhomV(result, this.dulieuV_gateI);
+      this.dataSourceI = [...result.data[0], ...result.data[1], ...result.data[2], ...result.data[3], ...result.data[4], ...result.data[5], ...result.data[6], ...result.data[7], ...result.data[8], ...result.data[9]];
+      this.dataSource = this.dataSourceI
+      this.AlldataSource.push({ data: this.dataSourceI, cua_khau: 'Hoa Lư' })
       console.log(this.dataSourceI)
+      
       this.TongKimNgachxk = this.TongKimNgachThangNhomIxk + this.TongKimNgachThangNhomIIxk + this.TongKimNgachThangNhomIIIxk + this.TongKimNgachThangNhomIVxk + this.TongKimNgachThangNhomVxk;
       this.TongKimNgachnk = this.TongKimNgachThangNhomInk + this.TongKimNgachThangNhomIInk + this.TongKimNgachThangNhomIIInk + this.TongKimNgachThangNhomIVnk + this.TongKimNgachThangNhomVnk;
       console.log('tong xk', this.TongKimNgachxk)
+  }
+  xulyDulieunhomII(result){
+      this.getNhomI(result, this.dulieuI_gateII);
+      this.getNhomII(result, this.dulieuII_gateII);
+      this.getNhomIII(result, this.dulieuIII_gateII);
+      this.getNhomIV(result, this.dulieuIV_gateII);
+      this.getNhomV(result, this.dulieuV_gateII);
+      this.dataSourceII = [...result.data[0], ...result.data[1], ...result.data[2], ...result.data[3], ...result.data[4], ...result.data[5], ...result.data[6], ...result.data[7], ...result.data[8], ...result.data[9]]
+      this.dataSource = this.dataSourceII
+      this.AlldataSource.push({ data: this.dataSourceII, cua_khau: 'Hoang Diệu' })
+      console.log(this.dataSourceII)
+      
+      this.TongKimNgachxkII = this.TongKimNgachThangNhomIxk + this.TongKimNgachThangNhomIIxk + this.TongKimNgachThangNhomIIIxk + this.TongKimNgachThangNhomIVxk + this.TongKimNgachThangNhomVxk;
+      this.TongKimNgachnkII = this.TongKimNgachThangNhomInk + this.TongKimNgachThangNhomIInk + this.TongKimNgachThangNhomIIInk + this.TongKimNgachThangNhomIVnk + this.TongKimNgachThangNhomVnk;
+      console.log('tong xk', this.TongKimNgachxk)
+  }
+
+  xulyDulieunhomIII(result){
+    this.getNhomI(result, this.dulieuI_gateIII);
+      this.getNhomII(result, this.dulieuII_gateIII);
+      this.getNhomIII(result, this.dulieuIII_gateIII);
+      this.getNhomIV(result, this.dulieuIV_gateIII);
+      this.getNhomV(result, this.dulieuV_gateIII);
+      this.dataSourceIII = [...result.data[0], ...result.data[1], ...result.data[2], ...result.data[3], ...result.data[4], ...result.data[5], ...result.data[6], ...result.data[7], ...result.data[8], ...result.data[9]]
+      this.dataSource = this.dataSourceIII
+      this.AlldataSource.push({ data: this.dataSourceIII, cua_khau: 'Lộc Thịnh' })
+      console.log(this.dataSourceIII)
+      console.log(this.AlldataSource)
+      
+      this.TongKimNgachxkIII = this.TongKimNgachThangNhomIxk + this.TongKimNgachThangNhomIIxk + this.TongKimNgachThangNhomIIIxk + this.TongKimNgachThangNhomIVxk + this.TongKimNgachThangNhomVxk;
+      this.TongKimNgachnkIII = this.TongKimNgachThangNhomInk + this.TongKimNgachThangNhomIInk + this.TongKimNgachThangNhomIIInk + this.TongKimNgachThangNhomIVnk + this.TongKimNgachThangNhomVnk;
+      console.log('tong xk', this.TongKimNgachxk)
+  }
+
+  initValueXNK(){
+    this.TongKimNgachThangNhomIxk = 0
+    this.TongKimNgachThangNhomIIxk = 0
+    this.TongKimNgachThangNhomIIIxk = 0
+    this.TongKimNgachThangNhomIVxk = 0
+    this.TongKimNgachThangNhomVxk = 0
+    // this.TongKimNgachxk = 0
+    this.TongKimNgachThangNhomInk = 0;
+    this.TongKimNgachThangNhomIInk = 0;
+    this.TongKimNgachThangNhomIIInk = 0;
+    this.TongKimNgachThangNhomIVnk = 0;
+    this.TongKimNgachThangNhomVnk= 0;
+    // this.TongKimNgachnk = 0;
+    this.AlldataSource = [];
+  }
+
+  getThuongMaiBGGateI() {
+    this.initValueXNK();
+    let tem = new Date().getFullYear() * 100 + this.curentmonth;
+    this.sctService.GetDanhSachXuatNhapKhauBG(tem, this.id_cua_khau).subscribe((result) => {
+      this.xulyDulieunhomI(result)
+    });
+  }
+  getThuongMaiBGGateII() {
+    this.initValueXNK();
+    let tem = new Date().getFullYear() * 100 + this.curentmonth;
+    this.sctService.GetDanhSachXuatNhapKhauBG(tem, 2).subscribe((result) => {
+      this.xulyDulieunhomII(result)
+    });
+  }
+  getThuongMaiBGGateIII() {
+    this.initValueXNK();
+    let tem = new Date().getFullYear() * 100 + this.curentmonth;
+    this.sctService.GetDanhSachXuatNhapKhauBG(tem, 3).subscribe((result) => {
+      this.xulyDulieunhomIII(result)
     });
   }
 
-  getNhomI(result) {
+  getNhomI(result, dulieu?) {
     this.sapxepXK(result.data[0], this.gr1, 1);
     this.sapxepNK(result.data[1], this.gr1, 1);
-    this.dulieuI = [...result.data[0], ...result.data[1]]
+    dulieu = [...result.data[0], ...result.data[1]]
+
   }
-  getNhomII(result) {
-    this.sapxepXK(result.data[2], this.gr2, 1);
-    this.sapxepNK(result.data[3], this.gr2, 1);
-    this.dulieuII = [...result.data[2], ...result.data[3]]
+  getNhomII(result, dulieu?) {
+    this.sapxepXK(result.data[2], this.gr2, 2);
+    this.sapxepNK(result.data[3], this.gr2, 2);
+    dulieu = [...result.data[2], ...result.data[3]]
   }
-  getNhomIII(result) {
-    this.sapxepXK(result.data[4], this.gr3, 2);
-    this.sapxepNK(result.data[5], this.gr3, 2);
-    this.dulieuIII = [...result.data[4], ...result.data[5]]
+  getNhomIII(result, dulieu?) {
+    this.sapxepXK(result.data[4], this.gr3, 3);
+    this.sapxepNK(result.data[5], this.gr3, 3);
+    dulieu = [...result.data[4], ...result.data[5]]
   }
-  getNhomIV(result) {
-    this.sapxepXK(result.data[6], this.gr4, 3);
-    this.sapxepNK(result.data[7], this.gr4, 3);
-    this.dulieuIV = [...result.data[6], ...result.data[7]]
+  getNhomIV(result, dulieu?) {
+    this.sapxepXK(result.data[6], this.gr4, 4);
+    this.sapxepNK(result.data[7], this.gr4, 4);
+    dulieu = [...result.data[6], ...result.data[7]]
   }
-  getNhomV(result) {
-    this.sapxepXK(result.data[8], this.gr5, 4);
-    this.sapxepNK(result.data[9], this.gr5, 4);
-    this.dulieuV = [...result.data[8], ...result.data[9]]
+  getNhomV(result, dulieu?) {
+    this.sapxepXK(result.data[8], this.gr5, 5);
+    this.sapxepNK(result.data[9], this.gr5, 5);
+    dulieu = [...result.data[8], ...result.data[9]]
   }
 
   sapxepXK(resultDataXK, gr, ind) {
@@ -337,28 +491,50 @@ export class BorderTradeComponent implements OnInit {
       .map((element, index) => new Date().getFullYear() - index);
   }
 
+  concatData(dataSource?, dulieuI?, dulieuII?, dulieuIII?, dulieuIV?, dulieuV?) {
+    dataSource.concat(dulieuI, dulieuII, dulieuIII, dulieuIV, dulieuV);
+  }
+
   applyGroupFilter(id_array) {
     console.log(id_array, this.Id_Array)
     this.dataSourceI = [];
-    for (const iterator of id_array) {
-      switch (iterator) {
-        case 1:
-          this.dataSourceI = this.dataSourceI.concat(this.dulieuI);
-          break;
-        case 2:
-          this.dataSourceI = this.dataSourceI.concat(this.dulieuII);
-          break;
-        case 3:
-          this.dataSourceI = this.dataSourceI.concat(this.dulieuIII);
-          break;
-        case 4:
-          this.dataSourceI = this.dataSourceI.concat(this.dulieuIV);
-          break;
-        case 5:
-          this.dataSourceI = this.dataSourceI.concat(this.dulieuV);
-          break;
-        default:
-          break;
+    if (id_array.length == 0) {
+      if (this.id_cua_khau === 1)
+        this.concatData(this.dataSourceI, this.dulieuI_gateI, this.dulieuII_gateI, this.dulieuIII_gateI, this.dulieuIV_gateI, this.dulieuV_gateI);
+
+      if (this.id_cua_khau === 2)
+        this.concatData(this.dataSourceII, this.dulieuI_gateII, this.dulieuII_gateII, this.dulieuIII_gateII, this.dulieuIV_gateII, this.dulieuV_gateII);
+
+      if (this.id_cua_khau === 3)
+        this.concatData(this.dataSourceIII, this.dulieuI_gateIII, this.dulieuII_gateIII, this.dulieuIII_gateIII, this.dulieuIV_gateIII, this.dulieuV_gateIII);
+
+      if (this.id_cua_khau === 4) {
+        this.concatData(this.dataSourceI, this.dulieuI_gateI, this.dulieuII_gateI, this.dulieuIII_gateI, this.dulieuIV_gateI, this.dulieuV_gateI);
+        this.concatData(this.dataSourceII, this.dulieuI_gateII, this.dulieuII_gateII, this.dulieuIII_gateII, this.dulieuIV_gateII, this.dulieuV_gateII);
+        this.concatData(this.dataSourceIII, this.dulieuI_gateIII, this.dulieuII_gateIII, this.dulieuIII_gateIII, this.dulieuIV_gateIII, this.dulieuV_gateIII);
+      }
+
+    } else {
+      for (const iterator of id_array) {
+        switch (iterator) {
+          case 1:
+            this.dataSourceI = this.dataSourceI.concat(this.dulieuI_gateI);
+            break;
+          case 2:
+            this.dataSourceI = this.dataSourceI.concat(this.dulieuII_gateI);
+            break;
+          case 3:
+            this.dataSourceI = this.dataSourceI.concat(this.dulieuIII_gateI);
+            break;
+          case 4:
+            this.dataSourceI = this.dataSourceI.concat(this.dulieuIV_gateI);
+            break;
+          case 5:
+            this.dataSourceI = this.dataSourceI.concat(this.dulieuV_gateI);
+            break;
+          default:
+            break;
+        }
       }
     }
   }

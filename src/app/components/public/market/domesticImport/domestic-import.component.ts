@@ -83,6 +83,7 @@ export class DomesticImportComponent implements OnInit {
     //this.initialData();
   }
   ngOnInit() {
+    
     this.chartYearModelSelected = this.getCurrentYear();
     this.chartyears = this.initialYears();
     this.theMonth = (this.getCurrentMonth() - 1) == 0? 12 : this.getCurrentMonth() - 1;
