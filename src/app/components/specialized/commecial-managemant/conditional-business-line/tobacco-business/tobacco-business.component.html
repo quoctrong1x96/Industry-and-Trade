@@ -185,10 +185,10 @@
                             <th mat-header-cell *matHeaderCellDef [attr.colspan]="2"> Sản lượng bán ra/năm </th>
                         </ng-container>
 
-                        <tr mat-header-row *matHeaderRowDef="['index', 'mst', 'ten_doanh_nghiep', 'dia_chi', 'dien_thoai', 'so_giay_phep', 'ngay_cap','ngay_het_han', 'danh_sach_thuong_nhan', 'san_luong_ban_ra']; sticky : true">
+                        <tr mat-header-row class="table-header" *matHeaderRowDef="['index', 'mst', 'ten_doanh_nghiep', 'dia_chi', 'dien_thoai', 'so_giay_phep', 'ngay_cap','ngay_het_han', 'danh_sach_thuong_nhan', 'san_luong_ban_ra']; sticky : true">
                         </tr>
-                        <tr mat-header-row *matHeaderRowDef="['san_luong', 'tri_gia']; sticky : true"></tr>
-                        <tr mat-row *matRowDef="let row; columns: displayedColumns;let i = index; ">
+                        <tr mat-header-row class="table-header" *matHeaderRowDef="['san_luong', 'tri_gia']; sticky : true"></tr>
+                        <tr mat-row class="table-row" *matRowDef="let row; columns: displayedColumns;let i = index; ">
                     </table>
                 </div>
                 <mat-paginator [pageSizeOptions]="[20, 50, 100]" showFirstLastButtons></mat-paginator>

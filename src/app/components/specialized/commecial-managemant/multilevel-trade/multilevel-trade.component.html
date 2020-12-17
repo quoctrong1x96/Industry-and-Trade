@@ -153,11 +153,11 @@
 
                         </ng-container>
 
-                        <tr mat-header-row *matHeaderRowDef="['index', 'thong_tin_dn', 'xac_nhan_dk', 'to_chuc_hoi_thao']; sticky: true">
+                        <tr mat-header-row class="table-header" *matHeaderRowDef="['index', 'thong_tin_dn', 'xac_nhan_dk', 'to_chuc_hoi_thao']; sticky: true">
                         </tr>
-                        <tr mat-header-row *matHeaderRowDef="['ten_doanh_nghiep','dia_chi','mst','vb_xac_nhan_dp','co_quan_bh_dp','ngay_thang_dp',
+                        <tr mat-header-row class="table-header" *matHeaderRowDef="['ten_doanh_nghiep','dia_chi','mst','vb_xac_nhan_dp','co_quan_bh_dp','ngay_thang_dp',
                         'vb_xac_nhan_tc','co_quan_bh_tc',	'ngay_thang_tc', 'tg_hoi_thao', 'dia_diem_hoi_thao']; sticky: true"></tr>
-                        <tr mat-row *matRowDef="let row; columns: displayedColumns;let i = index; ">
+                        <tr mat-row class="table-row" *matRowDef="let row; columns: displayedColumns;let i = index; ">
                     </table>
 
                     <!-- <mat-paginator #paginator [pageSize]="5" [pageSizeOptions]="[20, 50]"></mat-paginator> -->

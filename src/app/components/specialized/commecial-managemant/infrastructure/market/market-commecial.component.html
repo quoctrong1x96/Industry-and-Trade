@@ -311,11 +311,11 @@
                                 <th mat-header-cell *matHeaderCellDef style="text-align: center;"
                                     [attr.colspan]="mergeHeader.colLenght">{{mergeHeader.colText}} </th>
                             </ng-container>
-                            <tr mat-header-row *matHeaderRowDef="table.headerColName;"> </tr>
+                            <tr mat-header-row class="table-header" *matHeaderRowDef="table.headerColName;"> </tr>
                         </div>
 
-                        <tr mat-header-row *matHeaderRowDef="attributeHeaders; sticky: true"></tr>
-                        <tr mat-row *matRowDef="let row; columns: attributeHeaders; let i = index"></tr>
+                        <tr mat-header-row class="table-header" *matHeaderRowDef="attributeHeaders; sticky: true"></tr>
+                        <tr mat-row class="table-row" *matRowDef="let row; columns: attributeHeaders; let i = index"></tr>
                     </table>
                 </div>
                 <mat-paginator [pageSizeOptions]="[20, 50, 100]" showFirstLastButtons></mat-paginator>
