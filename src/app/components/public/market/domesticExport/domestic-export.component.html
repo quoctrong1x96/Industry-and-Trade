@@ -98,10 +98,10 @@
                     <th mat-header-cell *matHeaderCellDef style="text-align: center;" [attr.colspan]="1">
                 </ng-container>
 
-                <tr mat-header-row *matHeaderRowDef="['ma_va_ten','so_lieu_tam_thoi', 'so_lieu_chinh_thuc','top_xuat_khau_header']">
+                <tr mat-header-row class="table-header" *matHeaderRowDef="['ma_va_ten','so_lieu_tam_thoi', 'so_lieu_chinh_thuc','top_xuat_khau_header']">
                 </tr>
-                <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky: true"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                <tr mat-header-row class="table-header" *matHeaderRowDef="displayedColumns;sticky: true"></tr>
+                <tr mat-row class="table-row" *matRowDef="let row; columns: displayedColumns;"></tr>
                 <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
             </table>
         </div>

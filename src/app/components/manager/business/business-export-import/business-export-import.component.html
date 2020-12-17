@@ -119,8 +119,8 @@
                     </td>
                 </ng-container>
 
-                <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                <tr mat-header-row class="table-header" *matHeaderRowDef="displayedColumns;"></tr>
+                <tr mat-row class="table-row" *matRowDef="let row; columns: displayedColumns;"></tr>
             </table>
             <div *ngIf="!dataSource.data.length">
                 <h1 class="text-center">Không có dữ liệu</h1>
@@ -191,8 +191,8 @@
                     </td>
                 </ng-container>
 
-                <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                <tr mat-header-row class="table-header" *matHeaderRowDef="displayedColumns;"></tr>
+                <tr mat-row class="table-row" *matRowDef="let row; columns: displayedColumns;"></tr>
             </table>
             <div *ngIf="!dataSourceImport.data.length">
                 <h1 class="text-center">Không có dữ liệu</h1>

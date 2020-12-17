@@ -24,9 +24,9 @@
                             <div [innerHTML]="element.dien_giai"></div>
                         </td>
                     </ng-container>
-                    <tr mat-header-row *matHeaderRowDef="topColumns">
+                    <tr mat-header-row class="table-header" *matHeaderRowDef="topColumns">
                     </tr>
-                    <tr mat-row *matRowDef="let row;columns: topColumns;let i = index; ">
+                    <tr mat-row class="table-row" *matRowDef="let row;columns: topColumns;let i = index; ">
                 </table>
             </div>
             <hr>

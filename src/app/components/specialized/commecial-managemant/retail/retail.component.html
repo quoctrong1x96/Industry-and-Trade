@@ -119,8 +119,8 @@
                         (click)="OpenDetail(12, year)" id="jump"> {{element.thang_12|number:'1.0-2'| ZeroAsSub}}</td>
                 </ng-container>
 
-                <tr mat-header-row *matHeaderRowDef="DISPLAY_COLS; sticky : true"></tr>
-                <tr mat-row *matRowDef="let row; columns: DISPLAY_COLS;let i = index; ">
+                <tr mat-header-row class="table-header" *matHeaderRowDef="DISPLAY_COLS; sticky : true"></tr>
+                <tr mat-row class="table-row" *matRowDef="let row; columns: DISPLAY_COLS;let i = index; ">
             </table>
         </div>
 

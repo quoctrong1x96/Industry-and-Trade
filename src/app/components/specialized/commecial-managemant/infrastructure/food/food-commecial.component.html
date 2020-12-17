@@ -165,10 +165,10 @@
                             <th mat-header-cell *matHeaderCellDef style="text-align: center;" [attr.colspan]="1">
                         </ng-container>
 
-                        <tr mat-header-row *matHeaderRowDef="['stt1','tch', 'spkd','cndkkd','nddpl','spkdd']">
+                        <tr mat-header-row class="table-header" *matHeaderRowDef="['stt1','tch', 'spkd','cndkkd','nddpl','spkdd']">
                         </tr>
-                        <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky: true"></tr>
-                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                        <tr mat-header-row class="table-header" *matHeaderRowDef="displayedColumns;sticky: true"></tr>
+                        <tr mat-row class="table-row" *matRowDef="let row; columns: displayedColumns;"></tr>
                     </table>
                 </div>
                 <mat-paginator [pageSizeOptions]="[20, 50, 100]" showFirstLastButtons></mat-paginator>

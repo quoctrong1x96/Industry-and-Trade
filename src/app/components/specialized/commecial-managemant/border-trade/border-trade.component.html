@@ -272,13 +272,13 @@
                                 {{element.ten_doanh_nghiep}}
                             </td>
                         </ng-container>
-                        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-                        <tr mat-row *matRowDef="let row; columns: displayedColumns;let i = index; "></tr>
+                        <tr mat-header-row class="table-header" *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                        <tr mat-row class="table-row" *matRowDef="let row; columns: displayedColumns;let i = index; "></tr>
 
                         <ng-container matColumnDef="groupHeader">
                             <td colspan="999" mat-cell *matCellDef="let groupBy" style="text-align: left;margin-left: 1em;"><strong>{{groupBy.group_name}}</strong></td>
                         </ng-container>
-                        <tr mat-row *matRowDef="let row; columns: ['groupHeader']; when: isGroup"></tr>
+                        <tr mat-row class="table-row" *matRowDef="let row; columns: ['groupHeader']; when: isGroup"></tr>
                     </table>
                 </div>
                 <ng-template #templateName>
@@ -324,13 +324,13 @@
                                         {{element.ten_doanh_nghiep}}
                                     </td>
                                 </ng-container>
-                                <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-                                <tr mat-row *matRowDef="let row; columns: displayedColumns;let i = index; "></tr>
+                                <tr mat-header-row class="table-header" *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                                <tr mat-row class="table-row" *matRowDef="let row; columns: displayedColumns;let i = index; "></tr>
         
                                 <ng-container matColumnDef="groupHeader">
                                     <td colspan="999" mat-cell *matCellDef="let groupBy" style="text-align: left;margin-left: 1em;"><strong>{{groupBy.group_name}}</strong></td>
                                 </ng-container>
-                                <tr mat-row *matRowDef="let row; columns: ['groupHeader']; when: isGroup"></tr>
+                                <tr mat-row class="table-row" *matRowDef="let row; columns: ['groupHeader']; when: isGroup"></tr>
                             </table>
                             <div class="row"></div>
                             <div class="row"></div>

@@ -227,11 +227,11 @@
                         <ng-container matColumnDef="bien_apM">
                             <th mat-header-cell *matHeaderCellDef [attr.colspan]="2">Trạm biến áp</th>
                         </ng-container>
-                        <tr mat-header-row *matHeaderRowDef="dsplayMergeColumns;">
+                        <tr mat-header-row class="table-header" *matHeaderRowDef="dsplayMergeColumns;">
                         </tr>
 
-                        <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky: true"></tr>
-                        <tr mat-row *matRowDef="let row; columns: displayedColumns;let i = index; ">
+                        <tr mat-header-row class="table-header" *matHeaderRowDef="displayedColumns;sticky: true"></tr>
+                        <tr mat-row class="table-row" *matRowDef="let row; columns: displayedColumns;let i = index; ">
                     </table>
 
                 </div>
