@@ -132,11 +132,11 @@
                 <ng-container matColumnDef="top_xuat_khau_header">
                     <th mat-header-cell *matHeaderCellDef [attr.colspan]="1"></th>
                 </ng-container>
-                <tr mat-header-row
+                <tr mat-header-row class="table-header"
                     *matHeaderRowDef="['ten_sp','so_lieu_tam_thoi', 'so_lieu_chinh_thuc','top_xuat_khau_header']">
                 </tr>
-                <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky: true"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;let i = index; " (click)="changeRow(i)">
+                <tr mat-header-row class="table-header" *matHeaderRowDef="displayedColumns;sticky: true"></tr>
+                <tr mat-row class="table-row" *matRowDef="let row; columns: displayedColumns;let i = index; " (click)="changeRow(i)">
             </table>
         </div>
         <mat-paginator [pageSizeOptions]="[20, 50, 100]" showFirstLastButtons></mat-paginator>

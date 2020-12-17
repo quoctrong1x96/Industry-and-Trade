@@ -161,11 +161,11 @@
                                         <td mat-footer-cell *matFooterCellDef> {{TongGiaTriCongDon | formatNumber}} </td>
                                     </ng-container>
 
-                                    <tr mat-header-row *matHeaderRowDef="['index', 'ten_san_pham', 'id_quoc_gia', 'thuc_hien_bao_cao_thang', 'cong_don_den_ky_bao_cao']">
+                                    <tr mat-header-row class="table-header" *matHeaderRowDef="['index', 'ten_san_pham', 'id_quoc_gia', 'thuc_hien_bao_cao_thang', 'cong_don_den_ky_bao_cao']">
                                     </tr>
-                                    <tr mat-header-row *matHeaderRowDef="['luong_thang', 'gia_tri_thang', 'luong_cong_don', 'gia_tri_cong_don']">
+                                    <tr mat-header-row class="table-header" *matHeaderRowDef="['luong_thang', 'gia_tri_thang', 'luong_cong_don', 'gia_tri_cong_don']">
                                     </tr>
-                                    <tr mat-row *matRowDef="let row; columns: displayedColumns;let i = index; ">
+                                    <tr mat-row class="table-row" *matRowDef="let row; columns: displayedColumns;let i = index; ">
                                         <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
                                 </table>
                             </ng-container>
@@ -313,8 +313,8 @@
                                     </td>
                                 </ng-container>
 
-                                <tr mat-header-row *matHeaderRowDef="displayedColumns_business;"></tr>
-                                <tr mat-row *matRowDef="let row; columns: displayedColumns_business;"></tr>
+                                <tr mat-header-row class="table-header" *matHeaderRowDef="displayedColumns_business;"></tr>
+                                <tr mat-row class="table-row" *matRowDef="let row; columns: displayedColumns_business;"></tr>
                             </table>
 
                         </div>

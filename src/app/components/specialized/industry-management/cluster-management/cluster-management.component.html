@@ -163,9 +163,9 @@
                             <th mat-header-cell *matHeaderCellDef [attr.colspan]="4"> Tình hình đầu tư hạ tầng CCN </th>
                         </ng-container>
 
-                        <tr mat-header-row *matHeaderRowDef="showColumns; sticky : true"></tr>
-                        <tr mat-header-row *matHeaderRowDef="showSubColumns; sticky : true"></tr>
-                        <tr mat-row *matRowDef="let row; columns: showColumns;let i = index; ">
+                        <tr mat-header-row class="table-header" *matHeaderRowDef="showColumns; sticky : true"></tr>
+                        <tr mat-header-row class="table-header" *matHeaderRowDef="showSubColumns; sticky : true"></tr>
+                        <tr mat-row class="table-row" *matRowDef="let row; columns: showColumns;let i = index; ">
                     </table>
                 </div>
                 <mat-paginator [pageSizeOptions]="[20, 50, 100]" showFirstLastButtons></mat-paginator>

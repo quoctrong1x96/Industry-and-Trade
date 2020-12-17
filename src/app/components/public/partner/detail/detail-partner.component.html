@@ -298,8 +298,8 @@
                         </td>
                     </ng-container>
 
-                    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-                    <tr mat-row *matRowDef="let row; columns: displayedColumns;let i = index; "></tr>
+                    <tr mat-header-row class="table-header" *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                    <tr mat-row class="table-row" *matRowDef="let row; columns: displayedColumns;let i = index; "></tr>
                 </table>
             </div>
             <mat-paginator #ExportPaginators [hidden]="dataSourceKNXK.data.length === 0" [pageSizeOptions]="[20, 50, 100]" showFirstLastButtons></mat-paginator>
@@ -386,8 +386,8 @@
                         </td>
                     </ng-container>
 
-                    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-                    <tr mat-row *matRowDef="let row; columns: displayedColumns;let i = index;"></tr>
+                    <tr mat-header-row class="table-header" *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                    <tr mat-row class="table-row" *matRowDef="let row; columns: displayedColumns;let i = index;"></tr>
                 </table>
             </div>
             <mat-paginator #ImportPaginators [hidden]="dataSourceKNNK.data.length === 0" [pageSizeOptions]="[20, 50, 100]" showFirstLastButtons></mat-paginator>

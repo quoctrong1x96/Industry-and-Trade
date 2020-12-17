@@ -105,8 +105,8 @@
                     </td>
                 </ng-container>
 
-                <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky: true"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;let i = index; " (click)="changeRow(i)">
+                <tr mat-header-row class="table-header" *matHeaderRowDef="displayedColumns;sticky: true"></tr>
+                <tr mat-row class="table-row" *matRowDef="let row; columns: displayedColumns;let i = index; " (click)="changeRow(i)">
             </table>
         </div>
         <mat-paginator [pageSizeOptions]="[20, 50, 100]" showFirstLastButtons></mat-paginator>
