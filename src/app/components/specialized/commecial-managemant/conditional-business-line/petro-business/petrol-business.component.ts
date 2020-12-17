@@ -75,11 +75,9 @@ export class PetrolBusinessComponent implements OnInit {
 
             this.dataSource.data.forEach(element => {
                 element.is_het_han = new Date(element.ngay_het_han) < new Date();
-                element.so_luong_thuong_nhan = 0;
                 result.data[1].forEach(businessman => {
                     if (businessman.id_kd_co_dk === element.id) {
                         element.danh_sach_thuong_nhan += businessman.ten_thuong_nhan + '\n';
-                        element.so_luong_thuong_nhan++;
                     }
                 });
             });
@@ -88,7 +86,7 @@ export class PetrolBusinessComponent implements OnInit {
             else
                 this.filteredDataSource.data = [...this.dataSource.data];
             this.sanLuongBanRa = this.filteredDataSource.data.length ? this.filteredDataSource.data.map(x => x.san_luong).reduce((a, b) => a + b) : 0;
-            this.soLuongThuongNhanCungCap = this.filteredDataSource.data.length ? this.filteredDataSource.data.map(x => x.so_luong_thuong_nhan).reduce((a, b) => a + b) : 0;
+            this.soLuongThuongNhanCungCap = this.filteredDataSource.data.length ? [...new Set(this.filteredDataSource.data.map(x => x.danh_sach_thuong_nhan))].length : 0;
             this.filteredDataSource.paginator = this.paginator;
             this.paginator._intl.itemsPerPageLabel = 'Số hàng';
             this.paginator._intl.firstPageLabel = "Trang Đầu";
@@ -123,7 +121,7 @@ export class PetrolBusinessComponent implements OnInit {
             this.filteredDataSource.data = filteredData;
         }
         this.sanLuongBanRa = this.filteredDataSource.data.length ? this.filteredDataSource.data.map(x => x.san_luong).reduce((a, b) => a + b) : 0;
-        this.soLuongThuongNhanCungCap = this.filteredDataSource.data.length ? this.filteredDataSource.data.map(x => x.so_luong_thuong_nhan).reduce((a, b) => a + b) : 0;
+        this.soLuongThuongNhanCungCap = this.filteredDataSource.data.length ? [...new Set(this.filteredDataSource.data.map(x => x.danh_sach_thuong_nhan))].length : 0;
     }
 
     // isHidden(row : any){
