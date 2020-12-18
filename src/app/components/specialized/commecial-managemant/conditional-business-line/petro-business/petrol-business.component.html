@@ -134,7 +134,8 @@
                     <table mat-table [dataSource]="filteredDataSource" class="table-layout" id="small-table2">
                         <ng-container matColumnDef="index">
                             <th mat-header-cell *matHeaderCellDef> STT </th>
-                            <td mat-cell *matCellDef="let element; let i = index;"> {{this.paginator.pageIndex == 0 ? i + 1 : 1 + i + this.paginator.pageIndex * this.paginator.pageSize}}
+                            <td mat-cell *matCellDef="let element; let i = index;" class="center-cell"> {{this.paginator.pageIndex == 0 ? i
+                                + 1 : 1 + i + this.paginator.pageIndex * this.paginator.pageSize}}
                             </td>
                         </ng-container>
 
@@ -195,7 +196,8 @@
                             <td mat-cell *matCellDef="let element"></td>
                         </ng-container>
 
-                        <tr mat-header-row class="table-header" *matHeaderRowDef="['index', 'mst', 'ten_doanh_nghiep', 'ten_cua_hang', 'dia_chi', 'dien_thoai', 'so_giay_phep', 'ngay_cap','ngay_het_han', 'danh_sach_thuong_nhan', 'san_luong', 'ghi_chu']; sticky : true">
+                        <tr mat-header-row class="table-header"
+                            *matHeaderRowDef="['index', 'mst', 'ten_doanh_nghiep', 'ten_cua_hang', 'dia_chi', 'dien_thoai', 'so_giay_phep', 'ngay_cap','ngay_het_han', 'danh_sach_thuong_nhan', 'san_luong', 'ghi_chu']; sticky : true">
                         </tr>
                         <tr mat-row class="table-row" *matRowDef="let row; columns: displayedColumns;let i = index; ">
                     </table>

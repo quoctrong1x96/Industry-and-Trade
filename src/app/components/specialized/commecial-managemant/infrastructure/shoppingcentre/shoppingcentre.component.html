@@ -163,7 +163,7 @@
                     <table mat-table [dataSource]="filteredDataSource" class="table-layout" id="small-table">
                         <ng-container matColumnDef="index">
                             <th mat-header-cell *matHeaderCellDef> STT </th>
-                            <td mat-cell *matCellDef="let element; let i = index;">{{i+1}}</td>
+                            <td mat-cell *matCellDef="let element; let i = index;" class="center-cell">{{i+1}}</td>
                         </ng-container>
                         <ng-container matColumnDef="tenhuyenthi">
                             <th mat-header-cell *matHeaderCellDef> Huyện, thị xã, thành phố </th>
