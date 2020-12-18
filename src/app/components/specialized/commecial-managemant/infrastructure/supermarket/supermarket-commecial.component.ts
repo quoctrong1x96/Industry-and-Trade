@@ -105,14 +105,14 @@ export class SuperMarketCommecialManagementComponent implements OnInit {
 
   // headerArray = ['index', 'tenhuyenthi', 'ten_tttm', 'dientich', 'vondautu', 'namdautuxaydung', 'phanloai'];
 
-  headerArray = ['index', 'ten_sieu_thi', 'dia_diem', 'id_dia_ban', 'dia_ban', 'nha_nuoc', 'ngoai_nha_nuoc', 'co_von_dau_tu_nuoc_ngoai', 'von_khac', 'tong_hop',
+  headerArray = ['index', 'ten_sieu_thi_TTTM', 'dia_diem', 'dia_ban', 'nha_nuoc', 'ngoai_nha_nuoc', 'co_von_dau_tu_nuoc_ngoai', 'von_khac', 'tong_hop',
     'chuyen_doanh', 'nam_xay_dung', 'nam_ngung_hoat_dong', 'dien_tich_dat', 'phan_hang', 'so_lao_dong', 'ten_chu_dau_tu',
     'giay_dang_ky_kinh_doanh', 'dia_chi', 'dien_thoai', 'ho_va_ten', 'dia_chi1', 'dien_thoai1',
   ];
 
   dataHuyenThi: Array<SuperMarketCommonModel> = [
     {
-      ten_sieu_thi: 'Siêu thị Co.opMart Đồng Xoài',
+      ten_sieu_thi_TTTM: 'Siêu thị Co.opMart Đồng Xoài',
       dia_diem: 'Đường Phú Riềng Đỏ, phường Tân Bình, thị xã Đồng Xoài, tỉnh Bình Phước',
       id_dia_ban: 2,
       dia_ban: 'Đồng Xoài',
@@ -136,7 +136,7 @@ export class SuperMarketCommecialManagementComponent implements OnInit {
       dien_thoai1: null
     },
     {
-      ten_sieu_thi: 'Siêu thị điện máy nội thất Chợ Lớn, chi nhánh Bình Phước',
+      ten_sieu_thi_TTTM: 'Siêu thị điện máy nội thất Chợ Lớn, chi nhánh Bình Phước',
       dia_diem: '658 Phú Riềng Đỏ, KP.Tân Trà, P. Tân Xuân, TX Đồng Xoài, Bình Phước',
       id_dia_ban: 2,
       dia_ban: 'Đồng Xoài',
@@ -160,7 +160,7 @@ export class SuperMarketCommecialManagementComponent implements OnInit {
       dien_thoai1: null
     },
     {
-      ten_sieu_thi: 'Siêu thị Phương Lan',
+      ten_sieu_thi_TTTM: 'Siêu thị Phương Lan',
       dia_diem: 'Phường Phước Bình, thị xã Phước Long, tỉnh Bình Phước',
       id_dia_ban: 1,
       dia_ban: 'Phước Long',
@@ -184,7 +184,7 @@ export class SuperMarketCommecialManagementComponent implements OnInit {
       dien_thoai1: null
     },
     {
-      ten_sieu_thi: 'Siêu thị Co.opMart Đồng Phú',
+      ten_sieu_thi_TTTM: 'Siêu thị Co.opMart Đồng Phú',
       dia_diem: 'thị trấn Tân Phú, huyện Đồng Phú',
       id_dia_ban: 8,
       dia_ban: 'Đồng Phú',
@@ -208,7 +208,7 @@ export class SuperMarketCommecialManagementComponent implements OnInit {
       dien_thoai1: null
     },
     {
-      ten_sieu_thi: 'Siêu thị The Gold Mart ',
+      ten_sieu_thi_TTTM: 'Siêu thị The Gold Mart ',
       dia_diem: 'đường Tôn Đức Thắng, ấp 2, xã Tiến Thành, thị xã Đồng Xoài, tỉnh Bình Phước',
       id_dia_ban: 2,
       dia_ban: 'Đồng Xoài',
@@ -232,7 +232,7 @@ export class SuperMarketCommecialManagementComponent implements OnInit {
       dien_thoai1: null
     },
     {
-      ten_sieu_thi: 'Siêu thị điện máy xanh Bình Phước',
+      ten_sieu_thi_TTTM: 'Siêu thị điện máy xanh Bình Phước',
       dia_diem: 'Phường Tân Thiện, thị xã Đồng Xoài,',
       id_dia_ban: 2,
       dia_ban: 'Đồng Xoài',
@@ -256,7 +256,7 @@ export class SuperMarketCommecialManagementComponent implements OnInit {
       dien_thoai1: null
     },
     {
-      ten_sieu_thi: 'Siêu thị Bé Lan',
+      ten_sieu_thi_TTTM: 'Siêu thị Bé Lan',
       dia_diem: 'Phường An Lộc, thị xã Bình Long',
       id_dia_ban: 3,
       dia_ban: 'Bình Long',
@@ -280,7 +280,7 @@ export class SuperMarketCommecialManagementComponent implements OnInit {
       dien_thoai1: null
     },
     {
-      ten_sieu_thi: 'Dự  án Siêu thị Co.opMart Bù Đăng',
+      ten_sieu_thi_TTTM: 'Dự  án Siêu thị Co.opMart Bù Đăng',
       dia_diem: 'thị trấn Đức Phong, huyện Bù Đăng, tỉnh Bình Phước',
       id_dia_ban: 9,
       dia_ban: 'Bù Đăng',
@@ -304,7 +304,7 @@ export class SuperMarketCommecialManagementComponent implements OnInit {
       dien_thoai1: null
     },
     {
-      ten_sieu_thi: 'Dự án Siêu Thị Bombo và chợ đêm',
+      ten_sieu_thi_TTTM: 'Dự án Siêu Thị Bombo và chợ đêm',
       dia_diem: 'thôn 4, xã Bomboo, huyện Bù Đăng, tỉnh Bình Phước',
       id_dia_ban: 9,
       dia_ban: 'Bù Đăng',
@@ -401,7 +401,6 @@ export class SuperMarketCommecialManagementComponent implements OnInit {
     this.autoOpen();
   }
 
-
   //Xuất excel
   ExportTOExcel(filename: string, sheetname: string) {
     sheetname = sheetname.replace('/', '_');
@@ -472,7 +471,6 @@ export class SuperMarketCommecialManagementComponent implements OnInit {
 
     this.sieuThiDauTuTrongNam = data.filter(x => x.nam_xay_dung == this.year.toString()).length;
     this.sieuThiDauTuNamTruoc = data.filter(x => x.nam_xay_dung == (this.year - 1).toString()).length;
-    this.sieuThiDauTuNamTruoc1 = Math.abs(this.sieuThiDauTuTrongNam - this.sieuThiDauTuNamTruoc);
 
     this.sieuThiChuyenDanh = data.filter(x => x.chuyen_doanh != null).length;
     this.sieuThiTongHop = data.filter(x => x.tong_hop != null).length;

@@ -25,7 +25,8 @@
                         <mat-card class="card5">
                             <mat-card-header>
                                 <mat-card-title>
-                                    <mat-icon>filter</mat-icon> Tổng số siêu thị: <span>{{tongSieuThi}} siêu thị</span>
+                                    <mat-icon>filter</mat-icon> Tổng số siêu thị: <span>{{tongSieuThi | number:
+                                        '1.0-0'}} siêu thị</span>
                                 </mat-card-title>
                                 <mat-card-subtitle></mat-card-subtitle>
                             </mat-card-header>
@@ -44,10 +45,11 @@
                             <mat-card-content>
                                 <ul>
                                     <li>
-                                        Tổng số siêu thị tổng hợp: <span>{{sieuThiTongHop}}</span>
+                                        Tổng số siêu thị tổng hợp: <span>{{sieuThiTongHop | number: '1.0-0'}}</span>
                                     </li>
                                     <li>
-                                        Tổng số siêu thị chuyên doanh: <span>{{sieuThiChuyenDanh}}</span>
+                                        Tổng số siêu thị chuyên doanh: <span>{{sieuThiChuyenDanh | number:
+                                            '1.0-0'}}</span>
                                     </li>
                                 </ul>
                             </mat-card-content>
@@ -67,16 +69,17 @@
                             <mat-card-content>
                                 <ul>
                                     <li>
-                                        Tổng số siêu thị hạng I: <span>{{sieuThiHangI}}</span>
+                                        Tổng số siêu thị hạng I: <span>{{sieuThiHangI | number: '1.0-0'}}</span>
                                     </li>
                                     <li>
-                                        Tổng số siêu thị hạng II: <span>{{sieuThiHangII}}</span>
+                                        Tổng số siêu thị hạng II: <span>{{sieuThiHangII | number: '1.0-0'}}</span>
                                     </li>
                                     <li>
-                                        Tổng số siêu thị hạng III: <span>{{sieuThiHangIII}}</span>
+                                        Tổng số siêu thị hạng III: <span>{{sieuThiHangIII | number: '1.0-0'}}</span>
                                     </li>
                                     <li>
-                                        Tổng số siêu thị đang xây dựng: <span>{{sieuThiDangXayDung}}</span>
+                                        Tổng số siêu thị đang xây dựng: <span>{{sieuThiDangXayDung | number:
+                                            '1.0-0'}}</span>
                                     </li>
                                 </ul>
                             </mat-card-content>
@@ -94,12 +97,12 @@
                                 <ul>
                                     <li>
                                         Tổng số siêu thị đầu tư xây dựng trong năm <span>{{year}}</span> là:
-                                        <span>{{sieuThiDauTuTrongNam}}</span>
+                                        <span>{{sieuThiDauTuTrongNam | number: '1.0-0'}}</span>
                                     </li>
                                     <li>
                                         Chênh lệch số siêu thị đầu tư xây dựng trong năm <span>{{year}}</span> so với
                                         năm trước là:
-                                        <span>{{sieuThiDauTuNamTruoc1}}</span>
+                                        <span>{{(sieuThiDauTuTrongNam - sieuThiDauTuNamTruoc) | number: '1.0-0'}}</span>
                                     </li>
                                     <li>
                                         Tổng số siêu thị ngừng hoạt động trong năm <span>{{year}}</span> là:
@@ -132,8 +135,7 @@
                     <div class="col-3 col-lg-3">
                         <mat-form-field appearance="outline">
                             <mat-label>Địa bàn</mat-label>
-                            <mat-select (selectionChange)="applyFilter()" [(ngModel)]="filterModel.id_quan_huyen"
-                                multiple>
+                            <mat-select (selectionChange)="applyFilter()" [(ngModel)]="filterModel.id_dia_ban" multiple>
                                 <mat-option *ngFor='let district of districts' [value]='district.id'>
                                     {{district.ten_quan_huyen}}
                                 </mat-option>
@@ -161,19 +163,15 @@
                             <th mat-header-cell *matHeaderCellDef> STT </th>
                             <td mat-cell *matCellDef="let element; let i = index;" class="center-cell">{{i+1}}</td>
                         </ng-container>
-                        <ng-container matColumnDef="ten_sieu_thi" sticky>
+
+                        <ng-container matColumnDef="ten_sieu_thi_TTTM" sticky>
                             <th mat-header-cell *matHeaderCellDef> Tên siêu thị </th>
-                            <td mat-cell *matCellDef="let element"> {{element.ten_sieu_thi}} </td>
+                            <td mat-cell *matCellDef="let element"> {{element.ten_sieu_thi_TTTM}} </td>
                         </ng-container>
 
                         <ng-container matColumnDef="dia_diem">
                             <th mat-header-cell *matHeaderCellDef>Địa điểm</th>
                             <td mat-cell *matCellDef="let element"> {{element.dia_diem}} </td>
-                        </ng-container>
-
-                        <ng-container matColumnDef="id_dia_ban" hidden>
-                            <th mat-header-cell *matHeaderCellDef> ID Địa bàn </th>
-                            <td mat-cell *matCellDef="let element"> {{element.id_dia_ban}} </td>
                         </ng-container>
 
                         <ng-container matColumnDef="dia_ban">
@@ -183,23 +181,27 @@
 
                         <ng-container matColumnDef="nha_nuoc">
                             <th mat-header-cell *matHeaderCellDef> Nhà nước </th>
-                            <td mat-cell *matCellDef="let element"> {{element.nha_nuoc | number: '1.0-0'}} </td>
+                            <td mat-cell *matCellDef="let element" class="right-cell"> {{element.nha_nuoc | number:
+                                '1.0-0'}} </td>
                         </ng-container>
 
                         <ng-container matColumnDef="ngoai_nha_nuoc">
                             <th mat-header-cell *matHeaderCellDef> Ngoài nhà nước </th>
-                            <td mat-cell *matCellDef="let element"> {{element.ngoai_nha_nuoc | number: '1.0-0'}} </td>
+                            <td mat-cell *matCellDef="let element" class="right-cell"> {{element.ngoai_nha_nuoc |
+                                number: '1.0-0'}} </td>
                         </ng-container>
 
                         <ng-container matColumnDef="co_von_dau_tu_nuoc_ngoai">
                             <th mat-header-cell *matHeaderCellDef> Có vốn đầu tư nước ngoài </th>
-                            <td mat-cell *matCellDef="let element"> {{element.co_von_dau_tu_nuoc_ngoai | number:
+                            <td mat-cell *matCellDef="let element" class="right-cell">
+                                {{element.co_von_dau_tu_nuoc_ngoai | number:
                                 '1.0-0'}} </td>
                         </ng-container>
 
                         <ng-container matColumnDef="von_khac">
                             <th mat-header-cell *matHeaderCellDef> Vốn khác </th>
-                            <td mat-cell *matCellDef="let element"> {{element.von_khac | number: '1.0-0'}} </td>
+                            <td mat-cell *matCellDef="let element" class="right-cell"> {{element.von_khac | number:
+                                '1.0-0'}} </td>
                         </ng-container>
 
                         <ng-container matColumnDef="tong_hop">
@@ -224,7 +226,8 @@
 
                         <ng-container matColumnDef="dien_tich_dat">
                             <th mat-header-cell *matHeaderCellDef> Diện tích đất </th>
-                            <td mat-cell *matCellDef="let element"> {{element.dien_tich_dat | number: '1.0-0'}} </td>
+                            <td mat-cell *matCellDef="let element" class="right-cell"> {{element.dien_tich_dat | number:
+                                '1.0-0'}} </td>
                         </ng-container>
 
                         <ng-container matColumnDef="phan_hang">
@@ -234,7 +237,8 @@
 
                         <ng-container matColumnDef="so_lao_dong">
                             <th mat-header-cell *matHeaderCellDef> Số lao động </th>
-                            <td mat-cell *matCellDef="let element"> {{element.so_lao_dong | number: '1.0-0'}} </td>
+                            <td mat-cell *matCellDef="let element" class="right-cell"> {{element.so_lao_dong | number:
+                                '1.0-0'}} </td>
                         </ng-container>
 
                         <ng-container matColumnDef="ten_chu_dau_tu">

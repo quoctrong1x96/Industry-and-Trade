@@ -7,15 +7,7 @@ export class MarketCommonModel {
 }
 
 export class SuperMarketCommonModel {
-    // huyen: string;
-    // ten_tttm: string;
-    // dientich: number;
-    // vondautu: number;
-    // phanloai: string;
-    // namdautuxaydung: string;
-    // id_quan_huyen: number;
-
-    ten_sieu_thi: string;
+    ten_sieu_thi_TTTM: string;
     dia_diem: string;
     id_dia_ban: number;
     dia_ban: string;
