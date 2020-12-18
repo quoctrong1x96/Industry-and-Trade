@@ -31,4 +31,5 @@ export class ConditionalBusinessLineModel {
     is_het_han : boolean;
     ten_cua_hang : string;
     ghi_chu : string;
+    dia_chi_cua_hang : string;
 }

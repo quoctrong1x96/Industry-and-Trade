@@ -20,17 +20,17 @@ export class PetrolBusinessComponent implements OnInit {
     dataSource: MatTableDataSource<ConditionalBusinessLineModel> = new MatTableDataSource<ConditionalBusinessLineModel>();
     filteredDataSource: MatTableDataSource<ConditionalBusinessLineModel> = new MatTableDataSource<ConditionalBusinessLineModel>();
     years: number[] = [];
-    districts: District[] = [{ id: 1, ten_quan_huyen: 'Thị xã Phước Long' },
-    { id: 2, ten_quan_huyen: 'Thành phố Đồng Xoài' },
-    { id: 3, ten_quan_huyen: 'Thị xã Bình Long' },
-    { id: 4, ten_quan_huyen: 'Huyện Bù Gia Mập' },
-    { id: 5, ten_quan_huyen: 'Huyện Lộc Ninh' },
-    { id: 6, ten_quan_huyen: 'Huyện Bù Đốp' },
-    { id: 7, ten_quan_huyen: 'Huyện Hớn Quản' },
-    { id: 8, ten_quan_huyen: 'Huyện Đồng Phú' },
-    { id: 9, ten_quan_huyen: 'Huyện Bù Đăng' },
-    { id: 10, ten_quan_huyen: 'Huyện Chơn Thành' },
-    { id: 11, ten_quan_huyen: 'Huyện Phú Riềng' }];
+    districts: District[] = [{ id: 1, ten_quan_huyen: 'Phước Long' },
+    { id: 2, ten_quan_huyen: 'Đồng Xoài' },
+    { id: 3, ten_quan_huyen: 'Bình Long' },
+    { id: 4, ten_quan_huyen: 'Bù Gia Mập' },
+    { id: 5, ten_quan_huyen: 'Lộc Ninh' },
+    { id: 6, ten_quan_huyen: 'Bù Đốp' },
+    { id: 7, ten_quan_huyen: 'Hớn Quản' },
+    { id: 8, ten_quan_huyen: 'Đồng Phú' },
+    { id: 9, ten_quan_huyen: 'Bù Đăng' },
+    { id: 10, ten_quan_huyen: 'Chơn Thành' },
+    { id: 11, ten_quan_huyen: 'Phú Riềng' }];
     sanLuongBanRa: number;
     soLuongDoanhNghiep: number;
     soLuongThuongNhanCungCap: number;
@@ -108,7 +108,7 @@ export class PetrolBusinessComponent implements OnInit {
         let filteredData = [];
 
         event.value.forEach(element => {
-            this.dataSource.data.filter(x => x.id_quan_huyen == element).forEach(x => filteredData.push(x));
+            this.dataSource.data.filter(x => x.dia_chi_cua_hang.toLowerCase().includes(element.toLowerCase())).forEach(x => filteredData.push(x));
         });
 
         if (!filteredData.length) {
@@ -134,7 +134,7 @@ export class PetrolBusinessComponent implements OnInit {
     }
 
     countBusiness(): number {
-        return [...new Set(this.filteredDataSource.data.map(x => x.mst))].length;
+        return [...new Set(this.filteredDataSource.data.map(x => x.mst.toString().split('-')[0]))].length;
     }
 
     public ExportTOExcel(filename: string, sheetname: string) {

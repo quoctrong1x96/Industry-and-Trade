@@ -87,8 +87,8 @@ export class TobaccoBusinessComponent implements OnInit {
             // this.filteredDataSource.data = this.filteredDataSource.data.concat(this.filteredDataSource.data);
             // this.filteredDataSource.data = this.filteredDataSource.data.concat(this.filteredDataSource.data);
             // this.filteredDataSource.data = this.filteredDataSource.data.concat(this.filteredDataSource.data);
-            this.sanLuongBanRa = this.filteredDataSource.data.length ? this.filteredDataSource.data.map(x => x.san_luong).reduce((a, b) => a + b) : 0 * 1000;
-            this.giaTriSanPham = this.filteredDataSource.data.length ? this.filteredDataSource.data.map(x => x.tri_gia).reduce((a, b) => a + b) : 0 / 1000;
+        this.sanLuongBanRa = (this.filteredDataSource.data.length ? this.filteredDataSource.data.map(x => x.san_luong).reduce((a, b) => a + b) : 0) * 1000;
+            this.giaTriSanPham = (this.filteredDataSource.data.length ? this.filteredDataSource.data.map(x => x.tri_gia).reduce((a, b) => a + b) : 0) / 1000;
             this.filteredDataSource.paginator = this.paginator;
             this.paginator._intl.itemsPerPageLabel = 'Số hàng';
             this.paginator._intl.firstPageLabel = "Trang Đầu";
@@ -122,8 +122,8 @@ export class TobaccoBusinessComponent implements OnInit {
         else {
             this.filteredDataSource.data = filteredData;
         }
-        this.sanLuongBanRa = this.filteredDataSource.data.length ? this.filteredDataSource.data.map(x => x.san_luong).reduce((a, b) => a + b) : 0 * 1000;
-        this.giaTriSanPham = this.filteredDataSource.data.length ? this.filteredDataSource.data.map(x => x.tri_gia).reduce((a, b) => a + b) : 0 / 1000;
+        this.sanLuongBanRa = (this.filteredDataSource.data.length ? this.filteredDataSource.data.map(x => x.san_luong).reduce((a, b) => a + b) : 0) * 1000;
+        this.giaTriSanPham = (this.filteredDataSource.data.length ? this.filteredDataSource.data.map(x => x.tri_gia).reduce((a, b) => a + b) : 0) / 1000;
     }
 
     // isHidden(row : any){
