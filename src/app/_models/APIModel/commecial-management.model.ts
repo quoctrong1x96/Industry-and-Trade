@@ -17,6 +17,7 @@ export class SuperMarketCommonModel {
 
     ten_sieu_thi: string;
     dia_diem: string;
+    id_dia_ban: number;
     dia_ban: string;
     nha_nuoc: number;
     ngoai_nha_nuoc: number;
