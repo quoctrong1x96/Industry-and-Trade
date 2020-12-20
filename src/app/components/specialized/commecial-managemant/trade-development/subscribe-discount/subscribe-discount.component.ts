@@ -235,7 +235,7 @@ export class SubscribeDiscountComponent implements OnInit {
   dataSource: MatTableDataSource<SD> = new MatTableDataSource<SD>();
   filteredDataSource: MatTableDataSource<SD> = new MatTableDataSource<SD>();
   filterModel: SDFilterModel = new SDFilterModel();
-
+  sumvalues: number = 0;
   years: number[] = [];
   districts: District[] = [{ id: 1, ten_quan_huyen: 'Thị xã Phước Long' },
   { id: 2, ten_quan_huyen: 'Thành phố Đồng Xoài' },
