@@ -166,6 +166,10 @@ export class BorderTradeComponent implements OnInit {
   // Loc Thinh
   TongKimNgachxkIII: number = 0;
   TongKimNgachnkIII: number = 0;
+
+  // tong kim ngach ca 3 cua khau
+  TongKimNgach3xk: number = 0;
+  TongKimNgach3nk: number = 0;
   //Private Variable for TS
   private _linkOutput: LinkModel = new LinkModel();
   constructor(
@@ -212,7 +216,7 @@ export class BorderTradeComponent implements OnInit {
     //Add 'implements AfterViewInit' to the class.
     // this.getThuongMaiBGGateII();
     // this.getThuongMaiBGGateIII();
-    
+
   }
 
   autoOpen() {
@@ -224,11 +228,13 @@ export class BorderTradeComponent implements OnInit {
   // }
 
   selectGate(id_gate) {
+
     this.id_cua_khau = id_gate;
     let tem_cua_khau = this.danh_sach_cua_khau.find(item => item.id_cua_khau === id_gate);
     this.cua_khau = tem_cua_khau.ten_cua_khau;
-    this.Id_Array = [];
-    this.getThuongMaiBG(this.curentmonth)
+    // this.Id_Array = [];
+
+    this.getThuongMaiBG(this.curentmonth);
   }
 
   public ExportTOExcel(filename: string, sheetname: string) {
@@ -249,14 +255,20 @@ export class BorderTradeComponent implements OnInit {
 
   }
   dulieutonghop() {
-    return [
-      { cua_khau: 'Hoa Lư', TongKimNgachxk: this.TongKimNgachxk, TongKimNgachnk: this.TongKimNgachnk },
-      { cua_khau: 'Hoàng Diệu', TongKimNgachxk: this.TongKimNgachxkII, TongKimNgachnk: this.TongKimNgachnkII },
+    let three_ck = [
+      { cua_khau: 'Hoa Lư - ', TongKimNgachxk: this.TongKimNgachxk, TongKimNgachnk: this.TongKimNgachnk },
+      { cua_khau: 'Hoàng Diệu - ', TongKimNgachxk: this.TongKimNgachxkII, TongKimNgachnk: this.TongKimNgachnkII },
       { cua_khau: 'Lộc Thịnh', TongKimNgachxk: this.TongKimNgachxkIII, TongKimNgachnk: this.TongKimNgachnkIII },
-    ]
+    ];
+    this.cua_khau = '';
+    three_ck.forEach(item => {
+      this.cua_khau = this.cua_khau.concat(item.cua_khau);
+    });
+    console.log('zzzz', this.cua_khau, this.TongKimNgachxk, this.TongKimNgachnk)
   }
 
   getThuongMaiBG(thang) {
+    this.initValueXNK();
     switch (this.id_cua_khau) {
       case 1:
         this.getThuongMaiBGGateI();
@@ -268,7 +280,7 @@ export class BorderTradeComponent implements OnInit {
         this.getThuongMaiBGGateIII();
         break;
       case 4:
-        this.initValueXNK();
+        this.AlldataSource = [];
         this.excuteAllGate()
         break;
       default:
@@ -276,7 +288,7 @@ export class BorderTradeComponent implements OnInit {
     }
   }
 
-  excuteAllGate(){
+  excuteAllGate() {
     let tem = new Date().getFullYear() * 100 + this.curentmonth;
     const excuteallgate = forkJoin(
       [
@@ -285,61 +297,68 @@ export class BorderTradeComponent implements OnInit {
         this.sctService.GetDanhSachXuatNhapKhauBG(tem, 3)
       ]).pipe(tap(console.log)).subscribe((data) => {
         this.xulyDulieunhomI(data[0]);
+        this.initValueXNK();
         this.xulyDulieunhomII(data[1]);
+        this.initValueXNK();
         this.xulyDulieunhomIII(data[2]);
+        let tongxk3 = this.TongKimNgachxk;
+        let tongnk3 = this.TongKimNgachnk;
+        this.TongKimNgach3xk = this.TongKimNgachxk + this.TongKimNgachxkII + this.TongKimNgachxkIII;
+        this.TongKimNgach3nk = this.TongKimNgachnk + this.TongKimNgachnkII + this.TongKimNgachnkIII;
         // this.AlldataSource = [this.dataSourceI, this.dataSourceII, this.dataSourceIII]
+        this.dulieutonghop();
       })
   }
 
-  xulyDulieunhomI(result){
+  xulyDulieunhomI(result) {
     this.getNhomI(result, this.dulieuI_gateI);
-      this.getNhomII(result, this.dulieuII_gateI);
-      this.getNhomIII(result, this.dulieuIII_gateI);
-      this.getNhomIV(result, this.dulieuIV_gateI);
-      this.getNhomV(result, this.dulieuV_gateI);
-      this.dataSourceI = [...result.data[0], ...result.data[1], ...result.data[2], ...result.data[3], ...result.data[4], ...result.data[5], ...result.data[6], ...result.data[7], ...result.data[8], ...result.data[9]];
-      this.dataSource = this.dataSourceI
-      this.AlldataSource.push({ data: this.dataSourceI, cua_khau: 'Hoa Lư' })
-      console.log(this.dataSourceI)
-      
-      this.TongKimNgachxk = this.TongKimNgachThangNhomIxk + this.TongKimNgachThangNhomIIxk + this.TongKimNgachThangNhomIIIxk + this.TongKimNgachThangNhomIVxk + this.TongKimNgachThangNhomVxk;
-      this.TongKimNgachnk = this.TongKimNgachThangNhomInk + this.TongKimNgachThangNhomIInk + this.TongKimNgachThangNhomIIInk + this.TongKimNgachThangNhomIVnk + this.TongKimNgachThangNhomVnk;
-      console.log('tong xk', this.TongKimNgachxk)
+    this.getNhomII(result, this.dulieuII_gateI);
+    this.getNhomIII(result, this.dulieuIII_gateI);
+    this.getNhomIV(result, this.dulieuIV_gateI);
+    this.getNhomV(result, this.dulieuV_gateI);
+    this.dataSourceI = [...result.data[0], ...result.data[1], ...result.data[2], ...result.data[3], ...result.data[4], ...result.data[5], ...result.data[6], ...result.data[7], ...result.data[8], ...result.data[9]];
+    this.dataSource = this.dataSourceI
+    this.AlldataSource.push({ data: this.dataSourceI, cua_khau: 'Hoa Lư' })
+    console.log(this.dataSourceI)
+
+    this.TongKimNgachxk = this.TongKimNgachThangNhomIxk + this.TongKimNgachThangNhomIIxk + this.TongKimNgachThangNhomIIIxk + this.TongKimNgachThangNhomIVxk + this.TongKimNgachThangNhomVxk;
+    this.TongKimNgachnk = this.TongKimNgachThangNhomInk + this.TongKimNgachThangNhomIInk + this.TongKimNgachThangNhomIIInk + this.TongKimNgachThangNhomIVnk + this.TongKimNgachThangNhomVnk;
+    console.log('tong xk', this.TongKimNgachxk)
   }
-  xulyDulieunhomII(result){
-      this.getNhomI(result, this.dulieuI_gateII);
-      this.getNhomII(result, this.dulieuII_gateII);
-      this.getNhomIII(result, this.dulieuIII_gateII);
-      this.getNhomIV(result, this.dulieuIV_gateII);
-      this.getNhomV(result, this.dulieuV_gateII);
-      this.dataSourceII = [...result.data[0], ...result.data[1], ...result.data[2], ...result.data[3], ...result.data[4], ...result.data[5], ...result.data[6], ...result.data[7], ...result.data[8], ...result.data[9]]
-      this.dataSource = this.dataSourceII
-      this.AlldataSource.push({ data: this.dataSourceII, cua_khau: 'Hoang Diệu' })
-      console.log(this.dataSourceII)
-      
-      this.TongKimNgachxkII = this.TongKimNgachThangNhomIxk + this.TongKimNgachThangNhomIIxk + this.TongKimNgachThangNhomIIIxk + this.TongKimNgachThangNhomIVxk + this.TongKimNgachThangNhomVxk;
-      this.TongKimNgachnkII = this.TongKimNgachThangNhomInk + this.TongKimNgachThangNhomIInk + this.TongKimNgachThangNhomIIInk + this.TongKimNgachThangNhomIVnk + this.TongKimNgachThangNhomVnk;
-      console.log('tong xk', this.TongKimNgachxk)
+  xulyDulieunhomII(result) {
+    this.getNhomI(result, this.dulieuI_gateII);
+    this.getNhomII(result, this.dulieuII_gateII);
+    this.getNhomIII(result, this.dulieuIII_gateII);
+    this.getNhomIV(result, this.dulieuIV_gateII);
+    this.getNhomV(result, this.dulieuV_gateII);
+    this.dataSourceII = [...result.data[0], ...result.data[1], ...result.data[2], ...result.data[3], ...result.data[4], ...result.data[5], ...result.data[6], ...result.data[7], ...result.data[8], ...result.data[9]]
+    this.dataSource = this.dataSourceII
+    this.AlldataSource.push({ data: this.dataSourceII, cua_khau: 'Hoang Diệu' })
+    console.log(this.dataSourceII)
+
+    this.TongKimNgachxkII = this.TongKimNgachThangNhomIxk + this.TongKimNgachThangNhomIIxk + this.TongKimNgachThangNhomIIIxk + this.TongKimNgachThangNhomIVxk + this.TongKimNgachThangNhomVxk;
+    this.TongKimNgachnkII = this.TongKimNgachThangNhomInk + this.TongKimNgachThangNhomIInk + this.TongKimNgachThangNhomIIInk + this.TongKimNgachThangNhomIVnk + this.TongKimNgachThangNhomVnk;
+    console.log('tong xk', this.TongKimNgachxk)
   }
 
-  xulyDulieunhomIII(result){
+  xulyDulieunhomIII(result) {
     this.getNhomI(result, this.dulieuI_gateIII);
-      this.getNhomII(result, this.dulieuII_gateIII);
-      this.getNhomIII(result, this.dulieuIII_gateIII);
-      this.getNhomIV(result, this.dulieuIV_gateIII);
-      this.getNhomV(result, this.dulieuV_gateIII);
-      this.dataSourceIII = [...result.data[0], ...result.data[1], ...result.data[2], ...result.data[3], ...result.data[4], ...result.data[5], ...result.data[6], ...result.data[7], ...result.data[8], ...result.data[9]]
-      this.dataSource = this.dataSourceIII
-      this.AlldataSource.push({ data: this.dataSourceIII, cua_khau: 'Lộc Thịnh' })
-      console.log(this.dataSourceIII)
-      console.log(this.AlldataSource)
-      
-      this.TongKimNgachxkIII = this.TongKimNgachThangNhomIxk + this.TongKimNgachThangNhomIIxk + this.TongKimNgachThangNhomIIIxk + this.TongKimNgachThangNhomIVxk + this.TongKimNgachThangNhomVxk;
-      this.TongKimNgachnkIII = this.TongKimNgachThangNhomInk + this.TongKimNgachThangNhomIInk + this.TongKimNgachThangNhomIIInk + this.TongKimNgachThangNhomIVnk + this.TongKimNgachThangNhomVnk;
-      console.log('tong xk', this.TongKimNgachxk)
+    this.getNhomII(result, this.dulieuII_gateIII);
+    this.getNhomIII(result, this.dulieuIII_gateIII);
+    this.getNhomIV(result, this.dulieuIV_gateIII);
+    this.getNhomV(result, this.dulieuV_gateIII);
+    this.dataSourceIII = [...result.data[0], ...result.data[1], ...result.data[2], ...result.data[3], ...result.data[4], ...result.data[5], ...result.data[6], ...result.data[7], ...result.data[8], ...result.data[9]]
+    this.dataSource = this.dataSourceIII
+    this.AlldataSource.push({ data: this.dataSourceIII, cua_khau: 'Lộc Thịnh' })
+    console.log(this.dataSourceIII)
+    console.log(this.AlldataSource)
+
+    this.TongKimNgachxkIII = this.TongKimNgachThangNhomIxk + this.TongKimNgachThangNhomIIxk + this.TongKimNgachThangNhomIIIxk + this.TongKimNgachThangNhomIVxk + this.TongKimNgachThangNhomVxk;
+    this.TongKimNgachnkIII = this.TongKimNgachThangNhomInk + this.TongKimNgachThangNhomIInk + this.TongKimNgachThangNhomIIInk + this.TongKimNgachThangNhomIVnk + this.TongKimNgachThangNhomVnk;
+    console.log('tong xk', this.TongKimNgachxk)
   }
 
-  initValueXNK(){
+  initValueXNK() {
     this.TongKimNgachThangNhomIxk = 0
     this.TongKimNgachThangNhomIIxk = 0
     this.TongKimNgachThangNhomIIIxk = 0
@@ -350,9 +369,11 @@ export class BorderTradeComponent implements OnInit {
     this.TongKimNgachThangNhomIInk = 0;
     this.TongKimNgachThangNhomIIInk = 0;
     this.TongKimNgachThangNhomIVnk = 0;
-    this.TongKimNgachThangNhomVnk= 0;
+    this.TongKimNgachThangNhomVnk = 0;
     // this.TongKimNgachnk = 0;
-    this.AlldataSource = [];
+    if(this.id_cua_khau !==4){
+      this.AlldataSource = [];
+    }
   }
 
   getThuongMaiBGGateI() {

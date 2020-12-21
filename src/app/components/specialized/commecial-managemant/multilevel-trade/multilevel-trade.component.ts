@@ -45,6 +45,8 @@ export class MultilevelTradeComponent implements OnInit {
   ) {
   }
 
+  numberCompanyHoldReference:number = 0;
+
   initVariable() {
 
   }
@@ -53,6 +55,10 @@ export class MultilevelTradeComponent implements OnInit {
     if (this.nhap_khau_chu_yeu.includes(id_mat_hang))
       return true
     return false;
+  }
+
+  conferrenceCompany(){
+    this.numberCompanyHoldReference = this.dataSource.data.filter(item => item.vb_xac_nhan_tc).length
   }
 
   ngOnInit() {
@@ -88,6 +94,7 @@ export class MultilevelTradeComponent implements OnInit {
       this.log(this.dataSource)
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+      this.conferrenceCompany();
     });
   }
 
