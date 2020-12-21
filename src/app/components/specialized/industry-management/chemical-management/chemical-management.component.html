@@ -124,7 +124,7 @@
                     <table mat-table [dataSource]="filteredDataSource" class="table-layout" id="{{displayedColumns.length == 7 ? 'small-table1': 'small-table3'}}">
                         <ng-container matColumnDef="index">
                             <th mat-header-cell *matHeaderCellDef> STT </th>
-                            <td mat-cell *matCellDef="let element; let i = index;" class='stt'> {{this.paginator.pageIndex == 0 ? i + 1 : 1 + i + this.paginator.pageIndex * this.paginator.pageSize}}</td>
+                            <td mat-cell *matCellDef="let element; let i = index;" class="center-cell" class='stt'> {{this.paginator.pageIndex == 0 ? i + 1 : 1 + i + this.paginator.pageIndex * this.paginator.pageSize}}</td>
                         </ng-container>
 
                         <ng-container matColumnDef="ten_doanh_nghiep" sticky>

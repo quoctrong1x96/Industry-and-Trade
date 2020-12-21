@@ -9,7 +9,7 @@ export class Businessman{
 
 export class ConditionalBusinessLineModel {
     id : number;
-    mst : number;
+    mst : string;
     id_giay_phep_kinh_doanh : number;
     id_loai_hinh_quan_ly : number;
     id_phuong_xa? : number;
