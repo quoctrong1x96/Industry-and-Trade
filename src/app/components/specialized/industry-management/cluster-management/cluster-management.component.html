@@ -107,7 +107,7 @@
                     <table mat-table [dataSource]="filteredDataSource" id="{{showColumns.length == 5 ? 'small-table': 'small-table2'}}" class="table-layout">
                         <ng-container matColumnDef="index">
                             <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> STT </th>
-                            <td mat-cell *matCellDef="let element; let i = index;" class='stt'>{{i+1}}</td>
+                            <td mat-cell *matCellDef="let element; let i = index;" class="center-cell" class='stt'>{{i+1}}</td>
                         </ng-container>
 
                         <ng-container matColumnDef="ten_cum_cn" sticky>

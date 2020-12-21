@@ -9,7 +9,7 @@ export class Businessman{
 
 export class ConditionalBusinessLineModel {
     id : number;
-    mst : number;
+    mst : string;
     id_giay_phep_kinh_doanh : number;
     id_loai_hinh_quan_ly : number;
     id_phuong_xa? : number;
@@ -31,4 +31,5 @@ export class ConditionalBusinessLineModel {
     is_het_han : boolean;
     ten_cua_hang : string;
     so_luong_thuong_nhan : number;
+    ghi_chu : string;
 }
