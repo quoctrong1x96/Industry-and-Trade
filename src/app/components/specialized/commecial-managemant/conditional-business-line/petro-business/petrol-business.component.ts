@@ -71,7 +71,7 @@ export class PetrolBusinessComponent implements OnInit {
     getDanhSachBuonBanLeXangDau(time_id: number) {
         this.sctService.GetDanhSachBanLeXangDau(2020).subscribe(result => {
             this.dataSource = new MatTableDataSource<ConditionalBusinessLineModel>(result.data[0]);
-
+            console.log(this.dataSource);
 
             this.dataSource.data.forEach(element => {
                 element.is_het_han = new Date(element.ngay_het_han) < new Date();

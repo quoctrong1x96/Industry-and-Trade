@@ -220,7 +220,7 @@ export class StoreManagementComponent implements OnInit {
   private _caculator(data: StoreCommonModel[]): void {
     this.soCuaHangTL = data.length;
     this.soCuaHangKhac = data.length - this.soCuaHangTL;
-    this.tongCuaHang = data.length;
+    this.tongCuaHang = this.dataHuyenThi.length;
   }
 
   applyFilter() {
