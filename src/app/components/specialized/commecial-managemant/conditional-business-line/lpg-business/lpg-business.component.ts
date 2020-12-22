@@ -8,6 +8,7 @@ import { MatAccordion } from '@angular/material/expansion';
 import { MatPaginator } from '@angular/material/paginator';
 import { District } from 'src/app/_models/district.model';
 import * as XLSX from 'xlsx';
+import { CommonFuntions } from '../common-functions.service';
 
 @Component({
     selector: 'lpg-business',
@@ -38,7 +39,10 @@ export class LPGBusinessComponent implements OnInit {
     @ViewChild(MatAccordion, { static: false }) accordion: MatAccordion;
     @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-    constructor(public sctService: SCTService) {
+    constructor(
+        public sctService: SCTService,
+        public commonFunctions: CommonFuntions
+        ) {
     }
 
     ngOnInit() {

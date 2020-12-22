@@ -33,6 +33,7 @@ import { MatSortModule } from '@angular/material';
 import { PipeModule } from 'src/app/pipe.module';
 import { TradeFairsExhibitionsComponent } from './trade-development/trade-fairs-exhibitions/trade-fairs-exhibitions.component';
 import { SubscribeDiscountComponent } from './trade-development/subscribe-discount/subscribe-discount.component';
+import {CommonFuntions} from './conditional-business-line/common-functions.service';
 
 @NgModule({
   imports: [
@@ -81,5 +82,8 @@ import { SubscribeDiscountComponent } from './trade-development/subscribe-discou
   entryComponents: [
     ModalComponent
   ],
+  providers: [
+    CommonFuntions
+  ]
 })
 export class CommecialManagementModule { }
