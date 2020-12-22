@@ -310,34 +310,78 @@ export const navItemsSpecialized: INavItem[] = [
     children: [
       {
         name: 'Năng lượng',
-        url: '/specialized/enery-management/hydroelectric',
         icon: 'trending_up',
+        manager: true,
+        children: [
+          {
+            name: 'Điện mặt trời',
+            url: '/specialized/enery-management/solarelectric',
+            icon: 'wb_sunny',
+          },
+          {
+            name: 'Thủy điện',
+            url: '/specialized/enery-management/hydroelectric',
+            icon: 'water_damage',
+          },
+          {
+            name: 'Điện sinh khối',
+            url: '/specialized/enery-management/block_electric',
+            icon: 'home',
+          },
+        ]
       },
       {
-        name: 'Phát triển điện',
-        url: '/specialized/enery-management/countryside_electric',
+        name: 'Quy hoạch phát triển lưới điện',
         icon: 'home',
+        manager: true,
+        children: [
+          {
+            name: 'Quy hoạch điện 110KV trở lên',
+            url: '/specialized/enery-management/electrical_plan',
+            icon: 'schedule',
+          },
+          {
+            name: 'Công tác phát triển lưới điện 35KV trở xuống',
+            url: '/specialized/enery-management/35kv_electricity_development',
+            icon: 'settings_input_component',
+          },
+          {
+            name: 'Điện sản xuất và điện thương phẩm',
+            url: '/specialized/enery-management/power_production',
+            icon: 'grade',
+          },
+          {
+            name: 'Điện nông thôn (Nông thôn mới)',
+            url: '/specialized/enery-management/rural_electricity',
+            icon: 'electrical_services',
+          },
+          {
+            name: 'Quản lý Cấp phép Hoạt động Điện lực',
+            url: '/specialized/enery-management/manage_aprove_hddl',
+            icon: 'moving',
+          }
+        ]
       },
       {
         name: 'Tiết kiệm năng lượng',
         url: '/specialized/enery-management/focused_energy',
         icon: 'group_work',
       },
-      {
-        name: 'Điện sinh khối',
-        url: '/specialized/enery-management/block_electric',
-        icon: 'group_work',
-      },
-      {
-        name: 'Quản lý cấp phép HĐĐL',
-        url: '/specialized/enery-management/manage_aprove_hddl',
-        icon: 'group_work',
-      },
-      {
-        name: 'QH điện 110 trở lên',
-        url: '/specialized/enery-management/electrical_plan',
-        icon: 'group_work',
-      },
+      // {
+      //   name: 'Điện sinh khối',
+      //   url: '/specialized/enery-management/block_electric',
+      //   icon: 'group_work',
+      // },
+      // {
+      //   name: 'Quản lý cấp phép HĐĐL',
+      //   url: '/specialized/enery-management/manage_aprove_hddl',
+      //   icon: 'group_work',
+      // },
+      // {
+      //   name: 'QH điện 110 trở lên',
+      //   url: '/specialized/enery-management/electrical_plan',
+      //   icon: 'group_work',
+      // },
     ]
   },
   {

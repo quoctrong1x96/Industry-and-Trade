@@ -7,6 +7,11 @@ import { ElectricManagementComponent } from './electric-management/electric-mana
 import { ElectricalPlanComponent } from './electrical-plan/electrical-plan.component';
 import { BlockElectricComponent } from './block-electric/block-electric.component';
 import { ManageApproveHddlComponent } from './manage-approve-hddl/manage-approve-hddl.component';
+import { HydroelectricComponent } from './hydroelectric/hydroelectric.component';
+import { SolarEneryManagementComponent } from './solar-enery-management/solor-enery-management.component';
+import { ElectricDevelopmentManagementComponent } from './electricity-development/electricity-development.component';
+import { PowerProductionManagementComponent } from './power-production/power-production.component';
+import { RuralElectricManagementComponent } from './rural-electric/rural-electric-management.component';
 const routes: Routes = [
   
   {
@@ -23,11 +28,18 @@ const routes: Routes = [
         component: CommonEnergyComponent,
       },
       {
+        path: 'solarelectric',
+        data: {
+          title: 'Điện mặt trời',
+        },
+        component: SolarEneryManagementComponent
+      },
+      {
         path: 'hydroelectric',
         data: {
-          title: 'Năng lượng',
+          title: 'Thủy điện',
         },
-        component: ElectricManagementComponent
+        component: HydroelectricComponent
       },
       {
         path: 'countryside_electric',
@@ -60,9 +72,30 @@ const routes: Routes = [
       {
         path: 'manage_aprove_hddl',
         data: {
-          title: 'Điện sinh khối',
+          title: 'Quản lý Cấp phép HĐ ĐL',
         },
         component: ManageApproveHddlComponent
+      },
+      {
+        path: '35kv_electricity_development',
+        data: {
+          title: 'Công tác phát triển lưới điện 35KV trở xuống',
+        },
+        component: ElectricDevelopmentManagementComponent
+      },
+      {
+        path: 'power_production',
+        data: {
+          title: 'Điện sản xuất và điện thương phẩm',
+        },
+        component: PowerProductionManagementComponent
+      },
+      {
+        path: 'rural_electricity',
+        data: {
+          title: 'Điện nông thôn (Nông thôn mới)',
+        },
+        component: RuralElectricManagementComponent
       },
     ],
   },
