@@ -8,6 +8,7 @@ import { MatAccordion } from '@angular/material/expansion';
 import { MatPaginator } from '@angular/material/paginator';
 import { District } from 'src/app/_models/district.model';
 import * as XLSX from 'xlsx';
+import { CommonFuntions } from '../common-functions.service';
 
 @Component({
     selector: 'petrol-business',
@@ -19,18 +20,18 @@ export class PetrolBusinessComponent implements OnInit {
     displayedColumns: string[] = ['index', 'mst', 'ten_doanh_nghiep', 'ten_cua_hang', 'dia_chi', 'dien_thoai', 'so_giay_phep', 'ngay_cap', 'ngay_het_han', 'danh_sach_thuong_nhan', 'san_luong', 'ghi_chu'];
     dataSource: MatTableDataSource<ConditionalBusinessLineModel> = new MatTableDataSource<ConditionalBusinessLineModel>();
     filteredDataSource: MatTableDataSource<ConditionalBusinessLineModel> = new MatTableDataSource<ConditionalBusinessLineModel>();
-    years: number[] = [];
-    districts: District[] = [{ id: 1, ten_quan_huyen: 'Phước Long' },
-    { id: 2, ten_quan_huyen: 'Đồng Xoài' },
-    { id: 3, ten_quan_huyen: 'Bình Long' },
-    { id: 4, ten_quan_huyen: 'Bù Gia Mập' },
-    { id: 5, ten_quan_huyen: 'Lộc Ninh' },
-    { id: 6, ten_quan_huyen: 'Bù Đốp' },
-    { id: 7, ten_quan_huyen: 'Hớn Quản' },
-    { id: 8, ten_quan_huyen: 'Đồng Phú' },
-    { id: 9, ten_quan_huyen: 'Bù Đăng' },
-    { id: 10, ten_quan_huyen: 'Chơn Thành' },
-    { id: 11, ten_quan_huyen: 'Phú Riềng' }];
+    years: any[] = [];
+    districts: District[] = [{ id: 1, ten_quan_huyen: 'Thị xã Phước Long' },
+    { id: 2, ten_quan_huyen: 'Thành phố Đồng Xoài' },
+    { id: 3, ten_quan_huyen: 'Thị xã Bình Long' },
+    { id: 4, ten_quan_huyen: 'Huyện Bù Gia Mập' },
+    { id: 5, ten_quan_huyen: 'Huyện Lộc Ninh' },
+    { id: 6, ten_quan_huyen: 'Huyện Bù Đốp' },
+    { id: 7, ten_quan_huyen: 'Huyện Hớn Quản' },
+    { id: 8, ten_quan_huyen: 'Huyện Đồng Phú' },
+    { id: 9, ten_quan_huyen: 'Huyện Bù Đăng' },
+    { id: 10, ten_quan_huyen: 'Huyện Chơn Thành' },
+    { id: 11, ten_quan_huyen: 'Huyện Phú Riềng' }];
     sanLuongBanRa: number;
     soLuongDoanhNghiep: number;
     soLuongThuongNhanCungCap: number;
@@ -41,11 +42,14 @@ export class PetrolBusinessComponent implements OnInit {
     @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
 
 
-    constructor(public sctService: SCTService) {
+    constructor(
+        public sctService: SCTService,
+        public commonFunctions: CommonFuntions
+        ) {
     }
 
     ngOnInit() {
-        this.years = this.getYears();
+        this.years = this.commonFunctions.getYears();
         // this.filteredDataSource.filterPredicate = function (data: ConditionalBusinessLineModel, filter): boolean {
         //     return String(data.is_het_han).includes(filter);
         // };
@@ -101,7 +105,10 @@ export class PetrolBusinessComponent implements OnInit {
     }
 
     getYears() {
-        return [0, ...Array(5).fill(1).map((element, index) => new Date().getFullYear() - index)];
+        return [{value: 0, des: 'Tất cả'}, ...Array(5).fill(1).map((element, index) => {
+                return {value: new Date().getFullYear() - index , des: (new Date().getFullYear() - index).toString()}
+            }
+        )]
     }
 
     applyDistrictFilter(event) {

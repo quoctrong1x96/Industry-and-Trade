@@ -18,7 +18,7 @@ import { MatSort } from '@angular/material/sort';
 import { LinkModel } from 'src/app/_models/link.model';
 import { BreadCrumService } from 'src/app/_services/injectable-service/breadcrums.service';
 import * as XLSX from 'xlsx';
-import { dataExport } from "./data";
+import { dataExport,  dataExport2, dataExport3 } from "./data";
 @Component({
     selector: "app-export-management",
     templateUrl: "./export-management.component.html",
@@ -138,7 +138,7 @@ export class ExportManagementComponent implements OnInit {
     ngOnInit() {
         // this.curentmonth = 1;
         // this.applyDataTarget(this.dataTargetId);
-        // this.getDanhSachXuatKhau(this.curentmonth);
+        this.getDanhSachXuatKhau(this.curentmonth);
         this.autoOpen();
         this.sendLinkToNext(true);
         // this.filteredDataSource.filterPredicate = function (data: ex_im_model, filter): boolean {
@@ -164,10 +164,15 @@ export class ExportManagementComponent implements OnInit {
 
     getDanhSachXuatKhau(thang) {
         let tem = this.curentYear * 100 + thang;
-        if(tem = 202001){
+        this.dataSource.data = [];
+        if(tem == 202001){
             this.dataSource.data = dataExport;
-        }else{
-            this.dataSource.data = [];
+        }
+        if(tem == 202002){
+            this.dataSource.data = dataExport2;
+        }
+        if(tem == 202003){
+            this.dataSource.data = dataExport3;
         }
         // this.sctService.GetDanhSachXuatKhau(tem).subscribe((result) => {
         //     this.log(this.dataSource)
@@ -249,6 +254,7 @@ export class ExportManagementComponent implements OnInit {
                 data: this.handelDataDialog(id_mat_hang),
                 id: 1,
             };
+            dialogConfig.minWidth = '80%'
             // console.log(this.handelDataDialog(id_mat_hang));
             // dialogConfig.panelClass = ['overflow-y: scroll;']
             this.matDialog.open(ModalComponent, dialogConfig);
@@ -273,6 +279,7 @@ export class ExportManagementComponent implements OnInit {
                     ten_san_pham: ten_san_pham,
                     thang: this.curentmonth,
                 };
+                dialogConfig.minWidth = '80%';
                 this.matDialog.open(ModalComponent, dialogConfig);
             });
     }
