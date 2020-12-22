@@ -56,15 +56,21 @@
         .mat-header-cell {
           background-color: $blue;
           color: $white;
-          padding: 5px;
+          padding: 5px !important;
           border: 1px solid black;
           font-weight: bold;
           font-size: 15px;
           text-align: center;
           height: 50px;
         }
+        .left-cell {
+          text-align: left !important;
+        }
+        .right-cell {
+          text-align: right !important;
+        }
         .mat-cell {
-          padding: 5px;
+          padding: 5px !important;
           border: 1px solid black;
           font-size: 14px;
           text-align: center;

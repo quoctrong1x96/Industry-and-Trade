@@ -20,17 +20,17 @@ export class PetrolBusinessComponent implements OnInit {
     dataSource: MatTableDataSource<ConditionalBusinessLineModel> = new MatTableDataSource<ConditionalBusinessLineModel>();
     filteredDataSource: MatTableDataSource<ConditionalBusinessLineModel> = new MatTableDataSource<ConditionalBusinessLineModel>();
     years: number[] = [];
-    districts: District[] = [{ id: 1, ten_quan_huyen: 'Thị xã Phước Long' },
-    { id: 2, ten_quan_huyen: 'Thành phố Đồng Xoài' },
-    { id: 3, ten_quan_huyen: 'Thị xã Bình Long' },
-    { id: 4, ten_quan_huyen: 'Huyện Bù Gia Mập' },
-    { id: 5, ten_quan_huyen: 'Huyện Lộc Ninh' },
-    { id: 6, ten_quan_huyen: 'Huyện Bù Đốp' },
-    { id: 7, ten_quan_huyen: 'Huyện Hớn Quản' },
-    { id: 8, ten_quan_huyen: 'Huyện Đồng Phú' },
-    { id: 9, ten_quan_huyen: 'Huyện Bù Đăng' },
-    { id: 10, ten_quan_huyen: 'Huyện Chơn Thành' },
-    { id: 11, ten_quan_huyen: 'Huyện Phú Riềng' }];
+    districts: District[] = [{ id: 1, ten_quan_huyen: 'Phước Long' },
+    { id: 2, ten_quan_huyen: 'Đồng Xoài' },
+    { id: 3, ten_quan_huyen: 'Bình Long' },
+    { id: 4, ten_quan_huyen: 'Bù Gia Mập' },
+    { id: 5, ten_quan_huyen: 'Lộc Ninh' },
+    { id: 6, ten_quan_huyen: 'Bù Đốp' },
+    { id: 7, ten_quan_huyen: 'Hớn Quản' },
+    { id: 8, ten_quan_huyen: 'Đồng Phú' },
+    { id: 9, ten_quan_huyen: 'Bù Đăng' },
+    { id: 10, ten_quan_huyen: 'Chơn Thành' },
+    { id: 11, ten_quan_huyen: 'Phú Riềng' }];
     sanLuongBanRa: number;
     soLuongDoanhNghiep: number;
     soLuongThuongNhanCungCap: number;
@@ -71,15 +71,13 @@ export class PetrolBusinessComponent implements OnInit {
     getDanhSachBuonBanLeXangDau(time_id: number) {
         this.sctService.GetDanhSachBanLeXangDau(2020).subscribe(result => {
             this.dataSource = new MatTableDataSource<ConditionalBusinessLineModel>(result.data[0]);
-
+            console.log(this.dataSource);
 
             this.dataSource.data.forEach(element => {
                 element.is_het_han = new Date(element.ngay_het_han) < new Date();
-                element.so_luong_thuong_nhan = 0;
                 result.data[1].forEach(businessman => {
                     if (businessman.id_kd_co_dk === element.id) {
                         element.danh_sach_thuong_nhan += businessman.ten_thuong_nhan + '\n';
-                        element.so_luong_thuong_nhan++;
                     }
                 });
             });
@@ -88,7 +86,7 @@ export class PetrolBusinessComponent implements OnInit {
             else
                 this.filteredDataSource.data = [...this.dataSource.data];
             this.sanLuongBanRa = this.filteredDataSource.data.length ? this.filteredDataSource.data.map(x => x.san_luong).reduce((a, b) => a + b) : 0;
-            this.soLuongThuongNhanCungCap = this.filteredDataSource.data.length ? this.filteredDataSource.data.map(x => x.so_luong_thuong_nhan).reduce((a, b) => a + b) : 0;
+            this.soLuongThuongNhanCungCap = this.filteredDataSource.data.length ? [...new Set(this.filteredDataSource.data.map(x => x.danh_sach_thuong_nhan))].length : 0;
             this.filteredDataSource.paginator = this.paginator;
             this.paginator._intl.itemsPerPageLabel = 'Số hàng';
             this.paginator._intl.firstPageLabel = "Trang Đầu";
@@ -110,7 +108,7 @@ export class PetrolBusinessComponent implements OnInit {
         let filteredData = [];
 
         event.value.forEach(element => {
-            this.dataSource.data.filter(x => x.id_quan_huyen == element).forEach(x => filteredData.push(x));
+            this.dataSource.data.filter(x => x.dia_chi_cua_hang.toLowerCase().includes(element.toLowerCase())).forEach(x => filteredData.push(x));
         });
 
         if (!filteredData.length) {
@@ -123,7 +121,7 @@ export class PetrolBusinessComponent implements OnInit {
             this.filteredDataSource.data = filteredData;
         }
         this.sanLuongBanRa = this.filteredDataSource.data.length ? this.filteredDataSource.data.map(x => x.san_luong).reduce((a, b) => a + b) : 0;
-        this.soLuongThuongNhanCungCap = this.filteredDataSource.data.length ? this.filteredDataSource.data.map(x => x.so_luong_thuong_nhan).reduce((a, b) => a + b) : 0;
+        this.soLuongThuongNhanCungCap = this.filteredDataSource.data.length ? [...new Set(this.filteredDataSource.data.map(x => x.danh_sach_thuong_nhan))].length : 0;
     }
 
     // isHidden(row : any){
@@ -136,7 +134,7 @@ export class PetrolBusinessComponent implements OnInit {
     }
 
     countBusiness(): number {
-        return [...new Set(this.filteredDataSource.data.map(x => x.mst))].length;
+        return [...new Set(this.filteredDataSource.data.map(x => x.mst.toString().split('-')[0]))].length;
     }
 
     public ExportTOExcel(filename: string, sheetname: string) {

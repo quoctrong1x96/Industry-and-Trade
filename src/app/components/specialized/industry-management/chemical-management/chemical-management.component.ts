@@ -63,7 +63,7 @@ export class ChemicalManagementComponent implements OnInit {
 
     ngOnInit() {
         this.years = this.getYears();
-        this.year = new Date().getFullYear();
+        this.year = new Date().getFullYear() - 1;
         this.getDanhSachQuanLyHoaChat(this.year);
         this.filteredDataSource.filterPredicate = function (data: ChemicalLPGFoodManagementModel, filter): boolean {
             return String(data.is_het_han).includes(filter);

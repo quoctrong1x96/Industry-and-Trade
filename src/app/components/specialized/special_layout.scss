@@ -27,6 +27,9 @@
                 text-align: center;
                 font-weight: bolder;
                 color: $blue;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
             }
             .mat-card-subtitle {
                 font-size: 10px;
@@ -185,7 +188,7 @@
                 .mat-header-cell {
                     background-color: $blue;
                     color: $white;
-                    padding: 5px;
+                    padding: 5px !important;
                     border: 0.01em solid rgb(192, 192, 192);
                     font-weight: bold;
                     font-size: 12px;
@@ -194,16 +197,23 @@
                 }
                 .mat-footer-cell {
                     border: 0.01em solid rgb(192, 192, 192);
-                    padding: 5px;
+                    padding: 5px !important;
                     text-align: center;
                     font-weight: bolder;
+                }
+                .center-cell {
+                    text-align: center !important;
+                }
+                .right-cell {
+                    text-align: right !important;
                 }
                 .mat-cell {
                     border-width: 1px;
                     border: 0.01em solid rgb(192, 192, 192);
                     font-size: 12px;
-                    text-align: center;
+                    text-align: left;
                     max-width: 350px;
+                    padding: 5px !important;
                     input {
                         border: none;
                         font-size: 15px;
@@ -298,5 +308,5 @@
 }
 
 .fillColor {
-    background-color: rgb(252, 228, 10);
+    // background-color: rgb(252, 228, 10);
 }

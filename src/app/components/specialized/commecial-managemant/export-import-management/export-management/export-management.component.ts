@@ -66,7 +66,7 @@ export class ExportManagementComponent implements OnInit {
     // displaRow2Header: string[] = []
     // displayRow3Header: string[] = [];
     // dataSource: MatTableDataSource<ex_im_model> = new MatTableDataSource<ex_im_model>();
-    dataSource: MatTableDataSource<ex_im_model> = new MatTableDataSource<ex_im_model>(dataExport);
+    dataSource: MatTableDataSource<ex_im_model> = new MatTableDataSource<ex_im_model>();
     dataDialog: any[] = [];
     filteredDataSource: MatTableDataSource<ex_im_model> = new MatTableDataSource<ex_im_model>();
     years: number[] =this.getYears();
@@ -136,7 +136,7 @@ export class ExportManagementComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.curentmonth = 1;
+        // this.curentmonth = 1;
         // this.applyDataTarget(this.dataTargetId);
         // this.getDanhSachXuatKhau(this.curentmonth);
         this.autoOpen();
@@ -144,7 +144,7 @@ export class ExportManagementComponent implements OnInit {
         // this.filteredDataSource.filterPredicate = function (data: ex_im_model, filter): boolean {
         //     return String(data.is_het_han).includes(filter);
         // };
-        this.handleGTXK();
+        // this.handleGTXK();
     }
     public sendLinkToNext(type: boolean) {
         this._linkOutput.link = this.LINK_DEFAULT;
@@ -163,31 +163,26 @@ export class ExportManagementComponent implements OnInit {
     // }
 
     getDanhSachXuatKhau(thang) {
-        let tem = new Date().getFullYear() * 100 + thang;
-        // if (thang !== this.curentmonth && thang) {
-        //     this.curentmonth = thang;
-        // }
-        // if (thang === 10) {
-        //     this.dataTargetId = [1];
-        // } else {
-        //     this.dataTargetId = [2];
-        // }
-        // this.applyDataTarget(this.dataTargetId);
-        this.sctService.GetDanhSachXuatKhau(tem).subscribe((result) => {
-            this.log(this.dataSource)
-            this.dataDialog = result.data[0];
-            this.applyExpireCheck(result.data[1])
+        let tem = this.curentYear * 100 + thang;
+        if(tem = 202001){
+            this.dataSource.data = dataExport;
+        }else{
+            this.dataSource.data = [];
+        }
+        // this.sctService.GetDanhSachXuatKhau(tem).subscribe((result) => {
+        //     this.log(this.dataSource)
+        //     this.dataDialog = result.data[0];
+        //     this.applyExpireCheck(result.data[1])
 
-            // console.log(this.TongGiaTriCongDon, this.TongGiaTriThangThucHien, this.TongLuongCongDon, this.TongLuongThangThucHien)
-            this.filteredDataSource.data = [...this.dataSource.data];
-            this.filteredDataSource.paginator = this.paginator;
-            this.paginator._intl.itemsPerPageLabel = 'Số hàng';
-            this.paginator._intl.firstPageLabel = "Trang Đầu";
-            this.paginator._intl.lastPageLabel = "Trang Cuối";
-            this.paginator._intl.previousPageLabel = "Trang Trước";
-            this.paginator._intl.nextPageLabel = "Trang Tiếp";
-
-        });
+        //     // console.log(this.TongGiaTriCongDon, this.TongGiaTriThangThucHien, this.TongLuongCongDon, this.TongLuongThangThucHien)
+        //     this.filteredDataSource.data = [...this.dataSource.data];
+        //     this.filteredDataSource.paginator = this.paginator;
+        //     this.paginator._intl.itemsPerPageLabel = 'Số hàng';
+        //     this.paginator._intl.firstPageLabel = "Trang Đầu";
+        //     this.paginator._intl.lastPageLabel = "Trang Cuối";
+        //     this.paginator._intl.previousPageLabel = "Trang Trước";
+        //     this.paginator._intl.nextPageLabel = "Trang Tiếp";
+        // });
     }
 
     tinh_tong(data) {
@@ -287,13 +282,13 @@ export class ExportManagementComponent implements OnInit {
         // 1: cuc hai quan
         // 2: tong cuc hai quan
         // 3: cả 2 
-        if (this.dataTargetId.includes(1) && this.dataTargetId.includes(2)) {
-            this.isOnlyTongCucHQ = 3
-        } else if (this.dataTargetId.includes(1)) {
-            this.isOnlyTongCucHQ = 1
-        } else {
-            this.isOnlyTongCucHQ = 2;
-        }
+        // if (this.dataTargetId.includes(1) && this.dataTargetId.includes(2)) {
+        //     this.isOnlyTongCucHQ = 3
+        // } else if (this.dataTargetId.includes(1)) {
+        //     this.isOnlyTongCucHQ = 1
+        // } else {
+        //     this.isOnlyTongCucHQ = 2;
+        // }
 
         // switch (this.isOnlyTongCucHQ) {
         //     case 1:
