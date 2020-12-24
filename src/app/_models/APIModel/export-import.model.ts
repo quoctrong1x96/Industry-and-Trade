@@ -12,5 +12,6 @@ export class ex_im_model{
     id_mat_hang?: number;
     id_quoc_gia?: number;
     ten_tieng_anh?: string;
+    ten_quoc_gia?:string;
 }
 
