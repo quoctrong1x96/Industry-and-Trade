@@ -89,7 +89,7 @@ export class DomesticImportComponent implements OnInit {
     this.theMonth = (this.getCurrentMonth() - 1) == 0? 12 : this.getCurrentMonth() - 1;
     this.theYear = this.getCurrentYear();
     this.timeDomesticPrice = this.theMonth + "/" + this.theYear;    
-    this.date.setValue(new Date(this.theYear, this.theMonth -1));
+    this.date = new FormControl(_moment(this.theYear.toString() + "/" + this.theMonth.toString()));
     this.getDomesticMarketImport(this.theMonth, this.theYear);
   }
   //Function for PROCESS-FLOW -------------------------------------------------------------------------------------------------------

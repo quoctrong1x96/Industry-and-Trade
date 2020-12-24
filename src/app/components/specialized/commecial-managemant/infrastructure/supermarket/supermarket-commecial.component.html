@@ -21,96 +21,86 @@
                 </mat-expansion-panel-header>
 
                 <div class="row">
-                    <div class="col-6 col-lg-6">
-                        <mat-card class="card5">
+                    <div class="col">
+                        <mat-card class="card-default">
                             <mat-card-header>
                                 <mat-card-title>
-                                    <mat-icon>filter</mat-icon> Tổng số siêu thị: <span>{{tongSieuThi | number:
-                                        '1.0-0'}} siêu thị</span>
-                                </mat-card-title>
-                                <mat-card-subtitle></mat-card-subtitle>
-                            </mat-card-header>
-                            <mat-card-content>
-                            </mat-card-content>
-                        </mat-card>
-                    </div>
-                    <div class="col-6 col-lg-6">
-                        <mat-card class="card4">
-                            <mat-card-header>
-                                <mat-card-title>
-                                    <mat-icon>filter</mat-icon> Đặc điểm kinh doanh tại siêu thị:
+                                    <mat-icon>filter</mat-icon> 1. Tổng số siêu thị:
+                                    
                                 </mat-card-title>
                                 <mat-card-subtitle></mat-card-subtitle>
                             </mat-card-header>
                             <mat-card-content>
                                 <ul>
                                     <li>
-                                        Tổng số siêu thị tổng hợp: <span>{{sieuThiTongHop | number: '1.0-0'}}</span>
+                                        <span>{{tongSieuThi | number:
+                                            '1.0-0'}}</span> siêu thị
+                                    </li>
+                                </ul>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                    <div class="col">
+                        <mat-card class="card-default">
+                            <mat-card-header>
+                                <mat-card-title>
+                                    <mat-icon>filter</mat-icon> 2. Phân theo hạng:
+                                </mat-card-title>
+                                <mat-card-subtitle></mat-card-subtitle>
+                            </mat-card-header>
+                            <mat-card-content>
+                                <ul>
+                                    <li>
+                                        Hạng I: <span>{{sieuThiHangI | number: '1.0-0'}}</span>
                                     </li>
                                     <li>
-                                        Tổng số siêu thị chuyên doanh: <span>{{sieuThiChuyenDanh | number:
+                                        Hạng II: <span>{{sieuThiHangII | number: '1.0-0'}}</span>
+                                    </li>
+                                    <li>
+                                        Hạng III: <span>{{sieuThiHangIII | number: '1.0-0'}}</span>
+                                    </li>
+                                </ul>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                    <div class="col">
+                        <mat-card class="card-default">
+                            <mat-card-header>
+                                <mat-card-title>
+                                    <mat-icon>filter</mat-icon> 3. Phân loại kinh doanh:
+                                </mat-card-title>
+                                <mat-card-subtitle></mat-card-subtitle>
+                            </mat-card-header>
+                            <mat-card-content>
+                                <ul>
+                                    <li>
+                                        Tổng hợp: <span>{{sieuThiTongHop | number: '1.0-0'}}</span>
+                                    </li>
+                                    <li>
+                                        Chuyên doanh: <span>{{sieuThiChuyenDanh | number:
                                             '1.0-0'}}</span>
                                     </li>
                                 </ul>
                             </mat-card-content>
                         </mat-card>
                     </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-6 col-lg-6">
-                        <mat-card class="card4" id="card4-3">
+                    <div class="col">
+                        <mat-card class="card-default">
                             <mat-card-header>
                                 <mat-card-title>
-                                    <mat-icon>filter</mat-icon> Phân hệ:
+                                    <mat-icon>filter</mat-icon> 4. Thống kê siêu thị:
                                 </mat-card-title>
                                 <mat-card-subtitle></mat-card-subtitle>
                             </mat-card-header>
                             <mat-card-content>
                                 <ul>
                                     <li>
-                                        Tổng số siêu thị hạng I: <span>{{sieuThiHangI | number: '1.0-0'}}</span>
-                                    </li>
-                                    <li>
-                                        Tổng số siêu thị hạng II: <span>{{sieuThiHangII | number: '1.0-0'}}</span>
-                                    </li>
-                                    <li>
-                                        Tổng số siêu thị hạng III: <span>{{sieuThiHangIII | number: '1.0-0'}}</span>
-                                    </li>
-                                    <li>
-                                        Tổng số siêu thị đang xây dựng: <span>{{sieuThiDangXayDung | number:
-                                            '1.0-0'}}</span>
-                                    </li>
-                                </ul>
-                            </mat-card-content>
-                        </mat-card>
-                    </div>
-                    <div class="col-6 col-lg-6">
-                        <mat-card class="card4" id="card4-3">
-                            <mat-card-header>
-                                <mat-card-title>
-                                    <mat-icon>filter</mat-icon> Thống kê số lượng siêu thị theo năm:
-                                </mat-card-title>
-                                <mat-card-subtitle></mat-card-subtitle>
-                            </mat-card-header>
-                            <mat-card-content style="font-size: 12px;">
-                                <ul>
-                                    <li>
-                                        Tổng số siêu thị đầu tư xây dựng trong năm <span>{{year}}</span> là:
+                                        Thành lập mới năm<span>{{year}}</span> là:
                                         <span>{{sieuThiDauTuTrongNam | number: '1.0-0'}}</span>
                                     </li>
                                     <li>
-                                        Chênh lệch số siêu thị đầu tư xây dựng trong năm <span>{{year}}</span> so với
-                                        năm trước là:
-                                        <span>{{(sieuThiDauTuTrongNam - sieuThiDauTuNamTruoc) | number: '1.0-0'}}</span>
-                                    </li>
-                                    <li>
-                                        Tổng số siêu thị ngừng hoạt động trong năm <span>{{year}}</span> là:
+                                        Ngừng hoạt động năm <span>{{year}}</span> là:
                                         <span>0</span>
-                                    </li>
-                                    <li>
-                                        Chênh lệch số siêu thị ngừng hoạt động trong năm <span>{{year}}</span> so với
-                                        năm trước là: <span>0</span>
                                     </li>
                                 </ul>
                             </mat-card-content>

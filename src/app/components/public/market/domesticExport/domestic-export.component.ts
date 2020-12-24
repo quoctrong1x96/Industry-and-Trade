@@ -1,5 +1,5 @@
 //Import library
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import * as XLSX from 'xlsx';
@@ -22,6 +22,7 @@ import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/mat
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import _moment from 'moment';
 import { defaultFormat as _rollupMoment, Moment } from 'moment';
+import { ViewportScroller } from '@angular/common';
 const moment = _rollupMoment || _moment;
 export const MY_FORMATS = {
   parse: {
@@ -39,6 +40,7 @@ export const MY_FORMATS = {
   selector: 'app-domestic-export',
   templateUrl: 'domestic-export.component.html',
   styleUrls: ['../../public_layout.scss'],
+  styles:['.scroll-to-top{position: fixed;background:red;bottom: 0;right: 0;cursor: pointer;}'],
   providers: [
     {
       provide: DateAdapter,
@@ -63,6 +65,7 @@ export class DomesticExportComponent implements OnInit {
   public chartYearModelSelected: number;
   public chartyears: Array<number> = [];
   public date = new FormControl(_moment());
+  public pageYoffset = 0;
   //Declare variable for ONLY TS
   public theYear: number = 0;
   public theMonth: number = 0;
@@ -80,16 +83,18 @@ export class DomesticExportComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild('TABLE', { static: false }) table: ElementRef;
 
-  constructor(public marketService: MarketService, public router: Router, public dialog: MatDialog) {
+  constructor(public marketService: MarketService, public router: Router, public dialog: MatDialog,private scrollTop: ViewportScroller) {
     //this.initialData();
   }
+
+  
   ngOnInit() {
     this.chartYearModelSelected = this.getCurrentYear();
     this.chartyears = this.initialYears();
     this.theYear = this.getCurrentYear();
-    this.theMonth = (this.getCurrentMonth() - 1) == 0? 12 : this.getCurrentMonth() - 1;
+    this.theMonth = (this.getCurrentMonth() - 1) == 0 ? 12 : this.getCurrentMonth() - 1;
     this.timeDomesticPrice = this.theMonth + "/" + this.theYear;
-    this.date.setValue(new Date(this.theYear, this.theMonth -1));
+    this.date = new FormControl(_moment(this.theYear.toString() + "/" + this.theMonth.toString()));
     this.getDomesticMarketExport(this.theMonth, this.theYear);
   }
 
@@ -162,7 +167,7 @@ export class DomesticExportComponent implements OnInit {
   }
   //EVENT "Chọn năm"
   public chosenYearHandler(normalizedYear: Moment) {
-    const ctrlValue = this.date.value;
+    let ctrlValue = this.date.value;
     ctrlValue.year(normalizedYear.year());
     this.date.setValue(ctrlValue);
     this.theYear = normalizedYear.year();
@@ -170,7 +175,7 @@ export class DomesticExportComponent implements OnInit {
   }
   //Event "Chọn tháng"
   public chosenMonthHandler(normalizedMonth: Moment, datepicker: MatDatepicker<Moment>) {
-    const ctrlValue = this.date.value;
+    let ctrlValue = this.date.value;
     ctrlValue.month(normalizedMonth.month());
     this.date.setValue(ctrlValue);
     this.theMonth = normalizedMonth.month() + 1;
@@ -215,198 +220,205 @@ export class DomesticExportComponent implements OnInit {
     XLSX.writeFile(wb, excelFileName);
   }
   //Function EXTENTION -----------------------------------------------------------------------------------------------------------------
+  public scroll(el: HTMLElement) {
+    //el.scrollIntoView();
+    el.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+  }
+ 
+
+  
   public getMonthAndYear(time: string) {
-    let year = time.substr(0, 4);
-    let month = time.substr(4, 2);
-    let day = time.substr(6, 2);
-    let result = day + "/" + month + "/" + year;
-    return result as string;
-  }
+  let year = time.substr(0, 4);
+  let month = time.substr(4, 2);
+  let day = time.substr(6, 2);
+  let result = day + "/" + month + "/" + year;
+  return result as string;
+}
   public getCurrentMonth(): number {
-    var currentDate = new Date();
-    return currentDate.getMonth() + 1;
-  }
+  var currentDate = new Date();
+  return currentDate.getMonth() + 1;
+}
   public initialYears() {
-    let returnYear: Array<any> = [];
-    let currentDate = new Date();
-    let nextYear = currentDate.getFullYear() + 1;
-    for (let index = 0; index < 11; index++) {
-      returnYear.push(nextYear - index);
-    }
-    return returnYear;
+  let returnYear: Array<any> = [];
+  let currentDate = new Date();
+  let nextYear = currentDate.getFullYear() + 1;
+  for (let index = 0; index < 11; index++) {
+    returnYear.push(nextYear - index);
   }
+  return returnYear;
+}
   public getCurrentYear() {
-    var currentDate = new Date();
-    return currentDate.getFullYear();
-  }
+  var currentDate = new Date();
+  return currentDate.getFullYear();
+}
   //Function for CHART HTML
   public initialData() {
-    this.initialChartColor();
-    this.inititalChartOther();
-  }
+  this.initialChartColor();
+  this.inititalChartOther();
+}
   public initialChartColor() {
-    this.mainChartColours = [
-      {
-        pointHoverBackgroundColor: '#fff'
-      },
-      {
-        backgroundColor: 'transparent',
-        pointHoverBackgroundColor: '#fff'
-      },
-      {
-        backgroundColor: 'transparent',
-        pointHoverBackgroundColor: '#fff'
-      },
-      {
-        backgroundColor: 'transparent',
-        pointHoverBackgroundColor: '#fff',
-      }
-    ];
-  }
+  this.mainChartColours = [
+    {
+      pointHoverBackgroundColor: '#fff'
+    },
+    {
+      backgroundColor: 'transparent',
+      pointHoverBackgroundColor: '#fff'
+    },
+    {
+      backgroundColor: 'transparent',
+      pointHoverBackgroundColor: '#fff'
+    },
+    {
+      backgroundColor: 'transparent',
+      pointHoverBackgroundColor: '#fff',
+    }
+  ];
+}
   //Initialize Option for chart line
   public initialChartOption() {
-    this.mainChartOptions = {
-      tooltips: {
-        scaleShowValues: true,
-        enabled: false,
-        // custom: CustomTooltips,
-        intersect: true,
-        mode: 'index',
-        position: 'nearest',
-        callbacks: {
-          labelColor: function (tooltipItem, chart) {
-            return { backgroundColor: chart.data.datasets[tooltipItem.datasetIndex].borderColor };
-          }
+  this.mainChartOptions = {
+    tooltips: {
+      scaleShowValues: true,
+      enabled: false,
+      // custom: CustomTooltips,
+      intersect: true,
+      mode: 'index',
+      position: 'nearest',
+      callbacks: {
+        labelColor: function (tooltipItem, chart) {
+          return { backgroundColor: chart.data.datasets[tooltipItem.datasetIndex].borderColor };
         }
-      },
-      responsive: true,
-      maintainAspectRatio: false,
-      scales: {
-        xAxes: [{
-          gridLines: {
-            drawOnChartArea: false,
-          },
-          ticks: {
-            callback: function (value: any) {
-              return value
-            }
-          }
-        }],
-        yAxes: [{
-          ticks: {
-            beginAtZero: true,
-            maxTicksLimit: 5,
-            stepSize: Math.ceil(this.maxSizeChart / 5),
-            max: this.maxSizeChart
-          }
-        }]
-      },
-      elements: {
-        line: {
-          borderWidth: 2
-        },
-        point: {
-          radius: 2,
-          borderWidth: 2,
-          hitRadius: 5,
-          hoverRadius: 4,
-          hoverBorderWidth: 6,
-        }
-      },
-      legend: {
-        display: false
       }
-    };
-  }
-  public inititalChartOther() {
-    this.mainChartType = 'line';
-    this.mainChartLegend = false;
-  }
-  public getDataForChart() {
-    console.log("+ Function: GetDataForChart()");
-    let chartData1: Array<number> = new Array<number>();
-    let chartName1: string;
-    let productId: number;
-    let periodTime: number;
-    let chartData2: Array<number> = new Array<number>();
-    let chartName2: string;
-    let chartData3: Array<number> = new Array<number>();
-    let chartName3: string;
-    let chartData4: Array<number> = new Array<number>();
-    let chartName4: string;
-    productId = 2;
-    periodTime = 10;
-    this.marketService.GetPriceByProductId(productId, periodTime).subscribe(
-      allrecords => {
-        allrecords.data.forEach(row => {
-          if (chartName1 != '') chartName1 = row.ten_san_pham;
-          this.mainChartLabels.unshift(this.getMonthAndYear(row.ngay_cap_nhat));
-          chartData1.unshift(row.gia);
-          if (row.gia > this.maxSizeChart) this.maxSizeChart = row.gia;
-        });
-        console.log("chartData1: ", chartData1);
-        productId = 3;
-        periodTime = 10;
-        this.marketService.GetPriceByProductId(productId, periodTime).subscribe(
-          allrecords => {
-            allrecords.data.forEach(row => {
-              if (chartName2 != '') chartName2 = row.ten_san_pham;
-              chartData2.unshift(row.gia);
-              if (row.gia > this.maxSizeChart) this.maxSizeChart = row.gia;
-            });
-            console.log("chartData2: ", chartData2);
-            productId = 4;
-            periodTime = 10;
-            this.marketService.GetPriceByProductId(productId, periodTime).subscribe(
-              allrecords => {
-                allrecords.data.forEach(row => {
-                  if (chartName3 != '') chartName3 = row.ten_san_pham;
-                  chartData3.unshift(row.gia);
-                  if (row.gia > this.maxSizeChart) this.maxSizeChart = row.gia;
-                });
-                console.log("chartData3: ", chartData3);
-                productId = 5;
-                periodTime = 10;
-                this.marketService.GetPriceByProductId(productId, periodTime).subscribe(
-                  allrecords => {
-                    allrecords.data.forEach(row => {
-                      if (chartName4 != '') chartName4 = row.ten_san_pham;
-                      chartData4.unshift(row.gia);
-                      if (row.gia > this.maxSizeChart) this.maxSizeChart = row.gia;
-                    });
-                    console.log("chartData4: ", chartData4);
-                    this.mainChartData = [
-                      {
-                        data: chartData1,
-                        label: chartName1
-                      },
-                      {
-
-                        data: chartData2,
-                        label: chartName2
-                      },
-                      {
-                        data: chartData3,
-                        label: chartName3
-                      },
-                      {
-                        data: chartData4,
-                        label: chartName4
-                      }
-                    ];
-                    console.log("mainChartData: ", this.mainChartData);
-                    this.initialChartOption();
-                  },
-                  //error => this.errorMessage = <any>error
-                );
-              },
-              //error => this.errorMessage = <any>error
-            );
-          },
-          //error => this.errorMessage = <any>error
-        );
+    },
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+      xAxes: [{
+        gridLines: {
+          drawOnChartArea: false,
+        },
+        ticks: {
+          callback: function (value: any) {
+            return value
+          }
+        }
+      }],
+      yAxes: [{
+        ticks: {
+          beginAtZero: true,
+          maxTicksLimit: 5,
+          stepSize: Math.ceil(this.maxSizeChart / 5),
+          max: this.maxSizeChart
+        }
+      }]
+    },
+    elements: {
+      line: {
+        borderWidth: 2
       },
-      //error => this.errorMessage = <any>error
-    );
+      point: {
+        radius: 2,
+        borderWidth: 2,
+        hitRadius: 5,
+        hoverRadius: 4,
+        hoverBorderWidth: 6,
+      }
+    },
+    legend: {
+      display: false
+    }
   };
+}
+  public inititalChartOther() {
+  this.mainChartType = 'line';
+  this.mainChartLegend = false;
+}
+  public getDataForChart() {
+  console.log("+ Function: GetDataForChart()");
+  let chartData1: Array<number> = new Array<number>();
+  let chartName1: string;
+  let productId: number;
+  let periodTime: number;
+  let chartData2: Array<number> = new Array<number>();
+  let chartName2: string;
+  let chartData3: Array<number> = new Array<number>();
+  let chartName3: string;
+  let chartData4: Array<number> = new Array<number>();
+  let chartName4: string;
+  productId = 2;
+  periodTime = 10;
+  this.marketService.GetPriceByProductId(productId, periodTime).subscribe(
+    allrecords => {
+      allrecords.data.forEach(row => {
+        if (chartName1 != '') chartName1 = row.ten_san_pham;
+        this.mainChartLabels.unshift(this.getMonthAndYear(row.ngay_cap_nhat));
+        chartData1.unshift(row.gia);
+        if (row.gia > this.maxSizeChart) this.maxSizeChart = row.gia;
+      });
+      console.log("chartData1: ", chartData1);
+      productId = 3;
+      periodTime = 10;
+      this.marketService.GetPriceByProductId(productId, periodTime).subscribe(
+        allrecords => {
+          allrecords.data.forEach(row => {
+            if (chartName2 != '') chartName2 = row.ten_san_pham;
+            chartData2.unshift(row.gia);
+            if (row.gia > this.maxSizeChart) this.maxSizeChart = row.gia;
+          });
+          console.log("chartData2: ", chartData2);
+          productId = 4;
+          periodTime = 10;
+          this.marketService.GetPriceByProductId(productId, periodTime).subscribe(
+            allrecords => {
+              allrecords.data.forEach(row => {
+                if (chartName3 != '') chartName3 = row.ten_san_pham;
+                chartData3.unshift(row.gia);
+                if (row.gia > this.maxSizeChart) this.maxSizeChart = row.gia;
+              });
+              console.log("chartData3: ", chartData3);
+              productId = 5;
+              periodTime = 10;
+              this.marketService.GetPriceByProductId(productId, periodTime).subscribe(
+                allrecords => {
+                  allrecords.data.forEach(row => {
+                    if (chartName4 != '') chartName4 = row.ten_san_pham;
+                    chartData4.unshift(row.gia);
+                    if (row.gia > this.maxSizeChart) this.maxSizeChart = row.gia;
+                  });
+                  console.log("chartData4: ", chartData4);
+                  this.mainChartData = [
+                    {
+                      data: chartData1,
+                      label: chartName1
+                    },
+                    {
+
+                      data: chartData2,
+                      label: chartName2
+                    },
+                    {
+                      data: chartData3,
+                      label: chartName3
+                    },
+                    {
+                      data: chartData4,
+                      label: chartName4
+                    }
+                  ];
+                  console.log("mainChartData: ", this.mainChartData);
+                  this.initialChartOption();
+                },
+                //error => this.errorMessage = <any>error
+              );
+            },
+            //error => this.errorMessage = <any>error
+          );
+        },
+        //error => this.errorMessage = <any>error
+      );
+    },
+    //error => this.errorMessage = <any>error
+  );
+};
 }

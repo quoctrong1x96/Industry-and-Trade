@@ -21,59 +21,59 @@
                 </mat-expansion-panel-header>
 
                 <div class="row">
-                    <div class="col-4 col-lg-4">
-                        <mat-card class="card1">
+                    <div class="col">
+                        <mat-card class="card-default">
                             <mat-card-header>
                                 <!-- <div mat-card-avatar>
                                 </div> -->
                                 <mat-card-title>
-                                    <mat-icon>filter</mat-icon> Tổng số DN KD xăng dầu:
+                                    <mat-icon>filter</mat-icon> DN KD xăng dầu:
                                 </mat-card-title>
                             </mat-card-header>
                             <mat-card-content>
-                                {{countBusiness() | number: '1.0-0'}} doanh nghiệp
+                                <span>{{countBusiness() | number: '1.0-0'}} doanh nghiệp</span>
                             </mat-card-content>
                         </mat-card>
                     </div>
-                    <div class="col-4 col-lg-4">
-                        <mat-card class="card1">
+                    <div class="col">
+                        <mat-card class="card-default">
                             <mat-card-header>
                                 <!-- <div mat-card-avatar>
                                 </div> -->
                                 <mat-card-title>
-                                    <mat-icon>filter</mat-icon> Tổng số CH xăng dầu:
+                                    <mat-icon>filter</mat-icon> CH xăng dầu:
                                 </mat-card-title>
                             </mat-card-header>
                             <mat-card-content>
-                                {{this.filteredDataSource.filteredData.length | number: '1.0-0'}} cửa hàng
+                                <span>{{this.filteredDataSource.filteredData.length | number: '1.0-0'}} cửa hàng</span>
                             </mat-card-content>
                         </mat-card>
                     </div>
-                    <div class="col-4 col-lg-4">
-                        <mat-card class="card1">
+                    <div class="col">
+                        <mat-card class="card-default">
                             <mat-card-header>
                                 <!-- <div mat-card-avatar>
                                 </div> -->
                                 <mat-card-title>
-                                    <mat-icon>filter</mat-icon> Tổng sản lượng tiêu thụ:
+                                    <mat-icon>filter</mat-icon> Sản lượng tiêu thụ:
                                 </mat-card-title>
                             </mat-card-header>
                             <mat-card-content>
-                                {{sanLuongBanRa | number: '1.0-0'}} m³/năm
+                               <span> {{sanLuongBanRa | number: '1.0-0'}} m³/năm</span>
                             </mat-card-content>
                         </mat-card>
                     </div>
-                    <div class="col-4 col-lg-4">
-                        <mat-card class="card1">
+                    <div class="col">
+                        <mat-card class="card-default">
                             <mat-card-header>
                                 <!-- <div mat-card-avatar>
                                 </div> -->
                                 <mat-card-title>
-                                    <mat-icon>filter</mat-icon> SL thương nhân cung cấp:
+                                    <mat-icon>filter</mat-icon> Thương nhân cung cấp:
                                 </mat-card-title>
                             </mat-card-header>
                             <mat-card-content>
-                                {{soLuongThuongNhanCungCap | number: '1.0-0'}} thương nhân
+                                <span>{{soLuongThuongNhanCungCap | number: '1.0-0'}} thương nhân</span>
                             </mat-card-content>
                         </mat-card>
                     </div>

@@ -89,6 +89,7 @@ export class DomesticProductComponent implements OnInit {
     this.chartyears = this.initialYears();
     this.date.setValue(new Date(this.theYear, this.theMonth -1));
     this.timeDomesticPrice = this.theMonth + "/" + this.theYear;
+    this.date = new FormControl(_moment(this.theYear.toString() + "/" + this.theMonth.toString()));
     this.getDomesticMarketProduct(this.theMonth, this.theYear);
     //this.GetDataForChart();
   }

@@ -21,97 +21,95 @@
                 </mat-expansion-panel-header>
 
                 <div class="row">
-                    <div class="col-6 col-lg-6">
-                        <mat-card class="card5">
+                    <div class="col">
+                        <mat-card class="card-default">
                             <mat-card-header>
                                 <mat-card-title>
-                                    <mat-icon>filter</mat-icon> Tổng số TTTM: <span>{{tongSieuThi | number:
-                                        '1.0-0'}} TTTM</span>
-                                </mat-card-title>
-                                <mat-card-subtitle></mat-card-subtitle>
-                            </mat-card-header>
-                            <mat-card-content>
-                            </mat-card-content>
-                        </mat-card>
-                    </div>
-                    <div class="col-6 col-lg-6">
-                        <mat-card class="card4">
-                            <mat-card-header>
-                                <mat-card-title>
-                                    <mat-icon>filter</mat-icon> Đặc điểm kinh doanh tại TTTM:
+                                    <mat-icon>filter</mat-icon> 1. Tổng số TTTM:
                                 </mat-card-title>
                                 <mat-card-subtitle></mat-card-subtitle>
                             </mat-card-header>
                             <mat-card-content>
                                 <ul>
                                     <li>
-                                        Tổng số TTTM tổng hợp: <span>{{sieuThiTongHop | number: '1.0-0'}}</span>
-                                    </li>
-                                    <li>
-                                        Tổng số TTTM chuyên doanh: <span>{{sieuThiChuyenDanh | number:
-                                            '1.0-0'}}</span>
+                                        <span>{{tongSieuThi | number:
+                                            '1.0-0'}}</span> TTTM
                                     </li>
                                 </ul>
                             </mat-card-content>
                         </mat-card>
                     </div>
-                </div>
+                    <div class="col">
+                        <mat-card class="card-default">
+                            <mat-card-header>
+                                <mat-card-title>
+                                    <mat-icon>filter</mat-icon> 2. Phân hạng:
+                                </mat-card-title>
+                                <mat-card-subtitle></mat-card-subtitle>
+                            </mat-card-header>
+                            <mat-card-content>
+                                <ul>
+                                    <li>
+                                        Hạng I: <span>{{sieuThiHangI | number: '1.0-0'}}</span>
+                                    </li>
+                                    <li>
+                                        Hạng II: <span>{{sieuThiHangII | number: '1.0-0'}}</span>
+                                    </li>
+                                    <li>
+                                        Hạng III: <span>{{sieuThiHangIII | number: '1.0-0'}}</span>
+                                    </li>
+                                </ul>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                    <div class="col">
+                        <mat-card class="card-default">
+                            <mat-card-header>
+                                <mat-card-title>
+                                    <mat-icon>filter</mat-icon>3. Loại hình kinh doanh:
+                                </mat-card-title>
+                                <mat-card-subtitle></mat-card-subtitle>
+                            </mat-card-header>
+                            <mat-card-content>
+                                <ul>
+                                    <li>
+                                        TTTM tiện lợi: <span>0</span>
+                                    </li>
+                                    <li>
+                                        TTTM lân cận: <span>0</span>
+                                    </li>
+                                    <li>
+                                        TTTM cộng đồng: <span>0</span>
+                                    </li>
+                                    <li>
+                                        TTTM vùng: <span>0</span>
+                                    </li>
+                                </ul>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
 
-                <div class="row">
-                    <div class="col-6 col-lg-6">
-                        <mat-card class="card4" id="card4-3">
+
+                    <div class="col">
+                        <mat-card class="card-default">
                             <mat-card-header>
                                 <mat-card-title>
-                                    <mat-icon>filter</mat-icon> Phân hệ:
+                                    <mat-icon>filter</mat-icon> 4. Hằng năm:
                                 </mat-card-title>
                                 <mat-card-subtitle></mat-card-subtitle>
                             </mat-card-header>
                             <mat-card-content>
                                 <ul>
                                     <li>
-                                        Tổng số TTTM hạng I: <span>{{sieuThiHangI | number: '1.0-0'}}</span>
-                                    </li>
-                                    <li>
-                                        Tổng số TTTM hạng II: <span>{{sieuThiHangII | number: '1.0-0'}}</span>
-                                    </li>
-                                    <li>
-                                        Tổng số TTTM hạng III: <span>{{sieuThiHangIII | number: '1.0-0'}}</span>
-                                    </li>
-                                    <li>
-                                        Tổng số TTTM đang xây dựng: <span>{{sieuThiDangXayDung | number:
+                                        TTTM thành lập mới năm <span>{{year}}</span>:<span>{{sieuThiDauTuTrongNam |
+                                            number:
                                             '1.0-0'}}</span>
                                     </li>
-                                </ul>
-                            </mat-card-content>
-                        </mat-card>
-                    </div>
-                    <div class="col-6 col-lg-6">
-                        <mat-card class="card4" id="card4-3">
-                            <mat-card-header>
-                                <mat-card-title>
-                                    <mat-icon>filter</mat-icon> Thống kê số lượng TTTM theo năm:
-                                </mat-card-title>
-                                <mat-card-subtitle></mat-card-subtitle>
-                            </mat-card-header>
-                            <mat-card-content style="font-size: 12px;">
-                                <ul>
+
                                     <li>
-                                        Tổng số TTTM đầu tư xây dựng trong năm <span>{{year}}</span> là:
-                                        <span>{{sieuThiDauTuTrongNam | number: '1.0-0'}}</span>
+                                        TTTM ngừng hoạt động năm <span>{{year}}</span>:<span>0</span>
                                     </li>
-                                    <li>
-                                        Chênh lệch số TTTM đầu tư xây dựng trong năm <span>{{year}}</span> so với
-                                        năm trước là:
-                                        <span>{{(sieuThiDauTuTrongNam - sieuThiDauTuNamTruoc) | number: '1.0-0'}}</span>
-                                    </li>
-                                    <li>
-                                        Tổng số TTTM ngừng hoạt động trong năm <span>{{year}}</span> là:
-                                        <span>0</span>
-                                    </li>
-                                    <li>
-                                        Chênh lệch số TTTM ngừng hoạt động trong năm <span>{{year}}</span> so với
-                                        năm trước là: <span>0</span>
-                                    </li>
+
                                 </ul>
                             </mat-card-content>
                         </mat-card>

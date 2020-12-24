@@ -7,7 +7,7 @@
         </div>
 
         <div class="layout" *ngIf="dataSource.data.length; else ShowEmpty" #TABLE>
-            <table mat-table [dataSource]="dataSource" #table class="table-layout" id="small-table">
+            <table mat-table [dataSource]="dataSource" #table class="table-layout" id="small-table1">
                 <ng-container matColumnDef="index">
                     <th mat-header-cell *matHeaderCellDef> STT </th>
                     <td mat-cell *matCellDef="let element;"
@@ -28,37 +28,56 @@
 
                 <ng-container matColumnDef="cung_ky">
                     <th mat-header-cell *matHeaderCellDef> Tháng {{month}}/{{year-1}}</th>
-                    <td mat-cell *matCellDef="let element"
+                    <td mat-cell *matCellDef="let element" class="right-cell"
                         [ngClass]="element.thu_tu=='I'||element.thu_tu=='II' || element.thu_tu=='A'?'bold':''">
                         {{element.cung_ky|number:'1.0-2'| ZeroAsSub}}</td>
                 </ng-container>
-
+                <ng-container matColumnDef="ke_hoach">
+                    <th mat-header-cell *matHeaderCellDef> Kế hoạch năm {{year}}</th>
+                    <td mat-cell *matCellDef="let element" class="right-cell"
+                        [ngClass]="element.thu_tu=='I'||element.thu_tu=='II' || element.thu_tu=='A'?'bold':''">
+                       -</td>
+                </ng-container>
                 <ng-container matColumnDef="thuc_hien_thang_truoc">
                     <th mat-header-cell *matHeaderCellDef> Tháng {{month-1==0?12:month-1}}/{{month-1==0?year-1:year}}
                     </th>
-                    <td mat-cell *matCellDef="let element"
+                    <td mat-cell *matCellDef="let element" class="right-cell"
                         [ngClass]="element.thu_tu=='I'||element.thu_tu=='II' || element.thu_tu=='A'?'bold':''">
                         {{element.thuc_hien_thang_truoc|number:'1.0-2'| ZeroAsSub}}</td>
                 </ng-container>
 
                 <ng-container matColumnDef="thuc_hien_thang">
                     <th mat-header-cell *matHeaderCellDef> Tháng {{month}}/{{year}}</th>
-                    <td mat-cell *matCellDef="let element"
+                    <td mat-cell *matCellDef="let element" class="right-cell"
                         [ngClass]="element.thu_tu=='I'||element.thu_tu=='II' || element.thu_tu=='A'?'bold':''">
                         {{element.thuc_hien_thang|number:'1.0-2'| ZeroAsSub}}
                     </td>
                 </ng-container>
+                <ng-container matColumnDef="luy_ke">
+                    <th mat-header-cell *matHeaderCellDef> Luỹ kế {{month}} tháng</th>
+                    <td mat-cell *matCellDef="let element" class="right-cell"
+                        [ngClass]="element.thu_tu=='I'||element.thu_tu=='II' || element.thu_tu=='A'?'bold':''">
+                        -
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="luy_ke_so_ke_hoach">
+                    <th mat-header-cell *matHeaderCellDef> Luỹ kế {{month}} tháng so với kế hoạch (%)</th>
+                    <td mat-cell *matCellDef="let element" class="right-cell"
+                        [ngClass]="element.thu_tu=='I'||element.thu_tu=='II' || element.thu_tu=='A'?'bold':''">
+                        -
+                    </td>
+                </ng-container>
 
-                <ng-container matColumnDef="thuc_hien_so_voi_thang_truoc">
-                    <th mat-header-cell *matHeaderCellDef> Thực hiện tháng {{month}}<br> so với tháng trước</th>
-                    <td mat-cell *matCellDef="let element"
+                <ng-container matColumnDef="thuc_hien_so_voi_thang_truoc"> class="right-cell"
+                    <th mat-header-cell *matHeaderCellDef> Thực hiện tháng {{month}}<br> so với tháng trước (%)</th>
+                    <td mat-cell *matCellDef="let element"  class="right-cell"
                         [ngClass]="element.thu_tu=='I'||element.thu_tu=='II' || element.thu_tu=='A'?'bold':''">
                         {{element.thuc_hien_so_voi_thang_truoc|number:'1.0-2'| ZeroAsSub}}</td>
                 </ng-container>
 
-                <ng-container matColumnDef="thuc_hien_so_voi_cung_ky">
-                    <th mat-header-cell *matHeaderCellDef> Thực hiện tháng {{month}}<br>so với cùng kỳ</th>
-                    <td mat-cell *matCellDef="let element"
+                <ng-container matColumnDef="thuc_hien_so_voi_cung_ky"> class="right-cell"
+                    <th mat-header-cell *matHeaderCellDef> Thực hiện tháng {{month}}<br>so với cùng kỳ (%)</th>
+                    <td mat-cell *matCellDef="let element" class="right-cell"
                         [ngClass]="element.thu_tu=='I'||element.thu_tu=='II' || element.thu_tu=='A'?'bold':''">
                         {{element.thuc_hien_so_voi_cung_ky|number:'1.0-2'| ZeroAsSub}}</td>
                 </ng-container>
