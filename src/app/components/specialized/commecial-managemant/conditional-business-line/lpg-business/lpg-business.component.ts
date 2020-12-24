@@ -20,7 +20,7 @@ export class LPGBusinessComponent implements OnInit {
     displayedColumns: string[] = ['index', 'mst', 'ten_doanh_nghiep', 'dia_chi', 'dien_thoai', 'so_giay_phep', 'ngay_cap', 'ngay_het_han', 'danh_sach_thuong_nhan', 'so_luong_co_so'];
     dataSource: MatTableDataSource<ConditionalBusinessLineModel> = new MatTableDataSource<ConditionalBusinessLineModel>();
     filteredDataSource: MatTableDataSource<ConditionalBusinessLineModel> = new MatTableDataSource<ConditionalBusinessLineModel>();
-    years: number[] = [];
+    years: any[] = [];
     districts: District[] = [{ id: 1, ten_quan_huyen: 'Thị xã Phước Long' },
     { id: 2, ten_quan_huyen: 'Thành phố Đồng Xoài' },
     { id: 3, ten_quan_huyen: 'Thị xã Bình Long' },
@@ -46,7 +46,7 @@ export class LPGBusinessComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.years = this.getYears();
+        this.years = this.commonFunctions.getYears();
         this.getDanhSachBuonBanLPG(0);
 
         // this.filteredDataSource.filterPredicate = function (data: ConditionalBusinessLineModel, filter): boolean {
