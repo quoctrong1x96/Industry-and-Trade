@@ -240,6 +240,7 @@ openDialog(id_mat_hang) {
             data: this.handelDataDialog(id_mat_hang),
             id: 1,
         };
+        dialogConfig.minWidth = '80%'
         // console.log(this.handelDataDialog(id_mat_hang));
         // dialogConfig.panelClass = ['overflow-y: scroll;']
         this.matDialog.open(ModalComponent, dialogConfig);
@@ -264,6 +265,7 @@ openDanh_sach_doanh_nghiep(id_mat_hang, ten_san_pham) {
                 ten_san_pham: ten_san_pham,
                 thang: this.curentmonth,
             };
+            dialogConfig.minWidth = '80%'
             this.matDialog.open(ModalComponent, dialogConfig);
         });
 }

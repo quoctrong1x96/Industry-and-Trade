@@ -96,7 +96,7 @@
                         <mat-form-field appearance="outline">
                             <mat-label>Kỳ dữ liệu</mat-label>
                             <mat-select (selectionChange)="getDanhSachBuonBanLeXangDau($event.value)" [value]="">
-                                <mat-option *ngFor='let year of years' [value]='year'>{{year}}</mat-option>
+                                <mat-option *ngFor='let year of years' [value]='year.value'>{{year.des}}</mat-option>
                             </mat-select>
                         </mat-form-field>
                     </div>

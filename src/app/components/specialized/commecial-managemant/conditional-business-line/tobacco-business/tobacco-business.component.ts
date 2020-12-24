@@ -9,6 +9,7 @@ import { MatAccordion } from '@angular/material/expansion';
 import { MatPaginator } from '@angular/material/paginator';
 import { District } from 'src/app/_models/district.model';
 import * as XLSX from 'xlsx';
+import { CommonFuntions } from '../common-functions.service';
 
 @Component({
     selector: 'tobacco-business',
@@ -20,7 +21,7 @@ export class TobaccoBusinessComponent implements OnInit {
     displayedColumns: string[] = ['index', 'mst', 'ten_doanh_nghiep', 'dia_chi', 'dien_thoai', 'so_giay_phep', 'ngay_cap', 'ngay_het_han', 'danh_sach_thuong_nhan', 'san_luong', 'tri_gia'];
     dataSource: MatTableDataSource<ConditionalBusinessLineModel> = new MatTableDataSource<ConditionalBusinessLineModel>();
     filteredDataSource: MatTableDataSource<ConditionalBusinessLineModel> = new MatTableDataSource<ConditionalBusinessLineModel>();
-    years: number[] = [];
+    years: any[] = [];
     districts: District[] = [{ id: 1, ten_quan_huyen: 'Thị xã Phước Long' },
     { id: 2, ten_quan_huyen: 'Thành phố Đồng Xoài' },
     { id: 3, ten_quan_huyen: 'Thị xã Bình Long' },
@@ -40,11 +41,14 @@ export class TobaccoBusinessComponent implements OnInit {
     @ViewChild('table', { static: false }) table: ElementRef;
     @ViewChild(MatAccordion, { static: false }) accordion: MatAccordion;
     @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-    constructor(public sctService: SCTService) {
+    constructor(
+        public sctService: SCTService,
+        public commonFunctions: CommonFuntions
+        ) {
     }
 
     ngOnInit() {
-        this.years = this.getYears();
+        this.years = this.commonFunctions.getYears();
         this.getDanhSachBuonBanThuocLa(this.currenttime);
         // this.filteredDataSource.filterPredicate = function (data: ConditionalBusinessLineModel, filter): boolean {
         //     return String(data.is_het_han).includes(filter);

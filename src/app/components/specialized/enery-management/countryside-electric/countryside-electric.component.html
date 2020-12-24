@@ -1,11 +1,13 @@
 <mat-tab-group>
+
     <mat-tab>
         <ng-template mat-tab-label>
             <mat-icon>select_all</mat-icon>
-            Điện thương phẩm
+            Quy hoạch điện 110KV trở lên
         </ng-template>
-        <app-power-production></app-power-production>
+        <electrical-plan></electrical-plan>
     </mat-tab>
+
     <mat-tab>
         <ng-template mat-tab-label>
             <mat-icon> swap_calls</mat-icon>
@@ -17,9 +19,25 @@
     <mat-tab>
         <ng-template mat-tab-label>
             <mat-icon>select_all</mat-icon>
+            Điện thương phẩm
+        </ng-template>
+        <app-power-production></app-power-production>
+    </mat-tab>
+
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <mat-icon>select_all</mat-icon>
             Tổng số hộ sử dụng điện + Tiêu chí số 4
         </ng-template>
         <rural-electric-management></rural-electric-management>
+    </mat-tab>
+
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <mat-icon>select_all</mat-icon>
+            Quản lý Cấp phép HĐ ĐL
+        </ng-template>
+        <app-manage-approve-hddl></app-manage-approve-hddl>
     </mat-tab>
 
 </mat-tab-group>
