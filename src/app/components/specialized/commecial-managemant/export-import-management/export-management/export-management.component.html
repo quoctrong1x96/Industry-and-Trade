@@ -337,11 +337,11 @@
                             Excel</button>
                     </div>
                 </div>
-                <div>
+                <!-- <div>
                     KIM NGẠCH XUẤT KHẨU CÁC MẶT HÀNG CỦA TỈNH THÁNG 01 VÀ 01 THÁNG NĂM 2020
-                </div>
+                </div> -->
 
-                <div class="layout" #table>
+                <div class="layout" *ngIf="dataSource.data.length; else ShowEmpty" #table>
                     <ng-container>
                         <table mat-table [dataSource]="dataSource" matSort class="table-layout" id="small-table">
                             <ng-container matColumnDef="index">

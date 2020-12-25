@@ -72,7 +72,7 @@
                         <mat-form-field appearance="outline">
                             <mat-label>Kỳ dữ liệu</mat-label>
                             <mat-select (selectionChange)="getDanhSachBuonBanLPG($event.value)" [value]="0">
-                                <mat-option *ngFor='let year of years' [value]='year'>{{year}}</mat-option>
+                                <mat-option *ngFor='let year of years' [value]='year.value'>{{year.des}}</mat-option>
                             </mat-select>
                         </mat-form-field>
                     </div>

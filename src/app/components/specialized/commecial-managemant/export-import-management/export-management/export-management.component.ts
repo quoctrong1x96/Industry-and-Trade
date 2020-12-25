@@ -18,7 +18,8 @@ import { MatSort } from '@angular/material/sort';
 import { LinkModel } from 'src/app/_models/link.model';
 import { BreadCrumService } from 'src/app/_services/injectable-service/breadcrums.service';
 import * as XLSX from 'xlsx';
-import { dataExport,  dataExport2, dataExport3 } from "./data";
+import { dataExport,  dataExport2, dataExport3 ,  dataExport4, dataExport5, dataExport6, dataExport7,  dataExport8, dataExport9, dataExport10,dataExport11,dataExport12} from "./data";
+import { dataDialogM1, dataDialogM2, dataDialogM3,dataDialogM4,dataDialogM5,dataDialogM6,dataDialogM7,dataDialogM8,dataDialogM9,dataDialogM10,dataDialogM11,dataDialogM12 } from "./dataDialog";
 @Component({
     selector: "app-export-management",
     templateUrl: "./export-management.component.html",
@@ -86,7 +87,7 @@ export class ExportManagementComponent implements OnInit {
     @ViewChild(MatAccordion, { static: true }) accordion: MatAccordion;
     @ViewChild("paginator", { static: false }) paginator: MatPaginator;
     @ViewChild(MatSort, { static: false }) sort: MatSort;
-    nhap_khau_chu_yeu = [1, 6, 8, 4, 7, 21, 13, 27, 82, 51, 28, 20, 31, 19, 23]
+    xuat_khau_chu_yeu = [1, 6, 8, 4, 7, 21, 13, 27, 82, 51, 28, 20, 31, 19, 23]
 
     tongluong_tc: number = 0;
     tonggiatri_tc: number = 0;
@@ -130,7 +131,7 @@ export class ExportManagementComponent implements OnInit {
     }
 
     kiem_tra(id_mat_hang) {
-        if (this.nhap_khau_chu_yeu.includes(id_mat_hang))
+        if (this.xuat_khau_chu_yeu.includes(id_mat_hang))
             return true
         return false;
     }
@@ -144,7 +145,7 @@ export class ExportManagementComponent implements OnInit {
         // this.filteredDataSource.filterPredicate = function (data: ex_im_model, filter): boolean {
         //     return String(data.is_het_han).includes(filter);
         // };
-        // this.handleGTXK();
+        this.handleGTXK();
     }
     public sendLinkToNext(type: boolean) {
         this._linkOutput.link = this.LINK_DEFAULT;
@@ -162,17 +163,56 @@ export class ExportManagementComponent implements OnInit {
     //   return this.dataSource.data.map(t => t.cost).reduce((acc, value) => acc + value, 0);
     // }
 
-    getDanhSachXuatKhau(thang) {
-        let tem = this.curentYear * 100 + thang;
+    getDanhSachXuatKhau(value) {
+        let tem = this.curentYear * 100 + this.curentmonth;
         this.dataSource.data = [];
         if(tem == 202001){
             this.dataSource.data = dataExport;
+            this.dataDialog = dataDialogM1;
         }
         if(tem == 202002){
             this.dataSource.data = dataExport2;
+            this.dataDialog = dataDialogM2;
         }
         if(tem == 202003){
             this.dataSource.data = dataExport3;
+            this.dataDialog = dataDialogM3;
+        }
+        if(tem == 202004){
+            this.dataSource.data = dataExport4;
+            this.dataDialog = dataDialogM4;
+        }
+        if(tem == 202005){
+            this.dataSource.data = dataExport5;
+            this.dataDialog = dataDialogM5;
+        }
+        if(tem == 202006){
+            this.dataSource.data = dataExport6;
+            this.dataDialog = dataDialogM6;
+        }
+        if(tem == 202007){
+            this.dataSource.data = dataExport7;
+            this.dataDialog = dataDialogM7
+        }
+        if(tem == 202008){
+            this.dataSource.data = dataExport8;
+            this.dataDialog = dataDialogM8
+        }
+        if(tem == 202009){
+            this.dataSource.data = dataExport9;
+            this.dataDialog = dataDialogM9;
+        }
+        if(tem == 202010){
+            this.dataSource.data = dataExport10;
+            this.dataDialog = dataDialogM10
+        }
+        if(tem == 202011){
+            this.dataSource.data = dataExport11;
+            this.dataDialog = dataDialogM11;
+        }
+        if(tem == 202012){
+            this.dataSource.data = dataExport12;
+            this.dataDialog = dataDialogM12;
         }
         // this.sctService.GetDanhSachXuatKhau(tem).subscribe((result) => {
         //     this.log(this.dataSource)
@@ -195,9 +235,9 @@ export class ExportManagementComponent implements OnInit {
         for (let item of data) {
             // console.log(item)
             this.TongLuongThangThucHien += item['luong_thang'];
-            this.TongGiaTriThangThucHien += item['gia_tri_thang']/1000000;
+            this.TongGiaTriThangThucHien += item['gia_tri_thang'];
             this.TongLuongCongDon += item['luong_cong_don'];
-            this.TongGiaTriCongDon += item['gia_tri_cong_don']/1000000;
+            this.TongGiaTriCongDon += item['gia_tri_cong_don'];
             // tổng cục hải quan
             this.tongluong_tc += item['luong_thang_tc'];
             this.tonggiatri_tc += item['gia_tri_thang_tc'];
@@ -241,24 +281,25 @@ export class ExportManagementComponent implements OnInit {
     applyExpireCheck(data) {
         // console.log(data);
         let tem_data = [...data]
-        this.dataSource = new MatTableDataSource<ex_im_model>(tem_data.filter(item => this.nhap_khau_chu_yeu.includes(item.id_mat_hang)));
+        this.dataSource = new MatTableDataSource<ex_im_model>(tem_data.filter(item => this.xuat_khau_chu_yeu.includes(item.id_mat_hang)));
         this.tinh_tong(this.dataSource.data)
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
     }
 
     openDialog(id_mat_hang) {
-        if (this.kiem_tra(id_mat_hang)) {
+        // if (this.kiem_tra(id_mat_hang)) {
             const dialogConfig = new MatDialogConfig();
             dialogConfig.data = {
                 data: this.handelDataDialog(id_mat_hang),
                 id: 1,
             };
-            dialogConfig.minWidth = '80%'
+            dialogConfig.minHeight = '100%';
+            dialogConfig.minWidth = '90%';
             // console.log(this.handelDataDialog(id_mat_hang));
             // dialogConfig.panelClass = ['overflow-y: scroll;']
             this.matDialog.open(ModalComponent, dialogConfig);
-        }
+        // }
     }
 
     handelDataDialog(id_mat_hang) {
