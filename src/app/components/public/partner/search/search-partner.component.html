@@ -45,37 +45,37 @@
 
             <table mat-table matTableFilter [exampleEntity]="filterEntity" [filterType]="filterType" [dataSource]="dataSource" class="table-layout" id="small-table1">
 
-                <ng-container matColumnDef="index" sticky>
+                <ng-container matColumnDef="index" >
                     <th mat-header-cell *matHeaderCellDef> STT
                     </th>
                     <td mat-cell *matCellDef="let element; let i = index;" class="center-cell"> {{this.paginator.pageIndex == 0 ? i + 1 : 1 + i + this.paginator.pageIndex * this.paginator.pageSize}}
                     </td>
                 </ng-container>
 
-                <ng-container matColumnDef="ten_doanh_nghiep">
+                <ng-container matColumnDef="ten_doanh_nghiep" sticky>
                     <th mat-header-cell *matHeaderCellDef> Tên doanh nghiệp </th>
-                    <td mat-cell *matCellDef="let element" (click)="openDetailCompany(element.mst)" id="jump">
+                    <td mat-cell *matCellDef="let element" (click)="openDetailCompany(element.mst)" id="jump" class="text">
                         {{element.ten_doanh_nghiep}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="mst">
                     <th mat-header-cell *matHeaderCellDef> Mã số thuế </th>
-                    <td mat-cell *matCellDef="let element"> {{element.mst}} </td>
+                    <td mat-cell *matCellDef="let element" class="number"> {{element.mst}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="dia_chi">
                     <th mat-header-cell *matHeaderCellDef> Địa chỉ </th>
-                    <td mat-cell *matCellDef="let element"> {{element.dia_chi_day_du}} </td>
+                    <td mat-cell *matCellDef="let element" class="text"> {{element.dia_chi_day_du}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="dien_thoai">
                     <th mat-header-cell *matHeaderCellDef> Điện thoại </th>
-                    <td mat-cell *matCellDef="let element"> {{element.dien_thoai}} </td>
+                    <td mat-cell *matCellDef="let element" class="number"> {{element.dien_thoai}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="ten_nganh_nghe">
                     <th mat-header-cell *matHeaderCellDef> Tên ngành nghề - ngành nghề kinh doanh</th>
-                    <td mat-cell *matCellDef="let element"> {{element.ten_nganh_nghe}} </td>
+                    <td mat-cell *matCellDef="let element" class="text"> {{element.ten_nganh_nghe}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="chi_tiet_doanh_nghiep">

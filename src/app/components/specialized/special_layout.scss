@@ -15,6 +15,29 @@
         .bold {
             font-weight: bold;
         }
+        .card-default{
+            margin-top: 5px;
+            .mat-card-header .mat-card-title {
+                margin-bottom: 5px;
+                font-size: 15px;
+                text-align: left !important;
+            }
+            .mat-card-content {
+                font-size: 15px;
+                ul {
+                    list-style-type: square;
+                    // display: flex;
+                    justify-content: center;
+                }
+                span {
+                    font-weight: bolder;
+                    color: $blue;
+                    text-align: center;
+                }
+            }
+            
+                
+        }
         .card1 {
             margin-top: 5px;
             min-height: 115px;
@@ -90,7 +113,7 @@
                 }
                 span {
                     font-weight: bolder;
-                    color: blue;
+                    color: $blue;
                 }
             }
             .mat-card-subtitle {
@@ -108,7 +131,7 @@
                 text-align: left !important;
                 span {
                     font-weight: bolder;
-                    color: blue;
+                    color: $blue;
                 }
             }
         }
@@ -226,7 +249,6 @@
                 }
                 #jump {
                     cursor: zoom-in;
-                    color: blue;
                 }
                 select {
                     border: none;

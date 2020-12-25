@@ -37,7 +37,7 @@
                         <mat-card class="card5">
                             <mat-card-header>
                                 <mat-card-title>
-                                    <mat-icon>filter</mat-icon> Số cửa hàng hoạt động trong năm <span>{{filterModel.ngaycapgcn}}</span>:
+                                    <mat-icon>filter</mat-icon> Số cửa hàng đăng ký chưng nhận <span>{{filterModel.ngaycapgcn}}</span>:
                                     <span>{{filteredDataSource.data.length}}</span>
                                 </mat-card-title>
                                 <mat-card-subtitle></mat-card-subtitle>
@@ -121,9 +121,9 @@
                 <div class="row">
                     <div class="col-3 col-lg-3">
                         <mat-form-field appearance="outline">
-                            <mat-label>Kỳ dữ liệu</mat-label>
+                            <mat-label>Thời gian đăng ký GCNATTP</mat-label>
                             <mat-select (selectionChange)="applyFilter()" [(ngModel)]="filterModel.ngaycapgcn">
-                                <mat-option *ngFor='let year of years' [value]='year'>{{year}}</mat-option>
+                                <mat-option *ngFor='let year of years' [value]='year.value'>{{year.text}}</mat-option>
                             </mat-select>
                         </mat-form-field>
                     </div>
@@ -148,7 +148,7 @@
                     <!-- </div> -->
 
                     <div class="col-3 col-lg-3 checkbox">
-                        <mat-checkbox (change)="applyFilter()" [(ngModel)]="isChecked">Hết hạn CNATTP
+                        <mat-checkbox (change)="applyFilter()" [(ngModel)]="isChecked">Cửa hàng hết hạn CNATTP
                         </mat-checkbox>
                     </div>
 

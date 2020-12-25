@@ -85,8 +85,8 @@ export class MarketCommecialManagementComponent implements OnInit {
     { key: 1, code: "HANGI", name: "Chợ hạng I" },
     { key: 2, code: "HANGII", name: "Chợ hạng II" },
     { key: 3, code: "HANGIII", name: "Chợ hạng III" },
-    { key: 4, code: "HANGIV", name: "Chợ hạng IV" },
-    { key: 5, code: "HANGV", name: "Chợ hạng V" },
+    { key: 4, code: "HANGIV", name: "Chợ khác" },
+    { key: 5, code: "HANGV", name: "Chưa có chợ" },
   ];
   public readonly managerTypes: FilterModel[] = [
     { key: 1, code: "BAN", name: "Ban quản lý" },
@@ -114,39 +114,48 @@ export class MarketCommecialManagementComponent implements OnInit {
   //Variable for HTML&TS-------------------------------------------------------------------------
   public year: number = 2019;
   //Variable for Total---------------------------------------------------------------------------
-  public tongSoCho: number = 0;
+  public tong_SoCho: number = 0;
   //--
-  public choNongThon: number = 0;
-  public choThanhThi: number = 0;
+  public diaban_NongThon: number = 0;
+  public diaban_ThanhThi: number = 0;
+  public diaban_DauMoi: number = 0;
+  public diaban_TrongQuyHoach: number = 0;
+  public diaban_TuPhat: number = 0;
+  public diaban_Khac: number = 0;
   //--
-  public choHangI: number = 0;
-  public choHangII: number = 0;
-  public choHangIII: number = 0;
-  public choHangIV: number = 0;
-  public choHangV: number = 0;
+  public hang_HangI: number = 0;
+  public hang_HangII: number = 0;
+  public hang_HangIII: number = 0;
   //--
-  public choKienCo: number = 0;
-  public choTam: number = 0;
-  public choBanKienCo: number = 0;
+  public xaydung_Moi: number = 0;
+  public xaydung_CaiTao:number = 0;
+  public xaydung_KhongHoatDong: number = 0;
+  public xaydung_KhongHoatDong70:number = 0;
+  public xaydung_ChuyenDoi: number = 0;
   //--
-  public choBanLe: number = 0;
-  public choBanSi: number = 0;
+  public quanly_BanTo:number = 0;
+  public quanly_DoanhNghiep:number = 0;
+  public quanly_HopTacXa:number = 0;
+  public quanly_HoKinhDoanh:number = 0;
   //--
-  public choNhaNuoc: number = 0;
-  public choXaHoiHoa: number = 0;
+  public kinhdoanh_choBanLe: number = 0;
+  public kinhdoanh_choDauMoiChuyenDoanh: number =0;
+  public kinhdoanh_choDauMoiTongHop:number =0;
   //--
-  public vonDauTu: number = 0;
-  public vonDauTuNganSach: number = 0;
-  public vonDauTuXaHoiHoa: number = 0;
+  public congtrinh_KienCo: number = 0;
+  public congtrinh_Tam: number = 0;
+  public congtrinh_BanKienCo: number = 0;
   //--
-  public vonDauTuKeHoach: number = 0;
-  public vonDauTuKeHoachXaHoiHoa: number = 0;
-  public vonDauTuKeHoachNganSach: number = 0;
+  public tongvon_DNHTXHL:number =0;
+  public tongvon_Khac:number = 0;
+  public tongvon_VonNganSachTW: number = 0;
+  public tongvon_VonNganSachDiaPhuong: number = 0;
   //--
-  public choCaiTao: number = 0;
-  public soSanhChoCaiTao: number = 0;
-  public choXayMoi: number = 0;
-  public soSanhChoXayMoi: number = 0;
+  public chokhac_NgoaiQuyHoach:number = 0;
+  public chokhac_ChoDem:number = 0;
+  public chokhac_BienGioi:number = 0;
+
+
   public tableMergeHader: Array<ToltalHeaderMerge> = [];
   public filteredDataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
   public attributes: Array<ReportAttribute> = [];
@@ -221,6 +230,7 @@ export class MarketCommecialManagementComponent implements OnInit {
         this._indicators.sort((a, b) =>
           a.ind_code.toLocaleString().localeCompare(b.ind_code.toLocaleString())
         );
+        console.log(this._indicators);
         this._datarows = allRecord.data[3] as ReportDatarow[];
         this._object = allRecord.data[0];
         this.CreateMergeHeaderTable(this.attributes);
@@ -342,6 +352,7 @@ export class MarketCommecialManagementComponent implements OnInit {
       (a) => a.toLowerCase() != "ind_code" && a.toLowerCase() != "rn"
     );
     this.attributeHeaders.unshift("index");
+    console.log("Attribute Header:", this.attributeHeaders);
     for (let index = 0; index < this._indicators.length; index++) {
       const elementIndicator = this._indicators[index];
       const elementDatarow = this._datarows.find(
@@ -440,12 +451,15 @@ export class MarketCommecialManagementComponent implements OnInit {
         tableRow.fd04 = new Date();
         tableRow.fd05 = new Date();
       }
-      this._tableData.data.push(tableRow);
+      if (tableRow.ind_name.length > 10)
+        this._tableData.data.push(tableRow);
     }
     this._tableData.data.forEach((element) => {
       if (element.ind_formula == null && element.ind_type == 1) this._rows++;
     });
     this.dataSource.data = [...this._tableData.data];
+    console.log("attributes:", this.attributes);
+    this._caculator(this.dataSource.data);
   }
 
 
@@ -474,6 +488,8 @@ export class MarketCommecialManagementComponent implements OnInit {
   private _conditionArray: HashTableNumber<number[]> = {};
   applyCondictionFilter(type, event: any) {
     this._conditionArray[type] = event.value;
+
+    console.log("Filter: ", this._conditionArray);
     this._filterDataSource();
   }
 
@@ -488,45 +504,48 @@ export class MarketCommecialManagementComponent implements OnInit {
       dataFilterOriginal = [... this._tableData.data];
       Object.keys(this._conditionArray).forEach(key => {
         let array = this._conditionArray[key];
-        switch (key) {
-          case "1":
-            array.forEach((element) => {
-              dataFilterOriginal.filter((x) => x.fc03.includes(element)).forEach((item) => dataFilterFinal.push(item));
-            });
-            break;
-          case "2":
-            array.forEach((element) => {
-              if (element == 1) {
-                dataFilterOriginal.filter((x) => x.fn03 == 1).forEach((item) => dataFilterFinal.push(item));
-              }
-              else if (element == 2) {
-                dataFilterOriginal.filter((x) => x.fn07 == 1).forEach((item) => dataFilterFinal.push(item));
-              } else {
-                dataFilterOriginal.filter((x) => x.fn09 == 1).forEach((item) => dataFilterFinal.push(item));
-              }
-            });
-            break;
-          case "3":
-            array.forEach((element) => {
-              dataFilterOriginal.filter((x) => x.fc11.includes(element)).forEach((item) => dataFilterFinal.push(item));
-            });
+        if (array && array.length > 0) {
+          switch (key) {
+            case "1":
+              array.forEach((element) => {
+                dataFilterOriginal.filter((x) => x.fc03.includes(element)).forEach((item) => dataFilterFinal.push(item));
+              });
+              break;
+            case "2":
+              array.forEach((element) => {
+                if (element == 1) {
+                  dataFilterOriginal.filter((x) => x.fn03 == 1).forEach((item) => dataFilterFinal.push(item));
+                }
+                else if (element == 2) {
+                  dataFilterOriginal.filter((x) => x.fn07 == 1).forEach((item) => dataFilterFinal.push(item));
+                } else {
+                  dataFilterOriginal.filter((x) => x.fn09 == 1).forEach((item) => dataFilterFinal.push(item));
+                }
+              });
+              break;
+            case "3":
+              array.forEach((element) => {
+                dataFilterOriginal.filter((x) => x.fc11.includes(element)).forEach((item) => dataFilterFinal.push(item));
+              });
 
-            break;
-          default:
-            array.forEach((element) => {
-              if (element == 1) {
-                dataFilterOriginal.filter((x) => x.fn10 >= 1).forEach((item) => dataFilterFinal.push(item));
-              }
-              else if (element == 2) {
-                dataFilterOriginal.filter((x) => x.fn20 >= 1).forEach((item) => dataFilterFinal.push(item));
-              } else {
-                dataFilterOriginal.filter((x) => x.fn08 >= 1).forEach((item) => dataFilterFinal.push(item));
-              }
-            });
-            break;
+              break;
+            default:
+              array.forEach((element) => {
+                if (element == 1) {
+                  dataFilterOriginal.filter((x) => x.fn10 >= 1).forEach((item) => dataFilterFinal.push(item));
+                }
+                else if (element == 2) {
+                  dataFilterOriginal.filter((x) => x.fn20 >= 1).forEach((item) => dataFilterFinal.push(item));
+                } else {
+                  dataFilterOriginal.filter((x) => x.fn08 >= 1).forEach((item) => dataFilterFinal.push(item));
+                }
+              });
+              break;
+          }
+          dataFilterOriginal = [...dataFilterFinal];
+          dataFilterFinal = [];
         }
-        dataFilterOriginal = [...dataFilterFinal];
-        dataFilterFinal = [];
+
       });
       this.dataSource = new MatTableDataSource<ReportTable>(dataFilterOriginal);
     } else {
@@ -547,34 +566,35 @@ export class MarketCommecialManagementComponent implements OnInit {
     setTimeout(() => this.accordion.openAll(), 1000);
   }
   private _caculator(data: Array<ReportTable>) {
-    this.tongSoCho = data.length;
+
     //--
-    this.choNongThon = data.filter((x) => x.fc01.includes("Thành thị")).length;
-    this.choThanhThi = this.tongSoCho - this.choNongThon;
+    this.diaban_NongThon = data.filter((x) => x.fc01.includes("Nông thôn")).length;
+    this.diaban_ThanhThi = data.filter((x) => x.fc01.includes("Thành thị")).length;
+    //
+    this.tong_SoCho = this.diaban_NongThon + this.diaban_ThanhThi;
     //--
-    this.choHangI = data.filter((x) => x.fn03 == 1).length;
-    this.choHangII = data.filter((x) => x.fn07 == 1).length;;
-    this.choHangIII = data.filter((x) => x.fn09 == 1).length;;
-    this.choHangIV = 0;
-    this.choHangV = 0;
+    this.hang_HangI = data.filter((x) => x.fn03 == 1).length;
+    this.hang_HangII = data.filter((x) => x.fn07 == 1).length;;
+    this.hang_HangIII = data.filter((x) => x.fn09 == 1).length;;
     //--
-    this.choKienCo = data.filter((x) => x.fc11.includes("Kiên cố")).length;
-    this.choTam = data.filter((x) => x.fc11.includes("Tạm")).length;
-    this.choBanKienCo = data.filter((x) => x.fc11.includes("Bán kiên cố")).length;
+    this.congtrinh_KienCo = data.filter((x) => x.fc11.includes("Kiên cố")).length;
+
+    this.congtrinh_BanKienCo = data.filter((x) => x.fc11.includes("Bán kiên cố")).length;
+    this.congtrinh_Tam = this.tong_SoCho - this.congtrinh_BanKienCo - this.congtrinh_KienCo;
     //--
-    this.choBanLe = 0;
-    this.choBanSi = 0;
+    this.kinhdoanh_choBanLe = 0;
     //--
-    this.choNhaNuoc = 0;
-    this.choXaHoiHoa = 0;
     //--
-    this.vonDauTu = 0;
-    this.vonDauTuNganSach = 0;
-    this.vonDauTuXaHoiHoa = 0;
+
+    data.forEach(element => {
+      if (element.fn04)
+        this.tongvon_VonNganSachTW += element.fn04;
+    });
+    data.forEach(element => {
+      if (element.fn11)
+        this.tongvon_VonNganSachDiaPhuong += element.fn11;
+    });
     //--
-    this.vonDauTuKeHoach = 0;
-    this.vonDauTuKeHoachXaHoiHoa = 0;
-    this.vonDauTuKeHoachNganSach = 0;
   }
   private _paginatorAgain() {
     this.dataSource.paginator = this.paginator;

@@ -111,7 +111,7 @@ export class StoreManagementComponent implements OnInit {
   { tencuahang: 'CH BHX Bình Phước số 50', sanphamkinhdoanh: 'Thực phẩm tiêu dùng', scndkkd: '00054', ngaycap: new Date('2020-06-08'), noicap: 'Bình Phước', diachi: 'Đường ĐT 759, Khu phố 2, Phường Phước Bình, Thị xã Phước Long', id_quan_huyen: 1, sogcn: '51.2020KD/GCNATTP-SCT', ngaycapgcn: new Date('2020-07-31'), ngayhethangcn: new Date('2023-07-30'), sdtlienhe: '0902789129', is_het_han: false },
   { tencuahang: 'CH BHX Bình Phước số 53', sanphamkinhdoanh: 'Thực phẩm tiêu dùng', scndkkd: '00055', ngaycap: new Date('2020-07-03'), noicap: 'Bình Phước', diachi: 'Đường Quốc lộ 13, Khu phố Ninh Thịnh, Thị trấn Lộc Ninh, Huyện Lộc Ninh', id_quan_huyen: 5, sogcn: '54.2020KD/GCNATTP-SCT', ngaycapgcn: new Date('2020-08-19'), ngayhethangcn: new Date('2023-08-18'), sdtlienhe: '0902789130', is_het_han: false },
   { tencuahang: 'CH BHX Bình Phước số 54', sanphamkinhdoanh: 'Thực phẩm tiêu dùng', scndkkd: '00056', ngaycap: new Date('2020-07-15'), noicap: 'Bình Phước', diachi: 'Đường 3 tháng 2, Khu phố Long Điền 1, Phường Phước Long, Thị xã Phước Long', id_quan_huyen: 1, sogcn: '55.2020KD/GCNATTP-SCT', ngaycapgcn: new Date('2020-10-20'), ngayhethangcn: new Date('2023-10-19'), sdtlienhe: '0902789131', is_het_han: false }]
-  years: number[] = [];
+  years: any[] = [];
   //Variable for only TS-------------------------------------------------------------------------
 
   items: TreeviewItem[] = [];
@@ -134,7 +134,8 @@ export class StoreManagementComponent implements OnInit {
   public indexOftableMergeHader: number = 0;
 
   columns: number = 1;
-  districts: District[] = [{ id: 1, ten_quan_huyen: 'Thị xã Phước Long' },
+  districts: District[] = [
+  { id: 1, ten_quan_huyen: 'Thị xã Phước Long' },
   { id: 2, ten_quan_huyen: 'Thành phố Đồng Xoài' },
   { id: 3, ten_quan_huyen: 'Thị xã Bình Long' },
   { id: 4, ten_quan_huyen: 'Huyện Bù Gia Mập' },
@@ -205,7 +206,7 @@ export class StoreManagementComponent implements OnInit {
   }
 
   getYears() {
-    return [0, ...Array(5).fill(1).map((element, index) => new Date().getFullYear() - index)];
+    return [{text:'Tất cả',value:0}, {text:'2020',value:2020},{text:'2019',value:2019},{text:'2018',value:2018},];
   }
 
   private _paginator(): void {
@@ -245,7 +246,6 @@ export class StoreManagementComponent implements OnInit {
   filterArray(array, filters) {
     const filterKeys = Object.keys(filters);
     let temp = [...array];
-    console.log(this.filterModel)
     filterKeys.forEach(key => {
       let temp2 = [];
       if (key == 'is_het_han') {

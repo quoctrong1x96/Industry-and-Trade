@@ -57,10 +57,16 @@ export const navItemsPublic: INavItem[] = [
     name: 'TÌM KIẾM ĐỐI TÁC KINH DOANH'
   },
   {
-    name: 'Tìm kiếm đối tác',
-    url: '/public/partner/search',
-    icon: 'search',
-    id: 'TKDT'
+    name: 'TÌM KIẾM ĐỐI TÁC KINH DOANH',
+    icon: 'dvr',
+    children: [
+      {
+        name: 'Tìm kiếm',
+        url: '/public/partner/search',
+        icon: 'search',
+        id: 'TKDT'
+      },
+    ]
   },
 ];
 export const navItemsManager: INavItem[] = [
@@ -425,13 +431,8 @@ export const navItemsSpecialized: INavItem[] = [
             icon: 'perm_media',
           },
           {
-            name: 'Địa bàn',
-            url: '/specialized/industry-management/cluster',
-            icon: 'extension',
-          },
-          {
             name: 'Báo cáo',
-            url: '/specialized/industry-management/cluster',
+            url: '/specialized/industry-management/report',
             icon: 'feedback',
           },
         ]

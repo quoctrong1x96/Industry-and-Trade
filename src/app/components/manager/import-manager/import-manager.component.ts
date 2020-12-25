@@ -98,7 +98,7 @@ export class ImportManagerComponent implements OnInit {
         this.managerService.GetListProduct().subscribe(
             allrecords => {
                 this.products = allrecords.data as ProductManagerModelList[];
-                this.createDefault();
+               // this.createDefault();
             },
         );
     }

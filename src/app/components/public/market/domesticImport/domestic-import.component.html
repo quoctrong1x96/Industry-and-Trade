@@ -2,7 +2,7 @@
     <mat-card-header>
         <mat-card-title>
             <strong>
-                Thông tin về tình hình nhập khẩu
+                Thông tin về tình hình nhập khẩu tháng {{theMonth}} / {{theYear}}
             </strong>
         </mat-card-title>
         <mat-card-subtitle></mat-card-subtitle>
@@ -100,11 +100,11 @@
                 </ng-container>
 
                 <tr mat-header-row class="table-header"
-                    *matHeaderRowDef="['ma_va_ten','so_lieu_tam_thoi', 'so_lieu_chinh_thuc','top_nhap_khau_header']">
+                    *matHeaderRowDef="['ma_va_ten','so_lieu_tam_thoi', 'so_lieu_chinh_thuc','top_nhap_khau_header'];sticky: true;">
                 </tr>
-                <tr mat-header-row class="table-header" *matHeaderRowDef="displayedColumns;sticky: true"></tr>
+                <tr mat-header-row class="table-header" *matHeaderRowDef="displayedColumns;sticky: true;"></tr>
                 <tr mat-row class="table-row" *matRowDef="let row; columns: displayedColumns;"></tr>
-                <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+                <tr mat-footer-row *matFooterRowDef="displayedColumns;sticky: true;"></tr>
             </table>
         </div>
         <mat-paginator [pageSizeOptions]="[20, 50, 100]" showFirstLastButtons></mat-paginator>

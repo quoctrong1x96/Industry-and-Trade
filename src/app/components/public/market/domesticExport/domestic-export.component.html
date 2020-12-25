@@ -2,7 +2,7 @@
     <mat-card-header>
         <mat-card-title>
             <strong>
-                Thông tin về tình hình xuất khẩu
+                Thông tin về tình hình xuất khẩu tháng {{theMonth}} / {{theYear}}
             </strong>
         </mat-card-title>
         <mat-card-subtitle></mat-card-subtitle>
@@ -18,7 +18,9 @@
                     </mat-datepicker>
                 </mat-form-field>
             </div>
+            
             <div class="col-lg-10 button-control my-auto">
+                <button mat-raised-button (click)="scroll(TABLE)">Xem biểu</button>
                 <button mat-raised-button (click)="exportTOExcel('Thông tin xuất khẩu',timeDomesticPrice)">Xuất
                     Excel</button>
             </div>
@@ -98,13 +100,14 @@
                     <th mat-header-cell *matHeaderCellDef style="text-align: center;" [attr.colspan]="1">
                 </ng-container>
 
-                <tr mat-header-row class="table-header" *matHeaderRowDef="['ma_va_ten','so_lieu_tam_thoi', 'so_lieu_chinh_thuc','top_xuat_khau_header']">
+                <tr mat-header-row class="table-header" *matHeaderRowDef="['ma_va_ten','so_lieu_tam_thoi', 'so_lieu_chinh_thuc','top_xuat_khau_header']; sticky: true;">
                 </tr>
-                <tr mat-header-row class="table-header" *matHeaderRowDef="displayedColumns;sticky: true"></tr>
+                <tr mat-header-row class="table-header" *matHeaderRowDef="displayedColumns;sticky: true;"></tr>
                 <tr mat-row class="table-row" *matRowDef="let row; columns: displayedColumns;"></tr>
                 <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
             </table>
         </div>
         <mat-paginator [pageSizeOptions]="[20, 50, 100]" showFirstLastButtons></mat-paginator>
     </mat-card-content>
+    
 </mat-card>

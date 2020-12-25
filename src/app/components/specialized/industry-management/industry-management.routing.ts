@@ -9,6 +9,7 @@ import { IipMonthComponent } from './iip-industrial/iip-month/iip-month.componen
 import { IndustrialExplosivesComponent } from './industrial-explosives/industrial-explosives.component';
 import { LPGManagementComponent } from './lpg-management/lpg-management.component';
 import { CertificateRegulationComponent } from './certificate-regulation/certificate-regulation.component';
+import { ReportExplosivesComponent } from './report-explosives/report-explosives.component';
 
 const routes: Routes = [
     {
@@ -67,6 +68,13 @@ const routes: Routes = [
                 component: ClusterManagementComponent,
                 data: {
                     title: 'Quản lý Cụm Công nghiệp',
+                }
+            },
+            {
+                path: 'report',
+                component: ReportExplosivesComponent,
+                data: {
+                    title: 'Báo cáo cụm công nghiệp',
                 }
             },
             {

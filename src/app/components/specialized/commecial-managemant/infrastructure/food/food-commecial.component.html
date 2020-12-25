@@ -21,9 +21,7 @@
                 </mat-expansion-panel-header>
 
                 <div class="row">
-                    <div class="col-4 col-lg-4">
-                    </div>
-                    <div class="col-4 col-lg-4">
+                    <div class="col">
                         <mat-card class="card1">
                             <mat-card-header>
                                 <mat-card-title>
@@ -35,8 +33,6 @@
                                 {{tongDoanhNghiep}} doanh nghiệp
                             </mat-card-content>
                         </mat-card>
-                    </div>
-                    <div class="col-4 col-lg-4">
                     </div>
                 </div>
             </mat-expansion-panel>
@@ -65,7 +61,7 @@
                     </div>
                     <div class="col-3 col-lg-3">
                         <mat-form-field appearance="outline">
-                            <mat-label>Sản phẩm</mat-label>
+                            <mat-label>Sản phẩm kinh doanh</mat-label>
                             <mat-select (selectionChange)="applyFilter()" [(ngModel)]="filterModel.sanphamkinhdoanh" multiple>
                                 <mat-option *ngFor='let product of listProduct' [value]='product'>
                                     {{product}}

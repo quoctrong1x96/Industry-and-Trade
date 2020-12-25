@@ -50,7 +50,7 @@ export class SearchPartnerComponent implements AfterViewInit, OnInit {
   public typeShow: number = 1;
   public displayedColumns: string[] = ['index', 'ten_doanh_nghiep', 'mst', 'dia_chi', 'dien_thoai', 'ten_nganh_nghe', 'chi_tiet_doanh_nghiep'];
   public filteredCareerList: Observable<CareerModel[]>;
-  public addresses: Array<any> = ['Không chọn'];
+  public addresses: Array<any> = ['Tất cả'];
   public loading: boolean = false;
   public types = ['Dạng thẻ', 'Dạng bảng'];
   public page: number = 1;
@@ -82,6 +82,7 @@ export class SearchPartnerComponent implements AfterViewInit, OnInit {
   ngOnInit(): void {
     this.filterEntity = new CompanyDetailModel();
     this.tempFilter = new CompanyDetailModel();
+    this.tempFilter.ten_quan_huyen = "Tất cả";
     this.filterType = MatTableFilter.ANYWHERE;
     this.getAllCompany();
     this.getAllDistrict();
@@ -236,7 +237,7 @@ export class SearchPartnerComponent implements AfterViewInit, OnInit {
     // this.filterEntity.nganh_nghe_kd = this.selectedCategory == 'Tất cả'? null : this.selectedCategory;
     // this.tempFilter.ten_nganh_nghe = (document.getElementById('selected_Career') as HTMLInputElement).value.toString();
     // this.tempFilter.ten_nganh_nghe = document.getElementById('selected_Career')
-    this.tempFilter.ten_quan_huyen = this.tempFilter.ten_quan_huyen == 'Không chọn' ? null : this.tempFilter.ten_quan_huyen;
+    this.tempFilter.ten_quan_huyen = this.tempFilter.ten_quan_huyen == 'Tất cả' ? null : this.tempFilter.ten_quan_huyen;
     this.filterEntity = { ...this.tempFilter }
   }
   public change() {

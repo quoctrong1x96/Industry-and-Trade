@@ -15,6 +15,7 @@
                         <mat-icon> show_chart</mat-icon>
                         &nbsp;
                         <strong>DỮ LIỆU TỔNG HỢP</strong>
+                        
                     </mat-panel-title>
                     <mat-panel-description>
                     </mat-panel-description>
@@ -25,7 +26,7 @@
                         <mat-card class="card5">
                             <mat-card-header>
                                 <mat-card-title>
-                                    <mat-icon>filter</mat-icon> Tổng số chợ: <span>0 chợ</span>
+                                    <mat-icon>filter</mat-icon> 1. Tổng số chợ: <span>{{tong_SoCho}} chợ</span>
                                 </mat-card-title>
                                 <mat-card-subtitle></mat-card-subtitle>
                             </mat-card-header>
@@ -34,51 +35,133 @@
                         </mat-card>
                     </div>
                     <div class="col-4 col-lg-4">
-                        <mat-card class="card4" id="card4-2">
+                        <mat-card class="card-default">
                             <mat-card-header>
                                 <mat-card-title>
-                                    <mat-icon>filter</mat-icon> Hạng chợ:
+                                    <mat-icon>filter</mat-icon> 2. Phân theo địa bàn:
                                 </mat-card-title>
                                 <mat-card-subtitle></mat-card-subtitle>
                             </mat-card-header>
                             <mat-card-content>
                                 <ul>
                                     <li>
-                                        Chợ hạng 1: <span>{{choHangI}}</span>
+                                        Chợ nông thôn: <span>{{diaban_NongThon}}</span>
                                     </li>
                                     <li>
-                                        Chợ hạng 2: <span>{{choHangII}}</span>
+                                        Chợ thành thị: <span>{{diaban_ThanhThi}}</span>
                                     </li>
                                     <li>
-                                        Chợ hạng 3: <span>{{choHangIII}}</span>
+                                        Chợ đầu mối: <span>{{diaban_DauMoi}}</span>
                                     </li>
                                     <li>
-                                        Chợ hạng 4: <span>{{choHangIV}}</span>
+                                        Chợ trong quy hoạch: <span>{{diaban_TrongQuyHoach}}</span>
                                     </li>
                                     <li>
-                                        Chợ hạng 5: <span>{{choHangV}}</span>
+                                        Chợ tự phát: <span>{{diaban_TuPhat}}</span>
+                                    </li>
+                                    <li>
+                                        Chợ khac: <span>{{diaban_Khac}}</span>
                                     </li>
                                 </ul>
                             </mat-card-content>
                         </mat-card>
                     </div>
                     <div class="col-4 col-lg-4">
-                        <mat-card class="card4" id="card4-3">
+                        <mat-card class="card-default">
                             <mat-card-header>
                                 <mat-card-title>
-                                    <mat-icon>filter</mat-icon> Thống kê xây dựng:
+                                    <mat-icon>filter</mat-icon> 3. Phân theo hạng chợ:
                                 </mat-card-title>
                                 <mat-card-subtitle></mat-card-subtitle>
                             </mat-card-header>
                             <mat-card-content>
                                 <ul>
                                     <li>
-                                        Chợ cải tạo trong năm {{year}} là: <span>{{choCaiTao}}</span> tăng/giảm so với
-                                        năm {{year}} là: <span>{{soSanhChoCaiTao}}</span>
+                                        Chợ hạng 1: <span>{{hang_HangI}} chợ</span>
                                     </li>
                                     <li>
-                                        Chợ xây mới trong năm {{year}} là: <span>{{choXayMoi}}</span> tăng/giảm so với
-                                        năm {{year}} là: <span>{{soSanhChoXayMoi}}</span>
+                                        Chợ hạng 2: <span>{{hang_HangII}} chợ</span>
+                                    </li>
+                                    <li>
+                                        Chợ hạng 3: <span>{{hang_HangIII}} chợ</span>
+                                    </li>
+                                </ul>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                   
+                </div>
+
+                <div class="row">
+                    <div class="col-4 col-lg-4">
+                        <mat-card class="card-default">
+                            <mat-card-header>
+                                <mat-card-title>
+                                    <mat-icon>filter</mat-icon> 4. Tính chất công trình:
+                                </mat-card-title>
+                                <mat-card-subtitle></mat-card-subtitle>
+                            </mat-card-header>
+                            <mat-card-content>
+                                <ul>
+                                    <li>
+                                        Chợ Kiên cố: <span>{{congtrinh_KienCo}}</span>
+                                    </li>
+                                    <li>
+                                        Chợ bán kiên cố: <span>{{congtrinh_BanKienCo}}</span>
+                                    </li>
+                                    <li>
+                                        Chợ tạm: <span>{{congtrinh_Tam}}</span>
+                                    </li>
+                                </ul>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                    <div class="col-4 col-lg-4">
+                        <mat-card class="card-default">
+                            <mat-card-header>
+                                <mat-card-title>
+                                    <mat-icon>filter</mat-icon> 5. Phân theo tính chất kinh doanh:
+                                </mat-card-title>
+                                <mat-card-subtitle></mat-card-subtitle>
+                            </mat-card-header>
+                            <mat-card-content>
+                                <ul>
+                                    <li>
+                                        Chợ đầu mối chuyên doanh: <span>{{kinhdoanh_choDauMoiChuyenDoanh}}</span>
+                                    </li>
+                                    <li>
+                                        Chợ đầu mối tổng hợp: <span>{{kinhdoanh_choDauMoiTongHop}}</span>
+                                    </li>
+                                    <li>
+                                        Chợ bán lẻ: <span>{{kinhdoanh_choBanLe}}</span>
+                                    </li>
+                                    
+                                </ul>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                    
+                    <div class="col-4 col-lg-4">
+                        <mat-card class="card-default">
+                            <mat-card-header>
+                                <mat-card-title>
+                                    <mat-icon>filter</mat-icon> 6. Phân theo hình thức quản lý:
+                                </mat-card-title>
+                                <mat-card-subtitle></mat-card-subtitle>
+                            </mat-card-header>
+                            <mat-card-content>
+                                <ul>
+                                    <li>
+                                        Ban quản lý/Tổ quản lý: <span>{{quanly_BanTo}}</span>
+                                    </li>
+                                    <li>
+                                        Doanh nghiệp: <span>{{quanly_DoanhNghiep}}</span>
+                                    </li>
+                                    <li>
+                                        Hợp tác xã: <span>{{quanly_HopTacXa}}</span>
+                                    </li>
+                                    <li>
+                                        Hộ kinh doanh: <span>{{quanly_HoKinhDoanh}}</span>
                                     </li>
                                 </ul>
                             </mat-card-content>
@@ -87,133 +170,80 @@
                 </div>
 
                 <div class="row">
+                    
                     <div class="col-4 col-lg-4">
-                        <mat-card class="card4">
+                        <mat-card class="card-default">
                             <mat-card-header>
                                 <mat-card-title>
-                                    <mat-icon>filter</mat-icon> Chợ thành thị/nông thôn:
+                                    <mat-icon>filter</mat-icon> 7. Tổng vốn đầu tư chợ:
                                 </mat-card-title>
                                 <mat-card-subtitle></mat-card-subtitle>
                             </mat-card-header>
                             <mat-card-content>
                                 <ul>
                                     <li>
-                                        Chợ nông thôn: <span>{{choNongThon}}</span>
+                                        Vốn ngân sách Trung ương: <span>{{tongvon_VonNganSachTW}}</span>
                                     </li>
                                     <li>
-                                        Chợ thành thị: <span>{{choThanhThi}}</span>
+                                        Vốn ngân sách địa phương: <span>{{tongvon_VonNganSachDiaPhuong}}</span>
+                                    </li>
+                                    <li>
+                                        Vốn doanh nghiệp, hợp tác xã, hộ kinh doanh: <span>{{tongvon_DNHTXH}}</span>
+                                    </li>
+                                    <li>
+                                        Vốn khác: <span>{{tongvon_Khac}}</span>
                                     </li>
                                 </ul>
                             </mat-card-content>
                         </mat-card>
                     </div>
                     <div class="col-4 col-lg-4">
-                        <mat-card class="card4">
+                        <mat-card class="card-default">
                             <mat-card-header>
                                 <mat-card-title>
-                                    <mat-icon>filter</mat-icon> Hình thức quản lý:
+                                    <mat-icon>filter</mat-icon> 9. Thống kê xây dựng:
                                 </mat-card-title>
                                 <mat-card-subtitle></mat-card-subtitle>
                             </mat-card-header>
                             <mat-card-content>
                                 <ul>
                                     <li>
-                                        Chợ nhà nước: <span>{{choNhaNuoc}}</span>
+                                       Chợ xây dựng mới năm {{year}}: <span>{{xaydung_Moi}}</span> 
                                     </li>
                                     <li>
-                                        Chợ xã hội hóa: <span>{{choXaHoiHoa}}</span>
+                                        Chợ nâng cấp, cải tạo năm {{year}}: <span>{{xaydung_CaiTao}}</span> 
+                                    </li>
+                                    <li>
+                                        Chợ đầu tư kiên cố, bán kiên không không hoạt động năm {{year}}: <span>{{xaydung_KhongHoatDong}}</span> 
+                                    </li>
+                                    <li>
+                                        Chợ đầu tư kiên cố, bán kiên kinh doanh dưới 30% năm {{year}}:<span> {{xaydung_KhongHoatDong70}}</span> 
+                                    </li>
+                                    <li>
+                                        Chợ chuyển đổi chức năng hoạt động năm {{year}}:<span>{{xaydung_ChuyenDoi}}</span> 
                                     </li>
                                 </ul>
                             </mat-card-content>
                         </mat-card>
                     </div>
                     <div class="col-4 col-lg-4">
-                        <mat-card class="card4">
+                        <mat-card class="card-default">
                             <mat-card-header>
                                 <mat-card-title>
-                                    <mat-icon>filter</mat-icon> Hình thức kinh doanh:
+                                    <mat-icon>filter</mat-icon> 10. Chợ khác:
                                 </mat-card-title>
                                 <mat-card-subtitle></mat-card-subtitle>
                             </mat-card-header>
                             <mat-card-content>
                                 <ul>
                                     <li>
-                                        Chợ bán lẻ: <span>{{choBanLe}}</span>
+                                       Chợ ngoài quy hoạch: <span>{{chokhac_NgoaiQuyHoach}}</span>
                                     </li>
                                     <li>
-                                        Chợ bán sỉ: <span>{{choBanSi}}</span>
-                                    </li>
-                                </ul>
-                            </mat-card-content>
-                        </mat-card>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-4 col-lg-4">
-                        <mat-card class="card4" id="card4-1">
-                            <mat-card-header>
-                                <mat-card-title>
-                                    <mat-icon>filter</mat-icon> Tính chất công trình:
-                                </mat-card-title>
-                                <mat-card-subtitle></mat-card-subtitle>
-                            </mat-card-header>
-                            <mat-card-content>
-                                <ul>
-                                    <li>
-                                        Chợ Kiên cố: <span>{{choKienCo}}</span>
+                                        Chợ đêm: <span>{{chokhac_ChoDem}}</span>
                                     </li>
                                     <li>
-                                        Chợ bán kiên cố: <span>{{choBanKienCo}}</span>
-                                    </li>
-                                    <li>
-                                        Chợ tạm: <span>{{choTam}}</span>
-                                    </li>
-                                </ul>
-                            </mat-card-content>
-                        </mat-card>
-                    </div>
-                    <div class="col-4 col-lg-4">
-                        <mat-card class="card4" id="card4-1">
-                            <mat-card-header>
-                                <mat-card-title>
-                                    <mat-icon>filter</mat-icon> Vốn đầu tư hiện tại:
-                                </mat-card-title>
-                                <mat-card-subtitle></mat-card-subtitle>
-                            </mat-card-header>
-                            <mat-card-content>
-                                <ul>
-                                    <li>
-                                        Vốn đầu tư: <span>{{vonDauTu}}</span>
-                                    </li>
-                                    <li>
-                                        Vốn đầu tư ngân sách: <span>{{vonDauTuNganSach}}</span>
-                                    </li>
-                                    <li>
-                                        Vốn đầu tư xã hội hóa: <span>{{vonDauTuXaHoiHoa}}</span>
-                                    </li>
-                                </ul>
-                            </mat-card-content>
-                        </mat-card>
-                    </div>
-                    <div class="col-4 col-lg-4">
-                        <mat-card class="card4" id="card4-1">
-                            <mat-card-header>
-                                <mat-card-title>
-                                    <mat-icon>filter</mat-icon> Vốn đầu tư kế hoạch:
-                                </mat-card-title>
-                                <mat-card-subtitle></mat-card-subtitle>
-                            </mat-card-header>
-                            <mat-card-content>
-                                <ul>
-                                    <li>
-                                        Vốn đầu tư kế hoạch: <span>{{vonDauTuKeHoach}}</span>
-                                    </li>
-                                    <li>
-                                        Vốn đầu tư kế hoạch ngân sách: <span>{{vonDauTuKeHoachNganSach}}</span>
-                                    </li>
-                                    <li>
-                                        Vốn đầu tư kế hoạch xã hội hóa: <span>{{vonDauTuKeHoachXaHoiHoa}}</span>
+                                        Chợ biên giới:<span>{{chokhac_BienGioi}}</span>
                                     </li>
                                 </ul>
                             </mat-card-content>
