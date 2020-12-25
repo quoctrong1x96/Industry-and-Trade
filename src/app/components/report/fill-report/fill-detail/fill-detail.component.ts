@@ -210,6 +210,7 @@ export class FillReportComponent implements OnInit {
           this.formatFrameReport(this.object[0]);
         }
         this.indicators.forEach(e => { console.log(e.ind_unit) });
+        this.indicators.sort((a,b) => a.ind_id - b.ind_id);
         this.CreateMergeHeaderTable(this.attributes);
 
         this.CreateReportTable();
@@ -318,6 +319,7 @@ export class FillReportComponent implements OnInit {
     this.attributeHeaders.unshift('index');
     for (let index = 0; index < this.indicators.length; index++) {
       const elementIndicator = this.indicators[index];
+      console.log("item["+index+"]:",elementIndicator);
       const elementDatarow = this.datarows.find(e=>e.ind_id == elementIndicator.ind_id);
 
       let tableRow: ReportTable = new ReportTable();
