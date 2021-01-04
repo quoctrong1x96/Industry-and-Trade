@@ -14,6 +14,9 @@ import { IndustryManagementRoutingModule } from './industry-management.routing';
 import { LPGManagementComponent } from './lpg-management/lpg-management.component';
 import { CertificateRegulationComponent } from './certificate-regulation/certificate-regulation.component';
 import { ReportExplosivesComponent } from './report-explosives/report-explosives.component';
+import { registerLocaleData } from '@angular/common';
+import localevi from '@angular/common/locales/vi';
+registerLocaleData(localevi, 'vi');
 
 @NgModule({
     imports: [

@@ -31,7 +31,7 @@
                                 </mat-card-title>
                             </mat-card-header>
                             <mat-card-content>
-                                <span>{{countBusiness() | number: '1.0-0'}} doanh nghiệp</span>
+                                <span>{{countBusiness() | number: '1.0-0':'vi'}} doanh nghiệp</span>
                             </mat-card-content>
                         </mat-card>
                     </div>
@@ -45,7 +45,7 @@
                                 </mat-card-title>
                             </mat-card-header>
                             <mat-card-content>
-                                <span>{{this.filteredDataSource.filteredData.length | number: '1.0-0'}} cửa hàng</span>
+                                <span>{{this.filteredDataSource.filteredData.length | number: '1.0-0':'vi'}} cửa hàng</span>
                             </mat-card-content>
                         </mat-card>
                     </div>
@@ -59,7 +59,7 @@
                                 </mat-card-title>
                             </mat-card-header>
                             <mat-card-content>
-                               <span> {{sanLuongBanRa | number: '1.0-0'}} m³/năm</span>
+                               <span> {{sanLuongBanRa | number: '1.0-0':'vi'}} m³/năm</span>
                             </mat-card-content>
                         </mat-card>
                     </div>
@@ -73,7 +73,7 @@
                                 </mat-card-title>
                             </mat-card-header>
                             <mat-card-content>
-                                <span>{{soLuongThuongNhanCungCap | number: '1.0-0'}} thương nhân</span>
+                                <span>{{soLuongThuongNhanCungCap | number: '1.0-0':'vi'}} thương nhân</span>
                             </mat-card-content>
                         </mat-card>
                     </div>
@@ -188,7 +188,7 @@
 
                         <ng-container matColumnDef="san_luong">
                             <th mat-header-cell *matHeaderCellDef> Sản lượng tiêu thụ (m³/năm) </th>
-                            <td mat-cell *matCellDef="let element"> {{element.san_luong | number: '1.0-0'}}</td>
+                            <td mat-cell *matCellDef="let element" class="right-cell"> {{element.san_luong | number: '1.0-0':'vi'}}</td>
                         </ng-container>
 
                         <ng-container matColumnDef="ghi_chu">

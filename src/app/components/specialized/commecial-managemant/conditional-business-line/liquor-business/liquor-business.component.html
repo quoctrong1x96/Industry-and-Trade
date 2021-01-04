@@ -32,7 +32,7 @@
                                 <mat-card-subtitle></mat-card-subtitle>
                             </mat-card-header>
                             <mat-card-content>
-                                {{this.filteredDataSource.filteredData.length | number: '1.0-0'}} doanh nghiệp
+                                {{this.filteredDataSource.filteredData.length | number: '1.0-0':'vi'}} doanh nghiệp
                             </mat-card-content>
                         </mat-card>
                     </div>
@@ -47,7 +47,7 @@
                                 <mat-card-subtitle></mat-card-subtitle>
                             </mat-card-header>
                             <mat-card-content>
-                                {{sanLuongBanRa | number: '1.0-0'}} lít
+                                {{sanLuongBanRa | number: '1.0-0':'vi'}} lít
                             </mat-card-content>
                         </mat-card>
                     </div>
@@ -62,7 +62,7 @@
                                 <mat-card-subtitle></mat-card-subtitle>
                             </mat-card-header>
                             <mat-card-content>
-                                {{giaTriSanPham | number: '1.0-0'}} triệu đồng
+                                {{giaTriSanPham | number: '1.0-0':'vi'}} triệu đồng
                             </mat-card-content>
                         </mat-card>
                     </div>
@@ -172,13 +172,15 @@
 
                         <ng-container matColumnDef="san_luong">
                             <th mat-header-cell *matHeaderCellDef> Số lượng (Lít) </th>
-                            <td mat-cell *matCellDef="let element"> {{element.san_luong | number: '1.0-4'}}
+                            <td mat-cell *matCellDef="let element" class="right-cell"> {{element.san_luong | number:
+                                '1.0-4':'vi'}}
                             </td>
                         </ng-container>
 
                         <ng-container matColumnDef="tri_gia">
                             <th mat-header-cell *matHeaderCellDef> Trị giá (1000 đ) </th>
-                            <td mat-cell *matCellDef="let element"> {{element.tri_gia | number: '1.0-4'}}
+                            <td mat-cell *matCellDef="let element" class="right-cell"> {{element.tri_gia | number:
+                                '1.0-4':'vi'}}
                             </td>
                         </ng-container>
 

@@ -16,6 +16,9 @@ import { FilterByTextPipe } from '../../../shared/pipes/filterByText.pipe';
 import { PagerService } from 'src/app/_services/pagination.service';
 import { CurrencyMaskInputMode, NgxCurrencyModule } from "ngx-currency";
 import { DialogPartnerComponent } from './Dialog/Dialog-partner.component';
+import { registerLocaleData } from '@angular/common';
+import localevi from '@angular/common/locales/vi';
+registerLocaleData(localevi, 'vi');
 
 export const customCurrencyMaskConfig = {
   align: "left",

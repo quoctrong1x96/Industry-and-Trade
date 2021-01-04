@@ -46,7 +46,7 @@
 
                 <ng-container matColumnDef="gia">
                     <th mat-header-cell *matHeaderCellDef>Giá <br> (USD/Tấn) </th>
-                    <td mat-cell *matCellDef="let element"> {{element.gia | number:'1.0-2'| ZeroAsSub}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.gia | number: '1.0-2':'vi'| ZeroAsSub}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="nguon_so_lieu">

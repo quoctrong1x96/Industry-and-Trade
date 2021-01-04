@@ -34,6 +34,9 @@ import { PipeModule } from 'src/app/pipe.module';
 import { TradeFairsExhibitionsComponent } from './trade-development/trade-fairs-exhibitions/trade-fairs-exhibitions.component';
 import { SubscribeDiscountComponent } from './trade-development/subscribe-discount/subscribe-discount.component';
 import {CommonFuntions} from './conditional-business-line/common-functions.service';
+import { registerLocaleData } from '@angular/common';
+import localevi from '@angular/common/locales/vi';
+registerLocaleData(localevi, 'vi');
 
 @NgModule({
   imports: [

@@ -16,6 +16,9 @@ import { ForeignMarketPriceComponent } from './foreignPrice/foreign-price.compon
 import { CompanyTopPopup } from './company-top-popup/company-top-popup.component';
 import { CurrencyMaskInputMode, NgxCurrencyModule } from "ngx-currency";
 import { PipeModule } from 'src/app/pipe.module';
+import { registerLocaleData } from '@angular/common';
+import localevi from '@angular/common/locales/vi';
+registerLocaleData(localevi, 'vi');
 
 export const customCurrencyMaskConfig = {
   align: "right",

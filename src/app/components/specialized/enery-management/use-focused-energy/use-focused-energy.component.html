@@ -30,7 +30,7 @@
                                 <mat-card-subtitle></mat-card-subtitle>
                             </mat-card-header>
                             <mat-card-content>
-                                {{doanhNghiep | number: '1.0-0'}} DN
+                                {{doanhNghiep | number: '1.0-0':'vi'}} DN
                             </mat-card-content>
                         </mat-card>
                     </div>
@@ -43,7 +43,7 @@
                                 <mat-card-subtitle></mat-card-subtitle>
                             </mat-card-header>
                             <mat-card-content>
-                                {{nangLuongTieuThu| number:'1.0-2'}} (triệu KWh)
+                                {{nangLuongTieuThu| number: '1.0-2':'vi'}} (triệu KWh)
                             </mat-card-content>
                         </mat-card>
                     </div>
@@ -56,7 +56,7 @@
                                 <mat-card-subtitle></mat-card-subtitle>
                             </mat-card-header>
                             <mat-card-content>
-                                {{nangLuongQuyDoi| number:'1.0-2'}} (kWh)
+                                {{nangLuongQuyDoi| number: '1.0-2':'vi'}} (kWh)
                             </mat-card-content>
                         </mat-card>
                     </div>
@@ -69,7 +69,7 @@
                                 <mat-card-subtitle></mat-card-subtitle>
                             </mat-card-header>
                             <mat-card-content>
-                                {{congXuat| number:'1.0-2'}} (kWh/1SP)
+                                {{congXuat| number: '1.0-2':'vi'}} (kWh/1SP)
                             </mat-card-content>
                         </mat-card>
                     </div>
@@ -148,14 +148,14 @@
                         <ng-container matColumnDef="nang_luong_quy_doi">
                             <th mat-header-cell *matHeaderCellDef> Năng lượng quy đổi (TOE) </th>
                             <td mat-cell *matCellDef="let element" >
-                                {{element.nang_luong_quy_doi | number: '1.0-0'}}
+                                {{element.nang_luong_quy_doi | number: '1.0-0':'vi'}}
                             </td>
                         </ng-container>
 
                         <ng-container matColumnDef="suat_tieu_hao">
                             <th mat-header-cell *matHeaderCellDef> Suất tiêu hao/1 đơn vị sản phẩm </th>
                             <td mat-cell *matCellDef="let element" >
-                                {{element.suat_tieu_hao | number: '1.0-0'}}</td>
+                                {{element.suat_tieu_hao | number: '1.0-0':'vi'}}</td>
                         </ng-container>
 
                         <ng-container matColumnDef="indexM">
