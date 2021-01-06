@@ -1,14 +1,14 @@
 <mat-card class="material">
     <mat-card-content>
-        <div class="button-control">
+        <!-- <div class="button-control">
             <button mat-raised-button (click)="accordion.openAll()">
                 <mat-icon>flip_to_front</mat-icon> Mở Tất Cả
             </button>
             <button mat-raised-button (click)="accordion.closeAll()">
                 <mat-icon>flip_to_back</mat-icon> Đóng tất cả
             </button>
-        </div>
-        <mat-accordion class="example-headers-align" multi>
+        </div> -->
+        <mat-accordion class="accord" multi>
             <mat-expansion-panel>
                 <mat-expansion-panel-header>
                     <mat-panel-title>
@@ -211,7 +211,7 @@
                             <th mat-header-cell *matHeaderCellDef [attr.colspan]="3">Tiêu chí số 4 về điện nông thôn
                             </th>
                         </ng-container>
-                        <tr mat-header-row class="table-header" *matHeaderRowDef="dsplayMergeColumns;">
+                        <tr mat-header-row class="table-header" *matHeaderRowDef="dsplayMergeColumns;sticky: true">
                         </tr>
 
                         <tr mat-header-row class="table-header" *matHeaderRowDef="displayedColumns;sticky: true"></tr>

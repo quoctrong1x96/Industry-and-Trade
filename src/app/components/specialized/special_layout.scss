@@ -1,5 +1,27 @@
 .mat-card.material {
-    margin-bottom: 30px;
+    .mat-paginator {
+        margin-top: 10px;
+        display: flex;
+        align-items: left;
+        justify-content: flex-end;
+        height: 30px !important;
+        width: 100%;
+    }
+    .accord {
+        .mat-expansion-panel-header {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding: 5px;
+            border-radius: inherit;
+            height: 35px !important;
+        }
+        .mat-expansion-panel-body {
+            padding: 0 5px 5px !important;
+        }
+    }
+    padding: 5px;
+    padding-left: 10px;
     $blue: #1f7ed0;
     $white: white;
     .mat-card-header {
@@ -12,10 +34,11 @@
         }
     }
     .mat-card-content {
+        padding-bottom: 10px !important;
         .bold {
             font-weight: bold;
         }
-        .card-default{
+        .card-default {
             margin-top: 5px;
             .mat-card-header .mat-card-title {
                 margin-bottom: 5px;
@@ -35,19 +58,18 @@
                     text-align: center;
                 }
             }
-            
-                
         }
+
+        //card1 dùng 3 cards mỗi dòng
         .card1 {
             margin-top: 5px;
-            min-height: 115px;
-            height: fit-content;
+            min-height: 90px;
             .mat-card-header .mat-card-title {
                 margin-bottom: 15px;
-                font-size: 15px;
+                font-size: 17px;
             }
             .mat-card-content {
-                font-size: 22px;
+                font-size: 17px;
                 text-align: center;
                 font-weight: bolder;
                 color: $blue;
@@ -57,17 +79,23 @@
                 text-align: center;
                 font-weight: bold;
             }
+            span {
+                font-weight: bolder;
+                color: $blue;
+                text-align: center;
+            }
         }
 
+        //card2 dùng 4 cards mỗi dòng
         .card2 {
             margin-top: 5px;
-            height: 125px;
+            min-height: 95px;
             .mat-card-header .mat-card-title {
                 margin-bottom: 5px;
                 font-size: 15px;
             }
             .mat-card-content {
-                font-size: 18px;
+                font-size: 15px;
                 text-align: center;
                 font-weight: bolder;
                 color: $blue;
@@ -76,6 +104,11 @@
                 font-size: 10px;
                 text-align: center;
                 font-weight: bold;
+            }
+            span {
+                font-weight: bolder;
+                color: $blue;
+                text-align: center;
             }
         }
 
@@ -87,67 +120,11 @@
             }
         }
 
-        #card4-1 {
-            height: 120px !important;
-        }
-        #card4-2 {
-            height: 160px !important;
-        }
-        #card4-3 {
-            height: 140px !important;
-        }
-        .card4 {
-            margin-top: 5px;
-            height: 100px;
-            .mat-card-header .mat-card-title {
-                margin-bottom: 5px;
-                font-size: 15px;
-                text-align: left !important;
-            }
-            .mat-card-content {
-                font-size: 15px;
-                ul {
-                    list-style-type: square;
-                    // display: flex;
-                    justify-content: center;
-                }
-                span {
-                    font-weight: bolder;
-                    color: $blue;
-                }
-            }
-            .mat-card-subtitle {
-                font-size: 10px;
-                font-weight: bold;
-            }
-        }
-
-        .card5 {
-            margin-top: 5px;
-            height: 60px;
-            .mat-card-header .mat-card-title {
-                margin-bottom: 5px;
-                font-size: 15px;
-                text-align: left !important;
-                span {
-                    font-weight: bolder;
-                    color: $blue;
-                }
-            }
-        }
-
         .mat-form-field {
             width: 100%;
         }
         strong {
             color: $blue;
-        }
-        .mat-paginator {
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            min-height: 30px;
-            width: 100%;
         }
         .checkbox {
             margin-top: 17px;
@@ -179,10 +156,10 @@
             .table-row {
                 height: 30px !important;
             }
-            margin-bottom: 2em;
             max-width: 100%;
-            max-height: 590px;
+            max-height: 100%;
             overflow: auto;
+            height: 533px;
             table.mat-table.table-layout {
                 // .mat-table-sticky:first-child {
                 //     border-right: 1px solid blue;
@@ -321,12 +298,4 @@
     #large-filter {
         width: 550%;
     }
-
-    .hightlight {
-        font-weight: bolder;
-    }
-}
-
-.fillColor {
-    // background-color: rgb(252, 228, 10);
 }

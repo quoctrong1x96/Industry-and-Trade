@@ -1,14 +1,14 @@
 <mat-card class="material">
     <mat-card-content>
-        <div class="button-control">
+        <!-- <div class="button-control">
             <button mat-raised-button (click)="accordion.openAll()">
                 <mat-icon>flip_to_front</mat-icon> Mở Tất Cả
             </button>
             <button mat-raised-button (click)="accordion.closeAll()">
                 <mat-icon>flip_to_back</mat-icon> Đóng tất cả
             </button>
-        </div>
-        <mat-accordion class="example-headers-align" multi>
+        </div> -->
+        <mat-accordion class="accord" multi>
             <mat-expansion-panel>
                 <mat-expansion-panel-header>
                     <mat-panel-title>
@@ -93,7 +93,7 @@
                             <mat-card-content>
                                 <ul>
                                     <li>
-                                        Thành lập mới năm<span>{{year}}</span> là:
+                                        Thành lập mới năm <span>{{year}}</span> là:
                                         <span>{{sieuThiDauTuTrongNam | number: '1.0-0':'vi'}}</span>
                                     </li>
                                     <li>
@@ -288,10 +288,10 @@
                         </ng-container>
 
                         <tr mat-header-row class="table-row"
-                            *matHeaderRowDef="['merge1','merge2', 'merge3','merge4','merge5','merge6','merge7']">
+                            *matHeaderRowDef="['merge1','merge2', 'merge3','merge4','merge5','merge6','merge7']; sticky: true">
                         </tr>
 
-                        <tr mat-header-row class="table-header" *matHeaderRowDef="headerArray"></tr>
+                        <tr mat-header-row class="table-header" *matHeaderRowDef="headerArray; sticky:true"></tr>
                         <tr mat-row class="table-row" *matRowDef="let row; columns: headerArray;let i = index"></tr>
                     </table>
                 </div>

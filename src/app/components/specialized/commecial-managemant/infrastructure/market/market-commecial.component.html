@@ -1,21 +1,21 @@
 <mat-card class="material">
     <mat-card-content>
-        <div class="button-control">
+        <!-- <div class="button-control">
             <button mat-raised-button (click)="accordion.openAll()">
                 <mat-icon>flip_to_front</mat-icon> Mở Tất Cả
-            </button> &nbsp;
+            </button>
             <button mat-raised-button (click)="accordion.closeAll()">
                 <mat-icon>flip_to_back</mat-icon> Đóng tất cả
             </button>
-        </div>
-        <mat-accordion class="example-headers-align" multi>
+        </div> -->
+        <mat-accordion class="accord" multi>
             <mat-expansion-panel>
                 <mat-expansion-panel-header>
                     <mat-panel-title>
                         <mat-icon> show_chart</mat-icon>
                         &nbsp;
                         <strong>DỮ LIỆU TỔNG HỢP</strong>
-                        
+
                     </mat-panel-title>
                     <mat-panel-description>
                     </mat-panel-description>
@@ -23,7 +23,7 @@
 
                 <div class="row">
                     <div class="col-4 col-lg-4">
-                        <mat-card class="card5">
+                        <mat-card class="card1">
                             <mat-card-header>
                                 <mat-card-title>
                                     <mat-icon>filter</mat-icon> 1. Tổng số chợ: <span>{{tong_SoCho}} chợ</span>
@@ -89,7 +89,7 @@
                             </mat-card-content>
                         </mat-card>
                     </div>
-                   
+
                 </div>
 
                 <div class="row">
@@ -135,12 +135,12 @@
                                     <li>
                                         Chợ bán lẻ: <span>{{kinhdoanh_choBanLe}}</span>
                                     </li>
-                                    
+
                                 </ul>
                             </mat-card-content>
                         </mat-card>
                     </div>
-                    
+
                     <div class="col-4 col-lg-4">
                         <mat-card class="card-default">
                             <mat-card-header>
@@ -170,7 +170,7 @@
                 </div>
 
                 <div class="row">
-                    
+
                     <div class="col-4 col-lg-4">
                         <mat-card class="card-default">
                             <mat-card-header>
@@ -201,26 +201,29 @@
                         <mat-card class="card-default">
                             <mat-card-header>
                                 <mat-card-title>
-                                    <mat-icon>filter</mat-icon> 9. Thống kê xây dựng:
+                                    <mat-icon>filter</mat-icon> 8. Thống kê xây dựng:
                                 </mat-card-title>
                                 <mat-card-subtitle></mat-card-subtitle>
                             </mat-card-header>
                             <mat-card-content>
                                 <ul>
                                     <li>
-                                       Chợ xây dựng mới năm {{year}}: <span>{{xaydung_Moi}}</span> 
+                                        Chợ xây dựng mới năm {{year}}: <span>{{xaydung_Moi}}</span>
                                     </li>
                                     <li>
-                                        Chợ nâng cấp, cải tạo năm {{year}}: <span>{{xaydung_CaiTao}}</span> 
+                                        Chợ nâng cấp, cải tạo năm {{year}}: <span>{{xaydung_CaiTao}}</span>
                                     </li>
                                     <li>
-                                        Chợ đầu tư kiên cố, bán kiên không không hoạt động năm {{year}}: <span>{{xaydung_KhongHoatDong}}</span> 
+                                        Chợ đầu tư kiên cố, bán kiên không không hoạt động năm {{year}}:
+                                        <span>{{xaydung_KhongHoatDong}}</span>
                                     </li>
                                     <li>
-                                        Chợ đầu tư kiên cố, bán kiên kinh doanh dưới 30% năm {{year}}:<span> {{xaydung_KhongHoatDong70}}</span> 
+                                        Chợ đầu tư kiên cố, bán kiên kinh doanh dưới 30% năm {{year}}:<span>
+                                            {{xaydung_KhongHoatDong70}}</span>
                                     </li>
                                     <li>
-                                        Chợ chuyển đổi chức năng hoạt động năm {{year}}:<span>{{xaydung_ChuyenDoi}}</span> 
+                                        Chợ chuyển đổi chức năng hoạt động năm
+                                        {{year}}:<span>{{xaydung_ChuyenDoi}}</span>
                                     </li>
                                 </ul>
                             </mat-card-content>
@@ -230,14 +233,14 @@
                         <mat-card class="card-default">
                             <mat-card-header>
                                 <mat-card-title>
-                                    <mat-icon>filter</mat-icon> 10. Chợ khác:
+                                    <mat-icon>filter</mat-icon> 9. Chợ khác:
                                 </mat-card-title>
                                 <mat-card-subtitle></mat-card-subtitle>
                             </mat-card-header>
                             <mat-card-content>
                                 <ul>
                                     <li>
-                                       Chợ ngoài quy hoạch: <span>{{chokhac_NgoaiQuyHoach}}</span>
+                                        Chợ ngoài quy hoạch: <span>{{chokhac_NgoaiQuyHoach}}</span>
                                     </li>
                                     <li>
                                         Chợ đêm: <span>{{chokhac_ChoDem}}</span>
@@ -342,7 +345,7 @@
                                 <th mat-header-cell *matHeaderCellDef style="text-align: center;"
                                     [attr.colspan]="mergeHeader.colLenght">{{mergeHeader.colText}} </th>
                             </ng-container>
-                            <tr mat-header-row class="table-header" *matHeaderRowDef="table.headerColName;"> </tr>
+                            <tr mat-header-row class="table-header" *matHeaderRowDef="table.headerColName; sticky: true"> </tr>
                         </div>
 
                         <tr mat-header-row class="table-header" *matHeaderRowDef="attributeHeaders; sticky: true"></tr>

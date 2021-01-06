@@ -27,7 +27,7 @@ p {
   color: $color_defaut;
   background-color: $color_default;
 }
- /**/
+/**/
 
 /* Breadcrumbs from http://bootsnipp.com/snippets/featured/triangle-breadcrumbs-arrows */
 .btn-breadcrumb .btn:not(:last-child):after {
@@ -36,7 +36,7 @@ p {
   width: 0;
   height: 0;
   border-top: 17px solid transparent;
-  border-bottom: 17px solid transparent;
+  // border-bottom: 17px solid transparent;
   border-left: 10px solid white;
   position: absolute;
   top: 50%;
@@ -50,7 +50,7 @@ p {
   width: 0;
   height: 0;
   border-top: 17px solid transparent;
-  border-bottom: 17px solid transparent;
+  // border-bottom: 17px solid transparent;
   border-left: 10px solid rgb(173, 173, 173);
   position: absolute;
   top: 50%;
@@ -61,13 +61,13 @@ p {
 }
 
 .btn-breadcrumb .btn {
-  padding:6px 12px 6px 24px;
+  padding: 6px;
 }
 .btn-breadcrumb .btn:first-child {
-  padding:6px 6px 6px 10px;
+  padding: 6px;
 }
 .btn-breadcrumb .btn:last-child {
-  padding:6px 18px 6px 24px;
+  padding: 6px;
 }
 
 /** Default button **/
@@ -87,45 +87,42 @@ p {
 /* The responsive part */
 
 .btn-breadcrumb > * > div {
-    /* With less: .text-overflow(); */
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;    
+  /* With less: .text-overflow(); */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.btn-breadcrumb > *:nth-child(n+2) {
-  display:none;
+.btn-breadcrumb > *:nth-child(n + 2) {
+  display: none;
 }
 
 /* === For phones =================================== */
 @media (max-width: 767px) {
-    .btn-breadcrumb > *:nth-last-child(-n+2) {
-        display:block;
-    } 
-    .btn-breadcrumb > * div {
-        max-width: 60px;
-    }
+  .btn-breadcrumb > *:nth-last-child(-n + 2) {
+    display: block;
+  }
+  .btn-breadcrumb > * div {
+    max-width: 60px;
+  }
 }
 
 /* === For tablets ================================== */
-@media (min-width: 768px) and (max-width:991px) {
-    .btn-breadcrumb > *:nth-last-child(-n+4) {
-        display:block;
-    } 
-    .btn-breadcrumb > * div {
-        max-width: 100px;
-    }
+@media (min-width: 768px) and (max-width: 991px) {
+  .btn-breadcrumb > *:nth-last-child(-n + 4) {
+    display: block;
+  }
+  .btn-breadcrumb > * div {
+    max-width: 100px;
+  }
 }
 
 /* === For desktops ================================== */
 @media (min-width: 992px) {
-    .btn-breadcrumb > *:nth-last-child(-n+6) {
-        display:block;
-    } 
-    .btn-breadcrumb > * div {
-        max-width: 170px;
-    }
+  .btn-breadcrumb > *:nth-last-child(-n + 6) {
+    display: block;
+  }
+  .btn-breadcrumb > * div {
+    max-width: 170px;
+  }
 }
-
-
-
