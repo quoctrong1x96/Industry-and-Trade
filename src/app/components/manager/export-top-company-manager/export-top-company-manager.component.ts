@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatSort } from '@angular/material/sort';
 //Import Service
 import { MarketService } from './../../../_services/APIService/market.service';
 import { InformationService } from 'src/app/shared/information/information.service';
@@ -39,6 +40,7 @@ export class ExportTopCompanyManager implements OnInit {
     //Viewchild
     @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
     @ViewChild('TABLE', { static: false }) table: ElementRef;
+    @ViewChild(MatSort, { static: true }) sort: MatSort;
 
     constructor(
         @Inject(MAT_DIALOG_DATA) public data: any,
@@ -75,6 +77,7 @@ export class ExportTopCompanyManager implements OnInit {
         let checkedCompay = await this.getAllCheckedCompany();
         if (allCompany) {
             this.dataSource = new MatTableDataSource<CompanyDetailModel>(allCompany.data);
+            this.dataSource.sort = this.sort;
             this.dataSource.paginator = this.paginator;
             this.paginator._intl.itemsPerPageLabel = 'Số hàng';
             this.paginator._intl.firstPageLabel = "Trang Đầu";

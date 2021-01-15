@@ -116,7 +116,9 @@ export class SearchBusinessComponent implements OnInit {
   }
 
   OpenDetailCompany(mst: string) {
-    this.router.navigate(['manager/business/search/' + mst]);
+    let url = this.router.serializeUrl(
+      this.router.createUrlTree([encodeURI('#') + 'manager/business/search/' + mst]));
+    window.open(url.replace('%23', '#'), "_blank");
   }
 
   GetAllCompany() {

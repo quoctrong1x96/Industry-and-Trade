@@ -89,8 +89,8 @@ export class BusinessExportImportComponent implements OnInit {
   public isSCT: boolean = false;
   //Viewchild
   @ViewChild('TABLE1', { static: false }) table: ElementRef;
-  @ViewChild('scheduledOrdersPaginator', { static: true }) paginator: MatPaginator;
-  @ViewChild('scheduledOrdersPaginator1', { static: true }) paginator1: MatPaginator;
+  @ViewChild('page1', { static: true }) paginator: MatPaginator;
+  @ViewChild('page2', { static: true }) paginator1: MatPaginator;
   @ViewChild('selected_Career', { static: false }) careerEle: ElementRef;
 
   constructor(
