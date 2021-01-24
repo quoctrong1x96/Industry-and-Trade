@@ -1,14 +1,14 @@
 <mat-card class="material">
     <mat-card-content>
-        <div class="button-control">
+        <!-- <div class="button-control">
             <button mat-raised-button (click)="accordion.openAll()">
                 <mat-icon>flip_to_front</mat-icon> Mở Tất Cả
-            </button> &nbsp;
+            </button>
             <button mat-raised-button (click)="accordion.closeAll()">
                 <mat-icon>flip_to_back</mat-icon> Đóng tất cả
             </button>
-        </div>
-        <mat-accordion class="example-headers-align" multi>
+        </div> -->
+        <mat-accordion class="accord" multi>
             <mat-expansion-panel>
                 <mat-expansion-panel-header>
                     <mat-panel-title>
@@ -24,45 +24,39 @@
                     <div class="col-4 col-lg-4">
                         <mat-card class="card1">
                             <mat-card-header>
-                                <!-- <div mat-card-avatar>
-                                </div> -->
                                 <mat-card-title>
                                     <mat-icon>filter</mat-icon> Tổng số lượng DN:
                                 </mat-card-title>
                                 <mat-card-subtitle></mat-card-subtitle>
                             </mat-card-header>
                             <mat-card-content>
-                                {{this.filteredDataSource.filteredData.length | number: '1.0-0'}} doanh nghiệp
+                                {{this.filteredDataSource.filteredData.length | number: '1.0-0':'vi'}} doanh nghiệp
                             </mat-card-content>
                         </mat-card>
                     </div>
                     <div class="col-4 col-lg-4">
                         <mat-card class="card1">
                             <mat-card-header>
-                                <!-- <div mat-card-avatar>
-                                </div> -->
                                 <mat-card-title>
                                     <mat-icon>filter</mat-icon> Tổng sản lượng bán ra:
                                 </mat-card-title>
                                 <mat-card-subtitle></mat-card-subtitle>
                             </mat-card-header>
                             <mat-card-content>
-                                {{sanLuongBanRa | number: '1.0-0'}} bao
+                                {{sanLuongBanRa | number: '1.0-0':'vi'}} bao
                             </mat-card-content>
                         </mat-card>
                     </div>
                     <div class="col-4 col-lg-4">
                         <mat-card class="card1">
                             <mat-card-header>
-                                <!-- <div mat-card-avatar>
-                                </div> -->
                                 <mat-card-title>
                                     <mat-icon>filter</mat-icon> Tổng giá trị sản phẩm:
                                 </mat-card-title>
                                 <mat-card-subtitle></mat-card-subtitle>
                             </mat-card-header>
                             <mat-card-content>
-                                {{giaTriSanPham | number: '1.0-0'}} triệu đồng
+                                {{giaTriSanPham | number: '1.0-0':'vi'}} triệu đồng
                             </mat-card-content>
                         </mat-card>
                     </div>
@@ -122,7 +116,9 @@
                     <table mat-table [dataSource]="filteredDataSource" class="table-layout" id="small-table2">
                         <ng-container matColumnDef="index">
                             <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> STT </th>
-                            <td mat-cell *matCellDef="let element; let i = index;" class="center-cell"> {{this.paginator.pageIndex == 0 ? i + 1 : 1 + i + this.paginator.pageIndex * this.paginator.pageSize}}
+                            <td mat-cell *matCellDef="let element; let i = index;" class="center-cell">
+                                {{this.paginator.pageIndex == 0 ? i + 1 : 1 + i + this.paginator.pageIndex *
+                                this.paginator.pageSize}}
                             </td>
                         </ng-container>
 
@@ -171,13 +167,15 @@
 
                         <ng-container matColumnDef="san_luong">
                             <th mat-header-cell *matHeaderCellDef> Số lượng (1,000 bao) </th>
-                            <td mat-cell *matCellDef="let element"> {{element.san_luong | number: '1.0-1'}}
+                            <td mat-cell *matCellDef="let element" class="right-cell"> {{element.san_luong | number:
+                                '1.0-1':'vi'}}
                             </td>
                         </ng-container>
 
                         <ng-container matColumnDef="tri_gia">
                             <th mat-header-cell *matHeaderCellDef> Trị giá (1,000 VNĐ) </th>
-                            <td mat-cell *matCellDef="let element"> {{element.tri_gia | number: '1.0-1'}}
+                            <td mat-cell *matCellDef="let element" class="right-cell"> {{element.tri_gia | number:
+                                '1.0-1':'vi'}}
                             </td>
                         </ng-container>
 
@@ -185,9 +183,11 @@
                             <th mat-header-cell *matHeaderCellDef [attr.colspan]="2"> Sản lượng bán ra/năm </th>
                         </ng-container>
 
-                        <tr mat-header-row class="table-header" *matHeaderRowDef="['index', 'mst', 'ten_doanh_nghiep', 'dia_chi', 'dien_thoai', 'so_giay_phep', 'ngay_cap','ngay_het_han', 'danh_sach_thuong_nhan', 'san_luong_ban_ra']; sticky : true">
+                        <tr mat-header-row class="table-header"
+                            *matHeaderRowDef="['index', 'mst', 'ten_doanh_nghiep', 'dia_chi', 'dien_thoai', 'so_giay_phep', 'ngay_cap','ngay_het_han', 'danh_sach_thuong_nhan', 'san_luong_ban_ra']; sticky : true">
                         </tr>
-                        <tr mat-header-row class="table-header" *matHeaderRowDef="['san_luong', 'tri_gia']; sticky : true"></tr>
+                        <tr mat-header-row class="table-header"
+                            *matHeaderRowDef="['san_luong', 'tri_gia']; sticky : true"></tr>
                         <tr mat-row class="table-row" *matRowDef="let row; columns: displayedColumns;let i = index; ">
                     </table>
                 </div>

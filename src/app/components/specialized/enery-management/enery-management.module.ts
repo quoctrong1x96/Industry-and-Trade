@@ -20,6 +20,10 @@ import {BlockElectricComponent} from './block-electric/block-electric.component'
 import { ManageApproveHddlComponent } from "./manage-approve-hddl/manage-approve-hddl.component";
 import { ConsultantElectricComponent } from "./manage-approve-hddl/consultant-electric/consultant-electric.component";
 import { ManufacturingElectronicComponent } from "./manage-approve-hddl/manufacturing-electronic/manufacturing-electronic.component";
+import { registerLocaleData } from '@angular/common';
+import localevi from '@angular/common/locales/vi';
+registerLocaleData(localevi, 'vi');
+
 @NgModule({
   imports: [
     CommonModule,

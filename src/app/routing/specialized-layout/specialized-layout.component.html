@@ -2,13 +2,12 @@
     <app-topbar [sidebar]="sidebar" [typeOfUser]=3 [module]=MODULE01></app-topbar>
 
     <mat-sidenav-container class="sidenav-container">
-
         <mat-sidenav #sidebar mode="side" opened>
             <app-sidebar [typeOfSideBar]=3></app-sidebar>
         </mat-sidenav>
         <mat-sidenav-content [@onMainContentChange]="onSideNavChange ? 'open': 'close'" style="margin-left: 200px;">
             <app-header></app-header>
-            <div class="main_content" style="margin: 20px; height: 84vh;">
+            <div class="main_content" style="height: 84vh; margin: 5px; margin-left: 10px;">
                 <router-outlet></router-outlet>
                 <app-footer></app-footer>
             </div>

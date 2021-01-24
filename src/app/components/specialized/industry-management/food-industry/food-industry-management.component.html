@@ -1,14 +1,14 @@
 <mat-card class="material">
     <mat-card-content>
-        <div class="button-control">
+        <!-- <div class="button-control">
             <button mat-raised-button (click)="accordion.openAll()">
                 <mat-icon>flip_to_front</mat-icon> Mở Tất Cả
             </button>
             <button mat-raised-button (click)="accordion.closeAll()">
                 <mat-icon>flip_to_back</mat-icon> Đóng tất cả
             </button>
-        </div>
-        <mat-accordion class="example-headers-align" multi>
+        </div> -->
+        <mat-accordion class="accord" multi>
             <mat-expansion-panel>
                 <mat-expansion-panel-header>
                     <mat-panel-title>
@@ -44,7 +44,7 @@
                                 <mat-card-subtitle></mat-card-subtitle>
                             </mat-card-header>
                             <mat-card-content>
-                                {{sanLuongBotMy | number:'1.0-0'}} tấn/năm
+                                {{sanLuongBotMy | number: '1.0-0':'vi'}} tấn/năm
                             </mat-card-content>
                         </mat-card>
                     </div>
@@ -57,7 +57,7 @@
                                 <mat-card-subtitle></mat-card-subtitle>
                             </mat-card-header>
                             <mat-card-content>
-                                {{sanLuongRuou | number:'1.0-0'}} lít/năm
+                                {{sanLuongRuou | number: '1.0-0':'vi'}} lít/năm
                             </mat-card-content>
                         </mat-card>
                     </div>

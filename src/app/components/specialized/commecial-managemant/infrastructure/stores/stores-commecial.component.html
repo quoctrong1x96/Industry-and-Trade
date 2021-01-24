@@ -1,14 +1,14 @@
 <mat-card class="material">
     <mat-card-content>
-        <div class="button-control">
+        <!-- <div class="button-control">
             <button mat-raised-button (click)="accordion.openAll()">
                 <mat-icon>flip_to_front</mat-icon> Mở Tất Cả
             </button>
             <button mat-raised-button (click)="accordion.closeAll()">
                 <mat-icon>flip_to_back</mat-icon> Đóng tất cả
             </button>
-        </div>
-        <mat-accordion class="example-headers-align" multi>
+        </div> -->
+        <mat-accordion class="accord" multi>
             <mat-expansion-panel>
                 <mat-expansion-panel-header>
                     <mat-panel-title>
@@ -22,22 +22,24 @@
 
                 <div class="row">
                     <div class="col-6 col-lg-6">
-                        <mat-card class="card5">
+                        <mat-card class="card1">
                             <mat-card-header>
                                 <mat-card-title>
-                                    <mat-icon>filter</mat-icon> Tổng số cửa hàng: <span>{{tongCuaHang}} cửa hàng</span>
+                                    <mat-icon>filter</mat-icon> Tổng số cửa hàng:
                                 </mat-card-title>
                                 <mat-card-subtitle></mat-card-subtitle>
                             </mat-card-header>
                             <mat-card-content>
+                                <span>{{tongCuaHang}} cửa hàng</span>
                             </mat-card-content>
                         </mat-card>
                     </div>
                     <div class="col-6 col-lg-6" *ngIf="filterModel.ngaycapgcn!=0">
-                        <mat-card class="card5">
+                        <mat-card class="card1">
                             <mat-card-header>
                                 <mat-card-title>
-                                    <mat-icon>filter</mat-icon> Số cửa hàng đăng ký chưng nhận <span>{{filterModel.ngaycapgcn}}</span>:
+                                    <mat-icon>filter</mat-icon> Số cửa hàng đăng ký chưng nhận
+                                    <span>{{filterModel.ngaycapgcn}}</span>:
                                     <span>{{filteredDataSource.data.length}}</span>
                                 </mat-card-title>
                                 <mat-card-subtitle></mat-card-subtitle>
@@ -131,7 +133,8 @@
                     <div class="col-3 col-lg-3">
                         <mat-form-field appearance="outline">
                             <mat-label>Địa bàn</mat-label>
-                            <mat-select (selectionChange)="applyFilter()" [(ngModel)]="filterModel.id_quan_huyen" multiple>
+                            <mat-select (selectionChange)="applyFilter()" [(ngModel)]="filterModel.id_quan_huyen"
+                                multiple>
                                 <mat-option *ngFor='let district of districts' [value]='district.id'>
                                     {{district.ten_quan_huyen}}
                                 </mat-option>
@@ -253,9 +256,10 @@
                             <th mat-header-cell *matHeaderCellDef style="text-align: center;" [attr.colspan]="1">
                         </ng-container>
 
-                        <tr mat-header-row class="table-header" *matHeaderRowDef="['stt1','tch', 'spkd','cndkkd','diachim','cnddkattp','sdtm']">
+                        <tr mat-header-row class="table-header"
+                            *matHeaderRowDef="['stt1','tch', 'spkd','cndkkd','diachim','cnddkattp','sdtm']; sticky: true">
                         </tr>
-                        <tr mat-header-row class="table-header" *matHeaderRowDef="displayedColumns;sticky: true"></tr>
+                        <tr mat-header-row class="table-header" *matHeaderRowDef="displayedColumns; sticky: true"></tr>
                         <tr mat-row class="table-row" *matRowDef="let row; columns: displayedColumns;"></tr>
                     </table>
                 </div>

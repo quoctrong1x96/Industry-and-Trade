@@ -1,14 +1,14 @@
 <mat-card class="material">
     <mat-card-content>
-        <div class="button-control">
+        <!-- <div class="button-control">
             <button mat-raised-button (click)="accordion.openAll()">
                 <mat-icon>flip_to_front</mat-icon> Mở Tất Cả
             </button>
             <button mat-raised-button (click)="accordion.closeAll()">
                 <mat-icon>flip_to_back</mat-icon> Đóng tất cả
             </button>
-        </div>
-        <mat-accordion class="example-headers-align" multi>
+        </div> -->
+        <mat-accordion class="accord" multi>
             <mat-expansion-panel>
                 <mat-expansion-panel-header>
                     <mat-panel-title>
@@ -59,52 +59,52 @@
 
                         <ng-container matColumnDef="t112019">
                             <th mat-header-cell *matHeaderCellDef> Tháng 11 </th>
-                            <td mat-cell *matCellDef="let element"> {{element.t112019}}</td>
+                            <td mat-cell *matCellDef="let element"> {{element.t112019 | number: '1.0-4':'vi'}}</td>
                         </ng-container>
 
                         <ng-container matColumnDef="lk11t2019">
                             <th mat-header-cell *matHeaderCellDef> Luỹ kế 11 tháng </th>
-                            <td mat-cell *matCellDef="let element"> {{element.lk11t2019}}</td>
+                            <td mat-cell *matCellDef="let element"> {{element.lk11t2019 | number: '1.0-4':'vi'}}</td>
                         </ng-container>
 
                         <ng-container matColumnDef="khn2020">
                             <th mat-header-cell *matHeaderCellDef> Kế hoạch năm </th>
-                            <td mat-cell *matCellDef="let element"> {{element.khn2020}}</td>
+                            <td mat-cell *matCellDef="let element"> {{element.khn2020 | number: '1.0-4':'vi'}}</td>
                         </ng-container>
 
                         <ng-container matColumnDef="t102020">
                             <th mat-header-cell *matHeaderCellDef> Tháng 10 </th>
-                            <td mat-cell *matCellDef="let element"> {{element.t102020}}</td>
+                            <td mat-cell *matCellDef="let element"> {{element.t102020 | number: '1.0-4':'vi'}}</td>
                         </ng-container>
 
                         <ng-container matColumnDef="t112020">
                             <th mat-header-cell *matHeaderCellDef> Tháng 11 </th>
-                            <td mat-cell *matCellDef="let element"> {{element.t112020}}</td>
+                            <td mat-cell *matCellDef="let element"> {{element.t112020 | number: '1.0-4':'vi'}}</td>
                         </ng-container>
 
                         <ng-container matColumnDef="lk11t2020">
                             <th mat-header-cell *matHeaderCellDef> Luỹ kế 11 tháng </th>
-                            <td mat-cell *matCellDef="let element"> {{element.lk11t2020}}</td>
+                            <td mat-cell *matCellDef="let element"> {{element.lk11t2020 | number: '1.0-4':'vi'}}</td>
                         </ng-container>
 
                         <ng-container matColumnDef="tht11stt">
                             <th mat-header-cell *matHeaderCellDef> TH tháng 11 so tháng trước </th>
-                            <td mat-cell *matCellDef="let element"> {{element.tht11stt}}</td>
+                            <td mat-cell *matCellDef="let element"> {{element.tht11stt | number: '1.0-4':'vi'}}</td>
                         </ng-container>
 
                         <ng-container matColumnDef="tht11sck">
                             <th mat-header-cell *matHeaderCellDef> TH tháng 11 so cùng kỳ </th>
-                            <td mat-cell *matCellDef="let element"> {{element.tht11sck}}</td>
+                            <td mat-cell *matCellDef="let element"> {{element.tht11sck | number: '1.0-4':'vi'}}</td>
                         </ng-container>
 
                         <ng-container matColumnDef="lktsck">
                             <th mat-header-cell *matHeaderCellDef> Luỹ kế tháng b/c so cùng kỳ </th>
-                            <td mat-cell *matCellDef="let element"> {{element.lktsck}}</td>
+                            <td mat-cell *matCellDef="let element"> {{element.lktsck | number: '1.0-4':'vi'}}</td>
                         </ng-container>
 
                         <ng-container matColumnDef="lktskh">
                             <th mat-header-cell *matHeaderCellDef> Luỹ kế tháng b/c so KH </th>
-                            <td mat-cell *matCellDef="let element"> {{element.lktskh}}</td>
+                            <td mat-cell *matCellDef="let element"> {{element.lktskh | number: '1.0-4':'vi'}}</td>
                         </ng-container>
 
                         <ng-container matColumnDef="merge1">
@@ -119,7 +119,7 @@
                         <ng-container matColumnDef="merge4">
                             <th mat-header-cell *matHeaderCellDef [attr.colspan]="4">Tỷ lệ (%)</th>
                         </ng-container>
-                        <tr mat-header-row class="table-header" *matHeaderRowDef="dsplayMergeColumns;">
+                        <tr mat-header-row class="table-header" *matHeaderRowDef="dsplayMergeColumns;sticky: true">
                         </tr>
 
                         <tr mat-header-row class="table-header" *matHeaderRowDef="displayedColumns;sticky: true"></tr>

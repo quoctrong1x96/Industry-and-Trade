@@ -43,12 +43,12 @@
                 </ng-container>
                 <ng-container matColumnDef="san_luong">
                     <th mat-header-cell *matHeaderCellDef> Sản lượng sản xuất, chế biến <br> (Tấn) </th>
-                    <td mat-cell *matCellDef="let element"> {{element.san_luong | number:'1.0-2'| ZeroAsSub}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.san_luong | number: '1.0-2':'vi'| ZeroAsSub}} </td>
                     <td mat-footer-cell *matFooterCellDef> {{sumSL() | number:'1.0-4'| ZeroAsSub}} </td>
                 </ng-container>
                 <ng-container matColumnDef="tri_gia">
                     <th mat-header-cell *matHeaderCellDef> Trị giá <br> (Triệu đồng) </th>
-                    <td mat-cell *matCellDef="let element"> {{element.tri_gia | number:'1.0-2'| ZeroAsSub}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.tri_gia | number: '1.0-2':'vi'| ZeroAsSub}} </td>
                     <td mat-footer-cell *matFooterCellDef> {{sumTG() | number:'1.0-4'| ZeroAsSub}} </td>
                 </ng-container>
                 <ng-container matColumnDef="top_san_xuat">

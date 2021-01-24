@@ -272,8 +272,11 @@ export class ExportManagerComponent implements OnInit {
                 },
                 product: data,
                 typeOfSave: SAVE.EXPORT,
-            }
-        });
+            },
+            maxWidth: '100%',
+            maxHeight: '100%'
+        }
+        );
 
         dialogRef.afterClosed().subscribe((confirmed: boolean) => {
             if (confirmed) {

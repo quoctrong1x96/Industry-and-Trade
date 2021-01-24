@@ -12,6 +12,9 @@ import { SearchBusinessComponent } from './business/search/search-business.compo
 import { EditBusinessComponent } from './business/edit/edit-business.component';
 import { DetailBussinessComponent } from './business/detail-business/detail-business.component';
 import { BusinessExportImportComponent } from './business/business-export-import/business-export-import.component';
+import { registerLocaleData } from '@angular/common';
+import localevi from '@angular/common/locales/vi';
+registerLocaleData(localevi, 'vi');
 
 const routes: Routes = [
   {

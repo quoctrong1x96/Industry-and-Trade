@@ -1,14 +1,14 @@
 <mat-card class="material">
     <mat-card-content>
-        <div class="button-control">
+        <!-- <div class="button-control">
             <button mat-raised-button (click)="accordion.openAll()">
                 <mat-icon>flip_to_front</mat-icon> Mở Tất Cả
-            </button> &nbsp;
+            </button>
             <button mat-raised-button (click)="accordion.closeAll()">
                 <mat-icon>flip_to_back</mat-icon> Đóng tất cả
             </button>
-        </div>
-        <mat-accordion class="example-headers-align" multi>
+        </div> -->
+        <mat-accordion class="accord" multi>
             <mat-expansion-panel>
                 <mat-expansion-panel-header>
                     <mat-panel-title>
@@ -29,7 +29,7 @@
                                 </mat-card-title>
                             </mat-card-header>
                             <mat-card-content>
-                                {{countBusiness() | number: '1.0-0'}}
+                                {{countBusiness() | number: '1.0-0':'vi'}}
                             </mat-card-content>
                         </mat-card>
                     </div>
@@ -41,7 +41,7 @@
                                 </mat-card-title>
                             </mat-card-header>
                             <mat-card-content>
-                                {{this.filteredDataSource.data.length | number: '1.0-0'}}
+                                {{this.filteredDataSource.data.length | number: '1.0-0':'vi'}}
                             </mat-card-content>
                         </mat-card>
                     </div>
@@ -53,7 +53,7 @@
                                 </mat-card-title>
                             </mat-card-header>
                             <mat-card-content>
-                                {{sumvalues | number: '1.0-0'}}
+                                {{sumvalues | number: '1.0-0':'vi'}}
                             </mat-card-content>
                         </mat-card>
                     </div>
