@@ -271,10 +271,12 @@ export class BusinessExportImportComponent implements OnInit {
     XLSX.utils.book_append_sheet(wb, ws, sheetname);
     XLSX.writeFile(wb, excelFileName);
   }
+
   public _filter(value: string): CareerModel[] {
     const filterValue = this._normalizeValue(value);
     return this.careerList.filter(career => this._normalizeValue(career.ten_kem_ma).includes(filterValue));
   }
+  
   public openDetailCompany(mst: string) {
     let url = this.router.serializeUrl(
       this.router.createUrlTree([encodeURI('#') + 'manager/business/search/' + mst]));

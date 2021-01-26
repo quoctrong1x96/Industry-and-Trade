@@ -2,14 +2,15 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
-import * as XLSX from 'xlsx';
 import { DateAdapter, MAT_DATE_LOCALE, MAT_DATE_FORMATS } from '@angular/material';
 import { FormControl } from '@angular/forms';
 import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { formatDate } from '@angular/common';
 
-//Import Service
+
+//Import Services
 import { MarketService } from '../../../../_services/APIService/market.service';
+import { exportToExcel } from '../../../../_services/excelUtil.service';
 //Import Model
 import { DomesticPriceModel } from '../../../../_models/APIModel/domestic-market.model';
 //Imoport Component
@@ -17,6 +18,7 @@ import { DomesticPriceModel } from '../../../../_models/APIModel/domestic-market
 //Moment
 import { defaultFormat as _rollupMoment, Moment } from 'moment';
 import _moment from 'moment';
+import { arrayMax } from 'highcharts';
 const moment = _rollupMoment || _moment;
 export const DDMMYY_FORMAT = {
   parse: {
@@ -138,21 +140,18 @@ export class DomesticPriceComponent implements OnInit {
     console.log("Change Year Func.");
     //this.GetDataForChart(this.chartYearModelSelected);
   }
+
   //Event for "Xuất Excel"
-  public exportTOExcel(filename: string, sheetname: string) {
-    sheetname = sheetname.replace('/', '_').replace('/', '_');
-    let excelFileName: string = filename + '.xlsx';
-    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);
-    const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, sheetname);
-    /* save to file */
-    XLSX.writeFile(wb, excelFileName);
+  public exportToExcel(filename: string, sheetname: string, datas: Array<Object> = []) {
+    exportToExcel(filename, sheetname, datas, this.table.nativeElement);
   }
+
   //Function for Extention-------------------------------------------------------------------------------------------
   public getMonthAndYear(time: string) {
     let formattedDate = formatDate(time, this.format, this.locale);
     return formattedDate as string;
   }
+
   public initialYears() {
     let returnYear: Array<any> = [];
     let currentDate = new Date();

@@ -225,28 +225,28 @@ export class DomesticExportComponent implements OnInit {
     el.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
   }
  
-
-  
   public getMonthAndYear(time: string) {
-  let year = time.substr(0, 4);
-  let month = time.substr(4, 2);
-  let day = time.substr(6, 2);
-  let result = day + "/" + month + "/" + year;
-  return result as string;
-}
-  public getCurrentMonth(): number {
-  var currentDate = new Date();
-  return currentDate.getMonth() + 1;
-}
-  public initialYears() {
-  let returnYear: Array<any> = [];
-  let currentDate = new Date();
-  let nextYear = currentDate.getFullYear() + 1;
-  for (let index = 0; index < 11; index++) {
-    returnYear.push(nextYear - index);
+    let year = time.substr(0, 4);
+    let month = time.substr(4, 2);
+    let day = time.substr(6, 2);
+    let result = day + "/" + month + "/" + year;
+    return result as string;
   }
-  return returnYear;
-}
+
+  public getCurrentMonth(): number {
+    var currentDate = new Date();
+    return currentDate.getMonth() + 1;
+  }
+
+  public initialYears() {
+    let returnYear: Array<any> = [];
+    let currentDate = new Date();
+    let nextYear = currentDate.getFullYear() + 1;
+    for (let index = 0; index < 11; index++) {
+      returnYear.push(nextYear - index);
+    }
+    return returnYear;
+  }
   public getCurrentYear() {
   var currentDate = new Date();
   return currentDate.getFullYear();
