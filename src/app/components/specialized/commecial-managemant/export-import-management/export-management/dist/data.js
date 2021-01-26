@@ -1,7 +1,8 @@
-import { ex_im_model } from "src/app/_models/APIModel/export-import.model";
-
+"use strict";
+exports.__esModule = true;
+exports.dataExportNotData = exports.dataExport12 = exports.dataExport11 = exports.dataExport10 = exports.dataExport9 = exports.dataExport8 = exports.dataExport7 = exports.dataExport6 = exports.dataExport5 = exports.dataExport4 = exports.dataExport3 = exports.dataExport2 = exports.dataExport = void 0;
 // du lieu thang 1
-export const dataExport: ex_im_model[] = [
+exports.dataExport = [
     { id_mat_hang: 1, ten_san_pham: 'Hạt điều', luong_thang: 7.84, gia_tri_thang: 49.53, uoc_th_so_cungky_tht: 75.47, uoc_th_so_thg_truoc_tht: 65.72, luong_cong_don: 7.84, gia_tri_cong_don: 49.53, uoc_th_so_cungky_cong_don: 75.47, uoc_th_so_thg_truoc_cong_don: 0 },
     { id_mat_hang: 6, ten_san_pham: 'Giày dép các loại', luong_thang: 0, gia_tri_thang: 38.36, uoc_th_so_cungky_tht: 96.88, uoc_th_so_thg_truoc_tht: 75.89, luong_cong_don: 0, gia_tri_cong_don: 38.36, uoc_th_so_cungky_cong_don: 96.88, uoc_th_so_thg_truoc_cong_don: 0 },
     { id_mat_hang: 8, ten_san_pham: 'Hàng dệt, may', luong_thang: 0, gia_tri_thang: 20.12, uoc_th_so_cungky_tht: 74.75, uoc_th_so_thg_truoc_tht: 53.07, luong_cong_don: 0, gia_tri_cong_don: 20.12, uoc_th_so_cungky_cong_don: 74.75, uoc_th_so_thg_truoc_cong_don: 0 },
@@ -18,9 +19,8 @@ export const dataExport: ex_im_model[] = [
     { id_mat_hang: 19, ten_san_pham: 'Sản phẩm hóa chất', luong_thang: 0, gia_tri_thang: 0.51, uoc_th_so_cungky_tht: 47.1, uoc_th_so_thg_truoc_tht: 77.39, luong_cong_don: 0, gia_tri_cong_don: 0.51, uoc_th_so_cungky_cong_don: 47.1, uoc_th_so_thg_truoc_cong_don: 0 },
     { id_mat_hang: 33, ten_san_pham: 'Hàng hóa khác', luong_thang: 0, gia_tri_thang: 4.48, uoc_th_so_cungky_tht: 97.58, uoc_th_so_thg_truoc_tht: 89.96, luong_cong_don: 0, gia_tri_cong_don: 4.48, uoc_th_so_cungky_cong_don: 97.58, uoc_th_so_thg_truoc_cong_don: 0 },
     { id_mat_hang: 0, ten_san_pham: 'Tổng ', luong_thang: 0, gia_tri_thang: 186.27, uoc_th_so_cungky_tht: 84.47, uoc_th_so_thg_truoc_tht: 64.15, luong_cong_don: 0, gia_tri_cong_don: 186.27, uoc_th_so_cungky_cong_don: 84.47, uoc_th_so_thg_truoc_cong_don: 13.74 },
-]
-
-export const dataExport2: ex_im_model[] = [
+];
+exports.dataExport2 = [
     { id_mat_hang: 6, ten_san_pham: 'Giày dép các loại', luong_thang: 0, gia_tri_thang: 41.4205446593, luong_cong_don: 0, gia_tri_cong_don: 79.78, uoc_th_so_cungky_tht: 277.39, uoc_th_so_thg_truoc_tht: 107.97, uoc_th_so_cungky_cong_don: 146.1, uoc_th_so_thg_truoc_cong_don: 0 },
     { id_mat_hang: 1, ten_san_pham: 'Hạt điều', luong_thang: 7.911, gia_tri_thang: 50.4653686839, luong_cong_don: 15.76, gia_tri_cong_don: 100, uoc_th_so_cungky_tht: 197.92, uoc_th_so_thg_truoc_tht: 101.89, uoc_th_so_cungky_cong_don: 140.58, uoc_th_so_thg_truoc_cong_don: 0 },
     { id_mat_hang: 8, ten_san_pham: 'Hàng dệt, may', luong_thang: 0, gia_tri_thang: 16.981193008, luong_cong_don: 0, gia_tri_cong_don: 37.1, uoc_th_so_cungky_tht: 136.89, uoc_th_so_thg_truoc_tht: 84.42, uoc_th_so_cungky_cong_don: 94.36, uoc_th_so_thg_truoc_cong_don: 0 },
@@ -38,8 +38,7 @@ export const dataExport2: ex_im_model[] = [
     { id_mat_hang: 33, ten_san_pham: 'Hàng hóa khác', luong_thang: 0, gia_tri_thang: 4.5794880302, luong_cong_don: 0, gia_tri_cong_don: 9.06, uoc_th_so_cungky_tht: 159.95, uoc_th_so_thg_truoc_tht: 102.25, uoc_th_so_cungky_cong_don: 122.86, uoc_th_so_thg_truoc_cong_don: 0 },
     { id_mat_hang: 0, ten_san_pham: 'Tổng ', luong_thang: 22.73, gia_tri_thang: 160.0638567774, luong_cong_don: 63.83, gia_tri_cong_don: 364.33, uoc_th_so_cungky_tht: 174.98, uoc_th_so_thg_truoc_tht: 85.93, uoc_th_so_cungky_cong_don: 116.77, uoc_th_so_thg_truoc_cong_don: 14.231640625 }
 ];
-
-export const dataExport3: ex_im_model[] = [
+exports.dataExport3 = [
     { id_mat_hang: 1, ten_san_pham: 'Hạt điều', luong_thang: 13, gia_tri_thang: 85.4949961518, luong_cong_don: 28.76, gia_tri_cong_don: 185.49, uoc_th_so_cungky_tht: 142.44, uoc_th_so_thg_truoc_tht: 169.41, uoc_th_so_cungky_cong_don: 151.15, uoc_th_so_thg_truoc_cong_don: 0 },
     { id_mat_hang: 6, ten_san_pham: 'Giày dép các loại', luong_thang: 0, gia_tri_thang: 50.6844549285, luong_cong_don: 0, gia_tri_cong_don: 130.47, uoc_th_so_cungky_tht: 144.03, uoc_th_so_thg_truoc_tht: 122.37, uoc_th_so_cungky_cong_don: 89.79, uoc_th_so_thg_truoc_cong_don: 0 },
     { id_mat_hang: 8, ten_san_pham: 'Hàng dệt, may', luong_thang: 0, gia_tri_thang: 16.8833315359, luong_cong_don: 0, gia_tri_cong_don: 53.98, uoc_th_so_cungky_tht: 68.35, uoc_th_so_thg_truoc_tht: 99.42, uoc_th_so_cungky_cong_don: 84.32, uoc_th_so_thg_truoc_cong_don: 0 },
@@ -56,10 +55,8 @@ export const dataExport3: ex_im_model[] = [
     { id_mat_hang: 19, ten_san_pham: 'Sản phẩm hóa chất', luong_thang: 0, gia_tri_thang: 0.7588968778, luong_cong_don: 0, gia_tri_cong_don: 1.68, uoc_th_so_cungky_tht: 82.39, uoc_th_so_thg_truoc_tht: 185.49, uoc_th_so_cungky_cong_don: 71.42, uoc_th_so_thg_truoc_cong_don: 0 },
     { id_mat_hang: 33, ten_san_pham: 'Hàng hóa khác', luong_thang: 0, gia_tri_thang: 6.208010797, luong_cong_don: 0, gia_tri_cong_don: 15.27, uoc_th_so_cungky_tht: 124.56, uoc_th_so_thg_truoc_tht: 135.56, uoc_th_so_cungky_cong_don: 123.56, uoc_th_so_thg_truoc_cong_don: 0 },
     { id_mat_hang: 0, ten_san_pham: 'Tổng ', luong_thang: 37.3, gia_tri_thang: 215.323767483, luong_cong_don: 101.13, gia_tri_cong_don: 561.66, uoc_th_so_cungky_tht: 84.47, uoc_th_so_thg_truoc_tht: 134.52, uoc_th_so_cungky_cong_don: 116.98, uoc_th_so_thg_truoc_cong_don: 21.93984375 },
-
 ];
-
-export const dataExport4: ex_im_model[] = [
+exports.dataExport4 = [
     { id_mat_hang: 1, ten_san_pham: 'Hạt điều', luong_thang: 14.04, gia_tri_thang: 89.97, luong_cong_don: 29.8, gia_tri_cong_don: 275.46, uoc_th_so_cungky_tht: 133.74, uoc_th_so_thg_truoc_tht: 105.23, uoc_th_so_cungky_cong_don: 75.47, uoc_th_so_thg_truoc_cong_don: 0 },
     { id_mat_hang: 6, ten_san_pham: 'Giày dép các loại', luong_thang: 0, gia_tri_thang: 41.69, luong_cong_don: 0, gia_tri_cong_don: 172.16, uoc_th_so_cungky_tht: 128.3, uoc_th_so_thg_truoc_tht: 82.25, uoc_th_so_cungky_cong_don: 96.88, uoc_th_so_thg_truoc_cong_don: 0 },
     { id_mat_hang: 8, ten_san_pham: 'Hàng dệt, may', luong_thang: 0, gia_tri_thang: 10.05, luong_cong_don: 0, gia_tri_cong_don: 64.03, uoc_th_so_cungky_tht: 51.03, uoc_th_so_thg_truoc_tht: 59.53, uoc_th_so_cungky_cong_don: 74.75, uoc_th_so_thg_truoc_cong_don: 0 },
@@ -76,9 +73,8 @@ export const dataExport4: ex_im_model[] = [
     { id_mat_hang: 19, ten_san_pham: 'Sản phẩm hóa chất', luong_thang: 0, gia_tri_thang: 1.65, luong_cong_don: 0, gia_tri_cong_don: 3.33, uoc_th_so_cungky_tht: 99.69, uoc_th_so_thg_truoc_tht: 217.42, uoc_th_so_cungky_cong_don: 47.1, uoc_th_so_thg_truoc_cong_don: 0 },
     { id_mat_hang: 33, ten_san_pham: 'Hàng hóa khác', luong_thang: 0, gia_tri_thang: 9.26, luong_cong_don: 0, gia_tri_cong_don: 24.53, uoc_th_so_cungky_tht: 202.27, uoc_th_so_thg_truoc_tht: 149.16, uoc_th_so_cungky_cong_don: 97.58, uoc_th_so_thg_truoc_cong_don: 0 },
     { id_mat_hang: 0, ten_san_pham: 'Tổng ', luong_thang: 0, gia_tri_thang: 189, luong_cong_don: 0, gia_tri_cong_don: 750.66, uoc_th_so_cungky_tht: 115.55, uoc_th_so_thg_truoc_tht: 87.77, uoc_th_so_cungky_cong_don: 84.47, uoc_th_so_thg_truoc_cong_don: 29.32265625 },
-]
-
-export const dataExport5: ex_im_model[] = [
+];
+exports.dataExport5 = [
     { id_mat_hang: 1, ten_san_pham: 'Hạt điều', luong_thang: 12.8, gia_tri_thang: 78.81, luong_cong_don: 42.6, gia_tri_cong_don: 354.27, uoc_th_so_cungky_tht: 100.29, uoc_th_so_thg_truoc_tht: 87.6, uoc_th_so_cungky_cong_don: 119.29, uoc_th_so_thg_truoc_cong_don: 0 },
     { id_mat_hang: 6, ten_san_pham: 'Giày dép các loại', luong_thang: 0, gia_tri_thang: 42.88, luong_cong_don: 0, gia_tri_cong_don: 215.04, uoc_th_so_cungky_tht: 102.93, uoc_th_so_thg_truoc_tht: 102.85, uoc_th_so_cungky_cong_don: 131.17, uoc_th_so_thg_truoc_cong_don: 0 },
     { id_mat_hang: 8, ten_san_pham: 'Hàng dệt, may', luong_thang: 0, gia_tri_thang: 13.25, luong_cong_don: 0, gia_tri_cong_don: 77.28, uoc_th_so_cungky_tht: 51.25, uoc_th_so_thg_truoc_tht: 131.84, uoc_th_so_cungky_cong_don: 70.55, uoc_th_so_thg_truoc_cong_don: 0 },
@@ -95,10 +91,8 @@ export const dataExport5: ex_im_model[] = [
     { id_mat_hang: 19, ten_san_pham: 'Sản phẩm hóa chất', luong_thang: 0, gia_tri_thang: 1.69, luong_cong_don: 0, gia_tri_cong_don: 5.02, uoc_th_so_cungky_tht: 138.52, uoc_th_so_thg_truoc_tht: 102.42, uoc_th_so_cungky_cong_don: 96.35, uoc_th_so_thg_truoc_cong_don: 0 },
     { id_mat_hang: 33, ten_san_pham: 'Hàng hóa khác', luong_thang: 0, gia_tri_thang: 5.97, luong_cong_don: 0, gia_tri_cong_don: 30.5, uoc_th_so_cungky_tht: 106.04, uoc_th_so_thg_truoc_tht: 64.47, uoc_th_so_cungky_cong_don: 135.25, uoc_th_so_thg_truoc_cong_don: 0 },
     { id_mat_hang: 0, ten_san_pham: 'Tổng ', luong_thang: 0, gia_tri_thang: 193, luong_cong_don: 0, gia_tri_cong_don: 943.66, uoc_th_so_cungky_tht: 94.88, uoc_th_so_thg_truoc_tht: 102.12, uoc_th_so_cungky_cong_don: 111.06, uoc_th_so_thg_truoc_cong_don: 36.86171875 },
-
-]
-
-export const dataExport6: ex_im_model[] = [
+];
+exports.dataExport6 = [
     { id_mat_hang: 1, ten_san_pham: 'Hạt điều', luong_thang: 12.8, gia_tri_thang: 77.33, luong_cong_don: 55.4, gia_tri_cong_don: 431.6, uoc_th_so_cungky_tht: 97.89, uoc_th_so_thg_truoc_tht: 98.12, uoc_th_so_cungky_cong_don: 114.79, uoc_th_so_thg_truoc_cong_don: 0 },
     { id_mat_hang: 6, ten_san_pham: 'Giày dép các loại', luong_thang: 0, gia_tri_thang: 47.67, luong_cong_don: 0, gia_tri_cong_don: 262.71, uoc_th_so_cungky_tht: 99.31, uoc_th_so_thg_truoc_tht: 117.17, uoc_th_so_cungky_cong_don: 123.95, uoc_th_so_thg_truoc_cong_don: 0 },
     { id_mat_hang: 8, ten_san_pham: 'Hàng dệt, may', luong_thang: 0, gia_tri_thang: 18.95, luong_cong_don: 0, gia_tri_cong_don: 96.23, uoc_th_so_cungky_tht: 116.26, uoc_th_so_thg_truoc_tht: 143.02, uoc_th_so_cungky_cong_don: 76.47, uoc_th_so_thg_truoc_cong_don: 0 },
@@ -115,10 +109,8 @@ export const dataExport6: ex_im_model[] = [
     { id_mat_hang: 19, ten_san_pham: 'Sản phẩm hóa chất', luong_thang: 0, gia_tri_thang: 1.21, luong_cong_don: 0, gia_tri_cong_don: 6.23, uoc_th_so_cungky_tht: 44.81, uoc_th_so_thg_truoc_tht: 71.6, uoc_th_so_cungky_cong_don: 78.76, uoc_th_so_thg_truoc_cong_don: 0 },
     { id_mat_hang: 33, ten_san_pham: 'Hàng hóa khác', luong_thang: 0, gia_tri_thang: 10.4, luong_cong_don: 0, gia_tri_cong_don: 40.9, uoc_th_so_cungky_tht: 174.2, uoc_th_so_thg_truoc_tht: 174.2, uoc_th_so_cungky_cong_don: 143.41, uoc_th_so_thg_truoc_cong_don: 0 },
     { id_mat_hang: 0, ten_san_pham: 'Tổng ', luong_thang: 0, gia_tri_thang: 237, luong_cong_don: 0, gia_tri_cong_don: 1180.66, uoc_th_so_cungky_tht: 117.19, uoc_th_so_thg_truoc_tht: 122.8, uoc_th_so_cungky_cong_don: 112.24, uoc_th_so_thg_truoc_cong_don: 46.11953125 },
-
-]
-
-export const dataExport7: ex_im_model[] = [
+];
+exports.dataExport7 = [
     { id_mat_hang: 1, ten_san_pham: 'Hạt điều', luong_thang: 12.94, gia_tri_thang: 70.6, luong_cong_don: 68.34, gia_tri_cong_don: 502.2, uoc_th_so_cungky_tht: 88.3, uoc_th_so_thg_truoc_tht: 91.3, uoc_th_so_cungky_cong_don: 110.1, uoc_th_so_thg_truoc_cong_don: 0 },
     { id_mat_hang: 6, ten_san_pham: 'Giày dép các loại', luong_thang: 0, gia_tri_thang: 41.67, luong_cong_don: 0, gia_tri_cong_don: 304.38, uoc_th_so_cungky_tht: 86.8, uoc_th_so_thg_truoc_tht: 87.41, uoc_th_so_cungky_cong_don: 117.1, uoc_th_so_thg_truoc_cong_don: 0 },
     { id_mat_hang: 8, ten_san_pham: 'Hàng dệt, may', luong_thang: 0, gia_tri_thang: 16.53, luong_cong_don: 0, gia_tri_cong_don: 112.76, uoc_th_so_cungky_tht: 83.9, uoc_th_so_thg_truoc_tht: 87.23, uoc_th_so_cungky_cong_don: 77.5, uoc_th_so_thg_truoc_cong_don: 0 },
@@ -135,10 +127,8 @@ export const dataExport7: ex_im_model[] = [
     { id_mat_hang: 19, ten_san_pham: 'Sản phẩm hóa chất', luong_thang: 0, gia_tri_thang: 1.27, luong_cong_don: 0, gia_tri_cong_don: 7.5, uoc_th_so_cungky_tht: 105, uoc_th_so_thg_truoc_tht: 104.96, uoc_th_so_cungky_cong_don: 82.2, uoc_th_so_thg_truoc_cong_don: 0 },
     { id_mat_hang: 33, ten_san_pham: 'Hàng hóa khác', luong_thang: 0, gia_tri_thang: 5.17, luong_cong_don: 0, gia_tri_cong_don: 46.07, uoc_th_so_cungky_tht: 49.7, uoc_th_so_thg_truoc_tht: 49.71, uoc_th_so_cungky_cong_don: 118.4, uoc_th_so_thg_truoc_cong_don: 0 },
     { id_mat_hang: 0, ten_san_pham: 'Tổng ', luong_thang: 0, gia_tri_thang: 269.08, luong_cong_don: 0, gia_tri_cong_don: 1449.7, uoc_th_so_cungky_tht: 110.6, uoc_th_so_thg_truoc_tht: 113.54, uoc_th_so_cungky_cong_don: 111.9, uoc_th_so_thg_truoc_cong_don: 56.62890625 },
-
-]
-
-export const dataExport8: ex_im_model[] = [
+];
+exports.dataExport8 = [
     { id_mat_hang: 1, ten_san_pham: 'Hạt điều', luong_thang: 14.66, gia_tri_thang: 81.35, luong_cong_don: 83, gia_tri_cong_don: 583.55, uoc_th_so_cungky_tht: 105.2, uoc_th_so_thg_truoc_tht: 115.23, uoc_th_so_cungky_cong_don: 109.42, uoc_th_so_thg_truoc_cong_don: 0 },
     { id_mat_hang: 6, ten_san_pham: 'Giày dép các loại', luong_thang: 0, gia_tri_thang: 34.37, luong_cong_don: 0, gia_tri_cong_don: 338.75, uoc_th_so_cungky_tht: 72.1, uoc_th_so_thg_truoc_tht: 82.48, uoc_th_so_cungky_cong_don: 110.12, uoc_th_so_thg_truoc_cong_don: 0 },
     { id_mat_hang: 8, ten_san_pham: 'Hàng dệt, may', luong_thang: 0, gia_tri_thang: 16.29, luong_cong_don: 0, gia_tri_cong_don: 129.05, uoc_th_so_cungky_tht: 85.96, uoc_th_so_thg_truoc_tht: 98.55, uoc_th_so_cungky_cong_don: 78.45, uoc_th_so_thg_truoc_cong_don: 0 },
@@ -155,10 +145,8 @@ export const dataExport8: ex_im_model[] = [
     { id_mat_hang: 19, ten_san_pham: 'Sản phẩm hóa chất', luong_thang: 0, gia_tri_thang: 1.55, luong_cong_don: 0, gia_tri_cong_don: 9.05, uoc_th_so_cungky_tht: 128.1, uoc_th_so_thg_truoc_tht: 122.05, uoc_th_so_cungky_cong_don: 87.61, uoc_th_so_thg_truoc_cong_don: 0 },
     { id_mat_hang: 33, ten_san_pham: 'Hàng hóa khác', luong_thang: 0, gia_tri_thang: 4.07, luong_cong_don: 0, gia_tri_cong_don: 50.14, uoc_th_so_cungky_tht: 39.13, uoc_th_so_thg_truoc_tht: 78.72, uoc_th_so_cungky_cong_don: 101.66, uoc_th_so_thg_truoc_cong_don: 0 },
     { id_mat_hang: 0, ten_san_pham: 'Tổng ', luong_thang: 0, gia_tri_thang: 280.88, luong_cong_don: 0, gia_tri_cong_don: 1449.7, uoc_th_so_cungky_tht: 118.51, uoc_th_so_thg_truoc_tht: 104.39, uoc_th_so_cungky_cong_don: 94.62, uoc_th_so_thg_truoc_cong_don: 56.62890625 },
-
-]
-
-export const dataExport9: ex_im_model[] = [
+];
+exports.dataExport9 = [
     { id_mat_hang: 1, ten_san_pham: 'Hạt điều', luong_thang: 14.66, gia_tri_thang: 90.14, luong_cong_don: 97.66, gia_tri_cong_don: 673.69, uoc_th_so_cungky_tht: 116.57, uoc_th_so_thg_truoc_tht: 110.81, uoc_th_so_cungky_cong_don: 110.32, uoc_th_so_thg_truoc_cong_don: 0 },
     { id_mat_hang: 6, ten_san_pham: 'Giày dép các loại', luong_thang: 0, gia_tri_thang: 37.12, luong_cong_don: 0, gia_tri_cong_don: 338.75, uoc_th_so_cungky_tht: 77.78, uoc_th_so_thg_truoc_tht: 108, uoc_th_so_cungky_cong_don: 95.35, uoc_th_so_thg_truoc_cong_don: 0 },
     { id_mat_hang: 8, ten_san_pham: 'Hàng dệt, may', luong_thang: 0, gia_tri_thang: 21.4, luong_cong_don: 0, gia_tri_cong_don: 129.05, uoc_th_so_cungky_tht: 112.93, uoc_th_so_thg_truoc_tht: 131.37, uoc_th_so_cungky_cong_don: 70.35, uoc_th_so_thg_truoc_cong_don: 0 },
@@ -175,10 +163,8 @@ export const dataExport9: ex_im_model[] = [
     { id_mat_hang: 19, ten_san_pham: 'Sản phẩm hóa chất', luong_thang: 0, gia_tri_thang: 0.93, luong_cong_don: 0, gia_tri_cong_don: 9.05, uoc_th_so_cungky_tht: 76.86, uoc_th_so_thg_truoc_tht: 60, uoc_th_so_cungky_cong_don: 78.42, uoc_th_so_thg_truoc_cong_don: 0 },
     { id_mat_hang: 33, ten_san_pham: 'Hàng hóa khác', luong_thang: 0, gia_tri_thang: 5.12, luong_cong_don: 0, gia_tri_cong_don: 50.14, uoc_th_so_cungky_tht: 49.23, uoc_th_so_thg_truoc_tht: 125.8, uoc_th_so_cungky_cong_don: 83.96, uoc_th_so_thg_truoc_cong_don: 0 },
     { id_mat_hang: 0, ten_san_pham: 'Tổng ', luong_thang: 0, gia_tri_thang: 289.15, luong_cong_don: 0, gia_tri_cong_don: 1730.62, uoc_th_so_cungky_tht: 122, uoc_th_so_thg_truoc_tht: 102.94, uoc_th_so_cungky_cong_don: 97.82, uoc_th_so_thg_truoc_cong_don: 67.60234375 },
-
-]
-
-export const dataExport10: ex_im_model[] = [
+];
+exports.dataExport10 = [
     { id_mat_hang: 1, ten_san_pham: 'Hạt điều', luong_thang: 17.5, gia_tri_thang: 95.5, luong_cong_don: 42.6, gia_tri_cong_don: 769.19, uoc_th_so_cungky_tht: 100.29, uoc_th_so_thg_truoc_tht: 105.95, uoc_th_so_cungky_cong_don: 119.29, uoc_th_so_thg_truoc_cong_don: 0 },
     { id_mat_hang: 6, ten_san_pham: 'Giày dép các loại', luong_thang: 0, gia_tri_thang: 62.2, luong_cong_don: 0, gia_tri_cong_don: 400.95, uoc_th_so_cungky_tht: 102.93, uoc_th_so_thg_truoc_tht: 167.56, uoc_th_so_cungky_cong_don: 131.17, uoc_th_so_thg_truoc_cong_don: 0 },
     { id_mat_hang: 8, ten_san_pham: 'Hàng dệt, may', luong_thang: 0, gia_tri_thang: 29.25, luong_cong_don: 0, gia_tri_cong_don: 158.3, uoc_th_so_cungky_tht: 51.25, uoc_th_so_thg_truoc_tht: 135.68, uoc_th_so_cungky_cong_don: 70.55, uoc_th_so_thg_truoc_cong_don: 0 },
@@ -195,10 +181,8 @@ export const dataExport10: ex_im_model[] = [
     { id_mat_hang: 19, ten_san_pham: 'Sản phẩm hóa chất', luong_thang: 0, gia_tri_thang: 2.7, luong_cong_don: 0, gia_tri_cong_don: 11.75, uoc_th_so_cungky_tht: 138.52, uoc_th_so_thg_truoc_tht: 290.32, uoc_th_so_cungky_cong_don: 96.35, uoc_th_so_thg_truoc_cong_don: 0 },
     { id_mat_hang: 33, ten_san_pham: 'Hàng hóa khác', luong_thang: 0, gia_tri_thang: 5.97, luong_cong_don: 0, gia_tri_cong_don: 56.11, uoc_th_so_cungky_tht: 106.04, uoc_th_so_thg_truoc_tht: 116.6, uoc_th_so_cungky_cong_don: 135.25, uoc_th_so_thg_truoc_cong_don: 0 },
     { id_mat_hang: 0, ten_san_pham: 'Tổng ', luong_thang: 0, gia_tri_thang: 308.74, luong_cong_don: 0, gia_tri_cong_don: 2039, uoc_th_so_cungky_tht: 94.88, uoc_th_so_thg_truoc_tht: 106.78, uoc_th_so_cungky_cong_don: 111.06, uoc_th_so_thg_truoc_cong_don: 79.6484375 },
-
-]
-
-export const dataExport11: ex_im_model[] = [
+];
+exports.dataExport11 = [
     { id_mat_hang: 1, ten_san_pham: 'Hạt điều', luong_thang: 17.5, gia_tri_thang: 100.5, luong_cong_don: 42.6, gia_tri_cong_don: 869.69, uoc_th_so_cungky_tht: 105.24, uoc_th_so_thg_truoc_tht: 87.6, uoc_th_so_cungky_cong_don: 104.91, uoc_th_so_thg_truoc_cong_don: 0 },
     { id_mat_hang: 6, ten_san_pham: 'Giày dép các loại', luong_thang: 0, gia_tri_thang: 68, luong_cong_don: 0, gia_tri_cong_don: 468.95, uoc_th_so_cungky_tht: 109.32, uoc_th_so_thg_truoc_tht: 102.85, uoc_th_so_cungky_cong_don: 112.48, uoc_th_so_thg_truoc_cong_don: 0 },
     { id_mat_hang: 8, ten_san_pham: 'Hàng dệt, may', luong_thang: 0, gia_tri_thang: 33, luong_cong_don: 0, gia_tri_cong_don: 230, uoc_th_so_cungky_tht: 112.82, uoc_th_so_thg_truoc_tht: 131.84, uoc_th_so_cungky_cong_don: 88.23, uoc_th_so_thg_truoc_cong_don: 0 },
@@ -215,10 +199,8 @@ export const dataExport11: ex_im_model[] = [
     { id_mat_hang: 19, ten_san_pham: 'Sản phẩm hóa chất', luong_thang: 0, gia_tri_thang: 3.7, luong_cong_don: 0, gia_tri_cong_don: 15.45, uoc_th_so_cungky_tht: 137.04, uoc_th_so_thg_truoc_tht: 102.42, uoc_th_so_cungky_cong_don: 131.6, uoc_th_so_thg_truoc_cong_don: 0 },
     { id_mat_hang: 33, ten_san_pham: 'Hàng hóa khác', luong_thang: 0, gia_tri_thang: 7.54, luong_cong_don: 0, gia_tri_cong_don: 220, uoc_th_so_cungky_tht: 126.3, uoc_th_so_thg_truoc_tht: 64.47, uoc_th_so_cungky_cong_don: 401.68, uoc_th_so_thg_truoc_cong_don: 0 },
     { id_mat_hang: 0, ten_san_pham: 'Tổng ', luong_thang: 0, gia_tri_thang: 339.74, luong_cong_don: 0, gia_tri_cong_don: 2689.56, uoc_th_so_cungky_tht: 110.04, uoc_th_so_thg_truoc_tht: 102.12, uoc_th_so_cungky_cong_don: 110.955445544554, uoc_th_so_thg_truoc_cong_don: 105.0609375 },
-
-]
-
-export const dataExport12: ex_im_model[] = [
+];
+exports.dataExport12 = [
     { id_mat_hang: 1, ten_san_pham: 'Hạt điều', luong_thang: 12, gia_tri_thang: 85, luong_cong_don: 42.6, gia_tri_cong_don: 954.69, uoc_th_so_cungky_tht: 112.78, uoc_th_so_thg_truoc_tht: 84.58, uoc_th_so_cungky_cong_don: 105.56, uoc_th_so_thg_truoc_cong_don: 0 },
     { id_mat_hang: 6, ten_san_pham: 'Giày dép các loại', luong_thang: 0, gia_tri_thang: 45, luong_cong_don: 0, gia_tri_cong_don: 513.95, uoc_th_so_cungky_tht: 89.01, uoc_th_so_thg_truoc_tht: 66.18, uoc_th_so_cungky_cong_don: 84.72, uoc_th_so_thg_truoc_cong_don: 0 },
     { id_mat_hang: 8, ten_san_pham: 'Hàng dệt, may', luong_thang: 0, gia_tri_thang: 25, luong_cong_don: 0, gia_tri_cong_don: 255, uoc_th_so_cungky_tht: 65.96, uoc_th_so_thg_truoc_tht: 75.76, uoc_th_so_cungky_cong_don: 56.07, uoc_th_so_thg_truoc_cong_don: 0 },
@@ -235,25 +217,22 @@ export const dataExport12: ex_im_model[] = [
     { id_mat_hang: 19, ten_san_pham: 'Sản phẩm hóa chất', luong_thang: 0, gia_tri_thang: 2.1, luong_cong_don: 0, gia_tri_cong_don: 17.55, uoc_th_so_cungky_tht: 214.54, uoc_th_so_thg_truoc_tht: 56.76, uoc_th_so_cungky_cong_don: 149.41, uoc_th_so_thg_truoc_cong_don: 0 },
     { id_mat_hang: 33, ten_san_pham: 'Hàng hóa khác', luong_thang: 0, gia_tri_thang: 6.9, luong_cong_don: 0, gia_tri_cong_don: 231.9, uoc_th_so_cungky_tht: 138.59, uoc_th_so_thg_truoc_tht: 91.51, uoc_th_so_cungky_cong_don: 379.78, uoc_th_so_thg_truoc_cong_don: 0 },
     { id_mat_hang: 0, ten_san_pham: 'Tổng ', luong_thang: 0, gia_tri_thang: 277.5, luong_cong_don: 0, gia_tri_cong_don: 2971.16, uoc_th_so_cungky_tht: 125.884594447469, uoc_th_so_thg_truoc_tht: 81.68, uoc_th_so_cungky_cong_don: 112.331190926276, uoc_th_so_thg_truoc_cong_don: 116.0609375 },
-]
-
-export const dataExportNotData: ex_im_model[] = [
+];
+exports.dataExportNotData = [
     { id_mat_hang: 1, ten_san_pham: 'Hạt điều', luong_thang: 0, gia_tri_thang: 0, luong_cong_don: 0, gia_tri_cong_don: 0, uoc_th_so_cungky_tht: 0, uoc_th_so_thg_truoc_tht: 0, uoc_th_so_cungky_cong_don: 0, uoc_th_so_thg_truoc_cong_don: 0 },
     { id_mat_hang: 6, ten_san_pham: 'Giày dép các loại', luong_thang: 0, gia_tri_thang: 0, luong_cong_don: 0, gia_tri_cong_don: 0, uoc_th_so_cungky_tht: 0, uoc_th_so_thg_truoc_tht: 0, uoc_th_so_cungky_cong_don: 0, uoc_th_so_thg_truoc_cong_don: 0 },
-    { id_mat_hang: 8, ten_san_pham: 'Hàng dệt, may',luong_thang: 0, gia_tri_thang: 0, luong_cong_don: 0, gia_tri_cong_don: 0, uoc_th_so_cungky_tht: 0, uoc_th_so_thg_truoc_tht: 0, uoc_th_so_cungky_cong_don: 0, uoc_th_so_thg_truoc_cong_don: 0 },
+    { id_mat_hang: 8, ten_san_pham: 'Hàng dệt, may', luong_thang: 0, gia_tri_thang: 0, luong_cong_don: 0, gia_tri_cong_don: 0, uoc_th_so_cungky_tht: 0, uoc_th_so_thg_truoc_tht: 0, uoc_th_so_cungky_cong_don: 0, uoc_th_so_thg_truoc_cong_don: 0 },
     { id_mat_hang: 4, ten_san_pham: 'Cao su', luong_thang: 0, gia_tri_thang: 0, luong_cong_don: 0, gia_tri_cong_don: 0, uoc_th_so_cungky_tht: 0, uoc_th_so_thg_truoc_tht: 0, uoc_th_so_cungky_cong_don: 0, uoc_th_so_thg_truoc_cong_don: 0 },
     { id_mat_hang: 7, ten_san_pham: 'Gỗ và sản phẩm gỗ', luong_thang: 0, gia_tri_thang: 0, luong_cong_don: 0, gia_tri_cong_don: 0, uoc_th_so_cungky_tht: 0, uoc_th_so_thg_truoc_tht: 0, uoc_th_so_cungky_cong_don: 0, uoc_th_so_thg_truoc_cong_don: 0 },
     { id_mat_hang: 21, ten_san_pham: 'Giấy và các sản phẩm từ giấy', luong_thang: 0, gia_tri_thang: 0, luong_cong_don: 0, gia_tri_cong_don: 0, uoc_th_so_cungky_tht: 0, uoc_th_so_thg_truoc_tht: 0, uoc_th_so_cungky_cong_don: 0, uoc_th_so_thg_truoc_cong_don: 0 },
     { id_mat_hang: 13, ten_san_pham: 'Máy móc, thiết bị, dụng cụ phụ tùng khác', luong_thang: 0, gia_tri_thang: 0, luong_cong_don: 0, gia_tri_cong_don: 0, uoc_th_so_cungky_tht: 0, uoc_th_so_thg_truoc_tht: 0, uoc_th_so_cungky_cong_don: 0, uoc_th_so_thg_truoc_cong_don: 0 },
-    { id_mat_hang: 27, ten_san_pham: 'Máy vi tính, sản phẩm điện tử và linh kiện',luong_thang: 0, gia_tri_thang: 0, luong_cong_don: 0, gia_tri_cong_don: 0, uoc_th_so_cungky_tht: 0, uoc_th_so_thg_truoc_tht: 0, uoc_th_so_cungky_cong_don: 0, uoc_th_so_thg_truoc_cong_don: 0 },
+    { id_mat_hang: 27, ten_san_pham: 'Máy vi tính, sản phẩm điện tử và linh kiện', luong_thang: 0, gia_tri_thang: 0, luong_cong_don: 0, gia_tri_cong_don: 0, uoc_th_so_cungky_tht: 0, uoc_th_so_thg_truoc_tht: 0, uoc_th_so_cungky_cong_don: 0, uoc_th_so_thg_truoc_cong_don: 0 },
     { id_mat_hang: 61, ten_san_pham: 'Sắn và các sản phẩm từ sắn', luong_thang: 0, gia_tri_thang: 0, luong_cong_don: 0, gia_tri_cong_don: 0, uoc_th_so_cungky_tht: 0, uoc_th_so_thg_truoc_tht: 0, uoc_th_so_cungky_cong_don: 0, uoc_th_so_thg_truoc_cong_don: 0 },
     { id_mat_hang: 51, ten_san_pham: 'Phương tiện vận tải và phụ tùng', luong_thang: 0, gia_tri_thang: 0, luong_cong_don: 0, gia_tri_cong_don: 0, uoc_th_so_cungky_tht: 0, uoc_th_so_thg_truoc_tht: 0, uoc_th_so_cungky_cong_don: 0, uoc_th_so_thg_truoc_cong_don: 0 },
     { id_mat_hang: 28, ten_san_pham: 'Sản phẩm từ chất dẻo', luong_thang: 0, gia_tri_thang: 0, luong_cong_don: 0, gia_tri_cong_don: 0, uoc_th_so_cungky_tht: 0, uoc_th_so_thg_truoc_tht: 0, uoc_th_so_cungky_cong_don: 0, uoc_th_so_thg_truoc_cong_don: 0 },
-    { id_mat_hang: 20, ten_san_pham: 'Sản phẩm từ cao su',luong_thang: 0, gia_tri_thang: 0, luong_cong_don: 0, gia_tri_cong_don: 0, uoc_th_so_cungky_tht: 0, uoc_th_so_thg_truoc_tht: 0, uoc_th_so_cungky_cong_don: 0, uoc_th_so_thg_truoc_cong_don: 0 },
+    { id_mat_hang: 20, ten_san_pham: 'Sản phẩm từ cao su', luong_thang: 0, gia_tri_thang: 0, luong_cong_don: 0, gia_tri_cong_don: 0, uoc_th_so_cungky_tht: 0, uoc_th_so_thg_truoc_tht: 0, uoc_th_so_cungky_cong_don: 0, uoc_th_so_thg_truoc_cong_don: 0 },
     { id_mat_hang: 31, ten_san_pham: 'Nguyên phụ liệu dệt, may, da, giày', luong_thang: 0, gia_tri_thang: 0, luong_cong_don: 0, gia_tri_cong_don: 0, uoc_th_so_cungky_tht: 0, uoc_th_so_thg_truoc_tht: 0, uoc_th_so_cungky_cong_don: 0, uoc_th_so_thg_truoc_cong_don: 0 },
     { id_mat_hang: 19, ten_san_pham: 'Sản phẩm hóa chất', luong_thang: 0, gia_tri_thang: 0, luong_cong_don: 0, gia_tri_cong_don: 0, uoc_th_so_cungky_tht: 0, uoc_th_so_thg_truoc_tht: 0, uoc_th_so_cungky_cong_don: 0, uoc_th_so_thg_truoc_cong_don: 0 },
     { id_mat_hang: 33, ten_san_pham: 'Hàng hóa khác', luong_thang: 0, gia_tri_thang: 0, luong_cong_don: 0, gia_tri_cong_don: 0, uoc_th_so_cungky_tht: 0, uoc_th_so_thg_truoc_tht: 0, uoc_th_so_cungky_cong_don: 0, uoc_th_so_thg_truoc_cong_don: 0 },
     { id_mat_hang: 0, ten_san_pham: 'Tổng ', luong_thang: 0, gia_tri_thang: 0, luong_cong_don: 0, gia_tri_cong_don: 0, uoc_th_so_cungky_tht: 0, uoc_th_so_thg_truoc_tht: 0, uoc_th_so_cungky_cong_don: 0, uoc_th_so_thg_truoc_cong_don: 0 },
-
-]
-
+];

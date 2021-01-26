@@ -16,7 +16,7 @@ export class SCTBossAuthGuardService implements CanActivate {
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         const user = this.authenticationService.userValue;
         if (user) {
-            console.log("SCTBossAuthGuardService", user);
+            // console.log("SCTBossAuthGuardService", user);
             if (user.user_role == this.ROLE_ADMIN || user.user_role == this.ROLE_DEPARTMENT) {
                 return true;
             }

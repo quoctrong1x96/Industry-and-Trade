@@ -8,7 +8,7 @@ export class ex_im_model{
     uoc_th_so_thg_truoc_tht?: number;
     uoc_th_so_cungky_cong_don?: number;
     uoc_th_so_thg_truoc_cong_don?: number;
-    
+    uth_so_khn?: Number;
     id_mat_hang?: number;
     id_quoc_gia?: number;
     ten_tieng_anh?: string;

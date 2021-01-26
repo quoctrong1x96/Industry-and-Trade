@@ -38,6 +38,10 @@ import { registerLocaleData } from '@angular/common';
 import localevi from '@angular/common/locales/vi';
 registerLocaleData(localevi, 'vi');
 
+import { BorderTradeExportComponent } from "./border-trade/border-trade-export/border-trade-export.component";
+import { BorderTradeImportComponent } from "./border-trade/border-trade-import/border-trade-import.component";
+import { ImportDataComponent } from './export-import-management/import-data/import-data.component';
+import { ExcelServicesService } from 'src/app/shared/services/excel-services.service';
 @NgModule({
   imports: [
     CommonModule,
@@ -81,12 +85,17 @@ registerLocaleData(localevi, 'vi');
     FormatNumberReportPipe,
     TradeFairsExhibitionsComponent,
     SubscribeDiscountComponent,
+    BorderTradeExportComponent,
+    BorderTradeImportComponent,
+    ImportDataComponent
   ],
   entryComponents: [
-    ModalComponent
+    ModalComponent,
+    ImportDataComponent
   ],
   providers: [
-    CommonFuntions
+    CommonFuntions,
+    ExcelServicesService
   ]
 })
 export class CommecialManagementModule { }

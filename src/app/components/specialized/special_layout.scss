@@ -152,7 +152,7 @@
         .button-control.-align-left {
             text-align: left;
         }
-        .layout {
+        .layout, .exist-data {
             .table-header {
                 height: 30px !important;
             }
@@ -301,4 +301,45 @@
     #large-filter {
         width: 550%;
     }
+}
+
+.label-upload{
+    background-color: #1f7ed0;
+    color: white;
+    padding: 0.5em;
+    font-family: sans-serif;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    margin: 1em;
+    display: inline-flex;
+}
+
+table.sjs-table > tbody > tr > td {
+    // background-color: lightgreen;
+    border: 1px solid;
+}
+
+.button-close{
+    margin: 1em 0;
+    background-color: #1f7ed0;
+    color: white;
+    font-family: sans-serif;
+    box-shadow: none;
+}
+
+.no-data{
+    display: none;
+}
+
+.exist-data{
+    display: block;
+}
+
+.content-dialog {
+    display: block;
+    margin: 0px -24px;
+    padding: 0 24px;
+    max-height: 80vh;
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
 }
