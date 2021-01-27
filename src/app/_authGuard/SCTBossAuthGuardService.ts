@@ -17,10 +17,10 @@ export class SCTBossAuthGuardService implements CanActivate {
         const user = this.authenticationService.userValue;
         if (user) {
             console.log("SCTBossAuthGuardService", user);
-            if (user.user_role == this.ROLE_ADMIN || user.user_role == this.ROLE_DEPARTMENT) {
+            if (user.user_role_id == this.ROLE_ADMIN || user.user_role_id == this.ROLE_DEPARTMENT) {
                 return true;
             }
-            else{
+            else {
                 this.info.msgError(this.MESSAGE_REJECT);
                 this.router.navigate([this.REDIRECT_PAGE], { queryParams: { returnUrl: state.url } });
                 this.authenticationService.LogoutUser();

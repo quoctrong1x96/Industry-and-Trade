@@ -252,6 +252,7 @@ export class DataSCTComponent implements OnInit {
         out.push(temp);
       }
     }
+    console.log(out)
     return out
   }
 

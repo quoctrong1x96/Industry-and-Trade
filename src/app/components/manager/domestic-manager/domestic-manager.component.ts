@@ -136,6 +136,7 @@ export class DomesticManagerComponent implements OnInit {
     this._managerService.GetListProduct().subscribe(
       allrecords => {
         this.products = allrecords.data as ProductManagerModelList[];
+        console.log(allrecords)
       },
       //error => this.errorMessage = <any>error
     );
@@ -176,7 +177,7 @@ export class DomesticManagerComponent implements OnInit {
         let x: number = + element.gia.toString().replace(',', '').replace(',', '').replace(',', '');
         element.gia = x;
       }
-      if(element.ngay_cap_nhat){
+      if (element.ngay_cap_nhat) {
         let x = formatDate(this.pickedDate.date, this.FORMAT, this.LOCALE);
         element.ngay_cap_nhat = x;
       }

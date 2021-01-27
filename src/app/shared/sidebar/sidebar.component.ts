@@ -11,10 +11,13 @@ import { onSideNavChange, animateText } from '../../_animations/animation-sideba
 //Import Component-----------------------------------------------------------
 
 //Import Model-----------------------------------------------------------
-import { navItemsPublic, navItemsManager, navItemsSpecialized, navItemsReport } from './_nav';
+// import { navItemsPublic, navItemsManager, navItemsSpecialized, navItemsReport } from './_nav';
 import { INavItem } from '../../_models/_nav.model';
 import { TYPE_OF_NAV } from '../../_enums/typeOfUser.enum';
 import { STYLESCSS_TYPE } from 'src/app/_enums/styleChoose.enum';
+import { arrayMax, each } from 'highcharts';
+import { TreeviewConfig, TreeviewItem, TreeviewModule } from "ngx-treeview";
+import { element } from 'protractor';
 
 
 @Component({
@@ -34,7 +37,7 @@ export class SidebarComponent implements OnInit {
   public readonly LOGON_STATE_DEFAULT: boolean = false;
   public readonly LINK_TEXT_DEFAULT: boolean = false;
   public readonly PANEL_OPEN_STATE_DEFAULT: boolean = false;
-  public readonly USER_NAME_DEFUALT: string = "Tên tài khoản";
+  public readonly username_DEFUALT: string = "Tên tài khoản";
   public readonly AVATAR_DEFAULT: string = "../../../assets/img/avatars/1.jpg";
   public readonly STYLE_SCSS_DEFAULTL: STYLESCSS_TYPE = STYLESCSS_TYPE.MATERIAL;
 
@@ -42,15 +45,21 @@ export class SidebarComponent implements OnInit {
 
   public styleOfScss: STYLESCSS_TYPE;
   //Variable for TS & HTML-----------------------------------------------------------
-  public navItems: INavItem[] = [];
   public showSubMenus: Array<boolean> = new Array<boolean>();
   public showSubmenu: boolean = this.SHOW_SUB_MENU_DEFAULT;
   public sideNavState: boolean = this.SIDEBAR_STATE_DEFAULT;
   public linkText: boolean = this.LINK_TEXT_DEFAULT;
   public img_avatar: string = this.AVATAR_DEFAULT;
-  public userName: string = this.USER_NAME_DEFUALT;
+  public userName: string = this.username_DEFUALT;
   public logon: boolean = this.LOGON_STATE_DEFAULT;
   public panelOpenState: boolean = this.PANEL_OPEN_STATE_DEFAULT;
+
+  public navItems: INavItem[] = [];
+  // public navItemsPublic: Array<INavItem> = new Array<INavItem>();
+  // public navItemsManager: Array<INavItem> = new Array<INavItem>();
+  // public navItemsSpecialized: Array<INavItem> = new Array<INavItem>();
+  // public navItemsReport: Array<INavItem> = new Array<INavItem>();
+  public childitem: string[] = [];
   public options = {
     autoHide: true, scrollbarMinSize: 100, forceVisible: true, classNames: {
       // defaults
@@ -73,14 +82,43 @@ export class SidebarComponent implements OnInit {
     this.styleOfScss = this.STYLE_SCSS_DEFAULTL;
     this._loginService.refreshToken();
     this.onSinenavToggle();
-    if (this.navItems) {
-      let navLength = this.navItems.length;
-      for (let index = 0; index < navLength; index++) {
-        this.showSubMenus.push(false);
+    // if (this.navItems) {
+    //   let navLength = this.navItems.length;
+    //   for (let index = 0; index < navLength; index++) {
+    //     this.showSubMenus.push(false);
+    //   }
+    // }
+    this.logon = this._checkLocalStorage();
+    // this.navItems = this._showNavigationMenu(this.typeOfSidebar);
+    this.getMenu();
+  }
+
+  public getMenu() {
+    this._sidebarService.GetMenu().subscribe(
+      all => {
+        this.navItems = this.getSidebar(all.data, null)
+        // this.navItems = all.data as INavItem[];
+        console.log(this.navItems)
+      }
+    )
+  }
+
+  public getSidebar(menus: Array<INavItem>, parent: number) {
+    var output = [];
+    for (var i in menus) {
+      if (menus[i].parent_id == parent) {
+        let temp = new TreeviewItem({
+          text: menus[i].name,
+          value: menus[i].id,
+        });
+        var children = this.getSidebar(menus, menus[i].id);
+        if (children.length) {
+          temp.children = children;
+        }
+        output.push(temp)
       }
     }
-    this.logon = this._checkLocalStorage();
-    this.navItems = this._showNavigationMenu(this.typeOfSidebar);
+    return output
   }
 
   //Function for event HTML-----------------------------------------------------------
@@ -148,28 +186,28 @@ export class SidebarComponent implements OnInit {
     }
   }
   //Check input and show menu
-  public _showNavigationMenu(typeNav: number): INavItem[] {
-    let navItems: INavItem[] = [];
-    switch (typeNav) {
-      case TYPE_OF_NAV.NONE:
-        navItems = [];
-        break;
-      case TYPE_OF_NAV.MANAGER:
-        navItems = navItemsManager;
-        break;
-      case TYPE_OF_NAV.PUBLIC:
-        navItems = navItemsPublic;
-        break;
-      case TYPE_OF_NAV.SPECICALIZED:
-        navItems = navItemsSpecialized;
-        break;
-      case TYPE_OF_NAV.REPORT:
-        navItems = navItemsReport;
-        break;
-      default:
-        navItems = [];
-        break;
-    }
-    return navItems;
-  }
+  // public _showNavigationMenu(typeNav: number): INavItem[] {
+  //   let navItems: INavItem[] = [];
+  //   switch (typeNav) {
+  //     case TYPE_OF_NAV.NONE:
+  //       navItems = [];
+  //       break;
+  //     case TYPE_OF_NAV.MANAGER:
+  //       navItems = navItemsManager;
+  //       break;
+  //     case TYPE_OF_NAV.PUBLIC:
+  //       navItems = navItemsPublic;
+  //       break;
+  //     case TYPE_OF_NAV.SPECICALIZED:
+  //       navItems = navItemsSpecialized;
+  //       break;
+  //     case TYPE_OF_NAV.REPORT:
+  //       navItems = navItemsReport;
+  //       break;
+  //     default:
+  //       navItems = [];
+  //       break;
+  //   }
+  //   return navItems;
+  // }
 }

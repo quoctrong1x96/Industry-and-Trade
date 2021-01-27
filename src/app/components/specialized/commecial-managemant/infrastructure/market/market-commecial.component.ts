@@ -128,32 +128,32 @@ export class MarketCommecialManagementComponent implements OnInit {
   public hang_HangIII: number = 0;
   //--
   public xaydung_Moi: number = 0;
-  public xaydung_CaiTao:number = 0;
+  public xaydung_CaiTao: number = 0;
   public xaydung_KhongHoatDong: number = 0;
-  public xaydung_KhongHoatDong70:number = 0;
+  public xaydung_KhongHoatDong70: number = 0;
   public xaydung_ChuyenDoi: number = 0;
   //--
-  public quanly_BanTo:number = 0;
-  public quanly_DoanhNghiep:number = 0;
-  public quanly_HopTacXa:number = 0;
-  public quanly_HoKinhDoanh:number = 0;
+  public quanly_BanTo: number = 0;
+  public quanly_DoanhNghiep: number = 0;
+  public quanly_HopTacXa: number = 0;
+  public quanly_HoKinhDoanh: number = 0;
   //--
   public kinhdoanh_choBanLe: number = 0;
-  public kinhdoanh_choDauMoiChuyenDoanh: number =0;
-  public kinhdoanh_choDauMoiTongHop:number =0;
+  public kinhdoanh_choDauMoiChuyenDoanh: number = 0;
+  public kinhdoanh_choDauMoiTongHop: number = 0;
   //--
   public congtrinh_KienCo: number = 0;
   public congtrinh_Tam: number = 0;
   public congtrinh_BanKienCo: number = 0;
   //--
-  public tongvon_DNHTXHL:number =0;
-  public tongvon_Khac:number = 0;
+  public tongvon_DNHTXHL: number = 0;
+  public tongvon_Khac: number = 0;
   public tongvon_VonNganSachTW: number = 0;
   public tongvon_VonNganSachDiaPhuong: number = 0;
   //--
-  public chokhac_NgoaiQuyHoach:number = 0;
-  public chokhac_ChoDem:number = 0;
-  public chokhac_BienGioi:number = 0;
+  public chokhac_NgoaiQuyHoach: number = 0;
+  public chokhac_ChoDem: number = 0;
+  public chokhac_BienGioi: number = 0;
 
 
   public tableMergeHader: Array<ToltalHeaderMerge> = [];

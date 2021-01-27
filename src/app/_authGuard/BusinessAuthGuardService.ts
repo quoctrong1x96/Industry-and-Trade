@@ -18,7 +18,7 @@ export class BusinessAuthGuardService implements CanActivate {
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         const user = this.authenticationService.userValue;
         if (user) {
-            if (user.user_role == this.ROLE_BUSINESS){
+            if (user.user_role_id == this.ROLE_BUSINESS){
                 return true;
             }
             else{

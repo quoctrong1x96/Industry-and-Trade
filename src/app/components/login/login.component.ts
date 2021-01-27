@@ -52,13 +52,13 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['login']);
         }
         else {
-          if (response.data.user_role == 1) {
+          if (response.data.user_role_id == 1) {
             this.info.msgSuccess("Đăng nhập thành công với tư cách Sở Công thương");
           }
-          if (response.data.user_role == 2) {
+          if (response.data.user_role_id == 2) {
             this.info.msgSuccess("Đăng nhập thành công với tư cách các Đơn vị thuộc Sở");
           }
-          if (response.data.user_role == 3) {
+          if (response.data.user_role_id == 3) {
             this.info.msgSuccess("Đăng nhập thành công với tư cách Doanh nghiệp");
           }
           // if (document.referrer == "") {

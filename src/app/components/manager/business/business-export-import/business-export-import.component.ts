@@ -109,7 +109,7 @@ export class BusinessExportImportComponent implements OnInit {
     this.selectedYear = this.getCurrentYear();
     this.selectedMonth = this.getCurrentMonth();
     this.years = this.initialYears();
-    this.isSCT = this._loginService.userValue.user_role < 3;
+    this.isSCT = this._loginService.userValue.user_role_id < 3;
     console.log(this._loginService.userValue);
     this.getAllCompanyExport();
     this.getAllCompanyImport();
