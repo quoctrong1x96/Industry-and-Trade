@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import * as FileSaver from 'file-saver';
 import { Workbook } from 'exceljs';
 import * as XLSX from 'xlsx';
+import { domain } from 'process';
 
 const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
 const EXCEL_EXTENSION = '.xlsx';
@@ -11,24 +12,76 @@ const EXCEL_EXTENSION = '.xlsx';
 })
 export class ExcelService {
 
-  constructor() { }
+    private DOMtable = undefined;
 
-    public exportDomTableAsExcelFile(filename: string, sheetname: string, DOMtable: any, datas: any = false) {
-        // Get data from DOM and ignore data from source
-        if (DOMtable) datas = XLSX.utils.table_to_sheet(DOMtable);
+    constructor() { }
 
-        if (datas === undefined && datas.length == 0 ) return;
+    public exportJsonAsExcelFile(filename: string, sheetname: string, datas: any) {
+        if (!datas && datas.length == 0 ) return;
 
-        if (sheetname.includes('/')) sheetname = sheetname.replace('/', '_').replace('/', '_');
+        let parseDatas = XLSX.utils.json_to_sheet(datas);
 
+        sheetname = this.formatSheetname(sheetname);
         let workbook = new Workbook();
         let worksheet = workbook.addWorksheet(sheetname);
 
-        this.mergeTable(worksheet, datas['!merges'])
-        for (let cVal in datas) {
+        this.formatBody(worksheet, parseDatas);
+
+        this.formatHeader(worksheet);
+
+        this.formatWorksheetLength(worksheet);
+
+        this.saveAsExcelFile(workbook, filename);
+    }
+
+    public exportDomTableAsExcelFile(filename: string, sheetname: string, DOMtable: any) {
+        // Get data from DOM and ignore data from source
+        let datas = XLSX.utils.table_to_sheet(DOMtable);
+        this.setDOMtable(DOMtable);
+
+        if (!datas && datas.length == 0 ) return;
+
+        sheetname = this.formatSheetname(sheetname);
+        let workbook = new Workbook();
+        let worksheet = workbook.addWorksheet(sheetname);
+
+        this.mergeCellsInTable(worksheet, datas['!merges'])
+
+        this.formatBody(worksheet, datas);
+
+        this.formatHeader(worksheet);
+
+        this.formatWorksheetLength(worksheet);
+
+        this.saveAsExcelFile(workbook, filename);
+    }
+
+    private formatSheetname(sheetname: string): string{
+        if (sheetname.includes('/')) sheetname = sheetname.replace('/', '_').replace('/', '_');
+        return sheetname;
+    }
+
+    private formatHeader(worksheet: any): void {
+        let headerLen = 1;
+        if (this.getDOMtable()) {
+            let thead = this.DOMtable.getElementsByTagName('thead');
+            headerLen = thead ? thead[0].getElementsByTagName('tr').length : 0;
+        }
+    
+        let headerRows = worksheet.getRows(1, headerLen);
+        for (let h in headerRows) {
+            headerRows[h].eachCell((cell, number) => {
+                cell.font = { bold: true, color: { argb: '000000'}};
+                cell.alignment = { wrapText: false };
+            });
+        }
+    }
+
+    private formatBody(worksheet: any, bodyDatas: any): void {
+        for (let cVal in bodyDatas) {
             if (!cVal.includes('!')) {
                 let cell = worksheet.getCell(cVal);
-                cell.value = datas[cVal]['v'];
+                cell.value = bodyDatas[cVal]['v'];
                 cell.border = {
                     top: { style:'thin' },
                     left: { style:'thin' },
@@ -38,24 +91,14 @@ export class ExcelService {
                 cell.alignment = { wrapText: true };
             } 
         }
-
-        let headerRows = worksheet.getRows(1, this.getHeaderNumOfRows(DOMtable));
-
-        for (let h in headerRows) {
-            headerRows[h].eachCell((cell, number) => {
-                cell.font = { bold: true, color: { argb: '000000'}}
-            });
-        }
-
-        this.formatWorksheetLength(worksheet);
-
-        this.saveAsExcelFile(workbook, filename);
     }
 
-    private mergeTable(worksheet: any, mergeRows: any) {
-        mergeRows.forEach(row => {
-            worksheet.mergeCells(row.s.r + 1, row.s.c + 1, row.e.r + 1, row.e.c + 1);
-        });
+    private mergeCellsInTable(worksheet: any, mergeRows: any): void {
+        if (mergeRows) {
+            mergeRows.forEach(row => {
+                worksheet.mergeCells(row.s.r + 1, row.s.c + 1, row.e.r + 1, row.e.c + 1);
+            });
+        }
     }
 
     private saveAsExcelFile(workbook: any, filename: string): void {
@@ -65,15 +108,7 @@ export class ExcelService {
         });
     }
 
-    private getHeaderNumOfRows(table: any) {
-        let thead = table.getElementsByTagName('thead');
-        if (thead) {
-            return thead[0].getElementsByTagName('tr').length;
-        }
-        return 0;
-    }
-
-    private formatWorksheetLength(ws: any) {
+    private formatWorksheetLength(ws: any): void {
         // Format length of columns
         ws.columns.forEach((column, i) => {
             let maxLength = 0;
@@ -89,4 +124,11 @@ export class ExcelService {
         });
     }
 
+    private setDOMtable(table: any) {
+        this.DOMtable = table;
+    }
+
+    private getDOMtable() {
+        return this.DOMtable;
+    }
 }

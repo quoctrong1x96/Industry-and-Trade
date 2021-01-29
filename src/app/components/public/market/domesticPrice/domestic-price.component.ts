@@ -112,12 +112,7 @@ export class DomesticPriceComponent implements OnInit {
           row.ngay_cap_nhat = formatDate(row.ngay_cap_nhat, this.format, this.locale).toString();
         });
         this.dataSource = new MatTableDataSource<DomesticPriceModel>(allrecords.data);
-        if (this.dataSource.data.length == 0) {
-          this.noData = true;
-        } else {
-          this.noData = false;
-        }
-        console.log(this.noData);
+        this.noData = this.dataSource.data.length == 0 ? true : false;        
         this.dataSource.paginator = this.paginator;
         this.paginator._intl.itemsPerPageLabel = 'Số hàng';
         this.paginator._intl.firstPageLabel = "Trang Đầu";
@@ -142,7 +137,8 @@ export class DomesticPriceComponent implements OnInit {
   }
 
   //Event for "Xuất Excel"
-  public exportToExcel(filename: string, sheetname: string, datas: Array<Object> = []) {
+  public exportToExcel(filename: string, sheetname: string) {
+    // this.excelService.exportJsonAsExcelFile(filename, sheetname, this.dataSource.data);
     this.excelService.exportDomTableAsExcelFile(filename, sheetname, this.table.nativeElement);
   }
 
