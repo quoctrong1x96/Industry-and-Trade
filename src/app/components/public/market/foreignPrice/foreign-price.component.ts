@@ -4,7 +4,6 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
-import * as XLSX from 'xlsx';
 import _moment from 'moment';
 import { defaultFormat as _rollupMoment, Moment } from 'moment';
 import { DateAdapter, MAT_DATE_LOCALE, MAT_DATE_FORMATS, MatDatepicker } from '@angular/material';
@@ -13,8 +12,10 @@ import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/mat
 // import { getStyle, hexToRgba } from '@coreui/coreui/dist/js/coreui-utilities';
 // import { CustomTooltips } from '@coreui/coreui-plugin-chartjs-custom-tooltips';
 
-//Import Service
+//Import Services
 import { MarketService } from '../../../../_services/APIService/market.service';
+import { ExcelService } from 'src/app/_services/excelUtil.service';
+
 //Import Model
 import { ForeignMarketModel } from '../../../../_models/APIModel/domestic-market.model';
 //Import Component
@@ -81,7 +82,10 @@ export class ForeignMarketPriceComponent implements OnInit {
   @ViewChild('TABLE', { static: false }) table: ElementRef;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-  constructor(public marketService: MarketService, public router: Router) {
+  constructor(
+    public marketService: MarketService,
+    public excelService: ExcelService,
+    public router: Router,) {
     this.InitialData();
   }
 
@@ -136,13 +140,7 @@ export class ForeignMarketPriceComponent implements OnInit {
   }
   //Event for  "Xuất excel"
   public exportTOExcel(filename: string, sheetname: string) {
-    sheetname = sheetname.replace('/', '_').replace('/', '_');
-    let excelFileName: string = filename + '.xlsx';
-    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);
-    const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, sheetname);
-    /* save to file */
-    XLSX.writeFile(wb, excelFileName);
+    this.excelService.exportDomTableAsExcelFile(filename, sheetname, this.table.nativeElement);
   }
   //Function EXTENTION-------------------------------------------------------------------------------------------------------------
   public initialYears() {

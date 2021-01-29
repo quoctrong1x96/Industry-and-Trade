@@ -2,7 +2,6 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatOption, MatSelect, MatTable, MatTableDataSource } from '@angular/material';
 import { element } from 'protractor';
 import { ReportService } from 'src/app/_services/APIService/report.service';
-import { SCTService } from 'src/app/_services/APIService/sct.service';
 import { MatAccordion } from '@angular/material/expansion';
 import { MatPaginator } from '@angular/material/paginator';
 import { District } from 'src/app/_models/district.model';
@@ -12,9 +11,13 @@ import { LinkModel } from 'src/app/_models/link.model';
 import * as XLSX from 'xlsx';
 import { HeaderMerge, ReportAttribute, ReportDatarow, ReportIndicator, ReportOject, ReportTable, ToltalHeaderMerge } from 'src/app/_models/APIModel/report.model';
 import { ActivatedRoute } from '@angular/router';
+import { TreeviewItem } from 'ngx-treeview';
+
+// Services
+import { ExcelService } from 'src/app/_services/excelUtil.service';
+import { SCTService } from 'src/app/_services/APIService/sct.service';
 import { KeyboardService } from 'src/app/shared/services/keyboard.service';
 import { InformationService } from 'src/app/shared/information/information.service';
-import { TreeviewItem } from 'ngx-treeview';
 
 interface HashTableNumber<T> {
     [key: number]: T;
@@ -94,6 +97,7 @@ export class ReportExplosivesComponent implements OnInit {
         public reportSevice: ReportService,
         public route: ActivatedRoute,
         public keyboardservice: KeyboardService,
+        public excelService: ExcelService,
         public info: InformationService
       ) { }
     
@@ -107,13 +111,7 @@ export class ReportExplosivesComponent implements OnInit {
     
       //Xuất excel
       ExportTOExcel(filename: string, sheetname: string) {
-        // sheetname = sheetname.replace('/', '_');
-        // let excelFileName: string = filename + '.xlsx';
-        // const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);
-        // const wb: XLSX.WorkBook = XLSX.utils.book_new();
-        // XLSX.utils.book_append_sheet(wb, ws, sheetname);
-        // /* save to file */
-        // XLSX.writeFile(wb, excelFileName);
+        this.excelService.exportDomTableAsExcelFile(filename, sheetname, this.table.nativeElement);
       }
       cols: Array<any> = [];
       filteredOptions: any[];

@@ -2,19 +2,23 @@ import { Component, OnInit, ViewChild, AfterViewInit, ElementRef } from '@angula
 import { MatTableDataSource, MatTable, MatAccordion, MatPaginator, MatSort } from '@angular/material';
 import { ex_im_model } from 'src/app/_models/APIModel/export-import.model';
 import { District } from 'src/app/_models/district.model';
-import { SCTService } from 'src/app/_services/APIService/sct.service';
 import { ModalComponent } from '../dialog-import-export/modal.component';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { tap } from 'rxjs/operators';
-import { MarketService } from '../../../../../_services/APIService/market.service';
-import { BreadCrumService } from 'src/app/_services/injectable-service/breadcrums.service';
 import { LinkModel } from 'src/app/_models/link.model';
-import * as XLSX from 'xlsx';
+
+// Services
+import { BreadCrumService } from 'src/app/_services/injectable-service/breadcrums.service';
+import { SCTService } from 'src/app/_services/APIService/sct.service';
+import { MarketService } from 'src/app/_services/APIService/market.service';
+import { ExcelService } from 'src/app/_services/excelUtil.service';
+
 @Component({
   selector: 'app-import-management',
   templateUrl: './import-management.component.html',
   styleUrls: ['../../../special_layout.scss'],
 })
+
 export class ImportManagementComponent implements OnInit, AfterViewInit {
   //Constant
   private readonly LINK_DEFAULT: string = "/specialized/commecial-management/export_import/imported_products";
@@ -94,7 +98,8 @@ constructor(
     public sctService: SCTService,
     public matDialog: MatDialog,
     public marketService: MarketService,
-    private _breadCrumService: BreadCrumService
+    public excelService: ExcelService,
+    private _breadCrumService: BreadCrumService,
 ) { }
 
 handleGTXK(){
@@ -363,13 +368,7 @@ applyDataTarget(value: number[]) {
     // }
 }
 
-public ExportTOExcel(filename: string, sheetname: string) {
-    const excelExtention: string = ".xlsx";
-    let excelFileName: string = filename + excelExtention;
-    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);
-    const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, sheetname);
-    /* save to file */
-    XLSX.writeFile(wb, excelFileName);
-}
+    public ExportTOExcel(filename: string, sheetname: string) {
+        this.excelService.exportDomTableAsExcelFile(filename, sheetname, this.table.nativeElement);
+    }
 }

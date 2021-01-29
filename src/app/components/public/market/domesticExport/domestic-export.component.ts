@@ -9,8 +9,11 @@ import { MatDatepicker, MatDatepickerInputEvent } from '@angular/material/datepi
 
 import { MatDialog } from '@angular/material';
 import { normalize } from 'path';
+
 //Import service
 import { MarketService } from '../../../../_services/APIService/market.service';
+import { ExcelService } from 'src/app/_services/excelUtil.service';
+
 //Import Model
 import { ExportMarketModel } from '../../../../_models/APIModel/domestic-market.model';
 import { SAVE } from 'src/app/_enums/save.enum';
@@ -83,7 +86,12 @@ export class DomesticExportComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild('TABLE', { static: false }) table: ElementRef;
 
-  constructor(public marketService: MarketService, public router: Router, public dialog: MatDialog,private scrollTop: ViewportScroller) {
+  constructor(
+    public marketService: MarketService, 
+    public router: Router, 
+    public dialog: MatDialog,
+    public excelService: ExcelService,
+    private scrollTop: ViewportScroller) {
     //this.initialData();
   }
 
@@ -209,16 +217,12 @@ export class DomesticExportComponent implements OnInit {
       }
     });
   }
+
   //Event "Xuất excel"
   public exportTOExcel(filename: string, sheetname: string) {
-    sheetname = sheetname.replace('/', '_');
-    let excelFileName: string = filename + '.xlsx';
-    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);
-    const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, sheetname);
-    /* save to file */
-    XLSX.writeFile(wb, excelFileName);
+    this.excelService.exportDomTableAsExcelFile(filename, sheetname, this.table.nativeElement);
   }
+
   //Function EXTENTION -----------------------------------------------------------------------------------------------------------------
   public scroll(el: HTMLElement) {
     //el.scrollIntoView();

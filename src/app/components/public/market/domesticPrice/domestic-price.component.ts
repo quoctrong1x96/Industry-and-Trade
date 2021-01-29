@@ -8,14 +8,14 @@ import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/mat
 import { formatDate } from '@angular/common';
 
 
-//Import Services
+// Import Services
 import { MarketService } from '../../../../_services/APIService/market.service';
-import { exportToExcel } from '../../../../_services/excelUtil.service';
-//Import Model
+import { ExcelService } from 'src/app/_services/excelUtil.service';
+// Import Models
 import { DomesticPriceModel } from '../../../../_models/APIModel/domestic-market.model';
-//Imoport Component
+// Import Components
 
-//Moment
+// Moment
 import { defaultFormat as _rollupMoment, Moment } from 'moment';
 import _moment from 'moment';
 
@@ -86,9 +86,9 @@ export class DomesticPriceComponent implements OnInit {
 
   public defaultProducts: Object[] = [{ ma_san_pham: 2 }, { ma_san_pham: 10 }, { ma_san_pham: 4 }, { ma_san_pham: 5 }];
 
-
-
-  constructor(public marketService: MarketService) {
+  constructor(
+    public marketService: MarketService, 
+    public excelService: ExcelService) {
     this.initialData();
   }
 
@@ -143,7 +143,7 @@ export class DomesticPriceComponent implements OnInit {
 
   //Event for "Xuất Excel"
   public exportToExcel(filename: string, sheetname: string, datas: Array<Object> = []) {
-    exportToExcel(filename, sheetname, datas, this.table.nativeElement);
+    this.excelService.exportDomTableAsExcelFile(filename, sheetname, this.table.nativeElement);
   }
 
   //Function for Extention-------------------------------------------------------------------------------------------
