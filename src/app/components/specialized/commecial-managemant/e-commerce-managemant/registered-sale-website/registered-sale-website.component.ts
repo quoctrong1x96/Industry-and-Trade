@@ -27,7 +27,9 @@ export class RegisteredSaleWebsiteComponent implements OnInit {
   dataSource: MatTableDataSource<SaleWebsite>;
   filteredDataSource: MatTableDataSource<SaleWebsite> = new MatTableDataSource<SaleWebsite>();
   filterModel: SaleWebsiteFilterModel = { id_quan_huyen: [] };
-  constructor(public sctService: SCTService, private _breadCrumService: BreadCrumService) { }
+  constructor(
+    public sctService: SCTService, 
+    private _breadCrumService: BreadCrumService) { }
 
   ngOnInit() {
     this.GetDanhSachWebsiteTMDT();

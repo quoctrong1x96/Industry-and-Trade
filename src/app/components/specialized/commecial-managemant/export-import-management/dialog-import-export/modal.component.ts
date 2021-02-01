@@ -8,8 +8,8 @@ import { log } from 'util';
 import { Route } from '@angular/compiler/src/core';
 import { Router } from '@angular/router';
 import { MatSort } from '@angular/material/sort';
-import * as XLSX from 'xlsx';
 
+import { ExcelService } from 'src/app/_services/excelUtil.service';
 
 @Component({
     selector: 'jw-modal',
@@ -43,7 +43,8 @@ export class ModalComponent implements OnInit {
     id: number = 1;
     constructor(
         @Inject(MAT_DIALOG_DATA) public data: any,
-        public router: Router
+        public router: Router,
+        public excelService: ExcelService,
     ) {
     }
 
@@ -104,22 +105,10 @@ export class ModalComponent implements OnInit {
     }
 
     public ExportTOExcel(filename: string, sheetname: string) {
-        const excelExtention: string = ".xlsx";
-        let excelFileName: string = filename + excelExtention;
-        const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);
-        const wb: XLSX.WorkBook = XLSX.utils.book_new();
-        XLSX.utils.book_append_sheet(wb, ws, sheetname);
-        /* save to file */
-        XLSX.writeFile(wb, excelFileName);
+        this.excelService.exportDomTableAsExcelFile(filename, sheetname, this.table.nativeElement);
     }
 
     public ExportTOExcel1(filename: string, sheetname: string) {
-        const excelExtention: string = ".xlsx";
-        let excelFileName: string = filename + excelExtention;
-        const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table1.nativeElement);
-        const wb: XLSX.WorkBook = XLSX.utils.book_new();
-        XLSX.utils.book_append_sheet(wb, ws, sheetname);
-        /* save to file */
-        XLSX.writeFile(wb, excelFileName);
+        this.excelService.exportDomTableAsExcelFile(filename, sheetname, this.table.nativeElement);
     }
 }

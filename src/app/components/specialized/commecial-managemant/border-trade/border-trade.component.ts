@@ -1,15 +1,17 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatTable, MatAccordion, MatPaginator, MatSort, MatDialog, MatDialogConfig } from '@angular/material';
-import { SCTService } from 'src/app/_services/APIService/sct.service';
-import { MarketService } from 'src/app/_services/APIService/market.service';
 import { ModalComponent } from '../export-import-management/dialog-import-export/modal.component';
 import { BorderTrade } from 'src/app/_models/APIModel/border-trade.model'
 import { concat, Observable, from, forkJoin } from 'rxjs';
 import { LinkModel } from 'src/app/_models/link.model';
 import { BreadCrumService } from 'src/app/_services/injectable-service/breadcrums.service';
-import { ExcelUitl } from 'src/app/_services/excelUtil.service';
 import * as XLSX from 'xlsx';
 import { mergeMap, tap } from 'rxjs/operators';
+
+// Services
+import { SCTService } from 'src/app/_services/APIService/sct.service';
+import { MarketService } from 'src/app/_services/APIService/market.service';
+import { ExcelService } from 'src/app/_services/excelUtil.service';
 
 export class GroupProduct {
   group_code: number;
@@ -173,6 +175,7 @@ export class BorderTradeComponent implements OnInit {
   //Private Variable for TS
   private _linkOutput: LinkModel = new LinkModel();
   constructor(
+    public excelService: ExcelService,
     private sctService: SCTService,
     private matDialog: MatDialog,
     private marketService: MarketService,
@@ -238,14 +241,7 @@ export class BorderTradeComponent implements OnInit {
   }
 
   public ExportTOExcel(filename: string, sheetname: string) {
-    const excelExtention: string = ".xlsx";
-    let excelFileName: string = filename + excelExtention;
-
-    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);
-    const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, sheetname);
-    /* save to file */
-    XLSX.writeFile(wb, excelFileName);
+    this.excelService.exportDomTableAsExcelFile(filename, sheetname, this.table.nativeElement);
   }
 
   selectMonth(month) {

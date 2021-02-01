@@ -11,12 +11,15 @@ import { MatTableFilter } from "mat-table-filter";
 
 //Import Model
 import { HeaderMerge, ReportAttribute, ReportDatarow, ReportIndicator, ReportOject, ReportTable, ToltalHeaderMerge, } from "../../../../../_models/APIModel/report.model";
-//Import Service
+
+//Import Services
 import { ControlService } from "../../../../../_services/APIService/control.service";
 import { ReportDirective } from "src/app/shared/report.directive";
 import { KeyboardService } from "src/app/shared/services/keyboard.service";
 import { InformationService } from "src/app/shared/information/information.service";
 import { ReportService } from "src/app/_services/APIService/report.service";
+import { ExcelService } from 'src/app/_services/excelUtil.service';
+
 import * as moment from "moment";
 import { CompanyDetailModel } from "src/app/_models/APIModel/domestic-market.model";
 import { TreeviewConfig, TreeviewItem, TreeviewModule } from "ngx-treeview";
@@ -174,6 +177,7 @@ export class MarketCommecialManagementComponent implements OnInit {
   private _tableData: MatTableDataSource<ReportTable> = new MatTableDataSource<ReportTable>();
   //Angular FUnction --------------------------------------------------------------------
   constructor(
+    public excelService: ExcelService,
     public reportSevice: ReportService,
     public route: ActivatedRoute,
     public keyboardservice: KeyboardService,
@@ -191,13 +195,7 @@ export class MarketCommecialManagementComponent implements OnInit {
 
   //Xuất excel
   ExportTOExcel(filename: string, sheetname: string) {
-    // sheetname = sheetname.replace('/', '_');
-    // let excelFileName: string = filename + '.xlsx';
-    // const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);
-    // const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    // XLSX.utils.book_append_sheet(wb, ws, sheetname);
-    // /* save to file */
-    // XLSX.writeFile(wb, excelFileName);
+    this.excelService.exportDomTableAsExcelFile(filename, sheetname, this.table.nativeElement);
   }
   cols: Array<any> = [];
   filteredOptions: any[];

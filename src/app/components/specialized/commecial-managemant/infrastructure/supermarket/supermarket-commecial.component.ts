@@ -12,6 +12,7 @@ import { MatTableFilter } from 'mat-table-filter';
 //Import Model
 import { HeaderMerge, ReportAttribute, ReportDatarow, ReportIndicator, ReportOject, ReportTable, ToltalHeaderMerge } from '../../../../../_models/APIModel/report.model';
 //Import Service
+import { ExcelService } from 'src/app/_services/excelUtil.service';
 import { ControlService } from '../../../../../_services/APIService/control.service';
 import { ReportDirective } from 'src/app/shared/report.directive';
 import { KeyboardService } from 'src/app/shared/services/keyboard.service';
@@ -387,6 +388,7 @@ export class SuperMarketCommecialManagementComponent implements OnInit {
 
   //Angular FUnction --------------------------------------------------------------------
   constructor(
+    public excelService: ExcelService,
     public reportSevice: ReportService,
     public route: ActivatedRoute,
     public keyboardservice: KeyboardService,
@@ -403,13 +405,7 @@ export class SuperMarketCommecialManagementComponent implements OnInit {
 
   //Xuất excel
   ExportTOExcel(filename: string, sheetname: string) {
-    sheetname = sheetname.replace('/', '_');
-    let excelFileName: string = filename + '.xlsx';
-    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);
-    const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, sheetname);
-    /* save to file */
-    XLSX.writeFile(wb, excelFileName);
+    this.excelService.exportDomTableAsExcelFile(filename, sheetname, this.table.nativeElement);
   }
   //FUNCTION FOR ONLY TS _------------------------------
   // applyCondictionFilter(type, event: any) {

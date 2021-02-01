@@ -16,6 +16,8 @@ import { merge } from 'rxjs';
 import moment from 'moment';
 import { ThrowStmt } from '@angular/compiler';
 
+// Services
+import { ExcelService } from 'src/app/_services/excelUtil.service';
 
 interface HashTableNumber<T> {
   [key: string]: T;
@@ -84,7 +86,8 @@ export class FillReportComponent implements OnInit {
     public route: ActivatedRoute,
     public keyboardservice: KeyboardService,
     public info: InformationService,
-    public location: Location
+    public location: Location,
+    public excelService: ExcelService,
   ) {
     this.route.queryParams.subscribe(params => {
       this.obj_id = params['obj_id'];
@@ -184,13 +187,7 @@ export class FillReportComponent implements OnInit {
 
   //Xuất excel
   ExportTOExcel(filename: string, sheetname: string) {
-    // sheetname = sheetname.replace('/', '_');
-    // let excelFileName: string = filename + '.xlsx';
-    // const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);
-    // const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    // XLSX.utils.book_append_sheet(wb, ws, sheetname);
-    // /* save to file */
-    // XLSX.writeFile(wb, excelFileName);
+    // this.excelService.exportDomTableAsExcelFile(filename, sheetname, this.table.nativeElement);
   }
 
   GetReportById(obj_id: number, time_id: number, org_id: number) {

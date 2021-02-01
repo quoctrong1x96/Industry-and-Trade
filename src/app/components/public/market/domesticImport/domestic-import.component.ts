@@ -10,7 +10,8 @@ import { MatDialog } from '@angular/material';
 //Import model
 import { DomesticPriceModel, ImportMarketModel } from '../../../../_models/APIModel/domestic-market.model';
 import { SAVE } from 'src/app/_enums/save.enum';
-//Import Service
+//Import Services
+import { ExcelService } from 'src/app/_services/excelUtil.service';
 import { MarketService } from '../../../../_services/APIService/market.service';
 //Import Component
 import { CompanyTopPopup } from '../company-top-popup/company-top-popup.component';
@@ -77,9 +78,12 @@ export class DomesticImportComponent implements OnInit {
   @ViewChild('TABLE', { static: false }) table: ElementRef;
 
 
-  constructor(public marketService: MarketService,
+  constructor(
+    public marketService: MarketService,
     public router: Router,
-    public dialog: MatDialog) {
+    public dialog: MatDialog,
+    public excelService: ExcelService,
+  ) {
     //this.initialData();
   }
   ngOnInit() {
@@ -213,13 +217,7 @@ export class DomesticImportComponent implements OnInit {
   }
   //Event "Xuất Excel"
   public exportTOExcel(filename: string, sheetname: string) {
-    sheetname = sheetname.replace('/', '_');
-    let excelFileName: string = filename + '.xlsx';
-    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);
-    const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, sheetname);
-    /* save to file */
-    XLSX.writeFile(wb, excelFileName);
+    this.excelService.exportDomTableAsExcelFile(filename, sheetname, this.table.nativeElement);
   }
   //Event "Chọn năm"
   public changeYear() {

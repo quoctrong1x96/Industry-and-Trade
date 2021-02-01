@@ -27,6 +27,7 @@ export class InformedEcommerceWebsiteComponent implements OnInit {
   @ViewChild('TABLE', { static: false }) table: ElementRef;
 
   exportExcel() {
+    // TODO: Check export excel here
     const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Dịch vụ TMDT');

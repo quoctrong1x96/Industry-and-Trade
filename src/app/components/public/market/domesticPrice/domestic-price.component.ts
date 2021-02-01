@@ -2,21 +2,23 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
-import * as XLSX from 'xlsx';
 import { DateAdapter, MAT_DATE_LOCALE, MAT_DATE_FORMATS } from '@angular/material';
 import { FormControl } from '@angular/forms';
 import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { formatDate } from '@angular/common';
 
-//Import Service
-import { MarketService } from '../../../../_services/APIService/market.service';
-//Import Model
-import { DomesticPriceModel } from '../../../../_models/APIModel/domestic-market.model';
-//Imoport Component
 
-//Moment
+// Import Services
+import { MarketService } from '../../../../_services/APIService/market.service';
+import { ExcelService } from 'src/app/_services/excelUtil.service';
+// Import Models
+import { DomesticPriceModel } from '../../../../_models/APIModel/domestic-market.model';
+// Import Components
+
+// Moment
 import { defaultFormat as _rollupMoment, Moment } from 'moment';
 import _moment from 'moment';
+
 const moment = _rollupMoment || _moment;
 export const DDMMYY_FORMAT = {
   parse: {
@@ -84,9 +86,9 @@ export class DomesticPriceComponent implements OnInit {
 
   public defaultProducts: Object[] = [{ ma_san_pham: 2 }, { ma_san_pham: 10 }, { ma_san_pham: 4 }, { ma_san_pham: 5 }];
 
-
-
-  constructor(public marketService: MarketService) {
+  constructor(
+    public marketService: MarketService, 
+    public excelService: ExcelService) {
     this.initialData();
   }
 
@@ -110,12 +112,7 @@ export class DomesticPriceComponent implements OnInit {
           row.ngay_cap_nhat = formatDate(row.ngay_cap_nhat, this.format, this.locale).toString();
         });
         this.dataSource = new MatTableDataSource<DomesticPriceModel>(allrecords.data);
-        if (this.dataSource.data.length == 0) {
-          this.noData = true;
-        } else {
-          this.noData = false;
-        }
-        console.log(this.noData);
+        this.noData = this.dataSource.data.length == 0 ? true : false;        
         this.dataSource.paginator = this.paginator;
         this.paginator._intl.itemsPerPageLabel = 'Số hàng';
         this.paginator._intl.firstPageLabel = "Trang Đầu";
@@ -138,21 +135,19 @@ export class DomesticPriceComponent implements OnInit {
     console.log("Change Year Func.");
     //this.GetDataForChart(this.chartYearModelSelected);
   }
+
   //Event for "Xuất Excel"
-  public exportTOExcel(filename: string, sheetname: string) {
-    sheetname = sheetname.replace('/', '_').replace('/', '_');
-    let excelFileName: string = filename + '.xlsx';
-    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);
-    const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, sheetname);
-    /* save to file */
-    XLSX.writeFile(wb, excelFileName);
+  public exportToExcel(filename: string, sheetname: string) {
+    // this.excelService.exportJsonAsExcelFile(filename, sheetname, this.dataSource.data);
+    this.excelService.exportDomTableAsExcelFile(filename, sheetname, this.table.nativeElement);
   }
+
   //Function for Extention-------------------------------------------------------------------------------------------
   public getMonthAndYear(time: string) {
     let formattedDate = formatDate(time, this.format, this.locale);
     return formattedDate as string;
   }
+
   public initialYears() {
     let returnYear: Array<any> = [];
     let currentDate = new Date();
