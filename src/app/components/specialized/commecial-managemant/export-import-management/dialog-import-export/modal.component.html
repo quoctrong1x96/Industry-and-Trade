@@ -1,5 +1,5 @@
 <mat-dialog-content>
-    <ng-container *ngIf="id === 1; else elseTemplate">
+    <ng-container *ngIf="id === 1">
         <mat-card class="material">
             <mat-card-content>
                 <div class="button-control">
@@ -183,7 +183,7 @@
             </mat-dialog-actions>
         </mat-card>
     </ng-container>
-    <ng-template #elseTemplate>
+    <ng-container *ngIf="id === 2">
         <mat-card class="material">
             <mat-card-content>
                 <div class="button-control">
@@ -325,5 +325,5 @@
             <mat-dialog-actions align="end">
             </mat-dialog-actions>
         </mat-card>
-    </ng-template>
+    </ng-container>
 </mat-dialog-content>

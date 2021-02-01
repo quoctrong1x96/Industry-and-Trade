@@ -49,6 +49,7 @@ export const customCurrencyMaskConfig = {
   ],
   exports: [
     ConfirmDialogComponent,
+    ExportTopCompanyManager
     
   ],
   declarations: [

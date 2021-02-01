@@ -30,6 +30,12 @@ export class ManagerService {
     public urlListProduct = "/danh-sach-san-pham";
     public urlListNation = "/danh-sach-quoc-gia";
 
+    public apiDomestic = environment.apiEndpoint + "api/danh-sach";
+    public apiManager = environment.apiEndpoint + "api/qltm/";
+    public newUrlListProduct = "/san-pham"
+    public newUrlPrice = "gia-ca";
+    public urlDomesticManager_new = "gia-ca";
+
     token: any;
     username: any;
 
@@ -39,12 +45,12 @@ export class ManagerService {
         this.token = this.data.token;
     }
 
-    public GetDomesticMarketByTime(ngay_lay_so_lieu: string) {
+    public GetDomesticMarketByTime(ngay_lay_so_lieu) {
         console.log("+ Function: GetDomesticMarketByTime(ngay_lay_so_lieu: " + ngay_lay_so_lieu.toString() + " )");
-        var apiUrl = this.apiManagerUrl + this.urlDomesticManager;
+        var apiUrl = this.apiManager + this.newUrlPrice;
         let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
         //headers = headers.append('Authorization', 'Bearer ' + `${this.token}`);
-        let params = new HttpParams().set('ngay_lay_so_lieu', ngay_lay_so_lieu.toString());
+        let params = new HttpParams().set('time_id', ngay_lay_so_lieu);
         return this.http.get<any>(apiUrl, { headers: headers, params: params }).pipe(tap(data => data),
             catchError(this.handleError)
         );
@@ -72,6 +78,15 @@ export class ManagerService {
 
     public GetListProduct() {
         var apiUrl = this.apiProductUrl + this.urlListProduct;
+        let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+        headers = headers.append('Authorization', 'Bearer ' + `${this.token}`);
+        return this.http.get<any>(apiUrl, { headers: headers }).pipe(tap(data => data),
+            catchError(this.handleError)
+        );
+    }
+
+    public GetListProduct_New() {
+        var apiUrl = this.apiDomestic + this.newUrlListProduct;
         let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
         headers = headers.append('Authorization', 'Bearer ' + `${this.token}`);
         return this.http.get<any>(apiUrl, { headers: headers }).pipe(tap(data => data),
@@ -147,7 +162,7 @@ export class ManagerService {
 
     //POST-----------------------------------------------------------------------
     public PostDomesticManager(domesticArray: Array<DomesticManagerModel>) {
-        var apiUrl = this.apiManagerUrl + this.urlDomesticManager;
+        var apiUrl = this.apiManager + this.urlDomesticManager_new;
         let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
         headers = headers.append('Authorization', 'Bearer ' + `${this.token}`);
         return this.http.post<any>(apiUrl, domesticArray, { headers: headers }).pipe(tap(data => data),

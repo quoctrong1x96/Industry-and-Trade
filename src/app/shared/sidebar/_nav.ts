@@ -248,8 +248,22 @@ export const navItemsSpecialized: INavItem[] = [
         url: '/specialized/commecial-management/border_trade',
         icon: 'luggage',
         id: 'TMBG',
-        manager: false,
+        manager: true,
         expand: false,
+        children: [
+          {
+            name: 'Xuất khẩu',
+            url: '/specialized/commecial-management/border_trade/export',
+            icon: 'ondemand_video',
+            id: 'TMBG_XK',
+          },
+          {
+            name: 'Nhập khẩu',
+            url: '/specialized/commecial-management/border_trade/import',
+            icon: 'ondemand_video',
+            id: 'TMBG_NK',
+          },
+        ]
       },
       {
         name: 'Thương mại điện tử',

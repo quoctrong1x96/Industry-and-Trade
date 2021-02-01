@@ -1,10 +1,12 @@
 export class DomesticManagerModel {
     public id_san_pham: number = 0;
-    public gia: number = null;
+    public gia_ca: any;
     public nguon_so_lieu: string = "";
     public ngay_cap_nhat: string = "";
-    public ma_nguoi_cap_nhat: number = null;
-    public ten_san_pham: string = "";
+    // public ma_nguoi_cap_nhat?: number = null;
+    public ten_san_pham?: string = "";
+    public id?: number;
+    public don_vi_tinh?: string;
 }
 
 export class ExportManagerModel {
@@ -50,7 +52,7 @@ export class TopPartner {
 }
 
 export class ProductManagerModelList {
-    public ma_san_pham: number;
+    public id_san_pham: number;
     public ten_san_pham: string;
     public stt: number;
 }

@@ -52,6 +52,9 @@ export class MarketService {
     public urlListExportedCompany = "/kim-ngach-xuat-khau";
     public urlListImportedCompany = "/kim-ngach-nhap-khau";
 
+    public apiMarketUrl_New = environment.apiEndpoint + "api/qltm";
+    public urlDomesticMarket_New = "/gia-ca";
+
     token: any;
     username: any;
     
@@ -70,12 +73,12 @@ export class MarketService {
         );
     }
 
-    public GetDomesticMarketByTime(ngay_lay_so_lieu: string) {
+    public GetDomesticMarketByTime(ngay_lay_so_lieu) {
         console.log("+ Function: GetDomesticMarketByTime(ngay_lay_so_lieu: " + ngay_lay_so_lieu.toString() + " )");
-        var apiUrl = this.apiMarketUrl + this.urlDomesticMarket;
+        var apiUrl = this.apiMarketUrl_New + this.urlDomesticMarket_New;
         let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
         //headers = headers.append('Authorization', 'Bearer ' + `${this.token}`);
-        let params = new HttpParams().set('ngay_lay_so_lieu', ngay_lay_so_lieu.toString());
+        let params = new HttpParams().set('time_id', ngay_lay_so_lieu);
         return this.http.get<any>(apiUrl, { headers: headers, params: params }).pipe(tap(data => data),
             catchError(this.handleError)
         );

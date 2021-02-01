@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ConditionalBusinessLineComponent } from './conditional-business-line/conditional-business-line.component';
 import { LiquorBusinessComponent } from './conditional-business-line/liquor-business/liquor-business.component';
@@ -18,6 +18,8 @@ import { RetailComponent } from './retail/retail.component';
 import { RetailMonthComponent } from './retail/retail-month/retail-month.component';
 import { TradeFairsExhibitionsComponent } from './trade-development/trade-fairs-exhibitions/trade-fairs-exhibitions.component';
 import { SubscribeDiscountComponent } from './trade-development/subscribe-discount/subscribe-discount.component';
+import { BorderTradeImportComponent } from './border-trade/border-trade-import/border-trade-import.component';
+import { BorderTradeExportComponent } from './border-trade/border-trade-export/border-trade-export.component';
 const routes: Routes = [
   {
     path: 'domestic',
@@ -160,7 +162,17 @@ const routes: Routes = [
   },
   {
     path: 'border_trade',
-    component: BorderTradeComponent
+    // component: BorderTradeComponent
+    children: [
+      {
+        path: 'import',
+        component: BorderTradeImportComponent
+      },
+      {
+        path: 'export',
+        component: BorderTradeExportComponent
+      }
+    ]
   },
   {
     path: 'multilevel_trade',
