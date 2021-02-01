@@ -12,11 +12,15 @@ import { ExcelServicesService } from 'src/app/shared/services/excel-services.ser
 import report_import from "../test/report_import.json";
 import { ImportDataComponent } from '../import-data/import-data.component';
 
+// Services
+import { ExcelService } from 'src/app/_services/excelUtil.service';
+
 @Component({
     selector: 'app-import-management',
     templateUrl: './import-management.component.html',
     styleUrls: ['../../../special_layout.scss'],
 })
+
 export class ImportManagementComponent implements OnInit, AfterViewInit {
     //Constant
     private readonly LINK_DEFAULT: string = "/specialized/commecial-management/export_import/imported_products";

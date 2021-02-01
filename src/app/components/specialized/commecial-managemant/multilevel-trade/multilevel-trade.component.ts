@@ -2,11 +2,14 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatTable, MatAccordion, MatPaginator, MatSort, MatDialog } from '@angular/material';
 import { multilevel } from 'src/app/_models/APIModel/mutillevel.model';
 import { District } from 'src/app/_models/district.model';
+
+// Services
 import { SCTService } from 'src/app/_services/APIService/sct.service';
 import { MarketService } from 'src/app/_services/APIService/market.service';
 import { BreadCrumService } from 'src/app/_services/injectable-service/breadcrums.service';
+import { ExcelService } from 'src/app/_services/excelUtil.service';
+
 import { LinkModel } from 'src/app/_models/link.model';
-import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-multilevel-trade',
@@ -37,11 +40,13 @@ export class MultilevelTradeComponent implements OnInit {
   @ViewChild(MatSort, { static: false }) sort: MatSort;
   nhap_khau_chu_yeu = [1, 13, 34, 33, 22, 19, 31, 18, 28, 4, 27, 17, 30, 37, 25, 7, 23];
   pagesize: number = 10;
+
   constructor(
     public sctService: SCTService,
     public matDialog: MatDialog,
     public marketService: MarketService,
-    private _breadCrumService: BreadCrumService
+    private _breadCrumService: BreadCrumService,
+    public excelService: ExcelService,
   ) {
   }
 
@@ -151,12 +156,6 @@ export class MultilevelTradeComponent implements OnInit {
   }
 
   public ExportTOExcel(filename: string, sheetname: string) {
-    const excelExtention: string = ".xlsx";
-    let excelFileName: string = filename + excelExtention;
-    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);
-    const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, sheetname);
-    /* save to file */
-    XLSX.writeFile(wb, excelFileName);
-}
+    this.excelService.exportDomTableAsExcelFile(filename, sheetname, this.table.nativeElement);
+  }
 }

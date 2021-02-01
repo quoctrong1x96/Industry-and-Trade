@@ -24,6 +24,7 @@ import json_report_01 from "../test/report_export_01.json";
     templateUrl: "./export-management.component.html",
     styleUrls: ["../../../special_layout.scss"],
 })
+
 export class ExportManagementComponent implements OnInit {
     //Constant
     private readonly LINK_DEFAULT: string =

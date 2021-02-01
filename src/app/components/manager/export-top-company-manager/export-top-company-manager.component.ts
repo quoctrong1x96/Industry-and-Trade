@@ -6,10 +6,12 @@ import { Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-//Import Service
+//Import Services
 import { MarketService } from './../../../_services/APIService/market.service';
 import { InformationService } from 'src/app/shared/information/information.service';
 import { ManagerService } from 'src/app/_services/APIService/manager.service';
+import { ExcelService } from 'src/app/_services/excelUtil.service';
+
 //Import Model
 import { ExportManagerModel } from 'src/app/_models/APIModel/manager.model';
 import { CompanyDetailModel } from './../../../_models/APIModel/domestic-market.model';
@@ -45,6 +47,7 @@ export class ExportTopCompanyManager implements OnInit {
         public dialogRef: MatDialogRef<ExportTopCompanyManager>,
         public marketService: MarketService,
         public managerService: ManagerService,
+        public excelService: ExcelService,
         public router: Router,
         public _infor: InformationService
     ) { }
@@ -132,12 +135,7 @@ export class ExportTopCompanyManager implements OnInit {
     }
     //Event "Xuất Excel"
     public exportTOExcel(filename: string, sheetname: string) {
-        sheetname = sheetname.replace('/', '_');
-        let excelFileName: string = filename + '.xlsx';
-        const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);
-        const wb: XLSX.WorkBook = XLSX.utils.book_new();
-        XLSX.utils.book_append_sheet(wb, ws, sheetname);
-        XLSX.writeFile(wb, excelFileName);
+        this.excelService.exportDomTableAsExcelFile(filename, sheetname, this.table.nativeElement);
     }
     //Event "Lưu"
     public save() {

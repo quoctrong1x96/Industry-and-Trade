@@ -12,6 +12,9 @@ import { startWith, map } from 'rxjs/operators';
 import { MatTableFilter } from 'mat-table-filter';
 import { Company_mock } from '../../../../_models/companyDetailModel_mock';
 
+// Services
+import { ExcelService } from 'src/app/_services/excelUtil.service';
+
 @Component({
   selector: 'app-search-business',
   templateUrl: './search-business.component.html',
@@ -94,7 +97,8 @@ export class SearchBusinessComponent implements OnInit {
   constructor(
     public _marketService: MarketService,
     public router: Router,
-  ) {
+    public excelService: ExcelService
+    ) {
   }
 
   ngOnInit(): void {
@@ -107,12 +111,7 @@ export class SearchBusinessComponent implements OnInit {
   }
 
   ExportTOExcel(filename: string, sheetname: string) {
-    sheetname = sheetname.replace('/', '_');
-    let excelFileName: string = filename + '.xlsx';
-    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(this.table.nativeElement);
-    const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, sheetname);
-    XLSX.writeFile(wb, excelFileName);
+    this.excelService.exportDomTableAsExcelFile(filename, sheetname, this.table.nativeElement);
   }
 
   OpenDetailCompany(mst: string) {

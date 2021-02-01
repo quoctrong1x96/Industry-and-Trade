@@ -18,7 +18,7 @@
                 </mat-form-field>
             </div>
             <div class="col-lg-10 button-control my-auto">
-                <button *ngIf="!noData" mat-raised-button (click)="exportTOExcel('Giá cả trong nước',timeDomesticPrice)">Xuất Excel</button>
+                <button *ngIf="!noData" mat-raised-button (click)="exportToExcel('Giá cả trong nước', timeDomesticPrice, dataSource.data)">Xuất Excel</button>
             </div>
         </div>
         <div class="layout" #TABLE>
