@@ -1,28 +1,15 @@
 import { Component, OnInit, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
 import { MatTableDataSource, MatTable, MatAccordion, MatPaginator, MatSort } from '@angular/material';
-import { ex_im_model } from 'src/app/_models/APIModel/export-import.model';
-import { District } from 'src/app/_models/district.model';
+import { new_import_export_model } from 'src/app/_models/APIModel/export-import.model';
 import { SCTService } from 'src/app/_services/APIService/sct.service';
 import { ModalComponent } from '../dialog-import-export/modal.component';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { tap } from 'rxjs/operators';
 import { MarketService } from '../../../../../_services/APIService/market.service';
 import { BreadCrumService } from 'src/app/_services/injectable-service/breadcrums.service';
 import { LinkModel } from 'src/app/_models/link.model';
 import * as XLSX from 'xlsx';
 import { ExcelServicesService } from 'src/app/shared/services/excel-services.service';
-import json_report_01 from "../test/report_export_01.json";
-import json_report_02 from "../test/report_export_02.json";
-import json_report_03 from "../test/report_export_03.json";
-import json_report_04 from "../test/report_export_04.json";
-import json_report_05 from "../test/report_export_05.json";
-import json_report_06 from "../test/report_export_06.json";
-import json_report_07 from "../test/report_export_07.json";
-import json_report_08 from "../test/report_export_08.json";
-import json_report_09 from "../test/report_export_09.json";
-import json_report_10 from "../test/report_export_10.json";
-import json_report_11 from "../test/report_export_11.json";
-import json_report_12 from "../test/report_export_12.json";
+import report_import from "../test/report_import.json";
 import { ImportDataComponent } from '../import-data/import-data.component';
 
 @Component({
@@ -72,9 +59,9 @@ export class ImportManagementComponent implements OnInit, AfterViewInit {
     // displaRow2Header: string[] = []
     // displayRow3Header: string[] = [];
     // dataSource: MatTableDataSource<ex_im_model> = new MatTableDataSource<ex_im_model>();
-    dataSource: MatTableDataSource<ex_im_model> = new MatTableDataSource<ex_im_model>();
+    dataSource: MatTableDataSource<new_import_export_model>;
     dataDialog: any[] = [];
-    filteredDataSource: MatTableDataSource<ex_im_model> = new MatTableDataSource<ex_im_model>();
+    filteredDataSource: MatTableDataSource<new_import_export_model> = new MatTableDataSource<new_import_export_model>();
     years: number[] = this.getYears();
     months: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
@@ -103,7 +90,7 @@ export class ImportManagementComponent implements OnInit, AfterViewInit {
         { id: 1, unit: 'Cục hải quan' },
         { id: 2, unit: 'Tổng cục hải quan' }
     ]
-    dataTargetId = [2];
+    dataTargetId = 2;
     isOnlyTongCucHQ: number = 2;
     constructor(
         public sctService: SCTService,
@@ -118,10 +105,6 @@ export class ImportManagementComponent implements OnInit, AfterViewInit {
         //     this.TongGiaTriThangThucHien += item['gia_tri_thang'];
         //     this.uth_so_cungky = 
         // })
-        this.TongGiaTriThangThucHien = this.dataSource.data[15].gia_tri_thang;
-        this.uth_so_cungky = this.dataSource.data[15].uoc_th_so_cungky_tht;
-        this.TongGiaTriCongDon = this.dataSource.data[15].gia_tri_cong_don;
-        this.uth_so_khn = this.dataSource.data[15].uoc_th_so_thg_truoc_cong_don;
     }
 
     initVariable() {
@@ -134,6 +117,10 @@ export class ImportManagementComponent implements OnInit, AfterViewInit {
         this.tonggiatri_tc = 0;
         this.tongluongcongdon_tc = 0;
         this.tonggiatricongdon_tc = 0;
+
+        //uth
+        this.uth_so_cungky = 0;
+        this.uth_so_khn = 0;
     }
 
     kiem_tra(id_mat_hang) {
@@ -144,8 +131,8 @@ export class ImportManagementComponent implements OnInit, AfterViewInit {
 
     ngOnInit() {
         // this.curentmonth = 1;
-        // this.applyDataTarget(this.dataTargetId);
-        // this.getDanhSachXuatKhau(this.curentmonth);
+        this.applyDataTarget();
+        // this.getDanhSachNhapKhau();
         this.autoOpen();
         this.sendLinkToNext(true);
         // this.filteredDataSource.filterPredicate = function (data: ex_im_model, filter): boolean {
@@ -169,27 +156,33 @@ export class ImportManagementComponent implements OnInit, AfterViewInit {
     //   return this.dataSource.data.map(t => t.cost).reduce((acc, value) => acc + value, 0);
     // }
 
-    getDanhSachNhapKhau(thang) {
-        let tem = this.curentYear * 100 + thang;
-        if (tem = 202001) {
-            this.dataSource.data = [];
-        } else {
-            this.dataSource.data = [];
-        }
-        // this.sctService.GetDanhSachXuatKhau(tem).subscribe((result) => {
-        //     this.log(this.dataSource)
-        //     this.dataDialog = result.data[0];
-        //     this.applyExpireCheck(result.data[1])
+    getDanhSachNhapKhau() {
+        let time_id = this.curentYear * 100 + this.curentmonth;
+        this.sctService.GetDanhSachNhapKhau(time_id).subscribe((result) => {
+            this.setDataImport(result.data[0]);
+        });
+    }
 
-        //     // console.log(this.TongGiaTriCongDon, this.TongGiaTriThangThucHien, this.TongLuongCongDon, this.TongLuongThangThucHien)
-        //     this.filteredDataSource.data = [...this.dataSource.data];
-        //     this.filteredDataSource.paginator = this.paginator;
-        //     this.paginator._intl.itemsPerPageLabel = 'Số hàng';
-        //     this.paginator._intl.firstPageLabel = "Trang Đầu";
-        //     this.paginator._intl.lastPageLabel = "Trang Cuối";
-        //     this.paginator._intl.previousPageLabel = "Trang Trước";
-        //     this.paginator._intl.nextPageLabel = "Trang Tiếp";
-        // });
+    getDanhSachNhapKhauTC() {
+        let time_id = this.curentYear * 100 + this.curentmonth;
+        this.sctService.GetDanhSachNhapKhauTC(time_id).subscribe((result) => {
+            this.setDataImport(result.data[0]);
+        });
+    }
+
+    setSumaryData(data){
+        this.TongGiaTriThangThucHien = data[16].tri_gia_thang ? data[16].tri_gia_thang : 0;
+        this.uth_so_cungky = data[16].uoc_thang_so_voi_ki_truoc ? data[16].uoc_thang_so_voi_ki_truoc : 0;
+        this.TongGiaTriCongDon = data[16].tri_gia_cong_don ? data[16].tri_gia_cong_don : 0;
+        this.uth_so_khn = data[16].uoc_cong_don_so_voi_cong_don_truoc ? data[16].uoc_cong_don_so_voi_cong_don_truoc : 0;
+    }
+
+    setDataImport(data){
+        this.dataSource = new MatTableDataSource<new_import_export_model>(data);
+            if(data.length){
+                this.dataSource.paginator = this.paginator;
+                this.setSumaryData(data);
+            }
     }
 
     tinh_tong(data) {
@@ -211,8 +204,8 @@ export class ImportManagementComponent implements OnInit, AfterViewInit {
     ngAfterViewInit(): void {
         //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
         //Add 'implements AfterViewInit' to the class.
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
+        // this.dataSource.paginator = this.paginator;
+        // this.dataSource.sort = this.sort;
     }
 
     log(any) {
@@ -234,16 +227,10 @@ export class ImportManagementComponent implements OnInit, AfterViewInit {
             .map((element, index) => new Date().getFullYear() - index);
     }
 
-    applyDistrictFilter(event) { }
-
-    // isHidden(row : any){
-    //     return (this.isChecked)? (row.is_het_han) : false;
-    // }
-
     applyExpireCheck(data) {
         // console.log(data);
         let tem_data = [...data]
-        this.dataSource = new MatTableDataSource<ex_im_model>(tem_data.filter(item => this.nhap_khau_chu_yeu.includes(item.id_mat_hang)));
+        this.dataSource = new MatTableDataSource<new_import_export_model>(tem_data.filter(item => this.nhap_khau_chu_yeu.includes(item.id_mat_hang)));
         this.tinh_tong(this.dataSource.data)
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
@@ -286,97 +273,22 @@ export class ImportManagementComponent implements OnInit, AfterViewInit {
             });
     }
 
-    applyDataTarget(value: number[]) {
+    applyDataTarget() {
         // this.dataTargetId[0] = 2
         // 1: cuc hai quan
         // 2: tong cuc hai quan
-        // 3: cả 2 
-        // if (this.dataTargetId.includes(1) && this.dataTargetId.includes(2)) {
-        //     this.isOnlyTongCucHQ = 3
-        // } else if (this.dataTargetId.includes(1)) {
-        //     this.isOnlyTongCucHQ = 1
-        // } else {
-        //     this.isOnlyTongCucHQ = 2;
-        // }
 
-        // switch (this.isOnlyTongCucHQ) {
-        //     case 1:
-        //         this.displayedColumns = [
-        //             'index', 'ten_san_pham', 'luong_thang', 'gia_tri_thang', 'luong_cong_don',
-        //             'gia_tri_cong_don', 'danh_sach_doanh_nghiep', 'chi_tiet_doanh_nghiep'];
-        //         this.displayRow1Header = [
-        //             'index',
-        //             'ten_san_pham',
-        //             'cuc_hai_quan',
-        //             'danh_sach_doanh_nghiep',
-        //             'chi_tiet_doanh_nghiep'
-        //         ]
-        //         this.displaRow2Header = [
-        //             'thuc_hien_bao_cao_thang',
-        //             'cong_don_den_ky_bao_cao',
-        //         ]
-        //         this.displayRow3Header = [
-        //             'luong_thang',
-        //             'gia_tri_thang',
-        //             'luong_cong_don',
-        //             'gia_tri_cong_don',
-        //         ]
-        //         break;
-        //     case 2:
-        //         this.displayedColumns = [
-        //             'index', 'ten_san_pham', 'luong_thang_tc', 'gia_tri_thang_tc', 'luong_thang_cong_don_tc',
-        //             'gia_tri_thang_cong_don_tc', 'danh_sach_doanh_nghiep', 'chi_tiet_doanh_nghiep'];
-        //         this.displayRow1Header = [
-        //             'index',
-        //             'ten_san_pham',
-        //             'tong_cuc_hai_quan',
-        //             'danh_sach_doanh_nghiep',
-        //             'chi_tiet_doanh_nghiep'
-        //         ]
-        //         this.displaRow2Header = [
-        //             'thuc_hien_bao_cao_thang1',
-        //             'cong_don_den_ky_bao_cao1'
-        //         ]
-        //         this.displayRow3Header = [
-        //             'luong_thang_tc',
-        //             'gia_tri_thang_tc',
-        //             'luong_thang_cong_don_tc',
-        //             'gia_tri_thang_cong_don_tc'
-        //         ]
-        //         break;
-        //     case 3:
-        //         this.displayedColumns = [
-        //             'index', 'ten_san_pham', 'luong_thang', 'gia_tri_thang', 'luong_cong_don',
-        //             'gia_tri_cong_don', 'luong_thang_tc', 'gia_tri_thang_tc', 'luong_thang_cong_don_tc',
-        //             'gia_tri_thang_cong_don_tc', 'danh_sach_doanh_nghiep', 'chi_tiet_doanh_nghiep'];
-        //         this.displayRow1Header = [
-        //             'index',
-        //             'ten_san_pham',
-        //             'cuc_hai_quan',
-        //             'tong_cuc_hai_quan',
-        //             'danh_sach_doanh_nghiep',
-        //             'chi_tiet_doanh_nghiep'
-        //         ]
-        //         this.displaRow2Header = [
-        //             'thuc_hien_bao_cao_thang',
-        //             'cong_don_den_ky_bao_cao',
-        //             'thuc_hien_bao_cao_thang1',
-        //             'cong_don_den_ky_bao_cao1'
-        //         ]
-        //         this.displayRow3Header = [
-        //             'luong_thang',
-        //             'gia_tri_thang',
-        //             'luong_cong_don',
-        //             'gia_tri_cong_don',
-        //             'luong_thang_tc',
-        //             'gia_tri_thang_tc',
-        //             'luong_thang_cong_don_tc',
-        //             'gia_tri_thang_cong_don_tc'
-        //         ]
-        //         break;
-        //     default:
-        //         break;
-        // }
+        switch (this.dataTargetId) {
+            case 1:
+                this.getDanhSachNhapKhau();
+                break;
+            case 2:
+                this.getDanhSachNhapKhauTC();
+                break;
+
+            default:
+                break;
+        }
     }
 
     public ExportTOExcel(filename: string, sheetname: string) {
@@ -390,51 +302,17 @@ export class ImportManagementComponent implements OnInit, AfterViewInit {
     }
 
     public DowloadFile(filename: string, sheetname: string) {
-        let report: any = json_report_01;
-        switch (this.curentmonth) {
-            case 2:
-                report = json_report_02;
-                break;
-            case 3:
-                report = json_report_03;
-                break;
-            case 4:
-                report = json_report_04;
-                break;
-            case 5:
-                report = json_report_05;
-                break;
-            case 6:
-                report = json_report_06;
-                break;
-            case 7:
-                report = json_report_07;
-                break;
-            case 8:
-                report = json_report_08;
-                break;
-            case 9:
-                report = json_report_09;
-                break;
-            case 10:
-                report = json_report_10;
-                break;
-            case 11:
-                report = json_report_11;
-                break;
-            case 12:
-                report = json_report_12;
-                break;
-            default:
-                break;
-        }
+        let report: any = report_import;
         this.excelServices.exportAsExcelFile(report, "mau_bao_cao_nhap_khau");
     }
 
+    // declare isImport
     public ImportTOExcel() {
         const dialogConfig = new MatDialogConfig();
         dialogConfig.data = {
-            data: {},
+            data: {
+                isImport: true
+            },
         };
         dialogConfig.minWidth = window.innerWidth - 100;
         dialogConfig.minHeight = window.innerHeight - 100;

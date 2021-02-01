@@ -7,8 +7,8 @@ import { DomesticMarketModel, CompanyDetailModel, ForeignMarketModel } from "../
 import { ExportMarketModel, ImportMarketModel, ProductValueModel, TopExportModel, TopImportModel, TopProductModel } from "../../_models/APIModel/domestic-market.model";
 // import { environment } from "src/app/Shared/environment";
 import { environment } from '../../../environments/environment';
-import { error } from 'protractor';
 import { LoginService } from './login.service';
+import { new_import_export_model } from 'src/app/_models/APIModel/export-import.model';
 
 @Injectable({
     providedIn: 'root'
@@ -27,12 +27,20 @@ export class SCTService {
     private urlDanhSachQuanLyCongNghiepThucPham = "/danh-sach-quan-ly-cong-nghiep-thuc-pham";
     private urlDanhSachQuanLyVatLieuNoCongNghiep = "/danh-sach-quan-ly-vat-lieu-no-cong-nghiep";
     private urlDanhSachQuanLyCumCongNghiep = "/danh-sach-quan-ly-cum-cong-nghiep";
-    private urlDanhSachNhapKhau = "/danh-sach-nhap-khau";
-    private urlDanhSachXuatKhau = "/danh-sach-xuat-khau";
-    private urlThuongMaiBienGioi = "/danh-sach-xuat-nhap-khau-bien-gioi";
+
     private urlDanhSachWebTMDT = "/danh-sach-web-tmdt";
     private urlDanhSachWebBH = "/danh-sach-web-ban-hang";
     private urlDanhSachDaCap = "/danh-sach-ban-hang-da-cap";
+
+    private apiSpecialized = environment.apiEndpoint + "api/qltm";
+    private urlDanhSachNhapKhau = "/xnk/nhap-khau";
+    private urlDanhSachNhapKhauTC = "/xnk/nhap-khau-tc";
+    private urlDanhSachXuatKhau = "/xnk/xuat-khau";
+    private urlDanhSachXuatKhauTC = "/xnk/xuat-khau-tc";
+
+    private urlThuongMaiBienGioi = "/danh-sach-xuat-nhap-khau-bien-gioi";
+
+
     token: any;
     username: any;
 
@@ -132,8 +140,19 @@ export class SCTService {
         );
     }
 
+    // Start Import and Export
     public GetDanhSachNhapKhau(time_id: number) {
-        var apiUrl = this.apiSCT + this.urlDanhSachNhapKhau;
+        var apiUrl = this.apiSpecialized + this.urlDanhSachNhapKhau;
+        let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+        let params = new HttpParams().set('time_id', time_id.toString());
+        console.log(params);
+        return this.http.get<any>(apiUrl, { headers: headers, params: params }).pipe(tap(data => data),
+            catchError(this.handleError)
+        );
+    }
+
+    public GetDanhSachNhapKhauTC(time_id: number) {
+        var apiUrl = this.apiSpecialized + this.urlDanhSachNhapKhauTC;
         let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
         let params = new HttpParams().set('time_id', time_id.toString());
         console.log(params);
@@ -143,7 +162,7 @@ export class SCTService {
     }
 
     public GetDanhSachXuatKhau(time_id: number) {
-        var apiUrl = this.apiSCT + this.urlDanhSachXuatKhau;
+        var apiUrl = this.apiSpecialized + this.urlDanhSachXuatKhau;
         let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
         let params = new HttpParams().set('time_id', time_id.toString());
         console.log(params);
@@ -151,6 +170,58 @@ export class SCTService {
             catchError(this.handleError)
         );
     }
+    public GetDanhSachXuatKhauTC(time_id: number) {
+        var apiUrl = this.apiSpecialized + this.urlDanhSachXuatKhauTC;
+        let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+        let params = new HttpParams().set('time_id', time_id.toString());
+        console.log(params);
+        return this.http.get<any>(apiUrl, { headers: headers, params: params }).pipe(tap(data => data),
+            catchError(this.handleError)
+        );
+    }
+
+    // Post
+    public CapNhatDuLieuNKThang(time_id: number, data: new_import_export_model[]) {
+        var apiUrl = this.apiSpecialized + this.urlDanhSachNhapKhau;
+        let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+        let params = new HttpParams().set('time_id', time_id.toString());
+        console.log(params);
+        return this.http.post<any>(apiUrl, data, { headers: headers, params: params }).pipe(tap(data => data),
+            catchError(this.handleError)
+        );
+    }
+
+    public CapNhatDuLieuNKThangTC(time_id: number, data: new_import_export_model[]) {
+        var apiUrl = this.apiSpecialized + this.urlDanhSachNhapKhauTC;
+        let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+        let params = new HttpParams().set('time_id', time_id.toString());
+        console.log(params);
+        return this.http.post<any>(apiUrl,data, { headers: headers, params: params }).pipe(tap(data => data),
+            catchError(this.handleError)
+        );
+    }
+
+    public CapNhatDuLieuXKThang(time_id: number, data: new_import_export_model[]) {
+        var apiUrl = this.apiSpecialized + this.urlDanhSachXuatKhau;
+        let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+        let params = new HttpParams().set('time_id', time_id.toString());
+        console.log(params);
+        return this.http.post<any>(apiUrl, data,  { headers: headers, params: params }).pipe(tap(data => data),
+            catchError(this.handleError)
+        );
+    }
+    public CapNhatDuLieuXKThangTC(time_id: number, data: new_import_export_model[]) {
+        var apiUrl = this.apiSpecialized + this.urlDanhSachXuatKhauTC;
+        let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+        let params = new HttpParams().set('time_id', time_id.toString());
+        console.log(params);
+        return this.http.post<any>(apiUrl, data, { headers: headers, params: params }).pipe(tap(data => data),
+            catchError(this.handleError)
+        );
+    }
+    
+
+
 
     public GetDanhSachXuatNhapKhauBG(time_id: number, id_cua_khau: number) {
         var apiUrl = this.apiSCT + this.urlThuongMaiBienGioi;

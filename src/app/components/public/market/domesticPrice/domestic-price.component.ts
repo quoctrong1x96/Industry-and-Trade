@@ -77,6 +77,7 @@ export class DomesticPriceComponent implements OnInit {
   public theYear: string;
   public readonly format = 'dd/MM/yyyy';
   public readonly locale = 'en-US';
+  public readonly newformat = 'yyyyMMdd';
 
   dataSource: MatTableDataSource<DomesticPriceModel>;
   dataGet: Array<any>;
@@ -102,7 +103,7 @@ export class DomesticPriceComponent implements OnInit {
 
   //Function for Process-Flow -------------------------------------------------------------------------------------------
   public getDomesticMarketPriceByTime(time: Date) {
-    let formattedDate = formatDate(time, this.format, this.locale);
+    let formattedDate = parseInt(formatDate(time, this.newformat, this.locale));
     this.marketService.GetDomesticMarketByTime(formattedDate).subscribe(
       allrecords => {
         console.log(allrecords)
@@ -115,7 +116,7 @@ export class DomesticPriceComponent implements OnInit {
         } else {
           this.noData = false;
         }
-        console.log(this.noData);
+        console.log(this.noData, this.dataSource.data);
         this.dataSource.paginator = this.paginator;
         this.paginator._intl.itemsPerPageLabel = 'Số hàng';
         this.paginator._intl.firstPageLabel = "Trang Đầu";

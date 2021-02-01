@@ -1,6 +1,6 @@
 [
     {
-      "STT": 1,
+      "ID": 1,
       "Sản phẩm": "Hạt điều",
       "Sản lượng (Nghìn tấn)": "-",
       "Trị giá (Triệu USD)": "-",
@@ -12,7 +12,7 @@
       "ƯTH so với kế hoạch năm": "-"
     },
     {
-      "STT": 2,
+      "ID": 2,
       "Sản phẩm": "Giày dép các loại",
       "Sản lượng (Nghìn tấn)": "-",
       "Trị giá (Triệu USD)": "-",
@@ -24,7 +24,7 @@
       "ƯTH so với kế hoạch năm": "-"
     },
     {
-      "STT": 3,
+      "ID": 3,
       "Sản phẩm": "Hàng dệt, may",
       "Sản lượng (Nghìn tấn)": "-",
       "Trị giá (Triệu USD)": "-",
@@ -36,7 +36,7 @@
       "ƯTH so với kế hoạch năm": "-"
     },
     {
-      "STT": 4,
+      "ID": 4,
       "Sản phẩm": "Cao su",
       "Sản lượng (Nghìn tấn)": "-",
       "Trị giá (Triệu USD)": "-",
@@ -48,7 +48,7 @@
       "ƯTH so với kế hoạch năm": "-"
     },
     {
-      "STT": 5,
+      "ID": 5,
       "Sản phẩm": "Gỗ và sản phẩm gỗ",
       "Sản lượng (Nghìn tấn)": "-",
       "Trị giá (Triệu USD)": "-",
@@ -60,7 +60,7 @@
       "ƯTH so với kế hoạch năm": "-"
     },
     {
-      "STT": 6,
+      "ID": 9,
       "Sản phẩm": "Giấy và các sản phẩm từ giấy",
       "Sản lượng (Nghìn tấn)": "-",
       "Trị giá (Triệu USD)": "-",
@@ -72,7 +72,7 @@
       "ƯTH so với kế hoạch năm": "-"
     },
     {
-      "STT": 7,
+      "ID": 10,
       "Sản phẩm": "Máy móc, thiết bị, dụng cụ phụ tùng khác",
       "Sản lượng (Nghìn tấn)": "-",
       "Trị giá (Triệu USD)": "-",
@@ -84,7 +84,7 @@
       "ƯTH so với kế hoạch năm": "-"
     },
     {
-      "STT": 8,
+      "ID": 11,
       "Sản phẩm": "Máy vi tính, sản phẩm điện tử và linh kiện",
       "Sản lượng (Nghìn tấn)": "-",
       "Trị giá (Triệu USD)": "-",
@@ -96,7 +96,7 @@
       "ƯTH so với kế hoạch năm": "-"
     },
     {
-      "STT": 9,
+      "ID": 12,
       "Sản phẩm": "Sắn và các sản phẩm từ sắn",
       "Sản lượng (Nghìn tấn)": "-",
       "Trị giá (Triệu USD)": "-",
@@ -108,7 +108,7 @@
       "ƯTH so với kế hoạch năm": "-"
     },
     {
-      "STT": 10,
+      "ID": 13,
       "Sản phẩm": "Phương tiện vận tải và phụ tùng",
       "Sản lượng (Nghìn tấn)": "-",
       "Trị giá (Triệu USD)": "-",
@@ -120,7 +120,7 @@
       "ƯTH so với kế hoạch năm": "-"
     },
     {
-      "STT": 11,
+      "ID": 14,
       "Sản phẩm": "Sản phẩm từ chất dẻo",
       "Sản lượng (Nghìn tấn)": "-",
       "Trị giá (Triệu USD)": "-",
@@ -132,7 +132,7 @@
       "ƯTH so với kế hoạch năm": "-"
     },
     {
-      "STT": 12,
+      "ID": 15,
       "Sản phẩm": "Sản phẩm từ cao su",
       "Sản lượng (Nghìn tấn)": "-",
       "Trị giá (Triệu USD)": "-",
@@ -144,7 +144,7 @@
       "ƯTH so với kế hoạch năm": "-"
     },
     {
-      "STT": 13,
+      "ID": 16,
       "Sản phẩm": "Nguyên phụ liệu dệt, may, da, giày",
       "Sản lượng (Nghìn tấn)": "-",
       "Trị giá (Triệu USD)": "-",
@@ -156,7 +156,7 @@
       "ƯTH so với kế hoạch năm": "-"
     },
     {
-      "STT": 14,
+      "ID": 17,
       "Sản phẩm": "Sản phẩm hóa chất",
       "Sản lượng (Nghìn tấn)": "-",
       "Trị giá (Triệu USD)": "-",
@@ -168,7 +168,7 @@
       "ƯTH so với kế hoạch năm": "-"
     },
     {
-      "STT": 15,
+      "ID": 18,
       "Sản phẩm": "Hàng hóa khác",
       "Sản lượng (Nghìn tấn)": "-",
       "Trị giá (Triệu USD)": "-",
@@ -180,7 +180,7 @@
       "ƯTH so với kế hoạch năm": "-"
     },
     {
-      "STT": 16,
+      "ID": 19,
       "Sản phẩm": "Tổng",
       "Sản lượng (Nghìn tấn)": "-",
       "Trị giá (Triệu USD)": "-",

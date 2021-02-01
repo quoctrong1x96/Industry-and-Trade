@@ -15,6 +15,7 @@ import { SimplebarAngularModule } from 'simplebar-angular';
 import { FilterByTextPipe } from './pipes/filterByText.pipe';
 import { HeaderComponent } from './header/header.component';
 import { ExcelServicesService } from './services/excel-services.service';
+import { MatTabComponent } from './mat-tab/mat-tab.component';
 // import { FlexLayoutModule } from '@angular/flex-layout';
 
 
@@ -26,7 +27,8 @@ import { ExcelServicesService } from './services/excel-services.service';
     PageNotFoundComponent,
     LoaderComponent,
     SidebarComponent,
-    FilterByTextPipe
+    FilterByTextPipe,
+    MatTabComponent
   ],
   imports: [
     CommonModule,

@@ -42,6 +42,13 @@ import { BorderTradeExportComponent } from "./border-trade/border-trade-export/b
 import { BorderTradeImportComponent } from "./border-trade/border-trade-import/border-trade-import.component";
 import { ImportDataComponent } from './export-import-management/import-data/import-data.component';
 import { ExcelServicesService } from 'src/app/shared/services/excel-services.service';
+
+import {MatTabsModule} from '@angular/material/tabs';
+import { MatTabComponent } from './export-import-management/mat-tab/mat-tab.component';
+import { DetailNationalComponent } from './export-import-management/detail-national/detail-national.component';
+import { DetailDataComponent } from './export-import-management/detail-data/detail-data.component';
+import { CommonDataComponent } from './export-import-management/common-data/common-data.component';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -52,6 +59,7 @@ import { ExcelServicesService } from 'src/app/shared/services/excel-services.ser
     MatDialogModule,
     MatPaginatorModule,
     PipeModule,
+    MatTabsModule
   ],
   exports: [
     MatPaginatorModule,
@@ -87,7 +95,11 @@ import { ExcelServicesService } from 'src/app/shared/services/excel-services.ser
     SubscribeDiscountComponent,
     BorderTradeExportComponent,
     BorderTradeImportComponent,
-    ImportDataComponent
+    ImportDataComponent,
+    MatTabComponent,
+    DetailNationalComponent,
+    DetailDataComponent,
+    CommonDataComponent
   ],
   entryComponents: [
     ModalComponent,
